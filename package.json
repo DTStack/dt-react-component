@@ -1,0 +1,30 @@
+{
+  "name": "dtinsigth-react-component",
+  "version": "1.0.0",
+  "description": "用storybook整合react组件库",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@git.dtstack.cn:10022/dtinsight-front-end/dtinsigth-react-component.git"
+  },
+  "keywords": [
+    "storybook",
+    "react"
+  ],
+  "author": "qingyi",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@storybook/addon-actions": "^4.1.12",
+    "@storybook/react": "^4.1.12",
+    "babel-loader": "^8.0.5"
+  },
+  "dependencies": {
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  }
+}
