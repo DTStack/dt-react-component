@@ -6,7 +6,10 @@ export class Button extends Component {
     }
     render () {
         return (
-            <button style={{ backgroundColor: '#fff', border: '1px solid #ccc' }}>{this.props.children}</button>
+            <button
+                style={{ backgroundColor: '#fff', border: '1px solid #ccc' }}
+                onClick={this.props.onClick}
+            >{this.props.children}</button>
         )
     }
 }
