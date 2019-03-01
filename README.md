@@ -1,7 +1,12 @@
 ## dtinsight-react-component
 使用storybook整合react组件库
-项目package.json：
+## 项目启动
 ```
+git clone ssh://git@git.dtstack.cn:10022/dtinsight-front-end/dtinsigth-react-component.git
+npm i
+npm run  storybook
+```
+##项目package.json：
 "devDependencies": {
     "@babel/core": "^7.3.3",
     "@storybook/addon-actions": "^4.1.12",
