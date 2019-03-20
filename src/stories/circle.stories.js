@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { withKnobs, text, boolean, number } from '@storybook/addon-knobs';
+import { withKnobs, text, boolean, number, object } from '@storybook/addon-knobs';
 import { Circle } from '../components/circle';
 import '../components/circle/circle-color.scss';
 import circleText from '../markdown/circle.md';
@@ -63,4 +63,15 @@ stories.add('圆点', () => (
         notes: {
            markdown: circleText
         }
-    })
+    });
+
+stories.add('动态修改style', () =>{
+    const groupId = 'circle';
+    const defaultStyle = {
+        background: 'black'
+    }
+    const style = object('Style', defaultStyle, groupId);
+
+    return <Circle style={style} ></Circle>
+}
+)

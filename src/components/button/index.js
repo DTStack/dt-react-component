@@ -9,6 +9,7 @@ export class Button extends Component {
             <button
                 style={{ backgroundColor: '#fff', border: '1px solid #ccc' }}
                 onClick={this.props.onClick}
+                onMouseOver={this.props.onMouseOver}
             >{this.props.children}</button>
         )
     }
