@@ -1,10 +1,12 @@
 import React from 'react';
+import { Button } from 'antd';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { withKnobs } from '@storybook/addon-knobs';
-import GoBack from '../components/go-back';
+import CtxMenu from '../components/ctx-menu';
 
-const stories = storiesOf('goback', module);
+const stories = storiesOf('CtxMenu', module);
 // stories.addDecorator(story => <div style={{ textAlign: 'center', marginTop: '100px' }}>{story()}</div>)
 // Add the `withKnobs` decorator to add knobs support to your stories.
 // You can also configure `withKnobs` as a global decorator.
@@ -12,10 +14,22 @@ stories.addDecorator(withKnobs)
 
 // 定制化component props
 const propDefinitions = [{
-    property: 'url',
-    propType: 'string',
+    property: 'children',
+    propType: 'ReactNode',
     required: false,
-    description: '返回的路由， 如不传参数，则默认返回浏览器上一级url',
+    description: '子节点',
+    defaultValue: ''
+}, {
+    property: 'operations',
+    propType: 'Array',
+    required: false,
+    description: '传入的右键菜单内容，',
+    defaultValue: ''
+}, {
+    property: 'id',
+    propType: 'string || number',
+    required: false,
+    description: '循环用于拼装每个li的key',
     defaultValue: ''
 }]
 const Red = props => <span style={{ color: 'red' }} {...props} />;
@@ -51,20 +65,47 @@ const TableComponent = () => {
         </table>
     );
 };
-stories.add('返回', () => (
+stories.add('CtxMenu', () => (
     <div className='story_wrapper'>
-        <section>返回组件</section>
-        <p>默认返回浏览器上一级路由</p>
-        <GoBack />
+        <section>右键菜单</section>
+        <p>右键菜单</p>
+        <CtxMenu
+            operations={
+                [{
+                    txt: '移动',
+                    cb: action('move')
+                }, {
+                    txt: '删除',
+                    cb: action('del')
+                }]
+            }>
+            <Button>右击我试试看~</Button>
+        </CtxMenu>
     </div>
 ), {
     info: {
         inline: true,
         TableComponent,
+        propTablesExclude: [Button],
         text: `
         #### 使用示例
         ~~~js
-        <GoBack url='/api/manage' />
+        <CtxMenu
+            operations={
+                [{
+                txt: '移动',
+                cb: () => {
+                    action('move')
+                }
+            }, {
+                txt: '删除',
+                cb: () => {
+                    action('del')
+                }
+            }]
+        }>
+            <Button>右击我试试看</Button>
+        </CtxMenu>
         ~~~
       `
     }

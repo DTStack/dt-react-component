@@ -6,7 +6,8 @@
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "build-storybook -c .storybook",
-    "test": "jest --no-cache"
+    "test": "jest --no-cache",
+    "lint-js": "node ./node_modules/eslint/bin/eslint.js ./src/**/*.js --fix"
   },
   "keywords": [
     "react"
@@ -32,11 +33,25 @@
     "@storybook/addon-storyshots": "^5.1.9",
     "@storybook/addon-storysource": "^5.1.9",
     "@storybook/react": "^5.1.9",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.12.0",
     "babel-plugin-macros": "^2.6.1",
     "babel-plugin-transform-require-context": "^0.1.1",
+    "commitizen": "^4.0.3",
     "css-loader": "^3.1.0",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^5.9.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.14.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-sort-requires": "^2.1.0",
+    "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.8.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
