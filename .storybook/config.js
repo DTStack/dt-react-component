@@ -3,16 +3,16 @@ import { configure, addDecorator, addParameters, setAddon  } from '@storybook/re
 import requireContext from 'require-context.macro';
 import { withNotes } from '@storybook/addon-notes';
 import { withKnobs } from '@storybook/addon-knobs';
-// import { addReadme } from 'storybook-readme';
 import { withInfo } from '@storybook/addon-info';
 import chaptersAddon from 'react-storybook-addon-chapters';
+// import { create } from '@storybook/theming';
 
 setAddon(chaptersAddon);
 // 全局加载装饰器
 // addDecorator(story => <div style={{ textAlign: 'center' }}>{story()}</div>);
 addDecorator(withNotes);
 addDecorator(withKnobs);
-// addDecorator(addReadme);  addReadme与withInfo不能共存
+// addReadme与withInfo不能共存
 addDecorator(withInfo); 
 addParameters({
     info: {
@@ -34,6 +34,12 @@ addParameters({
         }),
     }
 });
+
+// theme
+// const theme = create({ base: 'dark', colorPrimary: '#FF4785', colorSecondary: '#1EA7FD' });
+// addParameters({ options: { theme } });
+
+
 /**
  * 动态加载所有stories
  */

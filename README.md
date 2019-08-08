@@ -17,7 +17,7 @@ https://dtux.netlify.com/
 
 ### 相关资料
 * [Storybook](https://storybook.js.org/)
-* [netlift](https://www.netlify.com/)
+* [netlify](https://www.netlify.com/)
 
 
 
