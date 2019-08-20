@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Button } from 'antd';
@@ -36,11 +36,11 @@ const propDefinitions = [{
     description: '点击slidepanel回调',
     defaultValue: ''
 }]
-const Red = props => <span style={{ color: 'red' }} {...props} />;
+const Red = (props: any) => <span style={{ color: 'red' }} {...props} />;
 
 const TableComponent = () => {
-    const props = propDefinitions.map(
-        ({ property, propType, required, description, defaultValue }) => {
+    const props: any = propDefinitions.map(
+        ({ property, propType, required, description, defaultValue }: any) => {
             return (
                 <tr key={property}>
                     <td>
@@ -56,7 +56,7 @@ const TableComponent = () => {
     );
 
     return (
-        <table width="90%">
+        <table {...{width: "90%"}}>
             <thead>
                 <tr>
                     <th>参数</th>
@@ -89,7 +89,8 @@ stories.add('slidepanel', () => {
                 slidepanel面板组件作用于右侧展示更多信息
             </section>
             <Button onClick={() => {
-                action(store.get('visible'))
+                const actionVal: any = store.get('visible')
+                action(actionVal)
                 store.set({
                     visible: !store.get('visible')
                 })

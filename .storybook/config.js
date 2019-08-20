@@ -44,7 +44,7 @@ addParameters({
  * 动态加载所有stories
  */
 // const req = require.context('../src/stories', true, /\.stories\.js$/);
-const req = requireContext('../src/stories', true, /\.stories\.js$/);
+const req = requireContext('../src/stories', true, /\.stories\.(ts|tsx)$/);
 function loadStories() {
     req.keys().forEach(fileName => req(fileName));
 }

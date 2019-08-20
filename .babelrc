@@ -6,16 +6,22 @@
                 "modules": false
             }
         ],
-        "@babel/preset-react"
+        "@babel/preset-react",
+        "@babel/preset-typescript"
     ],
     "env": {
         "test": {
-          "presets": ["@babel/preset-env", "@babel/preset-react"]
+          "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]
         }
     },
+    // "extraBabelPlugins": [
+    //     ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": true }]
+    // ],
     "plugins": [
-        // ["import", { "libraryName": "antd", "style": "true" }], // `style: true` 会加载 less 文件
+        ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": true }], // `style: true` 会加载 less 文件
         "@babel/transform-runtime",
+        ["@babel/plugin-proposal-decorators",{"legacy": true}],
+        "@babel/plugin-syntax-dynamic-import",
         "macros",
         "@babel/plugin-proposal-class-properties"
         // "transform-require-context"

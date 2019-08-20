@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { withKnobs } from '@storybook/addon-knobs';
@@ -18,11 +18,11 @@ const propDefinitions = [{
     description: '返回的路由， 如不传参数，则默认返回浏览器上一级url',
     defaultValue: ''
 }]
-const Red = props => <span style={{ color: 'red' }} {...props} />;
+const Red = (props: any) => <span style={{ color: 'red' }} {...props} />;
 
 const TableComponent = () => {
-    const props = propDefinitions.map(
-        ({ property, propType, required, description, defaultValue }) => {
+    const props: any = propDefinitions.map(
+        ({ property, propType, required, description, defaultValue }: any) => {
             return (
                 <tr key={property}>
                     <td>
@@ -38,7 +38,7 @@ const TableComponent = () => {
     );
 
     return (
-        <table width="90%">
+        <table {...{width: "90%"}}>
             <thead>
                 <tr>
                     <th>参数</th>

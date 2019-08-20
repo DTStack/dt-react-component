@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Button } from 'antd';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -32,10 +32,10 @@ const propDefinitions = [{
     description: '循环用于拼装每个li的key',
     defaultValue: ''
 }]
-const Red = props => <span style={{ color: 'red' }} {...props} />;
+const Red = (props: any) => <span style={{ color: 'red' }} {...props} />;
 
 const TableComponent = () => {
-    const props = propDefinitions.map(
+    const props: any = propDefinitions.map(
         ({ property, propType, required, description, defaultValue }) => {
             return (
                 <tr key={property}>
@@ -52,7 +52,7 @@ const TableComponent = () => {
     );
 
     return (
-        <table width="90%">
+        <table {...{width: "90%"}}>
             <thead>
                 <tr>
                     <th>参数</th>

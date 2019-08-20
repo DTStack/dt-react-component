@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import '../../style/index.scss';
 
-export function PropsTable (props) {
+export function PropsTable (props: any) {
     const { propDefinitions } = props;
     // const Red = props => <span style={{ color: 'red' }} {...props} />;
     const propsFields = propDefinitions.map(
-        ({ property, propType, required, description, defaultValue }) => {
+        ({ property, propType, required, description, defaultValue }: any) => {
             return (
                 <tr key={property}>
                     <td>
@@ -21,7 +21,7 @@ export function PropsTable (props) {
     );
 
     return (
-        <table width="90%">
+        <table {...{ width: "90%" }}>
             <thead>
                 <tr>
                     <th>参数</th>

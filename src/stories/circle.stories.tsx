@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { object } from '@storybook/addon-knobs';
@@ -19,10 +19,10 @@ const propDefinitions = [{
     description: '默认类名',
     defaultValue: 'circle_default'
 }]
-const Red = props => <span style={{ color: 'red' }} {...props} />;
+const Red = (props: any) => <span style={{ color: 'red' }} {...props} />;
 const TableComponent = () => {
-    const props = propDefinitions.map(
-        ({ property, propType, required, description, defaultValue }) => {
+    const props: any = propDefinitions.map(
+        ({ property, propType, required, description, defaultValue }: any) => {
             return (
                 <tr key={property}>
                     <td>
@@ -38,7 +38,7 @@ const TableComponent = () => {
     );
 
     return (
-        <table width="90%">
+        <table {...{width: "90%"}}>
             <thead>
                 <tr>
                     <th>参数</th>

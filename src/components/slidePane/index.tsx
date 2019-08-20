@@ -1,24 +1,21 @@
-import PropTypes from 'prop-types'
 import { assign } from 'lodash'
 import { Icon } from 'antd'
-import React, { Component } from 'react'
+import * as React from 'react'
 
 import './style.scss'
 
-const strOrNum = PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-])
-
-const propType = {
-    children: PropTypes.node,
-    left: strOrNum,
-    width: strOrNum,
-    visible: PropTypes.bool
+export interface SlidePaneProps {
+    children: any;
+    visible: boolean;
+    left?: string | number;
+    width?: string | number;
+    className?: string;
+    style?: object;
+    onClose?<HTMLSpanElement, MouseEvent>(): void;
 }
 
-class SlidePane extends Component {
-    constructor (props) {
+class SlidePane extends React.Component<SlidePaneProps, any> {
+    constructor (props: any) {
         super(props);
     }
 
@@ -26,7 +23,7 @@ class SlidePane extends Component {
         const { children, visible, style, className, onClose } = this.props
 
         let myClass = 'slide-pane';
-        let myStyle = {
+        let myStyle: any = {
             top: 0,
             transform: visible ? undefined : 'translate3d(150%, 0, 0)'
         }
@@ -41,14 +38,12 @@ class SlidePane extends Component {
                 <div className="slide-pane-conent" style={{ display: visible ? 'block' : 'none', height: '100%' }}>
                     { children }
                 </div>
-                <span className="slide-pane-toggle" onClick={onClose}>
+                <span className="slide-pane-toggle" onClick={onClose} {...{ onClick: onClose }}>
                     <Icon type="double-right" />
                 </span>
             </div>
         )
     }
 }
-
-SlidePane.propTypes = propType
 
 export default SlidePane

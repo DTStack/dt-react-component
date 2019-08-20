@@ -8,18 +8,31 @@ module.exports = async ({ config, mode }) => {
   // 'PRODUCTION' is used when building the static version of storybook.
 
   // Make whatever fine-grained changes you need
+
+// {
+//     loader: 'babel-loader',
+//     exclude: /node_modules/,
+//     test: /\.(ts|tsx)$/,
+//     options: {
+//         presets: ["@babel/react"],
+//         plugins: [
+//             ['import', {libraryName: "antd", style: true}]
+//         ]
+//     },
+// }
   config.module.rules.push({
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      test: /\.(js|jsx)$/,
-      options: {
-          presets: ["@babel/react"],
-          plugins: [
-              ['import', {libraryName: "antd", style: true}]
-          ]
+    test: /\.(ts|tsx)$/,
+    use: [
+      {
+        loader: require.resolve('awesome-typescript-loader'),
       },
+      // Optional
+      {
+        loader: require.resolve('react-docgen-typescript-loader'),
+      },
+    ],
   }, {
-    test: /\.stories\.js$/,
+    test: /\.stories\.(ts|tsx)$/,
     loaders: [require.resolve('@storybook/addon-storysource/loader')],
     enforce: 'pre',
   }, {
@@ -36,7 +49,7 @@ module.exports = async ({ config, mode }) => {
     }],
     include: [/[\\/]node_modules[\\/].*antd/],
   });
-
+  config.resolve.extensions.push('.ts', '.tsx');
   // Return the altered config
   return config;
 };
