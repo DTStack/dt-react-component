@@ -20,17 +20,29 @@ module.exports = async ({ config, mode }) => {
 //         ]
 //     },
 // }
+
+// {
+//   test: /\.(ts|tsx)$/,
+//   use: [
+//     {
+//       loader: require.resolve('awesome-typescript-loader'),
+//     },
+//     // Optional
+//     {
+//       loader: require.resolve('react-docgen-typescript-loader'),
+//     },
+//   ],
+// }
+
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
-    use: [
-      {
-        loader: require.resolve('awesome-typescript-loader'),
-      },
-      // Optional
-      {
-        loader: require.resolve('react-docgen-typescript-loader'),
-      },
-    ],
+    loader: require.resolve('babel-loader'),
+    options: {
+      presets: [['react-app', { flow: false, typescript: true }]],
+      plugins: [
+          ['import', {libraryName: "antd", style: true}]
+      ]
+    }
   }, {
     test: /\.stories\.(ts|tsx)$/,
     loaders: [require.resolve('@storybook/addon-storysource/loader')],

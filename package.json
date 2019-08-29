@@ -6,6 +6,7 @@
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "build-storybook -c .storybook",
+    "check-types": "tsc --skipLibCheck",
     "test": "jest --no-cache",
     "lint-js": "node ./node_modules/eslint/bin/eslint.js ./src/**/*.js --fix"
   },
@@ -43,6 +44,7 @@
     "@types/storybook__addon-knobs": "^5.0.3",
     "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-import": "^1.12.0",
