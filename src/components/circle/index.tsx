@@ -1,13 +1,13 @@
 import * as React from 'react'
-import './style.scss'
+import classNames from 'classnames'
 
 export function Circle (props: any) {
-    const defaultClass = 'circle_default';
-    const { className, ...other } = props;
+    const classes = classNames('circle_default', props.className)
+    const { ...other } = props;
     return (
         <div
-            className={`${defaultClass} ${className} `}
             {...other}
+            className={classes}
         >
             {props.children || ''}
         </div>

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Icon } from 'antd'
+import { Icon } from 'antd/lib'
 import { browserHistory, hashHistory } from 'react-router'
 
 export default class GoBack extends React.Component<any, any> {

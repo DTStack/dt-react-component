@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "outDir": "lib",
+      "module": "esnext",
+      "target": "es5",
+      "declaration": true,
+      "jsx": "react",
+      "moduleResolution":"Node",
+      "keyofStringsOnly": true,
+      "allowSyntheticDefaultImports": true,
+    },
+    "include": ["src/components"],
+    "exclude": ["node_modules", "build", "scripts"]
+  }
