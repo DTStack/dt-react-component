@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { withKnobs } from '@storybook/addon-knobs';
-import { PropsTable } from '../comm/commPropsTable';
+import { PropsTable } from './components/propsTable';
 import CtxMenu from '../components/ctx-menu';
 
 const { TreeNode } = Tree;

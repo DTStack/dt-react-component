@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import { withKnobs } from '@storybook/addon-knobs';
-import { PropsTable } from '../comm/commPropsTable';
+import { PropsTable } from './components/propsTable';
 import GoBack from '../components/go-back';
 
 const stories = storiesOf('goback', module);

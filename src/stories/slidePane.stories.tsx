@@ -5,7 +5,7 @@ import { Button } from 'antd';
 import { State, Store } from '@sambego/storybook-state';
 import { text, object } from '@storybook/addon-knobs';
 import SlidePane from '../components/slidePane';
-import { PropsTable } from '../comm/commPropsTable';
+import { PropsTable } from './components/propsTable';
 import '../styles/index.scss'
 const store = new Store({
     visible: false
