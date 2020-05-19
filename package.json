@@ -2,10 +2,15 @@
   "name": "dt-react-component",
   "version": "1.0.0",
   "description": "react-component",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "build-storybook -c .storybook",
+    "compile": "rm -rf lib && npm run build-ts && npm run build-css",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./lib/index.css",
     "check-types": "tsc --skipLibCheck",
     "test": "jest --no-cache",
     "lint-js": "node ./node_modules/eslint/bin/eslint.js ./src/**/*.js --fix"
@@ -38,6 +43,7 @@
     "@storybook/addon-storysource": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "@storybook/theming": "^5.1.10",
+    "@types/classnames": "^2.2.10",
     "@types/lodash": "^4.14.137",
     "@types/react": "^16.9.2",
     "@types/react-router": "^3.0.4",
@@ -78,10 +84,11 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "antd": "^2.13.14",
+    "antd": "3.26.13",
+    "classnames": "^2.2.6",
     "lodash": "^4.17.15",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router": "^3.0.4"
+    "react": "16.6.3",
+    "react-dom": "16.6.3",
+    "react-router": "3.0.4"
   }
 }
