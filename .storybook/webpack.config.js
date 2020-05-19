@@ -28,7 +28,7 @@ module.exports = async ({ config, mode }) => {
         }],
         include: [/[\\/]node_modules[\\/].*antd/],
     });
-    config.resolve.extensions.push('.ts', '.tsx');
+    config.resolve.extensions.push(".ts", ".tsx", ".js", ".jsx", ".scss", ".css");
     // Return the altered config
     return config;
 };
