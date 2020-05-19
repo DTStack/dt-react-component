@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import { State, Store } from '@sambego/storybook-state';
 import { text, object } from '@storybook/addon-knobs';
 import SlidePane from '../components/slidePane';
+import { PropsTable } from '../comm/commPropsTable';
 import '../styles/index.scss'
 const store = new Store({
     visible: false
@@ -36,40 +37,6 @@ const propDefinitions = [{
     description: '点击slidepanel回调',
     defaultValue: ''
 }]
-const Red = (props: any) => <span style={{ color: 'red' }} {...props} />;
-
-const TableComponent = () => {
-    const props: any = propDefinitions.map(
-        ({ property, propType, required, description, defaultValue }: any) => {
-            return (
-                <tr key={property}>
-                    <td>
-                        {property}
-                        {required ? <Red>*</Red> : null}
-                    </td>
-                    <td>{description}</td>
-                    <td>{propType}</td>
-                    <td>{defaultValue}</td>
-                </tr>
-            );
-        }
-    );
-
-    return (
-        <table {...{width: "90%"}}>
-            <thead>
-                <tr>
-                    <th>参数</th>
-                    <th>说明</th>
-                    <th>类型</th>
-                    <th>默认值</th>
-                </tr>
-            </thead>
-            <tbody>{props}</tbody>
-        </table>
-    );
-};
-
 const stories = storiesOf('slidePane', module);
 stories.add('slidepanel', () => {
     const groupId = 'slidepanel'
@@ -127,7 +94,7 @@ stories.add('slidepanel', () => {
         />
         ~~~
         `,
-        TableComponent,
+        TableComponent: () => PropsTable({ propDefinitions }),
         propTablesExclude: [Button, State]
     }
 })

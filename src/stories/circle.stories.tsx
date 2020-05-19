@@ -3,16 +3,14 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { object } from '@storybook/addon-knobs';
 import { Circle } from '../components/circle';
-// import '../components/circle/circle_color.scss';
-import '../style/index.scss';
-import '../styles/index.scss'
+import { PropsTable } from '../comm/commPropsTable';
+import './style/index.scss';
+import '../styles/index.scss';
 const stories = storiesOf('Circle', module);
-
 // info-addons源样式
 // Overrides styles of addon. The object should follow this shape:
 // https://github.com/storybookjs/storybook/blob/master/addons/info/src/components/Story.js#L19
 
-// 定制化component props
 const propDefinitions = [{
     property: 'className',
     propType: 'string',
@@ -20,38 +18,6 @@ const propDefinitions = [{
     description: '默认类名',
     defaultValue: 'circle_default'
 }]
-const Red = (props: any) => <span style={{ color: 'red' }} {...props} />;
-const TableComponent = () => {
-    const props: any = propDefinitions.map(
-        ({ property, propType, required, description, defaultValue }: any) => {
-            return (
-                <tr key={property}>
-                    <td>
-                        {property}
-                        {required ? <Red>*</Red> : null}
-                    </td>
-                    <td>{description}</td>
-                    <td>{propType}</td>
-                    <td>{defaultValue}</td>
-                </tr>
-            );
-        }
-    );
-
-    return (
-        <table {...{width: "90%"}}>
-            <thead>
-                <tr>
-                    <th>参数</th>
-                    <th>说明</th>
-                    <th>类型</th>
-                    <th>默认值</th>
-                </tr>
-            </thead>
-            <tbody>{props}</tbody>
-        </table>
-    );
-};
 
 stories.add('circle', () => {
     const groupId = 'circle';
@@ -129,6 +95,6 @@ stories.add('circle', () => {
       <Circle style={style} ></Circle>
       ~~~
     `,
-        TableComponent
+        TableComponent: () => PropsTable({ propDefinitions })
     }
 })

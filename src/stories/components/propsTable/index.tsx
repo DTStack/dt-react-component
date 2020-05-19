@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../style/index.scss';
+import './style.scss';
 
 export function PropsTable (props: any) {
     const { propDefinitions } = props;

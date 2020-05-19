@@ -8,7 +8,7 @@ import '../style/index.scss';
 const stories = storiesOf('TableCell', module);
 stories.add('tableCell', () => {
     return (
-        <TableCell/>
+        <TableCell />
     )
 }, {
     info: {

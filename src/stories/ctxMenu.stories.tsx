@@ -1,18 +1,16 @@
 import * as React from 'react';
-import { Button } from 'antd';
+import { Button, Tree } from 'antd';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { withKnobs } from '@storybook/addon-knobs';
+import { PropsTable } from '../comm/commPropsTable';
 import CtxMenu from '../components/ctx-menu';
 
+const { TreeNode } = Tree;
 const stories = storiesOf('CtxMenu', module);
-// stories.addDecorator(story => <div style={{ textAlign: 'center', marginTop: '100px' }}>{story()}</div>)
-// Add the `withKnobs` decorator to add knobs support to your stories.
-// You can also configure `withKnobs` as a global decorator.
 stories.addDecorator(withKnobs)
 
-// 定制化component props
 const propDefinitions = [{
     property: 'children',
     propType: 'ReactNode',
@@ -32,61 +30,73 @@ const propDefinitions = [{
     description: '循环用于拼装每个li的key',
     defaultValue: ''
 }]
-const Red = (props: any) => <span style={{ color: 'red' }} {...props} />;
-
-const TableComponent = () => {
-    const props: any = propDefinitions.map(
-        ({ property, propType, required, description, defaultValue }) => {
-            return (
-                <tr key={property}>
-                    <td>
-                        {property}
-                        {required ? <Red>*</Red> : null}
-                    </td>
-                    <td>{description}</td>
-                    <td>{propType}</td>
-                    <td>{defaultValue}</td>
-                </tr>
-            );
-        }
-    );
-
-    return (
-        <table {...{width: "90%"}}>
-            <thead>
-                <tr>
-                    <th>参数</th>
-                    <th>说明</th>
-                    <th>类型</th>
-                    <th>默认值</th>
-                </tr>
-            </thead>
-            <tbody>{props}</tbody>
-        </table>
-    );
-};
+const ctxMenuWrapperClsName: string = 'ctx-menu-wrapper';
 stories.add('CtxMenu', () => (
     <div className='story_wrapper'>
         <section>右键菜单</section>
         <p>右键菜单</p>
-        <CtxMenu
-            operations={
-                [{
-                    txt: '移动',
-                    cb: action('move')
-                }, {
-                    txt: '删除',
-                    cb: action('del')
-                }]
-            }>
-            <Button>右击我试试看~</Button>
-        </CtxMenu>
+        <div style={{ position: 'relative' }}>
+            <Tree className={ctxMenuWrapperClsName} defaultExpandAll>
+                <TreeNode key='0-0' title={
+                    <CtxMenu
+                        id={0}
+                        key={0}
+                        ctxMenuWrapperClsName={ctxMenuWrapperClsName}
+                        operations={
+                            [{
+                                txt: '新建文件夹',
+                                cb: action('move')
+                            }, {
+                                txt: '删除',
+                                cb: action('del')
+                            }]
+                        }>
+                        <span>右击我试试看~</span>
+                    </CtxMenu>
+                }>
+                    <TreeNode key="0-0-0" title={
+                        <CtxMenu
+                            id={"0-0-0"}
+                            key={"0-0-0"}
+                            ctxMenuWrapperClsName={ctxMenuWrapperClsName}
+                            operations={
+                                [{
+                                    txt: '移动',
+                                    cb: action('move')
+                                }, {
+                                    txt: '删除',
+                                    cb: action('del')
+                                }]
+                            }>
+                            <span>test</span>
+                        </CtxMenu>
+                    } />
+                    <TreeNode key="0-0-1" title={
+                        <CtxMenu
+                            id={"0-0-1"}
+                            key={"0-0-1"}
+                            ctxMenuWrapperClsName={ctxMenuWrapperClsName}
+                            operations={
+                                [{
+                                    txt: '新建任务',
+                                    cb: action('new')
+                                }, {
+                                    txt: '删除',
+                                    cb: action('del')
+                                }]
+                            }>
+                            <span>test_qy</span>
+                        </CtxMenu>
+                    } />
+                </TreeNode>
+            </Tree>
+        </div>
     </div>
 ), {
     info: {
         inline: true,
-        TableComponent,
-        propTablesExclude: [Button],
+        TableComponent: () => PropsTable({ propDefinitions }),
+        propTablesExclude: [Button, Tree],
         text: `
         #### 使用示例
         ~~~js
