@@ -75,6 +75,7 @@
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-sort-requires": "^2.1.0",
     "eslint-plugin-standard": "^4.0.0",
+    "file-loader": "^6.0.0",
     "jest": "^24.8.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
@@ -86,14 +87,21 @@
     "sass-loader": "^7.1.0",
     "storybook-readme": "^5.0.5",
     "style-loader": "^0.23.1",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "url-loader": "^4.1.0"
   },
   "dependencies": {
     "antd": "3.26.13",
     "classnames": "^2.2.6",
+    "codemirror": "^5.25.0",
+    "dt-sql-parser": "^2.0.11",
+    "highlight.js": "^9.14.2",
     "lodash": "^4.17.15",
+    "moment": "^2.22.2",
+    "monaco-editor": "^0.13.1",
     "react": "16.6.3",
     "react-dom": "16.6.3",
-    "react-router": "3.0.4"
+    "react-router": "3.0.4",
+    "showdown": "^1.9.0"
   }
 }

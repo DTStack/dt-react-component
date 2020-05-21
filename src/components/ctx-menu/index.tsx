@@ -1,6 +1,4 @@
 import * as React from 'react';
-import './style.scss';
-
 export default class CtxMenu extends React.Component<any, any> {
     constructor (props: any) {
         super(props);

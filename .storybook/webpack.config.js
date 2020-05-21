@@ -27,6 +27,15 @@ module.exports = async ({ config, mode }) => {
             }
         }],
         include: [/[\\/]node_modules[\\/].*antd/],
+    }, {
+        test: /\.(jpg|png|gif)$/,
+        loader: ["file-loader", "url-loader?limit=100000"]
+    }, {
+        test: /\.(eot|woff|svg|ttf|woff2|gif|appcache|webp)(\?|$)/,
+        loader: [
+            "file-loader?name=[name].[ext]",
+            "url-loader?limit=100000"
+        ]
     });
     config.resolve.extensions.push(".ts", ".tsx", ".js", ".jsx", ".scss", ".css");
     // Return the altered config

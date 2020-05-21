@@ -61,6 +61,9 @@
         "@typescript-eslint/no-use-before-define": 0,
         "@typescript-eslint/no-var-requires": 0,
         "@typescript-eslint/interface-name-prefix":0,
-        "@typescript-eslint/no-empty-interface":0
+        "@typescript-eslint/no-empty-interface":0,
+        "prefer-const": 0,
+        "no-var": 0,
+        "prefer-rest-params": 0
     }
 }
