@@ -49,7 +49,7 @@ export default class CtxMenu extends React.Component<any, any> {
     }
 
     hideAll = () => {
-        let allEles: any = document.querySelectorAll('.ctx-menu');
+        const allEles: any = document.querySelectorAll('.ctx-menu');
         for (let i = 0; i < allEles.length; i++) {
             allEles[i].style.display = 'none';
         }
@@ -65,7 +65,7 @@ export default class CtxMenu extends React.Component<any, any> {
         const parent = this.findParent(e.target, ctxMenuWrapperClsName);
         if (parent) {
             this.hideAll();
-            let style = menu.style;
+            const style = menu.style;
             style.display = 'block';
 
             const pointerY = e.clientY;

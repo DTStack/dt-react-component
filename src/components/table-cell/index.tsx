@@ -10,7 +10,7 @@ export default function TableCell (props: any) {
     }
 
     const { style } = props;
-    let newStyle: any = { ...originStyle, ...style };
+    const newStyle: any = { ...originStyle, ...style };
 
     return <textarea
         {...props}

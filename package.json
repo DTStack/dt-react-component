@@ -13,10 +13,13 @@
     "build-css": "node-sass ./src/styles/index.scss ./lib/index.css",
     "check-types": "tsc --skipLibCheck",
     "test": "jest --no-cache",
-    "lint-js": "node ./node_modules/eslint/bin/eslint.js ./src/**/*.js --fix"
+    "lint": "npx eslint './src/**/*.tsx' ",
+    "lint-fix": "npx eslint './src/**/*.tsx' --fix"
   },
   "keywords": [
-    "react"
+    "react",
+    "storybook",
+    "component"
   ],
   "author": "qingyi",
   "license": "ISC",
@@ -49,6 +52,8 @@
     "@types/react-router": "^3.0.4",
     "@types/storybook__addon-knobs": "^5.0.3",
     "@types/storybook__react": "^4.0.2",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^10.0.1",
@@ -59,7 +64,7 @@
     "commitizen": "^4.0.3",
     "css-loader": "^3.1.0",
     "cz-conventional-changelog": "^3.0.2",
-    "eslint": "^5.9.0",
+    "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.14.0",

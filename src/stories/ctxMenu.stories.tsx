@@ -30,7 +30,7 @@ const propDefinitions = [{
     description: '循环用于拼装每个li的key',
     defaultValue: ''
 }]
-const ctxMenuWrapperClsName: string = 'ctx-menu-wrapper';
+const ctxMenuWrapperClsName = 'ctx-menu-wrapper';
 stories.add('CtxMenu', () => (
     <div className='story_wrapper'>
         <section>右键菜单</section>
@@ -56,8 +56,8 @@ stories.add('CtxMenu', () => (
                 }>
                     <TreeNode key="0-0-0" title={
                         <CtxMenu
-                            id={"0-0-0"}
-                            key={"0-0-0"}
+                            id={'0-0-0'}
+                            key={'0-0-0'}
                             ctxMenuWrapperClsName={ctxMenuWrapperClsName}
                             operations={
                                 [{
@@ -73,8 +73,8 @@ stories.add('CtxMenu', () => (
                     } />
                     <TreeNode key="0-0-1" title={
                         <CtxMenu
-                            id={"0-0-1"}
-                            key={"0-0-1"}
+                            id={'0-0-1'}
+                            key={'0-0-1'}
                             ctxMenuWrapperClsName={ctxMenuWrapperClsName}
                             operations={
                                 [{

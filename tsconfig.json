@@ -1,28 +1,41 @@
 {
     "compilerOptions": {
-      "outDir": "build/lib",
-      "module": "commonjs",
-      "target": "es5",
-      "lib": ["es5", "es6", "es7", "es2017", "dom"],
-      "sourceMap": true,
-      "allowJs": true,
-      "keyofStringsOnly": true,
-      "jsx": "react",
-      "moduleResolution": "node",
-      // "rootDirs": ["src", "stories"],
-      "rootDir": "src",
-      "baseUrl": "src",
-      "forceConsistentCasingInFileNames": true,
-      "noImplicitReturns": true,
-      "noImplicitThis": true,
-      "noImplicitAny": true,
-      "strictNullChecks": true,
-      "suppressImplicitAnyIndexErrors": true,
-      "noUnusedLocals": true,
-      "allowSyntheticDefaultImports": true,
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true
+        "noEmit": true, // Don't emit; allow Babel to transform files.
+        "outDir": "./dist/",
+        "baseUrl": ".",
+        "experimentalDecorators": true,
+        "noImplicitAny": false,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "es6",
+            "es2016",
+            "dom"
+        ],
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "noUnusedLocals": false,
+        "importHelpers": true,
+        "paths": {},
+        "skipLibCheck": true,
+        "typeRoots": [
+            "node",
+            "node_modules/@types",
+            "./typings"
+        ],
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "build", "scripts"]
-  }
+    "exclude": [
+        "node_modules",
+        "dist",
+        "lib",
+        "storybook-static",
+        "src/public/**/*"
+    ],
+    "include": [
+        "./**/*.ts",
+        "./**/*.tsx",
+        "src/**/*"
+    ]
+}
