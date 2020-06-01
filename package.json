@@ -2,6 +2,7 @@
   "name": "dt-react-component",
   "version": "1.0.0",
   "description": "react-component",
+  "repository": "http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component",
   "main": "lib/index.js",
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -94,13 +95,13 @@
     "antd": "3.26.13",
     "classnames": "^2.2.6",
     "codemirror": "^5.25.0",
-    "dt-sql-parser": "^2.0.11",
     "highlight.js": "^9.14.2",
     "lodash": "^4.17.15",
     "moment": "^2.22.2",
     "monaco-editor": "^0.13.1",
     "react": "16.6.3",
     "react-dom": "16.6.3",
+    "react-icons": "^3.10.0",
     "react-router": "3.0.4",
     "showdown": "^1.9.0"
   }
