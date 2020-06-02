@@ -4,11 +4,10 @@ import { FaGitlab } from 'react-icons/fa';
 import MarkdownRender from '../components/markdown-render';
 import { notShowProps } from './func';
 import './style';
-// const html = require('./markdown/test.md');
+const html = require('../../CHANGELOG.md');
 const { name, repository, version } = require('../../package.json');
 const stories = storiesOf('综述', module)
-const WELCOME = `欢迎使用 dt-react-component `;
-console.log(WELCOME);
+console.log('%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ', 'color:#2517b1')
 stories
     .add('介绍', () => (
         <article className='story_wrapper summary-story'>
@@ -51,7 +50,7 @@ stories
     .add(`更新日志`, () => (
         <div className='story_wrapper'>
             <MarkdownRender
-                text={`#后面再此展示changelog`}
+                text={`${html && html.default}`}
                 dark={true}
             />
         </div>
