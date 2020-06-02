@@ -3,7 +3,7 @@
 ## 组件库
 目的：减少代码重复率，便于新同学对组件使用以及团队内部项目的代码优化
 ## :zap: 安装
-> 使用npm
+> 使用 npm
 ```
 npm i dt-react-component --save
 ```
@@ -22,6 +22,16 @@ const App = () => (
 ```
 import 'dt-react-component/lib/index.css'
 ```
+
+2. 按需引入
+```
+import { Circle } from 'dt-react-component/lib/circle'
+```
+样式暂时还是必须全量引入：
+```
+import 'dt-react-component/lib/index.css'
+```
+目前这块打包出来的样式暂不支持单文件引入，这块后续有时间使用 webpack 打包单独出组件样式文件
 
 ----
 
@@ -60,6 +70,7 @@ https://dtux.netlify.com/
 * [Storybook](https://storybook.js.org/)
 * [netlify](https://www.netlify.com/)
 * [jest](https://jestjs.io/)
+* [enzymejs](https://enzymejs.github.io/enzyme/)
 
 
 
