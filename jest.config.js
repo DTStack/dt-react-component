@@ -1,11 +1,14 @@
 
 module.exports = {
+    name: 'dt-react-component',
     globals: {
     },
-    transformIgnorePatterns: [
-        'node_modules'
-    ],
+    setupFilesAfterEnv: ["./setupTests.js"],
+    transformIgnorePatterns: ["/node_modules/", "lib", "dist"],
     testPathIgnorePatterns: ['/node_modules/'],
+    transform: {
+        "^.+\\.[jt]s?(x)$": "babel-jest"
+    },
     testMatch: [
         '**/__tests__/**/(*.)+(spec|test).[jt]s?(x)',
         '**/test/**/(*.)+(spec|test).[jt]s?(x)'

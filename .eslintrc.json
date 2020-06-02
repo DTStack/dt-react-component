@@ -27,12 +27,13 @@
         "es6": true
     },
     "globals": {
-        "expect": "readable",
-        "test": "readable",
-        "describe": "readable",
-        "beforeEach": "readable",
-        "afterEach": "readable",
-        "jest": "readable"
+        "expect": true,
+        "test": true,
+        "describe": true,
+        "beforeEach": true,
+        "afterEach": true,
+        "jest": true,
+        "it": true
     },
     "rules": {
         "semi": 0,
