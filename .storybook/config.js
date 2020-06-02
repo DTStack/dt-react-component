@@ -11,6 +11,12 @@ addDecorator(withNotes);
 addDecorator(withKnobs);
 // addReadme与withInfo不能共存
 addDecorator(withInfo); 
+/**
+ * 全局设置 info 样式
+ * info-addons源样式
+ * Overrides styles of addon. The object should follow this shape:
+ * https://github.com/storybookjs/storybook/blob/master/addons/info/src/components/Story.js#L19
+ */
 addParameters({
     info: {
         inline: true,

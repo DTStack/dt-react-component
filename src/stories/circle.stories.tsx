@@ -7,10 +7,6 @@ import { PropsTable } from './components/propsTable';
 import './style/index.scss';
 import '../styles/index.scss';
 const stories = storiesOf('Circle', module);
-// info-addons源样式
-// Overrides styles of addon. The object should follow this shape:
-// https://github.com/storybookjs/storybook/blob/master/addons/info/src/components/Story.js#L19
-
 const propDefinitions = [{
     property: 'className',
     propType: 'string',
@@ -28,9 +24,9 @@ stories.add('circle', () => {
 
     return (
         <div className='story_wrapper'>
-            <section>
+            <h2>
                 circle组件作用于任务运行状态效果展示
-            </section>
+            </h2>
             <div className='strory-code_border'>
                 <div>
                     <Circle className='status_running' onClick={action('clicked')}></Circle>&nbsp;
@@ -77,9 +73,9 @@ stories.add('circle', () => {
                   等待提交
                 </div>
             </div>
-            <section>
+            <h2>
                 在knobs栏中尝试自定义style属性
-            </section>
+            </h2>
             <div className='strory-code_border'>
                 <Circle style={style}></Circle>&nbsp;
             </div>
@@ -87,7 +83,7 @@ stories.add('circle', () => {
     )
 }, {
     info: {
-        inline: true, // Displays info inline vs click button to view
+        inline: true,
         source: true,
         text: `
       #### 使用示例

@@ -6,9 +6,6 @@ import { PropsTable } from './components/propsTable';
 import GoBack from '../components/go-back';
 
 const stories = storiesOf('goback', module);
-// stories.addDecorator(story => <div style={{ textAlign: 'center', marginTop: '100px' }}>{story()}</div>)
-// Add the `withKnobs` decorator to add knobs support to your stories.
-// You can also configure `withKnobs` as a global decorator.
 stories.addDecorator(withKnobs)
 
 const propDefinitions = [{

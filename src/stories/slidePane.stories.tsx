@@ -6,7 +6,6 @@ import { State, Store } from '@sambego/storybook-state';
 import { text, object } from '@storybook/addon-knobs';
 import SlidePane from '../components/slidePane';
 import { PropsTable } from './components/propsTable';
-import '../styles/index.scss'
 const store = new Store({
     visible: false
 });
@@ -49,12 +48,11 @@ stories.add('slidepanel', () => {
     const style = object('style', defaultStyle, groupId);
     const defayltText = 'hello slidePanel'
     const children = text('children', defayltText, groupId)
-    // const visible = boolean('visible', store.get("visible"), groupId)
     return (
         <div className='story_wrapper'>
-            <section>
+            <h2>
                 slidepanel面板组件作用于右侧展示更多信息
-            </section>
+            </h2>
             <Button onClick={() => {
                 const actionVal: any = store.get('visible')
                 action(actionVal)
@@ -62,9 +60,9 @@ stories.add('slidepanel', () => {
                     visible: !store.get('visible')
                 })
             }}>click me</Button>
-            <section>
-                在knobs栏调试slidePanel组件
-            </section>
+            <h3>
+                尝试在 knobs 栏调试 slidePanel 组件吧
+            </h3>
             <State store={store}>
                 <SlidePane
                     visible={store.get('visible')}
