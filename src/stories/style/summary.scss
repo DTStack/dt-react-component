@@ -1,0 +1,16 @@
+
+$prefix-cls: 'summary-story';
+.#{$prefix-cls} {
+    h1 {
+        span {
+            font-size: 35px;
+        }
+        a {
+            margin-left: 15px;
+            color: #444;
+        }
+    }
+    p.#{$prefix-cls}_version {
+        color: #31c27c;
+    }
+}

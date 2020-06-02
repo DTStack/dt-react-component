@@ -1,23 +1,77 @@
-## dtinsight-react-component
-使用storybook整合react组件库
-## 项目启动
+# dt-react-component
+
+## 组件库
+目的：减少代码重复率，便于新同学对组件使用以及团队内部项目的代码优化
+## :zap: 安装
+> 使用 npm
 ```
-git clone ssh://git@git.dtstack.cn:10022/dtinsight-front-end/dtinsigth-react-component.git
-npm i
-npm run  storybook
+npm i dt-react-component --save
 ```
-##项目package.json：
-"devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@storybook/addon-actions": "^4.1.12",
-    "@storybook/react": "^4.1.12",
-    "babel-loader": "^8.0.5"
-  },
-  "dependencies": {
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2"
-  }
+## :book: 如何使用
+1. Usage
 ```
-**优点：**
-1. 便于组件分类管理
-2. 方便查看和调试组件，提高开发效率
+import { Circle, GoBack } from 'dt-react-component'
+const App = () => (
+  <>
+    <Circle />
+    <GoBack url='/api/manage' />
+  </>
+);
+```
+样式引入：
+```
+import 'dt-react-component/lib/index.css'
+```
+
+2. 按需引入
+```
+import { Circle } from 'dt-react-component/lib/circle'
+```
+样式暂时还是必须全量引入：
+```
+import 'dt-react-component/lib/index.css'
+```
+目前这块打包出来的样式暂不支持单文件引入，这块后续有时间使用 webpack 打包单独出组件样式文件
+
+----
+
+## :wrench: 本地开发
+1. clone & npm install
+```
+$ git clone git@github.com:zhangtengjin/dt-react-component.git
+npm install
+```
+2. 启动本地服务器
+```
+ npm run storybook
+```
+3. 静态服务部署构建
+```
+npm run build-storybook
+```
+4. 组件开发
++ src/components 目录下编写组件
++ src/stories 目录下编写 storybook 文档
++ npm run storybook 本地文档预览
+
+5. 组件发布至 npm
+**在按照一些列组件开发规范流程下，测试组件无问题后进行组件发布**
+```
+npm run compile 输出 lib 目录
+登陆 npm 执行 npm publish
+```
+这里使用 netlify 托管 storybook 静态服务
+netlify 服务器检测到 push master 操作会自动执行 npm run build-storybook，生成最新的静态资源重新部署，可在 https://dtux.netlify.com/ 查看效果
+
+## :ferris_wheel: 线上预览地址
+https://dtux.netlify.com/
+
+## :blue_book: 相关资料
+* [Storybook](https://storybook.js.org/)
+* [netlify](https://www.netlify.com/)
+* [jest](https://jestjs.io/)
+* [enzymejs](https://enzymejs.github.io/enzyme/)
+
+
+
+

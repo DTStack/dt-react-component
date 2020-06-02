@@ -1,0 +1,44 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "modules": false
+            }
+        ],
+        "@babel/preset-react",
+        "@babel/preset-typescript"
+    ],
+    "env": {
+        "test": {
+            "presets": [
+                "@babel/preset-env",
+                "@babel/preset-react",
+                "@babel/preset-typescript"
+            ]
+        }
+    },
+    "plugins": [
+        [
+            "import",
+            {
+                "libraryName": "antd",
+                "style": true
+            }
+        ],
+        "@babel/transform-runtime",
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
+        "@babel/plugin-syntax-dynamic-import",
+        "macros",
+        "@babel/plugin-proposal-class-properties"
+    ],
+    "babelrcRoots": [
+        ".",
+        ".storybook"
+    ]
+}
