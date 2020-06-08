@@ -50,19 +50,20 @@ stories.add('slidepanel', () => {
     const children = text('children', defayltText, groupId)
     return (
         <div className='story_wrapper'>
-            <h2>
-                slidepanel面板组件作用于右侧展示更多信息
-            </h2>
-            <Button onClick={() => {
+            <h2>何时使用</h2>
+            <p>从页面右侧弹出面板，展示相应内容</p>
+
+            <h2>示例</h2>
+            <Button style={{ marginBottom: '10px' }} onClick={() => {
                 const actionVal: any = store.get('visible')
                 action(actionVal)
                 store.set({
                     visible: !store.get('visible')
                 })
             }}>click me</Button>
-            <h3>
-                尝试在 knobs 栏调试 slidePanel 组件吧
-            </h3>
+            <p>
+                尝试在 knobs 栏调试 slidePanel 组件
+            </p>
             <State store={store}>
                 <SlidePane
                     visible={store.get('visible')}
@@ -81,15 +82,17 @@ stories.add('slidepanel', () => {
     )
 }, {
     info: {
+        source: false,
         text: `
-        #### 使用示例
+        **代码示例：**
         ~~~js
         <SlidePane
-            className="m-tabs"
             visible={this.props.visible}
             style={style}
             onClose={this.props.onClose}
-        />
+        >
+            'hello slidePanel'
+        </SlidePane>
         ~~~
         `,
         TableComponent: () => PropsTable({ propDefinitions }),
