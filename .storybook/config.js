@@ -20,6 +20,7 @@ addDecorator(withInfo);
 addParameters({
     info: {
         inline: true,
+        source: false,
         styles: stylesheet => ({
             // Setting the style with a function
             ...stylesheet,
