@@ -91,7 +91,7 @@ stories
     })
     .add(`Todo/Plan`, () => {
         return (
-            <div className=''>
+            <div className='story_wrapper'>
                 <MarkdownRender
                     text={`${planHtml && planHtml.default}`}
                     dark={false}
