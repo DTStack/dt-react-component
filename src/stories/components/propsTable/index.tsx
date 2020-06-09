@@ -9,7 +9,7 @@ export function PropsTable (props: any) {
                 <tr key={property}>
                     <td>
                         {property}
-                        {required ? <span style={{ color: 'red' }}>*</span> : null}
+                        {required ? <span style={{ color: 'red', marginLeft: '5px' }}>*</span> : null}
                     </td>
                     <td>{description}</td>
                     <td>{propType}</td>

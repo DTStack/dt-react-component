@@ -15,28 +15,16 @@ const propDefinitions = [{
     property: 'visible',
     propType: 'boolean',
     required: true,
-    description: 'slidepanel是否可见',
+    description: 'slidepanel 是否可见',
     defaultValue: 'false'
-}, {
-    property: 'children',
-    propType: 'ReactNode',
-    required: false,
-    description: 'slidepanel内容',
-    defaultValue: ''
-}, {
-    property: 'className',
-    propType: 'string',
-    required: false,
-    description: '类名',
-    defaultValue: ''
 }, {
     property: 'onClose',
     propType: 'function',
     required: false,
-    description: '点击slidepanel回调',
+    description: '点击 slidepanel 回调',
     defaultValue: ''
 }]
-const stories = storiesOf('slidePane', module);
+const stories = storiesOf('SlidePane 右侧面板', module);
 stories.add('slidepanel', () => {
     const groupId = 'slidepanel'
     const defaultStyle = {
