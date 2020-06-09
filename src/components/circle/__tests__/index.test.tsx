@@ -10,10 +10,10 @@ describe('test Circle suite', () => {
             .toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it('should be selectable by class "circle_default"', function () {
-        expect(shallow(<Circle />).is('.circle_default')).toBe(true);
+    it('should be selectable by class "dtc-circle-default"', function () {
+        expect(shallow(<Circle />).is('.dtc-circle-default')).toBe(true);
     })
     it('should mount in a full DOM', function () {
-        expect(mount(<Circle />).find('.circle_default').length).toBe(1);
+        expect(mount(<Circle />).find('.dtc-circle-default').length).toBe(1);
     });
 })
