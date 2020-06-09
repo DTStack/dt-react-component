@@ -19,7 +19,7 @@ stories 文档编写几点要求如下：
 模块三采用 storybook-info 提供的 api 渲染出每个组件 API 配置
 
 #### 具体编写可参考如下示例
-```js
+```plain
 stories.add('slidepanel', () => {
     const groupId = 'slidepanel'
     const defaultStyle = {

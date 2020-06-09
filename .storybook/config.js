@@ -4,8 +4,9 @@ import requireContext from 'require-context.macro';
 import { withNotes } from '@storybook/addon-notes';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
+import { withOptions } from '@storybook/addon-options';
 import chaptersAddon from 'react-storybook-addon-chapters';
-
+import { repository, version } from "../package.json"
 setAddon(chaptersAddon);
 addDecorator(withNotes);
 addDecorator(withKnobs);
@@ -38,6 +39,11 @@ addParameters({
     }
 });
 
+addDecorator(withOptions({
+    name: `组件库 v${version}`,
+    url: repository,
+    sidebarAnimations: true,
+}))
 /**
  * 动态加载所有stories
  */
@@ -45,5 +51,4 @@ const req = requireContext('../src/stories', true, /\.stories\.(ts|tsx)$/);
 function loadStories() {
     req.keys().forEach(fileName => req(fileName));
 }
-
 configure(loadStories, module);

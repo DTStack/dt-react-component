@@ -4,7 +4,7 @@
 + 组件 API 变量命名规范，尽量采用驼峰式、可语义化的变量名
 + 组件内部 CSS 命名规范，在采用 [BEM](https://dtstack.yuque.com/rd-center/sm6war/clgpb7) 规范的基础上，使用 dt-react-component 标识性前缀 **dtc_**  
 
-**如有其他问题后续可以继续补充**
+**如有其他问题后续可以补充**
 
 
 ### 目录结构

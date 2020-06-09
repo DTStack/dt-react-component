@@ -8,6 +8,7 @@ const html = require('../../CHANGELOG.md');
 const readmeHtml = require('../../README.md');
 const docHtml = require('./markdown/componentDoc.md');
 const devlopHtml = require('./markdown/componentDev.md');
+const planHtml = require('./markdown/plan.md');
 const { name, repository, version } = require('../../package.json');
 const stories = storiesOf('综述', module)
 console.log('%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ', 'color:#2517b1')
@@ -46,6 +47,8 @@ stories
                 <a rel="noopener noreferrer" target='_blank' href='http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues'> Issue</a> 或{' '}
                 <a rel="noopener noreferrer" target='_blank' href='http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/merge_requests'>Pull Request</a>
             </p>
+            <h2>FAQ</h2>
+            <p>使用过程中如有问题欢迎沟通～～</p>
         </article>
     ), {
         ...notShowProps(false, [FaGitlab])
@@ -55,7 +58,7 @@ stories
             <div className='story_wrapper'>
                 <MarkdownRender
                     text={`${readmeHtml && readmeHtml.default}`}
-                    dark={true}
+                    dark={false}
                 />
             </div>
         )
@@ -67,7 +70,7 @@ stories
             <div className='story_wrapper'>
                 <MarkdownRender
                     text={`${docHtml && docHtml.default}`}
-                    dark={true}
+                    dark={false}
                 />
             </div>
         )
@@ -79,7 +82,19 @@ stories
             <div className='story_wrapper'>
                 <MarkdownRender
                     text={`${devlopHtml && devlopHtml.default}`}
-                    dark={true}
+                    dark={false}
+                />
+            </div>
+        )
+    }, {
+        ...notShowProps(false, [MarkdownRender])
+    })
+    .add(`Todo/Plan`, () => {
+        return (
+            <div className=''>
+                <MarkdownRender
+                    text={`${planHtml && planHtml.default}`}
+                    dark={false}
                 />
             </div>
         )
@@ -90,7 +105,7 @@ stories
         <div className='story_wrapper'>
             <MarkdownRender
                 text={`${html && html.default}`}
-                dark={true}
+                dark={false}
             />
         </div>
     ), {

@@ -26,11 +26,15 @@ showdown.extension('highlight', function () {
         }
     }];
 });
+showdown.setOption('optionKey', 'value');
 
 export default function MarkdownRender (props: any) {
     const { text, className, dark } = props;
     const cls = classNames('markdown-render-body', dark ? 'vs-dark' : 'vs', className)
-    const converter = new showdown.Converter({ extensions: ['highlight'] });
+    const converter = new showdown.Converter({
+        extensions: ['highlight'],
+        emoji: true
+    });
     const result = converter.makeHtml(text);
     return (
         <div className={cls} dangerouslySetInnerHTML={{ __html: result }} />
