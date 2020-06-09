@@ -6,7 +6,8 @@ import { notShowProps } from './func';
 import './style';
 const html = require('../../CHANGELOG.md');
 const readmeHtml = require('../../README.md');
-const devlopHtml = require('./markdown/componentDoc.md');
+const docHtml = require('./markdown/componentDoc.md');
+const devlopHtml = require('./markdown/componentDev.md');
 const { name, repository, version } = require('../../package.json');
 const stories = storiesOf('综述', module)
 console.log('%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ', 'color:#2517b1')
@@ -61,7 +62,19 @@ stories
     }, {
         ...notShowProps(false, [MarkdownRender])
     })
-    .add(`如何组件开发`, () => {
+    .add(`组件文档规范`, () => {
+        return (
+            <div className='story_wrapper'>
+                <MarkdownRender
+                    text={`${docHtml && docHtml.default}`}
+                    dark={true}
+                />
+            </div>
+        )
+    }, {
+        ...notShowProps(false, [MarkdownRender])
+    })
+    .add(`组件开发`, () => {
         return (
             <div className='story_wrapper'>
                 <MarkdownRender
