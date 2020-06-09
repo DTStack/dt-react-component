@@ -1,11 +1,13 @@
-.ctx-menu {
+.context-menu {
     position: fixed;
     min-width: 90px;
     max-width: 160px;
+    display: none;
+    z-index: 9999;
     background: #fff;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);   
     border-radius: 2px; 
-    .ctx-menu-header {
+    .context-menu-header {
         height: 25px;
         line-height: 25px;
         background: #2491F7;
@@ -16,13 +18,13 @@
         text-align: left;
     }
 
-    .ctx-menu-list {
+    .context-menu-list {
         margin: 0;
         padding: 0;
-        .ctx-list-li {
+        .context-list-li {
             list-style-type: none;
         }
-        .ctx-list-a {
+        .context-list-a {
             display: block;
             padding: 7px 8px;
             margin: 0;
@@ -34,14 +36,18 @@
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
-            line-height: initial;
             &:hover {
                 background: #eef6fe;
             }
         }
     }
+}
 
-    &.f-dn{
-        display: none!important;
-    }
+.context-menu-mask {
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    z-index: 9998;
 }
