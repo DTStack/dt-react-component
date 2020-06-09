@@ -1,4 +1,4 @@
-# dt-react-component
+# dt-react-component | [CHANGELOG](./CHANGELOG.md)
 
 ## 组件库
 目的：减少代码重复率，便于新同学对组件使用以及团队内部项目的代码优化
