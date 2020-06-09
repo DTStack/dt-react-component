@@ -13,4 +13,4 @@
 
 ### Plan
 #### 第一个版本规划
-+ 新增5个组件（Circle、go-back、slidePane、notFound、ctx-menu）
++ 新增5个组件（Circle、go-back、slidePane、notFound、contextMenu）
