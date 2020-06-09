@@ -1,12 +1,11 @@
 import * as React from 'react'
-import './style.scss'
-
+const contextPrefix = 'dtc-context-menu';
 export class ContextMenuItem extends React.Component<any, any> {
     render () {
         return (
             <li {...this.props}
-                className="context-list-li">
-                <a className="context-list-a"
+                className={`${contextPrefix}-context-list_li`}>
+                <a className={`${contextPrefix}-context-list_a`}
                     data-value={this.props.value}>
                     {this.props.children}
                 </a>
@@ -21,6 +20,7 @@ export class ContextMenu extends React.Component<any, any> {
         this.toggleMenu = this.toggleMenu.bind(this)
         this.removeMenu = this.removeMenu.bind(this);
     }
+    static ContextMenuItem = ContextMenuItem;
 
     _contextMenus: any = [];
     selfEle: any;
@@ -105,8 +105,8 @@ export class ContextMenu extends React.Component<any, any> {
 
     render () {
         return (
-            <div ref={(e: any) => { this.selfEle = e } } className="context-menu" style={{ display: 'none' }}>
-                <ul className="context-menu-list">
+            <div ref={(e: any) => { this.selfEle = e } } className={contextPrefix} style={{ display: 'none' }}>
+                <ul className={`${contextPrefix}-context-menu_list`}>
                     {this.props.children}
                 </ul>
             </div>
