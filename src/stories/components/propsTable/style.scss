@@ -1,4 +1,5 @@
 table{
+    font-family: sfmono-regular,Consolas,liberation mono,Menlo,Courier,monospace;
     border-collapse: collapse;
     margin: 0 auto;
     text-align: center;
@@ -11,4 +12,16 @@ table td, table th{
 table thead th{
     background-color: #f7f7f7;
     width: 100px;
+}
+table {
+    tbody {
+        tr {
+            td:first-child {
+                font-weight: bold;
+            }
+            td:nth-child(3) {
+                color: #c41d7f;
+            }
+        }
+    }
 }
