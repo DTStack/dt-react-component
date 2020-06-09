@@ -1,0 +1,64 @@
+# Read more: https://docs.gitlab.com/12.7/ee/ci/yaml/README.html
+cache:
+  paths:
+   - node_modules/
+stages:
+  - install
+  - lint
+  - lintdoc
+  - check-types
+  - test
+  - build_deploy
+# 当 merge_requests, master, dev, test 分支时会执行依赖安装
+install_dependencies: 
+  stage: install
+  script: 
+    - npm install --unsafe-perm=true --allow-root
+  only:
+    - merge_requests
+    - /master|(f|F)ix|(d|D)ev_|(f|F)eat|(i|I)ssue|ref|perf|next|test_/
+# 当 merge_requests 执行 eslint 检查
+code_quality: 
+  stage: lint
+  script: 
+    - npm run lint
+  only:
+    - merge_requests
+    - /(f|F)ix|(d|D)ev_|(f|F)eat|(i|I)ssue|ref|perf|next/
+# 当 merge_requests 执行 tsc 类型检查
+check_types:
+  stage: check-types
+  script: 
+    - npm run check-types
+  only:
+    - merge_requests
+    - /(f|F)ix|(d|D)ev_|(f|F)eat|(i|I)ssue|ref|perf|next/
+# 当 merge_requests 有更时会执行单元测试任务
+test:
+  stage: test
+  script: 
+    - npm run test
+  only:
+    - merge_requests
+    - /(f|F)ix|(d|D)ev_|(f|F)eat|(i|I)ssue|ref|perf|next/
+#执行 MD 文档校验， 为 doc 或者 master 命名当分支更新时才会触发
+doc_quality:
+  stage: lintdoc
+  script: 
+    - npm run lint-doc
+  only:
+    - /doc(s)|release/
+    - master
+# TODO 等待 jenkins 配置好修复
+# 开发环境更新部署
+# build_deploy: # deploy dev environment
+#   stage: build_deploy
+#   script:
+#     - npm run build
+#     - echo "删除原来的文件"
+#     - rm -rf /home/admin/app/dt-insight-front/aiworks
+#     - echo "复制当前的文件"
+#     - cp ./dist/aiworks -r /home/admin/app/dt-insight-front/aiworks
+#     - echo "部署成功"
+#   only:
+#     - /master|(d|D)ev_|test_/

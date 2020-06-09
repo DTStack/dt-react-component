@@ -8,7 +8,7 @@
 
 
 ### 目录结构
-```
+```plain
 dt-react-component
 ├── CHANGELOG.md
 ├── README.md
@@ -52,7 +52,7 @@ dt-react-component
 + src/styles 将组件样式文件统一引入，便于统一编译样式文件
 
 ### 组件编译
-```
+```plain
 npm run compile
 输出 lib 文件夹
 ```
@@ -64,7 +64,7 @@ npm run compile
 + npm run test
 
 ### Tag 以及 CHANGELOG 
-```
+```plain
 npm run release
 ```
 参考[版本管理](https://dtstack.yuque.com/rd-center/sm6war/cmdl2z)

@@ -13,12 +13,12 @@ stories 文档编写几点要求如下：
 2. 模块一：示例  
     主要介绍该组件如何使用，以及动态交互编写
 3. Prop Types （标题名称目前插件不支持替换～）  
-    组件API配置信息
+    组件 API 配置信息
 
 其中模块一、模块二采用 jsx 语法，具体文档样式可以根据具体情况自定义书写， **src/stories/style/** 文件夹下可编写不同组件文档样式。
 模块三采用 storybook-info 提供的 api 渲染出每个组件 API 配置
 
-#### 具体编写可参考如下示例：
+#### 具体编写可参考如下示例
 ```js
 stories.add('slidepanel', () => {
     const groupId = 'slidepanel'
