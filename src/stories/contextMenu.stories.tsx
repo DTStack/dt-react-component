@@ -61,54 +61,6 @@ const contextMenus = [
                     moveModalVisible: true
                 });
             }
-        }, {
-            text: '编辑',
-            onClick: (activeNode: any) => {
-                this.setState({
-                    editOrCloneData: activeNode,
-                    editType: 'edit',
-                    editOrCloneModalVisible: true
-                })
-            }
-        }, {
-            text: '移动',
-            onClick: (activeNode: any) => {
-                this.setState({
-                    moveData: {
-                        nodePid: activeNode.parentId,
-                        name: activeNode.name,
-                        id: activeNode.id,
-                        isFile: true
-                    },
-                    moveModalVisible: true
-                });
-            }
-        }, {
-            text: '移动1',
-            onClick: (activeNode: any) => {
-                this.setState({
-                    moveData: {
-                        nodePid: activeNode.parentId,
-                        name: activeNode.name,
-                        id: activeNode.id,
-                        isFile: true
-                    },
-                    moveModalVisible: true
-                });
-            }
-        }, {
-            text: '移动2',
-            onClick: (activeNode: any) => {
-                this.setState({
-                    moveData: {
-                        nodePid: activeNode.parentId,
-                        name: activeNode.name,
-                        id: activeNode.id,
-                        isFile: true
-                    },
-                    moveModalVisible: true
-                });
-            }
         }]
     }
 ];
