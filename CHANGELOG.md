@@ -4,9 +4,11 @@
 ### Bug Fixes
 
 * **component:** fix component ([fdd6405](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/fdd6405))
+* **contextmenu:** fix contextmenu ([f78d691](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/f78d691))
 * **docs:** update plan ([1128fea](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/1128fea))
 * **npm:** fix npmignore ([fca883b](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/fca883b))
 * **script:** fix release scripts ([8909cd2](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/8909cd2))
+* **stories:** fix stories ([59d9857](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/59d9857))
 
 
 ### Features
