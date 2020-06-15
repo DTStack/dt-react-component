@@ -67,7 +67,7 @@ export class ContextMenu extends React.Component<any, any> {
     }
 
     hideAll () {
-        const allEles: any = document.querySelectorAll('.context-menu')
+        const allEles: any = document.querySelectorAll(`.${contextPrefix}`)
         for (let i = 0; i < allEles.length; i++) {
             allEles[i].style.display = 'none';
         }
