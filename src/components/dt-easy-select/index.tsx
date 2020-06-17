@@ -19,11 +19,13 @@ class DtEasySelect extends React.Component<any, any> {
     }
 
     onSearch = (str: any) => {
-        const { clearValueRequest = false } = this.props;
-        if (!clearValueRequest && !str) {
+        const { clearValueRequest = false, autoValue } = this.props;
+        if (!clearValueRequest && !str) { // 默认清空展示上次的数据
             this.setState({ dataSource: this.state.dataSource })
-        } else {
-            debounce(() => this.getDataSource(str), 800)();
+        } else if (clearValueRequest && !str) { // 此时清空展示最初的数据, 进行初始化的请求，参数传入autoValue
+            this.getDataSource(autoValue);
+        } else { // 正常搜索函数，特殊处理防抖
+            debounce(() => this.getDataSource(str), 300)();
         }
     }
 
@@ -42,20 +44,17 @@ class DtEasySelect extends React.Component<any, any> {
     render () {
         const { showSearch = true, filterLocal, servise, ...others } = this.props;
         const { dataSource, fetching } = this.state;
-        console.log(dataSource)
         return (
             <Select
+                allowClear
                 showSearch={showSearch}
-                style={{ minWidth: 300 }}
-                filterOption={(input, option) => {
-                    if (!filterLocal) {
-                        return false;
-                    }
-                    return option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
-                    option.props.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
-                }}
+                style={{ width: '100%' }}
                 onSearch={ servise && this.onSearch }
                 notFoundContent={fetching ? <Spin size="small" /> : null}
+                filterOption={ !filterLocal ? null : (input, option) =>
+                    option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+                    option.props.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }
                 { ...others }
             >
                 {

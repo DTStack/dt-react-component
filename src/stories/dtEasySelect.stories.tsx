@@ -52,7 +52,7 @@ const propDefinitions = [
         property: 'autoValue',
         propType: 'any',
         required: false,
-        description: '初始化时请求远程数据的默认搜索数据, 当servise存在时, 该字段才起作用, 用于组件加载时初始化数据传参, 有且仅使用这一次.',
+        description: '初始化时请求远程数据的默认搜索数据, 当servise存在时, 该字段才起作用, 用于组件加载时初始化数据传参和清空当前选项时默认.',
         defaultValue: 'false'
     },
     {
@@ -67,29 +67,30 @@ stories.add('dteasyselect', () => (
         <h2>简述</h2>
         <p>{`参考之前业务所编辑业务组件, 主要用于表单中Select下拉框组件优化, 继承AntDesign组件api文档所有属性, 将原<Select><Option>...</Option></Select>形式改为闭合标签<DtEasySelect />的形式, 同时将异步请求数据和onSearch方法结合，简化代码。`}</p>
         <h2>示例</h2>
-        <h5>静态本地数据源(json格式，带本地模糊查询功能)</h5>
+        <h5>1、静态本地数据源(json格式，带本地模糊查询功能)</h5>
         <DtEasySelect
             filterLocal
-            dataSource={[{ value: 1, label: '描述' }, { value: 2, label: '描述2' }]}
-            onChange={(val: any) => { console.log(val) }}
+            dataSource={[{ value: 1, label: '张三' }, { value: 2, label: '李四' }]}
+            onChange={(val: any, option: any) => { console.log(val, option) }}
         />
-        <h5>静态本地数据源(普通数组格式)</h5>
+        <h5>2、静态本地数据源(普通数组格式)</h5>
         <DtEasySelect
             filterLocal
             dataSource={['文案1', 234]}
-            onChange={(val: any) => { console.log(val) }}
+            onChange={(val: any, option: any) => { console.log(val, option) }}
         />
-        <h5>远程获取数据（自动请求）</h5>
+        <h5>3、远程获取数据（自动请求, 带有默认请求字段）</h5>
         <DtEasySelect
             auto
             servise={servise}
+            clearValueRequest
             autoValue={'111'}
-            onChange={(val: any) => { console.log(val) }}
+            onChange={(val: any, option: any) => { console.log(val, option) }}
         />
-        <h5>远程获取数据（非自动请求）</h5>
+        <h5>4、远程获取数据（非自动请求）</h5>
         <DtEasySelect
             servise={servise}
-            onChange={(val: any) => { console.log(val) }}
+            onChange={(val: any, option: any) => { console.log(val, option) }}
         />
     </div>
 ), {
@@ -98,27 +99,29 @@ stories.add('dteasyselect', () => (
         text: `
             代码示例：
             ~~~js
-            // 静态本地数据源(json格式，附带本地模糊查询)
+            // 静态本地数据源(json格式, 附带本地模糊查询)
             <DtEasySelect
                 showSearch
                 filterLocal
                 dataSource={[{ value: 1, label: '描述' }, { value: 2, label: '描述2' }]}
-                onChange={(val: any) => { console.log(val) }}
+                onChange={(val: any, option: any) => { console.log(val, option) }}
             />
             ~~~
             ~~~js
-            // 静态本地数据源(普通数组格式)
+            // 静态本地数据源(普通数组格式, 附带本地模糊查询)
             <DtEasySelect
                 showSearch
                 filterLocal
                 dataSource={['文案1', 234]}
-                onChange={(val: any) => { console.log(val) }}
+                onChange={(val: any, option: any) => { console.log(val, option) }}
             />
             ~~~
             ~~~js
-            // 远程获取数据（自动请求）
+            // 远程获取数据（自动请求, 带有默认请求字段）
             <DtEasySelect
                 auto
+                autoValue={'111'}
+                clearValueRequest
                 servise={(str: any) =>
                     jsonp('https://suggest.taobao.com/sug?code=utf-8&q="str"')
                         .then(response => response.json())
@@ -127,8 +130,7 @@ stories.add('dteasyselect', () => (
                             value: item[1]
                     })))
                 }
-                autoValue={'111'}
-                onChange={(val: any) => { console.log(val) }}
+                onChange={(val: any, option: any) => { console.log(val, option) }}
             />
             ~~~
             ~~~js
@@ -142,7 +144,7 @@ stories.add('dteasyselect', () => (
                             value: item[1]
                     })))
                 }
-                onChange={(val: any) => { console.log(val) }}
+                onChange={(val: any, option: any) => { console.log(val, option) }}
             />
             ~~~
         `
