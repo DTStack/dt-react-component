@@ -48,8 +48,8 @@ class DtEasySelect extends React.Component<any, any> {
             <Select
                 allowClear={allowClear} // 默认支持清除
                 showSearch={showSearch} // 默认支持查询
-                style={{ width: '100%' }} // todo: 暂时样式，有待商榷
-                onSearch={ servise && this.onSearch }
+                style={{ minWidth: 120 }} // todo: 暂时样式，有待商榷
+                onSearch={ servise && !filterLocal && this.onSearch }
                 notFoundContent={fetching ? <Spin size="small" /> : null}
                 filterOption={ !filterLocal ? null : (input, option) =>
                     // 兼容数字和字符串等模糊查询

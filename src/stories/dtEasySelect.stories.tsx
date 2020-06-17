@@ -4,7 +4,7 @@ import jsonp from 'fetch-jsonp';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import DtEasySelect from '../components/dt-easy-select';
-import './style/dtEasySelect.scss';
+import './style/dtEasySelect.scss'; // api文档页面特殊样式，暂时不引入公共样式，单独引入此文件
 
 const stories = storiesOf('DtEasySelect 下拉框', module);
 stories.addDecorator(withKnobs)
@@ -70,12 +70,14 @@ stories.add('dtEasySelect', () => (
         <h2>示例</h2>
         <p className="strory-dt_easy_select_p">1、静态本地数据源(json格式，带本地模糊查询功能)</p>
         <DtEasySelect
+            style={{ width: '100%' }}
             filterLocal
             dataSource={[{ value: 1, label: '张三' }, { value: 2, label: '李四' }]}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
         <p className="strory-dt_easy_select_p">2、静态本地数据源(普通数组格式)</p>
         <DtEasySelect
+            style={{ width: '100%' }}
             filterLocal
             dataSource={['文案1', 234]}
             onChange={(val: any, option: any) => { console.log(val, option) }}
@@ -83,13 +85,24 @@ stories.add('dtEasySelect', () => (
         <p className="strory-dt_easy_select_p">3、远程获取数据（自动请求, 带有默认请求字段）</p>
         <DtEasySelect
             auto
+            style={{ width: '100%' }}
             servise={servise}
             clearValueRequest
             autoValue={'111'}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
+        <p className="strory-dt_easy_select_p">3、远程获取数据（自动请求, 带有默认请求字段,前端本地模糊查询）</p>
+        <DtEasySelect
+            auto
+            style={{ width: '100%' }}
+            filterLocal
+            servise={servise}
+            autoValue={'111'}
+            onChange={(val: any, option: any) => { console.log(val, option) }}
+        />
         <p className="strory-dt_easy_select_p">4、远程获取数据（非自动请求）</p>
         <DtEasySelect
+            style={{ width: '100%' }}
             servise={servise}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
