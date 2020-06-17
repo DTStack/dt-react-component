@@ -42,16 +42,17 @@ class DtEasySelect extends React.Component<any, any> {
         })
     }
     render () {
-        const { showSearch = true, filterLocal, servise, ...others } = this.props;
+        const { allowClear = true, showSearch = true, filterLocal, servise, ...others } = this.props;
         const { dataSource, fetching } = this.state;
         return (
             <Select
-                allowClear
-                showSearch={showSearch}
-                style={{ width: '100%' }}
+                allowClear={allowClear} // 默认支持清除
+                showSearch={showSearch} // 默认支持查询
+                style={{ width: '100%' }} // todo: 暂时样式，有待商榷
                 onSearch={ servise && this.onSearch }
                 notFoundContent={fetching ? <Spin size="small" /> : null}
                 filterOption={ !filterLocal ? null : (input, option) =>
+                    // 兼容数字和字符串等模糊查询
                     option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
                     option.props.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }

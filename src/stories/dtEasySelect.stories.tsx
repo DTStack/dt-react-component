@@ -117,7 +117,7 @@ stories.add('dteasyselect', () => (
             />
             ~~~
             ~~~js
-            // 远程获取数据（自动请求, 带有默认请求字段）
+            // 远程获取数据（自动请求, 带有默认请求字段。PS: 请求方法请自行引入，例如jsonp ）
             <DtEasySelect
                 auto
                 autoValue={'111'}
@@ -134,7 +134,7 @@ stories.add('dteasyselect', () => (
             />
             ~~~
             ~~~js
-            // 远程获取数据（非自动请求）
+            // 远程获取数据（非自动请求。PS: 请求方法请自行引入，例如jsonp）
             <DtEasySelect
                 servise={(str: any) =>
                     jsonp('https://suggest.taobao.com/sug?code=utf-8&q="str"')
