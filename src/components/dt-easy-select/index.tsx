@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Select, Spin } from 'antd';
+import debounce from 'lodash/debounce';
 
 const { Option } = Select;
 class DtEasySelect extends React.Component<any, any> {
@@ -11,20 +12,27 @@ class DtEasySelect extends React.Component<any, any> {
             fetching: false
         };
     }
+
     componentDidMount = () => {
         const { autoValue = '' } = this.props;
         this.getDataSource(autoValue);
     }
+
     onSearch = (str: any) => {
-        this.getDataSource(str);
+        const { clearValueRequest = false } = this.props;
+        if (!clearValueRequest && !str) {
+            this.setState({ dataSource: this.state.dataSource })
+        } else {
+            debounce(() => this.getDataSource(str), 800)();
+        }
     }
+
     getDataSource = async (str: any) => {
         const { servise } = this.props;
         this.setState({
             fetching: true
         })
         servise && await servise(str).then((res: any) => {
-            console.log(res)
             this.setState({
                 dataSource: res || [],
                 fetching: false
