@@ -12,5 +12,9 @@
 具体 deadline 视 **资源情况** 安排
 
 ### Plan
-#### 第一个版本规划
+#### 第一个版本规划（v1.0.0 / 2020-06-15）
 + 新增5个组件（Circle、go-back、slidePane、notFound、contextMenu）
+
+#### 第二个版本规划（v1.0.1）
++ 新增组件（DtEasySelect、TextMark、Cookie、ChromeDownload、MultiSearchInput）
+

@@ -61,5 +61,7 @@ function loadStories () {
     require('../src/stories/goBack.stories');
     require('../src/stories/notFound.stories');
     require('../src/stories/chromeDownload.stories');
+    require('../src/stories/multiSearchInput.stories');
+    require('../src/stories/cookies.stories');
 }
 configure(loadStories, module);
