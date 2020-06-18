@@ -16,5 +16,5 @@
 + 新增5个组件（Circle、go-back、slidePane、notFound、contextMenu）
 
 #### 第二个版本规划（v1.0.1）
-+ 新增组件（DtEasySelect、TextMark、Cookie、ChromeDownload、MultiSearchInput）
++ 新增组件（DtEasySelect、ProgressBar、Cookie、ChromeDownload、MultiSearchInput）
 

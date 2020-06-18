@@ -63,5 +63,6 @@ function loadStories () {
     require('../src/stories/chromeDownload.stories');
     require('../src/stories/multiSearchInput.stories');
     require('../src/stories/cookies.stories');
+    require('../src/stories/progressBar.stories')
 }
 configure(loadStories, module);
