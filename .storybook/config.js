@@ -60,5 +60,6 @@ function loadStories () {
     require('../src/stories/contextMenu.stories');
     require('../src/stories/goBack.stories');
     require('../src/stories/notFound.stories');
+    require('../src/stories/chromeDownload.stories');
 }
 configure(loadStories, module);
