@@ -28,6 +28,7 @@ stories.add('progressBar', () => {
         ProgressBar.show()
         ProgressBar.hide()
         ~~~
-        `
+        `,
+        propTablesExclude: [Button]
     }
 })
