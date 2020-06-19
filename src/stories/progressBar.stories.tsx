@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from 'antd';
 import { storiesOf } from '@storybook/react';
 import ProgressBar from '../components/progressBar';
 
@@ -10,7 +11,12 @@ stories.add('progressBar', () => {
             <h2>何时使用</h2>
             <p>网络请求过程提示进度条</p>
             <h2>示例</h2>
-            {ProgressBar.show()}
+            <Button onClick={() => {
+                ProgressBar.show()
+            }}>发起请求</Button>
+            <Button style={{ marginLeft: '10px' }} onClick={() => {
+                ProgressBar.hide()
+            }}>请求结束</Button>
         </div>
     )
 }, {
