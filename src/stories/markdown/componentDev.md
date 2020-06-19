@@ -51,6 +51,8 @@ dt-react-component
 + src/stories 组件文档介绍以及动态演示效果编写
 + src/styles 将组件样式文件统一引入，便于统一编译样式文件
 
+**注意点：** 组件内部如需要引用图片资源，目前采用 **base64** 编码后引用
+
 ### 组件编译
 ```plain
 npm run compile

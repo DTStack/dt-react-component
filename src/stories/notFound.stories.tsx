@@ -18,7 +18,8 @@ stories.add('notFound', () => {
         text: `
         代码示例：
         ~~~js
-            <Route path="/*" component={NotFund} />
+            import { NotFound } from 'dt-react-component'
+            <Route path="/*" component={NotFound} />
         ~~~
         `
     }
