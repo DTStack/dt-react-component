@@ -1,30 +1,25 @@
-import * as React from 'react';
-import { storiesOf } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
-import { Button } from 'antd';
-import { State, Store } from '@sambego/storybook-state';
-import { text, object } from '@storybook/addon-knobs';
-import SlidePane from '../components/slidePane';
-import { PropsTable } from './components/propsTable';
-const store = new Store({
-    visible: false
-});
 
-// 定制化component props
-const propDefinitions = [{
-    property: 'visible',
-    propType: 'boolean',
-    required: true,
-    description: 'slidepanel 是否可见',
-    defaultValue: 'false'
-}, {
-    property: 'onClose',
-    propType: 'function',
-    required: false,
-    description: '点击 slidepanel 回调',
-    defaultValue: ''
-}]
-const stories = storiesOf('SlidePane 右侧面板', module);
+## 组件文档规范
+
+stories 文档编写几点要求如下：
+
++ 最外层元素给定类名 **story_wrapper**
++ 文档主要为三大模块（何时使用、示例、Prop Types）
++ 模块标题均使用 **h2** 标签
+
+#### 模块介绍
+1. 模块一：何时使用  
+    主要介绍该组件用途以及使用的业务场景
+2. 模块一：示例  
+    主要介绍该组件如何使用，以及动态交互编写
+3. Prop Types （标题名称目前插件不支持替换～）  
+    组件 API 配置信息
+
+其中模块一、模块二采用 jsx 语法，具体文档样式可以根据具体情况自定义书写， **src/stories/style/** 文件夹下可编写不同组件文档样式。
+模块三采用 storybook-info 提供的 api 渲染出每个组件 API 配置
+
+#### 具体编写可参考如下示例
+```plain
 stories.add('slidepanel', () => {
     const groupId = 'slidepanel'
     const defaultStyle = {
@@ -38,9 +33,10 @@ stories.add('slidepanel', () => {
     const children = text('children', defayltText, groupId)
     return (
         <div className='story_wrapper'>
+            // 模块一
             <h2>何时使用</h2>
             <p>从页面右侧弹出面板，展示相应内容</p>
-
+            // 模块二
             <h2>示例</h2>
             <Button style={{ marginBottom: '10px' }} onClick={() => {
                 const actionVal: any = store.get('visible')
@@ -52,6 +48,7 @@ stories.add('slidepanel', () => {
             <p>
                 尝试在 knobs 栏调试 slidePanel 组件
             </p>
+            // 组件交互演示
             <State store={store}>
                 <SlidePane
                     visible={store.get('visible')}
@@ -69,8 +66,8 @@ stories.add('slidepanel', () => {
         </div>
     )
 }, {
+    // 模块三
     info: {
-        source: false,
         text: `
         **代码示例：**
         ~~~js
@@ -87,3 +84,9 @@ stories.add('slidepanel', () => {
         propTablesExclude: [Button, State]
     }
 })
+```
+
+
+
+
+

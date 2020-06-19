@@ -1,49 +1,22 @@
-.circle_default{
+$card_prefix: 'dtc-circle';
+.#{$card_prefix}-default {
     width: 8px;
     height: 8px;
     display: inline-block;
     border-radius: 50% 50%;
 }
-
-.status_wait_submit{
+.#{$card_prefix}-waitSubmit, .#{$card_prefix}-run, .#{$card_prefix}-created, .#{$card_prefix}-submitting, .#{$card_prefix}-restarting {
     background: #F5A623;
 }
-.status_created{
-    background: #F5A623;
-}
-.status_running{
+.#{$card_prefix}-running {
     background: #2491F7;
 }
-.status_finished{
+.#{$card_prefix}-finished {
     background: #00A755;
 }
-.status_stoping{
-    background: #F5A623;
-}
-.status_stoped{
+.#{$card_prefix}-stopped, .#{$card_prefix}-frozen {
     background: #94A8C6;
 }
-.status_run_fail{
-    background: #EF5350;
-}
-.status_submit_failed{
-    background: #EF5350;
-}
-.status_submitting{
-    background: #F5A623;
-}
-.status_restarting{
-    background: #F5A623;
-}
-.status_killed{
-    background: #94A8C6;
-}
-.status_wait_run{
-    background: #F5A623;
-}
-.status_frozen{
-    background: #94A8C6;
-}
-.status_parent_failed{
+.#{$card_prefix}-fail {
     background: #EF5350;
 }

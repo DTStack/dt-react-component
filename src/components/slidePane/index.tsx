@@ -21,12 +21,12 @@ class SlidePane extends React.Component<SlidePaneProps, any> {
 
     render () {
         const { children, visible, style, className, onClose } = this.props
-
+        const slidePrefixCls = 'dtc-slide-pane';
         let myStyle: any = {
             top: 0,
             transform: visible ? undefined : 'translate3d(150%, 0, 0)'
         }
-        const classes = classNames('slide-pane', className)
+        const classes = classNames(slidePrefixCls, className)
         if (!visible) {
             myStyle['pointerEvents'] = 'none'
         }
@@ -34,10 +34,10 @@ class SlidePane extends React.Component<SlidePaneProps, any> {
 
         return (
             <div className={ classes } style={myStyle} >
-                <div className="slide-pane-conent" style={{ display: visible ? 'block' : 'none', height: '100%' }}>
+                <div className={`${slidePrefixCls}-conent`} style={{ display: visible ? 'block' : 'none', height: '100%' }}>
                     { children }
                 </div>
-                <span className="slide-pane-toggle" onClick={onClose} {...{ onClick: onClose }}>
+                <span className={`${slidePrefixCls}-toggle`} onClick={onClose} {...{ onClick: onClose }}>
                     <Icon type="double-right" />
                 </span>
             </div>

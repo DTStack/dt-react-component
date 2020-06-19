@@ -2,7 +2,7 @@
 
 exports[`test Circle suite renders correctly 1`] = `
 <div
-  className="circle_default"
+  className="dtc-circle-default"
 >
   
 </div>
