@@ -1,6 +1,6 @@
 import { configure, addDecorator, addParameters, setAddon  } from '@storybook/react';
  // 避免jest识别webpack context 报错
-// import requireContext from 'require-context.macro';
+import requireContext from 'require-context.macro';
 import { withNotes } from '@storybook/addon-notes';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
@@ -47,22 +47,10 @@ addDecorator(withOptions({
 /**
  * 动态加载所有stories
  */
-// const req = requireContext('../src/stories', true, /\.stories\.(ts|tsx)$/);
-// function loadStories() {
-//     req.keys().forEach(fileName => req(fileName));
-// }
-
-// 暂时手动引入，确保 stories sort
-function loadStories () {
-    require('../src/stories/index.stories');
-    require('../src/stories/circle.stories');
-    require('../src/stories/slidePane.stories');
-    require('../src/stories/contextMenu.stories');
-    require('../src/stories/goBack.stories');
-    require('../src/stories/notFound.stories');
-    require('../src/stories/chromeDownload.stories');
-    require('../src/stories/multiSearchInput.stories');
-    require('../src/stories/cookies.stories');
-    require('../src/stories/progressBar.stories')
+function loadStories() {
+    const req = requireContext('../src/stories', true, /\.stories\.(ts|tsx)$/);
+    const allExport = [require('../src/stories/index.stories')]; // 第一排序
+    req.keys().forEach(fileName => allExport.push(req(fileName)));
+    return allExport;
 }
 configure(loadStories, module);
