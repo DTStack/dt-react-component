@@ -8,8 +8,7 @@ class DtEasySelect extends React.Component<any, any> {
         super(props);
         const { dataSource = [] } = this.props;
         this.state = {
-            dataSource,
-            fetching: false
+            dataSource
         };
     }
 
@@ -31,26 +30,21 @@ class DtEasySelect extends React.Component<any, any> {
 
     getDataSource = async (str: any) => {
         const { servise } = this.props;
-        this.setState({
-            fetching: true
-        })
         servise && await servise(str).then((res: any) => {
             this.setState({
-                dataSource: res || [],
-                fetching: false
+                dataSource: res || []
             })
         })
     }
     render () {
         const { allowClear = true, showSearch = true, filterLocal, servise, ...others } = this.props;
-        const { dataSource, fetching } = this.state;
+        const { dataSource } = this.state;
         return (
             <Select
                 allowClear={allowClear} // 默认支持清除
                 showSearch={showSearch} // 默认支持查询
                 style={{ minWidth: 120 }} // todo: 暂时样式，有待商榷
                 onSearch={ servise && !filterLocal && this.onSearch }
-                notFoundContent={fetching ? <Spin size="small" /> : null}
                 filterOption={ !filterLocal ? null : (input, option) =>
                     // 兼容数字和字符串等模糊查询
                     option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
