@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Select, Spin } from 'antd';
+import { Select } from 'antd';
 import debounce from 'lodash/debounce';
 
 const { Option } = Select;

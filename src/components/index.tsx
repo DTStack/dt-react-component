@@ -8,3 +8,4 @@ export { default as ChromeDownload } from './chromeDownload';
 export { default as MultiSearchInput } from './multiSearchInput';
 export { default as Cookies } from './cookies';
 export { default as ProgressBar } from './progressBar';
+export { default as DtEasySelect } from './dt-easy-select';
