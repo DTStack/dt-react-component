@@ -44,11 +44,12 @@ stories.add('searchModal', () => {
                         }}
                         onSelect={() => { console.log('onSelect') }}
                         onChange={() => { console.log('onChange') }}
-                        title='搜索并打开实验'
+                        title='搜索并打开 notebook'
+                        name='notebook'
                     />
                 }
             </State>
-            <SearchModal style={{ display: 'none' }} />
+            <SearchModal visible={false} style={{ display: 'none' }} />
         </div>
     )
 }, {
@@ -63,6 +64,7 @@ stories.add('searchModal', () => {
             onSelect={}
             onChange={}
             title=''
+            name='notebook'
         />
         ~~~
         `,

@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-class TextMark extends React.Component<any, any> {
+export interface TextMarkProps {
+    text?: string;
+    markText?: string;
+    [propName: string]: any;
+}
+class TextMark extends React.Component<TextMarkProps, any> {
     renderMark (text = '', markText = '') {
         const markTextIndex = text.indexOf(markText);
         if (markTextIndex !== -1) {
