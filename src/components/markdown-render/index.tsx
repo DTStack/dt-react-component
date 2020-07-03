@@ -30,7 +30,7 @@ showdown.setOption('optionKey', 'value');
 
 export default function MarkdownRender (props: any) {
     const { text, className, dark } = props;
-    const cls = classNames('markdown-render-body', dark ? 'vs-dark' : 'vs', className)
+    const cls = classNames('dtc-markdown-render-body', dark ? 'dtc-vs-dark' : 'dtc-vs', className)
     const converter = new showdown.Converter({
         extensions: ['highlight'],
         emoji: true
