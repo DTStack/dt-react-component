@@ -15,6 +15,8 @@
 #### 第一个版本规划（v1.0.0 / 2020-06-15）
 + 新增5个组件（Circle、go-back、slidePane、notFound、contextMenu）
 
-#### 第二个版本规划（v1.0.1）
+#### 第二个版本规划（v1.1.0 / 2020-06-23）
 + 新增组件（DtEasySelect、ProgressBar、Cookie、ChromeDownload、MultiSearchInput）
 
+#### 第三个版本规划（v1.2.0）
++ 新增组件（TextMark、TableCell、SpreadSheet、SearchModal、MarkdownRender）

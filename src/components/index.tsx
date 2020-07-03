@@ -10,7 +10,7 @@ export { default as Cookies } from './cookies';
 export { default as ProgressBar } from './progressBar';
 export { default as DtEasySelect } from './dt-easy-select';
 export { default as TextMark } from './textMark';
-export { default as TextCell } from './tableCell';
+export { default as TableCell } from './tableCell';
 export { default as SpreadSheet } from './spreadsheet';
 export { default as SearchModal } from './searchModal';
 export { default as MarkdownRender } from './markdown-render';
