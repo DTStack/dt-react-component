@@ -1,19 +1,26 @@
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-import renderer from 'react-test-renderer';
 import { Circle } from '../index';
+import { render, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+
 describe('test Circle suite', () => {
-    it('renders correctly', () => {
-        const tree = renderer
-            .create(<Circle />)
-            .toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-    it('should be selectable by class "dtc-circle-default"', function () {
-        expect(shallow(<Circle />).is('.dtc-circle-default')).toBe(true);
+    const defaultCls = 'dtc-circle-default';
+    let wrapper, wrapperCus, element, elementCus
+    beforeEach(() => {
+        wrapper = render(<Circle data-testid='test1'></Circle>)
+        wrapperCus = render(<Circle type='finished' data-testid='test2' />)
+        element = wrapper.getByTestId('test1');
+        elementCus = wrapperCus.getByTestId('test2')
     })
-    it('should mount in a full DOM', function () {
-        expect(mount(<Circle />).find('.dtc-circle-default').length).toBe(1);
-    });
+    afterEach(() => {
+        cleanup();
+    })
+    test('should render the correct className in Circle', () => {
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveClass(defaultCls);
+    })
+    test('should render the finished className in Circle', () => {
+        expect(elementCus).toHaveClass('dtc-circle-finished');
+    })
 })
