@@ -1,6 +1,6 @@
 {
   "name": "dt-react-component",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "react-component",
   "repository": "http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component",
   "main": "lib/index.js",
@@ -118,10 +118,12 @@
     "url-loader": "^4.1.0"
   },
   "dependencies": {
+    "@handsontable/react": "^2.1.0",
     "antd": "3.26.13",
     "classnames": "^2.2.6",
     "codemirror": "^5.25.0",
     "fetch-jsonp": "^1.1.3",
+    "handsontable": "^6.2.2",
     "highlight.js": "^9.14.2",
     "lodash": "^4.17.15",
     "moment": "^2.22.2",

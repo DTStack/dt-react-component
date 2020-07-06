@@ -63,6 +63,13 @@
         "@typescript-eslint/no-var-requires": 0,
         "@typescript-eslint/interface-name-prefix":0,
         "@typescript-eslint/no-empty-interface":0,
+        "@typescript-eslint/no-this-alias": [
+            "error",
+            {
+                "allowDestructuring": true, // Allow `const { props, state } = this`; false by default
+                "allowedNames": ["that"] // Allow `const self = this`; `[]` by default
+            }
+        ],
         "prefer-const": 0,
         "no-var": 0,
         "prefer-rest-params": 0

@@ -12,6 +12,7 @@ export interface SlidePaneProps {
     className?: string;
     style?: object;
     onClose?<HTMLSpanElement, MouseEvent>(): void;
+    [propName: string]: any;
 }
 
 class SlidePane extends React.Component<SlidePaneProps, any> {
