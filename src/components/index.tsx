@@ -14,4 +14,4 @@ export { default as TableCell } from './tableCell';
 export { default as SpreadSheet } from './spreadsheet';
 export { default as SearchModal } from './searchModal';
 export { default as MarkdownRender } from './markdown-render';
-export { default as BreadcrumbRender } from './breadcrumb'
+export { BreadcrumbRender } from './breadcrumb'

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import { createMemoryHistory, Router, Route, IndexRoute } from 'react-router'
-import Breadcrumb from '../components/breadcrumb';
+import { createMemoryHistory, Router, Route } from 'react-router'
+import { BreadcrumbRender } from '../components/breadcrumb';
 
-const stories = storiesOf('Breadcrumb 与react-router共用', module);
+const stories = storiesOf('breadcrumb与路由结合', module);
 stories.addDecorator(withKnobs)
 
 const propDefinitions = [
@@ -27,23 +27,25 @@ const propDefinitions = [
 const App = (props) => {
     return (
         <div>
-            {<Breadcrumb
+            <BreadcrumbRender
                 routes = {[{ name: 'home', path: '/home' }, { name: 'about', path: '/about' }]}
                 style = {{ background: 'dedede' }}
-            />}
+            />
             {props.children}
         </div>
     )
 }
-
 const About = () => <h1>about page</h1>
 const Home = () => <h1>home</h1>
-stories.add('breadcrumb', () => (
+const history = createMemoryHistory()
+
+stories.add('breadcrumb 面包屑', () => (
     <div className='story_wrapper'>
-        <h2>简述</h2>
-        <p>{` react-router 一起使用时，默认生成的 url 路径是带有 # 的`}</p>
+        <h2>何时使用</h2>
+        <p>{` 当 breadcrumb 组件与 react-router 一起使用时，默认生成的 url 路径是带有 # 的`}</p>
+        <p> {` 依赖需要满足 两级以上的层级结构并需要向上导航的路由时 `}</p>
         <h2>示例</h2>
-        <Router history={createMemoryHistory()}>
+        <Router history={history}>
             <Route path="/" component={App}>
                 <Route path="/about" component={About} />
                 <Route path="/home" component={Home} />
@@ -52,6 +54,7 @@ stories.add('breadcrumb', () => (
     </div>
 ), {
     info: {
+        propTablesExclude: [Router],
         text: `
             代码示例：
             ~~~js

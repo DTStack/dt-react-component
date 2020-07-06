@@ -13,7 +13,7 @@ interface IProps {
     style?: React.CSSProperties;
 }
 
-export default (props: IProps) => {
+export function BreadcrumbRender (props: IProps) {
     const { routes, style = {} } = props;
     const len = routes.length - 1;
     return (
