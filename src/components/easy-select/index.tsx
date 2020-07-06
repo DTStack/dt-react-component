@@ -3,7 +3,7 @@ import { Select } from 'antd';
 import debounce from 'lodash/debounce';
 
 const { Option } = Select;
-class DtEasySelect extends React.Component<any, any> {
+class EasySelect extends React.Component<any, any> {
     constructor (props: any) {
         super(props);
         const { dataSource = [] } = this.props;
@@ -68,4 +68,4 @@ class DtEasySelect extends React.Component<any, any> {
         )
     }
 }
-export default DtEasySelect;
+export default EasySelect;
