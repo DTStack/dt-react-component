@@ -6,14 +6,14 @@
 * 组件库相关文档编写（组件文档排版规范（这块看下有没有类似工具支持）、组件开发流程、部署流程、注意事项等） p1
 * 输出文章，组内分享大致介绍  p2
 * 组件迁移任务分配  p2
-* ......
+* ……
 
 剩余 todo 看 **后续使用情况反馈** 具体安排  
 具体 deadline 视 **资源情况** 安排
 
 ### Plan
 #### 第一个版本规划（v1.0.0 / 2020-06-15）
-+ 新增5个组件（Circle、go-back、slidePane、notFound、contextMenu）
++ 新增 5 个组件（Circle、go-back、slidePane、notFound、contextMenu）
 
 #### 第二个版本规划（v1.1.0 / 2020-06-23）
 + 新增组件（DtEasySelect、ProgressBar、Cookie、ChromeDownload、MultiSearchInput）
