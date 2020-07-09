@@ -3,10 +3,10 @@ import { storiesOf } from '@storybook/react';
 import jsonp from 'fetch-jsonp';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import DtEasySelect from '../components/dt-easy-select';
-import './style/dtEasySelect.scss'; // api文档页面特殊样式，暂时不引入公共样式，单独引入此文件
+import EasySelect from '../components/easy-select';
+import './style/easySelect.scss'; // api文档页面特殊样式，暂时不引入公共样式，单独引入此文件
 
-const stories = storiesOf('DtEasySelect 下拉框', module);
+const stories = storiesOf('EasySelect 下拉框', module);
 stories.addDecorator(withKnobs)
 const servise = (str: any) =>
     jsonp(`https://suggest.taobao.com/sug?code=utf-8&q=${str}`)
@@ -63,27 +63,27 @@ const propDefinitions = [
         description: <div className="strory-dt_easy_select_divDesc">清空当前选项是否执行请求(默认清空当前选项不进行服务端请求).</div>,
         defaultValue: 'false'
     }]
-stories.add('dtEasySelect', () => (
+stories.add('EasySelect', () => (
     <div className='story_wrapper'>
         <h2>简述</h2>
-        <p>{`参考之前业务所编辑业务组件, 主要用于表单中Select下拉框组件优化, 基于AntDesign的Select组件进行二次封装，继承AntDesign的Select组件api文档所有属性, 依据组件化思想将原<Select><Option>...</Option></Select>形式改为<DtEasySelect />的形式, 同时将异步请求数据和onSearch方法结合，简化代码。`}</p>
+        <p>{`参考之前业务所编辑业务组件, 主要用于表单中Select下拉框组件优化, 基于AntDesign的Select组件进行二次封装，继承AntDesign的Select组件api文档所有属性, 依据组件化思想将原<Select><Option>...</Option></Select>形式改为<EasySelect />的形式, 同时将异步请求数据和onSearch方法结合，简化代码。`}</p>
         <h2>示例</h2>
         <p className="strory-dt_easy_select_p">1、静态本地数据源(json格式，带本地模糊查询功能)</p>
-        <DtEasySelect
+        <EasySelect
             style={{ width: '100%' }}
             filterLocal
             dataSource={[{ value: 1, label: '张三' }, { value: 2, label: '李四' }]}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
         <p className="strory-dt_easy_select_p">2、静态本地数据源(普通数组格式)</p>
-        <DtEasySelect
+        <EasySelect
             style={{ width: '100%' }}
             filterLocal
             dataSource={['文案1', 234]}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
         <p className="strory-dt_easy_select_p">3、远程获取数据（自动请求, 带有默认请求字段）</p>
-        <DtEasySelect
+        <EasySelect
             auto
             style={{ width: '100%' }}
             servise={servise}
@@ -92,7 +92,7 @@ stories.add('dtEasySelect', () => (
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
         <p className="strory-dt_easy_select_p">3、远程获取数据（自动请求, 带有默认请求字段,前端本地模糊查询）</p>
-        <DtEasySelect
+        <EasySelect
             auto
             style={{ width: '100%' }}
             filterLocal
@@ -101,7 +101,7 @@ stories.add('dtEasySelect', () => (
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
         <p className="strory-dt_easy_select_p">4、远程获取数据（非自动请求）</p>
-        <DtEasySelect
+        <EasySelect
             style={{ width: '100%' }}
             servise={servise}
             onChange={(val: any, option: any) => { console.log(val, option) }}
@@ -114,7 +114,7 @@ stories.add('dtEasySelect', () => (
             代码示例：
             ~~~js
             // 静态本地数据源(json格式, 附带本地模糊查询)
-            <DtEasySelect
+            <EasySelect
                 showSearch
                 filterLocal
                 dataSource={[{ value: 1, label: '描述' }, { value: 2, label: '描述2' }]}
@@ -123,7 +123,7 @@ stories.add('dtEasySelect', () => (
             ~~~
             ~~~js
             // 静态本地数据源(普通数组格式, 附带本地模糊查询)
-            <DtEasySelect
+            <EasySelect
                 showSearch
                 filterLocal
                 dataSource={['文案1', 234]}
@@ -132,7 +132,7 @@ stories.add('dtEasySelect', () => (
             ~~~
             ~~~js
             // 远程获取数据（自动请求, 带有默认请求字段。PS: 请求方法请自行引入，例如jsonp ）
-            <DtEasySelect
+            <EasySelect
                 auto
                 autoValue={'111'}
                 clearValueRequest
@@ -149,7 +149,7 @@ stories.add('dtEasySelect', () => (
             ~~~
             ~~~js
             // 远程获取数据（非自动请求。PS: 请求方法请自行引入，例如jsonp）
-            <DtEasySelect
+            <EasySelect
                 servise={(str: any) =>
                     jsonp('https://suggest.taobao.com/sug?code=utf-8&q="str"')
                         .then(response => response.json())
