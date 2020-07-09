@@ -13,15 +13,21 @@ showdown.extension('highlight', function () {
             const right = '</code></pre>';
             const flags = 'g';
             const replacement = function (wholeMatch: any, match: any, left: any, right: any) {
+                // Append hljs class
+                left = left.slice(0, 18) + 'hljs ' + left.slice(18);
+
                 // eslint-disable-next-line
                 let lang = (left.match(/class=\"([^ \"]+)/) || [])[1];
-                left = left.slice(0, 18) + 'hljs ' + left.slice(18);
                 if (lang && hljs.getLanguage(lang)) {
                     return left + hljs.highlight(lang, match).value + right;
                 } else {
                     return left + hljs.highlightAuto(match).value + right;
                 }
             };
+
+            text = text.replace(/&gt;/g, '>');
+            text = text.replace(/&lt;/g, '<');
+
             return showdown.helper.replaceRecursiveRegExp(text, replacement, left, right, flags);
         }
     }];

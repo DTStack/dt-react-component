@@ -14,6 +14,7 @@ export { default as TableCell } from './tableCell';
 export { default as SpreadSheet } from './spreadsheet';
 export { default as SearchModal } from './searchModal';
 export { default as MarkdownRender } from './markdown-render';
+export { BreadcrumbRender } from './breadcrumb'
 export { default as Resize } from './resize';
 export { default as KeyCombiner } from './keyCombiner';
 export { default as KeyEventListener } from './keyCombiner/listener';
