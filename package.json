@@ -9,11 +9,12 @@
   "scripts": {
     "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build-storybook": "build-storybook -c .storybook",
+    "build-storybook": "export NODE_ENV='production' && build-storybook -c .storybook -o dist",
     "compile": "rm -rf lib && npm run build-ts && npm run build-css",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./lib/index.css",
     "release": "./scripts/release.sh",
+    "deploy": "./scripts/deploy.sh",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "check-types": "tsc --skipLibCheck",
     "test": "jest --no-chche",
@@ -59,6 +60,7 @@
     "@storybook/addon-backgrounds": "^5.1.9",
     "@storybook/addon-info": "^5.2.0-alpha.30",
     "@storybook/addon-knobs": "^5.1.9",
+    "@storybook/addon-links": "^5.3.19",
     "@storybook/addon-notes": "^5.1.9",
     "@storybook/addon-options": "^5.3.19",
     "@storybook/addon-storyshots": "^5.1.9",
@@ -117,8 +119,8 @@
     "react-test-renderer": "^16.8.6",
     "require-context.macro": "^1.1.0",
     "sass-loader": "^7.1.0",
-    "storybook-readme": "^5.0.5",
     "storybook-react-router": "^1.0.8",
+    "storybook-readme": "^5.0.5",
     "style-loader": "^0.23.1",
     "typescript": "^3.5.3",
     "url-loader": "^4.1.0"
@@ -138,7 +140,6 @@
     "react-dom": "16.6.3",
     "react-icons": "^3.10.0",
     "react-router": "3.0.4",
-    "showdown": "^1.9.0",
-    "@storybook/addon-links": "^4.0.9"
+    "showdown": "^1.9.0"
   }
 }

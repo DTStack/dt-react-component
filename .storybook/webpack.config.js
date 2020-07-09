@@ -37,6 +37,9 @@ module.exports = async ({ config, mode }) => {
             "url-loader?limit=100000"
         ]
     });
+    if (process.env.NODE_ENV === 'production') {
+        config.devtool = 'eval';
+    }
     config.resolve.extensions.push(".ts", ".tsx", ".js", ".jsx", ".scss", ".css");
     // Return the altered config
     return config;

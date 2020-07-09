@@ -16,3 +16,4 @@ setupTests.js
 storyshots.test.js
 tsconfig.build.json
 tsconfig.json
+dist
