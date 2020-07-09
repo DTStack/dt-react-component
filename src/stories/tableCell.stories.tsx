@@ -48,7 +48,7 @@ stories.add('tableCell', () => {
         代码示例：
         ~~~js
         // 基础使用
-        import { NotFound } from 'dt-react-component'
+        import { TableCell } from 'dt-react-component'
         <TableCell />
         ~~~
         ~~~js

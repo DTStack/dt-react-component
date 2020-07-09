@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test KeyCombiner suite snapshot match 1`] = `
+<div
+  data-testid="test_keyCombiner"
+>
+  <div>
+    command+shift+f
+  </div>
+</div>
+`;
