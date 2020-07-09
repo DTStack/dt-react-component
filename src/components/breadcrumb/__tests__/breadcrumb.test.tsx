@@ -1,5 +1,5 @@
 import React from 'react'
-import BreadCrumb from '../index';
+import { BreadcrumbRender } from '../index';
 import { render, fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 import { createMemoryHistory, Router, Route, IndexRoute } from 'react-router'
@@ -7,11 +7,11 @@ import { createMemoryHistory, Router, Route, IndexRoute } from 'react-router'
 const testProps = {
     routes: [
         {
-            breadcrumbName: 'home',
+            name: 'home',
             path: '/home'
         },
         {
-            breadcrumbName: 'about',
+            name: 'about',
             path: '/about'
         }
     ],
@@ -23,20 +23,20 @@ const testProps = {
 const App = (props) => {
     return (
         <div>
-            {<BreadCrumb {...testProps} />}
+            {<BreadcrumbRender {...testProps} />}
             {props.children}
         </div>
     )
 }
 const About = () => <h1>about page</h1>
-const Home = () => <h1>home</h1>
+const Home = () => <h1>home page</h1>
 
 describe('test breadcrumb', () => {
     afterEach(() => {
         cleanup();
     })
     test('should render correct BreadCrumb with testProps', () => {
-        const { getByTestId } = render(<BreadCrumb {...testProps} />);
+        const { getByTestId } = render(<BreadcrumbRender {...testProps} />);
         const element = getByTestId('test-breadcrumb');
         expect(element).toBeInTheDocument();
         expect(element).toHaveStyle('background-color: #dedede');
@@ -55,7 +55,7 @@ describe('test breadcrumb', () => {
         );
         expect(container.innerHTML).toMatch('about')
         fireEvent.click(getByTestId('/home-link'))
-        expect(container.innerHTML).toMatch('home')
+        expect(container.innerHTML).toMatch('home page')
     })
     test('should not navigate when click', () => {
         const history = createMemoryHistory()
