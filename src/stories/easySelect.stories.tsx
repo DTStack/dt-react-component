@@ -91,7 +91,7 @@ stories.add('EasySelect', () => (
             autoValue={'111'}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
-        <p className="strory-dt_easy_select_p">3、远程获取数据（自动请求, 带有默认请求字段,前端本地模糊查询）</p>
+        <p className="strory-dt_easy_select_p">4、远程获取数据（自动请求, 带有默认请求字段,前端本地模糊查询）</p>
         <EasySelect
             auto
             style={{ width: '100%' }}
@@ -100,7 +100,7 @@ stories.add('EasySelect', () => (
             autoValue={'111'}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
-        <p className="strory-dt_easy_select_p">4、远程获取数据（非自动请求）</p>
+        <p className="strory-dt_easy_select_p">5、远程获取数据（非自动请求）</p>
         <EasySelect
             style={{ width: '100%' }}
             servise={servise}
