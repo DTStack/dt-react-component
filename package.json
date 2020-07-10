@@ -7,9 +7,9 @@
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit",
+    "increase-memory-limit": "cross-env LIMIT=8096 increase-memory-limit",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "build-storybook": "export NODE_ENV='production' && build-storybook -c .storybook -o dist",
+    "build-storybook": "npm run increase-memory-limit && build-storybook -c .storybook -o dist",
     "compile": "rm -rf lib && npm run build-ts && npm run build-css",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./lib/index.css",

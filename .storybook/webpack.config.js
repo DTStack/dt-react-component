@@ -37,9 +37,16 @@ module.exports = async ({ config, mode }) => {
             "url-loader?limit=100000"
         ]
     });
-    if (process.env.NODE_ENV === 'production') {
-        config.devtool = 'eval';
-    }
+    /**
+     * TODO
+     * build error
+     * FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+     * 方案一：目前通过执行 npm run increase-memory-limit 加大 node 对内存限制解决，但是编译速度偏慢
+     * 方案二：build 时设置 devtool = 'eval'; 控制台会有 SourceMap warning，不太友好，但速度较快
+     */
+    // if (process.env.NODE_ENV === 'production') {
+    //     config.devtool = 'eval';
+    // }
     config.resolve.extensions.push(".ts", ".tsx", ".js", ".jsx", ".scss", ".css");
     // Return the altered config
     return config;
