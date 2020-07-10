@@ -18,3 +18,4 @@ export { BreadcrumbRender } from './breadcrumb'
 export { default as Resize } from './resize';
 export { default as KeyCombiner } from './keyCombiner';
 export { default as KeyEventListener } from './keyCombiner/listener';
+export { default as FullScreenButton } from './fullscreen';
