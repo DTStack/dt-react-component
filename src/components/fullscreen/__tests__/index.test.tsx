@@ -2,7 +2,7 @@ import React from 'react'
 import FullScreenButton from '../index';
 import { render, fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
-describe('test breadcrumb', () => {
+describe('test FullScreenButton', () => {
     afterEach(() => {
         cleanup();
     })
