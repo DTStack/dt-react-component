@@ -1,5 +1,12 @@
 import * as React from 'react'
 const contextPrefix = 'dtc-context-menu';
+
+export interface ContextMenuProps {
+    targetClassName?: string;
+    onChange?: Function;
+    [propName: string]: any;
+}
+
 export class ContextMenuItem extends React.Component<any, any> {
     render () {
         return (
@@ -14,7 +21,7 @@ export class ContextMenuItem extends React.Component<any, any> {
     }
 }
 
-export class ContextMenu extends React.Component<any, any> {
+export class ContextMenu extends React.Component<ContextMenuProps, any> {
     constructor (props: any) {
         super(props);
         this.toggleMenu = this.toggleMenu.bind(this)

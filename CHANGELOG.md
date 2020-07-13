@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v1.1.0...v1.2.0) (2020-07-03)
+
+
+### Features
+
+* **component:** add v1.2.0 components(TextMark、TableCell、SpreadSheet..) ([0f14762](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/0f14762))
+* **component:** fix and add interface ([6f10474](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/6f10474))
+
+
+
 ## [1.1.0](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v1.0.0...v1.1.0) (2020-06-23)
 
 
