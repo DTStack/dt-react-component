@@ -6,7 +6,7 @@ import GlobalLoading from '../components/globalLoading';
 
 import './style/easySelect.scss';
 
-const stories = storiesOf('GlobalLoading 等待加载组件', module);
+const stories = storiesOf('GlobalLoading 应用加载中', module);
 
 stories.addDecorator(withKnobs);
 
@@ -45,7 +45,7 @@ const propDefinitions = [{
 stories.add('globalLoading', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
-        <p>页面等待加载时使用，可自定义样式。(PS：宽度和高度均为100%，所以其大小基于其父级)</p>
+        <p>应用等待加载时使用，可自定义样式。(PS：宽度和高度均为100%，所以其大小基于其父级)</p>
         <h2>示例</h2>
         <p className="strory-dt_easy_select_p">1、传递参数prefix和loadingTitle，同时自定义样式</p>
         <div className="strory-dt_global_loading_div">
