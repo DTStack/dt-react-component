@@ -45,25 +45,9 @@ const propDefinitions = [{
 stories.add('globalLoading', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
-        <p>页面等待加载时使用(目前主题暂定为深色主题，后续将会开放自定义颜色等功能)。</p>
+        <p>页面等待加载时使用，可自定义样式。</p>
         <h2>示例</h2>
-        <p className="strory-dt_easy_select_p">1、参数全部不传</p>
-        <div style={{ width: '100%', height: '300px' }}>
-            <GlobalLoading />
-        </div>
-        <p className="strory-dt_easy_select_p">2、只传递prefix</p>
-        <div style={{ width: '100%', height: '300px' }}>
-            <GlobalLoading prefix='DtStack' />
-        </div>
-        <p className="strory-dt_easy_select_p">3、只传递loadingTitle</p>
-        <div style={{ width: '100%', height: '300px' }}>
-            <GlobalLoading loadingTitle='BatchWorks · 离线开发' />
-        </div>
-        <p className="strory-dt_easy_select_p">4、传递参数prefix和loadingTitle</p>
-        <div style={{ width: '100%', height: '300px' }}>
-            <GlobalLoading prefix='DtStack' loadingTitle='BatchWorks · 离线开发' />
-        </div>
-        <p className="strory-dt_easy_select_p">5、传递参数prefix和loadingTitle，同时自定义颜色</p>
+        <p className="strory-dt_easy_select_p">1、传递参数prefix和loadingTitle，同时自定义样式</p>
         <div style={{ width: '100%', height: '300px' }}>
             <GlobalLoading
                 prefix='DtStack'
@@ -73,6 +57,22 @@ stories.add('globalLoading', () => (
                 circleBackground="#eee"
             />
         </div>
+        <p className="strory-dt_easy_select_p">2、参数全部不传</p>
+        <div style={{ width: '100%', height: '300px' }}>
+            <GlobalLoading />
+        </div>
+        <p className="strory-dt_easy_select_p">3、只传递prefix</p>
+        <div style={{ width: '100%', height: '300px' }}>
+            <GlobalLoading prefix='DtStack' />
+        </div>
+        <p className="strory-dt_easy_select_p">4、只传递loadingTitle</p>
+        <div style={{ width: '100%', height: '300px' }}>
+            <GlobalLoading loadingTitle='BatchWorks · 离线开发' />
+        </div>
+        <p className="strory-dt_easy_select_p">5、只传递参数prefix和loadingTitle</p>
+        <div style={{ width: '100%', height: '300px' }}>
+            <GlobalLoading prefix='DtStack' loadingTitle='BatchWorks · 离线开发' />
+        </div>
     </div>
 ), {
     info: {
@@ -80,23 +80,7 @@ stories.add('globalLoading', () => (
         text: `
             代码示例：
             ~~~js
-            // 1、参数全部不传
-            <GlobalLoading />
-            ~~~
-            ~~~js
-            // 2、只传递prefix
-            <GlobalLoading prefix='DtStack' />
-            ~~~
-            ~~~js
-            // 3、只传递loadingTitle
-            <GlobalLoading loadingTitle='BatchWorks · 离线开发' />
-            ~~~
-            ~~~js
-            // 4、传递参数prefix和loadingTitle
-            <GlobalLoading prefix='DtStack' loadingTitle='BatchWorks · 离线开发' />
-            ~~~
-            ~~~js
-            // 5、传递参数prefix和loadingTitle，同时自定义颜色
+            // 1、传递参数prefix和loadingTitle，同时自定义颜色
             <GlobalLoading
                 prefix='DtStack'
                 loadingTitle='BatchWorks · 离线开发'
@@ -104,6 +88,22 @@ stories.add('globalLoading', () => (
                 titleColor="#eee"
                 circleBackground="#eee"
             >
+            ~~~
+            ~~~js
+            // 2、参数全部不传
+            <GlobalLoading />
+            ~~~
+            ~~~js
+            // 3、只传递prefix
+            <GlobalLoading prefix='DtStack' />
+            ~~~
+            ~~~js
+            // 4、只传递loadingTitle
+            <GlobalLoading loadingTitle='BatchWorks · 离线开发' />
+            ~~~
+            ~~~js
+            // 5、传递参数prefix和loadingTitle
+            <GlobalLoading prefix='DtStack' loadingTitle='BatchWorks · 离线开发' />
             ~~~
         `
     }
