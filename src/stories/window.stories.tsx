@@ -1,49 +1,39 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import { State, Store } from '@sambego/storybook-state';
-import Resize from '../components/resize';
+import Window from '../components/window';
 
 const store = new Store({
-    width: 0
+    msg: ''
 });
-const stories = storiesOf('Resize Resize 事件监听', module);
-stories.addDecorator(withKnobs)
+const stories = storiesOf('Window 窗口切换事件监听', module);
 
 const propDefinitions = [{
-    property: 'onResize',
+    property: 'onSwitch',
     propType: 'Function',
     required: false,
-    description: '重置元素大小的函数',
-    defaultValue: ''
-}, {
-    property: 'children',
-    propType: 'ReactNode',
-    required: true,
-    description: '子元素',
+    description: '切换函数',
     defaultValue: ''
 }]
 
-stories.add('resize', () => {
-    const onResize = () => {
-        const box = document.getElementById('box');
-        store.set({ width: box.clientWidth });
-        console.log(store.get('width'))
+stories.add('window', () => {
+    const onSwitch = () => {
+        store.set({ msg: 'window listener' })
+        console.log('window listener')
     }
 
     return (
         <div className='story_wrapper'>
             <h2>何时使用</h2>
-            <p>元素大小自适应调整，常用于图表</p>
+            <p>窗口切换事件监听</p>
             <h2>示例</h2>
-            <p>请调整窗口大小以查看效果</p>
+            <p>请点击该页面任务区域</p>
             <State store={store}>
                 {
                     (state) => {
-                        console.log(state);
                         return (
-                            <Resize onResize={onResize}>
+                            <Window onSwitch={onSwitch}>
                                 <div
                                     id="box"
                                     style={{
@@ -53,15 +43,15 @@ stories.add('resize', () => {
                                         border: '1px solid rgba(0,0,0,.1)'
                                     }}
                                 >
-                                    {store.get('width')}
+                                    {state.msg}
                                 </div>
-                            </Resize>
+                            </Window>
                         )
                     }
                 }
             </State>
-            {/* Prop Types 无法识别 State 回调的 Resize，这里做下处理 */}
-            <Resize><div style={{ display: 'none' }}></div></Resize>
+            {/* Prop Types 无法识别 State 回调的 Window */}
+            <Window style={{ display: 'none' }} />
         </div>
     )
 }, {
@@ -71,8 +61,8 @@ stories.add('resize', () => {
         text: `
             代码示例：
             ~~~js
-            import { Resize } from 'dt-react-component'
-            <Resize onResize={onResize}>
+            import { Window } from 'dt-react-component'
+            <Window onSwitch={onSwitch}>
                 <div
                     id="chart"
                     style={{
@@ -81,7 +71,7 @@ stories.add('resize', () => {
                     }}
                 >
                 </div>
-            </Resize>
+            </Window>
             ~~~
         `
     }
