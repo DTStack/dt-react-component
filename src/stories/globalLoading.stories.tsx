@@ -47,8 +47,8 @@ stories.add('globalLoading', () => (
         <h2>何时使用</h2>
         <p>页面等待加载时使用，可自定义样式。</p>
         <h2>示例</h2>
-        <p className="strory-dt_easy_select_p">1、传递参数prefix和loadingTitle，同时自定义样式</p>
-        <div style={{ width: '100%', height: '300px' }}>
+        <p className="strory-dt_easy_select_p">1、传递参数prefix和loadingTitle，同时自定义</p>
+        <div className="strory-dt_global_loading_div">
             <GlobalLoading
                 prefix='DtStack'
                 loadingTitle='BatchWorks · 离线开发'
@@ -58,19 +58,19 @@ stories.add('globalLoading', () => (
             />
         </div>
         <p className="strory-dt_easy_select_p">2、参数全部不传</p>
-        <div style={{ width: '100%', height: '300px' }}>
+        <div className="strory-dt_global_loading_div">
             <GlobalLoading />
         </div>
         <p className="strory-dt_easy_select_p">3、只传递prefix</p>
-        <div style={{ width: '100%', height: '300px' }}>
+        <div className="strory-dt_global_loading_div">
             <GlobalLoading prefix='DtStack' />
         </div>
         <p className="strory-dt_easy_select_p">4、只传递loadingTitle</p>
-        <div style={{ width: '100%', height: '300px' }}>
+        <div className="strory-dt_global_loading_div">
             <GlobalLoading loadingTitle='BatchWorks · 离线开发' />
         </div>
         <p className="strory-dt_easy_select_p">5、只传递参数prefix和loadingTitle</p>
-        <div style={{ width: '100%', height: '300px' }}>
+        <div className="strory-dt_global_loading_div">
             <GlobalLoading prefix='DtStack' loadingTitle='BatchWorks · 离线开发' />
         </div>
     </div>
