@@ -6,7 +6,7 @@ import GlobalLoading from '../components/globalLoading';
 
 import './style/easySelect.scss';
 
-const stories = storiesOf('GlobalLoading 等待加载页面', module);
+const stories = storiesOf('GlobalLoading 等待加载组件', module);
 
 stories.addDecorator(withKnobs);
 
@@ -27,7 +27,7 @@ const propDefinitions = [{
     propType: 'string',
     required: false,
     description: '整体背景色',
-    defaultValue: 'linear-gradient(to bottom, #2E3943 , #2E3943 )'
+    defaultValue: '#2E3943'
 }, {
     property: 'titleColor',
     propType: 'string',
@@ -45,9 +45,9 @@ const propDefinitions = [{
 stories.add('globalLoading', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
-        <p>页面等待加载时使用，可自定义样式。</p>
+        <p>页面等待加载时使用，可自定义样式。(PS：宽度和高度均为100%，所以其大小基于其父级)</p>
         <h2>示例</h2>
-        <p className="strory-dt_easy_select_p">1、传递参数prefix和loadingTitle，同时自定义</p>
+        <p className="strory-dt_easy_select_p">1、传递参数prefix和loadingTitle，同时自定义样式</p>
         <div className="strory-dt_global_loading_div">
             <GlobalLoading
                 prefix='DtStack'
@@ -57,7 +57,7 @@ stories.add('globalLoading', () => (
                 circleBackground="#eee"
             />
         </div>
-        <p className="strory-dt_easy_select_p">2、参数全部不传</p>
+        <p className="strory-dt_easy_select_p">2、参数全部不传，使用默认值</p>
         <div className="strory-dt_global_loading_div">
             <GlobalLoading />
         </div>
@@ -80,7 +80,7 @@ stories.add('globalLoading', () => (
         text: `
             代码示例：
             ~~~js
-            // 1、传递参数prefix和loadingTitle，同时自定义颜色
+            // 1、传递参数prefix和loadingTitle，同时自定义样式
             <GlobalLoading
                 prefix='DtStack'
                 loadingTitle='BatchWorks · 离线开发'
