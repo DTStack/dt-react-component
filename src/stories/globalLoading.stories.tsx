@@ -22,6 +22,24 @@ const propDefinitions = [{
     required: false,
     description: '应用名称',
     defaultValue: '应用加载中，请等候～'
+}, {
+    property: 'mainbackground',
+    propType: 'string',
+    required: false,
+    description: '整体背景色',
+    defaultValue: 'linear-gradient(to bottom, #2E3943 , #2E3943 )'
+}, {
+    property: 'titleColor',
+    propType: 'string',
+    required: false,
+    description: '文案字体颜色',
+    defaultValue: '#fff'
+}, {
+    property: 'circleBackground',
+    propType: 'string',
+    required: false,
+    description: '等待动画cicle背景色',
+    defaultValue: '#fff'
 }];
 
 stories.add('globalLoading', () => (
@@ -41,9 +59,19 @@ stories.add('globalLoading', () => (
         <div style={{ width: '100%', height: '300px' }}>
             <GlobalLoading loadingTitle='BatchWorks · 离线开发' />
         </div>
-        <p className="strory-dt_easy_select_p">2、传递参数prefix和loadingTitle</p>
+        <p className="strory-dt_easy_select_p">4、传递参数prefix和loadingTitle</p>
         <div style={{ width: '100%', height: '300px' }}>
             <GlobalLoading prefix='DtStack' loadingTitle='BatchWorks · 离线开发' />
+        </div>
+        <p className="strory-dt_easy_select_p">5、传递参数prefix和loadingTitle，同时自定义颜色</p>
+        <div style={{ width: '100%', height: '300px' }}>
+            <GlobalLoading
+                prefix='DtStack'
+                loadingTitle='BatchWorks · 离线开发'
+                mainbackground="linear-gradient(to bottom, #1890ff , #7dbcea )"
+                titleColor="#eee"
+                circleBackground="#eee"
+            />
         </div>
     </div>
 ), {
@@ -64,8 +92,18 @@ stories.add('globalLoading', () => (
             <GlobalLoading loadingTitle='BatchWorks · 离线开发' />
             ~~~
             ~~~js
-            // 2、传递参数prefix和loadingTitle
+            // 4、传递参数prefix和loadingTitle
             <GlobalLoading prefix='DtStack' loadingTitle='BatchWorks · 离线开发' />
+            ~~~
+            ~~~js
+            // 5、传递参数prefix和loadingTitle，同时自定义颜色
+            <GlobalLoading
+                prefix='DtStack'
+                loadingTitle='BatchWorks · 离线开发'
+                mainbackground="linear-gradient(to bottom, #1890ff , #7dbcea )"
+                titleColor="#eee"
+                circleBackground="#eee"
+            >
             ~~~
         `
     }
