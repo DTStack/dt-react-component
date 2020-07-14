@@ -21,4 +21,4 @@ export { default as KeyEventListener } from './keyCombiner/listener';
 export { default as FullScreenButton } from './fullscreen';
 export { default as ToolModal } from './toolModal';
 export { default as ScrollText } from './scrollText';
-export { default as Window } from './window';
+export { default as SwitchWindow } from './window';
