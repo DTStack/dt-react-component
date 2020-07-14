@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`test Circle suite renders correctly 1`] = `
-<div
-  className="dtc-circle-default"
->
-  
-</div>
-`;

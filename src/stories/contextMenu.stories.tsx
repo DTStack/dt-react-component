@@ -42,24 +42,12 @@ const contextMenus = [
         menuItems: [{
             text: '编辑',
             onClick: (activeNode: any) => {
-                this.setState({
-                    editOrCloneData: activeNode,
-                    editType: 'edit',
-                    editOrCloneModalVisible: true
-                })
+                console.log('编辑')
             }
         }, {
             text: '移动',
             onClick: (activeNode: any) => {
-                this.setState({
-                    moveData: {
-                        nodePid: activeNode.parentId,
-                        name: activeNode.name,
-                        id: activeNode.id,
-                        isFile: true
-                    },
-                    moveModalVisible: true
-                });
+                console.log('移动')
             }
         }]
     }

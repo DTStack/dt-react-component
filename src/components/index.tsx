@@ -8,9 +8,17 @@ export { default as ChromeDownload } from './chromeDownload';
 export { default as MultiSearchInput } from './multiSearchInput';
 export { default as Cookies } from './cookies';
 export { default as ProgressBar } from './progressBar';
-export { default as DtEasySelect } from './dt-easy-select';
+export { default as EasySelect } from './easy-select';
 export { default as TextMark } from './textMark';
 export { default as TableCell } from './tableCell';
 export { default as SpreadSheet } from './spreadsheet';
 export { default as SearchModal } from './searchModal';
 export { default as MarkdownRender } from './markdown-render';
+export { BreadcrumbRender } from './breadcrumb'
+export { default as Resize } from './resize';
+export { default as KeyCombiner } from './keyCombiner';
+export { default as KeyEventListener } from './keyCombiner/listener';
+export { default as FullScreenButton } from './fullscreen';
+export { default as ToolModal } from './toolModal';
+export { default as ScrollText } from './scrollText';
+export { default as SwitchWindow } from './window';

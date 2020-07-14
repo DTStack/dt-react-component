@@ -3,7 +3,7 @@ module.exports = {
     name: 'dt-react-component',
     globals: {
     },
-    setupFilesAfterEnv: ["./setupTests.js"],
+    // setupFilesAfterEnv: ["./setupTests.js"], // enzyme adapter
     transformIgnorePatterns: ["/node_modules/", "lib", "dist"],
     testPathIgnorePatterns: ['/node_modules/'],
     transform: {
