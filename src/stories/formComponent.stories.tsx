@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import { renderFormItem } from '../components/formComponent'
+import { RenderFormItem } from '../components/formComponent'
 import { Form } from 'antd';
 
 const stories = storiesOf('FormItem 表单元素', module);
@@ -54,7 +54,7 @@ const App = Form.create()(
             const params = { ...this.props, getFieldDecorator }
             return (
                 <Form>
-                    {renderFormItem(params)}
+                    {RenderFormItem(params)}
                 </Form>
             )
         }
@@ -77,7 +77,7 @@ stories.add('FormItem', () => (
             代码示例：
             ~~~js
             import { Form } from 'antd';
-            import { renderFormItem } from 'dt-react-component'
+            import { RenderFormItem } from 'dt-react-component'
             const App = Form.create()(
                 class FormItem extends React.Component<any, any> {
                     render () {
@@ -85,7 +85,7 @@ stories.add('FormItem', () => (
                         const params = { ...this.props, getFieldDecorator }
                         return (
                             <Form>
-                                {renderFormItem(params)}
+                                {RenderFormItem(params)}
                             </Form>
                         )
                     }

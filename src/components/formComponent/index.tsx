@@ -3,10 +3,10 @@ import { Form, Input } from 'antd';
 const FormItem = Form.Item
 interface ItemType {
     item?: {
-        label?: string;
-        key: string;
+        label?: React.ReactNode;
+        key: string | number;
         required?: boolean;
-        component?: React.FC;
+        component?: React.ReactNode;
         options: {
             className?: string;
         };
@@ -15,7 +15,7 @@ interface ItemType {
     layout?: {};
     getFieldDecorator: any;
 }
-export const renderFormItem = ({ item, layout, getFieldDecorator }: ItemType) => {
+export const RenderFormItem = ({ item, layout, getFieldDecorator }: ItemType) => {
     const { label, key, required, component, options = {}, rules } = item
     return (
         <FormItem key={key} label={label} colon {...layout} className={options.className} >
