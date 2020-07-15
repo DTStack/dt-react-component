@@ -1,0 +1,23 @@
+.delete_modal {
+    .ant-btn-primary {
+        background: #EF5350;
+        border: 1px solid #EF5350;
+    }
+    .ant-input {
+        &:focus, :hover {
+            border: none;
+            border: 1px solid #EF5350;
+            box-shadow: none;
+        }
+    }
+    .title {
+        font-size: 14px;
+        margin-bottom: 15px;
+        font-family: PingFangSC-Regular, sans-serif;
+        color: #666666;
+        margin-left: 32px;
+    }
+    .input_wrap_center{
+        padding: 0 0 0 60px;
+    }
+}
