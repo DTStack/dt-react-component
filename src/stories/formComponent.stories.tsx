@@ -2,8 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import { RenderFormItem } from '../components/formComponent'
-import { Form } from 'antd';
+import FormItem from './components/formComponent'
 
 const stories = storiesOf('FormItem 表单元素', module);
 stories.addDecorator(withKnobs)
@@ -47,26 +46,13 @@ const IProps = {
     }
 }
 
-const App = Form.create()(
-    class FormItem extends React.Component<any, any> {
-        render () {
-            const { getFieldDecorator } = this.props.form;
-            const params = { ...this.props, getFieldDecorator }
-            return (
-                <Form>
-                    {RenderFormItem(params)}
-                </Form>
-            )
-        }
-    }
-);
 stories.add('FormItem', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
         <p>{` 当用户需要进行一些表单提交信息时使用，也可以配合封装的BaseForm组件，在模态框中收集用户提交的信息`}</p>
         <h2>示例</h2>
         <div style={{ width: '300px' }}>
-            <App {...IProps} />
+            <FormItem {...IProps} />
         </div>
     </div >
 ), {
@@ -78,8 +64,8 @@ stories.add('FormItem', () => (
             ~~~js
             import { Form } from 'antd';
             import { RenderFormItem } from 'dt-react-component'
-            const App = Form.create()(
-                class FormItem extends React.Component<any, any> {
+            const FormItem = Form.create()(
+                class App extends React.Component<any, any> {
                     render () {
                         const { getFieldDecorator } = this.props.form;
                         const params = { ...this.props, getFieldDecorator }
@@ -90,7 +76,7 @@ stories.add('FormItem', () => (
                         )
                     }
                 }
-            );
+            )
             ~~~
         `
     }

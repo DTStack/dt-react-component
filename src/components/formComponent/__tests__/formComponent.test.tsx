@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
-import { renderFormItem } from '../index'
+import { RenderFormItem } from '../index'
 import { Form, Button } from 'antd';
 
 const IProps = {
@@ -26,7 +26,7 @@ const App = Form.create()(
             const params = { ...this.props, getFieldDecorator }
             return (
                 <Form>
-                    {renderFormItem(params)}
+                    {RenderFormItem(params)}
                 </Form>
             )
         }
