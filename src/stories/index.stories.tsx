@@ -10,8 +10,20 @@ const docHtml = require('./markdown/componentDoc.md');
 const devlopHtml = require('./markdown/componentDev.md');
 const planHtml = require('./markdown/plan.md');
 const { name, repository, version } = require('../../package.json');
-const stories = storiesOf('综述', module)
+const summaryComponent = require('../components/index');
+const getComponentNum = (): number => {
+    let componentKey = [];
+    if (summaryComponent) {
+        for (let key in summaryComponent) {
+            if (summaryComponent.hasOwnProperty(key)) {
+                componentKey.push(key)
+            }
+        }
+    }
+    return componentKey.length;
+}
 console.log('%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ', 'color:#2517b1')
+const stories = storiesOf('综述', module);
 stories
     .add('介绍', () => (
         <article className='story_wrapper summary-story'>
@@ -25,6 +37,10 @@ stories
             <h2>当前版本</h2>
             <p className='summary-story_version'>
                 v{version}
+            </p>
+            <h2>当前组件数</h2>
+            <p className='summary-story_version'>
+                {getComponentNum()} 个
             </p>
 
             <h2>在线示例</h2>
