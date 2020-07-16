@@ -23,3 +23,6 @@ export { default as ToolModal } from './toolModal';
 export { default as ScrollText } from './scrollText';
 export { default as SwitchWindow } from './window';
 export { RenderFormItem } from './formComponent';
+export { default as EditInput } from './editInput';
+export { default as EllipsisText } from './ellipsisText';
+export { default as MulSelectDropdown } from './mulSelectDropdown';
