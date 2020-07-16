@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import FormItem from './components/formComponent'
+import { FormItem } from './components/formComponent'
 
 const stories = storiesOf('FormItem 表单元素', module);
 stories.addDecorator(withKnobs)
@@ -64,19 +64,16 @@ stories.add('FormItem', () => (
             ~~~js
             import { Form } from 'antd';
             import { RenderFormItem } from 'dt-react-component'
-            const FormItem = Form.create()(
-                class App extends React.Component<any, any> {
-                    render () {
-                        const { getFieldDecorator } = this.props.form;
-                        const params = { ...this.props, getFieldDecorator }
-                        return (
-                            <Form>
-                                {RenderFormItem(params)}
-                            </Form>
-                        )
-                    }
-                }
-            )
+            const App = (props) => {
+                const { getFieldDecorator } = props.form;
+                const params = { ...props, getFieldDecorator }
+                return (
+                    <Form>
+                        {RenderFormItem(params)}
+                    </Form>
+                )
+            }
+            export const FormItem: any = Form.create()(App);
             ~~~
         `
     }
