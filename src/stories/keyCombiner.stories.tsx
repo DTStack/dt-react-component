@@ -86,12 +86,12 @@ stories.add('keyEventListener', () => {
     return (
         <div className='story_wrapper'>
             <h2>何时使用</h2>
-            <p>监听键盘事件看看控制台打印结果</p>
+            <p>监听键盘事件</p>
             <h2>示例</h2>
             <KeyEventListener
                 onKeyDown={onkeyDown}
             >
-                {<div>尝试按下任意键盘</div>}
+                {<div>尝试按下任意键盘，看看控制台打印结果</div>}
             </KeyEventListener>
         </div>
     )
