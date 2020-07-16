@@ -22,3 +22,5 @@ export { default as FullScreenButton } from './fullscreen';
 export { default as ToolModal } from './toolModal';
 export { default as ScrollText } from './scrollText';
 export { default as SwitchWindow } from './window';
+export { default as EllipsisText } from './ellipsisText';
+export { default as MulSelectDropdown } from './mulSelectDropdown';
