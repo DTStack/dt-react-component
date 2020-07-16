@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { RenderFormItem } from '../../../components/formComponent'
 import { Form } from 'antd';
 
