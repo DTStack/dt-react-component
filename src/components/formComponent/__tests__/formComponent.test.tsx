@@ -19,7 +19,7 @@ const defaultProps = {
         key: 'test-input'
     }
 }
-const App = Form.create()(
+const App = Form.create<any>()(
     class TestForm extends React.Component<any, any> {
         render () {
             const { getFieldDecorator } = this.props.form;
