@@ -2,12 +2,12 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { PropsTable } from './components/propsTable';
 import { State, Store } from '@sambego/storybook-state';
-import Window from '../components/window';
+import SwitchWindow from '../components/window';
 
 const store = new Store({
     msg: ''
 });
-const stories = storiesOf('Window 窗口切换事件监听', module);
+const stories = storiesOf('SwitchWindow 窗口切换事件监听', module);
 
 const propDefinitions = [{
     property: 'onSwitch',
@@ -33,7 +33,7 @@ stories.add('window', () => {
                 {
                     (state) => {
                         return (
-                            <Window onSwitch={onSwitch}>
+                            <SwitchWindow onSwitch={onSwitch}>
                                 <div
                                     id="box"
                                     style={{
@@ -45,13 +45,13 @@ stories.add('window', () => {
                                 >
                                     {state.msg}
                                 </div>
-                            </Window>
+                            </SwitchWindow>
                         )
                     }
                 }
             </State>
-            {/* Prop Types 无法识别 State 回调的 Window */}
-            <Window style={{ display: 'none' }} />
+            {/* Prop Types 无法识别 State 回调的 SwitchWindow */}
+            <SwitchWindow style={{ display: 'none' }} />
         </div>
     )
 }, {
@@ -61,8 +61,8 @@ stories.add('window', () => {
         text: `
             代码示例：
             ~~~js
-            import { Window } from 'dt-react-component'
-            <Window onSwitch={onSwitch}>
+            import { SwitchWindow } from 'dt-react-component'
+            <SwitchWindow onSwitch={onSwitch}>
                 <div
                     id="chart"
                     style={{
@@ -71,7 +71,7 @@ stories.add('window', () => {
                     }}
                 >
                 </div>
-            </Window>
+            </SwitchWindow>
             ~~~
         `
     }

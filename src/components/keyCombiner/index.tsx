@@ -55,8 +55,8 @@ export default class KeyCombiner extends React.Component<any, any> {
     }
 
     render () {
-        return <div data-testid='test_keyCombiner'>
+        return <span data-testid='test_keyCombiner'>
             {this.props.children}
-        </div>
+        </span>
     }
 }
