@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Form } from 'antd';
 import { FormComponentProps } from 'antd/lib/form/Form'
-import './style.scss';
 
 export interface ModalProps {
     hideModelHandler: () => any;

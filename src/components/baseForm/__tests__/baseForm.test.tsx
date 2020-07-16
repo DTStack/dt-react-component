@@ -52,7 +52,7 @@ let wrapper, element;
 beforeEach(() => {
     wrapper = render(<div data-testid="form"><App /></div>);
     element = wrapper.getByTestId('form');
-    jest.spyOn(console, 'error').mockImplementation(() => { })
+    jest.spyOn(console, 'error').mockImplementation(() => { console.log('console.error') })
 })
 
 afterEach(cleanup);
@@ -95,7 +95,7 @@ test('input content length more then 10', () => {
     fireEvent.click(wrapper.getByText('click'));
     const ele = wrapper.getByTestId('test-input');
     ele.onchange = jest.fn();
-    jest.spyOn(console, 'warn').mockImplementation(() => { });
+    jest.spyOn(console, 'warn').mockImplementation(() => { console.log('console.warn') });
     fireEvent.change(ele, { target: { value: '1234567891011' } });
     expect(console.warn).toHaveBeenCalledTimes(1);
 })
