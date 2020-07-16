@@ -6,7 +6,7 @@ import * as React from 'react';
  * 用法：
  * <SwitchWindow onSwitch={}></SwitchWindow>
  */
-class Window extends React.Component<any, any> {
+class SwitchWindow extends React.Component<any, any> {
     componentDidMount () {
         this.initEvent();
     }
@@ -36,4 +36,4 @@ class Window extends React.Component<any, any> {
     }
 }
 
-export default Window
+export default SwitchWindow

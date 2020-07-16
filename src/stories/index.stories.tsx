@@ -10,8 +10,20 @@ const docHtml = require('./markdown/componentDoc.md');
 const devlopHtml = require('./markdown/componentDev.md');
 const planHtml = require('./markdown/plan.md');
 const { name, repository, version } = require('../../package.json');
-const stories = storiesOf('综述', module)
+const summaryComponent = require('../components/index');
+const getComponentNum = (): number => {
+    let componentKey = [];
+    if (summaryComponent) {
+        for (let key in summaryComponent) {
+            if (summaryComponent.hasOwnProperty(key)) {
+                componentKey.push(key)
+            }
+        }
+    }
+    return componentKey.length;
+}
 console.log('%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ', 'color:#2517b1')
+const stories = storiesOf('综述', module);
 stories
     .add('介绍', () => (
         <article className='story_wrapper summary-story'>
@@ -26,8 +38,12 @@ stories
             <p className='summary-story_version'>
                 v{version}
             </p>
+            <h2>当前组件数</h2>
+            <p className='summary-story_version'>
+                {getComponentNum()} 个
+            </p>
 
-            <h2>在线示例</h2>
+            {/* <h2>在线示例</h2>
             <p>这是一个最简单的 dt-react-component 组件的在线 codesandbox 演示。</p>
             <iframe
                 src='https://codesandbox.io/embed/antd-reproduction-template-6e93z?autoresize=1&fontsize=14&hidenavigation=1&theme=dark'
@@ -39,7 +55,7 @@ stories
                     overflow: 'hidden'
                 }}
                 sandbox='allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
-            />
+            /> */}
 
             <h2>贡献</h2>
             <p>
