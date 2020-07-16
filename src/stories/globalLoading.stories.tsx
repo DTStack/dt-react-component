@@ -23,7 +23,7 @@ const propDefinitions = [{
     description: '应用名称',
     defaultValue: '应用加载中，请等候～'
 }, {
-    property: 'mainbackground',
+    property: 'mainBackground',
     propType: 'string',
     required: false,
     description: '整体背景色',
@@ -52,7 +52,7 @@ stories.add('globalLoading', () => (
             <GlobalLoading
                 prefix='DtStack'
                 loadingTitle='BatchWorks · 离线开发'
-                mainbackground="linear-gradient(to bottom, #1890ff , #7dbcea )"
+                mainBackground="linear-gradient(to bottom, #1890ff , #7dbcea )"
                 titleColor="#eee"
                 circleBackground="#eee"
             />
@@ -84,7 +84,7 @@ stories.add('globalLoading', () => (
             <GlobalLoading
                 prefix='DtStack'
                 loadingTitle='BatchWorks · 离线开发'
-                mainbackground="linear-gradient(to bottom, #1890ff , #7dbcea )"
+                mainBackground="linear-gradient(to bottom, #1890ff , #7dbcea )"
                 titleColor="#eee"
                 circleBackground="#eee"
             >
