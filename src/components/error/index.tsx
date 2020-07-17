@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const Error: React.FC = function () {
+const ErrorComponent: React.FC = function () {
     return (
         <div className="error" data-testid="test-error">
             <div>
@@ -13,4 +13,4 @@ const Error: React.FC = function () {
     )
 }
 
-export default Error;
+export default ErrorComponent;

@@ -1,21 +1,21 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import Error from '../components/error';
+import ErrorComponent from '../components/error';
 
-const stories = storiesOf('error 组件', module);
+const stories = storiesOf('ErrorComponent 组件', module);
 stories.addDecorator(withKnobs)
 
-stories.add('error', () => (
+stories.add('ErrorComponent', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
         <p>{` 当发生错误时，错误会被componentDidCatch捕获，避免页面崩溃降低用户体验，在这时可以渲染这个组件`}</p>
         <h2>示例</h2>
-        <Error />
+        <ErrorComponent />
     </div>
 ), {
     info: {
-        propTablesExclude: [Error],
+        propTablesExclude: [ErrorComponent],
         text: `
             代码示例：
             ~~~js
