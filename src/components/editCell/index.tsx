@@ -58,12 +58,12 @@ export default class EditCell extends React.PureComponent<PropsInterface, StateI
                         <a onClick={this.onCancelEdit}>取消</a>
                     </div>
                 ) : (
-                        <>
-                            <EllipsisText value={editValue} />
-                            {
-                                !isView && <a onClick={this.onEdit}>修改</a>
-                            }
-                        </>
+                    <>
+                        <EllipsisText value={editValue} />
+                        {
+                            !isView && <a onClick={this.onEdit}>修改</a>
+                        }
+                    </>
                 )}
             </div>
         );
