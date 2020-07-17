@@ -27,3 +27,4 @@ export { RenderFormItem } from './formComponent';
 export { default as EditInput } from './editInput';
 export { default as EllipsisText } from './ellipsisText';
 export { default as MulSelectDropdown } from './mulSelectDropdown';
+export { default as EditCell } from './editCell';

@@ -18,11 +18,13 @@ export default class EditCell extends React.PureComponent<PropsInterface, StateI
         isEdit: false,
         editValue: ''
     }
+
     componentDidMount () {
         const { value } = this.props;
         this.setState({ editValue: value })
     }
-    onEdit = () => this.setState({ isEdit: true })
+
+    onEdit = () => this.setState({ isEdit: true });
 
     onChangeEdit = (e: any) => {
         const value = e.target.value;
@@ -30,17 +32,16 @@ export default class EditCell extends React.PureComponent<PropsInterface, StateI
             editValue: value ? value.slice(0, 20) : ''
         });
     }
+
     onOkEdit = () => {
         const { editValue } = this.state;
         const { keyField } = this.props;
         this.props.onHandleEdit(keyField, editValue);
         this.onCancelEdit();
     }
-    onCancelEdit = () => {
-        this.setState({
-            isEdit: false
-        });
-    }
+
+    onCancelEdit = () => this.setState({ isEdit: false });
+
     render () {
         const { isEdit, editValue } = this.state;
         const { isView } = this.props;
@@ -50,7 +51,6 @@ export default class EditCell extends React.PureComponent<PropsInterface, StateI
                     <div className="dtc-edit-input-row">
                         <Input
                             value={editValue}
-                            className="input"
                             style={{ width: 150, lineHeight: 24, height: 24 }}
                             onChange={this.onChangeEdit}
                         />

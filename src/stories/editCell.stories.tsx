@@ -13,13 +13,13 @@ const propDefinitions = [
         property: 'value',
         propType: 'string',
         required: true,
-        description: '显示文本内容',
+        description: '默认显示的文本内容',
         defaultValue: '--'
     }, {
         property: 'keyField',
         propType: 'string',
-        required: false,
-        description: '自定义文本默认需要的信息',
+        required: true,
+        description: '其他需要携带的信息',
         defaultValue: '--'
     }, {
         property: 'isView',
@@ -30,8 +30,8 @@ const propDefinitions = [
     }, {
         property: 'onHandleEdit',
         propType: 'string',
-        required: false,
-        description: '点击确定的按钮触发的回调函数，接受两个参数keyField：外部传进来的参数，editValue：编辑框的文本值',
+        required: true,
+        description: '点击确定的按钮触发的回调函数，接受两个参数keyField：其他需要携带的信息，editValue：输入框的文本值',
         defaultValue: '--'
     }
 ]
