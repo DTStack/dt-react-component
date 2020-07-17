@@ -1,5 +1,5 @@
 import React from 'react'
-import ErrorComponent from '../index';
+import LoadError from '../index';
 import { fireEvent, render, RenderResult } from '@testing-library/react'
 
 let wrapper: RenderResult
@@ -12,7 +12,7 @@ describe('test error', () => {
         reload: jest.fn()
     };
     beforeEach(() => {
-        wrapper = render(<ErrorComponent />);
+        wrapper = render(<LoadError />);
     })
     afterEach(() => {
         jest.restoreAllMocks();
