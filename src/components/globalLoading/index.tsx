@@ -1,6 +1,14 @@
 import * as React from 'react'
 
-export default class GlobalLoading extends React.Component<any, any> {
+export interface GlobalLoadingProps {
+    prefix?: string;
+    loadingTitle?: string;
+    mainBackground?: string;
+    circleBackground?: string;
+    titleColor?: string;
+}
+
+export default class GlobalLoading extends React.Component<GlobalLoadingProps, any> {
     render () {
         const {
             prefix = '',
