@@ -1,11 +1,11 @@
 import React from 'react'
-import BaseForm from '../index';
+import ModalWithForm from '../index';
 import { Form, Input } from 'antd';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 
 const FormItem = Form.Item;
-const Modal = BaseForm((props) => {
+const Modal = ModalWithForm((props) => {
     const { form: { getFieldDecorator } } = props
     return (
         <FormItem label='test-label'>

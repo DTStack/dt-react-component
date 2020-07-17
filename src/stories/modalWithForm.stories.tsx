@@ -2,8 +2,8 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import BaseForm from './components/baseForm'
-const stories = storiesOf('form和modal结合', module);
+import ModalWithForm from './components/modalWithForm'
+const stories = storiesOf('ModalWithForm form和modal结合', module);
 stories.addDecorator(withKnobs)
 
 const propDefinitions = [
@@ -76,12 +76,12 @@ const propDefinitions = [
     }
 ]
 
-stories.add('BaseForm', () => (
+stories.add('ModalWithForm', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
         <p>{` 当需要在模态框中收集用户的表单信息，可以在这个组件中传入自己想要的表单元素`}</p>
         <h2>示例</h2>
-        <BaseForm />
+        <ModalWithForm />
     </div>
 ), {
     info: {
@@ -89,8 +89,8 @@ stories.add('BaseForm', () => (
             代码示例：
             ~~~js
             import { Form, Input } from 'antd';
-            import { BaseForm } from 'dt-react-component'
-            const Modal = BaseForm((props) => {
+            import { ModalWithForm } from 'dt-react-component'
+            const Modal = ModalWithForm((props) => {
                 const { form: { getFieldDecorator } } = props
                 return (
                     <FormItem label='test-label'>
@@ -103,7 +103,7 @@ stories.add('BaseForm', () => (
                 )
             })
             <Modal
-                title='BaseForm'
+                title='ModalWithForm'
                 visible={this.state.visible}
                 hideModelHandler={this.hideModelHandler}
                 onSubmit={(value) => { console.log(value) }}

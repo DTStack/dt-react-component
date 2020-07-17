@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Input, Button } from 'antd';
-import RenderBaseForm from '../../../components/baseForm'
+import RenderBaseForm from '../../../components/modalWithForm'
 
 const FormItem = Form.Item;
 
@@ -16,7 +16,7 @@ const Modal = RenderBaseForm((props) => {
         </FormItem>
     )
 })
-export default class BaseForm extends Component<any, any> {
+export default class ModalWithForm extends Component<any, any> {
     constructor (props) {
         super(props);
         this.state = {
