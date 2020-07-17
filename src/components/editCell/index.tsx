@@ -46,7 +46,7 @@ export default class EditCell extends React.PureComponent<PropsInterface, StateI
         const { isEdit, editValue } = this.state;
         const { isView } = this.props;
         return (
-            <div className="dtc.edit-Cell">
+            <div className="dtc-edit-Cell">
                 {isEdit ? (
                     <div className="dtc-edit-input-row">
                         <Input
