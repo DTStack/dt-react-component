@@ -23,7 +23,7 @@ export { default as ToolModal } from './toolModal';
 export { default as ScrollText } from './scrollText';
 export { default as SwitchWindow } from './window';
 export { default as GlobalLoading } from './globalLoading';
-export { default as Error } from './error';
+export { default as LoadError } from './loadError';
 export { RenderFormItem } from './formComponent';
 export { default as EditInput } from './editInput';
 export { default as EllipsisText } from './ellipsisText';
