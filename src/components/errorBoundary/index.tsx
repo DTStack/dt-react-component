@@ -1,15 +1,15 @@
 import * as React from 'react';
-import Error from '../error';
+import LoadError from '../loadError';
 
 interface IProps {
-    children?: any;
+    children: React.ReactNode;
 }
 
 interface IState {
     hasError: boolean;
 }
 export default class ErrorBoundary extends React.Component<IProps, IState> {
-    state: IState = { hasError: false }
+    state = { hasError: false }
     // eslint-disable-next-line handle-callback-err
     static getDerivedStateFromError (error) {
         // Update state so the next render will show the fallback UI.
@@ -17,7 +17,6 @@ export default class ErrorBoundary extends React.Component<IProps, IState> {
     }
 
     componentDidCatch (error, errorInfo) {
-        // You can also log the error to an error reporting service
         this.setState({ hasError: true });
         console.log(error);
         console.log(errorInfo);
@@ -25,7 +24,7 @@ export default class ErrorBoundary extends React.Component<IProps, IState> {
 
     render () {
         if (this.state.hasError) {
-            return <Error/>;
+            return <LoadError />;
         }
         return this.props.children;
     }
