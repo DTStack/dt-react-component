@@ -18,11 +18,12 @@ let wrapper
 describe('test ErrorBoundary', () => {
     beforeEach(() => {
         wrapper = render(<ErrorBoundary {...IProps} />);
-        jest.spyOn(console, 'error').mockImplementation(() => { console.log('console.error') })
-        jest.spyOn(console, 'log').mockImplementation(() => { console.log('console.log') })
+        jest.spyOn(console, 'error').mockImplementation(() => { return null })
+        jest.spyOn(console, 'log').mockImplementation(() => { return null })
     })
     afterEach(() => {
         jest.spyOn(console, 'error').mockRestore();
+        jest.spyOn(console, 'log').mockRestore();
         cleanup()
     })
     test('should render children without error', () => {

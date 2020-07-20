@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import ErrorBoundary from '../components/errorBoundary';
 
-const stories = storiesOf('错误边界 ErrorBoundary', module);
+const stories = storiesOf('ErrorBoundary 错误边界', module);
 stories.addDecorator(withKnobs)
 
 const propDefinitions = [
@@ -17,13 +17,13 @@ const propDefinitions = [
     }
 ]
 
-class App extends React.Component<any> {
+class App extends React.Component {
     state = {
         count: 0
     }
     render () {
         const { count } = this.state;
-        if (count % 2) throw new Error('测试错误');
+        if (count % 2) throw new Error('test error');
         else {
             return (
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -31,15 +31,13 @@ class App extends React.Component<any> {
                         style={{
                             border: 'none',
                             backgroundColor: '#1890ff',
-                            boxShadow: '0 2px 0 rgba(0,0,0,0.045)',
-                            textShadow: '0 -1px 0 rgba(0,0,0,0.12)',
                             cursor: 'pointer',
                             height: '32px',
                             borderRadius: '4px'
                         }}
                         onClick={() => this.setState({ count: count + 1 })}
                     >
-                        触发错误
+                        catch error
                     </button >
                     <h2>hello, dt-react-component</h2>
                 </div >
@@ -66,9 +64,43 @@ stories.add('ErrorBoundary', () => (
             代码示例：
             ~~~js
             import { ErrorBoundary } from 'dt-react-component';
-            <ErrorBoundary>
-                <div>hello dt-react-component</div>>
-            </ErrorBoundary>
+            class App extends React.Component {
+                state = {
+                    count: 0
+                }
+                render () {
+                    const { count } = this.state;
+                    if (count % 2) throw new Error('test error');
+                    else {
+                        return (
+                            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                                <button
+                                    style={{
+                                        border: 'none',
+                                        backgroundColor: '#1890ff',
+                                        cursor: 'pointer',
+                                        height: '32px',
+                                        borderRadius: '4px'
+                                    }}
+                                    onClick={() => this.setState({ count: count + 1 })}
+                                >
+                                    catch error
+                                </button >
+                                <h2>hello, dt-react-component</h2>
+                            </div >
+                        )
+                    }
+                }
+            }
+            export default class Demo extends React.Component {
+                render() {
+                    return (
+                        <ErrorBoundary>
+                            <App />
+                        </ErrorBoundary>
+                    )
+                }
+            }
             ~~~
         `,
         TableComponent: () => PropsTable({ propDefinitions })
