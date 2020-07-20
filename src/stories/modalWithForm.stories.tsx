@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import ModalWithForm from './components/modalWithForm'
-const stories = storiesOf('ModalWithForm form和modal结合', module);
+const stories = storiesOf('ModalWithForm 带表单的模态框', module);
 stories.addDecorator(withKnobs)
 
 const propDefinitions = [
@@ -79,7 +79,7 @@ const propDefinitions = [
 stories.add('ModalWithForm', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
-        <p>{` 当需要在模态框中收集用户的表单信息，可以在这个组件中传入自己想要的表单元素`}</p>
+        <p>{`当需要在模态框中收集用户的表单信息，可以在这个组件中传入自己想要的表单元素`}</p>
         <h2>示例</h2>
         <ModalWithForm />
     </div>
@@ -102,12 +102,28 @@ stories.add('ModalWithForm', () => (
                     </FormItem>
                 )
             })
-            <Modal
-                title='ModalWithForm'
-                visible={this.state.visible}
-                hideModelHandler={this.hideModelHandler}
-                onSubmit={(value) => { console.log(value) }}
-            />
+            export default class Demo extends React.Component<any, any> {
+                constructor (props) {
+                    super(props);
+                    this.state = {
+                        visible: false
+                    };
+                }
+                hideModelHandler = () => {
+                    const { visible } = this.state
+                    this.setState({ visible: !visible });
+                }
+                render () {
+                    return (
+                        <Modal
+                            title='ModalWithForm'
+                            visible={this.state.visible}
+                            hideModelHandler={this.hideModelHandler}
+                            onSubmit={(value) => { console.log(value) }}
+                        />
+                    )
+                }
+            }
             ~~~
         `,
         TableComponent: () => PropsTable({ propDefinitions })
