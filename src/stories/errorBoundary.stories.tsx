@@ -17,7 +17,7 @@ const propDefinitions = [
     }
 ]
 
-class App extends React.Component {
+class ThrowError extends React.Component {
     state = {
         count: 0
     }
@@ -54,17 +54,17 @@ stories.add('ErrorBoundary', () => (
         展示LoadError页面，以避免因为局部组件错误而导致的整个组件树崩溃。`}</p>
         <h2>示例</h2>
         <ErrorBoundary>
-            <App />
+            <ThrowError />
         </ErrorBoundary>
     </div>
 ), {
     info: {
-        propTablesExclude: [App],
+        propTablesExclude: [ThrowError],
         text: `
             代码示例：
             ~~~js
             import { ErrorBoundary } from 'dt-react-component';
-            class App extends React.Component {
+            class ThrowError extends React.Component {
                 state = {
                     count: 0
                 }
@@ -96,7 +96,7 @@ stories.add('ErrorBoundary', () => (
                 render() {
                     return (
                         <ErrorBoundary>
-                            <App />
+                            <ThrowError />
                         </ErrorBoundary>
                     )
                 }
