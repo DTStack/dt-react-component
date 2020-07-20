@@ -18,8 +18,8 @@ let wrapper
 describe('test ErrorBoundary', () => {
     beforeEach(() => {
         wrapper = render(<ErrorBoundary {...IProps} />);
-        jest.spyOn(console, 'error').mockImplementation(() => { })
-        jest.spyOn(console, 'log').mockImplementation(() => { })
+        jest.spyOn(console, 'error').mockImplementation(() => { console.log('console.error') })
+        jest.spyOn(console, 'log').mockImplementation(() => { console.log('console.log') })
     })
     afterEach(() => {
         jest.spyOn(console, 'error').mockRestore();
