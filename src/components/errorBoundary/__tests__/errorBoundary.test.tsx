@@ -5,7 +5,7 @@ import ErrorBoundary from '../index';
 const IProps = {
     children: <div>children</div>
 }
-class App extends React.Component {
+class ThrowError extends React.Component {
     componentDidMount () {
         throw new Error('测试error, 请忽略');
     }
@@ -36,7 +36,7 @@ describe('test ErrorBoundary', () => {
         const wrapper = render(
             <ErrorBoundary >
                 {
-                    <App />
+                    <ThrowError />
                 }
             </ErrorBoundary>
         )
