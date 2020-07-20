@@ -16,6 +16,7 @@ const Modal = RenderBaseForm((props) => {
         </FormItem>
     )
 })
+
 export default class ModalWithForm extends Component<any, any> {
     constructor (props) {
         super(props);
@@ -32,7 +33,7 @@ export default class ModalWithForm extends Component<any, any> {
             <>
                 <Button onClick={this.hideModelHandler}>click</Button>
                 <Modal
-                    title='BaseForm'
+                    title='ModalWithForm'
                     visible={this.state.visible}
                     hideModelHandler={this.hideModelHandler}
                     onSubmit={(value) => { console.log(value) }}
