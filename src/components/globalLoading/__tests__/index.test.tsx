@@ -18,10 +18,6 @@ describe('test GlobalLoading', () => {
     afterEach(() => {
         cleanup();
     })
-    test('should take a snapshot', () => {
-        const { asFragment } = wrapper;
-        expect(asFragment()).toMatchSnapshot()
-    })
     test('should render the correct text', () => {
         expect(element).toBeInTheDocument();
         expect(element).toHaveStyle({
