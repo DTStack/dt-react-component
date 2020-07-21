@@ -13,7 +13,7 @@ export type ValidationRule = {
     enum?: string | string[];
     pattern?: RegExp;
     transform?: (value: any) => any;
-    validator?: (rule: any, value: any, callback: any, source?: any, options?: any) => any;
+    validator?: (rule: any, value: any, callback?: any, source?: any, options?: any) => any;
 };
 
 interface ItemType {
