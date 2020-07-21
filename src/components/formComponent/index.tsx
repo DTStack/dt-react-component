@@ -1,6 +1,21 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 const FormItem = Form.Item
+
+export type ValidationRule = {
+    message?: React.ReactNode;
+    type?: string;
+    required?: boolean;
+    whitespace?: boolean;
+    len?: number;
+    min?: number;
+    max?: number;
+    enum?: string | string[];
+    pattern?: RegExp;
+    transform?: (value: any) => any;
+    validator?: (rule: any, value: any, callback?: any, source?: any, options?: any) => any;
+};
+
 interface ItemType {
     item?: {
         label?: React.ReactNode;
@@ -10,7 +25,7 @@ interface ItemType {
         options: {
             className?: string;
         };
-        rules?: [];
+        rules?: ValidationRule[];
     };
     layout?: {};
     getFieldDecorator: any;
