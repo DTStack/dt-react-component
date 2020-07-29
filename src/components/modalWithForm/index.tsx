@@ -16,7 +16,7 @@ export interface ModalProps {
 }
 
 function ModalWithForm (FormComponent: any) {
-    class ModalForm extends Component<ModalProps & FormComponentProps, any> {
+    return Form.create<any>()(class ModalForm extends Component<ModalProps & FormComponentProps, any> {
         constructor (props: any) {
             super(props);
         }
@@ -47,7 +47,6 @@ function ModalWithForm (FormComponent: any) {
                 </>
             )
         }
-    }
-    return Form.create<any>({})(ModalForm);
+    })
 }
 export default ModalWithForm;
