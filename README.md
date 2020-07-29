@@ -61,16 +61,13 @@ npm run build-storybook
 npm run compile 输出 lib 目录
 登陆 npm 执行 npm publish
 ```
-这里使用 netlify 托管 storybook 静态服务
-netlify 服务器检测到 push master 操作会自动执行 npm run build-storybook，生成最新的静态资源重新部署，可在 [https://dtux.netlify.com/](https://dtux.netlify.com/) 查看效果
 
 ## :ferris_wheel: 预览地址
-[内网地址](http://dtux.dtstack.com:9000/)  
-[外网地址](https://dtux.netlify.com/)  
-外网后续可能不会维护
+https://dtstack.github.io/dt-react-component/  
+
 ## :blue_book: 相关资料
 * [Storybook](https://storybook.js.org/)
-* [netlify](https://www.netlify.com/)
+* [TypeScript](https://www.typescriptlang.org/)
 * [jest](https://jestjs.io/)
 * [enzymejs](https://enzymejs.github.io/enzyme/)
 
