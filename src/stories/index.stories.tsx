@@ -22,6 +22,7 @@ const getComponentNum = (): number => {
     }
     return componentKey.length;
 }
+const isGitlab = repository.includes('gitlab');
 console.log('%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ', 'color:#2517b1')
 const stories = storiesOf('综述', module);
 stories
@@ -60,8 +61,8 @@ stories
             <h2>贡献</h2>
             <p>
                 目前该项目还在初期阶段，如有更好地意见欢迎 提
-                <a rel="noopener noreferrer" target='_blank' href='http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues'> Issue</a> 或{' '}
-                <a rel="noopener noreferrer" target='_blank' href='http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/merge_requests'>Pull Request</a>
+                <a rel="noopener noreferrer" target='_blank' href={`${repository}/issues`}> Issue</a> 或{' '}
+                <a rel="noopener noreferrer" target='_blank' href={`${repository}/${isGitlab ? 'merge_requests' : 'pulls'}`}>Pull Request</a>
             </p>
             <h2>FAQ</h2>
             <p>使用过程中如有问题欢迎沟通～～</p>
