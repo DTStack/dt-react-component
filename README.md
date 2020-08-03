@@ -63,7 +63,7 @@ npm run compile 输出 lib 目录
 ```
 
 ## :ferris_wheel: 预览地址
-https://dtstack.github.io/dt-react-component/  
+[https://dtstack.github.io/dt-react-component/](https://dtstack.github.io/dt-react-component/)  
 
 ## :blue_book: 相关资料
 * [Storybook](https://storybook.js.org/)
