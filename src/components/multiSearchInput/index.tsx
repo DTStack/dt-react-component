@@ -26,13 +26,13 @@ const searchTypeList: any = [
 ]
 
 export interface MultiSearchInputProps {
-    placeholder: string;
-    style: object;
-    value: any; // input框的值
-    onChange: any;
-    onSearch: any;
-    onTypeChange: any;
-    searchType: string; // input框中选中的筛选方式
+    placeholder?: string;
+    style?: object;
+    value?: any; // input框的值
+    onChange?: any;
+    onSearch?: any;
+    onTypeChange?: any;
+    searchType?: string; // input框中选中的筛选方式
     filterOptions?: any[]; // 数组
     [propName: string]: any;
 }
@@ -76,6 +76,7 @@ class MultiSearchInput extends React.Component<MultiSearchInputProps, any> {
                 }}
             >
                 <Input
+                    data-testid='input'
                     value={propsValue != null ? propsValue : value}
                     placeholder={placeholder}
                     style={{
@@ -87,6 +88,7 @@ class MultiSearchInput extends React.Component<MultiSearchInputProps, any> {
                         onChange(e.target.value);
                     }}
                     onPressEnter={(e: any) => {
+                        console.log('执行了')
                         onSearch(e.target.value, searchType);
                     }}
                 />
@@ -107,6 +109,8 @@ class MultiSearchInput extends React.Component<MultiSearchInputProps, any> {
                         _.map(filterList, (item: any) => {
                             return (
                                 <div
+                                    data-testid={`icon-${item.key}`}
+                                    key={`icon-${item.key}`}
                                     style={{
                                         cursor: 'pointer',
                                         display: 'block',
