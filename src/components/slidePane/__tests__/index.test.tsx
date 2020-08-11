@@ -12,11 +12,13 @@ describe('test SlidePane ', () => {
         style: { color: 'red', background: '#FF7C12' }
     }
     test('should render correct', () => {
-        const { container, getByTestId } = render(<SlidePane
-            children={expectValues.children}
-            visible={expectValues.visible}
-            style={expectValues.style}
-        />)
+        const { container, getByTestId } = render(
+            <SlidePane
+                visible={expectValues.visible}
+                style={expectValues.style}
+            >
+                {expectValues.children}
+            </SlidePane>)
         expect(container.firstChild).toHaveStyle(expectValues.style);
         const oDiv = getByTestId('slidepane_container');
         expect(oDiv).not.toBeNull();
@@ -25,10 +27,10 @@ describe('test SlidePane ', () => {
         expect(container).toMatchSnapshot();
     })
     test('should be invisible', () => {
-        const { getByTestId } = render(<SlidePane
-            children={expectValues.children}
-            visible={false}
-        />)
+        const { getByTestId } = render(
+            <SlidePane visible={false} >
+                {expectValues.children}
+            </SlidePane>)
         const oDiv = getByTestId('slidepane_container');
         expect(oDiv).not.toBeVisible();
     })
