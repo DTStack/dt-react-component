@@ -35,7 +35,6 @@ stories.add('chromeDownload', () => {
         <ChromeDownload downloadChrome={() => {}} />
         ~~~
         `,
-        TableComponent: () => PropsTable({ propDefinitions }),
-        
+        TableComponent: () => PropsTable({ propDefinitions })
     }
 })
