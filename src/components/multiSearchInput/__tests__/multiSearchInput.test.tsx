@@ -24,14 +24,14 @@ describe('mulSelectDropdown Component test', () => {
         expect(myMockChange.mock.results[0].value).toBe('1234567891011');
     })
     it('input search', () => {
-        const myMockSearch = jest.fn((value: any, searchType: any) => { return { value: value, searchType: searchType } })
+        const myMockSearch = jest.fn((value: any, searchType: any) => { return { value, searchType } })
         const { queryByTestId } = render(<MulSelectDropdown
             searchType='tail'
             value="this is value"
             placeholder="hello"
             onSearch={myMockSearch}
         />)
-        fireEvent.keyPress(queryByTestId('input'), { key: 'Enter', code: 'Enter' })
-        expect(myMockSearch).toHaveBeenCalled();
+        fireEvent.keyDown(queryByTestId('input'), { key: 'Enter', keyCode: 13 })
+        expect(myMockSearch.mock.calls.length).toBe(1);
     })
 })
