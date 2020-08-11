@@ -4,7 +4,7 @@ module.exports = {
     globals: {
     },
     // setupFilesAfterEnv: ["./setupTests.js"], // enzyme adapter
-    transformIgnorePatterns: ["/node_modules/", "lib", "dist"],
+    transformIgnorePatterns: ["/node_modules/",  "dist"],
     testPathIgnorePatterns: ['/node_modules/'],
     transform: {
         "^.+\\.[jt]s?(x)$": "babel-jest"
