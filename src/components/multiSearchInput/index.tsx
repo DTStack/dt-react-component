@@ -88,7 +88,6 @@ class MultiSearchInput extends React.Component<MultiSearchInputProps, any> {
                         onChange(e.target.value);
                     }}
                     onPressEnter={(e: any) => {
-                        console.log('执行了')
                         onSearch(e.target.value, searchType);
                     }}
                 />
