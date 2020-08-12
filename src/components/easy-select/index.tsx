@@ -41,6 +41,7 @@ class EasySelect extends React.Component<any, any> {
         const { dataSource } = this.state;
         return (
             <Select
+                data-testid='test-easySelect'
                 allowClear={allowClear} // 默认支持清除
                 showSearch={showSearch} // 默认支持查询
                 style={{ minWidth: 120 }} // todo: 暂时样式，有待商榷
