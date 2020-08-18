@@ -14,7 +14,7 @@ stages:
   - lintdoc
   - check-types
   - test
-  - build_deploy
+  - build_deploy 
 
 # 当 merge_requests 执行 eslint 检查
 code_quality: 
