@@ -26,13 +26,13 @@ function convertStyles(data) {
 function globalSass() {
   return src('src/components/**/*.scss') //建议单独建个文件夹摆放，考虑到其他项目应用时也需相应更改，所以暂时先放打包文件根目录
     .pipe(concat('index.scss'))
-    .pipe(dest('lib'));
+    .pipe(dest('lib/style'));
 }
 
 function globalCss() {
   return src('src/components/**/*.scss')
     .pipe(concat('index.css'))
     .pipe(sass())
-    .pipe(dest('lib'));
+    .pipe(dest('lib/style'));
 }
 exports.default = parallel(outputStyleTask, globalCss, globalSass);
