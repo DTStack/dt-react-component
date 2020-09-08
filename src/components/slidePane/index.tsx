@@ -16,11 +16,11 @@ export interface SlidePaneProps {
 }
 
 class SlidePane extends React.Component<SlidePaneProps, any> {
-    constructor(props: any) {
+    constructor (props: any) {
         super(props);
     }
 
-    render() {
+    render () {
         const { children, visible, style, className, onClose } = this.props
         const slidePrefixCls = 'dtc-slide-pane';
         let myStyle: any = {
@@ -34,13 +34,11 @@ class SlidePane extends React.Component<SlidePaneProps, any> {
         if (style) myStyle = assign(myStyle, style);
 
         return (
-            <div className={classes} style={myStyle} >
-                <div className={`${slidePrefixCls}-conent`}
-                    data-testid="slidepane_container"
-                    style={{ display: visible ? 'block' : 'none', height: '100%' }}>
-                    {children}
+            <div className={ classes } style={myStyle} >
+                <div className={`${slidePrefixCls}-conent`} style={{ display: visible ? 'block' : 'none', height: '100%' }}>
+                    { children }
                 </div>
-                <span className={`${slidePrefixCls}-toggle`} data-testid="slidepane_action" onClick={onClose} {...{ onClick: onClose }}>
+                <span className={`${slidePrefixCls}-toggle`} onClick={onClose} {...{ onClick: onClose }}>
                     <Icon type="double-right" />
                 </span>
             </div>
