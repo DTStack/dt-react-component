@@ -6,7 +6,7 @@ const del = require('del');
 const ts = require('gulp-typescript');
 const cleanCSS = require('gulp-clean-css');
 const rename = require('gulp-rename');
-// const tsProject = ts.createProject('./tsconfig.build.json');
+const babel = require('gulp-babel');
 
 function outputStyleTask() {
   return src(['src/components/**/*.scss'])
@@ -56,8 +56,8 @@ function jsForScss(data) {
 }
 function jsForCss(data) {
   return src('src/index.tsx')
-    .pipe(rename('style.tsx'))
-    .pipe(ts({ target: 'ES5' }))
+    .pipe(rename('css.tsx'))
+    .pipe(babel())
     .pipe(dest('lib/' + String(data) + '/style/'));
 }
 exports.default = series(clean, parallel(outputStyleTask, globalSass), globalCss);
