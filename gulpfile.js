@@ -1,7 +1,13 @@
-const { src, dest, parallel } = require('gulp');
+const { src, dest, parallel, series } = require('gulp');
 const through = require('through2');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
+const del = require('del');
+const ts = require('gulp-typescript');
+const cleanCSS = require('gulp-clean-css');
+const rename = require('gulp-rename');
+const babel = require('gulp-babel');
+
 function outputStyleTask() {
   return src(['src/components/**/*.scss'])
     .pipe(
@@ -13,8 +19,11 @@ function outputStyleTask() {
     )
     .on('data', data => {
       convertStyles(data);
+      jsForCss(data);
+      jsForScss(data);
     });
 }
+
 function convertStyles(data) {
   return src(['src/components/' + String(data) + '/*.scss'])
     .pipe(dest('lib/' + String(data) + '/style/'))
@@ -28,11 +37,27 @@ function globalSass() {
     .pipe(concat('index.scss'))
     .pipe(dest('lib/style'));
 }
-
+async function clean(cb) {
+  await del(['lib']);
+  await cb();
+}
 function globalCss() {
-  return src('src/components/**/*.scss')
+  return src('lib/**/*.scss')
     .pipe(concat('index.css'))
     .pipe(sass())
+    .on('error', sass.logError)
+    .pipe(cleanCSS({ compatibility: 'ie11' }))
     .pipe(dest('lib/style'));
 }
-exports.default = parallel(outputStyleTask, globalCss, globalSass);
+function jsForScss(data) {
+  return src('src/index.tsx')
+    .pipe(ts({ declaration: true, target: 'ES5' }))
+    .pipe(dest('lib/' + String(data) + '/style/'));
+}
+function jsForCss(data) {
+  return src('src/index.tsx')
+    .pipe(rename('css.tsx'))
+    .pipe(babel())
+    .pipe(dest('lib/' + String(data) + '/style/'));
+}
+exports.default = series(clean, parallel(outputStyleTask, globalSass), globalCss);
