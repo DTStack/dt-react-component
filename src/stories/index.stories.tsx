@@ -16,34 +16,36 @@ const getComponentNum = (): number => {
     if (summaryComponent) {
         for (let key in summaryComponent) {
             if (summaryComponent.hasOwnProperty(key)) {
-                componentKey.push(key)
+                componentKey.push(key);
             }
         }
     }
     return componentKey.length;
-}
-console.log('%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ', 'color:#2517b1')
+};
+const isGitlab = repository.includes('gitlab');
+console.log(
+    '%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ',
+    'color:#2517b1'
+);
 const stories = storiesOf('综述', module);
 stories
-    .add('介绍', () => (
-        <article className='story_wrapper summary-story'>
-            <h1>
-                <span>{name}</span>
-                <a href={repository} rel="noopener noreferrer" target='_blank'>
-                    <FaGitlab/>
-                </a>
-            </h1>
+    .add(
+        '介绍',
+        () => (
+            <article className="story_wrapper summary-story">
+                <h1>
+                    <span>{name}</span>
+                    <a href={repository} rel="noopener noreferrer" target="_blank">
+                        <FaGitlab />
+                    </a>
+                </h1>
 
-            <h2>当前版本</h2>
-            <p className='summary-story_version'>
-                v{version}
-            </p>
-            <h2>当前组件数</h2>
-            <p className='summary-story_version'>
-                {getComponentNum()} 个
-            </p>
+                <h2>当前版本</h2>
+                <p className="summary-story_version">v{version}</p>
+                <h2>当前组件数</h2>
+                <p className="summary-story_version">{getComponentNum()} 个</p>
 
-            {/* <h2>在线示例</h2>
+                {/* <h2>在线示例</h2>
             <p>这是一个最简单的 dt-react-component 组件的在线 codesandbox 演示。</p>
             <iframe
                 src='https://codesandbox.io/embed/antd-reproduction-template-6e93z?autoresize=1&fontsize=14&hidenavigation=1&theme=dark'
@@ -57,73 +59,90 @@ stories
                 sandbox='allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
             /> */}
 
-            <h2>贡献</h2>
-            <p>
-                目前该项目还在初期阶段，如有更好地意见欢迎 提
-                <a rel="noopener noreferrer" target='_blank' href='http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues'> Issue</a> 或{' '}
-                <a rel="noopener noreferrer" target='_blank' href='http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/merge_requests'>Pull Request</a>
-            </p>
-            <h2>FAQ</h2>
-            <p>使用过程中如有问题欢迎沟通～～</p>
-        </article>
-    ), {
-        ...notShowProps(false, [FaGitlab])
-    })
-    .add(`快速上手`, () => {
-        return (
-            <div className='story_wrapper'>
-                <MarkdownRender
-                    text={`${readmeHtml && readmeHtml.default}`}
-                    dark={false}
-                />
+                <h2>贡献</h2>
+                <p>
+                    目前该项目还在初期阶段，如有更好地意见欢迎 提
+                    <a rel="noopener noreferrer" target="_blank" href={`${repository}/issues`}>
+                        {' '}
+                        Issue
+                    </a>{' '}
+                    或{' '}
+                    <a
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        href={`${repository}/${isGitlab ? 'merge_requests' : 'pulls'}`}
+                    >
+                        Pull Request
+                    </a>
+                </p>
+                <h2>FAQ</h2>
+                <p>使用过程中如有问题欢迎沟通～～</p>
+            </article>
+        ),
+        {
+            ...notShowProps(false, [FaGitlab])
+        }
+    )
+    .add(
+        `快速上手`,
+        () => {
+            return (
+                <div className="story_wrapper">
+                    <MarkdownRender text={`${readmeHtml && readmeHtml.default}`} dark={false} />
+                </div>
+            );
+        },
+        {
+            ...notShowProps(false, [MarkdownRender])
+        }
+    )
+    .add(
+        `组件文档规范`,
+        () => {
+            return (
+                <div className="story_wrapper">
+                    <MarkdownRender text={`${docHtml && docHtml.default}`} dark={false} />
+                </div>
+            );
+        },
+        {
+            ...notShowProps(false, [MarkdownRender])
+        }
+    )
+    .add(
+        `组件开发`,
+        () => {
+            return (
+                <div className="story_wrapper">
+                    <MarkdownRender text={`${devlopHtml && devlopHtml.default}`} dark={false} />
+                </div>
+            );
+        },
+        {
+            ...notShowProps(false, [MarkdownRender])
+        }
+    )
+    .add(
+        `Todo/Plan`,
+        () => {
+            return (
+                <div className="story_wrapper">
+                    <MarkdownRender text={`${planHtml && planHtml.default}`} dark={false} />
+                </div>
+            );
+        },
+        {
+            ...notShowProps(false, [MarkdownRender])
+        }
+    )
+    .add(
+        `更新日志`,
+        () => (
+            <div className="story_wrapper">
+                <MarkdownRender text={`${html && html.default}`} dark={false} />
             </div>
-        )
-    }, {
-        ...notShowProps(false, [MarkdownRender])
-    })
-    .add(`组件文档规范`, () => {
-        return (
-            <div className='story_wrapper'>
-                <MarkdownRender
-                    text={`${docHtml && docHtml.default}`}
-                    dark={false}
-                />
-            </div>
-        )
-    }, {
-        ...notShowProps(false, [MarkdownRender])
-    })
-    .add(`组件开发`, () => {
-        return (
-            <div className='story_wrapper'>
-                <MarkdownRender
-                    text={`${devlopHtml && devlopHtml.default}`}
-                    dark={false}
-                />
-            </div>
-        )
-    }, {
-        ...notShowProps(false, [MarkdownRender])
-    })
-    .add(`Todo/Plan`, () => {
-        return (
-            <div className='story_wrapper'>
-                <MarkdownRender
-                    text={`${planHtml && planHtml.default}`}
-                    dark={false}
-                />
-            </div>
-        )
-    }, {
-        ...notShowProps(false, [MarkdownRender])
-    })
-    .add(`更新日志`, () => (
-        <div className='story_wrapper'>
-            <MarkdownRender
-                text={`${html && html.default}`}
-                dark={false}
-            />
-        </div>
-    ), {
-        ...notShowProps(false, [MarkdownRender])
-    })
+        ),
+        {
+            ...notShowProps(false, [MarkdownRender])
+        }
+    );
