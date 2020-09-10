@@ -15,6 +15,11 @@ const servise = (str: any) =>
             label: item[0],
             value: item[1]
         })));
+const options = [];
+for (let i = 0; i < 100000; i++) {
+    const value = i.toString(36);
+    options.push(value);
+}
 const propDefinitions = [
     {
         property: 'dataSource',
@@ -106,6 +111,13 @@ stories.add('EasySelect', () => (
             servise={servise}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
+        <p className="strory-dt_easy_select_p">6、大数据(虚拟滚动)</p>
+        <EasySelect
+            style={{ width: '100%' }}
+            filterLocal
+            dataSource={options}
+            onChange={(val: any, option: any) => { console.log(val, option) }}
+        />
     </div>
 ), {
     info: {
@@ -158,6 +170,20 @@ stories.add('EasySelect', () => (
                             value: item[1]
                     })))
                 }
+                onChange={(val: any, option: any) => { console.log(val, option) }}
+            />
+            ~~~
+            ~~~js
+            // 大数据(虚拟滚动)
+            <EasySelect
+                style={{ width: '100%' }}
+                filterLocal
+                dataSource={options} 
+                // const options = [];
+                // for (let i = 0; i < 100000; i++) {
+                //     const value = i.toString(36)
+                //     options.push(value);
+                // }
                 onChange={(val: any, option: any) => { console.log(val, option) }}
             />
             ~~~
