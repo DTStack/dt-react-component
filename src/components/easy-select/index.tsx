@@ -23,18 +23,22 @@ class EasySelect extends React.Component<any, any> {
 
     onSearch = (str: any) => {
         const { clearValueRequest = false, autoValue } = this.props;
-        if (!clearValueRequest && !str) { // 默认清空展示上次的数据
+        if (!clearValueRequest && !str) {
+            // 默认清空展示上次的数据
             this.setState({ dataSource: this.state.dataSource })
-        } else if (clearValueRequest && !str) { // 此时清空展示最初的数据, 进行初始化的请求，参数传入autoValue
+        } else if (clearValueRequest && !str) {
+            // 此时清空展示最初的数据, 进行初始化的请求，参数传入autoValue
             this.getDataSource(autoValue);
-        } else { // 正常搜索函数，特殊处理防抖
+        } else {
+            // 正常搜索函数，特殊处理防抖
             debounce(() => this.getDataSource(str), 300)();
         }
     }
 
     lazyDataSource = (data: any) => {
         const { scrollPage = 1 } = this.state;
-        if (data.length > (scrollPage * 100)) {
+        const { isLazy = true } = this.props;
+        if (data.length > (scrollPage * 100) && isLazy) {
             this.setState({
                 dataSource: data.slice(0, scrollPage * 100) || [],
                 allData: data
@@ -81,8 +85,8 @@ class EasySelect extends React.Component<any, any> {
                 onSearch={ servise && !filterLocal ? this.onSearch : null }
                 filterOption={ !filterLocal ? null : (input, option) =>
                     // 兼容数字和字符串等模糊查询
-                    option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
-                    option.props.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    option.props?.children?.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+                    option.props?.value?.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }
                 onPopupScroll={this.companyScroll}
                 { ...others }

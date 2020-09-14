@@ -67,6 +67,13 @@ const propDefinitions = [
         required: false,
         description: <div className="strory-dt_easy_select_divDesc">清空当前选项是否执行请求(默认清空当前选项不进行服务端请求).</div>,
         defaultValue: 'false'
+    },
+    {
+        property: 'isLazy',
+        propType: 'boolean',
+        required: false,
+        description: <div className="strory-dt_easy_select_divDesc">数据超过一百是否懒加载，默认为true</div>,
+        defaultValue: 'true'
     }]
 stories.add('EasySelect', () => (
     <div className='story_wrapper'>
