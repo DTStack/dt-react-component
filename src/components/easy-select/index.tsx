@@ -83,10 +83,10 @@ class EasySelect extends React.Component<any, any> {
                 showSearch={showSearch} // 默认支持查询
                 style={{ minWidth: 120 }} // todo: 暂时样式，有待商榷
                 onSearch={ servise && !filterLocal ? this.onSearch : null }
-                filterOption={ !filterLocal ? null : (input, option) =>
+                filterOption={ !filterLocal ? null : (input: any, option: any) =>
                     // 兼容数字和字符串等模糊查询
-                    option.props?.children?.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
-                    option.props?.value?.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+                    option.props.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }
                 onPopupScroll={this.companyScroll}
                 { ...others }
