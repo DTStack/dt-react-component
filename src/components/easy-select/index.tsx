@@ -4,7 +4,7 @@ import debounce from 'lodash/debounce';
 
 const { Option } = Select;
 class EasySelect extends React.Component<any, any> {
-    constructor (props: any) {
+    constructor(props: any) {
         super(props);
         const { dataSource = [] } = this.props;
         this.state = {
@@ -15,57 +15,72 @@ class EasySelect extends React.Component<any, any> {
     componentDidMount = () => {
         const { autoValue = '' } = this.props;
         this.getDataSource(autoValue);
-    }
+    };
 
     onSearch = (str: any) => {
         const { clearValueRequest = false, autoValue } = this.props;
-        if (!clearValueRequest && !str) { // 默认清空展示上次的数据
-            this.setState({ dataSource: this.state.dataSource })
-        } else if (clearValueRequest && !str) { // 此时清空展示最初的数据, 进行初始化的请求，参数传入autoValue
+        if (!clearValueRequest && !str) {
+            // 默认清空展示上次的数据
+            this.setState({ dataSource: this.state.dataSource });
+        } else if (clearValueRequest && !str) {
+            // 此时清空展示最初的数据, 进行初始化的请求，参数传入autoValue
             this.getDataSource(autoValue);
-        } else { // 正常搜索函数，特殊处理防抖
+        } else {
+            // 正常搜索函数，特殊处理防抖
             debounce(() => this.getDataSource(str), 300)();
         }
-    }
+    };
 
     getDataSource = async (str: any) => {
         const { servise } = this.props;
-        servise && await servise(str).then((res: any) => {
-            this.setState({
-                dataSource: res || []
-            })
-        })
-    }
-    render () {
-        const { allowClear = true, showSearch = true, filterLocal, servise, ...others } = this.props;
+        servise &&
+            (await servise(str).then((res: any) => {
+                this.setState({
+                    dataSource: res || []
+                });
+            }));
+    };
+    render() {
+        const {
+            allowClear = true,
+            showSearch = true,
+            filterLocal,
+            servise,
+            ...others
+        } = this.props;
         const { dataSource } = this.state;
         return (
             <Select
                 allowClear={allowClear} // 默认支持清除
                 showSearch={showSearch} // 默认支持查询
                 style={{ minWidth: 120 }} // todo: 暂时样式，有待商榷
-                onSearch={ servise && !filterLocal && this.onSearch }
-                filterOption={ !filterLocal ? null : (input, option) =>
-                    // 兼容数字和字符串等模糊查询
-                    option.props.children.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
-                    option.props.value.toString().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                onSearch={servise && !filterLocal && this.onSearch}
+                filterOption={
+                    !filterLocal
+                        ? null
+                        : (input, option) =>
+                              // 兼容数字和字符串等模糊查询
+                              option.props.children
+                                  .toString()
+                                  .toLowerCase()
+                                  .indexOf(input.toLowerCase()) >= 0 ||
+                              option.props.value
+                                  .toString()
+                                  .toLowerCase()
+                                  .indexOf(input.toLowerCase()) >= 0
                 }
-                { ...others }
+                {...others}
             >
-                {
-                    dataSource && dataSource.map((item: any) => {
+                {dataSource &&
+                    dataSource.map((item: any) => {
                         return (
-                            <Option
-                                key={ item.value || item }
-                                value={ item.value || item }
-                            >
-                                { item.label || item }
+                            <Option key={item.value || item} value={item.value || item}>
+                                {item.label || item}
                             </Option>
-                        )
-                    })
-                }
+                        );
+                    })}
             </Select>
-        )
+        );
     }
 }
 export default EasySelect;
