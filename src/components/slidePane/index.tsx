@@ -1,8 +1,8 @@
-import { assign } from 'lodash'
-import { Icon } from 'antd'
-import * as React from 'react'
+import { assign } from 'lodash';
+import { Icon } from 'antd';
+import * as React from 'react';
 
-import classNames from 'classnames'
+import classNames from 'classnames';
 
 export interface SlidePaneProps {
     children: any;
@@ -16,34 +16,43 @@ export interface SlidePaneProps {
 }
 
 class SlidePane extends React.Component<SlidePaneProps, any> {
-    constructor (props: any) {
+    constructor(props: any) {
         super(props);
     }
 
-    render () {
-        const { children, visible, style, className, onClose } = this.props
+    render() {
+        const { children, visible, style, className, onClose } = this.props;
         const slidePrefixCls = 'dtc-slide-pane';
         let myStyle: any = {
             top: 0,
             transform: visible ? undefined : 'translate3d(150%, 0, 0)'
-        }
-        const classes = classNames(slidePrefixCls, className)
+        };
+        const classes = classNames(slidePrefixCls, className);
         if (!visible) {
-            myStyle['pointerEvents'] = 'none'
+            myStyle['pointerEvents'] = 'none';
         }
         if (style) myStyle = assign(myStyle, style);
 
         return (
-            <div className={ classes } style={myStyle} >
-                <div className={`${slidePrefixCls}-conent`} style={{ display: visible ? 'block' : 'none', height: '100%' }}>
-                    { children }
+            <div className={classes} style={myStyle}>
+                <div
+                    className={`${slidePrefixCls}-conent`}
+                    data-testid="slidepane_container"
+                    style={{ display: visible ? 'block' : 'none', height: '100%' }}
+                >
+                    {children}
                 </div>
-                <span className={`${slidePrefixCls}-toggle`} onClick={onClose} {...{ onClick: onClose }}>
+                <span
+                    className={`${slidePrefixCls}-toggle`}
+                    data-testid="slidepane_action"
+                    onClick={onClose}
+                    {...{ onClick: onClose }}
+                >
                     <Icon type="double-right" />
                 </span>
             </div>
-        )
+        );
     }
 }
 
-export default SlidePane
+export default SlidePane;

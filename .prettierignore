@@ -16,3 +16,4 @@ LICENSE
 *.lock
 yarn-error.log
 .history
+**/__tests__/**/*

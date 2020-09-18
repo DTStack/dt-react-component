@@ -33,7 +33,7 @@ class EasySelect extends React.Component<any, any> {
             // 正常搜索函数，特殊处理防抖
             debounce(() => this.getDataSource(str), 300)();
         }
-    }
+    };
 
     lazyDataSource = (data: any) => {
         const { scrollPage = 1 } = this.state;
@@ -91,20 +91,16 @@ class EasySelect extends React.Component<any, any> {
                 onPopupScroll={this.companyScroll}
                 { ...others }
             >
-                {
-                    dataSource && dataSource.map((item: any) => {
+                {dataSource &&
+                    dataSource.map((item: any) => {
                         return (
-                            <Option
-                                key={ item.value || item }
-                                value={ item.value || item }
-                            >
-                                { item.label || item }
+                            <Option key={item.value || item} value={item.value || item}>
+                                {item.label || item}
                             </Option>
-                        )
-                    })
-                }
+                        );
+                    })}
             </Select>
-        )
+        );
     }
 }
 export default EasySelect;
