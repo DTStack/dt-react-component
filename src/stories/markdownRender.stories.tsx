@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { PropsTable } from './components/propsTable';
-import MarkdownRender from '../components/markdown-render';
+import MarkdownRender from '../components/markdownRender';
 import '../styles/index.scss';
 const testHtml = require('./markdown/testData.md');
 const stories = storiesOf('MarkdownRender markdown 渲染', module);
