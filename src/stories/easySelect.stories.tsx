@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import jsonp from 'fetch-jsonp';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import EasySelect from '../components/easy-select';
+import EasySelect from '../components/easySelect';
 import './style/easySelect.scss'; // api文档页面特殊样式，暂时不引入公共样式，单独引入此文件
 
 const stories = storiesOf('EasySelect 下拉框', module);
