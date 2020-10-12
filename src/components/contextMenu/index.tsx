@@ -21,7 +21,7 @@ export class ContextMenuItem extends React.Component<any, any> {
     }
 }
 
-export class ContextMenu extends React.Component<ContextMenuProps, any> {
+export default class ContextMenu extends React.Component<ContextMenuProps, any> {
     constructor (props: any) {
         super(props);
         this.toggleMenu = this.toggleMenu.bind(this)
