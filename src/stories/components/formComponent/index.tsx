@@ -1,5 +1,5 @@
 import React from 'react'
-import { RenderFormItem } from '../../../components/formComponent'
+import RenderFormItem from '../../../components/formComponent'
 import { Form } from 'antd';
 
 const App = (props) => {
