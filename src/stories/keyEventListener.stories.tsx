@@ -60,7 +60,10 @@ stories.add('keyCombiner', () => {
         text: `
         代码示例：
         ~~~js
-        import { KeyCombiner } from 'dt-react-component';
+        import KeyEventListener from 'dt-react-component';
+
+        const { KeyCombiner } = KeyEventListener
+
         keyAction = (evt: any) => {
             evt.preventDefault();
             console.log('command+shift+f action')
@@ -101,7 +104,8 @@ stories.add('keyEventListener', () => {
         text: `
         代码示例：
         ~~~js
-        import { KeyEventListener } from 'dt-react-component';
+        import KeyEventListener from 'dt-react-component';
+        
         onkeyDown = (evt: any) => {
             evt.preventDefault();
             console.log('onkeyDown')
