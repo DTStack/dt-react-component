@@ -2,8 +2,9 @@ import * as React from 'react'
 import { Button } from 'antd'
 
 import MyIcon from './icon';
-import KeyCombiner from '../keyCombiner';
+import KeyEventListener from '../KeyEventListener';
 
+const { KeyCombiner } = KeyEventListener
 declare var document: any;
 
 export interface FullScreenProps {
@@ -23,11 +24,11 @@ export default class FullScreenButton extends React.Component<FullScreenProps, a
     /**
      * 在一定情况下chrome不会触发resize事件，所以手动触发一下resize。
      */
-    dispatchResizeEvent () {
+    dispatchResizeEvent() {
         const event = new Event('resize');
         window.dispatchEvent(event);
     }
-    componentDidMount () {
+    componentDidMount() {
         const { target } = this.props;
         const propsDom = document.getElementById(target)
         const domEle: any = propsDom || document.body;
@@ -56,7 +57,7 @@ export default class FullScreenButton extends React.Component<FullScreenProps, a
             domEle.onwebkitfullscreenchange = callBack;
         }
     }
-    componentWillUnmount () {
+    componentWillUnmount() {
         const { target } = this.props;
         const propsDom = document.getElementById(target)
         const domEle: any = propsDom || document.body;
@@ -103,7 +104,7 @@ export default class FullScreenButton extends React.Component<FullScreenProps, a
         }
     }
 
-    render () {
+    render() {
         const { themeDark, fullIcon, exitFullIcon, iconStyle, ...other } = this.props;
         const title = this.state.isFullScreen ? '退出全屏' : '全屏';
         // const iconType = this.state.isFullScreen ? 'exit-fullscreen' : 'fullscreen';

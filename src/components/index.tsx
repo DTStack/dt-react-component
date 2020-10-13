@@ -16,8 +16,7 @@ export { default as SearchModal } from './searchModal';
 export { default as MarkdownRender } from './markdownRender';
 export { default as BreadcrumbRender } from './breadcrumb'
 export { default as Resize } from './resize';
-export { default as KeyCombiner } from './keyCombiner';
-export { default as KeyEventListener } from './keyCombiner/listener';
+export { default as KeyEventListener } from './KeyEventListener';
 export { default as FullScreenButton } from './fullscreen';
 export { default as ToolModal } from './toolModal';
 export { default as ScrollText } from './scrollText';

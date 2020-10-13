@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import KeyCombiner from '../components/keyCombiner';
+import KeyEventListener from '../components/KeyEventListener';
 import { PropsTable } from './components/propsTable';
-import KeyEventListener from '../components/keyCombiner/listener';
 import './style';
+
+const { KeyCombiner } = KeyEventListener
 
 const propDefinitions = [{
     property: 'keyMap',
