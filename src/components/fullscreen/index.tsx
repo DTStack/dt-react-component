@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Button } from 'antd'
 
 import MyIcon from './icon';
-import KeyEventListener from '../KeyEventListener';
+import KeyEventListener from '../keyEventListener';
 
 const { KeyCombiner } = KeyEventListener
 declare var document: any;

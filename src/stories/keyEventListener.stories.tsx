@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import KeyEventListener from '../components/KeyEventListener';
+import KeyEventListener from '../components/keyEventListener';
 import { PropsTable } from './components/propsTable';
 import './style';
 
@@ -34,7 +34,7 @@ const keyListenerPropDefinitions = [{
     defaultValue: ''
 }]
 
-const stories = storiesOf('KeyCombiner 键盘监听', module);
+const stories = storiesOf('KeyEventListener 键盘监听', module);
 // keyCombiner
 stories.add('keyCombiner', () => {
     const keyAction = (evt: any) => {
