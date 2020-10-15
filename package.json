@@ -7,7 +7,7 @@
   "module": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build-css": "export NODE_ENV='production' && gulp",
+    "build-css": "export NODE_ENV='prod' && gulp",
     "increase-memory-limit": "cross-env LIMIT=8096 increase-memory-limit",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "build-storybook": "export NODE_ENV='production' && build-storybook -c .storybook -o dist",

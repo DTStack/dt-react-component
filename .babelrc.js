@@ -22,5 +22,5 @@ const config = {
   ],
 };
 
-if (process.env.NODE_ENV === 'production') config.plugins.unshift('./css-plugin');
+if (process.env.NODE_ENV === 'prod') config.plugins.unshift('./css-plugin');
 module.exports = config;
