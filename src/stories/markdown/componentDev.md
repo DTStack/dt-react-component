@@ -24,7 +24,7 @@ dt-react-component
 ├── src
 │   ├── components // 组件文件夹
 │   │   ├── circle
-│   │   ├── go-back
+│   │   ├── goBack
 │   │   ├── index.tsx
 │   │   ├── slidePane
 │   │   └── utils // 组件内部引用的工具类文件

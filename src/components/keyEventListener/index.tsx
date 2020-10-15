@@ -1,6 +1,7 @@
 import * as React from 'react';
-
+import KeyCombiner from './listener'
 export default class KeyEventListener extends React.Component<any, any> {
+    static KeyCombiner=KeyCombiner
     componentDidMount () {
         addEventListener('keydown', this.bindEvent, false)
         addEventListener('keyup', this.bindEvent, false)

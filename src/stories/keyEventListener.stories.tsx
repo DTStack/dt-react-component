@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import KeyCombiner from '../components/keyCombiner';
+import KeyEventListener from '../components/keyEventListener';
 import { PropsTable } from './components/propsTable';
-import KeyEventListener from '../components/keyCombiner/listener';
 import './style';
+
+const { KeyCombiner } = KeyEventListener
 
 const propDefinitions = [{
     property: 'keyMap',
@@ -33,7 +34,7 @@ const keyListenerPropDefinitions = [{
     defaultValue: ''
 }]
 
-const stories = storiesOf('KeyCombiner 键盘监听', module);
+const stories = storiesOf('KeyEventListener 键盘监听', module);
 // keyCombiner
 stories.add('keyCombiner', () => {
     const keyAction = (evt: any) => {
@@ -59,7 +60,10 @@ stories.add('keyCombiner', () => {
         text: `
         代码示例：
         ~~~js
-        import { KeyCombiner } from 'dt-react-component';
+        import KeyEventListener from 'dt-react-component';
+
+        const { KeyCombiner } = KeyEventListener
+
         keyAction = (evt: any) => {
             evt.preventDefault();
             console.log('command+shift+f action')
@@ -100,7 +104,8 @@ stories.add('keyEventListener', () => {
         text: `
         代码示例：
         ~~~js
-        import { KeyEventListener } from 'dt-react-component';
+        import KeyEventListener from 'dt-react-component';
+        
         onkeyDown = (evt: any) => {
             evt.preventDefault();
             console.log('onkeyDown')

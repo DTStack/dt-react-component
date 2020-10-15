@@ -63,7 +63,7 @@ stories.add('FormItem', () => (
             代码示例：
             ~~~js
             import { Form } from 'antd';
-            import { RenderFormItem } from 'dt-react-component'
+            import RenderFormItem from 'dt-react-component'
             const App = (props) => {
                 const { getFieldDecorator } = props.form;
                 const params = { ...props, getFieldDecorator }

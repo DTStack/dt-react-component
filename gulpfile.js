@@ -1,4 +1,5 @@
 const { src, dest, parallel, series } = require('gulp');
+const fs = require('fs');
 const through = require('through2');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
@@ -9,6 +10,11 @@ const rename = require('gulp-rename');
 const babel = require('gulp-babel');
 
 function outputStyleTask() {
+  fs.writeFile('src/index.tsx',"import './style.scss';",{'flag':'a'},(err)=>{
+    if(err){
+      throw err;
+    }
+  })
   return src(['src/components/**/*.scss'])
     .pipe(
       through.obj(function(file, _, callback) {
@@ -38,10 +44,11 @@ function globalSass() {
     .pipe(dest('lib/style'));
 }
 async function clean(cb) {
-  await del(['lib']);
+  await del(['lib','src/index.tsx']);
   await cb();
 }
 function globalCss() {
+  del(['src/index.tsx'])
   return src('lib/**/*.scss')
     .pipe(concat('index.css'))
     .pipe(sass())

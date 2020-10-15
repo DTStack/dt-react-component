@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classNames from 'classnames'
 
-export function Circle (props: any) {
+export default function Circle (props: any) {
     const { className, type } = props;
     const prefixCls = 'dtc-circle';
     const classes = classNames(`${prefixCls}-default`, className, {
