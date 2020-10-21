@@ -6,7 +6,7 @@ interface IProps {
     placement?: any;
     style?: any;
     className?: string;
-    value: string;
+    value: string | number;
 }
 
 export default (props: IProps) => {

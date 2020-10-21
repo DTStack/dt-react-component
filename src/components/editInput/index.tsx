@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { Input, message } from 'antd';
-interface IProps {
+export interface EditInputProps {
     value?: string | number;
-    onChange?: Function;
+    onChange?: (e) => void;
     max?: number;
     [propName: string]: any;
 }
 
-interface IState {
+export interface EditInputPropsStates {
     value: string | number;
 }
-export default class EditInput extends React.PureComponent<IProps, IState> {
-    constructor (props: IProps) {
+export default class EditInput extends React.PureComponent<EditInputProps, EditInputPropsStates> {
+    constructor(props: EditInputProps) {
         super(props);
         this.state = {
             value: ''
@@ -22,7 +22,7 @@ export default class EditInput extends React.PureComponent<IProps, IState> {
             value: this.props.value
         })
     }
-    componentDidUpdate (preProps: any) {
+    componentDidUpdate(preProps: EditInputProps) {
         const { value } = this.props;
         if (value != preProps.value) {
             this.setState({

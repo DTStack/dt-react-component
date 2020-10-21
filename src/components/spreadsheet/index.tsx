@@ -6,7 +6,7 @@ import 'handsontable/dist/handsontable.full.css';
 import 'handsontable/languages/zh-CN.js';
 
 export interface SpreadSheetProps {
-    data: any[];
+    data: Array<Array<string>>;
     columns: any;
 }
 

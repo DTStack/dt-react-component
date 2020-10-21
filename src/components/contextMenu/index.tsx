@@ -2,12 +2,20 @@ import * as React from 'react'
 const contextPrefix = 'dtc-context-menu';
 
 export interface ContextMenuProps {
+    key?: string;
     targetClassName?: string;
     onChange?: Function;
     [propName: string]: any;
 }
+export interface ContextMenuItemProps {
+    key?: string;
+    onClick?: () => void;
+    children?: React.ReactNode;
+    value?: string;
+    [propName: string]: any;
+}
 
-export class ContextMenuItem extends React.Component<any, any> {
+export class ContextMenuItem extends React.Component<ContextMenuItemProps, any> {
     render () {
         return (
             <li {...this.props}
@@ -29,7 +37,6 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
     }
     static ContextMenuItem = ContextMenuItem;
 
-    _contextMenus: any = [];
     selfEle: any;
 
     componentDidMount () {
@@ -42,7 +49,7 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
         document.removeEventListener('contextmenu', this.toggleMenu, false);
     }
 
-    toggleMenu (evt: any) {
+    toggleMenu(evt: any) {
         const { targetClassName, onChange } = this.props
         const selfEle = this.selfEle
         if (!selfEle) return;
@@ -92,7 +99,7 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
         style.display = 'none';
     }
 
-    findParent (child: any, selector: any) {
+    findParent(child: any, selector: string) {
         try {
             if (!selector || !child) return;
             selector = selector.toLowerCase();
@@ -112,7 +119,7 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
 
     render () {
         return (
-            <div ref={(e: any) => { this.selfEle = e } } className={contextPrefix} style={{ display: 'none' }}>
+            <div ref={(e) => { this.selfEle = e } } className={contextPrefix} style={{ display: 'none' }}>
                 <ul className={`${contextPrefix}-context-menu_list`}>
                     {this.props.children}
                 </ul>
@@ -120,4 +127,3 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
         )
     }
 }
-/* eslint-disable */

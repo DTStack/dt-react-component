@@ -1,12 +1,16 @@
 
 import * as React from 'react';
-
+export interface SwitchWindowProps {
+    onSwitch?: (evt) => void;
+    style?: React.CSSProperties;
+    children?: React.ReactNode;
+}
 /**
  * 窗口切换事件监听，
  * 用法：
  * <SwitchWindow onSwitch={}></SwitchWindow>
  */
-class SwitchWindow extends React.Component<any, any> {
+class SwitchWindow extends React.Component<SwitchWindowProps, any> {
     componentDidMount () {
         this.initEvent();
     }
