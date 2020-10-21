@@ -4,18 +4,24 @@ import FullScreen from '../fullscreen';
 
 export interface ToolModalProps {
     visible: boolean;
-    toolbox?: any;
+    toolbox?: React.ReactNode | string;
     fullscreen?: boolean | undefined;
-    children?: any;
+    children?: React.ReactNode;
     [propName: string]: any;
 
 }
-const defaultModalStyle: any = {
+
+export interface ToolModalStates {
+    isFullscreen: boolean;
+    modalStyle?: React.CSSProperties;
+    className?: string;
+}
+const defaultModalStyle: React.CSSProperties = {
     width: 800,
     minHeight: 200
 };
-export default class DTModal extends React.Component<ToolModalProps, any> {
-    state: any = {
+export default class DTModal extends React.Component<ToolModalProps, ToolModalStates> {
+    state: ToolModalStates = {
         modalStyle: defaultModalStyle,
         className: '',
         isFullscreen: false

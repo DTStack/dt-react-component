@@ -4,6 +4,13 @@ import showdown from 'showdown';
 import hljs from 'highlight.js';
 import sql from 'highlight.js/lib/languages/sql';
 import classNames from 'classnames'
+
+export interface MarkdownRenderProps {
+    text?: string;
+    className?: string;
+    dark?: boolean;
+}
+
 hljs.registerLanguage('sql', sql);
 showdown.extension('highlight', function () {
     return [{
@@ -34,7 +41,7 @@ showdown.extension('highlight', function () {
 });
 showdown.setOption('optionKey', 'value');
 
-export default function MarkdownRender (props: any) {
+export default function MarkdownRender(props: MarkdownRenderProps) {
     const { text, className, dark } = props;
     const cls = classNames('dtc-markdown-render-body', dark ? 'dtc-vs-dark' : 'dtc-vs', className)
     const converter = new showdown.Converter({

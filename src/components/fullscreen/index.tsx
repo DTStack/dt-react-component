@@ -12,12 +12,14 @@ export interface FullScreenProps {
     target?: any;
     customIcon?: boolean;
     iconStyle?: object;
-    fullIcon?: any;
-    exitFullIcon?: any;
+    fullIcon?: React.ReactNode;
+    exitFullIcon?: React.ReactNode;
     [propName: string]: any;
 }
-
-export default class FullScreenButton extends React.Component<FullScreenProps, any> {
+export interface FullScreenButtonState {
+    isFullScreen: boolean;
+}
+export default class FullScreenButton extends React.Component<FullScreenProps, FullScreenButtonState> {
     state: any = {
         isFullScreen: false
     }
