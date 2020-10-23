@@ -19,7 +19,7 @@ export default function BreadcrumbRender (props: IProps) {
     return (
         <div style={style} data-testid="test-breadcrumb">
             <Breadcrumb>
-                {routes.map((item: any, index: number) => (
+                {routes.map((item: Route, index: number) => (
                     <BreadcrumbItem key={item.path}>
                         {index == len ? (
                             item.name

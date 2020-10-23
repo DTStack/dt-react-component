@@ -19,7 +19,7 @@ export default class KeyEventListener extends React.Component<KeyEventListenerPr
         removeEventListener('keyup', this.bindEvent, false)
     }
 
-    bindEvent = (target: any) => {
+    bindEvent = (target: MouseEvent) => {
         const { onKeyDown, onKeyUp } = this.props;
         const isKeyDown = target.type === 'keydown';
 

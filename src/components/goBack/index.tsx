@@ -28,7 +28,7 @@ export default class GoBack extends React.Component<GoBackProps, any> {
     getButtonView () {
         const { style } = this.props;
 
-        let iconStyle: any = {
+        let iconStyle: React.CSSProperties = {
             cursor: 'pointer',
             fontFamily: 'anticon',
             fontSize: '18px',

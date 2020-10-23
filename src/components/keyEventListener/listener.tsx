@@ -14,7 +14,7 @@ export interface KeyCombinerState {
 }
 
 export default class KeyCombiner extends React.Component<KeyCombinerProps, KeyCombinerState> {
-    constructor (props: any) {
+    constructor (props: KeyCombinerProps) {
         super(props);
         this.state = {
             currentKeys: {}
@@ -32,7 +32,7 @@ export default class KeyCombiner extends React.Component<KeyCombinerProps, KeyCo
         this.setState({ currentKeys: {} })
     }
 
-    bindEvent = (target: any) => {
+    bindEvent = (target: KeyboardEvent) => {
         const { onTrigger, keyMap } = this.props;
 
         const keyCode = target.keyCode;
