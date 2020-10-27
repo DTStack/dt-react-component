@@ -1,15 +1,29 @@
 import * as React from 'react';
 import { Select } from 'antd';
 import debounce from 'lodash/debounce';
-
+import { SelectProps } from 'antd/lib/select'
 const { Option } = Select;
-class EasySelect extends React.Component<any, any> {
+
+interface EasySelectProps {
+    autoValue?: string;
+    dataSource?: any[];
+    clearValueRequest?: boolean;
+    isLazy?: boolean;
+    filterLocal?: boolean;
+    servise?: (str: string) => Promise<any>;
+}
+
+const initStates = {
+    dataSource: [],
+    str: '',
+    scrollPage: 1,
+    allData: []
+}
+type EasySelectStates = typeof initStates
+class EasySelect extends React.Component<EasySelectProps & SelectProps, EasySelectStates> {
 
     state = {
-        dataSource: [],
-        str: '',
-        scrollPage: 1,
-        allData: []
+        ...initStates
     };
 
     static getDerivedStateFromProps({ dataSource }) {
@@ -26,7 +40,7 @@ class EasySelect extends React.Component<any, any> {
         }
     }
 
-    onSearch = (str: any) => {
+    onSearch = (str: string) => {
         const { clearValueRequest = false, autoValue } = this.props;
         if (!clearValueRequest && !str) {
             // 默认清空展示上次的数据
@@ -40,7 +54,7 @@ class EasySelect extends React.Component<any, any> {
         }
     };
 
-    lazyDataSource = (data: any) => {
+    lazyDataSource = (data: any[]) => {
         const { scrollPage = 1 } = this.state;
         const { isLazy = true } = this.props;
         if (data.length > (scrollPage * 100) && isLazy) {
@@ -55,7 +69,7 @@ class EasySelect extends React.Component<any, any> {
         }
     }
 
-    getDataSource = async (str: any) => {
+    getDataSource = async (str: string) => {
         const { servise } = this.props;
         if (servise) {
             await servise(str).then((res: any) => {
