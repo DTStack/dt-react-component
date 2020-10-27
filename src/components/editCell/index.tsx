@@ -27,7 +27,7 @@ export default class EditCell extends React.PureComponent<EditCellProps, EditCel
 
     onEdit = () => this.setState({ isEdit: true });
 
-    onChangeEdit = (e: any) => {
+    onChangeEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         this.setState({
             editValue: value ? value.slice(0, 20) : ''

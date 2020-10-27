@@ -15,7 +15,7 @@ hljs.registerLanguage('sql', sql);
 showdown.extension('highlight', function () {
     return [{
         type: 'output',
-        filter: function (text: any, converter: any, options: any) {
+        filter: function (text: string, converter: any, options: any) {
             const left = '<pre><code\\b[^>]*>';
             const right = '</code></pre>';
             const flags = 'g';

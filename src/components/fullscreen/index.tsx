@@ -9,7 +9,7 @@ declare var document: any;
 
 export interface FullScreenProps {
     themeDark?: boolean;
-    target?: any;
+    target?: string;
     customIcon?: boolean;
     iconStyle?: object;
     fullIcon?: React.ReactNode;
@@ -20,7 +20,7 @@ export interface FullScreenButtonState {
     isFullScreen: boolean;
 }
 export default class FullScreenButton extends React.Component<FullScreenProps, FullScreenButtonState> {
-    state: any = {
+    state: FullScreenButtonState = {
         isFullScreen: false
     }
     /**
@@ -73,7 +73,7 @@ export default class FullScreenButton extends React.Component<FullScreenProps, F
             document.onwebkitfullscreenchange = null;
         }
     }
-    keyPressFullScreen = (evt: any) => {
+    keyPressFullScreen = (evt: React.KeyboardEvent) => {
         evt.preventDefault();
         this.fullScreen();
     }

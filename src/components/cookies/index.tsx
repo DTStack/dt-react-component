@@ -18,8 +18,8 @@ export interface CookiesProps {
  */
 const defaultIntervalTime = 200;
 class Cookies extends React.Component<CookiesProps, any> {
-    _currentCookies: any;
-    _timerId: any;
+    _currentCookies: string;
+    private _timerId: NodeJS.Timer | null = null;;
 
     componentDidMount () {
         this.initEvent();

@@ -30,10 +30,10 @@ export default class EditInput extends React.PureComponent<EditInputProps, EditI
             })
         }
     }
-    onChangeInput = (e: any) => {
+    onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.props.onChange(e)
     }
-    onChangeValue = (e: any) => {
+    onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
         const { max } = this.props;
         if (value && max && value.length > max) {

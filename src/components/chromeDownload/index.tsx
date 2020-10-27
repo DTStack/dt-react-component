@@ -12,7 +12,7 @@ export default class ChromeDownload extends React.Component<ChromeDownloadProps,
     constructor(props: ChromeDownloadProps) {
         super(props);
     }
-    renderDivide (name: any) {
+    renderDivide (name: string) {
         let divideLine = Array(25).fill('-');
         return <div>
             <span style={{ color: '#BFBFBF' }}>{divideLine.join(' ')}</span>
