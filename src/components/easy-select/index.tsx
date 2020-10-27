@@ -12,6 +12,11 @@ class EasySelect extends React.Component<any, any> {
         allData: []
     };
 
+    static getDerivedStateFromProps({ dataSource }) {
+        if (dataSource.length !== 0) return { dataSource }
+        return null
+    }
+
     componentDidMount = () => {
         const { autoValue = '', dataSource = [] } = this.props;
         if (dataSource.length > 0) {
@@ -69,7 +74,7 @@ class EasySelect extends React.Component<any, any> {
         e.persist();
         const { target } = e;
         const { str, scrollPage, allData } = this.state;
-        if (target.scrollTop + target.offsetHeight === target.scrollHeight && allData.length > 0) {
+        if (target.scrollTop + target.offsetHeight + 2 === target.scrollHeight && allData.length > 0) {
             const nextScrollPage = scrollPage + 1;
             this.setState({ scrollPage: nextScrollPage },() => this.getDataSource(str));
         }
