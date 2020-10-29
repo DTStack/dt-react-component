@@ -9,6 +9,7 @@ interface EasySelectProps {
     dataSource?: any[];
     clearValueRequest?: boolean;
     isLazy?: boolean;
+    auto?: boolean;
     filterLocal?: boolean;
     servise?: (str: string) => Promise<any>;
 }
@@ -27,15 +28,15 @@ class EasySelect extends React.Component<EasySelectProps & SelectProps, EasySele
     };
 
     static getDerivedStateFromProps({ dataSource }) {
-        if (dataSource.length !== 0) return { dataSource }
+        if (dataSource && dataSource.length !== 0) return { dataSource }
         return null
     }
 
     componentDidMount = () => {
-        const { autoValue = '', dataSource = [] } = this.props;
+        const { autoValue = '', dataSource = [], auto = false } = this.props;
         if (dataSource.length > 0) {
             this.lazyDataSource(dataSource)
-        } else {
+        } else if(auto) {
             this.getDataSource(autoValue);
         }
     }
