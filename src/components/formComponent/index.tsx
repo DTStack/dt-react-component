@@ -30,7 +30,7 @@ interface ItemType {
     layout?: {};
     getFieldDecorator: any;
 }
-export const RenderFormItem = ({ item, layout, getFieldDecorator }: ItemType) => {
+export default function RenderFormItem({ item, layout, getFieldDecorator }: ItemType) {
     const { label, key, required, component, options = {}, rules } = item
     return (
         <FormItem key={key} label={label} colon {...layout} className={options.className} >

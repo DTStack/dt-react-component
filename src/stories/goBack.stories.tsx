@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import GoBack from '../components/go-back';
+import GoBack from '../components/goBack';
 
 const stories = storiesOf('GoBack 返回', module);
 stories.addDecorator(withKnobs)

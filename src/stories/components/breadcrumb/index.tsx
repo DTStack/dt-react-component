@@ -1,6 +1,6 @@
 import React from 'react'
 import { createMemoryHistory, Router, Route } from 'react-router'
-import { BreadcrumbRender } from '../../../components/breadcrumb';
+import  BreadcrumbRender  from '../../../components/breadcrumb';
 
 const history = createMemoryHistory()
 
