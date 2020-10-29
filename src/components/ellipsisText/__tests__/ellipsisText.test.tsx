@@ -4,7 +4,7 @@ import EllipsisText from '../index';
 
 describe('ellipsisText Component test', () => {
     test('should render correct', () => {
-        const expectValues = {
+        const expectValues: any = {
             value: '显示的文本',
             width: '100px',
             className: 'test-class-name',
