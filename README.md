@@ -76,6 +76,11 @@ import 'dt-react-component/lib/markdownRender/style/css'; // Load CSS
 ### TypeScript
 dt-react-component is written in TypeScript with complete definitions, So you will have a better smart reminder experience.
 
+### Preview address
+You can view the latest components and documents at this address
+
+[https://dtstack.github.io/dt-react-component/](https://dtstack.github.io/dt-react-component/)
+
 
 ## Development
 
@@ -89,6 +94,10 @@ $ npm run storybook
 ```
 Open your browser and visit [http://127.0.0.1:9001](http://127.0.0.1:9001)，We manage components based on stroybook. see more at [Storybook](https://storybook.js.org/).
 
+## Roadmap
++ We will support and improve more components
++ Internationalized language support
++ Support theme customization
 
 ## Contributing
 
