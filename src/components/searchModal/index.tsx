@@ -11,9 +11,9 @@ export interface SearchModalProps {
     visible: boolean;
     name?: 'notebook';
     title?: string;
-    onChange?: Function;
-    onSelect?: Function;
-    onCancel?: Function;
+    onChange?: (value: string, callback: Function, search?: typeof TASK_STATUS) => void;
+    onSelect?: (value: string) => void;
+    onCancel?: () => void;
     [propName: string]: any;
 }
 class SearchModal extends React.Component<SearchModalProps, any> {

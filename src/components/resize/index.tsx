@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-interface IProps {
+export interface ResizeProps {
     onResize?: Function;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
-export default class Resize extends React.Component<IProps, any> {
+export default class Resize extends React.Component<ResizeProps, any> {
     componentDidMount () {
         window.addEventListener('resize', this.resize, false)
     }

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Tooltip } from 'antd';
 import { isEmpty } from 'lodash';
-
+type TooltipPlacement = "top" | "left" | "right" | "bottom" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom"
 interface IProps {
-    placement?: any;
-    style?: any;
+    placement?: TooltipPlacement;
+    style?: React.CSSProperties;
     className?: string;
-    value: string;
+    value: string | number;
 }
 
 export default (props: IProps) => {

@@ -13,13 +13,13 @@ interface IProps {
     style?: React.CSSProperties;
 }
 
-export function BreadcrumbRender (props: IProps) {
+export default function BreadcrumbRender (props: IProps) {
     const { routes, style = {} } = props;
     const len = routes.length - 1;
     return (
         <div style={style} data-testid="test-breadcrumb">
             <Breadcrumb>
-                {routes.map((item: any, index: number) => (
+                {routes.map((item: Route, index: number) => (
                     <BreadcrumbItem key={item.path}>
                         {index == len ? (
                             item.name

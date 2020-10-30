@@ -2,60 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.4.1](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v1.4.0...v1.4.1) (2020-08-03)
-
-
-### Build System
-
-* **upgrade:** upgrade react 16.13.0 and update docs ([39aca00](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/39aca00))
-
-
-
-## [1.4.0](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v1.3.0...v1.4.0) (2020-07-29)
+## [2.0.0](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v1.4.1...v2.0.0) (2020-10-30)
 
 
 ### Bug Fixes
 
-* **baseform:** reolve conflicts ([6eb18e2](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/6eb18e2))
-* **formComponent:** reolve conflicts ([b87334a](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b87334a))
-* **optimize:** optimize ([d6c537e](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/d6c537e))
-* delete snapshot ([bb2d0f0](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/bb2d0f0))
-* export Error component ([69ce356](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/69ce356))
-* modalWithForm compile error ([6fa1802](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/6fa1802))
+* coordinate and windows scroll issue ([501aff4](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/501aff4))
+* delete useless code ([fcc0b4a](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/fcc0b4a))
+* environment variable judgment conflict ([f9b3d77](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/f9b3d77))
+* filterOption add type ([18dddbb](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/18dddbb))
+* fix eslint syntax error ([4876267](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4876267))
+* fix import name issue ([c997f5c](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/c997f5c))
+* fix import path and some file name ([9293459](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/9293459))
+* fixed file reference path ([8ae9a4b](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/8ae9a4b))
+* fixed storybook instance ([937da9b](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/937da9b))
+* **commit:** fix commit config ([97e58eb](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/97e58eb))
+* **easyselect:** update auto and fix dataSource is null ([c0ed413](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/c0ed413))
+* **type:** scrollTest Comp type fix ([7d5f9f6](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/7d5f9f6))
+* modify file name ([4f9c6b4](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4f9c6b4))
+
+
+### Build System
+
+* reorganization order and add prettier ([acc682b](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/acc682b))
+* update eslint config and fix eslint error ([50644d5](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/50644d5))
+* update package-lock.json ([04cd527](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/04cd527))
+* update package.json and add gulp dependency ([76a5e45](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/76a5e45))
 
 
 ### Features
 
-* add dt_global_loading_div ([443c776](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/443c776))
-* add dtc ([cbc76dc](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/cbc76dc))
-* add editCell [#11](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/11) ([7ef0ff7](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/7ef0ff7))
-* add ellipsisText and mulSelectDropdown comp ([665cec5](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/665cec5))
-* add ErrorBoundary [#13](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/13) ([8d24fca](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/8d24fca))
-* add globalLoading ([047dfef](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/047dfef))
-* add GlobalLoadingProps ([ee4ab0f](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/ee4ab0f))
-* add style ([e645bfe](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/e645bfe))
-* change background defaltValus ([4c9ad0a](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4c9ad0a))
-* change mainBackground and add test ([6f653b8](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/6f653b8))
-* change name [#13](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/13) ([e8cc815](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/e8cc815))
-* change name ModalWithForm [#10](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/10) ([e7e9f08](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/e7e9f08))
-* change style ([925c462](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/925c462))
-* **readme:** update readme ([fcc374a](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/fcc374a))
-* components/index ([4211c40](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4211c40))
-* **add baseform:** add BaseForm [#10](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/10) ([37c4e12](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/37c4e12))
-* **add editCell:** add editCell [#11](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/11) ([a64f274](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/a64f274))
-* **add editinput:** add editInput [#12](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/12) ([44d9dda](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/44d9dda))
-* **add error:** add error component [#8](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/8) ([7e7adf9](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/7e7adf9))
-* **add formitem:** add formItem component ([a2e1503](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/a2e1503))
-* **baseform:** resolve conflicts ([3c27bc6](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/3c27bc6))
-* **baseForm:** [#10](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/10) ([fe95bcb](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/fe95bcb))
-* **baseForm:** [#10](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/10) ([4bf9dcc](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4bf9dcc))
-* **breadcrumb:** show propType ([ca3e006](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/ca3e006))
-* **breadcrumbRoute:** rafactor breadCrumb ([6cd091d](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/6cd091d))
-* **editInput:** resolve conflicts ([5b138e4](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/5b138e4))
-* **errorBoundary:** rafactor errorBoundary [#13](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/13) ([935e4c0](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/935e4c0))
-* resolve conflict [#10](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/10) ([a3964fb](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/a3964fb))
-* resolve conflict [#10](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/10) ([f523041](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/f523041))
-* **formComponent:** [#7](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues/7) ([84ab770](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/84ab770))
+* add css build and remove sass-node to build global style ([9a97115](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/9a97115))
+* add js file to imported style file ([190f273](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/190f273))
+* add lazyDataSource ([5a31c1f](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/5a31c1f))
+* add multiSearchInput test ([c0fcb43](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/c0fcb43))
+* add slidePane test case ([92d0e3d](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/92d0e3d))
+* **architecture:** optimize architecture ([6dc598a](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/6dc598a))
+* add styles on demand ([0636f6a](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/0636f6a))
+* optimizing semantics ([ce58871](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/ce58871))
+* restore configuration file ([72c6b95](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/72c6b95))
+* restore jest configuration ([ecbd0fc](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/ecbd0fc))
+* support style loading on demand ([6fd05e2](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/6fd05e2))
+* update global file ([d317f6e](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/d317f6e))
+* update storybook description document ([b981002](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b981002))
+* **easyselect:** custom lazy loading ([91348ac](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/91348ac))
+
+
+### Tests
+
+* **multiSearchInput:** 解决晨风提的键盘事件mockFunction无法触发的问题 ([b59fa20](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b59fa20))
+* add easySelect test ([4201cf4](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4201cf4))
+* correct import form ([df20482](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/df20482))
+* update reference path ([b41e292](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b41e292))
 
 
 

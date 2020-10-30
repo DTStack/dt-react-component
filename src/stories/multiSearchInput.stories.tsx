@@ -30,6 +30,7 @@ const propDefinitions = [{
 }]
 const stories = storiesOf('MultiSearchInput 多功能 Input', module);
 stories.add('multiSearchInput', () => {
+    let searchType: any = store.get('searchType')
     return (
         <div className='story_wrapper'>
             <h2>何时使用</h2>
@@ -40,7 +41,7 @@ stories.add('multiSearchInput', () => {
                     placeholder="按名称搜索"
                     style={{ width: '250px', height: '26px' }}
                     value={null}
-                    searchType={store.get('searchType')}
+                    searchType={searchType}
                     onChange={(value: string) => {
                         console.log('value', value)
                         store.set({
