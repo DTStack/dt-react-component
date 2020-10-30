@@ -1,104 +1,101 @@
-# dt-react-component | [CHANGELOG](./CHANGELOG.md)
+# dt-react-component
 
-## 组件库
+React UI component library based on ant-design. Mainly used for middle and back-end products. Most importantly, its purpose is not to replace excellent component libraries such as ant-design and element-ui. Our goal is to **meet more specific and more specific business scenario components**. Of course, we also have excellent business components based on native javascript, such as **ContextMenu**, **KeyEventListener** and so on.
 
-目的：减少代码重复率，便于新同学对组件使用以及团队内部项目的代码优化
+## When to use
++ When you find that the basic components provided by other component libraries do not meet the current business scenario, and you need to implement functions based on the basic components, you can use dt-react-component to solve the problem.
++ When the business is complex, more and more business components are deposited. In order to better manage the components and reduce the redundancy of the code, you can use dt-react-component. Of course, we welcome PR. We will review and merge common business scenario components in a timely manner.
 
-## :zap: 安装
+## Install
 
-> 使用 npm
+```js
+// use npm
+npm install dt-react-component
 
-```plain
-npm i dt-react-component --save
+// use yarn
+yarn add dt-react-component
 ```
 
-## :book: 如何使用
+## Usage
 
-1. Usage
-
-```plain
+```js
 import { Circle, GoBack } from 'dt-react-component'
 const App = () => (
   <>
-    <Circle />
+    <Circle type='finished'/>
     <GoBack url='/api/manage' />
   </>
 );
 ```
+And import style manually:
 
-样式引入-目前支持 sass 引入或 css 引入
-
-sass 引入：
-
-```plain
-import 'dt-react-component/lib/style/index.scss'
-```
-
-css 引入：
-
-```plain
+```js
 import 'dt-react-component/lib/style/index.css'
+
+// or
+import 'dt-react-component/lib/style/index.scss'
+
 ```
 
-2. 按需引入
+### Load on demand
 
-```plain
-import { Circle } from 'dt-react-component/lib/circle'
+The following two methods can only load the components used.
++ We strongly recommend using the [babel-plugin-treasure](https://github.com/DTStack/babel-plugin-treasure) plugin that perfectly adapts to dt-react-component.
+
+```js
+// .babelrc or babel-loader option
+"plugins": [
+    [
+      "treasure",
+      {
+        "libraryName": "dt-react-component",
+        "libraryDirectory": "lib",
+        "style": "css" // `style: true` Will load the scss file
+      }
+    ]
+  ]
+
 ```
 
-样式不需要按需引入，交给 babel 处理即可，特殊情况可以按以下方式导入：
+Then just import the module from dt-react-component, no need to import style separately. It is equivalent to the manual introduction below.
 
-```plain
-import 'dt-react-component/lib/组件名称/style/index.css'
+```js
+// babel-plugin-treasure will help you load JS and CSS
+import { ContextMenu } from 'dt-react-component';
+```
+See more [babel-plugin-treasure](https://github.com/DTStack/babel-plugin-treasure).
+
++ Manual introduction
+
+```js
+import MarkdownRender from 'dt-react-component/lib/markdownRender'; // Load JS
+import 'dt-react-component/lib/markdownRender/style/css'; // Load CSS
+// import 'dt-react-component/lib/markdownRender/style'; // Load SCSS
 ```
 
-或
+### TypeScript
+dt-react-component is written in TypeScript with complete definitions, So you will have a better smart reminder experience.
 
-```plain
-import 'dt-react-component/lib/组件名称/style/index.scss'
+
+## Development
+
+clone locally:
+
+```js
+$ git clone ssh://git@gitlab.prod.dtstack.cn:10022/dt-insight-front/infrastructure/dt-react-component.git
+$ cd dt-react-component
+$ npm install
+$ npm run storybook
 ```
+Open your browser and visit [http://127.0.0.1:9001](http://127.0.0.1:9001)，We manage components based on stroybook. see more at [Storybook](https://storybook.js.org/).
 
-## :wrench: 本地开发
 
-**clone & npm install**
+## Contributing
 
-```plain
-git clone ssh://git@gitlab.prod.dtstack.cn:10022/dt-insight-front/infrastructure/dt-react-component.git
-npm install
-```
+We welcome all contributions. You can submit any ideas as [pull requests](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/merge_requests) or as [issues](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/issues).
 
-**启动本地服务器**
+Finally, thank all our code [contributors](https://github.com/DTStack/dt-react-component/graphs/contributors)
 
-```plain
- npm run storybook
-```
+## License
 
-**组件开发**
-
-- src/components 目录下编写组件
-- src/stories 目录下编写 storybook 文档
-- npm run storybook 本地文档预览
-
-**静态服务部署构建**
-
-```plain
-npm run build-storybook
-```
-
-**组件发布至 npm** **在按照一些列组件开发规范流程下，测试组件无问题后进行组件发布**
-
-```plain
-npm run compile 输出 lib 目录
-登陆 npm 执行 npm publish
-```
-
-## :ferris_wheel: 预览地址
-
-[https://dtstack.github.io/dt-react-component/](https://dtstack.github.io/dt-react-component/)
-
-## :blue_book: 相关资料
-
-- [Storybook](https://storybook.js.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [jest](https://jestjs.io/)
-- [enzymejs](https://enzymejs.github.io/enzyme/)
+ISC
