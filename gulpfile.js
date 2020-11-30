@@ -1,4 +1,4 @@
-const { src, dest, parallel, series, task } = require('gulp');
+const { src, dest, parallel, series } = require('gulp');
 const fs = require('fs');
 const through = require('through2');
 const sass = require('gulp-sass');
@@ -52,19 +52,20 @@ function traverseExistStyleFile(isDelete) {
         existStyleCatalogName.push(file.relative.split('/')[0]);
       }
       callback();
-    })).on('end', function () {
+    })).on('end', async function () {
       const noStyleComp = difference(unique(componentCatalogName), unique(existStyleCatalogName));
       if (isDelete) {
         delStyleFile(noStyleComp)
         console.log('delStyleFile exec end')
       } else {
-        writeStyleFile(noStyleComp)
+        await writeStyleFile(noStyleComp)
+        await outputStyleTask()
         console.log('writeStyleFile exec end')
       }
     })
 }
 function traverseComponent() {
-  console.warn('Do not edit or modify the source file when the project is compiled !!!')
+  console.warn('Do not edit the source file when the project is compiled !!!')
   return src(['src/components/*/', '!src/components/utils/']) // exclude utils/
     .pipe(through.obj(function (file, enc, callback) {
       componentCatalogName.push(file.relative.split('/')[0]);
@@ -148,4 +149,4 @@ function jsForCss(data) {
     .pipe(babel())
     .pipe(dest('lib/' + String(data) + '/style/'));
 }
-exports.default = series(clean, generateStyleFile, parallel(outputStyleTask, globalSass), globalCss, cleanUselessStyleFile);
+exports.default = series(clean, generateStyleFile, parallel(globalSass), globalCss, cleanUselessStyleFile);
