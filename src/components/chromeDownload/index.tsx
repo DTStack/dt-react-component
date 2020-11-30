@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import utils from '../utils';
 const prefixCls = 'dtc-chrome';
 export default class ChromeDownload extends React.Component<any, any> {

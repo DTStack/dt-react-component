@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { Input, Tooltip } from 'antd';
-import * as React from 'react';
+import React from 'react'
 
 const searchTypeList: any = [
     {

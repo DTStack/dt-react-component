@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { Checkbox, Dropdown, Button, Divider } from 'antd';
 import { isEqual } from 'lodash';
 

@@ -1,5 +1,5 @@
 
-import * as React from 'react';
+import React from 'react'
 
 /**
  * Cookies 组件

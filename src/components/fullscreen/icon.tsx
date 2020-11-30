@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import classNames from 'classnames'
 export default class Icon extends React.Component<any, any> {
     getBase64ImgSrc = (type: boolean, themeDark: boolean): string => {

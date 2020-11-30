@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react'
+import KeyCombiner from './listener'
 
 export default class KeyEventListener extends React.Component<any, any> {
     componentDidMount () {
