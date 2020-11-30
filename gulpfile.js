@@ -1,4 +1,5 @@
 const { src, dest, parallel, series } = require('gulp');
+const fs = require('fs');
 const through = require('through2');
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
@@ -23,7 +24,16 @@ function outputStyleTask() {
       jsForScss(data);
     });
 }
-
+function descriptionDoc() {
+  fs.writeFile('src/index.tsx',"import './style.scss';",{'flag':'a'},(err)=>{
+    if(err) {
+      throw err;
+    }
+  })
+  return src('src/index.tsx')
+  .pipe(ts({ declaration: true, target: 'ES5' }))
+  .pipe(dest('src/'))
+}
 function convertStyles(data) {
   return src(['src/components/' + String(data) + '/*.scss'])
     .pipe(dest('lib/' + String(data) + '/style/'))
@@ -37,11 +47,13 @@ function globalSass() {
     .pipe(concat('index.scss'))
     .pipe(dest('lib/style'));
 }
+
 async function clean(cb) {
-  await del(['lib']);
+  await del(['lib','src/index.tsx','src/index.d.ts','src/index.js']);
   await cb();
 }
 function globalCss() {
+  del(['src/index.tsx','src/index.d.ts','src/index.js'])
   return src('lib/**/*.scss')
     .pipe(concat('index.css'))
     .pipe(sass())
@@ -50,8 +62,7 @@ function globalCss() {
     .pipe(dest('lib/style'));
 }
 function jsForScss(data) {
-  return src('src/index.tsx')
-    .pipe(ts({ declaration: true, target: 'ES5' }))
+  return src('src/index.js')
     .pipe(dest('lib/' + String(data) + '/style/'));
 }
 function jsForCss(data) {
@@ -60,4 +71,4 @@ function jsForCss(data) {
     .pipe(babel())
     .pipe(dest('lib/' + String(data) + '/style/'));
 }
-exports.default = series(clean, parallel(outputStyleTask, globalSass), globalCss);
+exports.default = series(clean, descriptionDoc ,parallel(outputStyleTask, globalSass), globalCss);
