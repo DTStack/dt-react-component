@@ -119,19 +119,10 @@ function outputStyleTask(componentCatalogName) {
   ) {
     componentCatalogName.map(componentName => {
       convertStyles(componentName);
-      jsForCss(componentName);
-      jsForScss(componentName);
     });
     return Promise.resolve('Components style file output completed');
   }
   throw new TypeError('Function parameter must be a non-empty sequence');
-}
-
-function convertStyles(data) {
-  return src(['src/components/' + String(data) + '/*.scss'])
-    .pipe(dest('lib/' + String(data) + '/style/'))
-    .pipe(sass())
-    .pipe(dest('lib/' + String(data) + '/style/'));
 }
 
 function globalSass() {
@@ -155,23 +146,33 @@ function globalCss() {
     .pipe(cleanCSS({ compatibility: 'ie11' }))
     .pipe(dest('lib/style'));
 }
-function jsForScss(data) {
-  const fileList = ['index.js', 'index.d.ts'];
-  fileList.forEach(fileName => {
-    outputDescriptionWithSass(data, fileName);
-  });
-  return Promise.resolve('Description & SaSS file output completed');
+
+function convertStyles(data) {
+  return mergeStream(
+    outputForCss(data),
+    outputForSaSS(data,'index.js'),
+    outputForSaSS(data,'index.d.ts'),
+    outputForCssFile(data)
+  );
 }
 
-function outputDescriptionWithSass(data, fileName) {
-  return src(`${folderName}/${fileName}`).pipe(dest('lib/' + String(data) + '/style/'));
+function outputForSaSS(data, fileName){
+  return src(`${folderName}/${fileName}`)
+    .pipe(dest('lib/' + String(data) + '/style/'))
 }
 
-function jsForCss(data) {
+function outputForCssFile(data){
   return src(`${folderName}/index.tsx`)
-    .pipe(rename('css.tsx'))
-    .pipe(babel())
-    .pipe(dest('lib/' + String(data) + '/style/'));
+  .pipe(rename('css.tsx'))
+  .pipe(babel())
+  .pipe(dest('lib/' + String(data) + '/style/'))
+}
+
+function outputForCss(data) {
+  return src(['src/components/' + String(data) + '/*.scss'])
+  .pipe(dest('lib/' + String(data) + '/style/'))
+  .pipe(sass())
+  .pipe(dest('lib/' + String(data) + '/style/'))
 }
 
 exports.default = series(
