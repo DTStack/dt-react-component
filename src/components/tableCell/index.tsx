@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default function TableCell (props: any) {
-    const originStyle: any = {
+export interface TableCellProps {
+    value?: string;
+    style?: React.CSSProperties;
+}
+export default function TableCell(props: TableCellProps) {
+    const originStyle: React.CSSProperties = {
         textIndent: '5px',
         backgroundColor: 'transparent',
         backgroundImage: 'none',

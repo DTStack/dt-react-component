@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Circle } from '../index';
+import Circle from '../index';
 import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 

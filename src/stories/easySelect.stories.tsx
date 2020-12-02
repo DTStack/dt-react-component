@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import jsonp from 'fetch-jsonp';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import EasySelect from '../components/easy-select';
+import EasySelect from '../components/easySelect';
 import './style/easySelect.scss'; // api文档页面特殊样式，暂时不引入公共样式，单独引入此文件
 
 const stories = storiesOf('EasySelect 下拉框', module);
@@ -15,6 +15,11 @@ const servise = (str: any) =>
             label: item[0],
             value: item[1]
         })));
+const options = [];
+for (let i = 0; i < 100000; i++) {
+    const value = i.toString(36);
+    options.push(value);
+}
 const propDefinitions = [
     {
         property: 'dataSource',
@@ -62,6 +67,13 @@ const propDefinitions = [
         required: false,
         description: <div className="strory-dt_easy_select_divDesc">清空当前选项是否执行请求(默认清空当前选项不进行服务端请求).</div>,
         defaultValue: 'false'
+    },
+    {
+        property: 'isLazy',
+        propType: 'boolean',
+        required: false,
+        description: <div className="strory-dt_easy_select_divDesc">数据超过一百是否懒加载，默认为true</div>,
+        defaultValue: 'true'
     }]
 stories.add('EasySelect', () => (
     <div className='story_wrapper'>
@@ -104,6 +116,13 @@ stories.add('EasySelect', () => (
         <EasySelect
             style={{ width: '100%' }}
             servise={servise}
+            onChange={(val: any, option: any) => { console.log(val, option) }}
+        />
+        <p className="strory-dt_easy_select_p">6、大数据(虚拟滚动)</p>
+        <EasySelect
+            style={{ width: '100%' }}
+            filterLocal
+            dataSource={options}
             onChange={(val: any, option: any) => { console.log(val, option) }}
         />
     </div>
@@ -158,6 +177,20 @@ stories.add('EasySelect', () => (
                             value: item[1]
                     })))
                 }
+                onChange={(val: any, option: any) => { console.log(val, option) }}
+            />
+            ~~~
+            ~~~js
+            // 大数据(虚拟滚动)
+            <EasySelect
+                style={{ width: '100%' }}
+                filterLocal
+                dataSource={options} 
+                // const options = [];
+                // for (let i = 0; i < 100000; i++) {
+                //     const value = i.toString(36)
+                //     options.push(value);
+                // }
                 onChange={(val: any, option: any) => { console.log(val, option) }}
             />
             ~~~

@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { object } from '@storybook/addon-knobs';
-import { Circle } from '../components/circle';
+import Circle from '../components/circle';
 import { PropsTable } from './components/propsTable';
 import './style/index.scss';
 import '../styles/index.scss';

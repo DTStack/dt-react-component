@@ -29,19 +29,24 @@ const searchTypeList: any = [
     }
 ];
 
+type SearchType = 'fuzzy' | 'precise' | 'front' | 'tail';
+
 export interface MultiSearchInputProps {
     placeholder?: string;
-    style?: object;
-    value?: any; // input框的值
-    onChange?: any;
-    onSearch?: any;
-    onTypeChange?: any;
-    searchType?: string; // input框中选中的筛选方式
-    filterOptions?: any[]; // 数组
+    style?: React.CSSProperties;
+    value?: string; // input框的值
+    onChange?: (value: string) => void;
+    onSearch?: (value: string, searchType: SearchType) => void;
+    onTypeChange?: (searchType: SearchType) => void;
+    searchType?: SearchType; // input框中选中的筛选方式
+    filterOptions?: (SearchType)[]; // 数组
     [propName: string]: any;
 }
 
-class MultiSearchInput extends React.Component<MultiSearchInputProps, any> {
+export interface MultiSearchInputStates {
+    
+}
+class MultiSearchInput extends React.Component<MultiSearchInputProps, MultiSearchInputStates & MultiSearchInputProps> {
     constructor(props: any) {
         super(props);
         this.state = {

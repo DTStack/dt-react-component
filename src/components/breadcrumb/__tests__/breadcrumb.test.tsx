@@ -1,5 +1,5 @@
 import React from 'react'
-import { BreadcrumbRender } from '../index';
+import BreadcrumbRender from '../index';
 import { render, fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 import { createMemoryHistory, Router, Route, IndexRoute } from 'react-router'

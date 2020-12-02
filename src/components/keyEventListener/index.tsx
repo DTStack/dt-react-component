@@ -1,7 +1,14 @@
 import React from 'react'
 import KeyCombiner from './listener'
 
-export default class KeyEventListener extends React.Component<any, any> {
+export interface KeyEventListenerProps {
+    onKeyDown?: (e) => void;
+    onKeyUp?: (e) => void;
+    children?: React.ReactNode;
+}
+
+export default class KeyEventListener extends React.Component<KeyEventListenerProps, any> {
+    static KeyCombiner=KeyCombiner
     componentDidMount () {
         addEventListener('keydown', this.bindEvent, false)
         addEventListener('keyup', this.bindEvent, false)
@@ -12,7 +19,7 @@ export default class KeyEventListener extends React.Component<any, any> {
         removeEventListener('keyup', this.bindEvent, false)
     }
 
-    bindEvent = (target: any) => {
+    bindEvent = (target: MouseEvent) => {
         const { onKeyDown, onKeyUp } = this.props;
         const isKeyDown = target.type === 'keydown';
 

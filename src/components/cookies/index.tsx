@@ -1,15 +1,25 @@
 
 import React from 'react'
 
+interface Filds {
+    key?: string;
+    value? : string;
+}
+export interface CookiesProps {
+    watchFields?: string[];
+    onChanged?: (old: string, newCookie: string) => void;
+    onFieldsChanged?: (fields: Filds[]) => void;
+    children?: React.ReactNode;
+}
 /**
  * Cookies 组件
  * 用法：
  * <Cookies onChanged={callback}></Cookies>
  */
 const defaultIntervalTime = 200;
-class Cookies extends React.Component<any, any> {
-    _currentCookies: any;
-    _timerId: any;
+class Cookies extends React.Component<CookiesProps, any> {
+    _currentCookies: string;
+    private _timerId: NodeJS.Timer | null = null;;
 
     componentDidMount () {
         this.initEvent();
@@ -29,10 +39,10 @@ class Cookies extends React.Component<any, any> {
         }
     }
 
-    onFieldsChange = (old: any, newCookies: any) => {
+    onFieldsChange = (old: string, newCookies: string) => {
         const { watchFields, onFieldsChanged } = this.props;
         if (watchFields) {
-            const changedFields: any = [];
+            const changedFields: Filds[] = [];
             for (let i = 0; i < watchFields.length; i++) {
                 const key = watchFields[i];
                 const originValue = this.getCookieValue(old, key);
@@ -49,7 +59,7 @@ class Cookies extends React.Component<any, any> {
     }
 
     // 根据 Cookies获取 name
-    getCookieValue = (cookies: any, name: any) => {
+    getCookieValue = (cookies: string, name: string) => {
         if (cookies) {
             const arr = cookies.match(
                 new RegExp('(^| )' + name + '=([^;]*)(;|$)')

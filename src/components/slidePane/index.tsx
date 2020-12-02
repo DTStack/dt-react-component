@@ -5,18 +5,18 @@ import React from 'react'
 import classNames from 'classnames';
 
 export interface SlidePaneProps {
-    children: any;
+    children: React.ReactNode;
     visible: boolean;
     left?: string | number;
     width?: string | number;
     className?: string;
-    style?: object;
+    style?: React.CSSProperties;
     onClose?<HTMLSpanElement, MouseEvent>(): void;
     [propName: string]: any;
 }
 
 class SlidePane extends React.Component<SlidePaneProps, any> {
-    constructor(props: any) {
+    constructor(props: SlidePaneProps) {
         super(props);
     }
 

@@ -2,19 +2,20 @@ import React from 'react'
 import { Input } from 'antd';
 import EllipsisText from '../ellipsisText';
 
-interface PropsInterface {
+type EditType = string | number;
+export interface EditCellProps {
     value: string;
     keyField: string;
     isView?: boolean;
-    onHandleEdit: Function;
+    onHandleEdit: (keyField: string, editValue: EditType) => void;
 }
-interface StateInterface {
+export interface EditCellStates {
     isEdit: boolean;
-    editValue: string | number | string[];
+    editValue: EditType;
 }
 
-export default class EditCell extends React.PureComponent<PropsInterface, StateInterface> {
-    state = {
+export default class EditCell extends React.PureComponent<EditCellProps, EditCellStates> {
+    state: EditCellStates = {
         isEdit: false,
         editValue: ''
     }
@@ -26,7 +27,7 @@ export default class EditCell extends React.PureComponent<PropsInterface, StateI
 
     onEdit = () => this.setState({ isEdit: true });
 
-    onChangeEdit = (e: any) => {
+    onChangeEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         this.setState({
             editValue: value ? value.slice(0, 20) : ''

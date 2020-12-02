@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { FaGitlab } from 'react-icons/fa';
-import MarkdownRender from '../components/markdown-render';
+import MarkdownRender from '../components/markdownRender';
 import { notShowProps } from './func';
 import './style';
 const html = require('../../CHANGELOG.md');

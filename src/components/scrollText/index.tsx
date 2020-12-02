@@ -1,6 +1,12 @@
 import React from 'react'
 
-export default function scrollText (props: any) {
+export interface ScrollTextProps {
+    value?: string;
+    style?: React.CSSProperties;
+    children?: React.ReactNode;
+}
+
+export default function scrollText (props: ScrollTextProps) {
     const style: any = {
         height: '28px',
         margin: '5px 5px 5px 0px',

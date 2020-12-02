@@ -1,14 +1,14 @@
 import React from 'react'
 import LoadError from '../loadError';
 
-interface IProps {
-    children: React.ReactNode;
+interface ErrorBoundaryProps {
+    children?: React.ReactNode;
 }
 
-interface IState {
+interface ErrorBoundaryStates {
     hasError: boolean;
 }
-export default class ErrorBoundary extends React.Component<IProps, IState> {
+export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryStates> {
     state = { hasError: false }
     // eslint-disable-next-line handle-callback-err
     static getDerivedStateFromError (error) {

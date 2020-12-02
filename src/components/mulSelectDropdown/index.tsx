@@ -2,25 +2,30 @@ import React from 'react'
 import { Checkbox, Dropdown, Button, Divider } from 'antd';
 import { isEqual } from 'lodash';
 
-interface IProps {
+interface Opts {
+    label?: string;
+    value?: string | number;
+    disabled?: boolean;
+}
+interface MulSelectDropdownProps {
     popupContainer?: any;
-    onChange?: any;
-    options: any[];
+    onChange?: (checked) => void;
+    options: Opts[];
     value: any[];
-    onOk: any;
+    onOk: (sel) => void;
     renderNode: Function;
 }
 
-interface IState {
+interface MulSelectDropdownStates {
     visible: boolean;
     selectVal: any[];
-    allKeys: any[];
-    disabledKeys: any[];
+    allKeys: Array<string|number>;
+    disabledKeys: Array<string | number>;
     indeterminate: boolean;
 }
 
-export default class MulSelectDropdown extends React.Component<IProps, IState> {
-    state: IState = {
+export default class MulSelectDropdown extends React.Component<MulSelectDropdownProps, MulSelectDropdownStates> {
+    state: MulSelectDropdownStates = {
         visible: false,
         selectVal: [],
         allKeys: [],
@@ -99,7 +104,7 @@ export default class MulSelectDropdown extends React.Component<IProps, IState> {
             <div className="dtc-option-select-overlay">
                 <Checkbox.Group onChange={this.handleCheckboxChange} value={selectVal}>
                     <div className='dtc-option-select-overlay-menu'>
-                        {options.map(item => <div className="dtc-option-select-overlay-row" key={item.value}>
+                        {options.map((item: Opts) => <div className="dtc-option-select-overlay-row" key={item.value}>
                             <Checkbox disabled={item.disabled} value={item.value} >{item.label}</Checkbox>
                         </div>)}
                     </div>

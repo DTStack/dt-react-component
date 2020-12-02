@@ -2,12 +2,20 @@ import React from 'react'
 const contextPrefix = 'dtc-context-menu';
 
 export interface ContextMenuProps {
+    key?: string;
     targetClassName?: string;
     onChange?: Function;
     [propName: string]: any;
 }
+export interface ContextMenuItemProps {
+    key?: string;
+    onClick?: () => void;
+    children?: React.ReactNode;
+    value?: string;
+    [propName: string]: any;
+}
 
-export class ContextMenuItem extends React.Component<any, any> {
+export class ContextMenuItem extends React.Component<ContextMenuItemProps, any> {
     render () {
         return (
             <li {...this.props}
@@ -21,16 +29,15 @@ export class ContextMenuItem extends React.Component<any, any> {
     }
 }
 
-export class ContextMenu extends React.Component<ContextMenuProps, any> {
-    constructor (props: any) {
+export default class ContextMenu extends React.Component<ContextMenuProps, any> {
+    constructor(props: ContextMenuProps) {
         super(props);
         this.toggleMenu = this.toggleMenu.bind(this)
         this.removeMenu = this.removeMenu.bind(this);
     }
     static ContextMenuItem = ContextMenuItem;
 
-    _contextMenus: any = [];
-    selfEle: any;
+    selfEle: HTMLElement;
 
     componentDidMount () {
         document.addEventListener('contextmenu', this.toggleMenu, false);
@@ -42,11 +49,11 @@ export class ContextMenu extends React.Component<ContextMenuProps, any> {
         document.removeEventListener('contextmenu', this.toggleMenu, false);
     }
 
-    toggleMenu (evt: any) {
+    toggleMenu(evt: MouseEvent) {
         const { targetClassName, onChange } = this.props
         const selfEle = this.selfEle
         if (!selfEle) return;
-        const parent = this.findParent(evt.target, targetClassName);
+        const parent = this.findParent(evt.target as HTMLElement, targetClassName);
 
         if (parent) {
             this.hideAll()
@@ -80,23 +87,23 @@ export class ContextMenu extends React.Component<ContextMenuProps, any> {
         }
     }
 
-    closeMenu (evt: any) {
+    closeMenu (evt: MouseEvent) {
         if (!this.selfEle) return;
         const style = this.selfEle.style;
         style.display = 'none';
     }
 
-    removeMenu (evt: any) {
+    removeMenu (evt: MouseEvent) {
         if (!this.selfEle) return
         const style = this.selfEle.style;
         style.display = 'none';
     }
 
-    findParent (child: any, selector: any) {
+    findParent(child: HTMLElement, selector: string) {
         try {
             if (!selector || !child) return;
             selector = selector.toLowerCase();
-            let node = child;
+            let node: any = child;
             while (node) {
                 if (node.nodeType === 1) { // just hand dom element
                     const className = node.getAttribute('class');
@@ -112,7 +119,7 @@ export class ContextMenu extends React.Component<ContextMenuProps, any> {
 
     render () {
         return (
-            <div ref={(e: any) => { this.selfEle = e } } className={contextPrefix} style={{ display: 'none' }}>
+            <div ref={(e) => { this.selfEle = e } } className={contextPrefix} style={{ display: 'none' }}>
                 <ul className={`${contextPrefix}-context-menu_list`}>
                     {this.props.children}
                 </ul>
@@ -120,4 +127,3 @@ export class ContextMenu extends React.Component<ContextMenuProps, any> {
         )
     }
 }
-/* eslint-disable */

@@ -10,7 +10,7 @@ export interface SwitchWindowProps {
  * 用法：
  * <SwitchWindow onSwitch={}></SwitchWindow>
  */
-class SwitchWindow extends React.Component<any, any> {
+class SwitchWindow extends React.Component<SwitchWindowProps, any> {
     componentDidMount () {
         this.initEvent();
     }

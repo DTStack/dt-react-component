@@ -2,7 +2,13 @@ import React from 'react'
 import { Icon } from 'antd/lib'
 import { browserHistory, hashHistory } from 'react-router'
 
-export default class GoBack extends React.Component<any, any> {
+export interface GoBackProps {
+    url?: string;
+    autoClose?: boolean;
+    style?: React.CSSProperties;
+    history?: boolean;
+}
+export default class GoBack extends React.Component<GoBackProps, any> {
     go = () => {
         const { url, history, autoClose } = this.props
 
@@ -22,7 +28,7 @@ export default class GoBack extends React.Component<any, any> {
     getButtonView () {
         const { style } = this.props;
 
-        let iconStyle: any = {
+        let iconStyle: React.CSSProperties = {
             cursor: 'pointer',
             fontFamily: 'anticon',
             fontSize: '18px',

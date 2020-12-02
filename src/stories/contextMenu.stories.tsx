@@ -3,7 +3,7 @@ import { Tree } from 'antd';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
-import { ContextMenu } from '../components/context-menu'
+import ContextMenu from '../components/contextMenu'
 const { TreeNode } = Tree;
 const { ContextMenuItem } = ContextMenu;
 const stories = storiesOf('ContextMenu 右键菜单', module);
