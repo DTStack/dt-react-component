@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v2.0.0...v2.0.1) (2020-12-03)
+
+
+### Bug Fixes
+
+* del useless easy-select files ([af9401f](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/af9401f))
+* fix command word ([3b4fed4](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/3b4fed4))
+* fix task exec order ([4171d11](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4171d11))
+
+
+### Build System
+
+* add gulpfile in npmignore ([5e412ef](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/5e412ef))
+* fix Load missing styles on demand ([bdbb319](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/bdbb319))
+
+
+### Features
+
+* **gitlab-ci:** update config ([9736168](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/9736168))
+
+
+
 ## [2.0.0](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v1.4.1...v2.0.0) (2020-10-30)
 
 
