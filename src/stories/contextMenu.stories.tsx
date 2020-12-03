@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { Tree } from 'antd';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 
 import CopyUtils from '../utils/copy';
 import { HotTable } from '@handsontable/react';

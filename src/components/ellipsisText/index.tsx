@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { Tooltip } from 'antd';
 import { isEmpty } from 'lodash';
 type TooltipPlacement = "top" | "left" | "right" | "bottom" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom"

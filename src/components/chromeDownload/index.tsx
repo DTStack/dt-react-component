@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import utils from '../utils';
 import classNames from 'classnames'
 const prefixCls = 'dtc-chrome';

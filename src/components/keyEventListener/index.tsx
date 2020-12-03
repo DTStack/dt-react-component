@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import KeyCombiner from './listener'
 
 export interface KeyEventListenerProps {
