@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { storiesOf } from '@storybook/react';
 import FullScreenButton from '../components/fullscreen';
 import { PropsTable } from './components/propsTable';

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { Icon } from 'antd/lib'
 import { browserHistory, hashHistory } from 'react-router'
 
