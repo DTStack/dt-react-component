@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/DTStack/dt-react-component/compare/v2.0.0...v2.0.1) (2020-12-04)
+
+
+### Bug Fixes
+
+* del useless easy-select files ([af9401f](https://github.com/DTStack/dt-react-component/commit/af9401f))
+* fix command word ([3b4fed4](https://github.com/DTStack/dt-react-component/commit/3b4fed4))
+* fix task exec order ([4171d11](https://github.com/DTStack/dt-react-component/commit/4171d11))
+
+
+### Build System
+
+* add gulpfile in npmignore ([5e412ef](https://github.com/DTStack/dt-react-component/commit/5e412ef))
+* fix Load missing styles on demand ([bdbb319](https://github.com/DTStack/dt-react-component/commit/bdbb319))
+
+
+
 ## [2.0.0](https://github.com/DTStack/dt-react-component/compare/v1.4.1...v2.0.0) (2020-10-30)
 
 
