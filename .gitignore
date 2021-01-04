@@ -3,3 +3,4 @@ storybook-static
 lib
 dist
 .temporary_files
+coverage

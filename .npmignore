@@ -17,4 +17,6 @@ storyshots.test.js
 tsconfig.build.json
 tsconfig.json
 dist
-gulpfile
+gulpfile.js
+coverage
+css-plugin.js

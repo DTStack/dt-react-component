@@ -72,7 +72,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Tests
 
-* **multiSearchInput:** 解决晨风提的键盘事件mockFunction无法触发的问题 ([b59fa20](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b59fa20))
+* **multiSearchInput:** 解决晨风提的键盘事件 mockFunction 无法触发的问题 ([b59fa20](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b59fa20))
 * add easySelect test ([4201cf4](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4201cf4))
 * correct import form ([df20482](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/df20482))
 * update reference path ([b41e292](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b41e292))

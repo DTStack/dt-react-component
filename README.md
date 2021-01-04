@@ -1,5 +1,13 @@
 # dt-react-component
 
+[![NPM version][npm-image]][npm-url] [![NPM downloads][download-img]][download-url]
+
+[npm-image]: https://img.shields.io/npm/v/dt-react-component.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/dt-react-component
+
+[download-img]: https://img.shields.io/npm/dm/dt-react-component.svg?style=flat
+[download-url]: https://www.npmjs.com/package/dt-react-component
+
 React UI component library based on ant-design. Mainly used for middle and back-end products. Most importantly, its purpose is not to replace excellent component libraries such as ant-design and element-ui. Our goal is to **meet more specific and more specific business scenario components**. Of course, we also have excellent business components based on native javascript, such as **ContextMenu**, **KeyEventListener** and so on.
 
 ## When to use
