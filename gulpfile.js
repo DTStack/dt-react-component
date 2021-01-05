@@ -18,6 +18,7 @@ const mergeStream = require('merge-stream');
 let existStyleCatalogName = [];
 let componentCatalogName = [];
 const folderName = '.temporary_files';
+const basePath = 'src/components/';
 
 function difference(array, arrCompare) {
   return array.concat(arrCompare).filter(function(v, i, arr) {
@@ -30,7 +31,7 @@ function unique(arr) {
 
 function writeStyleFile(catalogArr) {
   for (let catalogName of catalogArr) {
-    fs.writeFile(`src/components/${catalogName}/style.scss`, '', { flag: 'wx' }, err => {
+    fs.writeFile(`${basePath}${catalogName}/style.scss`, '', { flag: 'wx' }, err => {
       if (err) {
         throw err;
       }
@@ -40,7 +41,7 @@ function writeStyleFile(catalogArr) {
 
 function delStyleFile(catalogArr) {
   for (let catalogName of catalogArr) {
-    del([`src/components/${catalogName}/style.scss`]);
+    del([`${basePath}${catalogName}/style.scss`]);
   }
 }
 /**
@@ -48,7 +49,7 @@ function delStyleFile(catalogArr) {
  * @param isDelete Distinguish between write and delete style file
  */
 function traverseExistStyleFile(isDelete) {
-  return src(['src/components/*/*.scss'])
+  return src([`${basePath}*/*.scss`])
     .pipe(
       through.obj(function(file, enc, callback) {
         isExist = Boolean(file.contents.toString());
@@ -73,7 +74,7 @@ function traverseExistStyleFile(isDelete) {
 
 function traverseComponent() {
   console.warn('Do not edit the source file when the project is compiled !!!');
-  return src(['src/components/*/', '!src/components/utils/']) // exclude utils/
+  return src([`${basePath}*/`, `!${basePath}utils/`]) // exclude utils/
     .pipe(
       through.obj(function(file, enc, callback) {
         componentCatalogName.push(file.relative.split('/')[0]);
@@ -126,7 +127,7 @@ function outputStyleTask(componentCatalogName) {
 }
 
 function globalSass() {
-  return src('src/components/**/*.scss')
+  return src(`${basePath}**/*.scss`)
     .pipe(concat('index.scss'))
     .pipe(dest('lib/style'));
 }
@@ -169,7 +170,7 @@ function outputForCssFile(data){
 }
 
 function outputForCss(data) {
-  return src(['src/components/' + String(data) + '/*.scss'])
+  return src([`${basePath}` + String(data) + '/*.scss'])
   .pipe(dest('lib/' + String(data) + '/style/'))
   .pipe(sass())
   .pipe(dest('lib/' + String(data) + '/style/'))
