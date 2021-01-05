@@ -20,3 +20,4 @@ dist
 gulpfile.js
 coverage
 css-plugin.js
+yarn.lock
