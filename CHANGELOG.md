@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](https://github.com/DTStack/dt-react-component/compare/v2.0.1...v2.0.2) (2021-01-05)
+
+
+### Bug Fixes
+
+* fix css demand load error due to styles name ([781691a](https://github.com/DTStack/dt-react-component/commit/781691a))
+* fix ellipsisText style ([1dbe3ae](https://github.com/DTStack/dt-react-component/commit/1dbe3ae))
+
+
+### Build System
+
+* **deps:** bump highlight.js from 9.14.2 to 10.4.1 ([abbce2f](https://github.com/DTStack/dt-react-component/commit/abbce2f))
+* **package:** update some pkg version ([c41e1a2](https://github.com/DTStack/dt-react-component/commit/c41e1a2))
+
+
+### Features
+
+* codesanbox example add ([1d8125e](https://github.com/DTStack/dt-react-component/commit/1d8125e))
+* sync code ([fdb7f69](https://github.com/DTStack/dt-react-component/commit/fdb7f69))
+* **gitlab-ci:** update config ([9736168](https://github.com/DTStack/dt-react-component/commit/9736168))
+
+
+
 ### [2.0.1](https://github.com/DTStack/dt-react-component/compare/v2.0.0...v2.0.1) (2020-12-04)
 
 
