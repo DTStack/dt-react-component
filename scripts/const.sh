@@ -7,7 +7,7 @@ export temp_path="/home/temp/$project_name";
 # Server nginx root path
 export server_root_path="/home/app/$project_name";
 # 3.10.x testing enviroment
-export server="172.16.100.225";
+export server="*****";
 
 echo "project name: $project_name"
 echo "temp path: $temp_path"
