@@ -3,3 +3,5 @@ storybook-static
 lib
 dist
 .temporary_files
+coverage
+package-lock.json
