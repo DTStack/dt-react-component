@@ -13,9 +13,9 @@ export default (props: IProps) => {
     let { value = '', className = '', style = {}, placement = undefined } = props;
     return (
         <Tooltip placement={placement} title={`${value}`}>
-            <div data-testid="ellipsis_text" className={isEmpty(className) ? 'dtc-ellipsis-text' : 'dtc-ellipsis-text ' + className} style={style}>
+            <span data-testid="ellipsis_text" className={isEmpty(className) ? 'dtc-ellipsis-text' : 'dtc-ellipsis-text ' + className} style={style}>
                 {`${value}`}
-            </div>
+            </span>
         </Tooltip>
     )
 }

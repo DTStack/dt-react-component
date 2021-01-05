@@ -45,19 +45,19 @@ stories
                 <h2>当前组件数</h2>
                 <p className="summary-story_version">{getComponentNum()} 个</p>
 
-                {/* <h2>在线示例</h2>
-            <p>这是一个最简单的 dt-react-component 组件的在线 codesandbox 演示。</p>
-            <iframe
-                src='https://codesandbox.io/embed/antd-reproduction-template-6e93z?autoresize=1&fontsize=14&hidenavigation=1&theme=dark'
-                style={{
-                    width: '100%',
-                    height: '500px',
-                    border: 0,
-                    borderRadius: '4px',
-                    overflow: 'hidden'
-                }}
-                sandbox='allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
-            /> */}
+                <h2>在线示例</h2>
+                <p>这是一个最简单的 dt-react-component 组件的在线 codesandbox 演示。</p>
+                <iframe
+                    src='https://codesandbox.io/s/dt-react-component-reproduction-template-0obrl'
+                    style={{
+                        width: '100%',
+                        height: '500px',
+                        border: 0,
+                        borderRadius: '4px',
+                        overflow: 'hidden'
+                    }}
+                    sandbox='allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
+                />
 
                 <h2>贡献</h2>
                 <p>
