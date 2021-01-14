@@ -1,28 +1,36 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { render, cleanup } from '@testing-library/react';
 import EllipsisText from '../index';
 
-describe('ellipsisText Component test', () => {
-    test('should render correct', () => {
-        const expectValues: any = {
-            value: '显示的文本',
-            width: '100px',
-            className: 'test-class-name',
-            placement: 'topLeft'
-        }
-        const { getByTestId } = render(
-            <EllipsisText
-                value={expectValues.value}
-                style={{ width: expectValues.width }}
-                className={expectValues.className}
-                placement={expectValues.placement}
-            />
-        );
+const defaultProps = {
+    value: 'ellipsis-Test'
+}
 
-        const oDiv = getByTestId('ellipsis_text');
-        expect(oDiv).not.toBeNull();
-        expect(oDiv.innerHTML).toEqual(expectValues.value);
-        expect(oDiv.style.width).toEqual(expectValues.width);
-        expect(oDiv.classList.contains(expectValues.className)).toEqual(true);
+let wrapper
+describe('test ellipsis text if not full display', () => {
+    (global as any).document.createRange = () => ({
+        selectNodeContents: jest.fn(),
+        getBoundingClientRect: jest.fn(() => ({
+            width: 1000
+        }))
     });
-});
+
+    beforeEach(() => {
+        wrapper = render(
+            <div style={{ width: 500 }}>
+                <EllipsisText {...defaultProps} />
+            </div>
+        );
+    })
+
+    afterEach(() => {
+        cleanup()
+    })
+
+    test('render correct value in ellipsis', () => {
+        const { getByText } = wrapper
+
+        expect(getByText('ellipsis-Test')).toBeInTheDocument()
+    })
+})
