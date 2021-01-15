@@ -75,7 +75,6 @@ class EllipsisText extends PureComponent<Props, State> {
   };
 
   onResize = () => {
-    if (!this.ellipsisRef) return;
     const { maxWidth } = this.props;
     const ellipsisNode = this.ellipsisRef;
     const rangeWidth = this.getRangeWidth(ellipsisNode);
