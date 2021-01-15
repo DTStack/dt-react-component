@@ -10,7 +10,7 @@ stories.addDecorator(withKnobs)
 
 const propDefinitions = [{
     property: 'value',
-    propType: 'string',
+    propType: 'string | number',
     required: true,
     description: '显示文本内容',
     defaultValue: ''
@@ -28,7 +28,7 @@ const propDefinitions = [{
     defaultValue: ''
 }, {
     property: 'title',
-    propType: 'string',
+    propType: 'string | number',
     required: false,
     description: '提示文字',
     defaultValue: ''

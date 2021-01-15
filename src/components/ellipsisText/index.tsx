@@ -1,9 +1,10 @@
 import React, { PureComponent } from "react";
 import { Tooltip } from "antd";
+import Resize from '../resize';
 
 export interface Props {
-  value: string ;
-  title?: string;
+  value: string | number ;
+  title?: string | number;
   className?: string;
   maxWidth?: string | number;
   [propName: string]: any;
@@ -28,18 +29,7 @@ export default class EllipsisText extends PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    const { maxWidth } = this.props;
     this.onResize();
-    if (!maxWidth) {
-      window.addEventListener("resize", this.onResize);
-    }
-  }
-
-  componentWillUnmount() {
-    const { maxWidth } = this.props;
-    if (!maxWidth) {
-      window.removeEventListener("resize", this.onResize);
-    }
   }
 
   getRangeWidth = (ele: HTMLElement) => {
@@ -51,7 +41,8 @@ export default class EllipsisText extends PureComponent<Props, State> {
 
   getStyle = (dom: NewHTMLElement, attr: string) => {
     // 兼容IE8
-    const stylePadding = window?.getComputedStyle(dom)[attr] || dom.currentStyle[attr]
+    const stylePadding =
+      window?.getComputedStyle(dom)[attr] || dom.currentStyle[attr];
 
     return stylePadding.slice(0, -2);
   };
@@ -62,18 +53,17 @@ export default class EllipsisText extends PureComponent<Props, State> {
     const { scrollWidth, offsetWidth, parentElement } = ele;
     if (scrollWidth === 0) {
       return this.getMaxWidth(parentElement);
-    } else {
-      const ellipsisNode = this.ellipsisRef;
-      ellipsisNode.style.display = "none";
-      const rangeWidth = this.getRangeWidth(ele);
-      const ellipsisWidth =
-        offsetWidth -
-        rangeWidth -
-        this.getStyle(ele, "paddingRight") -
-        this.getStyle(ele, "paddingLeft");
-
-      return ellipsisWidth < 0 ? 0 : ellipsisWidth;
     }
+    const ellipsisNode = this.ellipsisRef;
+    ellipsisNode.style.display = "none";
+    const rangeWidth = this.getRangeWidth(ele);
+    const ellipsisWidth =
+      offsetWidth -
+      rangeWidth -
+      this.getStyle(ele, "paddingRight") -
+      this.getStyle(ele, "paddingLeft");
+
+    return ellipsisWidth < 0 ? 0 : ellipsisWidth;
   };
 
   onResize = () => {
@@ -87,7 +77,6 @@ export default class EllipsisText extends PureComponent<Props, State> {
       actMaxWidth: ellipsisWidth,
       isEllipsis: rangeWidth > (maxWidth || ellipsisWidth)
     });
-
   };
 
   handleVisibleChange = (visible: boolean) => {
@@ -103,29 +92,31 @@ export default class EllipsisText extends PureComponent<Props, State> {
     const { title, value, className, maxWidth, ...other } = this.props;
 
     return (
-      <Tooltip
-        title={title || value}
-        visible={visible}
-        onVisibleChange={this.handleVisibleChange}
-        {...other}
-      >
-        <span
-          ref={(ref) => (this.ellipsisRef = ref)}
-          className={className}
-          style={{
-            whiteSpace: "nowrap",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "inline-block",
-            verticalAlign: "bottom",
-            minWidth: "2em",
-            maxWidth: maxWidth || actMaxWidth,
-            cursor: isEllipsis? 'pointer':'default'
-          }}
+      <Resize onResize={maxWidth ? null:this.onResize}>
+        <Tooltip
+          title={title || value}
+          visible={visible}
+          onVisibleChange={this.handleVisibleChange}
+          {...other}
         >
-          {value}
-        </span>
-      </Tooltip>
+          <span
+            ref={(ref) => (this.ellipsisRef = ref)}
+            className={className}
+            style={{
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              display: "inline-block",
+              verticalAlign: "bottom",
+              minWidth: "2em",
+              maxWidth: maxWidth || actMaxWidth,
+              cursor: isEllipsis ? "pointer" : "default"
+            }}
+          >
+            {value}
+          </span>
+        </Tooltip>
+      </Resize>
     );
   }
 }
