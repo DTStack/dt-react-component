@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { Tooltip } from "antd";
 
-interface Props {
+export interface Props {
   value: string ;
   title?: string;
   className?: string;
@@ -17,9 +17,13 @@ const initialState = {
 
 type State = typeof initialState;
 
-class EllipsisText extends PureComponent<Props, State> {
+export interface NewHTMLElement extends HTMLElement {
+  currentStyle?: CSSStyleDeclaration
+}
+
+export default class EllipsisText extends PureComponent<Props, State> {
   ellipsisRef: HTMLElement | null = null;
-  state: State = {
+  state = {
     ...initialState
   };
 
@@ -45,11 +49,9 @@ class EllipsisText extends PureComponent<Props, State> {
     return rangeWidth;
   };
 
-  getStyle = (dom: any, attr: string) => {
+  getStyle = (dom: NewHTMLElement, attr: string) => {
     // 兼容IE8
-    const stylePadding = dom.currentStyle
-      ? dom.currentStyle[attr]
-      : getComputedStyle(dom)[attr];
+    const stylePadding = window?.getComputedStyle(dom)[attr] || dom.currentStyle[attr]
 
     return stylePadding.slice(0, -2);
   };
@@ -127,5 +129,3 @@ class EllipsisText extends PureComponent<Props, State> {
     );
   }
 }
-
-export default EllipsisText
