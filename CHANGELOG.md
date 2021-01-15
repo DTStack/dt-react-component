@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.2](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v2.0.1...v2.0.2) (2021-01-05)
+
+
+### Bug Fixes
+
+* fix css demand load error due to styles name ([781691a](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/781691a))
+* fix ellipsisText style ([1dbe3ae](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/1dbe3ae))
+
+
+### Build System
+
+* **package:** update some pkg version ([c41e1a2](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/c41e1a2))
+
+
+### Features
+
+* codesanbox example add ([1d8125e](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/1d8125e))
+
+
+
+### [2.0.1](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v2.0.0...v2.0.1) (2020-12-03)
+
+
+### Bug Fixes
+
+* del useless easy-select files ([af9401f](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/af9401f))
+* fix command word ([3b4fed4](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/3b4fed4))
+* fix task exec order ([4171d11](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4171d11))
+
+
+### Build System
+
+* add gulpfile in npmignore ([5e412ef](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/5e412ef))
+* fix Load missing styles on demand ([bdbb319](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/bdbb319))
+
+
+### Features
+
+* **gitlab-ci:** update config ([9736168](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/9736168))
+
+
+
 ## [2.0.0](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/compare/v1.4.1...v2.0.0) (2020-10-30)
 
 
@@ -50,7 +92,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Tests
 
-* **multiSearchInput:** 解决晨风提的键盘事件mockFunction无法触发的问题 ([b59fa20](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b59fa20))
+* **multiSearchInput:** 解决晨风提的键盘事件 mockFunction 无法触发的问题 ([b59fa20](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b59fa20))
 * add easySelect test ([4201cf4](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/4201cf4))
 * correct import form ([df20482](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/df20482))
 * update reference path ([b41e292](http://gitlab.prod.dtstack.cn/dt-insight-front/infrastructure/dt-react-component/commit/b41e292))

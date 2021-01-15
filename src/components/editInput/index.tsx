@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import { Input, message } from 'antd';
 export interface EditInputProps {
     value?: string | number;

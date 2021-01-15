@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react'
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import Breadcrumb from './components/breadcrumb';
 
-const stories = storiesOf('breadcrumb与路由结合', module);
+const stories = storiesOf('Breadcrumb 与路由结合', module);
 stories.addDecorator(withKnobs)
 
 const propDefinitions = [
@@ -23,7 +23,7 @@ const propDefinitions = [
     }
 ]
 
-stories.add('breadcrumb 面包屑', () => (
+stories.add('Breadcrumb 面包屑', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
         <p>{` 当 breadcrumb 组件与 react-router 一起使用时，默认生成的 url 路径是带有 # 的`}</p>

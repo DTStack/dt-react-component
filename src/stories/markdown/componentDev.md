@@ -48,6 +48,7 @@ dt-react-component
 在基于规范基础上开始组件开发，src 文件夹是我们开发中最关心的文件  
 主要步骤大致如下：
 + src/components 业务组件逻辑、组件样式、测试文件编写等
++ src/components/组件名/style.scss **便于 css 按需支持,组件内部样式统一名称为 style.scss**
 + src/stories 组件文档介绍以及动态演示效果编写
 + src/styles 将组件样式文件统一引入，便于统一编译样式文件
 
