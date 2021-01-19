@@ -44,7 +44,7 @@ export default class EllipsisText extends PureComponent<Props, State> {
     const stylePadding =
       window?.getComputedStyle(dom)[attr] || dom.currentStyle[attr];
 
-    return stylePadding.slice(0, -2);
+    return parseInt(stylePadding.replace('px', ''));
   };
 
   // 最近块级父元素-除省略文本元素外其余元素的宽
@@ -72,7 +72,6 @@ export default class EllipsisText extends PureComponent<Props, State> {
     const rangeWidth = this.getRangeWidth(ellipsisNode);
     const ellipsisWidth = this.getMaxWidth(ellipsisNode.parentElement);
     ellipsisNode.style.display = "inline-block";
-
     this.setState({
       actMaxWidth: ellipsisWidth,
       isEllipsis: rangeWidth > (maxWidth || ellipsisWidth)

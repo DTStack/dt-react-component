@@ -1,6 +1,6 @@
 import * as React from 'react';
-import '@testing-library/jest-dom/extend-expect';
 import { render, cleanup, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import EllipsisText from '../index';
 
 (global as any).document.createRange = () => ({
@@ -21,6 +21,13 @@ describe('test ellipsis text if not set max width', () => {
             .mockImplementation(() => 100);
         jest.spyOn(document.documentElement, 'offsetWidth', 'get')
             .mockImplementation(() => 600);
+        Object.defineProperty(window, 'getComputedStyle', {
+            value: jest.fn(() => ({
+                paddingLeft: '0px',
+                paddingRight: '0px'
+            })
+            )
+        });
 
         wrapper = render(
             <div>
@@ -42,19 +49,18 @@ describe('test ellipsis text if not set max width', () => {
         expect(element).toBeInTheDocument()
         expect(element.style.maxWidth).toBe('100px')
     })
-
-    test('render correct value in ellipsis', () => {
-        const { getByText } = wrapper
-        const { value } = defaultProps
-        element = getByText(value)
-
-        expect(element).toBeInTheDocument()
-        expect(element.style.maxWidth).toBe('100px')
-    })
 })
 
 describe('test ellipsis text if set max width', () => {
     beforeEach(() => {
+        Object.defineProperty(window, 'getComputedStyle', {
+            value: () => ({
+                getPropertyValue: (prop) => {
+                    return '';
+                }
+            })
+        });
+
         wrapper = render(
             <div>
                 <EllipsisText {...defaultProps} maxWidth={100}/>

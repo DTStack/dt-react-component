@@ -3,6 +3,13 @@ import EditCell from '../index';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
+(global as any).document.createRange = () => ({
+    selectNodeContents: jest.fn(),
+    getBoundingClientRect: jest.fn(() => ({
+        width: 500
+    }))
+});
+
 const defaultProps = {
     value: 'test editCell',
     keyField: 'name',
