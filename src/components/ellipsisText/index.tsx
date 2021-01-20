@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { Tooltip } from "antd";
 import Resize from '../resize';
 
-export interface Props {
+export interface EllipsisTextProps {
   value: string | number ;
   title?: string | number;
   className?: string;
@@ -22,7 +22,7 @@ export interface NewHTMLElement extends HTMLElement {
   currentStyle?: CSSStyleDeclaration
 }
 
-export default class EllipsisText extends PureComponent<Props, State> {
+export default class EllipsisText extends PureComponent<EllipsisTextProps, State> {
   ellipsisRef: HTMLElement | null = null;
   state = {
     ...initialState
