@@ -40,22 +40,24 @@ export default class EllipsisText extends PureComponent<Props, State> {
   };
 
   getStyle = (dom: NewHTMLElement, attr: string) => {
-    // 兼容IE8
+    // Compatible width IE8
     const stylePadding =
       window?.getComputedStyle(dom)[attr] || dom.currentStyle[attr];
 
     return parseInt(stylePadding.replace('px', ''));
   };
 
-  // 最近块级父元素-除省略文本元素外其余元素的宽
+  // The nearest block parent element
   getMaxWidth = (ele: HTMLElement) => {
     if (!ele) return;
     const { scrollWidth, offsetWidth, parentElement } = ele;
+    // If inline element, find the parent element
     if (scrollWidth === 0) {
       return this.getMaxWidth(parentElement);
     }
     const ellipsisNode = this.ellipsisRef;
     ellipsisNode.style.display = "none";
+    // Get the width of elements other than omitted text
     const rangeWidth = this.getRangeWidth(ele);
     const ellipsisWidth =
       offsetWidth -
