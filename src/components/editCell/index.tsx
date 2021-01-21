@@ -60,7 +60,7 @@ export default class EditCell extends React.PureComponent<EditCellProps, EditCel
                     </div>
                 ) : (
                     <>
-                        <EllipsisText value={editValue} />
+                        <EllipsisText value={editValue} maxWidth={120}/>
                         {
                             !isView && <a onClick={this.onEdit}>修改</a>
                         }
