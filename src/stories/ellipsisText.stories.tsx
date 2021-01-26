@@ -36,7 +36,7 @@ const propDefinitions = [{
     property: '其他参数',
     propType: '',
     required: false,
-    description: <a href="https://3x.ant.design/components/tooltip-cn/#header">继承antd3.x的Tooltip</a>,
+    description: <a target="_blank" rel="noopener noreferrer" href="https://3x.ant.design/components/tooltip-cn/#header">继承antd3.x的Tooltip</a>,
     defaultValue: ''
 }]
 stories.add('ellipsisText', () => (
