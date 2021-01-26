@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/DTStack/dt-react-component/compare/v2.0.2...v2.0.3) (2021-01-26)
+
+
+### Bug Fixes
+
+* optimize component export ([7eac54a](https://github.com/DTStack/dt-react-component/commit/7eac54a))
+
+
+### Features
+
+* add Resize component and delete unnecessary code ([938f3fa](https://github.com/DTStack/dt-react-component/commit/938f3fa))
+* change getStyle advanced attributes preferred ([0e0d775](https://github.com/DTStack/dt-react-component/commit/0e0d775))
+* merge recent dev ([5f05458](https://github.com/DTStack/dt-react-component/commit/5f05458))
+* renamed Props to ellipsisTextProps ([483143a](https://github.com/DTStack/dt-react-component/commit/483143a))
+* replace English comments ([89d107f](https://github.com/DTStack/dt-react-component/commit/89d107f))
+* sync code ([f81963a](https://github.com/DTStack/dt-react-component/commit/f81963a))
+* unit test fix and change getStyle methods ([4b864ff](https://github.com/DTStack/dt-react-component/commit/4b864ff))
+
+
+### Tests
+
+* add ellipsisText unit test ([ee4beff](https://github.com/DTStack/dt-react-component/commit/ee4beff))
+
+
+
 ### [2.0.2](https://github.com/DTStack/dt-react-component/compare/v2.0.1...v2.0.2) (2021-01-05)
 
 
