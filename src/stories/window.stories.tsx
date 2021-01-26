@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react';
 import { PropsTable } from './components/propsTable';
 import { State, Store } from '@sambego/storybook-state';
-import SwitchWindow from '../components/window';
+import SwitchWindow from '../components/switchWindow';
 
 const store = new Store({
     msg: ''
@@ -17,7 +17,7 @@ const propDefinitions = [{
     defaultValue: ''
 }]
 
-stories.add('window', () => {
+stories.add('switchWindow', () => {
     const onSwitch = () => {
         store.set({ msg: 'window listener' })
         console.log('window listener')
