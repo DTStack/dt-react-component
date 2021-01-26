@@ -1,16 +1,15 @@
-// circle
+
+@import "../components/chromeDownload/style.scss";
 @import "../components/circle/style";
-// slidepane
-@import "../components/slidePane/style";
 @import "../components/contextMenu/style";
+@import "../components/editCell/style.scss";
+@import "../components/fullscreen/style.scss";
+@import "../components/globalLoading/style.scss";
 @import "../components//markdownRender/theme/vs-dark.scss";
 @import "../components//markdownRender/theme/vs.scss";
 @import "../components//markdownRender/style.scss";
-@import "../components/chromeDownload/style.scss";
-@import "../components/progressBar/style.scss";
-@import "../components/spreadsheet/style.scss";
-@import "../components/fullscreen/style.scss";
-@import "../components/toolModal/style.scss";
-@import "../components/globalLoading/style.scss";
 @import "../components/mulSelectDropdown/style.scss";
-@import "../components/editCell/style.scss";
+@import "../components/progressBar/style.scss";
+@import "../components/slidePane/style";
+@import "../components/spreadsheet/style.scss";
+@import "../components/toolModal/style.scss";
