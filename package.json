@@ -162,6 +162,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.22.2",
     "react-router": "3.0.4",
+    "react-syntax-highlighter": "^15.4.3",
     "showdown": "^1.9.0"
   },
   "peerDependencies": {
