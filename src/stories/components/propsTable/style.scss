@@ -2,26 +2,32 @@ table{
     font-family: sfmono-regular,Consolas,liberation mono,Menlo,Courier,monospace;
     border-collapse: collapse;
     margin: 0 auto;
-    text-align: center;
 }
 table td, table th{
-    border: 1px solid #ccc;
+    border: 1px solid #ebedf0;
     color: #666;
-    height: 30px;
+    padding: 12px;
+    font-size: 13px;
 }
 table thead th{
-    background-color: #f7f7f7;
+    background-color: rgba(0,0,0,.02);
     width: 100px;
 }
 table {
     tbody {
         tr {
+            font-weight: 400;
             td:first-child {
                 font-weight: bold;
             }
             td:nth-child(3) {
                 color: #c41d7f;
+                font-size: 13px;
+                word-break: break-all;
             }
+        }
+        tr:hover{
+            background: rgba(60,90,100,.04);
         }
     }
 }
