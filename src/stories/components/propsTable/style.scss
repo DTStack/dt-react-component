@@ -1,15 +1,15 @@
-table{
+table {
     font-family: sfmono-regular,Consolas,liberation mono,Menlo,Courier,monospace;
     border-collapse: collapse;
     margin: 0 auto;
 }
-table td, table th{
+table td, table th {
     border: 1px solid #ebedf0;
     color: #666;
     padding: 12px;
     font-size: 13px;
 }
-table thead th{
+table thead th {
     background-color: rgba(0,0,0,.02);
     width: 100px;
 }
@@ -26,7 +26,7 @@ table {
                 word-break: break-all;
             }
         }
-        tr:hover{
+        tr:hover {
             background: rgba(60,90,100,.04);
         }
     }
