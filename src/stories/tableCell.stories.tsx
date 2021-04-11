@@ -133,10 +133,7 @@ stories.add('tableCell', () => {
                 hasCodeSandBox
             >
                 <p>表格内渲染</p>
-                <State store={store}>
-                    <TableCell style={{ border: '1px solid #ccc' }} />
-                </State>
-
+                <TableCell style={{ border: '1px solid #ccc' }} />
                 <State store={store}>
                     {state =>
                         <Table
