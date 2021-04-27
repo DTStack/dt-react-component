@@ -95,7 +95,7 @@ class ExampleContainer extends React.Component<any, any> {
                 }
                 return acc;
             },
-            { react: 'latest', 'react-dom': 'latest', antd: 'latest', 'dt-react-component': 'latest' },
+            { react: 'latest', 'react-dom': 'latest', antd: '3.26.13', 'dt-react-component': 'latest' },
         );
         return dependencies
     }
