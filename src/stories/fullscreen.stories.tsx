@@ -2,6 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react';
 import FullScreenButton from '../components/fullscreen';
 import { PropsTable } from './components/propsTable';
+import ExampleContainer from './components/exampleCode';
 import '../styles/index.scss';
 
 const propDefinitions = [{
@@ -35,6 +36,11 @@ const propDefinitions = [{
     description: '自定义退出全屏图标',
     defaultValue: ''
 }]
+const otherDependencies = `import { FullScreenButton } from 'dt-react-component';`
+const code = `<p>白色主题</p>
+            <FullScreenButton iconStyle={iconStyle} />
+            <p>暗黑主题</p>
+            <FullScreenButton iconStyle={iconStyle} themeDark={true} />`
 
 const stories = storiesOf('FullScreenButton 全屏', module);
 stories.add('fullScreenButton', () => {
@@ -48,10 +54,12 @@ stories.add('fullScreenButton', () => {
             <h2>何时使用</h2>
             <p>全屏操作</p>
             <h2>示例</h2>
-            <p>白色主题</p>
-            <FullScreenButton iconStyle={iconStyle} />
-            <p>暗黑主题</p>
-            <FullScreenButton iconStyle={iconStyle} themeDark={true} />
+            <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
+                <p>白色主题</p>
+                <FullScreenButton iconStyle={iconStyle} />
+                <p>暗黑主题</p>
+                <FullScreenButton iconStyle={iconStyle} themeDark={true} />
+            </ExampleContainer>
         </div>
     )
 }, {
@@ -59,7 +67,6 @@ stories.add('fullScreenButton', () => {
         text: `
         代码示例：
         ~~~js
-        import { FullScreenButton } from 'dt-react-component';
         <FullScreenButton themeDark={true} />
         ~~~
         `,
