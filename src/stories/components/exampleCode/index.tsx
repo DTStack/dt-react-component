@@ -100,7 +100,7 @@ class ExampleContainer extends React.Component<any, any> {
         return dependencies
     }
     handleCodeInCodeSandBox = () => {
-        const { code, otherDependencies, functionCode } = this.props
+        const { code, otherDependencies, functionCode = '' } = this.props
         const c = `import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
