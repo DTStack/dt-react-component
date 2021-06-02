@@ -1,0 +1,66 @@
+.dtc-tag {
+  background-color: #ecf5ff;
+  display: inline-block;
+  height: 32px;
+  padding: 0 10px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #409eff;
+  border: 1px solid #d9ecff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  &--hit {
+    border: none;
+  }
+  &--medium {
+    height: 28px;
+    line-height: 26px;
+  }
+  &--small {
+    height: 24px;
+    padding: 0 8px;
+    line-height: 22px;
+  }
+  &--mini {
+    height: 20px;
+    padding: 0 5px;
+    line-height: 19px;
+  }
+  &--plain {
+    background-color: #fff;
+    border-color: #b3d8ff;
+    color: #409eff;
+  }
+  & + .dtc-tag {
+    margin-left: 10px;
+  }
+  &-icon {
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    height: 16px;
+    width: 16px;
+    line-height: 18px !important;
+    vertical-align: middle;
+    top: -1px;
+    right: -5px;
+  }
+  &-close {
+    color: #409eff;
+    &:hover {
+      color: #fff;
+      background-color: #409eff;
+    }
+  }
+  &--mini .dtc-tag-close {
+    margin-left: -3px;
+    transform: scale(0.7);
+  }
+  &--small .dtc-tag-close,
+  &--medium .dtc-tag-close {
+    transform: scale(0.8);
+  }
+}
