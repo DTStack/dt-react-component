@@ -1,6 +1,9 @@
 
 const path = require('path');
 module.exports = async ({ config, mode }) => {
+    config.node = {
+        fs: 'empty'
+    }
     config.module.rules.push({
         test: /\.(ts|tsx)$/,
         loader: require.resolve('babel-loader'),
