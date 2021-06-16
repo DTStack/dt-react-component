@@ -18,9 +18,11 @@ export default class extends React.Component<DynamicUseComponentProps, DynamicUs
         const { dynamicComponent } = nextProps
         this.setDynamicComponent(dynamicComponent)
     }
-    async setDynamicComponent(dynamicComponent) {
-        const { default: component } = await dynamicComponent()
-        this.setState({component: component})
+    setDynamicComponent(dynamicComponent) {
+        dynamicComponent()
+            .then(({ default: comp }) => {
+                this.setState({ component: comp });
+            })
     }
     render() {
         const { component: Component} = this.state;
