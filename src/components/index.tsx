@@ -31,4 +31,5 @@ export { default as TableCell } from './tableCell';
 export { default as TextMark } from './textMark';
 export { default as ToolModal } from './toolModal';
 export { default as Tag } from './tag';
+export { default as SelectTree } from './selectTree';
 
