@@ -3,7 +3,7 @@ import React from 'react'
 export interface TableCellProps {
     value?: string;
     style?: React.CSSProperties;
-    onChange?: Function;
+    onChange?: any;
 }
 export default function TableCell(props: TableCellProps) {
     const originStyle: React.CSSProperties = {
