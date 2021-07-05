@@ -50,7 +50,7 @@ const getCols = () => {
         render: (text, record, index) => {
             return <TableCell
                 value={text}
-                onChange={e => {
+                onChange={e=> {
                     onValuesChange(index, 'textVal', e?.target?.value)
                 }}
             />
