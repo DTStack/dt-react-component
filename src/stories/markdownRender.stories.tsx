@@ -35,7 +35,7 @@ stories.add('markdownRender', () => {
             <h2>何时使用</h2>
             <p>路由未匹配上的展示页</p>
             <h2>示例</h2>
-            <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>  
+            <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
                 <MarkdownRender
                     text={`${testHtml && testHtml.default}`}
                     dark={false}

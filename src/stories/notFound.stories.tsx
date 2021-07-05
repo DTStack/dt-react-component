@@ -31,6 +31,6 @@ stories.add('notFound', () => {
             import { NotFound } from 'dt-react-component'
             <Route path="/*" component={NotFound} />
         ~~~
-        `,
+        `
     }
 })

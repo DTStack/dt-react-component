@@ -70,16 +70,15 @@ stories.add('multiSearchInput', () => {
                     searchType='fuzzy'
                     onChange={(value: string) => {
                         console.log('value', value)
-                        
                     }}
                     onTypeChange={(type: string) => {
                         console.log(type)
                     }}
-                    onSearch={(value: string, searchType: SearchType) =>  {
+                    onSearch={(value: string, searchType: SearchType) => {
                         console.log(value, searchType)
                     }}
                 />
-                
+
             </ExampleContainer>
 
             <p style={{ marginTop: '10px' }}>在 Action 中查看过滤方式打印结果</p>
