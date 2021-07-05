@@ -1,8 +1,8 @@
 import React from 'react'
-import { Breadcrumb } from 'antd';
+import { Breadcrumb as  BreadcrumbRender } from 'antd';
 import { Link } from 'react-router';
 
-const BreadcrumbItem = Breadcrumb.Item
+const BreadcrumbItem = BreadcrumbRender.Item
 interface Route {
     path?: string;
     name?: string;
@@ -13,12 +13,12 @@ interface IProps {
     style?: React.CSSProperties;
 }
 
-export default function BreadcrumbRender (props: IProps) {
+export default function Breadcrumb (props: IProps) {
     const { routes, style = {} } = props;
     const len = routes.length - 1;
     return (
         <div style={style} data-testid="test-breadcrumb">
-            <Breadcrumb>
+            <BreadcrumbRender>
                 {routes.map((item: Route, index: number) => (
                     <BreadcrumbItem key={item.path}>
                         {index == len ? (
@@ -28,7 +28,7 @@ export default function BreadcrumbRender (props: IProps) {
                         )}
                     </BreadcrumbItem>
                 ))}
-            </Breadcrumb>
+            </BreadcrumbRender>
         </div>
     );
 };

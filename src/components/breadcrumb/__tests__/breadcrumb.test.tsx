@@ -1,5 +1,5 @@
 import React from 'react'
-import BreadcrumbRender from '../index';
+import Breadcrumb from '../index';
 import { render, fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 import { createMemoryHistory, Router, Route, IndexRoute } from 'react-router'
@@ -23,7 +23,7 @@ const testProps = {
 const App = (props) => {
     return (
         <div>
-            {<BreadcrumbRender {...testProps} />}
+            {<Breadcrumb {...testProps} />}
             {props.children}
         </div>
     )
@@ -36,7 +36,7 @@ describe('test breadcrumb', () => {
         cleanup();
     })
     test('should render correct BreadCrumb with testProps', () => {
-        const { getByTestId } = render(<BreadcrumbRender {...testProps} />);
+        const { getByTestId } = render(<Breadcrumb {...testProps} />);
         const element = getByTestId('test-breadcrumb');
         expect(element).toBeInTheDocument();
         expect(element).toHaveStyle('background-color: #dedede');
