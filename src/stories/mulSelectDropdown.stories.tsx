@@ -53,7 +53,7 @@ const code = `<MulSelectDropdown
                 renderNode={(openFun) => <a onClick={openFun}>打开下拉</a>}
                 value={[2]}
             />`
-            
+
 stories.add('mulSelectDropdown', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>

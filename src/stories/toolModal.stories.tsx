@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react';
 import { State, Store } from '@sambego/storybook-state';
-import { text, object, boolean, array } from '@storybook/addon-knobs';
+import { text, boolean, array } from '@storybook/addon-knobs';
 import { Button, Icon } from 'antd';
 import { PropsTable } from './components/propsTable';
 import ExampleContainer from './components/exampleCode';

@@ -1,5 +1,5 @@
 
-export { default as BreadcrumbRender } from './breadcrumb';
+export { default as Breadcrumb } from './breadcrumb';
 export { default as ChromeDownload } from './chromeDownload';
 export { default as Circle } from './circle';
 export { default as ContextMenu } from './contextMenu';
