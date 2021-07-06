@@ -18,8 +18,9 @@ const propDefinitions = [
             <p>{`2、key：表示元素的唯一性，也用于获取表单的值。必选属性`}</p>
             <p>{`3、require：表单的校验，可选属性`}</p>
             <p>{`4、component：表单包裹的组件，可选属性，默认是input组件`}</p>
-            <p>{`5、options：自定义属性，比如可选className自定义样式`}</p>
+            <p>{`5、options：自定义属性，比如可选className自定义样式，validateFirst当某一规则校验不通过时，是否停止剩下的规则的校验，validateTrigger设置字段校验的时机，valuePropName子节点的值的属性`}</p>
             <p>{`6、rules：表单校验规则，可选属性，默认会提示message`}</p>
+            <p>{`7、initialValue：设置子元素默认值`}</p>
         </div>),
         defaultValue: '--'
     }, {
