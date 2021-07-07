@@ -33,6 +33,12 @@ const propDefinitions = [
         description: '模态框确定按钮的文本',
         defaultValue: '确定'
     }, {
+        property: 'okType',
+        propType: 'string',
+        required: false,
+        description: '确认按钮类型',
+        defaultValue: 'primary'
+    }, {
         property: 'record',
         propType: 'string | number | object',
         required: false,
@@ -73,6 +79,24 @@ const propDefinitions = [
         propType: 'FormComponentProps',
         required: true,
         description: '传入模态框的表单元素',
+        defaultValue: '--'
+    }, {
+        property: 'footer',
+        propType: 'string | React.ReactNode',
+        required: false,
+        description: '底部内容，当不需要默认底部按钮时，可以设为 footer={null}',
+        defaultValue: '确定取消按钮'
+    }, {
+        property: 'centered',
+        propType: 'Boolean',
+        required: false,
+        description: '垂直居中展示 Modal',
+        defaultValue: 'false'
+    }, {
+        property: 'cancelButtonProps',
+        propType: 'ButtonProps',
+        required: false,
+        description: 'cancel 按钮 props',
         defaultValue: '--'
     }
 ]
