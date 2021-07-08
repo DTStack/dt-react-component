@@ -1,0 +1,94 @@
+.dtc-tree {
+  position: relative;
+  display: inline-block;
+  // margin: 0 8px 10px 0;
+  box-sizing: border-box;
+  .dtc-tree-disable-content {
+    display: none;
+  }
+  .dtc-tag {
+    background-color: rgb(250, 250, 250);
+    border-color: rgb(232, 232, 232);
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    border-radius: 0;
+    margin:0 4px 0 2px;
+    padding-left: 10px;
+    .dtc-tag-close {
+      color: #909399;
+      &:hover {
+        color: #000;
+        background-color: rgb(250, 250, 250);
+      }
+    }
+  }
+  &-disable {
+    & > div {
+      border-color: rgba(172, 172, 172, 0.5) !important;
+      &:hover {
+        border-color: rgba(172, 172, 172, 0.5) !important;
+      }
+    }
+    .dtc-tree-disable-content {
+      display: block !important;
+      cursor: not-allowed;
+      background-color: rgba(172, 172, 172, 0.5);
+      position: absolute;
+      z-index: 999;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  &-placeholder {
+    position: absolute;
+    font-size: 12px;
+    color: #acacac;
+    left: 3px;
+  }
+  & > .dtc-tree-content {
+    padding-right: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all 0.4s;
+    &:hover {
+      border-color: #409eff;
+    }
+  }
+  &-header {
+    position: relative;
+    cursor: pointer;
+    min-width: 60px;
+    min-height: 32px;
+    line-height: 32px;
+    padding: 0 15px 3px 3px;
+  }
+  &-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    width: 100%;
+    height: 0;
+    opacity: 0;
+    transition: all 0.4s;
+    z-index: 999;
+    background-color: #fff;
+    box-shadow: 0 0 5px #ccc;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  &-open {
+    .dtc-tree-menu {
+      height: auto;
+      max-height: 245px;
+      opacity: 1;
+    }
+  }
+  &-focus {
+    & > div {
+      border-color: #409eff;
+    }
+  }
+  &-empty {
+    height: 102px;
+  }
+}
