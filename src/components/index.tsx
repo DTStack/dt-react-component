@@ -1,4 +1,3 @@
-
 export { default as Breadcrumb } from './breadcrumb';
 export { default as ChromeDownload } from './chromeDownload';
 export { default as Circle } from './circle';
@@ -9,7 +8,7 @@ export { default as EditCell } from './editCell';
 export { default as EditInput } from './editInput';
 export { default as EllipsisText } from './ellipsisText';
 export { default as ErrorBoundary } from './errorBoundary';
-export { default as FullScreenButton } from './fullscreen';
+export { default as Fullscreen } from './fullscreen';
 export { default as GlobalLoading } from './globalLoading';
 export { default as GoBack } from './goBack';
 export { default as KeyEventListener } from './keyEventListener';
