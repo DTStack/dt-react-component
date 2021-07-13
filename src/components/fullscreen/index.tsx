@@ -19,7 +19,7 @@ export interface FullscreenProps {
 export interface FullscreenState {
     isFullScreen: boolean;
 }
-export default class FullScreenButton extends React.Component<FullscreenProps, FullscreenState> {
+export default class Fullscreen extends React.Component<FullscreenProps, FullscreenState> {
     state: FullscreenState = {
         isFullScreen: false
     }
