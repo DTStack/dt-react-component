@@ -7,7 +7,7 @@ import KeyEventListener from '../keyEventListener';
 const { KeyCombiner } = KeyEventListener
 declare var document: any;
 
-export interface FullScreenProps {
+export interface FullscreenProps {
     themeDark?: boolean;
     target?: string;
     customIcon?: boolean;
@@ -16,11 +16,11 @@ export interface FullScreenProps {
     exitFullIcon?: React.ReactNode;
     [propName: string]: any;
 }
-export interface FullScreenButtonState {
+export interface FullscreenState {
     isFullScreen: boolean;
 }
-export default class FullScreenButton extends React.Component<FullScreenProps, FullScreenButtonState> {
-    state: FullScreenButtonState = {
+export default class FullScreenButton extends React.Component<FullscreenProps, FullscreenState> {
+    state: FullscreenState = {
         isFullScreen: false
     }
     /**
