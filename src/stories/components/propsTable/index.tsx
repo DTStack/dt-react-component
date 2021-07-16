@@ -20,7 +20,7 @@ export function PropsTable (props: any) {
     );
 
     return (
-        <table {...{ width: '90%' }}>
+        <table {...{ width: '100%' }}>
             <thead>
                 <tr>
                     <th>参数</th>

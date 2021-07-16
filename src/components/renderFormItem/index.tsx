@@ -24,18 +24,23 @@ interface ItemType {
         component?: React.ReactNode;
         options: {
             className?: string;
+            validateFirst?: boolean;
+            validateTrigger?: string[];
+            valuePropName?: string;
         };
         rules?: ValidationRule[];
+        initialValue?: any;
     };
     layout?: {};
     getFieldDecorator: any;
 }
 export default function RenderFormItem({ item, layout, getFieldDecorator }: ItemType) {
-    const { label, key, required, component, options = {}, rules } = item
+    const { label, key, required, component, options = {}, rules, initialValue } = item
     return (
         <FormItem key={key} label={label} colon {...layout} className={options.className} >
             {getFieldDecorator(key, {
                 ...options,
+                initialValue,
                 rules: rules || [{ required, message: `${label}为空` }]
             })(component || <Input data-testid='test-input' />)}
         </FormItem>

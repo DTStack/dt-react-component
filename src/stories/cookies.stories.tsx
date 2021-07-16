@@ -2,6 +2,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react';
 import { PropsTable } from './components/propsTable';
 import '../styles/index.scss';
+import ExampleContainer from './components/exampleCode';
+import Cookies from '../components/cookies';
 const stories = storiesOf('Cookies 监听 Cookie 变更', module);
 /**
  * TODO
@@ -22,16 +24,27 @@ const propDefinitions = [{
     description: 'cookies 变更触发函数，fields为当前cookies变更值',
     defaultValue: '-'
 }]
+
+const otherDependencies = `import { Cookies } from 'dt-react-component';`
+const code = `<Cookies watchFields={[
+                'dt_token', 'dt_tenant_id', 'dt_user_id', 'project_id'
+            ]} onFieldsChanged={() => { console.log('hasChanged') }}>
+            </Cookies>`
+
 stories.add('cookies', () => {
     return (
         <div className='story_wrapper'>
             <h2>何时使用</h2>
             <p>监听页面 Cookie 信息变更</p>
             <h2>示例</h2>
-            {/* <Cookies watchFields={[ // 当页面cookie如下字段的值发生变更时会触发页面刷新
-                'dt_token', 'dt_tenant_id', 'dt_user_id', 'project_id'
-            ]} onFieldsChanged={() => {}}>
-            </Cookies> */}
+            <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
+                <p>监听页面 Cookie 信息变更</p>
+                <Cookies watchFields={[ // 当页面cookie如下字段的值发生变更时会触发页面刷新
+                    'dt_token', 'dt_tenant_id', 'dt_user_id', 'project_id'
+                ]} onFieldsChanged={() => { console.log('hasChanged') }}>
+                </Cookies>
+            </ExampleContainer>
+
         </div>
     )
 }, {
@@ -52,7 +65,8 @@ stories.add('cookies', () => {
         -|-|-|-
         watchFields | 监听的一组cookie | Array | -
         onFieldsChanged | cookies 变更触发函数，fields为当前cookies变更值 | function(fields) | -
-        `
-    },
-    TableComponent: () => PropsTable({ propDefinitions })
+        `,
+        TableComponent: () => PropsTable({ propDefinitions })
+    }
+
 })

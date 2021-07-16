@@ -1,9 +1,11 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react';
 import jsonp from 'fetch-jsonp';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, object } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import EasySelect from '../components/easySelect';
+import ExampleContainer from './components/exampleCode';
+
 import './style/easySelect.scss'; // api文档页面特殊样式，暂时不引入公共样式，单独引入此文件
 
 const stories = storiesOf('EasySelect 下拉框', module);
@@ -16,10 +18,69 @@ const servise = (str: any) =>
             value: item[1]
         })));
 const options = [];
-for (let i = 0; i < 100000; i++) {
+for (let i = 0; i < 100; i++) {
     const value = i.toString(36);
     options.push(value);
 }
+
+const otherDependencies = `import { EasySelect } from 'dt-react-component';`
+const codeStaticJson = `<div>
+                <p className="strory-dt_easy_select_p">1、静态本地数据源(json格式，带本地模糊查询功能)</p>
+                <EasySelect
+                    style={{ width: '100%' }}
+                    filterLocal
+                    dataSource={[{ value: 1, label: '张三' }, { value: 2, label: '李四' }]}
+                    onChange={(val, option) => { console.log(val, option) }}
+                />
+            </div>`
+const codeStaticNomal = `<div>
+                <p className="strory-dt_easy_select_p">2、静态本地数据源(普通数组格式)</p>
+                <EasySelect
+                    style={{ width: '100%' }}
+                    filterLocal
+                    dataSource={['文案1', 234]}
+                    onChange={(val, option) => { console.log(val, option) }}
+                />
+            </div>`
+const codeRemote = `<div>
+                <p className="strory-dt_easy_select_p">3、远程获取数据（自动请求, 带有默认请求字段）</p>
+                <EasySelect
+                    auto
+                    style={{ width: '100%' }}
+                    servise={servise}
+                    clearValueRequest
+                    autoValue={'111'}
+                    onChange={(val, option) => { console.log(val, option) }}
+                />
+            </div>`
+const codeRemoteSearch = `<div>
+                <p className="strory-dt_easy_select_p">4、远程获取数据（自动请求, 带有默认请求字段,前端本地模糊查询）</p>
+                <EasySelect
+                    auto
+                    style={{ width: '100%' }}
+                    filterLocal
+                    servise={servise}
+                    autoValue={'111'}
+                    onChange={(val, option) => { console.log(val, option) }}
+                />
+            </div>`
+const codeRemoteNotAuto = `<div>
+                <p className="strory-dt_easy_select_p">5、远程获取数据（非自动请求）</p>
+                <EasySelect
+                    style={{ width: '100%' }}
+                    servise={servise}
+                    onChange={(val, option) => { console.log(val, option) }}
+                />
+            </div>`
+const codeBigData = `<div>
+                <p className="strory-dt_easy_select_p">6、大数据(虚拟滚动)</p>
+                <EasySelect
+                    style={{ width: '100%' }}
+                    filterLocal
+                    dataSource={options}
+                    onChange={(val, option) => { console.log(val, option) }}
+                />
+            </div>`
 const propDefinitions = [
     {
         property: 'dataSource',
@@ -75,58 +136,85 @@ const propDefinitions = [
         description: <div className="strory-dt_easy_select_divDesc">数据超过一百是否懒加载，默认为true</div>,
         defaultValue: 'true'
     }]
-stories.add('EasySelect', () => (
-    <div className='story_wrapper'>
-        <h2>简述</h2>
-        <p>{`参考之前业务所编辑业务组件, 主要用于表单中Select下拉框组件优化, 基于AntDesign的Select组件进行二次封装，继承AntDesign的Select组件api文档所有属性, 依据组件化思想将原<Select><Option>...</Option></Select>形式改为<EasySelect />的形式, 同时将异步请求数据和onSearch方法结合，简化代码。`}</p>
-        <h2>示例</h2>
-        <p className="strory-dt_easy_select_p">1、静态本地数据源(json格式，带本地模糊查询功能)</p>
-        <EasySelect
-            style={{ width: '100%' }}
-            filterLocal
-            dataSource={[{ value: 1, label: '张三' }, { value: 2, label: '李四' }]}
-            onChange={(val: any, option: any) => { console.log(val, option) }}
-        />
-        <p className="strory-dt_easy_select_p">2、静态本地数据源(普通数组格式)</p>
-        <EasySelect
-            style={{ width: '100%' }}
-            filterLocal
-            dataSource={['文案1', 234]}
-            onChange={(val: any, option: any) => { console.log(val, option) }}
-        />
-        <p className="strory-dt_easy_select_p">3、远程获取数据（自动请求, 带有默认请求字段）</p>
-        <EasySelect
-            auto
-            style={{ width: '100%' }}
-            servise={servise}
-            clearValueRequest
-            autoValue={'111'}
-            onChange={(val: any, option: any) => { console.log(val, option) }}
-        />
-        <p className="strory-dt_easy_select_p">4、远程获取数据（自动请求, 带有默认请求字段,前端本地模糊查询）</p>
-        <EasySelect
-            auto
-            style={{ width: '100%' }}
-            filterLocal
-            servise={servise}
-            autoValue={'111'}
-            onChange={(val: any, option: any) => { console.log(val, option) }}
-        />
-        <p className="strory-dt_easy_select_p">5、远程获取数据（非自动请求）</p>
-        <EasySelect
-            style={{ width: '100%' }}
-            servise={servise}
-            onChange={(val: any, option: any) => { console.log(val, option) }}
-        />
-        <p className="strory-dt_easy_select_p">6、大数据(虚拟滚动)</p>
-        <EasySelect
-            style={{ width: '100%' }}
-            filterLocal
-            dataSource={options}
-            onChange={(val: any, option: any) => { console.log(val, option) }}
-        />
-    </div>
-), {
+stories.add('EasySelect', () => {
+    const groupId = 'EasySelect';
+    const defaultDataSource = [{ value: 1, label: '张三' }, { value: 2, label: '李四' }]
+    const dataSource = object('dataSource', defaultDataSource, groupId);
+    return (
+        <div className='story_wrapper'>
+            <h2>简述</h2>
+            <p>{`参考之前业务所编辑业务组件, 主要用于表单中Select下拉框组件优化, 基于AntDesign的Select组件进行二次封装，继承AntDesign的Select组件api文档所有属性, 依据组件化思想将原<Select><Option>...</Option></Select>形式改为<EasySelect />的形式, 同时将异步请求数据和onSearch方法结合，简化代码。`}</p>
+            <h2>示例</h2>
+            <ExampleContainer otherDependencies={otherDependencies} code={codeStaticJson} hasCodeSandBox={true}>
+                <p className="strory-dt_easy_select_p">1、静态本地数据源(json格式，带本地模糊查询功能)</p>
+                <EasySelect
+                    style={{ width: '100%' }}
+                    filterLocal
+                    dataSource={[{ value: 1, label: '张三' }, { value: 2, label: '李四' }]}
+                    onChange={(val: any, option: any) => { console.log(val, option) }}
+                />
+            </ExampleContainer>&nbsp;&nbsp;
+
+            <ExampleContainer otherDependencies={otherDependencies} code={codeStaticNomal} hasCodeSandBox={true}>
+                <p className="strory-dt_easy_select_p">2、静态本地数据源(普通数组格式)</p>
+                <EasySelect
+                    style={{ width: '100%' }}
+                    filterLocal
+                    dataSource={['文案1', 234]}
+                    onChange={(val: any, option: any) => { console.log(val, option) }}
+                />
+            </ExampleContainer>&nbsp;&nbsp;
+
+            <ExampleContainer otherDependencies={otherDependencies} code={codeRemote} hasCodeSandBox={true}>
+                <p className="strory-dt_easy_select_p">3、远程获取数据（自动请求, 带有默认请求字段）</p>
+                <EasySelect
+                    auto
+                    style={{ width: '100%' }}
+                    servise={servise}
+                    clearValueRequest
+                    autoValue={'111'}
+                    onChange={(val: any, option: any) => { console.log(val, option) }}
+                />
+            </ExampleContainer>&nbsp;&nbsp;
+
+            <ExampleContainer otherDependencies={otherDependencies} code={codeRemoteSearch} hasCodeSandBox={true}>
+                <p className="strory-dt_easy_select_p">4、远程获取数据（自动请求, 带有默认请求字段,前端本地模糊查询）</p>
+                <EasySelect
+                    auto
+                    style={{ width: '100%' }}
+                    filterLocal
+                    servise={servise}
+                    autoValue={'111'}
+                    onChange={(val: any, option: any) => { console.log(val, option) }}
+                />
+            </ExampleContainer>&nbsp;&nbsp;
+
+            <ExampleContainer otherDependencies={otherDependencies} code={codeRemoteNotAuto} hasCodeSandBox={true}>
+                <p className="strory-dt_easy_select_p">5、远程获取数据（非自动请求）</p>
+                <EasySelect
+                    style={{ width: '100%' }}
+                    servise={servise}
+                    onChange={(val: any, option: any) => { console.log(val, option) }}
+                />
+            </ExampleContainer>&nbsp;&nbsp;
+
+            <ExampleContainer otherDependencies={otherDependencies} code={codeBigData} hasCodeSandBox={true}>
+                <p className="strory-dt_easy_select_p">6、大数据(虚拟滚动)</p>
+                <EasySelect
+                    style={{ width: '100%' }}
+                    filterLocal
+                    dataSource={options}
+                    onChange={(val: any, option: any) => { console.log(val, option) }}
+                />
+            </ExampleContainer>&nbsp;&nbsp;
+
+            <p style={{ marginTop: '10px' }}>通过组件预置的几种 dataSource 控制数据源</p>
+            <div className='strory-code_border'>
+                <EasySelect style={{ width: '100%' }} dataSource={dataSource}></EasySelect>
+            </div>
+        </div>
+    )
+}, {
     info: {
         TableComponent: () => PropsTable({ propDefinitions }),
         text: `
@@ -137,60 +225,6 @@ stories.add('EasySelect', () => (
                 showSearch
                 filterLocal
                 dataSource={[{ value: 1, label: '描述' }, { value: 2, label: '描述2' }]}
-                onChange={(val: any, option: any) => { console.log(val, option) }}
-            />
-            ~~~
-            ~~~js
-            // 静态本地数据源(普通数组格式, 附带本地模糊查询)
-            <EasySelect
-                showSearch
-                filterLocal
-                dataSource={['文案1', 234]}
-                onChange={(val: any, option: any) => { console.log(val, option) }}
-            />
-            ~~~
-            ~~~js
-            // 远程获取数据（自动请求, 带有默认请求字段。PS: 请求方法请自行引入，例如jsonp ）
-            <EasySelect
-                auto
-                autoValue={'111'}
-                clearValueRequest
-                servise={(str: any) =>
-                    jsonp('https://suggest.taobao.com/sug?code=utf-8&q="str"')
-                        .then(response => response.json())
-                        .then((res: any) => res.result.map((item: any[]) => ({
-                            label: item[0],
-                            value: item[1]
-                    })))
-                }
-                onChange={(val: any, option: any) => { console.log(val, option) }}
-            />
-            ~~~
-            ~~~js
-            // 远程获取数据（非自动请求。PS: 请求方法请自行引入，例如jsonp）
-            <EasySelect
-                servise={(str: any) =>
-                    jsonp('https://suggest.taobao.com/sug?code=utf-8&q="str"')
-                        .then(response => response.json())
-                        .then((res: any) => res.result.map((item: any[]) => ({
-                            label: item[0],
-                            value: item[1]
-                    })))
-                }
-                onChange={(val: any, option: any) => { console.log(val, option) }}
-            />
-            ~~~
-            ~~~js
-            // 大数据(虚拟滚动)
-            <EasySelect
-                style={{ width: '100%' }}
-                filterLocal
-                dataSource={options} 
-                // const options = [];
-                // for (let i = 0; i < 100000; i++) {
-                //     const value = i.toString(36)
-                //     options.push(value);
-                // }
                 onChange={(val: any, option: any) => { console.log(val, option) }}
             />
             ~~~

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modal, Icon } from 'antd';
-import FullScreen from '../fullscreen';
+import Fullscreen from '../fullscreen';
 
 export interface ToolModalProps {
     visible: boolean;
@@ -71,7 +71,7 @@ export default class DTModal extends React.Component<ToolModalProps, ToolModalSt
             >
                 { toolbox }
                 {
-                    fullscreen ? <FullScreen
+                    fullscreen ? <Fullscreen
                         fullIcon={<Icon className="alt" type="arrows-alt" />}
                         exitFullIcon={<Icon className="alt" type="shrink" />}
                         isShowTitle={false}

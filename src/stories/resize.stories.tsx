@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import { State, Store } from '@sambego/storybook-state';
+import ExampleContainer from './components/exampleCode';
 import Resize from '../components/resize';
 
 const store = new Store({
@@ -10,6 +11,34 @@ const store = new Store({
 });
 const stories = storiesOf('Resize Resize 事件监听', module);
 stories.addDecorator(withKnobs)
+
+const otherDependencies = `import { Resize } from 'dt-react-component';`;
+
+const functionCode = `state={
+        width: 0
+    }
+    
+    onResize = () => {
+        const box = document.getElementById('box');
+        this.setState({
+            width: box.clientWidth
+        })
+    }
+`;
+
+const code = ` <Resize onResize={this.onResize}>
+                    <div
+                        id="box"
+                        style={{
+                            height: '240px',
+                            width: '100%',
+                            padding: '10px',
+                            border: '1px solid rgba(0,0,0,.1)'
+                        }}
+                    >
+                        { this.state.width }
+                    </div>
+                </Resize>`;
 
 const propDefinitions = [{
     property: 'onResize',
@@ -38,28 +67,35 @@ stories.add('resize', () => {
             <p>元素大小自适应调整，常用于图表</p>
             <h2>示例</h2>
             <p>请调整窗口大小以查看效果</p>
-            <State store={store}>
-                {
-                    (state) => {
-                        console.log(state);
-                        return (
-                            <Resize onResize={onResize}>
-                                <div
-                                    id="box"
-                                    style={{
-                                        height: '240px',
-                                        width: '100%',
-                                        padding: '10px',
-                                        border: '1px solid rgba(0,0,0,.1)'
-                                    }}
-                                >
-                                    {store.get('width')}
-                                </div>
-                            </Resize>
-                        )
+            <ExampleContainer
+                otherDependencies={otherDependencies}
+                code={code}
+                hasCodeSandBox={true}
+                functionCode={functionCode}
+            >
+                <State store={store}>
+                    {
+                        (state) => {
+                            console.log(state);
+                            return (
+                                <Resize onResize={onResize}>
+                                    <div
+                                        id="box"
+                                        style={{
+                                            height: '240px',
+                                            width: '100%',
+                                            padding: '10px',
+                                            border: '1px solid rgba(0,0,0,.1)'
+                                        }}
+                                    >
+                                        {store.get('width')}
+                                    </div>
+                                </Resize>
+                            )
+                        }
                     }
-                }
-            </State>
+                </State>
+            </ExampleContainer>
             {/* Prop Types 无法识别 State 回调的 Resize，这里做下处理 */}
             <Resize><div style={{ display: 'none' }}></div></Resize>
         </div>

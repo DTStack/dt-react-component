@@ -4,6 +4,8 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import ContextMenu from '../components/contextMenu'
+import ExampleContainer from './components/exampleCode';
+
 const { TreeNode } = Tree;
 const { ContextMenuItem } = ContextMenu;
 const stories = storiesOf('ContextMenu 右键菜单', module);
@@ -22,6 +24,68 @@ const propDefinitions = [{
     description: '触发事件函数',
     defaultValue: ''
 }]
+
+const otherDependencies = `import { ContextMenu } from 'dt-react-component';
+import { Tree } from 'antd';`
+const code = `<div style={{ position: 'relative' }}>
+                <Tree defaultExpandAll>
+                    <Tree.TreeNode key='0-0' title='folder' className='anchor-experiment-root'>
+                        <Tree.TreeNode key="0-0-0" title='file1' className='anchor-experiment-file' />
+                        <Tree.TreeNode key="0-0-1" title='file2' className='anchor-experiment-file' />
+                    </Tree.TreeNode>
+                </Tree>
+                {this.loopContextMenu()}
+            </div>`
+const functionCode = `
+        contextMenus = [
+            {
+                targetClassName: 'anchor-experiment-root',
+                menuItems: [{
+                    text: '新建实验',
+                    onClick: (activeNode) => {
+                        console.log('新建实验')
+                    }
+                }, {
+                    text: '新建文件夹',
+                    onClick: (activeNode) => {
+                        console.log('新建文件夹')
+                    }
+                }]
+            }, {
+                targetClassName: 'anchor-experiment-file',
+                menuItems: [{
+                    text: '编辑',
+                    onClick: (activeNode) => {
+                        console.log('编辑')
+                    }
+                }, {
+                    text: '移动',
+                    onClick: (activeNode) => {
+                        console.log('移动')
+                    }
+                }]
+            }
+        ];
+
+       renderContextMenu = (contextMenu) => {
+            if (!contextMenu.menuItems || !contextMenu.menuItems.length) {
+                return null;
+            }
+            return <ContextMenu key={contextMenu.targetClassName} targetClassName={contextMenu.targetClassName}>
+                {contextMenu.menuItems.map((menu) => {
+                    return (<ContextMenu.ContextMenuItem key={menu.text} onClick={() => {
+                        menu.onClick();
+                    }}>{menu.text}</ContextMenu.ContextMenuItem>)
+                })}
+            </ContextMenu>
+        }
+
+       loopContextMenu = () => {
+            return this.contextMenus && this.contextMenus.map((contextMenu, index) => {
+                return this.renderContextMenu(contextMenu);
+            })
+        }
+`
 const contextMenus = [
     {
         targetClassName: 'anchor-experiment-root',
@@ -75,15 +139,18 @@ stories.add('contextMenu', () => (
         <p>任务栏右键菜单操作</p>
         <h2>示例</h2>
         <p>在树目录中右键菜单试试吧</p>
-        <div style={{ position: 'relative' }}>
-            <Tree defaultExpandAll>
-                <TreeNode key='0-0' title='folder' className='anchor-experiment-root'>
-                    <TreeNode key="0-0-0" title='file1' className='anchor-experiment-file' />
-                    <TreeNode key="0-0-1" title='file2' className='anchor-experiment-file' />
-                </TreeNode>
-            </Tree>
-            {loopContextMenu()}
-        </div>
+        <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true} functionCode={functionCode}>
+            <div style={{ position: 'relative' }}>
+                <Tree defaultExpandAll>
+                    <TreeNode key='0-0' title='folder' className='anchor-experiment-root'>
+                        <TreeNode key="0-0-0" title='file1' className='anchor-experiment-file' />
+                        <TreeNode key="0-0-1" title='file2' className='anchor-experiment-file' />
+                    </TreeNode>
+                </Tree>
+                {loopContextMenu()}
+            </div>
+        </ExampleContainer>
+
     </div>
 ), {
     info: {

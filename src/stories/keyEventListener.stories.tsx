@@ -1,122 +1,159 @@
-import React from 'react'
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import KeyEventListener from '../components/keyEventListener';
 import { PropsTable } from './components/propsTable';
+import ExampleContainer from './components/exampleCode';
 import './style';
 
-const { KeyCombiner } = KeyEventListener
+const { KeyCombiner } = KeyEventListener;
 
-const propDefinitions = [{
-    property: 'keyMap',
-    propType: 'object',
-    required: false,
-    description: '监听的一组 key map，eg: { 70: true, 91: true, 16: true } 则表示监听 command+shift+f 组合键',
-    defaultValue: ''
-}, {
-    property: 'onTrigger',
-    propType: 'function',
-    required: false,
-    description: '触发事件',
-    defaultValue: ''
-}];
+const propDefinitions = [
+    {
+        property: 'keyMap',
+        propType: 'object',
+        required: false,
+        description:
+      '监听的一组 key map，eg: { 70: true, 91: true, 16: true } 则表示监听 command+shift+f 组合键',
+        defaultValue: ''
+    },
+    {
+        property: 'onTrigger',
+        propType: 'function',
+        required: false,
+        description: '触发事件',
+        defaultValue: ''
+    }
+];
 
-const keyListenerPropDefinitions = [{
-    property: 'onkeyDown',
-    propType: 'function',
-    required: false,
-    description: '触发键盘按下事件',
-    defaultValue: ''
-}, {
-    property: 'onKeyUp',
-    propType: 'function',
-    required: false,
-    description: '触发键盘弹起事件',
-    defaultValue: ''
-}]
+const keyListenerPropDefinitions = [
+    {
+        property: 'onkeyDown',
+        propType: 'function',
+        required: false,
+        description: '触发键盘按下事件',
+        defaultValue: ''
+    },
+    {
+        property: 'onKeyUp',
+        propType: 'function',
+        required: false,
+        description: '触发键盘弹起事件',
+        defaultValue: ''
+    }
+];
 
 const stories = storiesOf('KeyEventListener 键盘监听', module);
+
 // keyCombiner
-stories.add('keyCombiner', () => {
-    const keyAction = (evt: any) => {
-        evt.preventDefault();
-        console.log('command+shift+f action')
-    }
-    return (
-        <div className='story_wrapper'>
-            <h2>何时使用</h2>
-            <p>监听键盘事件</p>
-            <h2>示例</h2>
-            <KeyCombiner onTrigger={keyAction} keyMap={{
+stories.add(
+    'keyCombiner',
+    () => {
+        const otherDependencies = `import KeyEventListener from 'dt-react-component'; 
+const { KeyCombiner } = KeyEventListener`;
+        const code = `keyAction = (evt: any) => {
+                    evt.preventDefault();
+                    console.log('command+shift+f action')
+            }
+            <KeyCombiner onTrigger={this.keyAction} keyMap={{
                 70: true,
                 91: true,
                 16: true
             }}>
-                {<div>尝试按下 command+shift+f 看看控制台是否监听了键盘事件</div>}
-            </KeyCombiner>
-        </div>
-    )
-}, {
-    info: {
-        text: `
+                {this.props.children}
+            </KeyCombiner>`;
+        const keyAction = (evt: any) => {
+            evt.preventDefault();
+            console.log('command+shift+f action');
+        };
+        return (
+            <div className="story_wrapper">
+                <h2>何时使用</h2>
+                <p>监听键盘事件</p>
+                <h2>示例</h2>
+                <ExampleContainer
+                    otherDependencies={otherDependencies}
+                    code={code}
+                    hasCodeSandBox={true}
+                >
+                    <KeyCombiner onTrigger={keyAction} keyMap={{
+                        70: true,
+                        91: true,
+                        16: true
+                    }}>
+                        {<div>尝试按下 command+shift+f 看看控制台是否监听了键盘事件</div>}
+                    </KeyCombiner>
+                </ExampleContainer>
+            </div>
+        );
+    },
+    {
+        info: {
+            text: `
         代码示例：
         ~~~js
-        import KeyEventListener from 'dt-react-component';
-
-        const { KeyCombiner } = KeyEventListener
-
-        keyAction = (evt: any) => {
-            evt.preventDefault();
-            console.log('command+shift+f action')
-        }
-        <KeyCombiner onTrigger={this.keyAction} keyMap={{
+        <KeyCombiner onTrigger={keyAction} keyMap={{
             70: true,
             91: true,
             16: true
         }}>
-            {this.props.children}
+            {<div>尝试按下 command+shift+f 看看控制台是否监听了键盘事件</div>}
         </KeyCombiner>
         ~~~
         `,
-        TableComponent: () => PropsTable({ propDefinitions })
+            TableComponent: () => PropsTable({ propDefinitions })
+        }
     }
-})
+);
 
 // keyEventListener
-stories.add('keyEventListener', () => {
-    const onkeyDown = (evt: any) => {
-        evt.preventDefault();
-        console.log('onkeyDown')
-    }
-    return (
-        <div className='story_wrapper'>
-            <h2>何时使用</h2>
-            <p>监听键盘事件</p>
-            <h2>示例</h2>
+stories.add(
+    'keyEventListener',
+    () => {
+        const otherDependencies = `import KeyEventListener from 'dt-react-component';`;
+        const code = `onkeyDown = (evt: any) => {
+                evt.preventDefault();
+                console.log('onkeyDown')
+            }
             <KeyEventListener
-                onKeyDown={onkeyDown}
-            >
-                {<div>尝试按下任意键盘，看看控制台打印结果</div>}
-            </KeyEventListener>
-        </div>
-    )
-}, {
-    info: {
-        text: `
+                onKeyDown={this.onkeyDown}
+                >
+                    {this.props.children}
+            </KeyEventListener>`;
+
+        const onkeyDown = (evt: any) => {
+            evt.preventDefault();
+            console.log('onkeyDown');
+        };
+        return (
+            <div className="story_wrapper">
+                <h2>何时使用</h2>
+                <p>监听键盘事件</p>
+                <h2>示例</h2>
+                <ExampleContainer
+                    otherDependencies={otherDependencies}
+                    code={code}
+                    hasCodeSandBox={true}
+                >
+                    <KeyEventListener onKeyDown={onkeyDown}>
+                        {<div>尝试按下任意键盘，看看控制台打印结果</div>}
+                    </KeyEventListener>
+                </ExampleContainer>
+
+            </div>
+        );
+    },
+    {
+        info: {
+            text: `
         代码示例：
         ~~~js
-        import KeyEventListener from 'dt-react-component';
-        
-        onkeyDown = (evt: any) => {
-            evt.preventDefault();
-            console.log('onkeyDown')
-        }
-        <KeyEventListener
-            onKeyDown={this.onkeyDown}
-            >
-                {this.props.children}
+        <KeyEventListener onKeyDown={onkeyDown}>
+            {<div>尝试按下任意键盘，看看控制台打印结果</div>}
         </KeyEventListener>
         ~~~
         `,
-        TableComponent: () => PropsTable({ propDefinitions: keyListenerPropDefinitions })
+            TableComponent: () =>
+                PropsTable({ propDefinitions: keyListenerPropDefinitions })
+        }
     }
-})
+);
