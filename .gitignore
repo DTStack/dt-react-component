@@ -1,6 +1,7 @@
 node_modules
 storybook-static
 lib
+esm
 dist
 .temporary_files
 coverage
