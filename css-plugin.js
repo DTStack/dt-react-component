@@ -5,11 +5,13 @@ module.exports = function () {
     visitor: {
       ImportDeclaration(path) {
         const { node } = path;
+
+        if (!node) return;
+
         const {
           source: { value: libName },
         } = node;
-
-        if (!node) return;
+        
         if (libName === './style.scss') {
           path.replaceWith(
             type.importDeclaration([], type.stringLiteral('./style.css')),
