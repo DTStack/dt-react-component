@@ -1,0 +1,29 @@
+$prefix: 'dtc-progress-line';
+
+.#{$prefix} {
+    width: 100%;
+    .#{$prefix}-title {
+        // width: 280px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        .#{$prefix}-content {
+            height: 22px;
+            font-size: 12px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #666666;
+            line-height: 22px;
+        }
+    }
+    .#{$prefix}-wrap {
+        // width: 280px;
+        height: 6px;
+        background: #E8E8E8;
+        border-radius: 3px;
+        .#{$prefix}-line {
+            height: 6px;
+            border-radius: 3px;
+        }
+    }
+}
