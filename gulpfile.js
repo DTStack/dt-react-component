@@ -12,6 +12,10 @@ const mergeStream = require('merge-stream');
 const ENV = process.env.NODE_MODULE_ENV;
 
 /**
+ * TODO: When the packaging fails, the scene needs to be restored
+ */
+/**
+
  * existStyleCatalogName ---- The name of the component catalog where the style exists
  * componentCatalogName ---- All component catalog names
  * folderName ---- JavaScript temporary folder name
