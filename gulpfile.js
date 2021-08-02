@@ -12,6 +12,10 @@ const mergeStream = require('merge-stream');
 const ENV = process.env.NODE_MODULE_ENV;
 
 /**
+ * TODO: When the packaging fails, the scene needs to be restored
+ */
+/**
+
  * existStyleCatalogName ---- The name of the component catalog where the style exists
  * componentCatalogName ---- All component catalog names
  * folderName ---- JavaScript temporary folder name
@@ -26,6 +30,7 @@ function difference(array, arrCompare) {
     return arr.indexOf(v) === arr.lastIndexOf(v);
   });
 }
+
 function unique(arr) {
   return Array.from(new Set(arr));
 }
@@ -50,6 +55,7 @@ function delStyleFile(catalogArr) {
     del([`${basePath}${catalogName}/style.scss`]);
   }
 }
+
 /**
  * traverse files
  * @param isDelete Distinguish between write and delete style file
@@ -131,6 +137,7 @@ async function descriptionDoc() {
         target: 'ES5',
         module: ENV === 'esm' ? 'es6' : 'commonjs',
         skipLibCheck: true,
+        allowSyntheticDefaultImports: true
       }),
     )
     .pipe(dest(`${folderName}/`));
