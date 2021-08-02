@@ -6,9 +6,9 @@
     "declaration": true,
     "jsx": "react",
     "moduleResolution": "Node",
+    "esModuleInterop": true,
     "keyofStringsOnly": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
   },
   "include": [
     "src/components"
