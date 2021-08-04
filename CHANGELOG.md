@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.6](https://github.com/DTStack/dt-react-component/compare/v2.0.5...v2.0.6) (2021-08-04)
+
+
+### Features
+
+* add progressLine component ([#112](https://github.com/DTStack/dt-react-component/issues/112)) ([2296385](https://github.com/DTStack/dt-react-component/commit/2296385ae143021a832540f8f49cfff38b6bad5b))
+
+
+### Bug Fixes
+
+* gulp to complier ([#113](https://github.com/DTStack/dt-react-component/issues/113)) ([7c845d5](https://github.com/DTStack/dt-react-component/commit/7c845d511829544e53b4e0fab1d1145fd7923e9f))
+
 ### [2.0.4](https://github.com/DTStack/dt-react-component/compare/v2.0.3...v2.0.4) (2021-06-03)
 
 ### [2.0.3](https://github.com/DTStack/dt-react-component/compare/v2.0.2...v2.0.3) (2021-01-26)
