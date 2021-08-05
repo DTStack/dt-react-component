@@ -26,7 +26,6 @@ const propDefinitions = [
     }
 ];
 
-
 const propButtonDefinitions = [
     {
         property: 'title',
