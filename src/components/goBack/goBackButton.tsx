@@ -2,14 +2,22 @@ import * as React from 'react'
 import { Button } from 'antd'
 import { browserHistory, hashHistory } from 'react-router'
 
-export default class GoBackButton extends React.Component<any, any> {
+export interface GoBackButtonProps {
+    title?: string;
+    url?: string;
+    autoClose?: boolean;
+    style?: React.CSSProperties;
+    history?: any;
+}
+
+export default class GoBackButton extends React.Component<GoBackButtonProps, any> {
     go = () => {
         const { url, history, autoClose } = this.props
 
         if (url) {
             if (history) { browserHistory.push(url) } else { hashHistory.push(url) }
         } else {
-            if (window.history.length == 1) {
+            if (window.history?.length == 1) {
                 if (autoClose) {
                     window.close();
                 }

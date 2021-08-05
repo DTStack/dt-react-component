@@ -1,9 +1,5 @@
-import GoBackIcon from './goBackIcon'
+import GoBack from './goBack'
 import GoBackButton from './goBackButton'
 
-export {
-    GoBackIcon,
-    GoBackButton
-}
-
-export default GoBackIcon
+GoBack.GoBackButton = GoBackButton
+export default GoBack

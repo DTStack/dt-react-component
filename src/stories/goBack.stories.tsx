@@ -4,7 +4,9 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import ExampleContainer from './components/exampleCode';
-import GoBack, { GoBackButton } from '../components/goBack';
+import GoBack from '../components/goBack';
+
+const { GoBackButton } = GoBack
 
 const stories = storiesOf('GoBack 返回', module);
 stories.addDecorator(withKnobs);

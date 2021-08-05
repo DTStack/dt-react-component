@@ -25,6 +25,8 @@ export default class GoBack extends React.Component<GoBackProps, any> {
         }
     }
 
+    static GoBackButton: typeof import('./goBackButton').default
+
     getButtonView () {
         const { style } = this.props;
 
