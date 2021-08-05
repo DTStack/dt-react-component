@@ -3,7 +3,7 @@ export { default as ChromeDownload } from './chromeDownload';
 export { default as Circle } from './circle';
 export { default as ContextMenu } from './contextMenu';
 export { default as Cookies } from './cookies';
-export { default as CtxMenu } from './ctxMenu';
+export { default as ContextMenuCombiner } from './ContextMenuCombiner';
 export { default as EasySelect } from './easySelect';
 export { default as EditCell } from './editCell';
 export { default as EditInput } from './editInput';

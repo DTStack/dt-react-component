@@ -5,7 +5,7 @@ export interface Operation {
     cb: () => void;
 }
 
-export interface CtxMenuProps {
+export interface ContextMenuCombinerProps {
     ctxMenuWrapperClsName: string;
     operations?: Operation[];
     id: any;
@@ -13,7 +13,7 @@ export interface CtxMenuProps {
 }
 
 
-class CtxMenu extends React.Component<CtxMenuProps, any> {
+class ContextMenuCombiner extends React.Component<ContextMenuCombinerProps, any> {
     constructor (props: any) {
         super(props);
 
@@ -140,4 +140,4 @@ class CtxMenu extends React.Component<CtxMenuProps, any> {
     }
 }
 
-export default CtxMenu
+export default ContextMenuCombiner
