@@ -1,4 +1,10 @@
 $card_prefix: 'dtc-circle';
+$await_color: #FFB310;
+$running_color: #3F87FF;
+$finished_color: #12BC6A;
+$stopped_color: #9DA7C2;
+$fail_color: #FF5F5C;
+
 .#{$card_prefix}-default {
     width: 8px;
     height: 8px;
@@ -6,17 +12,17 @@ $card_prefix: 'dtc-circle';
     border-radius: 50% 50%;
 }
 .#{$card_prefix}-waitSubmit, .#{$card_prefix}-run, .#{$card_prefix}-created, .#{$card_prefix}-submitting, .#{$card_prefix}-restarting {
-    background: #F5A623;
+    background: $await_color;
 }
 .#{$card_prefix}-running {
-    background: #2491F7;
+    background: $running_color;
 }
 .#{$card_prefix}-finished {
-    background: #00A755;
+    background: $finished_color;
 }
 .#{$card_prefix}-stopped, .#{$card_prefix}-frozen {
-    background: #94A8C6;
+    background: $stopped_color;
 }
 .#{$card_prefix}-fail {
-    background: #EF5350;
+    background: $fail_color;
 }
