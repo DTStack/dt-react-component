@@ -98,6 +98,12 @@ const propDefinitions = [
         required: false,
         description: 'cancel 按钮 props',
         defaultValue: '--'
+    }, {
+        property: 'notSubmitCloseModal',
+        propType: 'Boolean',
+        require: false,
+        description: '禁止提交后自动关闭modal',
+        defaultValue: 'false'
     }
 ]
 
