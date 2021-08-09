@@ -5,7 +5,7 @@ import { ButtonProps, ButtonType } from 'antd/lib/button';
 
 export interface ModalProps {
     hideModelHandler: () => any;
-    onSubmit: (values: any, record: any) => void;
+    onSubmit?: (values: any, record: any) => void;
     cancelText?: string;
     okText?: string;
     okType?: ButtonType;
