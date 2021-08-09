@@ -5,7 +5,7 @@ import { ButtonProps, ButtonType } from 'antd/lib/button';
 
 export interface ModalProps {
     hideModelHandler: () => any;
-    onSubmit: (values: any, record: any) => void;
+    onSubmit?: (values: any, record: any) => void;
     cancelText?: string;
     okText?: string;
     okType?: ButtonType;
@@ -18,6 +18,7 @@ export interface ModalProps {
     footer?: string | React.ReactNode;
     centered?: boolean;
     cancelButtonProps?: ButtonProps;
+    notSubmitCloseModal?: boolean;
 }
 
 function ModalWithForm (FormComponent: any) {
@@ -26,11 +27,11 @@ function ModalWithForm (FormComponent: any) {
             super(props);
         }
         okHandler = () => {
-            const { record, onSubmit, hideModelHandler } = this.props;
+            const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = this.props;
             this.props.form.validateFields((err: any, values: any) => {
                 if (!err) {
                     onSubmit(values, record);
-                    hideModelHandler();
+                    !notSubmitCloseModal && hideModelHandler();
                 }
             });
         };

@@ -17,7 +17,7 @@ const propDefinitions = [
     }, {
         property: 'onSubmit',
         propType: 'Function',
-        required: true,
+        required: false,
         description: '点击确定按钮后，表单的值验证无误后的回调，接受两个参数value:表单的值，record:其他想要提交的值',
         defaultValue: '--'
     }, {
@@ -98,6 +98,12 @@ const propDefinitions = [
         required: false,
         description: 'cancel 按钮 props',
         defaultValue: '--'
+    }, {
+        property: 'notSubmitCloseModal',
+        propType: 'Boolean',
+        require: false,
+        description: '禁止提交后自动关闭modal',
+        defaultValue: 'false'
     }
 ]
 
