@@ -22,7 +22,7 @@ interface ItemType {
         key: string | number;
         required?: boolean;
         component?: React.ReactNode;
-        options: {
+        options?: {
             className?: string;
             validateFirst?: boolean;
             validateTrigger?: string[];
