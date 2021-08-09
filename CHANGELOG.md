@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.7](https://github.com/DTStack/dt-react-component/compare/v2.0.6...v2.0.7) (2021-08-09)
+
+
+### Features
+
+* change renderFormItem ItemType options to optional ([#126](https://github.com/DTStack/dt-react-component/issues/126)) ([9a98998](https://github.com/DTStack/dt-react-component/commit/9a9899847ce856436910ece3952a32a24804c254))
+* modify Circle color ([#115](https://github.com/DTStack/dt-react-component/issues/115)) ([c691c78](https://github.com/DTStack/dt-react-component/commit/c691c7809a42b9814c7663415c9909a17ff3acfa))
+* new component ctxMenu ([#116](https://github.com/DTStack/dt-react-component/issues/116)) ([6ef3daf](https://github.com/DTStack/dt-react-component/commit/6ef3daf2e6564fe5eaac1d52b9874ee55affe74f))
+
 ### [2.0.6](https://github.com/DTStack/dt-react-component/compare/v2.0.5...v2.0.6) (2021-08-04)
 
 
