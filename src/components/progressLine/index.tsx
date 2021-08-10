@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Tooltip } from 'antd'
-import './index.scss';
 
 interface IProps {
     title?: string;
