@@ -7,7 +7,7 @@ export interface SearchModalProps {
     dataSource: any[];
     title?: string | null;
     placeholder?: string;
-    prefixRender?: React.ReactDOM;
+    prefixRender?: React.ReactNode;
     onChange?: (value: string) => void;
     onSelect?: (value: string, option: Object) => void;
     onCancel?: () => void;

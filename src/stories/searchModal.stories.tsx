@@ -40,7 +40,7 @@ const propDefinitions = [
     },
     {
         property: 'prefixRender',
-        propType: 'ReactDOM',
+        propType: 'ReactNode',
         required: false,
         description: '自定义DOM前缀',
         defaultValue: '搜索并打开'
