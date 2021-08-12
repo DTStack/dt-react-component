@@ -23,32 +23,37 @@ export default class CopyIcon extends React.Component<any, any> {
         this.fakeHandlerCallback = () => this.removeFake();
         this.fakeHandler = document.body.addEventListener('click', this.fakeHandlerCallback);
 
-        this.fakeElem = document.createElement('textarea');
+        this.fakeElem = this.createTextareaElement(value)
+        
+        document.body.appendChild(this.fakeElem);
+        this.fakeElem.select();
+
+        this.copyText();
+    };
+
+    createTextareaElement = (value: string) => {
+        const textareaDOm = document.createElement('textarea');
         // Prevent zooming on iOS
-        this.fakeElem.style.fontSize = '12pt';
+        textareaDOm.style.fontSize = '12pt';
 
         // Reset box model
-        this.fakeElem.style.border = '0';
-        this.fakeElem.style.padding = '0';
-        this.fakeElem.style.margin = '0';
+        textareaDOm.style.border = '0';
+        textareaDOm.style.padding = '0';
+        textareaDOm.style.margin = '0';
 
         // Move element out of screen horizontally
-        this.fakeElem.style.position = 'absolute';
-        this.fakeElem.style.left = '-9999px';
+        textareaDOm.style.position = 'absolute';
+        textareaDOm.style.left = '-9999px';
 
         // Move element to the same position vertically
         const yPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-        this.fakeElem.style.top = `${yPosition}px`;
+        textareaDOm.style.top = `${yPosition}px`;
 
-        this.fakeElem.setAttribute('readonly', '');
-        this.fakeElem.value = value;
-
-        document.body.appendChild(this.fakeElem);
-        this.fakeElem.select();
-
-        this.text();
-    };
+        textareaDOm.setAttribute('readonly', '');
+        textareaDOm.value = value;
+        return textareaDOm
+    }
 
     removeFake() {
         if (this.fakeHandler) {
@@ -63,7 +68,7 @@ export default class CopyIcon extends React.Component<any, any> {
         }
     }
 
-    text() {
+    copyText() {
         let succeeded;
 
         try {
