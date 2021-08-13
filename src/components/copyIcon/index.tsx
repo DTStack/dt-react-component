@@ -23,8 +23,8 @@ export default class CopyIcon extends React.Component<any, any> {
         this.fakeHandlerCallback = () => this.removeFake();
         this.fakeHandler = document.body.addEventListener('click', this.fakeHandlerCallback);
 
-        this.fakeElem = this.createTextareaElement(value)
-        
+        this.fakeElem = this.createTextareaElement(value);
+
         document.body.appendChild(this.fakeElem);
         this.fakeElem.select();
 
@@ -52,8 +52,8 @@ export default class CopyIcon extends React.Component<any, any> {
 
         textareaDOm.setAttribute('readonly', '');
         textareaDOm.value = value;
-        return textareaDOm
-    }
+        return textareaDOm;
+    };
 
     removeFake() {
         if (this.fakeHandler) {
@@ -89,7 +89,7 @@ export default class CopyIcon extends React.Component<any, any> {
     }
 
     render() {
-        let { customRender, text, style, title, ...otherProps } = this.props;
+        let { customRender, text, style, title, ...rest } = this.props;
 
         style = {
             cursor: 'pointer',
@@ -101,13 +101,7 @@ export default class CopyIcon extends React.Component<any, any> {
             <span onClick={this.copy.bind(this, text)}>{customRender}</span>
         ) : (
             <Tooltip placement="right" title={title || '复制'}>
-                <Icon
-                    className="copy"
-                    onClick={this.copy.bind(this, text)}
-                    style={style}
-                    {...otherProps}
-                    type="copy"
-                />
+                <Icon {...rest} className="c-copyIcon" onClick={this.copy.bind(this, text)} style={style} type="copy" />
             </Tooltip>
         );
     }
