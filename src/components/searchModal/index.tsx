@@ -28,17 +28,23 @@ class SearchModal extends React.Component<SearchModalProps, any> {
     };
 
     render() {
-        const { visible, title = '搜索并打开', prefixRender, dataSource = [], bodyStyle,placeholder = '请输入', ...other } = this.props;
+        const {
+            visible,
+            title = '搜索并打开',
+            prefixRender,
+            dataSource = [],
+            bodyStyle,
+            placeholder = '请输入',
+            ...rest
+        } = this.props;
         return (
-            <Modal
-                {...other}
-                visible={visible}
-                onCancel={this.onCancel}
-                footer={null}
-                title={title}
-            >
+            <Modal {...rest} visible={visible} onCancel={this.onCancel} footer={null} title={title}>
                 <Row align="middle" justify="center" type="flex">
-                    {prefixRender && <Col span={6} style={{paddingRight: '12px'}}>{prefixRender}</Col>}
+                    {prefixRender && (
+                        <Col span={6} style={{ paddingRight: '12px' }}>
+                            {prefixRender}
+                        </Col>
+                    )}
                     <Col span={prefixRender ? 18 : 24}>
                         <AutoComplete
                             dataSource={dataSource}
