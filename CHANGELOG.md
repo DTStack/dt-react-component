@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.8](https://github.com/DTStack/dt-react-component/compare/v2.0.7...v2.0.8) (2021-08-10)
+
+
+### Bug Fixes
+
+* **progressline:** modify progressLine style file ([#129](https://github.com/DTStack/dt-react-component/issues/129)) ([c97a80b](https://github.com/DTStack/dt-react-component/commit/c97a80b4fd4972da44d726546b955137d86daab9))
+
+### [2.0.7](https://github.com/DTStack/dt-react-component/compare/v2.0.6...v2.0.7) (2021-08-09)
+
+
+### Features
+
+* change renderFormItem ItemType options to optional ([#126](https://github.com/DTStack/dt-react-component/issues/126)) ([9a98998](https://github.com/DTStack/dt-react-component/commit/9a9899847ce856436910ece3952a32a24804c254))
+* modify Circle color ([#115](https://github.com/DTStack/dt-react-component/issues/115)) ([c691c78](https://github.com/DTStack/dt-react-component/commit/c691c7809a42b9814c7663415c9909a17ff3acfa))
+* new component ctxMenu ([#116](https://github.com/DTStack/dt-react-component/issues/116)) ([6ef3daf](https://github.com/DTStack/dt-react-component/commit/6ef3daf2e6564fe5eaac1d52b9874ee55affe74f))
+
+### [2.0.6](https://github.com/DTStack/dt-react-component/compare/v2.0.5...v2.0.6) (2021-08-04)
+
+
+### Features
+
+* add progressLine component ([#112](https://github.com/DTStack/dt-react-component/issues/112)) ([2296385](https://github.com/DTStack/dt-react-component/commit/2296385ae143021a832540f8f49cfff38b6bad5b))
+
+
+### Bug Fixes
+
+* gulp to complier ([#113](https://github.com/DTStack/dt-react-component/issues/113)) ([7c845d5](https://github.com/DTStack/dt-react-component/commit/7c845d511829544e53b4e0fab1d1145fd7923e9f))
+
+### [2.0.4](https://github.com/DTStack/dt-react-component/compare/v2.0.3...v2.0.4) (2021-06-03)
+
 ### [2.0.3](https://github.com/DTStack/dt-react-component/compare/v2.0.2...v2.0.3) (2021-01-26)
 
 

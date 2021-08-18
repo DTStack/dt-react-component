@@ -9,14 +9,22 @@
     "allowJs": true,
     "module": "commonjs",
     "target": "es5",
-    "lib": ["es6", "es2016", "dom"],
+    "lib": [
+      "es6",
+      "es2016",
+      "dom"
+    ],
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": false,
     "importHelpers": true,
     "paths": {},
     "skipLibCheck": true,
-    "typeRoots": ["node", "node_modules/@types", "./typings"]
+    "typeRoots": [
+      "node",
+      "node_modules/@types",
+      "./typings"
+    ]
   },
   "exclude": [
     "node_modules",
@@ -26,5 +34,10 @@
     "src/public/**/*",
     "./gulpfile.js"
   ],
-  "include": ["./**/*.ts", "./**/*.tsx", "src/**/*", "gulpfile.js"]
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "src/**/*",
+    "gulpfile.js"
+  ]
 }

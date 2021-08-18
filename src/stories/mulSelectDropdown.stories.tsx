@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import MulSelectDropdown from '../components/mulSelectDropdown';
+import ExampleContainer from './components/exampleCode';
 
 const stories = storiesOf('MulSelectDropdown 可多选的下拉菜单', module);
 stories.addDecorator(withKnobs)
@@ -45,17 +46,28 @@ const propDefinitions = [{
     description: '下拉菜单渲染的父节点，默认渲染到 body 上',
     defaultValue: '() => document.body'
 }]
+const otherDependencies = `import { MulSelectDropdown } from 'dt-react-component';`
+const code = `<MulSelectDropdown
+                options={[{ label: '选项一', value: 1 }, { label: '选项二', value: 2, disabled: true }]}
+                onOk={(value) => { console.log(value); }}
+                renderNode={(openFun) => <a onClick={openFun}>打开下拉</a>}
+                value={[2]}
+            />`
+
 stories.add('mulSelectDropdown', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
         <p>当页面上的操作命令过多时，用此组件可以收纳操作元素。点击触点，会出现一个多选下拉菜单。可在列表中进行选择，并执行相应的命令。</p>
         <h2>示例</h2>
-        <MulSelectDropdown
-            options={[{ label: '选项一', value: 1 }, { label: '选项二', value: 2, disabled: true }]}
-            onOk={(value) => { console.log(value); }}
-            renderNode={(openFun) => <a onClick={openFun}>打开下拉</a>}
-            value={[2]}
-        />
+        <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
+
+            <MulSelectDropdown
+                options={[{ label: '选项一', value: 1 }, { label: '选项二', value: 2, disabled: true }]}
+                onOk={(value) => { console.log(value); }}
+                renderNode={(openFun) => <a onClick={openFun}>打开下拉</a>}
+                value={[2]}
+            />
+        </ExampleContainer>
     </div>
 ), {
     info: {

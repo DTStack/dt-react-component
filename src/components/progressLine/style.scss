@@ -1,0 +1,37 @@
+$prefix: 'dtc-progress-line';
+
+.#{$prefix} {
+    width: 100%;
+
+    .#{$prefix}-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+
+        .#{$prefix}-content {
+            height: 22px;
+            font-size: 12px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #666666;
+            line-height: 22px;
+        }
+
+        .#{$prefix}-content:nth-child(3n + 1) {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+
+    .#{$prefix}-wrap {
+        height: 6px;
+        background: #E8E8E8;
+        border-radius: 3px;
+
+        .#{$prefix}-line {
+            height: 6px;
+            border-radius: 3px;
+        }
+    }
+}

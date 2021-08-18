@@ -1,13 +1,13 @@
 import React from 'react'
 import { createMemoryHistory, Router, Route } from 'react-router'
-import  BreadcrumbRender  from '../../../components/breadcrumb';
+import  Breadcrumb  from '../../../components/breadcrumb';
 
 const history = createMemoryHistory()
 
 const App = (props) => {
     return (
         <div>
-            <BreadcrumbRender
+            <Breadcrumb
                 routes = {[{ name: 'home', path: '/home' }, { name: 'about', path: '/about' }]}
                 style = {{ background: 'dedede' }}
             />
@@ -18,7 +18,7 @@ const App = (props) => {
 const About = () => <h1>about page</h1>
 const Home = () => <h1>home page</h1>
 
-export default function Breadcrumb () {
+export default function BreadcrumbRender () {
     return (
         <Router history={history}>
             <Route path="/" component={App}>

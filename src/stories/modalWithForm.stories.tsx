@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import ModalWithForm from './components/modalWithForm'
+import ExampleContainer from './components/exampleCode';
 const stories = storiesOf('ModalWithForm 带表单的模态框', module);
 stories.addDecorator(withKnobs)
 
@@ -16,7 +17,7 @@ const propDefinitions = [
     }, {
         property: 'onSubmit',
         propType: 'Function',
-        required: true,
+        required: false,
         description: '点击确定按钮后，表单的值验证无误后的回调，接受两个参数value:表单的值，record:其他想要提交的值',
         defaultValue: '--'
     }, {
@@ -31,6 +32,12 @@ const propDefinitions = [
         required: false,
         description: '模态框确定按钮的文本',
         defaultValue: '确定'
+    }, {
+        property: 'okType',
+        propType: 'string',
+        required: false,
+        description: '确认按钮类型',
+        defaultValue: 'primary'
     }, {
         property: 'record',
         propType: 'string | number | object',
@@ -73,15 +80,77 @@ const propDefinitions = [
         required: true,
         description: '传入模态框的表单元素',
         defaultValue: '--'
+    }, {
+        property: 'footer',
+        propType: 'string | React.ReactNode',
+        required: false,
+        description: '底部内容，当不需要默认底部按钮时，可以设为 footer={null}',
+        defaultValue: '确定取消按钮'
+    }, {
+        property: 'centered',
+        propType: 'Boolean',
+        required: false,
+        description: '垂直居中展示 Modal',
+        defaultValue: 'false'
+    }, {
+        property: 'cancelButtonProps',
+        propType: 'ButtonProps',
+        required: false,
+        description: 'cancel 按钮 props',
+        defaultValue: '--'
+    }, {
+        property: 'notSubmitCloseModal',
+        propType: 'Boolean',
+        require: false,
+        description: '禁止提交后自动关闭modal',
+        defaultValue: 'false'
     }
 ]
+
+const otherDependencies = `import { ModalWithForm } from 'dt-react-component';`
+const code = `const Modal = ModalWithForm((props) => {
+                const { form: { getFieldDecorator } } = props
+                return (
+                            <FormItem label='test-label'>
+                                {getFieldDecorator('test', {
+                                    rules: [{ max: 10 }]
+                                })(
+                                    <Input />
+                                )}
+                            </FormItem>
+                        )
+            })
+        export default class Demo extends React.Component<any, any> {
+            constructor (props) {
+                super(props);
+                this.state = {
+                    visible: false
+                };
+            }
+            hideModelHandler = () => {
+                const { visible } = this.state
+                this.setState({ visible: !visible });
+            }
+            render () {
+                return (
+                    <Modal
+                        title='ModalWithForm'
+                        visible={this.state.visible}
+                        hideModelHandler={this.hideModelHandler}
+                        onSubmit={(value) => { console.log(value) }}
+                    />
+                )
+            }
+        }`
 
 stories.add('ModalWithForm', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
         <p>{`当需要在模态框中收集用户的表单信息，可以在这个组件中传入自己想要的表单元素`}</p>
         <h2>示例</h2>
-        <ModalWithForm />
+        <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
+            <ModalWithForm />
+        </ExampleContainer>
     </div>
 ), {
     info: {

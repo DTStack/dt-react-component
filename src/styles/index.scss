@@ -2,6 +2,8 @@
 @import "../components/chromeDownload/style.scss";
 @import "../components/circle/style";
 @import "../components/contextMenu/style";
+@import "../components/ContextMenuCombiner/style.scss";
+@import "../components/copyIcon/style.scss";
 @import "../components/editCell/style.scss";
 @import "../components/fullscreen/style.scss";
 @import "../components/globalLoading/style.scss";
@@ -10,6 +12,31 @@
 @import "../components//markdownRender/style.scss";
 @import "../components/mulSelectDropdown/style.scss";
 @import "../components/progressBar/style.scss";
+@import "../components/progressLine/style.scss";
 @import "../components/slidePane/style";
 @import "../components/spreadsheet/style.scss";
 @import "../components/toolModal/style.scss";
+
+.sb-show-main{
+    #root>div:nth-child(3) {
+        h1 {
+            margin-top: 30px !important;
+            font-size: 1.5em !important;
+            border: none !important;
+        }
+        h3 {
+            margin-top: 10px !important;
+            margin-bottom: 15px !important;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.45;
+        }
+    }
+}
+#story-root {
+    margin-top: -30px;
+    
+    h2 {
+        margin-top: 30px;
+    }
+}
