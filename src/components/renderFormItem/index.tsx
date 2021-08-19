@@ -27,6 +27,7 @@ interface ItemType {
             validateFirst?: boolean;
             validateTrigger?: string[];
             valuePropName?: string;
+            normalize?: any;
         };
         rules?: ValidationRule[];
         initialValue?: any;
