@@ -1,14 +1,7 @@
 import * as React from 'react'
 import { Button } from 'antd'
 import { browserHistory, hashHistory } from 'react-router'
-
-export interface GoBackButtonProps {
-    title?: string;
-    url?: string;
-    autoClose?: boolean;
-    style?: React.CSSProperties;
-    history?: any;
-}
+import { GoBackButtonProps } from './index'
 
 export default class GoBackButton extends React.Component<GoBackButtonProps, any> {
     go = () => {
