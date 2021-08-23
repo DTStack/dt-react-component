@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.9](https://github.com/DTStack/dt-react-component/compare/v2.0.8...v2.0.9) (2021-08-23)
+
+
+### Features
+
+* add storybook for contextMenuCombiner ([#146](https://github.com/DTStack/dt-react-component/issues/146)) ([e76d1ac](https://github.com/DTStack/dt-react-component/commit/e76d1ac66f3732162ed908cfccc7010c41e9aeec))
+* export goBack ts intetface ([#144](https://github.com/DTStack/dt-react-component/issues/144)) ([37d1794](https://github.com/DTStack/dt-react-component/commit/37d17943d98444894c73cf7b185719461dd89446))
+
+
+### Bug Fixes
+
+* add normalize api ([#141](https://github.com/DTStack/dt-react-component/issues/141)) ([58694c1](https://github.com/DTStack/dt-react-component/commit/58694c17e9373c60d485f3136eee12bfceac9328))
+* toLowerCase name of CtxMenuCombiner Folder ([#138](https://github.com/DTStack/dt-react-component/issues/138)) ([e6a7bac](https://github.com/DTStack/dt-react-component/commit/e6a7bac987659ccea228e64042cbd27b08fee0a5))
+
 ### [2.0.8](https://github.com/DTStack/dt-react-component/compare/v2.0.7...v2.0.8) (2021-08-10)
 
 
