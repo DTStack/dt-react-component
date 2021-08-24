@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react';
-import SpreadSheet from '../components/spreadsheet';
+import SpreadSheet from '../components/spreadSheet';
 // import 'handsontable/dist/handsontable.full.css';
 import { PropsTable } from './components/propsTable';
 import ExampleContainer from './components/exampleCode';
