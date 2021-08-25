@@ -26,6 +26,7 @@ export { default as Resize } from './resize';
 export { default as ScrollText } from './scrollText';
 export { default as SearchModal } from './searchModal';
 export { default as SlidePane } from './slidePane';
+export { default as SpreadSheet } from './spreadSheet';
 export { default as SwitchWindow } from './switchWindow';
 export { default as TableCell } from './tableCell';
 export { default as TextMark } from './textMark';
