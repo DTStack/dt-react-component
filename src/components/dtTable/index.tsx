@@ -62,7 +62,7 @@ class DtTable<T> extends Component<IProps<T>, IState> {
 
     render () {
         const { props } = this;
-        const { emptyText, pagination, loading } = props;
+        const { emptyText, pagination, loading = false } = props;
         return (
             <div className="dt-table">
                 <Spin spinning={loading}>
