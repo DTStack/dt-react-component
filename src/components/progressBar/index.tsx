@@ -46,8 +46,8 @@ class ProgressBar {
                 this._clock = null;
             }
             if (this.hasAdded()) {
-                document.body.removeChild(this.hodor)
-                document.body.removeChild(this.img)
+                this.hodor.remove()
+                this.img.remove()
             }
         }
     }
