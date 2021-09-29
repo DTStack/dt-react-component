@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.11](https://github.com/DTStack/dt-react-component/compare/v2.0.10...v2.0.11) (2021-09-29)
+
+
+### Bug Fixes
+
+* **progressbar:** hide error when use document.body.removeChild ([#154](https://github.com/DTStack/dt-react-component/issues/154)) ([4bcd66c](https://github.com/DTStack/dt-react-component/commit/4bcd66c2d27a4582c5a087b318105160f8034cbf))
+
 ### [2.0.10](https://github.com/DTStack/dt-react-component/compare/v2.0.9...v2.0.10) (2021-08-25)
 
 ### [2.0.9](https://github.com/DTStack/dt-react-component/compare/v2.0.8...v2.0.9) (2021-08-23)
