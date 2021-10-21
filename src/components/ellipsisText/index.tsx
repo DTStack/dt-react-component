@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
 import { Tooltip } from "antd";
 import Resize from '../resize';
+import { AbstractTooltipProps, RenderFunction } from "antd/lib/tooltip";
 
-export interface EllipsisTextProps {
+export interface EllipsisTextProps extends AbstractTooltipProps {
   value: string | number ;
-  title?: string | number;
+  title?: React.ReactNode | RenderFunction;
   className?: string;
   maxWidth?: string | number;
   [propName: string]: any;
@@ -30,6 +31,13 @@ export default class EllipsisText extends PureComponent<EllipsisTextProps, State
 
   componentDidMount() {
     this.onResize();
+  }
+
+  componentDidUpdate (preProps) {
+      const { value } = this.props
+      if(value !== preProps.value) {
+          this.onResize()
+      }
   }
 
   getRangeWidth = (ele: HTMLElement) => {
@@ -80,24 +88,24 @@ export default class EllipsisText extends PureComponent<EllipsisTextProps, State
     });
   };
 
-  handleVisibleChange = (visible: boolean) => {
-    const { isEllipsis } = this.state;
+  // handleVisibleChange = (visible: boolean) => {
+  //   const { isEllipsis } = this.state;
 
-    this.setState({
-      visible: visible && isEllipsis
-    });
-  };
+  //   this.setState({
+  //     visible: visible && isEllipsis
+  //   });
+  // };
 
   render() {
-    const { visible, actMaxWidth, isEllipsis } = this.state;
+    const { actMaxWidth, isEllipsis } = this.state;
     const { title, value, className, maxWidth, ...other } = this.props;
 
     return (
       <Resize onResize={maxWidth ? null:this.onResize}>
         <Tooltip
           title={title || value}
-          visible={visible}
-          onVisibleChange={this.handleVisibleChange}
+          // visible={visible}
+          // onVisibleChange={this.handleVisibleChange}
           {...other}
         >
           <span
