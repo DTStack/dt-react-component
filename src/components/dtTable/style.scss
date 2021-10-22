@@ -1,0 +1,40 @@
+$prefix: 'dt-table';
+
+.#{$prefix} {
+    height: 100%;
+    .ant-spin-nested-loading {
+        height: 100%;
+        .ant-spin-container {
+            height: 100%;
+        }
+    }
+
+    .#{$prefix}-box {
+        background-color: #ffffff;
+        .#{$prefix}-body {
+            position: relative;
+            .dt-empty {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+            }
+        }
+        .#{$prefix}-footer {
+            padding: 26px 24px;
+            box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1); 
+            .ant-pagination {
+                width: 100%;
+                text-align: right;
+                overflow: hidden;
+                .ant-pagination-total-text {
+                    float: left;
+                }
+            } 
+        }
+        .ant-table-placeholder {
+             border-bottom: 0 none;
+             padding: 32px; 
+        }
+    }
+}
