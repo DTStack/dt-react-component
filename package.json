@@ -48,6 +48,7 @@
     }
   },
   "devDependencies": {
+    "@ant-design/compatible": "^1.1.0",
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
