@@ -1,5 +1,7 @@
 import React from 'react'
-import { Modal, Icon } from 'antd';
+import { ArrowsAltOutlined, ShrinkOutlined } from '@ant-design/icons';
+import { Icon as LegacyIcon } from '@ant-design/compatible';
+import { Modal } from 'antd';
 import Fullscreen from '../fullscreen';
 
 export interface ToolModalProps {
@@ -72,15 +74,15 @@ export default class DTModal extends React.Component<ToolModalProps, ToolModalSt
                 { toolbox }
                 {
                     fullscreen ? <Fullscreen
-                        fullIcon={<Icon className="alt" type="arrows-alt" />}
-                        exitFullIcon={<Icon className="alt" type="shrink" />}
+                        fullIcon={<ArrowsAltOutlined className="alt" />}
+                        exitFullIcon={<ShrinkOutlined className="alt" />}
                         isShowTitle={false}
                         className='dtc-icon__cursor'
                         onFullscreen={this.onEleFullScreen}
-                    /> : <Icon className="alt icon__cursor" type={iconType} onClick={this.onEleFullScreen} />
+                    /> : <LegacyIcon className="alt icon__cursor" type={iconType} onClick={this.onEleFullScreen} />
                 }
             </div>
-        )
+        );
     }
 
     render () {

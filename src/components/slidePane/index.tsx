@@ -1,5 +1,5 @@
 import { assign } from 'lodash';
-import { Icon } from 'antd';
+import { DoubleRightOutlined } from '@ant-design/icons';
 import React from 'react'
 
 import classNames from 'classnames';
@@ -48,7 +48,7 @@ class SlidePane extends React.Component<SlidePaneProps, any> {
                     onClick={onClose}
                     {...{ onClick: onClose }}
                 >
-                    <Icon type="double-right" />
+                    <DoubleRightOutlined />
                 </span>
             </div>
         );

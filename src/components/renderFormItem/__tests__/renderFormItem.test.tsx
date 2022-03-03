@@ -2,7 +2,9 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 import RenderFormItem from '../index'
-import { Form, Button } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Button } from 'antd';
 
 const IProps = {
     item: {

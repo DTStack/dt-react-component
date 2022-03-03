@@ -2,7 +2,8 @@ import React from 'react'
 import { storiesOf } from '@storybook/react';
 import { State, Store } from '@sambego/storybook-state';
 import { text, boolean, array } from '@storybook/addon-knobs';
-import { Button, Icon } from 'antd';
+import { LockOutlined, UnlockOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 import { PropsTable } from './components/propsTable';
 import ExampleContainer from './components/exampleCode';
 import ToolModal from '../components/toolModal';
@@ -85,7 +86,7 @@ stories.add('toolModal', () => {
     const title = text('title', defaultTitle, groupId)
     const defaultText = `i am tool modal`
     const children = text('children', defaultText, groupId)
-    const defaultToolbox = [<Icon type="lock" key='1' />, <Icon type="unlock" key='2' />]
+    const defaultToolbox = [<LockOutlined key='1' />, <UnlockOutlined key='2' />]
     const toolbox = array('toolbox', defaultToolbox, groupId)
 
     return (

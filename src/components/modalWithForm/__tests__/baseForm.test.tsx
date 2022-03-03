@@ -1,6 +1,8 @@
 import React from 'react';
 import ModalWithForm from '../index';
-import { Form, Input } from 'antd';
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Input } from 'antd';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 

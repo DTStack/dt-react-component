@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Modal, Form } from 'antd';
-import { FormComponentProps } from 'antd/lib/form/Form'
+import { Form } from '@ant-design/compatible';
+import '@ant-design/compatible/assets/index.css';
+import { Modal } from 'antd';
+import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
 import { ButtonProps, ButtonType } from 'antd/lib/button';
 
 export interface ModalProps {
