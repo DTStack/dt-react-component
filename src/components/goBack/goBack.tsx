@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'antd/lib'
+import { LeftCircleOutlined } from '@ant-design/icons';
 import { browserHistory, hashHistory } from 'react-router'
 import { GoBackProps } from './index'
 
@@ -40,9 +40,8 @@ export default class GoBack extends React.Component<GoBackProps, any> {
         }
 
         return (
-            <Icon
-                style={iconStyle}
-                type={'left-circle-o'}
+            <LeftCircleOutlined
+                style={iconStyle} 
                 onClick={this.go}
             />
         )
