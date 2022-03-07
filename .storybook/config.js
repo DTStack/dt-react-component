@@ -6,7 +6,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { withInfo } from '@storybook/addon-info';
 import { withOptions } from '@storybook/addon-options';
 import chaptersAddon from 'react-storybook-addon-chapters';
-import { repository, version } from "../package.json"
+const { version, repository } = require('../package.json');
 setAddon(chaptersAddon);
 addDecorator(withNotes);
 addDecorator(withKnobs);
