@@ -41,7 +41,7 @@ export default class GoBack extends React.Component<GoBackProps, any> {
 
         return (
             <LeftCircleOutlined
-                style={iconStyle} 
+                style={iconStyle}
                 onClick={this.go}
             />
         )
