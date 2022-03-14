@@ -40,7 +40,8 @@ const store = new Store({
     visible: false
 })
 
-const otherDependencies = `import { Button, Icon } from 'antd'
+const otherDependencies = `import { Button } from 'antd';
+import { LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import { ToolModal } from 'dt-react-component'`
 
 const functionCode = `state={
@@ -64,7 +65,7 @@ const code = `<div>
                     style={{ height: '560px' }}
                     fullScreen={true}
                     width={800}
-                    // toolbox={[<Icon type="lock" key='1' />, <Icon type="unlock" key='2' />]}
+                    toolbox={[<LockOutlined key='1' />, <UnlockOutlined key='2' />]}
                     visible={this.state.visible}
                     maskClosable={false}
                     onOk={() => {this.setState({ visible: false })}}
@@ -137,6 +138,7 @@ stories.add('toolModal', () => {
         代码示例：
         ~~~js
             import { ToolModal } from 'dt-react-component';
+            import { LockOutlined, UnlockOutlined } from '@ant-design/icons'
             <ToolModal
                 bodyStyle={{
                     position: 'relative'
@@ -145,7 +147,7 @@ stories.add('toolModal', () => {
                 width={800}
                 maskClosable={false}
                 visible={visible}
-                toolbox={[<Icon type="lock" key='1' />, <Icon type="unlock" key='2' />]}
+                toolbox={[<LockOutlined key='1' />, <UnlockOutlined key='2' />]}
                 onOk={() => {  }}
                 onCancel={() => {  }}
             >
