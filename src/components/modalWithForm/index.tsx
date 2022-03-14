@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { Modal } from 'antd';
-import { FormComponentProps } from '@ant-design/compatible/lib/form/Form';
+import { Modal, Form } from 'antd';
 import { ButtonProps, ButtonType } from 'antd/lib/button';
-
 export interface ModalProps {
     hideModelHandler: () => any;
     onSubmit?: (values: any, record: any) => void;
@@ -24,27 +21,25 @@ export interface ModalProps {
 }
 
 function ModalWithForm (FormComponent: any) {
-    return Form.create<any>()(class ModalForm extends Component<ModalProps & FormComponentProps, any> {
+    return class ModalForm extends Component<ModalProps, any> {
+        formRef: any = React.createRef();
         constructor (props: any) {
             super(props);
         }
         okHandler = () => {
             const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = this.props;
-            this.props.form.validateFields((err: any, values: any) => {
-                if (!err) {
-                    onSubmit(values, record);
-                    !notSubmitCloseModal && hideModelHandler();
-                }
+            this.formRef.current.validateFields().then(values => {
+                onSubmit(values, record);
+                notSubmitCloseModal && hideModelHandler();
             });
         };
         cancelHandler = () => {
-            const { form: { resetFields }, hideModelHandler } = this.props
-            resetFields()
+            const { hideModelHandler } = this.props
             hideModelHandler()
+            this.formRef.current.resetFields()
         }
         render () {
             const {
-                form,
                 title,
                 visible,
                 okText,
@@ -57,24 +52,26 @@ function ModalWithForm (FormComponent: any) {
             } = this.props;
             return (
                 <>
-                    <Modal
-                        className={modelClass}
-                        title={title}
-                        visible={visible}
-                        onOk={this.okHandler}
-                        onCancel={this.cancelHandler}
-                        okText={okText}
-                        cancelText={cancelText}
-                        okType={okType}
-                        footer={footer}
-                        centered={centered}
-                        cancelButtonProps={cancelButtonProps}
-                    >
-                        <FormComponent form={form} {...this.props} />
-                    </Modal>
+                    <Form ref={this.formRef}>
+                        <Modal
+                            className={modelClass}
+                            title={title}
+                            visible={visible}
+                            onOk={this.okHandler}
+                            onCancel={this.cancelHandler}
+                            okText={okText}
+                            cancelText={cancelText}
+                            okType={okType}
+                            footer={footer}
+                            centered={centered}
+                            cancelButtonProps={cancelButtonProps}
+                        >
+                            <FormComponent {...this.props} />
+                        </Modal>
+                    </Form>
                 </>
             )
         }
-    })
+    }
 }
 export default ModalWithForm;

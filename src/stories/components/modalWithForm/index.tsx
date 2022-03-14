@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
-import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { Input, Button } from 'antd';
+import { Input, Button, Form } from 'antd';
 import RenderBaseForm from '../../../components/modalWithForm'
 
 const FormItem = Form.Item;
 
 const Modal = RenderBaseForm((props) => {
-    const { form: { getFieldDecorator } } = props
     return (
-        <FormItem label='username'>
-            {getFieldDecorator('username', {
-                rules: [{ max: 10 }]
-            })(
-                <Input />
-            )}
+        <FormItem label='username' name={'username'} rules={[{ max: 10 }]}>
+            <Input />
         </FormItem>
     )
 })

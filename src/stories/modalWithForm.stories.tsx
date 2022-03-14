@@ -108,18 +108,13 @@ const propDefinitions = [
 ]
 
 const otherDependencies = `import { ModalWithForm } from 'dt-react-component';`
-const code = `const Modal = ModalWithForm((props) => {
-                const { form: { getFieldDecorator } } = props
+const code = `const Modal = ModalWithForm(props => {
                 return (
-                            <FormItem label='test-label'>
-                                {getFieldDecorator('test', {
-                                    rules: [{ max: 10 }]
-                                })(
-                                    <Input />
-                                )}
-                            </FormItem>
-                        )
-            })
+                    <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
+                        <Input data-testid="test-input" />)
+                    </FormItem>
+                );
+            });
         export default class Demo extends React.Component<any, any> {
             constructor (props) {
                 super(props);
@@ -159,18 +154,13 @@ stories.add('ModalWithForm', () => (
             ~~~js
             import { Form, Input } from 'antd';
             import { ModalWithForm } from 'dt-react-component'
-            const Modal = ModalWithForm((props) => {
-                const { form: { getFieldDecorator } } = props
+            const Modal = ModalWithForm(props => {
                 return (
-                    <FormItem label='test-label'>
-                        {getFieldDecorator('test', {
-                            rules: [{ max: 10 }]
-                        })(
-                            <Input />
-                        )}
+                    <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
+                        <Input data-testid="test-input" />)
                     </FormItem>
-                )
-            })
+                );
+            });
             export default class Demo extends React.Component<any, any> {
                 constructor (props) {
                     super(props);

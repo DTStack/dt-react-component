@@ -1,21 +1,15 @@
 import React from 'react';
 import ModalWithForm from '../index';
-import { Form } from '@ant-design/compatible';
 import '@ant-design/compatible/assets/index.css';
-import { Input } from 'antd';
+import { Input, Form } from 'antd';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 const FormItem = Form.Item;
 const Modal = ModalWithForm(props => {
-    const {
-        form: { getFieldDecorator }
-    } = props;
     return (
-        <FormItem label="test-label">
-            {getFieldDecorator('test', {
-                rules: [{ max: 10 }]
-            })(<Input data-testid="test-input" />)}
+        <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
+            <Input data-testid="test-input" />)
         </FormItem>
     );
 });
