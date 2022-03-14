@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '@ant-design/compatible/assets/index.css';
+// import '@ant-design/compatible/assets/index.css';
 import { Modal, Form } from 'antd';
 import { ButtonProps, ButtonType } from 'antd/lib/button';
 export interface ModalProps {
