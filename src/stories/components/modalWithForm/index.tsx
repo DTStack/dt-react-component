@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '@ant-design/compatible/assets/index.css';
 import { Input, Button, Form } from 'antd';
 import RenderBaseForm from '../../../components/modalWithForm'
 

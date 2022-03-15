@@ -1,6 +1,6 @@
 {
   "name": "dt-react-component",
-  "version": "2.0.12",
+  "version": "3.0.0-alpha",
   "description": "react-component",
   "repository": "https://github.com/DTStack/dt-react-component",
   "main": "lib/index.js",
@@ -154,7 +154,7 @@
     "storybook-readme": "^5.0.5",
     "style-loader": "^0.23.1",
     "through2": "^4.0.2",
-    "typescript": "3.8.2",
+    "typescript": "~4.5.2",
     "url-loader": "^4.1.0"
   },
   "dependencies": {
@@ -162,7 +162,7 @@
     "@handsontable/react": "^2.1.0",
     "antd": "4.18.9",
     "classnames": "^2.2.6",
-    "handsontable": "^10.0.0",
+    "handsontable": "^6.2.2",
     "highlight.js": "^10.5.0",
     "lodash": "^4.17.15",
     "moment": "^2.22.2",

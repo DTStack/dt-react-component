@@ -8,7 +8,8 @@
     "moduleResolution": "Node",
     "keyofStringsOnly": true,
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "skipLibCheck": true
   },
   "include": [
     "src/components"

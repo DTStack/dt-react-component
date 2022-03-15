@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "keyofStringsOnly": true,
     "experimentalDecorators": true,
+    "skipLibCheck": true
   },
   "include": [
     "src/components"

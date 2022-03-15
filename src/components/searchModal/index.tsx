@@ -39,7 +39,7 @@ class SearchModal extends React.Component<SearchModalProps, any> {
         } = this.props;
         return (
             <Modal {...rest} visible={visible} onCancel={this.onCancel} footer={null} title={title}>
-                <Row align="middle" justify="center" type="flex">
+                <Row align="middle" justify="center">
                     {prefixRender && (
                         <Col span={6} style={{ paddingRight: '12px' }}>
                             {prefixRender}
