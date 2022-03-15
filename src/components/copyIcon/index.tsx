@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Icon, Tooltip, message } from 'antd';
+import { Tooltip, message } from 'antd';
+import { CopyOutlined } from '@ant-design/icons';
+
 
 export interface CopyIconProps {
     text: string;
@@ -101,7 +103,7 @@ export default class CopyIcon extends React.Component<any, any> {
             <span onClick={this.copy.bind(this, text)}>{customRender}</span>
         ) : (
             <Tooltip placement="right" title={title || '复制'}>
-                <Icon {...rest} className="c-copyIcon" onClick={this.copy.bind(this, text)} style={style} type="copy" />
+                <CopyOutlined {...rest} className="c-copyIcon" onClick={this.copy.bind(this, text)} style={style} />
             </Tooltip>
         );
     }
