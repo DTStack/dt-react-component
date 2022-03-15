@@ -1,6 +1,6 @@
 {
   "name": "dt-react-component",
-  "version": "3.0.0-alpha",
+  "version": null,
   "description": "react-component",
   "repository": "https://github.com/DTStack/dt-react-component",
   "main": "lib/index.js",
@@ -168,7 +168,8 @@
     "moment": "^2.22.2",
     "react-router": "3.0.4",
     "react-syntax-highlighter": "^15.4.3",
-    "showdown": "^1.9.0"
+    "showdown": "^1.9.0",
+    "standard-version": "^9.3.2"
   },
   "peerDependencies": {
     "react": ">=16.0.0",

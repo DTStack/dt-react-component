@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [](https://github.com/DTStack/dt-react-component/compare/v2.0.12...v) (2022-03-15)
+
+
+### Features
+
+* delete @ant-design/compatible/assets/index.css ([fc92b60](https://github.com/DTStack/dt-react-component/commit/fc92b600162942e60e51dc52b4ad048f5eae6966))
+* update stories of ToolModal ([#165](https://github.com/DTStack/dt-react-component/issues/165)) ([238585e](https://github.com/DTStack/dt-react-component/commit/238585e536fde6eef903ff08db5aab23d20bc29e))
+
+
+### Bug Fixes
+
+* import is replaced with require ([7a6263f](https://github.com/DTStack/dt-react-component/commit/7a6263f57ced1804902ec9f76dda8034a097a5a0))
+
 ### [2.0.12](https://github.com/DTStack/dt-react-component/compare/v2.0.11...v2.0.12) (2021-10-22)
 
 ### [2.0.11](https://github.com/DTStack/dt-react-component/compare/v2.0.10...v2.0.11) (2021-09-29)
