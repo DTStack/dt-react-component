@@ -1,22 +1,8 @@
 import React from 'react';
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
-import { Input } from 'antd';
-const FormItem = Form.Item
+import { Form, Input } from 'antd';
+import { Rule } from 'antd/lib/form';
 
-export type ValidationRule = {
-    message?: React.ReactNode;
-    type?: string;
-    required?: boolean;
-    whitespace?: boolean;
-    len?: number;
-    min?: number;
-    max?: number;
-    enum?: string | string[];
-    pattern?: RegExp;
-    transform?: (value: any) => any;
-    validator?: (rule: any, value: any, callback?: any, source?: any, options?: any) => any;
-};
+const FormItem = Form.Item;
 
 interface ItemType {
     item?: {
@@ -31,21 +17,30 @@ interface ItemType {
             valuePropName?: string;
             normalize?: any;
         };
-        rules?: ValidationRule[];
-        initialValue?: any;
+        rules?: Rule[];
     };
     layout?: {};
-    getFieldDecorator: any;
 }
-export default function RenderFormItem({ item, layout, getFieldDecorator }: ItemType) {
-    const { label, key, required, component, options = {}, rules, initialValue } = item
+
+export default function RenderFormItem({ item, layout }: ItemType) {
+    const { label, key, required = true, component, options = {}, rules } = item;
+    const { validateFirst = false, validateTrigger = 'onChange', valuePropName, normalize } = options;
     return (
-        <FormItem key={key} label={label} colon {...layout} className={options.className} >
-            {getFieldDecorator(key, {
-                ...options,
-                initialValue,
-                rules: rules || [{ required, message: `${label}为空` }]
-            })(component || <Input data-testid='test-input' />)}
+        <FormItem
+            key={key}
+            name={key}
+            label={label}
+            {...layout}
+            className={options.className}
+            rules={rules || [{ required, message: `${label} 为空` }]}
+            validateFirst={validateFirst}
+            validateTrigger={validateTrigger}
+            valuePropName={valuePropName}
+            normalize={normalize}
+        >
+            {
+                component || (<Input data-testid='test-input' />)
+            }
         </FormItem>
     )
 }

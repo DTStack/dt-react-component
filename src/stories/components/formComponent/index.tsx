@@ -1,15 +1,24 @@
-import React from 'react'
-import RenderFormItem from '../../../components/renderFormItem'
-import { Form } from '@ant-design/compatible';
-import '@ant-design/compatible/assets/index.css';
+import React from 'react';
+import { Form } from 'antd';
+import RenderFormItem from '../../../components/renderFormItem';
 
 const App = (props) => {
-    const { getFieldDecorator } = props.form;
-    const params = { ...props, getFieldDecorator }
+
+    const onFinish = values => {
+        console.log('Received values of form: ', values);
+    };
+
+    const [form] = Form.useForm();
+    const params = { ...props };
+    const { initialValue } = params;
     return (
-        <Form>
+        <Form
+            form={form}
+            onFinish={onFinish}
+            initialValues={initialValue}
+        >
             {RenderFormItem(params)}
         </Form>
     )
 }
-export const FormItem: any = Form.create()(App);
+export default App;
