@@ -1,4 +1,4 @@
-
+@import "../components//blockHeader//style.scss";
 @import "../components/chromeDownload/style.scss";
 @import "../components/circle/style";
 @import "../components/contextMenu/style";
@@ -35,7 +35,7 @@
 }
 #story-root {
     margin-top: -30px;
-    
+
     h2 {
         margin-top: 30px;
     }
