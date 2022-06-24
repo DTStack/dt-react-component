@@ -2,7 +2,7 @@ $card_prefix: 'dtc-block-header';
 
 .#{$card_prefix} {
     .#{$card_prefix}-title-row {
-        padding: 0 14px 0 12px;
+        padding: 0 12px;
         border-radius: 4px;
         display: flex;
         align-items: center;
@@ -27,6 +27,9 @@ $card_prefix: 'dtc-block-header';
         }
         &.background {
             background-color: #F9F9FA;
+        }
+        &.pointer {
+            cursor: pointer;
         }
 
         .#{$card_prefix}-title-box {
@@ -62,15 +65,18 @@ $card_prefix: 'dtc-block-header';
             cursor: pointer;
             user-select: none;
             .text {
-                margin: 0 6px;
+                font-size: 12px;
+                margin: 0 4px;
             }
-            .down {
-                transform: rotate(-180deg);
+            .icon {
+                font-size: 16px;
                 transition: transform .4s;
-            }
-            .up {
-                transform: rotate(0deg);
-                transition: transform .4s;
+                &.down {
+                    transform: rotate(-180deg);
+                }
+                &.up {
+                    transform: rotate(0deg);
+                }
             }
         }
     }
