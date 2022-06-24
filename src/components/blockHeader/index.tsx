@@ -46,6 +46,7 @@ export default function BlockHeader (props: BlockHeaderProps) {
     const [expand, setExpand] = useState(defaultExpand);
 
     const handleExpand = (expand) => {
+        if (!children) return
         setExpand(expand);
         onChange?.(expand);
     }
@@ -54,7 +55,7 @@ export default function BlockHeader (props: BlockHeaderProps) {
         <div
             className={`${prefixCls}`}
         >
-            <div className={`${prefixCls}-title-row ${isSmall ? 'small' : 'default'} ${showBackground ? 'background' : ''} ${titleRowClassName}`}>
+            <div className={`${prefixCls}-title-row ${isSmall ? 'small' : 'default'} ${showBackground ? 'background' : ''} ${children ? 'pointer' : ''} ${titleRowClassName}`} onClick={() => handleExpand(!expand)}>
                 <div className={`${prefixCls}-title-box`}>
                     {
                         beforeTitle ? (<div className={`${prefixCls}-before-title`}>
@@ -73,9 +74,9 @@ export default function BlockHeader (props: BlockHeaderProps) {
 
                 {
                     children && (
-                        <div className={`${prefixCls}-collapse-box`} onClick={() => handleExpand(!expand)}>
+                        <div className={`${prefixCls}-collapse-box`}>
                             <div className="text">{expand ? '收起' : '展开'}</div>
-                            <Icon className={expand ? 'up' : 'down'} type="up" />
+                            <Icon className={`icon ${expand ? 'up' : 'down'}`} type="up" />
                         </div>
                     )
                 }

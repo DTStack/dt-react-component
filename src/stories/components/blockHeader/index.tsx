@@ -23,7 +23,7 @@ export default function BlockHeaderRender () {
             <p style={style}>3、标题 + icon，有说明文字</p>
             <BlockHeader
                 title="分类标题"
-                beforeTitle={<Icon type="pie-chart" />}
+                beforeTitle={<Icon type="pie-chart" style={{ fontSize: '16px' }} />}
                 afterTitle="说明文字"
             />
 
