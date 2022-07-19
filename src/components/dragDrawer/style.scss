@@ -1,0 +1,12 @@
+$prefix: 'dtc-drag-drawer';
+
+.#{$prefix} {
+    .#{$prefix}-icon {
+        width: 6px;
+        height: 36px;
+        position: absolute;
+        left: 0;
+        top: calc(50% - 18px);
+        cursor: ew-resize;
+    }
+}
