@@ -15,9 +15,11 @@ export default function DragDrawer (props: DragDrawerProps) {
     const {
         visible,
         draggable = true,
+        closable = false,
+        mask = false,
         minWidth = 720,
         maxWidth = 1256,
-        maskStyle = { opacity: 0, animation: 'none' },
+        bodyStyle = { padding: 0 },
         width: defaultWidth = 1000,
         children = '',
         onDrag,
@@ -41,8 +43,10 @@ export default function DragDrawer (props: DragDrawerProps) {
 
     return (
         <Drawer
-            maskStyle={maskStyle}
+            mask={mask}
+            bodyStyle={bodyStyle}
             width={defaultWidth}
+            closable={closable}
             {...props}
             placement="right"
         >

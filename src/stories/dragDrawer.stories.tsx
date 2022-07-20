@@ -44,18 +44,25 @@ const propDefinitions = [
         defaultValue: 1256
     },
     {
-        property: 'maskStyle',
-        propType: 'CSSProperties',
-        required: false,
-        description: '遮罩样式',
-        defaultValue: "{ opacity: 0, animation: 'none' }"
-    },
-    {
         property: 'closable',
         propType: 'boolean',
         required: false,
-        description: '是否显示左上角的关闭按钮',
+        description: '是否显示左上角的关闭按钮，关闭按钮在右上角',
         defaultValue: 'false'
+    },
+    {
+        property: 'mask',
+        propType: 'boolean',
+        required: false,
+        description: '是否展示遮罩',
+        defaultValue: 'false'
+    },
+    {
+        property: 'bodyStyle',
+        propType: 'CSSProperties',
+        required: false,
+        description: '可用于设置 Drawer 内容部分的样式',
+        defaultValue: '{ padding: 0 }'
     },
     {
         property: 'title',
@@ -99,16 +106,31 @@ stories.add('DragDrawer 可拖拽的抽屉', () => (
         text: `
             代码示例：
             ~~~js
-            <p style={style}>1、可拖拽</p>
-            <Button type="primary" onClick={() => store.set({ visible1: true })}>Open</Button>
-            <DragDrawer visible={state.visible1} onClose={() => store.set({ visible1: false })}>
-                {drawerRender}
+            <p style={style}>1、可拖拽，有关闭按钮</p>
+            <Button type="primary" onClick={() => store.set({ visible1: !state.visible1 })}>{state.visible1 ? '关闭' : '打开'}</Button>
+            <DragDrawer visible={state.visible1} closable onClose={() => store.set({ visible1: false })}>
+                {drawerRender(state.drawerStr)}
             </DragDrawer>
 
-            <p style={style}>2、不可拖拽</p>
-            <Button type="primary" onClick={() => store.set({ visible2: true })}>Open</Button>
+            <p style={style}>2、不可拖拽，无关闭按钮</p>
+            <Button type="primary" onClick={() => store.set({ visible2: !state.visible2 })}>{state.visible2 ? '关闭' : '打开'}</Button>
             <DragDrawer draggable={false} visible={state.visible2} width={500} onClose={() => store.set({ visible2: false })}>
-                {drawerRender}
+                {drawerRender(state.drawerStr)}
+            </DragDrawer>
+
+            <p style={style}>3、展开后可更换抽屉内容</p>
+            <Button type="primary" onClick={() => store.set({ visible3: !state.visible3 })}>{state.visible3 ? '关闭' : '打开'}</Button>
+            {
+                state.visible3 && (<Button type="primary" style={{ marginLeft: 12 }} onClick={() => store.set({ drawerStr: state.drawerStr === '我是新的抽屉内容' ? drawerStr : '我是新的抽屉内容' })}>更换内容</Button>)
+            }
+            <DragDrawer visible={state.visible3} onClose={() => store.set({ visible3: false })}>
+                {drawerRender(state.drawerStr)}
+            </DragDrawer>
+
+            <p style={style}>4、有蒙层，点击蒙层可关闭</p>
+            <Button type="primary" onClick={() => store.set({ visible4: !state.visible4 })}>{state.visible4 ? '关闭' : '打开'}</Button>
+            <DragDrawer draggable={false} mask visible={state.visible4} onClose={() => store.set({ visible4: false })}>
+                {drawerRender(state.drawerStr)}
             </DragDrawer>
             ~~~
         `,

@@ -10,3 +10,18 @@ $prefix: 'dtc-drag-drawer';
         cursor: ew-resize;
     }
 }
+
+.ant-drawer-content-wrapper {
+    box-shadow: 0 5px 22px 0 rgba(61, 68, 110, 0.2) !important;
+
+    // 关闭图标放右侧
+    .ant-drawer-header {
+        padding: 16px 16px 0;
+        .ant-drawer-header-title {
+            justify-content: flex-end;
+            .ant-drawer-close {
+                margin-right: 0;
+            }
+        }
+    }
+}
