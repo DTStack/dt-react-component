@@ -37,7 +37,8 @@ export default function DragDrawer (props: DragDrawerProps) {
             if (e.clientX < 0) return
             onDrag?.(e)
             const width = assertWidth(document.body.clientWidth - e.clientX);
-            document.getElementsByClassName('ant-drawer-content-wrapper')[0]['style']['width'] = `${width}px`;
+            e['path'][6]['style']['width'] = `${width}px`;
+            // document.getElementsByClassName('ant-drawer-content-wrapper')[0]['style']['width'] = `${width}px`;
         })
     }, [visible]);
 

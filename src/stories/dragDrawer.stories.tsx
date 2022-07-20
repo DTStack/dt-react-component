@@ -106,13 +106,13 @@ stories.add('DragDrawer 可拖拽的抽屉', () => (
         text: `
             代码示例：
             ~~~js
-            <p style={style}>1、可拖拽，有关闭按钮</p>
+            <p style={style}>1、可拖拽，有关闭图标</p>
             <Button type="primary" onClick={() => store.set({ visible1: !state.visible1 })}>{state.visible1 ? '关闭' : '打开'}</Button>
             <DragDrawer visible={state.visible1} closable onClose={() => store.set({ visible1: false })}>
                 {drawerRender(state.drawerStr)}
             </DragDrawer>
 
-            <p style={style}>2、不可拖拽，无关闭按钮</p>
+            <p style={style}>2、不可拖拽，无关闭图标</p>
             <Button type="primary" onClick={() => store.set({ visible2: !state.visible2 })}>{state.visible2 ? '关闭' : '打开'}</Button>
             <DragDrawer draggable={false} visible={state.visible2} width={500} onClose={() => store.set({ visible2: false })}>
                 {drawerRender(state.drawerStr)}

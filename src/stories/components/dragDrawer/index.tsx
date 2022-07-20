@@ -25,7 +25,7 @@ export default function DragDrawerRender () {
 
     return (
         <React.Fragment>
-            <p style={style}>1、可拖拽，有关闭按钮</p>
+            <p style={style}>1、可拖拽，有关闭图标</p>
             <State store={store}>
                 {(state) => (
                     <React.Fragment>
@@ -37,7 +37,7 @@ export default function DragDrawerRender () {
                 )}
             </State>
 
-            <p style={style}>2、不可拖拽，无关闭按钮</p>
+            <p style={style}>2、不可拖拽，无关闭图标</p>
             <State store={store}>
                 {(state) => (
                     <React.Fragment>
