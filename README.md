@@ -16,6 +16,12 @@ React UI component library based on [ant-design](https://github.com/ant-design/a
 + When you find that the basic components provided by other component libraries do not meet the current business scenario, and you need to implement functions based on the basic components, you can use dt-react-component to solve the problem.
 + When the business is complex, more and more business components are deposited. In order to better manage the components and reduce the redundancy of the code, you can use dt-react-component. Of course, we welcome PR. We will review and merge common business scenario components in a timely manner.
 
+
+## How to contribute
+
+[CONTRIBUTING](./CONTRIBUTING.md)
+
+
 ## Install
 
 ```js
