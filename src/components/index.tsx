@@ -19,6 +19,7 @@ export { default as MarkdownRender } from './markdownRender';
 export { default as ModalWithForm } from './modalWithForm';
 export { default as MulSelectDropdown } from './mulSelectDropdown';
 export { default as MultiSearchInput } from './multiSearchInput';
+export { default as MxGraphContainer } from './mxGraph';
 export { default as NotFound } from './notFound';
 export { default as ProgressBar } from './progressBar';
 export { default as RenderFormItem } from './renderFormItem';

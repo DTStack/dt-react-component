@@ -1,0 +1,143 @@
+.mxTooltip {
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 11px;
+    font-family: 'Arial', sans-serif;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    word-wrap: break-word;
+    list-style: none;
+    background: #ffffff;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.08);
+    cursor: default;
+    font-feature-settings: 'tnum';
+
+    .vertex-title {
+        color: inherit;
+    }
+
+    .vertex {
+        color: #ffffff;
+    }
+}
+
+div.mxPopupMenu {
+    position: absolute;
+    background: #fff;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.08);
+
+    table.mxPopupMenu {
+        margin: 4px 0;
+        border-collapse: collapse;
+
+        tr.mxPopupMenuItem {
+            color: #000;
+            cursor: default;
+        }
+
+        td.mxPopupMenuItem {
+            padding: 6px 60px 6px 30px;
+            color: #000;
+            font-size: 12px;
+            font-family: 'PingFangSC-Regular', sans-serif;
+            letter-spacing: 0;
+            border: none;
+
+            &.mxDisabled {
+                color: #ddd;
+                cursor: not-allowed;
+            }
+        }
+
+        td.mxPopupMenuIcon {
+            padding: 0;
+            background-color: #fff;
+        }
+
+        tr.mxPopupMenuItemHover {
+            background-color: #e6f7ff;
+            cursor: pointer;
+
+            .mxPopupMenuItem {
+                color: #2491f7;
+            }
+        }
+
+        hr {
+            border-top: solid 1px #ccc;
+        }
+    }
+}
+
+.graph-editor {
+    position: relative;
+    height: 100%;
+    background-color: #fff;
+
+    .task-graph {
+        height: 100%;
+    }
+
+    .ant-spin-container {
+        height: 100%;
+    }
+
+    .graph-widgets {
+        background: #fff;
+        border: 1px solid #ddd;
+        max-height: 517px;
+        left: 20px;
+        overflow: auto;
+        position: absolute;
+        text-align: center;
+        top: 20px;
+        width: 150px;
+        z-index: 3;
+    }
+
+    .graph-bottom {
+        position: absolute;
+        bottom: 0;
+        z-index: 999;
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .graph-toolbar {
+        position: absolute;
+        top: 20px;
+        right: 14px;
+        z-index: 901;
+        height: 18px;
+        text-align: center;
+        border-radius: 0;
+    }
+
+    .graph-info {
+        width: 100%;
+        height: 35px;
+        padding: 0 20px;
+        color: #fff;
+        font-size: 12px;
+        font-family: 'PingFangSC-Regular', sans-serif;
+        line-height: 35px;
+        letter-spacing: 0;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .graph-status {
+        @extend .graph-info;
+
+        background-color: #fff;
+        border-bottom: 0;
+    }
+}
