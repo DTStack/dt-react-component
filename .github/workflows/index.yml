@@ -17,6 +17,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+          cache: yarn
+
       - name: cache yarn.lock
         uses: actions/cache@v2
         with:
