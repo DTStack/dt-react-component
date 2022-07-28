@@ -60,11 +60,9 @@ export interface IContextMenuConfig {
     disabled?: boolean;
 }
 
-type StartsWithBindString<T> = T extends `bind${string}` ? T : never;
-
 export interface IKeyDownConfig {
     id: string;
-    method: StartsWithBindString<keyof mxKeyHandler>;
+    method: 'bindKey' | 'bindShiftKey' | 'bindControlKey' | 'bindControlShiftKey';
     /**
      * @reference: https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
      */
@@ -110,16 +108,33 @@ export interface IContainerProps<T> {
      * 配置项目
      */
     config?: {
+        /**
+         * 是否开启 tooltips
+         */
         tooltips?: boolean;
+        /**
+         * 是否可连接
+         */
         connectable?: boolean;
         /**
          * 选中是否高亮相关 vertex 及 edge
          */
         highlight?: boolean;
+        /**
+         * 设置 toolbar 的样式
+         */
         toolbarStyle?: CSSProperties;
+        /**
+         * 修改默认的 vertex 样式
+         * @notice 仅在实例初始化的时候生效
+         */
         defaultVertexStyle?:
             | Record<string, any>
             | ((instances: mxGraphExportObject) => Record<string, any>);
+        /**
+         * 修改默认的 edge 样式
+         * @notice 仅在实例初始化的时候生效
+         */
         defaultEdgeStyle?:
             | Record<string, any>
             | ((instances: mxGraphExportObject) => Record<string, any>);
@@ -129,6 +144,9 @@ export interface IContainerProps<T> {
      * re-layout 的方向，MxHierarchicalLayout 的第二个参数
      */
     direction?: string;
+    /**
+     * 样式
+     */
     style?: CSSProperties;
     /**
      * children 会渲染底部状态栏
@@ -145,6 +163,9 @@ export interface IContainerProps<T> {
      * 渲染 widgets 的组件
      */
     onRenderWidgets?: () => JSX.Element;
+    /**
+     * 组件拖拽 drop 的回调函数
+     */
     onDropWidgets?: (
         node: HTMLElement,
         graph: mxGraph,
@@ -164,6 +185,9 @@ export interface IContainerProps<T> {
      * 获取 vertex 的 style，由于存在默认样式，所以通常用于设置特殊状态的 vertex
      */
     onDrawVertex?: (data: T) => string;
+    /**
+     * 获取 edge 的 style，由于存在默认样式，通常用于设置特殊样式的 edge
+     */
     onDrawEdge?: (source: mxCell, target: mxCell) => string;
     /**
      * Vertex 的点击回调函数
@@ -217,11 +241,6 @@ export interface IGeometryPosition {
     scrollTop: number;
     scrollLeft: number;
     scale: number;
-}
-
-enum ZoomKind {
-    In,
-    Out
 }
 
 function renderCharacterByCode(keyCode: number) {
