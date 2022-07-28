@@ -1099,13 +1099,14 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                 : []
                         }
                         onClick={(cell, graph, event) => {
-                            if (event.target.closest('.loadData')) {
+                            const target: any = event.target;
+                            if (target.closest('.loadData')) {
                                 store.set({
                                     loading: true
                                 });
                                 setTimeout(() => {
                                     const graphData = store.get('graphData');
-                                    const stack = [...graphData];
+                                    const stack: any[] = [...graphData];
                                     while (stack.length) {
                                         const item = stack.pop();
                                         if (item.metaId === cell.value.metaId) {
@@ -1160,7 +1161,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
 
                             return 'whiteSpace=wrap;fillColor=#ffffff;strokeColor=#3F87FF;';
                         }}
-                        onRenderActions={(graph, { mxOutline }) => {
+                        onRenderActions={(graph, { mxOutline: MxOutline }) => {
                             return (
                                 <>
                                     <div
@@ -1199,7 +1200,8 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                 if (container.innerHTML) {
                                                     container.innerHTML = '';
                                                 } else {
-                                                    new mxOutline(
+                                                    // eslint-disable-next-line no-new
+                                                    new MxOutline(
                                                         graph,
                                                         container
                                                     );
