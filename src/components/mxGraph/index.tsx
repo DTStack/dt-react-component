@@ -17,7 +17,6 @@ import {
     mxEventSource,
     mxGraph,
     mxGraphExportObject,
-    mxKeyHandler,
     mxPopupMenuHandler
 } from 'mxgraph';
 import MxFactory from './factory';
@@ -40,7 +39,7 @@ const {
     mxPolyline: MxPolyline,
     mxConstraintHandler: MxConstraintHandler,
     mxKeyHandler: MxKeyHandler,
-    mxClient
+    mxClient,
 } = Mx.mxInstance;
 
 /**
@@ -125,6 +124,10 @@ export interface IContainerProps<T> {
          */
         toolbarStyle?: CSSProperties;
         /**
+         * vertex 是否可移动，默认可移动
+         */
+        vertexMovable?: boolean;
+        /**
          * 修改默认的 vertex 样式
          * @notice 仅在实例初始化的时候生效
          */
@@ -138,6 +141,7 @@ export interface IContainerProps<T> {
         defaultEdgeStyle?:
             | Record<string, any>
             | ((instances: mxGraphExportObject) => Record<string, any>);
+        getPortOffset?:(edgeState: mxCellState, source:boolean) => HTMLElement;
         [key: string]: any;
     };
     /**
@@ -159,6 +163,7 @@ export interface IContainerProps<T> {
         graph: mxGraph,
         instances: mxGraphExportObject
     ) => JSX.Element;
+    onGetSize?: (data: T)=> { width: number; height: number } | undefined;
     /**
      * 渲染 widgets 的组件
      */
@@ -265,6 +270,7 @@ function MxGraphContainer<T extends IMxGraphData>(
         onClick,
         onContextMenu,
         onDoubleClick,
+        onGetSize,
         onRenderWidgets,
         onGetPreview,
         onDropWidgets,
@@ -803,14 +809,17 @@ function MxGraphContainer<T extends IMxGraphData>(
                 const { sourceOrTarget, data } = stack.pop()!;
                 const style = onDrawVertex?.(data);
 
+                const size = onGetSize?.(data);
+                const width = size?.width || vertexSize?.width || MxFactory.VertexSize.width;
+                const height = size?.height || vertexSize?.height || MxFactory.VertexSize.height;
                 const vertex = graph.current!.insertVertex(
                     graph.current!.getDefaultParent(),
                     data[vertexKey],
                     data,
                     0,
                     0,
-                    vertexSize?.width || MxFactory.VertexSize.width,
-                    vertexSize?.height || MxFactory.VertexSize.height,
+                    width,
+                    height,
                     style
                 );
 
@@ -819,16 +828,20 @@ function MxGraphContainer<T extends IMxGraphData>(
                     const isSource = !!sourceOrTarget.value?.childNode?.find(
                         (i: T) => i[vertexKey] === data[vertexKey]
                     );
+
+                    const source = isSource ? sourceOrTarget : vertex;
+                    const target = isSource ? vertex : sourceOrTarget;
                     const style = onDrawEdge?.(
                         isSource ? sourceOrTarget : vertex,
                         isSource ? vertex : sourceOrTarget
                     );
+
                     graph.current!.insertEdge(
                         graph.current!.getDefaultParent(),
                         null,
                         null,
-                        isSource ? sourceOrTarget : vertex,
-                        isSource ? vertex : sourceOrTarget,
+                        source,
+                        target,
                         style
                     );
                 } else {

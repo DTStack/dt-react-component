@@ -1,4 +1,4 @@
-import Mx from 'mxgraph';
+import Mx, { mxCellState } from 'mxgraph';
 import type {
     mxGraphExportObject,
     mxGraphOptions,
@@ -9,6 +9,7 @@ import type {
     mxGraphView,
     mxPoint
 } from 'mxgraph';
+import { IContainerProps } from '.';
 
 interface IMxGraph extends mxGraph {
     scrollTileSize?: mxRectangle;
@@ -83,7 +84,7 @@ class MxFactory {
     /**
      * 初始化 mxgraph 实例
      */
-    create (containerDom: HTMLElement, config?: Record<string, any>) {
+    create (containerDom: HTMLElement, config?: IContainerProps<any>['config']) {
         const {
             mxGraphView,
             mxText,
@@ -92,7 +93,8 @@ class MxFactory {
             mxConstants,
             mxGraphHandler,
             mxSvgCanvas2D,
-            mxClient
+            mxClient,
+            mxPoint
         } = this.mxInstance;
 
         /**
@@ -106,8 +108,8 @@ class MxFactory {
             const strokeColor = String(s.strokeColor);
             this.node.setAttribute(
                 'stroke',
-                // Prevent transform css variables into lower case
-                strokeColor.startsWith('var')
+                // Prevent transform css constiables into lower case
+                strokeColor.startsWith('const')
                     ? strokeColor
                     : strokeColor.toLowerCase()
             );
@@ -181,8 +183,8 @@ class MxFactory {
                     const fillColor = String(s.fillColor);
                     this.node.setAttribute(
                         'fill',
-                        // Prevent transform css variables into lower case
-                        fillColor.startsWith('var')
+                        // Prevent transform css constiables into lower case
+                        fillColor.startsWith('const')
                             ? fillColor
                             : fillColor.toLowerCase()
                     );
@@ -212,10 +214,15 @@ class MxFactory {
         graph.setAllowDanglingEdges(false);
         // 禁止连接
         graph.setConnectable(config?.connectable ?? false);
-        // 禁止Edge对象移动
+        // Disabled cells movable
         graph.isCellsMovable = function () {
-            const cell = graph.getSelectionCell();
-            return !(cell && cell.edge);
+            const movable = config?.vertexMovable;
+            if (movable === true || movable === undefined) {
+                const cell = graph.getSelectionCell();
+                return !(cell && cell.edge);
+            }
+
+            return false;
         };
         // 禁止cell编辑
         graph.isCellEditable = () => false;
@@ -240,6 +247,47 @@ class MxFactory {
             ...this.getDefaultEdgeStyle(),
             ...(userEdgeStyle || {})
         });
+
+        mxGraphView.prototype.updateFloatingTerminalPoint = function (
+            edge,
+            start,
+            end,
+            source
+        ) {
+            const next = this.getNextPoint(edge, end, source);
+            if (!start.text) return;
+            const div = start.text.node.getElementsByTagName('div')[1];
+            let x = start.x;
+            let y = start.getCenterY();
+
+            // Checks on which side of the terminal to leave
+            if (next.x > x + start.width / 2) {
+                x += start.width;
+            }
+
+            if (div != null) {
+                y = start.getCenterY() - div.scrollTop;
+                const offset = config?.getPortOffset?.(edge, source);
+                y = getRowY(start, offset);
+
+                // Updates the vertical position of the nearest point if we're not
+                // dealing with a connection preview, in which case either the
+                // edgeState or the absolutePoints are null
+                if (edge != null && edge.absolutePoints != null) {
+                    next.y = y;
+                }
+            }
+
+            // eslint-disable-next-line new-cap
+            edge.setAbsoluteTerminalPoint(new mxPoint(x, y), source);
+        };
+
+        // Defines global helper function to get y-coordinate for a given cell state and row
+        const getRowY = function (state: mxCellState, tr: HTMLElement) {
+            const div = tr.parentNode.parentNode.parentElement; // Here is vertex-content element
+            const offset = tr.offsetTop - div.offsetTop + tr.offsetHeight / 2;
+            return state.y + offset;
+        };
 
         // anchor styles
         mxConstants.HANDLE_FILLCOLOR = '#ffffff';
@@ -273,8 +321,8 @@ class MxFactory {
      */
     renderVertex (handler: (cell: mxCell) => string) {
         if (this.mxGraph) {
-            this.mxGraph.convertValueToString = (cell) => {
-                if (cell && cell.value) {
+            this.mxGraph.getLabel = (cell) => {
+                if (cell && cell.vertex) {
                     return handler(cell);
                 }
                 return '';
@@ -440,7 +488,7 @@ class MxFactory {
                     );
                     const minh = Math.ceil(
                         (2 * pad.y) / this.view.scale +
-                            pages.height * size.height
+                        pages.height * size.height
                     );
 
                     const min = graph.minimumGraphSize;
@@ -519,20 +567,20 @@ class MxFactory {
                 Math.max(
                     0,
                     bounds.y -
-                        Math.max(
-                            20,
-                            (graph.container.clientHeight - boundsHeight) / 2
-                        )
+                    Math.max(
+                        20,
+                        (graph.container.clientHeight - boundsHeight) / 2
+                    )
                 )
             );
             graph.container.scrollLeft = Math.floor(
                 Math.max(
                     0,
                     bounds.x -
-                        Math.max(
-                            0,
-                            (graph.container.clientWidth - boundsWidth) / 2
-                        )
+                    Math.max(
+                        0,
+                        (graph.container.clientWidth - boundsWidth) / 2
+                    )
                 )
             );
         }
