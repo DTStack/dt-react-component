@@ -163,6 +163,9 @@ export interface IContainerProps<T> {
         graph: mxGraph,
         instances: mxGraphExportObject
     ) => JSX.Element;
+    /**
+     * 针对不同的数据渲染不同 size 的 vertex
+     */
     onGetSize?: (data: T)=> { width: number; height: number } | undefined;
     /**
      * 渲染 widgets 的组件

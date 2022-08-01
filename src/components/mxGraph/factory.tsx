@@ -229,9 +229,9 @@ class MxFactory {
         graph.isCellResizable = () => false;
 
         const userVertexStyle: Record<string, any> | undefined =
-            typeof config.defaultVertexStyle === 'function'
+            typeof config?.defaultVertexStyle === 'function'
                 ? config.defaultVertexStyle(this.mxInstance)
-                : config.defaultVertexStyle;
+                : config?.defaultVertexStyle;
 
         graph.getStylesheet().putDefaultVertexStyle({
             ...this.getDefaultVertexStyle(),
@@ -239,9 +239,9 @@ class MxFactory {
         });
 
         const userEdgeStyle: Record<string, any> | undefined =
-            typeof config.defaultEdgeStyle === 'function'
+            typeof config?.defaultEdgeStyle === 'function'
                 ? config.defaultEdgeStyle(this.mxInstance)
-                : config.defaultEdgeStyle;
+                : config?.defaultEdgeStyle;
         // 默认边界样式
         graph.getStylesheet().putDefaultEdgeStyle({
             ...this.getDefaultEdgeStyle(),
@@ -268,7 +268,9 @@ class MxFactory {
             if (div != null) {
                 y = start.getCenterY() - div.scrollTop;
                 const offset = config?.getPortOffset?.(edge, source);
-                y = getRowY(start, offset);
+                if (offset) {
+                    y = getRowY(start, offset);
+                }
 
                 // Updates the vertical position of the nearest point if we're not
                 // dealing with a connection preview, in which case either the
@@ -363,7 +365,7 @@ class MxFactory {
             /**
              * Returns the size of the page format scaled with the page size.
              */
-            graph.getPageSize = function () {
+            graph.getPageSize = function (this: mxGraph & { scrollTileSize: mxRectangle }) {
                 return this.pageVisible
                     ? new MxRectangle(
                         0,
@@ -534,7 +536,6 @@ class MxFactory {
                             (dy - ty) * graph.view.scale;
 
                         this.autoTranslate = false;
-                        return;
                     }
 
                     // eslint-disable-next-line prefer-rest-params
@@ -552,7 +553,7 @@ class MxFactory {
     }
 
     resetScrollPosition () {
-        if (this.mxGraph) {
+        if (this.mxGraph && this.mxGraph.container) {
             const graph = this.mxGraph;
             const bounds = graph.getGraphBounds();
             const boundsWidth = Math.max(

@@ -1,0 +1,385 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The mxGraph Container test Match Snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="graph-editor"
+  >
+    <div
+      class="ant-spin-nested-loading task-graph"
+    >
+      <div
+        class="ant-spin-container"
+      >
+        <div
+          style="position: relative; overflow: auto; width: 100%; height: 100%;"
+          tabindex="-1"
+        >
+          <svg
+            style="left: 0px; top: 0px; width: 100%; height: 100%; display: block; min-width: 1px; min-height: 1px;"
+          >
+            <g>
+              <g />
+              <g />
+              <g />
+              <g />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="graph-bottom"
+    />
+    <div
+      class="graph-toolbar"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`The mxGraph Container test Match Snapshot with data and toolbar 1`] = `
+<DocumentFragment>
+  <div
+    class="graph-editor"
+  >
+    <div
+      class="ant-spin-nested-loading task-graph"
+    >
+      <div
+        class="ant-spin-container"
+      >
+        <div
+          style="position: relative; overflow: auto; width: 100%; height: 100%;"
+          tabindex="-1"
+        >
+          <svg
+            style="left: 0px; top: 0px; width: 100%; height: 100%; display: block; min-width: 400px; min-height: 200px;"
+          >
+            <g>
+              <g />
+              <g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-width="9"
+                    visibility="hidden"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="all"
+                    stroke="none"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                </g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-width="9"
+                    visibility="hidden"
+                    width="210"
+                    x="0"
+                    y="110"
+                  />
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="all"
+                    stroke="none"
+                    width="210"
+                    x="0"
+                    y="110"
+                  />
+                </g>
+              </g>
+              <g>
+                <g
+                  style="cursor: pointer; visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="none"
+                    stroke="transparent"
+                    stroke-dasharray="3 3"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                </g>
+              </g>
+              <g />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="graph-bottom"
+    />
+    <div
+      class="graph-toolbar"
+    >
+      <button>
+        +
+      </button>
+      <button>
+        -
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`The mxGraph Container test Match Snapshot with data and widgets 1`] = `
+<DocumentFragment>
+  <div
+    class="graph-editor"
+  >
+    <div
+      class="ant-spin-nested-loading task-graph"
+    >
+      <div
+        class="ant-spin-container"
+      >
+        <div
+          style="position: relative; overflow: auto; width: 100%; height: 100%;"
+          tabindex="-1"
+        >
+          <svg
+            style="left: 0px; top: 0px; width: 100%; height: 100%; display: block; min-width: 400px; min-height: 200px;"
+          >
+            <g>
+              <g />
+              <g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-width="9"
+                    visibility="hidden"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="all"
+                    stroke="none"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                </g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-width="9"
+                    visibility="hidden"
+                    width="210"
+                    x="0"
+                    y="110"
+                  />
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="all"
+                    stroke="none"
+                    width="210"
+                    x="0"
+                    y="110"
+                  />
+                </g>
+              </g>
+              <g>
+                <g
+                  style="cursor: pointer; visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="none"
+                    stroke="transparent"
+                    stroke-dasharray="3 3"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                </g>
+              </g>
+              <g />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="graph-widgets"
+    >
+      <div
+        style="height: 20px; background: rgb(221, 221, 221);"
+      >
+        拖拽组件
+      </div>
+      <ul
+        style="list-style: none; margin: 0px; padding: 0px;"
+      >
+        <li
+          class="taier__widgets__"
+          style="cursor: move; margin: 5px 0px;"
+        >
+          你好1
+        </li>
+      </ul>
+    </div>
+    <div
+      class="graph-bottom"
+    />
+    <div
+      class="graph-toolbar"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`The mxGraph Container test Match Snapshot with style and bottom status bar 1`] = `
+<DocumentFragment>
+  <div
+    class="graph-editor"
+    style="background: rgb(221, 221, 221);"
+  >
+    <div
+      class="ant-spin-nested-loading task-graph"
+    >
+      <div
+        class="ant-spin-container"
+      >
+        <div
+          style="position: relative; overflow: auto; width: 100%; height: 100%;"
+          tabindex="-1"
+        >
+          <svg
+            style="left: 0px; top: 0px; width: 100%; height: 100%; display: block; min-width: 400px; min-height: 200px;"
+          >
+            <g>
+              <g />
+              <g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-width="9"
+                    visibility="hidden"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="all"
+                    stroke="none"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                </g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-width="9"
+                    visibility="hidden"
+                    width="210"
+                    x="0"
+                    y="110"
+                  />
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="all"
+                    stroke="none"
+                    width="210"
+                    x="0"
+                    y="110"
+                  />
+                </g>
+              </g>
+              <g>
+                <g
+                  style="cursor: pointer; visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <rect
+                    fill="none"
+                    height="50"
+                    pointer-events="none"
+                    stroke="transparent"
+                    stroke-dasharray="3 3"
+                    width="210"
+                    x="0"
+                    y="0"
+                  />
+                </g>
+              </g>
+              <g />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="graph-bottom"
+    >
+      <div>
+        This is legend
+      </div>
+    </div>
+    <div
+      class="graph-toolbar"
+    />
+  </div>
+</DocumentFragment>
+`;
