@@ -3,7 +3,6 @@ import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import MxGraphContainer, { WIDGETS_PREFIX } from '../index';
 import '@testing-library/jest-dom';
-import { mxGraph } from 'mxgraph';
 
 describe('The mxGraph Container test', () => {
     afterEach(() => {
