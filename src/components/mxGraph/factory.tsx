@@ -1,4 +1,4 @@
-import Mx, { mxCellState } from 'mxgraph';
+import factory from 'mxgraph';
 import type {
     mxGraphExportObject,
     mxGraphOptions,
@@ -7,7 +7,8 @@ import type {
     mxCell,
     mxRectangle,
     mxGraphView,
-    mxPoint
+    mxPoint,
+    mxCellState
 } from 'mxgraph';
 import { IContainerProps } from '.';
 
@@ -42,7 +43,7 @@ class MxFactory {
     public mxGraph: IMxGraph | null = null;
 
     constructor () {
-        this.mxInstance = Mx(MxFactory.config);
+        this.mxInstance = factory(MxFactory.config);
     }
 
     /**
