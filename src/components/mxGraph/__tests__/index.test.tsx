@@ -1,6 +1,6 @@
 import '@babel/polyfill';
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import MxGraphContainer, { WIDGETS_PREFIX } from '../index';
 import '@testing-library/jest-dom';
 
@@ -32,7 +32,7 @@ describe('The mxGraph Container test', () => {
     });
 
     test('Match Snapshot with data and widgets', () => {
-        const { asFragment } = render(
+        const { asFragment, container } = render(
             <MxGraphContainer
                 graphData={[{ taskId: 1, childNode: [{ taskId: 2 }] }]}
                 onRenderWidgets={() => (
@@ -61,6 +61,12 @@ describe('The mxGraph Container test', () => {
                 )}
             />
         );
+
+        const widgetsParentNode = container.querySelector<HTMLDivElement>(
+            '.graph-widgets'
+        );
+        // NOTHING happened
+        fireEvent.contextMenu(widgetsParentNode);
         expect(asFragment()).toMatchSnapshot();
     });
 
@@ -184,5 +190,183 @@ describe('The mxGraph Container test', () => {
         fireEvent.scroll(mxGraphContainer, { target: { scrollY: 100 } });
 
         expect(mockContainerChanged).toBeCalled();
+    });
+
+    test('Should support to set the layout orientation', () => {
+        const { getByTestId, rerender } = render(
+            <MxGraphContainer
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+        const getVertex = (text: string) =>
+            getByTestId(text).parentElement.parentElement.parentElement;
+
+        // The default orientation of layout is north
+        // So the layout should be like:
+        // 3
+        // |
+        // 1
+        // |
+        // 2
+        expect(parseInt(getVertex('1').style.top, 10)).toBeLessThan(
+            parseInt(getVertex('2').style.top, 10)
+        );
+        expect(parseInt(getVertex('3').style.top, 10)).toBeLessThan(
+            parseInt(getVertex('1').style.top, 10)
+        );
+        expect(parseInt(getVertex('1').style.left, 10)).toEqual(
+            parseInt(getVertex('2').style.left, 10)
+        );
+        expect(parseInt(getVertex('2').style.left, 10)).toEqual(
+            parseInt(getVertex('3').style.left, 10)
+        );
+
+        rerender(
+            <MxGraphContainer
+                direction="west"
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+
+        // The layout should be like:
+        // 3-1-2
+        expect(parseInt(getVertex('1').style.top, 10)).toEqual(
+            parseInt(getVertex('2').style.top, 10)
+        );
+        expect(parseInt(getVertex('2').style.top, 10)).toEqual(
+            parseInt(getVertex('3').style.top, 10)
+        );
+        expect(parseInt(getVertex('3').style.left, 10)).toBeLessThan(
+            parseInt(getVertex('1').style.left, 10)
+        );
+        expect(parseInt(getVertex('1').style.left, 10)).toBeLessThan(
+            parseInt(getVertex('2').style.left, 10)
+        );
+    });
+
+    test('Should support call onClick', () => {
+        const clickFn = jest.fn();
+        const { container } = render(
+            <MxGraphContainer
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                onClick={clickFn}
+            />
+        );
+
+        const svg = container.querySelector('svg');
+        fireEvent.mouseDown(
+            svg.querySelector('g[transform="translate(0.5,0.5)"]'),
+            { clientX: 200, clientY: 120 }
+        );
+        fireEvent.mouseUp(
+            svg.querySelector('g[transform="translate(0.5,0.5)"]'),
+            { clientX: 200, clientY: 120 }
+        );
+        expect(clickFn).toBeCalled();
+    });
+
+    test('Should support call onContextMenu', async () => {
+        const menuFn = jest.fn();
+        const { container, getByText } = render(
+            <MxGraphContainer
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                onContextMenu={() => [
+                    {
+                        id: 'test',
+                        title: '测试'
+                    },
+                    {
+                        id: 'disabled',
+                        title: '禁用',
+                        disabled: true
+                    },
+                    {
+                        id: 'func',
+                        title: 'func',
+                        callback: menuFn
+                    },
+                    {
+                        id: 'subMenu',
+                        title: 'subMenu',
+                        children: [
+                            {
+                                id: 'subMenu-1',
+                                title: 'subMenu-1'
+                            }
+                        ]
+                    }
+                ]}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+
+        const svg = container.querySelector('svg');
+        // The mxGraph distinguishes contextMenu and click event in itself
+        // Actually they could call it up in same way.
+        fireEvent.mouseDown(
+            svg.querySelector('g[transform="translate(0.5,0.5)"]'),
+            { clientX: 200, clientY: 120, which: 3 }
+        );
+        fireEvent.mouseUp(
+            svg.querySelector('g[transform="translate(0.5,0.5)"]'),
+            { clientX: 200, clientY: 120 }
+        );
+
+        await waitFor(
+            () => {
+                expect(
+                    document.querySelector('table.mxPopupMenu')
+                ).toBeInTheDocument();
+
+                expect(
+                    getByText('禁用').classList.contains('mxDisabled')
+                ).toBeTruthy();
+
+                // The mousemove is used in mxGraph to mock a hover behavior
+                fireEvent.mouseMove(getByText('subMenu'));
+                expect(getByText('subMenu-1')).toBeInTheDocument();
+
+                // The click is mocked by mousedown and mouseup
+                fireEvent.mouseDown(getByText('func'));
+                fireEvent.mouseUp(getByText('func'));
+                expect(menuFn).toBeCalled();
+
+                // After clicking, popup should be disappeared
+                expect(document.querySelector('table.mxPopupMenu')).toBeNull();
+            },
+            { timeout: 500 }
+        );
     });
 });
