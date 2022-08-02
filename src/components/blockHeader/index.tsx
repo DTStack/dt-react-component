@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icon } from 'antd';
+import { UpOutlined } from '@ant-design/icons'
 
 export interface BlockHeaderProps {
     // 标题
@@ -30,7 +30,7 @@ export interface BlockHeaderProps {
 export default function BlockHeader (props: BlockHeaderProps) {
     const prefixCls = 'dtc-block-header';
     const {
-        title = '',
+        title,
         afterTitle = '',
         isSmall = false,
         titleRowClassName = '',
@@ -38,7 +38,7 @@ export default function BlockHeader (props: BlockHeaderProps) {
         showBackground = true,
         defaultExpand = true,
         children = '',
-        onChange = (expand) => {}
+        onChange
     } = props;
     const {
         beforeTitle = (<div className={`default ${isSmall ? 'small' : ''}`}></div>),
@@ -50,19 +50,15 @@ export default function BlockHeader (props: BlockHeaderProps) {
         setExpand(expand);
         onChange?.(expand);
     }
-
     return (
         <div
             className={`${prefixCls}`}
         >
             <div className={`${prefixCls}-title-row ${isSmall ? 'small' : 'default'} ${showBackground ? 'background' : ''} ${children ? 'pointer' : ''} ${titleRowClassName}`} onClick={() => handleExpand(!expand)}>
                 <div className={`${prefixCls}-title-box`}>
-                    {
-                        beforeTitle ? (<div className={`${prefixCls}-before-title`}>
-                            {beforeTitle}
-                        </div>) : null
-                    }
-
+                    <div className={`${prefixCls}-before-title`}>
+                        {beforeTitle}
+                    </div>
                     <div className={`${prefixCls}-title ${titleClassName}`}>
                         {title}
                     </div>
@@ -76,7 +72,7 @@ export default function BlockHeader (props: BlockHeaderProps) {
                     children && (
                         <div className={`${prefixCls}-collapse-box`}>
                             <div className="text">{expand ? '收起' : '展开'}</div>
-                            <Icon className={`icon ${expand ? 'up' : 'down'}`} type="up" />
+                            <UpOutlined className={`icon ${expand ? 'up' : 'down'}`}/>
                         </div>
                     )
                 }
