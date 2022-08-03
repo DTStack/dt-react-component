@@ -1,5 +1,6 @@
 import React from 'react'
-import { Icon, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
+import { PieChartOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import  BlockHeader  from '../../../components/blockHeader';
 
 export default function BlockHeaderRender () {
@@ -23,7 +24,7 @@ export default function BlockHeaderRender () {
             <p style={style}>3、标题 + icon，有说明文字</p>
             <BlockHeader
                 title="分类标题"
-                beforeTitle={<Icon type="pie-chart" style={{ fontSize: '16px' }} />}
+                beforeTitle={<PieChartOutlined style={{ fontSize: '16px' }} />}
                 afterTitle="说明文字"
             />
 
@@ -32,7 +33,7 @@ export default function BlockHeaderRender () {
                 title="分类标题"
                 afterTitle={
                     <Tooltip title={'hover 才会显示说明文字哦~'}>
-                        <Icon type="question-circle-o" style={{ cursor: 'pointer' }} />
+                        <QuestionCircleOutlined style={{ cursor: 'pointer' }} />
                     </Tooltip>
                 }
             />
@@ -43,7 +44,7 @@ export default function BlockHeaderRender () {
                 showBackground={false}
                 afterTitle={
                     <Tooltip title={'hover 才会显示说明文字哦~'}>
-                        <Icon type="question-circle-o" style={{ cursor: 'pointer' }} />
+                        <QuestionCircleOutlined style={{ cursor: 'pointer' }} />
                     </Tooltip>
                 }
             />
