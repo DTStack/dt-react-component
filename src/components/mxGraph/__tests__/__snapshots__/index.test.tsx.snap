@@ -109,6 +109,34 @@ exports[`The mxGraph Container test Match Snapshot with data and toolbar 1`] = `
                     y="110"
                   />
                 </g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <path
+                    d="M 105 50 L 105 62 L 105 62 L 105 101.88"
+                    fill="none"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-miterlimit="10"
+                    stroke-width="9"
+                    visibility="hidden"
+                  />
+                  <path
+                    d="M 105 50 L 105 62 L 105 62 L 105 101.88"
+                    fill="none"
+                    pointer-events="stroke"
+                    stroke="#3f87ff"
+                    stroke-miterlimit="10"
+                  />
+                  <path
+                    d="M 105 108.88 L 101.5 101.88 L 108.5 101.88 Z"
+                    fill="#3f87ff"
+                    pointer-events="all"
+                    stroke="#3f87ff"
+                    stroke-miterlimit="10"
+                  />
+                </g>
               </g>
               <g>
                 <g
@@ -219,6 +247,34 @@ exports[`The mxGraph Container test Match Snapshot with data and widgets 1`] = `
                     width="210"
                     x="0"
                     y="110"
+                  />
+                </g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <path
+                    d="M 105 50 L 105 62 L 105 62 L 105 101.88"
+                    fill="none"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-miterlimit="10"
+                    stroke-width="9"
+                    visibility="hidden"
+                  />
+                  <path
+                    d="M 105 50 L 105 62 L 105 62 L 105 101.88"
+                    fill="none"
+                    pointer-events="stroke"
+                    stroke="#3f87ff"
+                    stroke-miterlimit="10"
+                  />
+                  <path
+                    d="M 105 108.88 L 101.5 101.88 L 108.5 101.88 Z"
+                    fill="#3f87ff"
+                    pointer-events="all"
+                    stroke="#3f87ff"
+                    stroke-miterlimit="10"
                   />
                 </g>
               </g>
@@ -344,6 +400,34 @@ exports[`The mxGraph Container test Match Snapshot with style and bottom status 
                     width="210"
                     x="0"
                     y="110"
+                  />
+                </g>
+                <g
+                  style="visibility: visible;"
+                  transform="translate(0.5,0.5)"
+                >
+                  <path
+                    d="M 105 50 L 105 62 L 105 62 L 105 101.88"
+                    fill="none"
+                    pointer-events="stroke"
+                    stroke="white"
+                    stroke-miterlimit="10"
+                    stroke-width="9"
+                    visibility="hidden"
+                  />
+                  <path
+                    d="M 105 50 L 105 62 L 105 62 L 105 101.88"
+                    fill="none"
+                    pointer-events="stroke"
+                    stroke="#3f87ff"
+                    stroke-miterlimit="10"
+                  />
+                  <path
+                    d="M 105 108.88 L 101.5 101.88 L 108.5 101.88 Z"
+                    fill="#3f87ff"
+                    pointer-events="all"
+                    stroke="#3f87ff"
+                    stroke-miterlimit="10"
                   />
                 </g>
               </g>
