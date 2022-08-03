@@ -1,0 +1,89 @@
+$card_prefix: 'dtc-block-header';
+
+.#{$card_prefix} {
+    .#{$card_prefix}-title-row {
+        padding: 0 12px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &.default {
+            height: 40px;
+            .#{$card_prefix}-title-box {
+                .#{$card_prefix}-title {
+                    font-size: 14px;
+                    line-height: 22px;
+                }
+            }
+        }
+        &.small {
+            height: 32px;
+            .#{$card_prefix}-title-box {
+                .#{$card_prefix}-title {
+                    font-size: 12px;
+                    line-height: 20px;
+                }
+            }
+        }
+        &.background {
+            background-color: #F9F9FA;
+        }
+        &.pointer {
+            cursor: pointer;
+        }
+
+        .#{$card_prefix}-title-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            .#{$card_prefix}-before-title {
+                margin-right: 8px;
+                .default {
+                    width: 4px;
+                    height: 16px;
+                    background-color: #1D78FF;
+                }
+                .small {
+                    height: 12px;
+                }
+            }
+            .#{$card_prefix}-title {
+                color: #3D446E;
+                font-weight: 500;
+                margin-right: 4px;
+            }
+            .#{$card_prefix}-after-title {
+                color: #8B8FA8;
+                font-size: 12px;
+            }
+        }
+
+        .#{$card_prefix}-collapse-box {
+            color: #8B8FA8;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            .text {
+                font-size: 12px;
+                margin: 0 4px;
+            }
+            .icon {
+                font-size: 16px;
+                transition: transform .4s;
+                &.down {
+                    transform: rotate(-180deg);
+                }
+                &.up {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+    }
+
+    .#{$card_prefix}-content {
+        &.hide {
+            display: none;
+        }
+    }
+}
