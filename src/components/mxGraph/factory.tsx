@@ -95,7 +95,7 @@ class MxFactory {
             mxGraphHandler,
             mxSvgCanvas2D,
             mxClient,
-            mxPoint
+            mxPoint: MxPoint
         } = this.mxInstance;
 
         /**
@@ -255,34 +255,37 @@ class MxFactory {
             end,
             source
         ) {
-            const next = this.getNextPoint(edge, end, source);
-            if (!start.text) return;
-            const div = start.text.node.getElementsByTagName('div')[1];
-            let x = start.x;
-            let y = start.getCenterY();
+            if (config?.getPortOffset) {
+                const next = this.getNextPoint(edge, end, source);
+                if (!start.text) return;
+                const div = start.text.node.getElementsByTagName('div')[1];
+                let x = start.x;
+                let y = start.getCenterY();
 
-            // Checks on which side of the terminal to leave
-            if (next.x > x + start.width / 2) {
-                x += start.width;
-            }
-
-            if (div != null) {
-                y = start.getCenterY() - div.scrollTop;
-                const offset = config?.getPortOffset?.(edge, source);
-                if (offset) {
-                    y = getRowY(start, offset);
+                // Checks on which side of the terminal to leave
+                if (next.x > x + start.width / 2) {
+                    x += start.width;
                 }
 
-                // Updates the vertical position of the nearest point if we're not
-                // dealing with a connection preview, in which case either the
-                // edgeState or the absolutePoints are null
-                if (edge != null && edge.absolutePoints != null) {
-                    next.y = y;
-                }
-            }
+                if (div != null) {
+                    y = start.getCenterY() - div.scrollTop;
+                    const offset = config?.getPortOffset?.(edge, source);
+                    if (offset) {
+                        y = getRowY(start, offset);
+                    }
 
-            // eslint-disable-next-line new-cap
-            edge.setAbsoluteTerminalPoint(new mxPoint(x, y), source);
+                    // Updates the vertical position of the nearest point if we're not
+                    // dealing with a connection preview, in which case either the
+                    // edgeState or the absolutePoints are null
+                    if (edge != null && edge.absolutePoints != null) {
+                        next.y = y;
+                    }
+                }
+
+                edge.setAbsoluteTerminalPoint(new MxPoint(x, y), source);
+            } else {
+                edge.setAbsoluteTerminalPoint(this.getFloatingTerminalPoint(edge, start, end, source), source);
+            }
         };
 
         // Defines global helper function to get y-coordinate for a given cell state and row
