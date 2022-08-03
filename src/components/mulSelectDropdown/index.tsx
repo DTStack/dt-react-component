@@ -67,7 +67,7 @@ export default class MulSelectDropdown extends React.Component<MulSelectDropdown
 
     handleCheckAllChange = () => {
         const { allKeys, selectVal, disabledKeys } = this.state;
-        const newSelectVal = selectVal.length === allKeys.length ? disabledKeys : [...allKeys];
+        const newSelectVal = selectVal.length === allKeys.length ? disabledKeys : allKeys;
         this.setState({
             selectVal: newSelectVal,
             indeterminate: false
