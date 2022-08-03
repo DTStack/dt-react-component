@@ -106,7 +106,7 @@ stories.add('BlockHeader 标题', () => (
             <p style={style}>3、标题 + icon，有说明文字</p>
             <BlockHeader
                 title="分类标题"
-                beforeTitle={<Icon type="pie-chart" />}
+                beforeTitle={<PieChartOutlined style={{ fontSize: '16px' }} />}
                 afterTitle="说明文字"
             />
 
@@ -115,7 +115,7 @@ stories.add('BlockHeader 标题', () => (
                 title="分类标题"
                 afterTitle={
                     <Tooltip title={'hover 才会显示说明文字哦~'}>
-                        <Icon type="question-circle-o" style={{ cursor: 'pointer' }} />
+                        <QuestionCircleOutlined style={{ cursor: 'pointer' }} />
                     </Tooltip>
                 }
             />
@@ -126,7 +126,7 @@ stories.add('BlockHeader 标题', () => (
                 showBackground={false}
                 afterTitle={
                     <Tooltip title={'hover 才会显示说明文字哦~'}>
-                        <Icon type="question-circle-o" style={{ cursor: 'pointer' }} />
+                        <QuestionCircleOutlined style={{ cursor: 'pointer' }} />
                     </Tooltip>
                 }
             />

@@ -42,6 +42,8 @@
 
 ## 如何生成自己的文档地址
 
+本地查看文档效果：`npm run storybook`
+
 代码修改完毕后在本地执行 `npm run deploy-storybook`，等待执行完成后，访问 `https://github-username.github.io/dt-react-component/`，提 PR 需要附上文档预览地址。
 
 
