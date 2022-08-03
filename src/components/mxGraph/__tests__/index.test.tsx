@@ -1,7 +1,7 @@
 import '@babel/polyfill';
 import React from 'react';
 import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
-import MxGraphContainer, { WIDGETS_PREFIX } from '../index';
+import MxGraphContainer, { WIDGETS_PREFIX, IContainerRef } from '../index';
 import '@testing-library/jest-dom';
 
 describe('The mxGraph Container test', () => {
@@ -82,6 +82,77 @@ describe('The mxGraph Container test', () => {
             </MxGraphContainer>
         );
         expect(asFragment()).toMatchSnapshot();
+    });
+
+    test('Should support all keyboard binding events', () => {
+        const bindKeyFn = jest.fn();
+        render(
+            <MxGraphContainer
+                graphData={[{ taskId: 1, childNode: [{ taskId: 2 }] }]}
+                onKeyDown={() => [
+                    {
+                        id: 'bindKey',
+                        method: 'bindKey',
+                        keyCode: 8,
+                        func: bindKeyFn
+                    },
+                    {
+                        id: 'bindShiftKey',
+                        method: 'bindShiftKey',
+                        keyCode: 8,
+                        func: bindKeyFn
+                    },
+                    {
+                        id: 'bindControlKey',
+                        method: 'bindControlKey',
+                        keyCode: 8,
+                        func: bindKeyFn
+                    },
+                    {
+                        id: 'bindControlShiftKey',
+                        method: 'bindControlShiftKey',
+                        keyCode: 8,
+                        func: bindKeyFn
+                    }
+                ]}
+            />
+        );
+
+        expect(bindKeyFn).not.toBeCalled();
+        fireEvent.keyDown(document.documentElement, {
+            key: 'Backspace',
+            keyCode: 8
+        });
+        expect(bindKeyFn).toBeCalledTimes(1);
+
+        fireEvent.keyDown(document.documentElement, {
+            shiftKey: true,
+            key: 'Backspace',
+            keyCode: 8
+        });
+        expect(bindKeyFn).toBeCalledTimes(2);
+
+        fireEvent.keyDown(document.documentElement, {
+            ctrlKey: true,
+            key: 'Backspace',
+            keyCode: 8
+        });
+        expect(bindKeyFn).toBeCalledTimes(3);
+
+        fireEvent.keyDown(document.documentElement, {
+            ctrlKey: true,
+            key: 'Backspace',
+            keyCode: 8
+        });
+        expect(bindKeyFn).toBeCalledTimes(4);
+
+        fireEvent.keyDown(document.documentElement, {
+            shiftKey: true,
+            ctrlKey: true,
+            key: 'Backspace',
+            keyCode: 8
+        });
+        expect(bindKeyFn).toBeCalledTimes(5);
     });
 
     test('Should support to set loading', () => {
@@ -333,10 +404,10 @@ describe('The mxGraph Container test', () => {
         );
 
         const svg = container.querySelector('svg');
-        // The mxGraph distinguishes contextMenu and click event in itself
-        // Actually they could call it up in same way.
         fireEvent.mouseDown(
             svg.querySelector('g[transform="translate(0.5,0.5)"]'),
+            // Both contextMenu and click event are called by mousedown and mouseup
+            // They distinguish through which property, refer by: mxEvent.isRightMouseButton
             { clientX: 200, clientY: 120, which: 3 }
         );
         fireEvent.mouseUp(
@@ -368,5 +439,380 @@ describe('The mxGraph Container test', () => {
             },
             { timeout: 500 }
         );
+    });
+
+    test('Should support to render the keyboard event in contextMenu', async () => {
+        const keydownFunc = jest.fn();
+        const { container, getByText } = render(
+            <MxGraphContainer
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                onContextMenu={() => [
+                    {
+                        id: 'test',
+                        title: '测试'
+                    }
+                ]}
+                onKeyDown={() => [
+                    {
+                        // Keep the same id with the context menu
+                        // So the item with same id in context menu will call keydown's event
+                        id: 'test',
+                        method: 'bindControlKey',
+                        keyCode: 8,
+                        func: keydownFunc
+                    }
+                ]}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+
+        const svg = container.querySelector('svg');
+        fireEvent.mouseDown(
+            svg.querySelector('g[transform="translate(0.5,0.5)"]'),
+            // Both contextMenu and click event are called by mousedown and mouseup
+            // They distinguish through which property, refer by: mxEvent.isRightMouseButton
+            { clientX: 200, clientY: 120, which: 3 }
+        );
+        fireEvent.mouseUp(
+            svg.querySelector('g[transform="translate(0.5,0.5)"]'),
+            { clientX: 200, clientY: 120 }
+        );
+
+        await waitFor(
+            () => {
+                expect(
+                    document.querySelector('table.mxPopupMenu')
+                ).toBeInTheDocument();
+
+                // mxGraph detects the same id in keydown, so this menu has character codes
+                expect(getByText('测试(Meta ⌫)')).toBeInTheDocument();
+
+                fireEvent.mouseDown(getByText('测试(Meta ⌫)'));
+                fireEvent.mouseUp(getByText('测试(Meta ⌫)'));
+                expect(keydownFunc).toBeCalled();
+            },
+            { timeout: 500 }
+        );
+    });
+
+    test('Should ONLY render one popup menu in graph', async () => {
+        const { container } = render(
+            <MxGraphContainer
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                onContextMenu={() => [
+                    {
+                        id: 'test',
+                        title: '测试'
+                    }
+                ]}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+
+        const svg = container.querySelector('svg');
+        const vertexes = svg.querySelectorAll(
+            'g[transform="translate(0.5,0.5)"]'
+        );
+        fireEvent.mouseDown(
+            vertexes[0],
+            // Both contextMenu and click event are called by mousedown and mouseup
+            // They distinguish through which property, refer by: mxEvent.isRightMouseButton
+            { clientX: 200, clientY: 120, which: 3 }
+        );
+        fireEvent.mouseUp(vertexes[0], { clientX: 200, clientY: 120 });
+
+        await waitFor(
+            async () => {
+                expect(
+                    document.querySelectorAll('table.mxPopupMenu').length
+                ).toBe(1);
+
+                fireEvent.mouseDown(
+                    vertexes[1],
+                    // Both contextMenu and click event are called by mousedown and mouseup
+                    // They distinguish through which property, refer by: mxEvent.isRightMouseButton
+                    { clientX: 200, clientY: 120, which: 3 }
+                );
+                fireEvent.mouseUp(vertexes[1], { clientX: 200, clientY: 120 });
+
+                // Call context menu in other vertex, there still only is one popup in graph
+                await waitFor(
+                    () => {
+                        expect(
+                            document.querySelectorAll('table.mxPopupMenu')
+                                .length
+                        ).toBe(1);
+                    },
+                    { timeout: 500 }
+                );
+            },
+            { timeout: 500 }
+        );
+    });
+
+    test('Should support to call onDoubleClick', () => {
+        const doubleClickFn = jest.fn();
+        const { container } = render(
+            <MxGraphContainer
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                onDoubleClick={doubleClickFn}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+
+        const svg = container.querySelector('svg');
+        const vertex = svg.querySelectorAll(
+            'g[transform="translate(0.5,0.5)"]'
+        )[0];
+
+        fireEvent.doubleClick(vertex);
+
+        expect(doubleClickFn).toBeCalled();
+    });
+
+    test('Should support to highlight cells', () => {
+        const { container } = render(
+            <MxGraphContainer
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                config={{
+                    highlight: true
+                }}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+
+        const svg = container.querySelector('svg');
+        const vertex = svg.querySelectorAll(
+            'g[transform="translate(0.5,0.5)"]'
+        )[0];
+        const edge = svg.querySelectorAll(
+            'g[transform="translate(0.5,0.5)"]'
+        )[2];
+
+        fireEvent.mouseDown(vertex);
+        fireEvent.mouseUp(vertex);
+
+        const getActiveEdgeLength = () => {
+            return Array.prototype.filter.call(
+                svg.querySelectorAll<SVGPathElement>('path[fill="none"]'),
+                (dom: SVGPathElement) => {
+                    return (
+                        dom.getAttribute('stroke') === '#3f87ff' &&
+                        dom.getAttribute('stroke-width') === '2'
+                    );
+                }
+            ).length;
+        };
+        const getActiveVertexLength = () => {
+            return svg.querySelectorAll<SVGPathElement>(
+                'rect[stroke="transparent"]'
+            ).length;
+        };
+
+        // Active the in and out edges both, and current selected vertex
+        expect(getActiveEdgeLength()).toBe(2);
+        expect(getActiveVertexLength()).toBe(1);
+
+        fireEvent.mouseDown(svg);
+        fireEvent.mouseUp(svg);
+
+        // Click on graph will unselect all cells
+        expect(getActiveEdgeLength()).toBe(0);
+        expect(getActiveVertexLength()).toBe(0);
+
+        fireEvent.mouseDown(edge);
+        fireEvent.mouseUp(edge);
+
+        // Click on edge will ONLY active current edge
+        expect(getActiveEdgeLength()).toBe(1);
+        expect(getActiveVertexLength()).toBe(0);
+    });
+
+    test('Should support to drag cells', () => {
+        const cellChangedFn = jest.fn();
+        const { container } = render(
+            <MxGraphContainer
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                enableDrag
+                onCellsChanged={cellChangedFn}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+
+        const svg = container.querySelector('svg');
+        const vertex = svg.querySelectorAll(
+            'g[transform="translate(0.5,0.5)"]'
+        )[0];
+
+        fireEvent.mouseDown(vertex);
+        fireEvent.mouseMove(vertex, { clientX: 100, clientY: 0 });
+        fireEvent.mouseUp(vertex);
+
+        expect(cellChangedFn).toBeCalled();
+    });
+
+    test('Should support to call ref functions', async () => {
+        const refMock: { current: IContainerRef<any> } = { current: undefined };
+        render(
+            <MxGraphContainer
+                ref={refMock}
+                graphData={[
+                    {
+                        taskId: 1,
+                        childNode: [{ taskId: 2 }],
+                        parentNode: [{ taskId: 3 }]
+                    }
+                ]}
+                onRenderCell={(cell) =>
+                    `<div data-testid="${cell.value.taskId}"></div>`
+                }
+            />
+        );
+
+        expect(refMock.current.getCells().length).toBe(5);
+        expect(refMock.current.getSelectedCell().value.taskId).toBe(1);
+
+        refMock.current.insertCell({ taskId: 4 }, 0, 0);
+        expect(refMock.current.getCells().length).toBe(6);
+
+        refMock.current.updateCell('7', { test: 1 });
+        expect(
+            refMock.current.getCells().find((i) => i.id === '7').value
+        ).toEqual({
+            taskId: 4,
+            test: 1
+        });
+
+        refMock.current.removeCell('7');
+        expect(
+            refMock.current.getCells().find((i) => i.id === '7')
+        ).toBeUndefined();
+
+        const cells = refMock.current.getCells();
+        cells.forEach((cell) => {
+            refMock.current.removeCell(cell.id);
+        });
+        expect(refMock.current.getCells().length).toBe(0);
+        refMock.current.setCells(cells);
+        expect(refMock.current.getCells().length).toBe(5);
+
+        const mockScrollTo = jest.fn();
+        HTMLElement.prototype.scrollTo = mockScrollTo;
+        refMock.current.setView({
+            scale: 1,
+            scrollTop: 100,
+            scrollLeft: 100
+        });
+
+        await waitFor(
+            () => {
+                expect(mockScrollTo).toBeCalled();
+            },
+            { timeout: 100 }
+        );
+    });
+
+    test('Should support to drag widgets into graph', () => {
+        const dropWidgetsFn = jest.fn();
+        const { container } = render(
+            <MxGraphContainer
+                graphData={[{ taskId: 1, childNode: [{ taskId: 2 }] }]}
+                onDropWidgets={dropWidgetsFn}
+                onRenderWidgets={() => (
+                    <>
+                        <div style={{ height: 20, background: '#ddd' }}>
+                            拖拽组件
+                        </div>
+                        <ul
+                            style={{
+                                listStyle: 'none',
+                                margin: 0,
+                                padding: 0
+                            }}
+                        >
+                            <li
+                                className={WIDGETS_PREFIX + '__'}
+                                style={{
+                                    cursor: 'move',
+                                    margin: '5px 0'
+                                }}
+                            >
+                                你好1
+                            </li>
+                        </ul>
+                    </>
+                )}
+            />
+        );
+        const svg = container.querySelector('svg');
+        const mockEleFromPoint = jest
+            .fn()
+            .mockImplementationOnce(() => null)
+            .mockImplementationOnce(() => container)
+            .mockImplementation(() => svg);
+        document.elementFromPoint = mockEleFromPoint;
+
+        const widget = container.querySelector('.' + WIDGETS_PREFIX + '__');
+        const dragWidget = () => {
+            fireEvent.mouseDown(widget);
+            fireEvent.mouseMove(svg, {
+                clientX: 0,
+                clientY: 0
+            });
+            fireEvent.mouseUp(svg);
+        };
+
+        dragWidget();
+        expect(mockEleFromPoint).toBeCalled();
+        // The elementFromPoint returns null at first, so it won't call onDropWidgets
+        expect(dropWidgetsFn).not.toBeCalled();
+
+        dragWidget();
+        // Although the elementFromPoint returns container, but is't not the ancestor node about graph
+        // So it won't call onDropWidgets
+        expect(dropWidgetsFn).not.toBeCalled();
+
+        dragWidget();
+        expect(dropWidgetsFn).toBeCalled();
     });
 });

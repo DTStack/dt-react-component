@@ -536,8 +536,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                 5
             );
             // Constraint highlight color
-            MxConstraintHandler.prototype.highlightColor =
-                'var(--list-focusOutline)';
+            MxConstraintHandler.prototype.highlightColor = '#3f87ff';
             // Overridden to define per-shape connection points
             MxGraph.prototype.getAllConnectionConstraints = function (
                 terminal: mxCellState
@@ -604,6 +603,8 @@ function MxGraphContainer<T extends IMxGraphData>(
             }
         );
         // 删除 cell 事件
+        // TODO: Interesting, MOVE cell will call REMOVE_CELLS event
+        // Don't know why yet
         graph.current?.addListener(
             mxEvent.REMOVE_CELLS,
             (_, evt: mxEventObject) => {
@@ -642,7 +643,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                         for (let i = 0; i < edges.length; i += 1) {
                             const highlight = new MxCellHighlight(
                                 graph.current!,
-                                'var(--list-focusOutline)',
+                                '#3f87ff',
                                 2
                             );
                             const state = graph.current!.view.getState(
@@ -655,7 +656,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                         // only highlight current edge
                         const highlight = new MxCellHighlight(
                             graph.current!,
-                            'var(--list-focusOutline)',
+                            '#3f87ff',
                             2
                         );
                         const state = graph.current!.view.getState(cell);
