@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test BlockHeader render success render 1`] = `
+<DocumentFragment>
+  <div
+    class="dtc-block-header"
+  >
+    <div
+      class="dtc-block-header-title-row default background  "
+    >
+      <div
+        class="dtc-block-header-title-box"
+      >
+        <div
+          class="dtc-block-header-before-title"
+        >
+          <div
+            class="default "
+          />
+        </div>
+        <div
+          class="dtc-block-header-title "
+        >
+          标题1
+        </div>
+        <div
+          class="dtc-block-header-after-title"
+        />
+      </div>
+    </div>
+    <div
+      class="dtc-block-header-content "
+    />
+  </div>
+</DocumentFragment>
+`;
