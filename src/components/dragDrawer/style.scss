@@ -1,0 +1,27 @@
+$prefix: 'dtc-drag-drawer';
+
+.#{$prefix} {
+    .#{$prefix}-icon {
+        width: 6px;
+        height: 36px;
+        position: absolute;
+        left: 0;
+        top: calc(50% - 18px);
+        cursor: ew-resize;
+    }
+}
+
+.ant-drawer-content-wrapper {
+    box-shadow: -10px 0 20px 0 rgba(61, 68, 110, 0.1) !important;
+
+    // 关闭图标放右侧
+    .ant-drawer-header {
+        padding: 16px 16px 0;
+        .ant-drawer-header-title {
+            justify-content: flex-end;
+            .ant-drawer-close {
+                margin-right: 0;
+            }
+        }
+    }
+}

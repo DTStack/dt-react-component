@@ -4,6 +4,7 @@
 @import "../components/contextMenu/style";
 @import "../components/ContextMenuCombiner/style.scss";
 @import "../components/copyIcon/style.scss";
+@import "../components/dragDrawer/style.scss";
 @import "../components/editCell/style.scss";
 @import "../components/fullscreen/style.scss";
 @import "../components/globalLoading/style.scss";
@@ -35,7 +36,7 @@
 }
 #story-root {
     margin-top: -30px;
-    
+
     h2 {
         margin-top: 30px;
     }

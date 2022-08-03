@@ -61,7 +61,7 @@ const propDefinitions = [{
     defaultValue: ''
 }]
 const stories = storiesOf('SlidePane 右侧面板', module);
-stories.add('slidepanel', () => {
+stories.add('slidepanel 右侧面板', () => {
     const groupId = 'slidepanel';
     const defaultStyle = {
         right: '-20px',
