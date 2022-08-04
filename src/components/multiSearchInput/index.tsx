@@ -29,7 +29,7 @@ const searchTypeList: any = [
     }
 ];
 
-type SearchType = 'fuzzy' | 'precise' | 'front' | 'tail';
+export type SearchType = 'fuzzy' | 'precise' | 'front' | 'tail';
 
 export interface MultiSearchInputProps {
     placeholder?: string;
