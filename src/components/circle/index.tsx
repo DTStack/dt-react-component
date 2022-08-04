@@ -11,7 +11,7 @@ export interface CircleProps {
 }
 
 const Circle: React.FC<CircleProps> = function Circle (props) {
-    const { className, type } = props;
+    const { className, type, ...other  } = props;
     const prefixCls = 'dtc-circle';
 
     const classes = classNames(
@@ -20,7 +20,6 @@ const Circle: React.FC<CircleProps> = function Circle (props) {
         {[`${prefixCls}-${type}`]: type}
     )
 
-    const { ...other } = props;
     return (
         <div
             {...other}
