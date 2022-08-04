@@ -3,7 +3,6 @@ import React from 'react'
 export interface SwitchWindowProps {
     onSwitch?: (evt) => void;
     style?: React.CSSProperties;
-    children?: React.ReactNode;
 }
 /**
  * 窗口切换事件监听，

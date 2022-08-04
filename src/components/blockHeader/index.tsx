@@ -22,12 +22,10 @@ export interface BlockHeaderProps {
     showBackground?: boolean;
     // 是否默认展开内容, 默认 true
     defaultExpand?: boolean;
-    // 展开/收起的内容
-    children?: React.ReactNode;
     // 展开/收起时的回调
     onChange?: (expand: boolean) => void;
 }
-export default function BlockHeader (props: BlockHeaderProps) {
+const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
     const prefixCls = 'dtc-block-header';
     const {
         title,
@@ -84,3 +82,5 @@ export default function BlockHeader (props: BlockHeaderProps) {
         </div>
     )
 }
+
+export default BlockHeader

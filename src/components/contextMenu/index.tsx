@@ -10,7 +10,6 @@ export interface ContextMenuProps {
 export interface ContextMenuItemProps {
     key?: string;
     onClick?: () => void;
-    children?: React.ReactNode;
     value?: string;
     [propName: string]: any;
 }

@@ -9,7 +9,6 @@ export interface CookiesProps {
     watchFields?: string[];
     onChanged?: (old: string, newCookie: string) => void;
     onFieldsChanged?: (fields: Fields[]) => void;
-    children?: React.ReactNode;
 }
 /**
  * Cookies 组件
