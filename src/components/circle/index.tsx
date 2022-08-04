@@ -1,24 +1,25 @@
 import React from 'react'
 import classNames from 'classnames'
 
-export const tuple = <T extends string[]>(...args: T) => args;
-const CicleTypes = tuple('running', 'finished', 'stopped', 'frozen', 'fail',
-    'submitting', 'restarting', 'waitSubmit');
-export type CicleType = typeof CicleTypes[number]
+export type CircleType = 'running'| 'finished'| 'stopped'| 'frozen'| 'fail'| 'submitting'| 'restarting'| 'waitSubmit'
 
 export interface CircleProps {
-    type?: CicleType;
+    type?: CircleType;
     className?: string;
     style?: React.CSSProperties;
     onClick?: () => void;
-    children?: React.ReactNode;
 }
-export default function Circle (props: CircleProps) {
+
+const Circle: React.FC<CircleProps> = function Circle (props) {
     const { className, type } = props;
     const prefixCls = 'dtc-circle';
-    const classes = classNames(`${prefixCls}-default`, className, {
-        [`${prefixCls}-${type}`]: type
-    })
+
+    const classes = classNames(
+        `${prefixCls}-default`,
+        className, 
+        {[`${prefixCls}-${type}`]: type}
+    )
+
     const { ...other } = props;
     return (
         <div
@@ -29,3 +30,5 @@ export default function Circle (props: CircleProps) {
         </div>
     )
 }
+
+export default Circle
