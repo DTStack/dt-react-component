@@ -8,7 +8,6 @@ export interface ToolModalProps {
     visible: boolean;
     toolbox?: React.ReactNode | string;
     fullscreen?: boolean | undefined;
-    children?: React.ReactNode;
     [propName: string]: any;
 
 }

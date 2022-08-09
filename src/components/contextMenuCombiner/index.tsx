@@ -9,7 +9,6 @@ export interface ContextMenuCombinerProps {
     ctxMenuWrapperClsName: string;
     operations?: Operation[];
     id: any;
-    children?: React.ReactNode;
 }
 
 

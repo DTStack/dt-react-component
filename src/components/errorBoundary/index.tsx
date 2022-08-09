@@ -2,7 +2,6 @@ import React from 'react'
 import LoadError from '../loadError';
 
 interface ErrorBoundaryProps {
-    children?: React.ReactNode;
 }
 
 interface ErrorBoundaryStates {

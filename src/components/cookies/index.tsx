@@ -1,15 +1,14 @@
 
 import React from 'react'
 
-interface Filds {
+export interface Fields {
     key?: string;
     value? : string;
 }
 export interface CookiesProps {
     watchFields?: string[];
     onChanged?: (old: string, newCookie: string) => void;
-    onFieldsChanged?: (fields: Filds[]) => void;
-    children?: React.ReactNode;
+    onFieldsChanged?: (fields: Fields[]) => void;
 }
 /**
  * Cookies 组件
@@ -42,13 +41,12 @@ class Cookies extends React.Component<CookiesProps, any> {
     onFieldsChange = (old: string, newCookies: string) => {
         const { watchFields, onFieldsChanged } = this.props;
         if (watchFields) {
-            const changedFields: Filds[] = [];
+            const changedFields: Fields[] = [];
             for (let i = 0; i < watchFields.length; i++) {
                 const key = watchFields[i];
                 const originValue = this.getCookieValue(old, key);
                 const newValue = this.getCookieValue(newCookies, key);
                 if (originValue !== null && originValue !== newValue) {
-                    console.log('fieldChanged:', key, originValue, newValue);
                     changedFields.push({ key, value: newValue });
                 }
             }
@@ -64,7 +62,7 @@ class Cookies extends React.Component<CookiesProps, any> {
             const arr = cookies.match(
                 new RegExp('(^| )' + name + '=([^;]*)(;|$)')
             );
-            if (arr != null) return unescape(decodeURI(arr[2]));
+            if (arr != null) return decodeURI(arr[2]);
         }
         return null;
     }

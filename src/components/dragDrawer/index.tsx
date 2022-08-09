@@ -5,13 +5,11 @@ interface DragDrawerProps extends DrawerProps {
     draggable?: boolean;
     minWidth?: number;
     maxWidth?: number;
-    // 抽屉的内容
-    children?: React.ReactNode;
     onDrag?: Function;
 }
 
 const prefixCls = 'dtc-drag-drawer';
-export default function DragDrawer (props: DragDrawerProps) {
+const DragDrawer: React.FC<DragDrawerProps> = function (props) {
     const {
         visible,
         draggable = true,
@@ -63,3 +61,5 @@ export default function DragDrawer (props: DragDrawerProps) {
         </Drawer>
     )
 }
+
+export default DragDrawer
