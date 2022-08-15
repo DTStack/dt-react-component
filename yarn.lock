@@ -3776,6 +3776,11 @@
     "@babel/runtime" "^7.10.3"
     "@testing-library/dom" "^7.22.3"
 
+"@typed-mxgraph/typed-mxgraph@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@typed-mxgraph/typed-mxgraph/-/typed-mxgraph-1.0.7.tgz#ea85b15388ed26bedcd365eeef4174d7e7f38f32"
+  integrity sha512-TKAgWWcZrBeKglzJ+H6/T4uE6WHHTdL2Nu7xOuQnCm5z4D0poZpn6JSa0FUHYa4HeJuuSFVzFiXkbGY4MqJSYA==
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -12794,6 +12799,11 @@ mute-stream@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
+
+mxgraph@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/mxgraph/-/mxgraph-4.2.2.tgz#52336443f10ab1039be79cc3fdd2eb8c00c91ba2"
+  integrity sha512-FrJc5AxzXSqiQNF+8CyJk6VxuKO4UVPgw32FZuFZ3X9W+JqOAQBTokZhh0ZkEqGpEOyp3z778ssmBTvdrTAdqw==
 
 nan@^2.12.1, nan@^2.13.2:
   version "2.14.2"
