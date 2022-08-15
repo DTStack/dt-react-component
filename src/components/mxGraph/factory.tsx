@@ -12,7 +12,7 @@ import type {
 } from 'mxgraph';
 import { IContainerProps } from '.';
 
-interface IMxGraph extends mxGraph {
+type IMxGraph = mxGraph & {
     scrollTileSize?: mxRectangle;
     getPagePadding?: () => mxPoint;
     getPageSize?: () => mxRectangle;
