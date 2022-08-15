@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/DTStack/dt-react-component/compare/v2.0.12...v2.2.0) (2022-08-15)
+
+
+### Features
+
+* develop mxGraph container ([#186](https://github.com/DTStack/dt-react-component/issues/186)) ([9793910](https://github.com/DTStack/dt-react-component/commit/979391053524350bf8f4cd4caca4b0079a83e75e))
+
+
+### Bug Fixes
+
+* resolve property does not exist on type IMxgraph(TS2339) ([510835a](https://github.com/DTStack/dt-react-component/commit/510835ad6e975341f3ad3de83ea726155ed11347))
+
 ### [2.0.12](https://github.com/DTStack/dt-react-component/compare/v2.0.11...v2.0.12) (2021-10-22)
 
 ### [2.0.11](https://github.com/DTStack/dt-react-component/compare/v2.0.10...v2.0.11) (2021-09-29)
