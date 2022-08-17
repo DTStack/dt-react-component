@@ -1,5 +1,6 @@
 import React from 'react'
 import DragDrawer from '../index';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { render, fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 
