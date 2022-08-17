@@ -1,6 +1,5 @@
 import React from 'react'
 import { ArrowsAltOutlined, ShrinkOutlined } from '@ant-design/icons';
-import { Icon as LegacyIcon } from '@ant-design/compatible';
 import { Modal } from 'antd';
 import Fullscreen from '../fullscreen';
 
@@ -65,7 +64,7 @@ export default class DTModal extends React.Component<ToolModalProps, ToolModalSt
     renderToolbox = () => {
         const { toolbox, fullscreen } = this.props;
         const { isFullscreen } = this.state;
-        const iconType = isFullscreen ? 'shrink' : 'arrows-alt';
+        const icon = isFullscreen ? <ShrinkOutlined className="alt" onClick={this.onEleFullScreen} /> : <ArrowsAltOutlined className="alt" onClick={this.onEleFullScreen} />
         return (
             <div
                 className="dtc-ant-modal_icon__position"
@@ -78,7 +77,7 @@ export default class DTModal extends React.Component<ToolModalProps, ToolModalSt
                         isShowTitle={false}
                         className='dtc-icon__cursor'
                         onFullscreen={this.onEleFullScreen}
-                    /> : <LegacyIcon className="alt icon__cursor" type={iconType} onClick={this.onEleFullScreen} />
+                    /> : icon
                 }
             </div>
         );

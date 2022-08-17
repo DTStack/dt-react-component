@@ -39,10 +39,11 @@ stories.add('cookies', () => {
             <h2>示例</h2>
             <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
                 <p>监听页面 Cookie 信息变更</p>
-                <Cookies watchFields={[ // 当页面cookie如下字段的值发生变更时会触发页面刷新
-                    'dt_token', 'dt_tenant_id', 'dt_user_id', 'project_id'
-                ]} onFieldsChanged={() => { console.log('hasChanged') }}>
-                </Cookies>
+                <Cookies
+                    // 当页面cookie如下字段的值发生变更时会触发页面刷新
+                    watchFields={['dt_token', 'dt_tenant_id', 'dt_user_id', 'project_id']}
+                    onFieldsChanged={() => { console.log('hasChanged') }}
+                />
             </ExampleContainer>
 
         </div>
