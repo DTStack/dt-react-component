@@ -5,16 +5,16 @@ name: CI
 # Triggers the workflow on push or pull request events but only for the master branch
 on:
   push:
-    branches: [master]
+    branches: "*"
   pull_request:
-    branches: [master, beta_3.0.0]
+    branches: "*"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Setup node
@@ -23,29 +23,29 @@ jobs:
           node-version: 14.x
           cache: yarn
 
-      - name: cache yarn.lock
+      - name: Cache yarn.lock
         uses: actions/cache@v2
         with:
           path: package-temp-dir
           key: lock-${{ github.sha }}
 
-      - name: create yarn.lock
+      - name: Create yarn.lock
         run: yarn generate-lock-entry
 
-      - name: hack for single file
+      - name: Hack for single file
         run: |
           if [ ! -d "package-temp-dir" ]; then
             mkdir package-temp-dir
           fi
           cp yarn.lock package-temp-dir
-      - name: cache node_modules
+      - name: Cache node_modules
         id: node_modules_cache_id
         uses: actions/cache@v2
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
 
-      - name: install
+      - name: Install dependencies
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn
 
