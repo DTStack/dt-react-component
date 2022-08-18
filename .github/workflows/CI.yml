@@ -49,7 +49,7 @@ jobs:
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn
 
-  static-checking:
+  check-types:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
@@ -69,6 +69,27 @@ jobs:
 
       - name: Run Check Types
         run: yarn check-types
+      - name: Run ESlint
+        run: yarn lint
+
+  eslint:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Restore cache from yarn.lock
+        uses: actions/cache@v2
+        with:
+          path: package-temp-dir
+          key: lock-${{ github.sha }}
+
+      - name: Restore cache from node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
+
       - name: Run ESlint
         run: yarn lint
 

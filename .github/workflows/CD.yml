@@ -5,7 +5,7 @@ name: CD
 # Triggers the workflow on push or pull request events but only for the master branch
 on:
   push:
-    branches: [master, beta_3.0.0]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -53,6 +53,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+
       - name: Restore cache from yarn.lock
         uses: actions/cache@v2
         with:
@@ -65,5 +70,7 @@ jobs:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
 
-      - name: Deploy storybook to github pages
-        run: yarn deploy-storybook
+      - name: Deploy storybook to GitHub Pages
+        run: npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: ${{ secrets.RC_GH_TOKEN }}
