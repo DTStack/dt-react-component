@@ -29,6 +29,6 @@ describe('mulSelectDropdown Component test', () => {
         expect(checkoutItem.classList.contains('ant-checkbox-wrapper-checked')).toEqual(true);
 
         fireEvent.click(getByTestId('select_cancel_btn'));
-        expect(dropdownEle.classList.contains('slide-up-leave')).toEqual(true);
+        expect(dropdownEle.classList.contains('ant-dropdown-hidden')).toEqual(true);
     })
 });
