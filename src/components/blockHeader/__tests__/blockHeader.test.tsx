@@ -21,8 +21,8 @@ describe('test BlockHeader render', () => {
         cleanup();
     })
     test('success render', () => {
-        const { asFragment } = render(<BlockHeader {...props} />)
-        expect(asFragment()).toMatchSnapshot();
+        const wrapper= render(<BlockHeader {...props} />)
+        expect(wrapper).toMatchSnapshot();
     })
     test('default BlockHeader render', () => {
         const { getByText, rerender } = render(<BlockHeader {...props} />)
