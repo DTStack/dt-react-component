@@ -12,7 +12,7 @@ const Modal = ModalWithForm(props => {
         </FormItem>
     );
 });
-const submit = jest.fn();
+
 class App extends React.Component<any, any> {
     constructor (props) {
         super(props);
@@ -35,7 +35,6 @@ class App extends React.Component<any, any> {
                     okText="ok"
                     cancelText="quit"
                     record="hi"
-                    onSubmit={submit}
                 />
             </>
         );
@@ -58,11 +57,11 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test('should not render BaseForm', () => {
+test('should not render modalWithForm', () => {
     expect(element).toBeValid();
 });
 
-test('should toggle BaseForm when click button', () => {
+test('should toggle modalWithForm when click button', () => {
     fireEvent.click(wrapper.getByText('click'));
     expect(screen.getByText('test-title')).toBeInTheDocument();
     // 关掉模态框
@@ -83,22 +82,15 @@ test('should change input value when input', () => {
     fireEvent.click(eleQuit);
 });
 
-test('baseForm not to be visible', () => {
+test('should trigger submit methond when form validate successful', () => {
     fireEvent.click(wrapper.getByText('click'));
-    const ele = wrapper.getByText('ok');
-    ele.onclick = jest.fn();
-    fireEvent.click(ele);
-    expect(ele.onclick).toHaveBeenCalled();
-    expect(submit).toHaveBeenCalled();
-});
+    const eleModal = wrapper.getByText("test-title")
+    const eleInput = wrapper.getByTestId('test-input');
+    const eleOk = wrapper.getByText('ok');
 
-test('input content length more then 10', () => {
-    fireEvent.click(wrapper.getByText('click'));
-    const ele = wrapper.getByTestId('test-input');
-    ele.onchange = jest.fn();
-    jest.spyOn(console, 'warn').mockImplementation(() => {
-        return null;
-    });
-    fireEvent.change(ele, { target: { value: '1234567891011' } });
-    expect(console.warn).toHaveBeenCalledTimes(1);
+    eleInput.onchange = jest.fn();
+    fireEvent.change(eleInput, { target: { value: '1' } });
+    eleOk.onclick = jest.fn();
+    fireEvent.click(eleOk);
+    expect(eleOk.onclick).toHaveBeenCalled();
 });
