@@ -27,7 +27,7 @@ function ModalWithForm (FormComponent: any) {
         }
         okHandler = () => {
             const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = this.props;
-            this.formRef.current.validateFields().then(values => {
+            this.formRef.current?.validateFields().then(values => {
                 onSubmit(values, record);
                 notSubmitCloseModal && hideModelHandler();
             });
@@ -35,7 +35,7 @@ function ModalWithForm (FormComponent: any) {
         cancelHandler = () => {
             const { hideModelHandler } = this.props
             hideModelHandler()
-            this.formRef.current.resetFields()
+            this.formRef.current?.resetFields();     
         }
         render () {
             const {
@@ -51,7 +51,6 @@ function ModalWithForm (FormComponent: any) {
             } = this.props;
             return (
                 <>
-                    <Form ref={this.formRef}>
                         <Modal
                             className={modelClass}
                             title={title}
@@ -65,9 +64,8 @@ function ModalWithForm (FormComponent: any) {
                             centered={centered}
                             cancelButtonProps={cancelButtonProps}
                         >
-                            <FormComponent {...this.props} />
+                            <FormComponent {...this.props} ref={this.formRef}/>
                         </Modal>
-                    </Form>
                 </>
             )
         }
