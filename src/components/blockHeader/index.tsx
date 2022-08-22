@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { UpOutlined } from '@ant-design/icons'
 
@@ -24,6 +25,7 @@ export interface BlockHeaderProps {
     defaultExpand?: boolean;
     // 展开/收起时的回调
     onChange?: (expand: boolean) => void;
+    children?: React.ReactNode;
 }
 const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
     const prefixCls = 'dtc-block-header';

@@ -8,6 +8,7 @@ export interface CircleProps {
     className?: string;
     style?: React.CSSProperties;
     onClick?: () => void;
+    children?: React.ReactNode;
 }
 
 const Circle: React.FC<CircleProps> = function Circle (props) {
@@ -16,7 +17,7 @@ const Circle: React.FC<CircleProps> = function Circle (props) {
 
     const classes = classNames(
         `${prefixCls}-default`,
-        className, 
+        className,
         {[`${prefixCls}-${type}`]: type}
     )
 

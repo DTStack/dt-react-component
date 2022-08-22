@@ -5,6 +5,7 @@ export interface KeyCombinerProps {
     keyMap?: {
         [key: string]: boolean;
     };
+    children?: React.ReactNode;
 }
 
 export interface KeyCombinerState {

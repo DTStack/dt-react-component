@@ -4,6 +4,7 @@ import KeyCombiner from './listener'
 export interface KeyEventListenerProps {
     onKeyDown?: (e) => void;
     onKeyUp?: (e) => void;
+    children?: React.ReactNode;
 }
 
 export default class KeyEventListener extends React.Component<KeyEventListenerProps, any> {

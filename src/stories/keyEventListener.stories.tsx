@@ -48,7 +48,7 @@ const stories = storiesOf('KeyEventListener 键盘监听', module);
 stories.add(
     'keyCombiner',
     () => {
-        const otherDependencies = `import KeyEventListener from 'dt-react-component'; 
+        const otherDependencies = `import KeyEventListener from 'dt-react-component';
 const { KeyCombiner } = KeyEventListener`;
         const code = `keyAction = (evt: any) => {
                     evt.preventDefault();
@@ -75,11 +75,14 @@ const { KeyCombiner } = KeyEventListener`;
                     code={code}
                     hasCodeSandBox={true}
                 >
-                    <KeyCombiner onTrigger={keyAction} keyMap={{
-                        70: true,
-                        91: true,
-                        16: true
-                    }}>
+                    <KeyCombiner
+                        onTrigger={keyAction}
+                        keyMap={{
+                            70: true,
+                            91: true,
+                            16: true
+                        }}
+                    >
                         {<div>尝试按下 command+shift+f 看看控制台是否监听了键盘事件</div>}
                     </KeyCombiner>
                 </ExampleContainer>

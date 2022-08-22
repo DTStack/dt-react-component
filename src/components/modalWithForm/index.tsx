@@ -27,15 +27,17 @@ function ModalWithForm (FormComponent: any) {
         }
         okHandler = () => {
             const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = this.props;
-            this.formRef.current.validateFields().then(values => {
-                onSubmit(values, record);
-                notSubmitCloseModal && hideModelHandler();
+            this.formRef.current?.validateFields().then((err: any, values: any) => {
+                if (!err) {
+                    onSubmit(values, record);
+                    notSubmitCloseModal && hideModelHandler();
+                }
             });
         };
         cancelHandler = () => {
             const { hideModelHandler } = this.props
             hideModelHandler()
-            this.formRef.current.resetFields()
+            this.formRef.current?.resetFields();     
         }
         render () {
             const {
@@ -51,23 +53,21 @@ function ModalWithForm (FormComponent: any) {
             } = this.props;
             return (
                 <>
-                    <Form ref={this.formRef}>
-                        <Modal
-                            className={modelClass}
-                            title={title}
-                            visible={visible}
-                            onOk={this.okHandler}
-                            onCancel={this.cancelHandler}
-                            okText={okText}
-                            cancelText={cancelText}
-                            okType={okType}
-                            footer={footer}
-                            centered={centered}
-                            cancelButtonProps={cancelButtonProps}
-                        >
-                            <FormComponent {...this.props} />
-                        </Modal>
-                    </Form>
+                    <Modal
+                        className={modelClass}
+                        title={title}
+                        visible={visible}
+                        onOk={this.okHandler}
+                        onCancel={this.cancelHandler}
+                        okText={okText}
+                        cancelText={cancelText}
+                        okType={okType}
+                        footer={footer}
+                        centered={centered}
+                        cancelButtonProps={cancelButtonProps}
+                    >
+                        <FormComponent {...this.props} ref={this.formRef}/>
+                    </Modal>
                 </>
             )
         }
