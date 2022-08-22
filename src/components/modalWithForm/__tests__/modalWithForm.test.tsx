@@ -84,7 +84,6 @@ test('should change input value when input', () => {
 
 test('should trigger submit methond when form validate successful', () => {
     fireEvent.click(wrapper.getByText('click'));
-    const eleModal = wrapper.getByText("test-title")
     const eleInput = wrapper.getByTestId('test-input');
     const eleOk = wrapper.getByText('ok');
 

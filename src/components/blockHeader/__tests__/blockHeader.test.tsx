@@ -21,7 +21,7 @@ describe('test BlockHeader render', () => {
         cleanup();
     })
     test('success render', () => {
-        const wrapper= render(<BlockHeader {...props} />)
+        const wrapper = render(<BlockHeader {...props} />)
         expect(wrapper).toMatchSnapshot();
     })
     test('default BlockHeader render', () => {
