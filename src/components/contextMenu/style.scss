@@ -6,7 +6,7 @@ $context-prefix: 'dtc-context-menu';
     display: none;
     z-index: 9999;
     background: #fff;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);   
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
     .#{$context-prefix}-context-menu_list {
         margin: 0;

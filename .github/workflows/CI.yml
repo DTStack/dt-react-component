@@ -41,7 +41,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: node_modules-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
+          key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
 
       - name: Install dependencies
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
@@ -63,7 +63,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: node_modules-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
+          key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
 
       - name: Run Check Types
         run: yarn check-types
@@ -84,7 +84,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: node_modules-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
+          key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
 
       - name: Run ESlint
         run: yarn lint
@@ -105,7 +105,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: node_modules-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
+          key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
 
       - name: Run Unit Test
         run: yarn test
