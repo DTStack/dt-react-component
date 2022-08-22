@@ -23,13 +23,12 @@ describe('mulSelectDropdown Component test', () => {
         const dropdownEle = document.querySelector('.dtc-mul-select-dropdown');
         const optionBoxEle = document.querySelector('.dtc-option-select-overlay-menu');
         expect(dropdownEle).not.toBeNull();
-        expect(dropdownEle.classList.contains('slide-up-appear')).toEqual(true);
         expect(optionBoxEle.childNodes.length).toBe(2);
         let checkoutItem = optionBoxEle.getElementsByClassName('ant-checkbox-wrapper')[1];
         expect(checkoutItem.classList.contains('ant-checkbox-wrapper-disabled')).toEqual(true);
         expect(checkoutItem.classList.contains('ant-checkbox-wrapper-checked')).toEqual(true);
 
         fireEvent.click(getByTestId('select_cancel_btn'));
-        expect(dropdownEle.classList.contains('slide-up-leave')).toEqual(true);
+        expect(dropdownEle.classList.contains('ant-dropdown-hidden')).toEqual(true);
     })
 });
