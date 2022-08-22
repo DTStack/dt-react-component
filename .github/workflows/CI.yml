@@ -69,8 +69,6 @@ jobs:
 
       - name: Run Check Types
         run: yarn check-types
-      - name: Run ESlint
-        run: yarn lint
 
   eslint:
     needs: [setup]

@@ -160,7 +160,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@handsontable/react": "^2.1.0",
-    "antd": "^4.22.6",
+    "antd": "4.22.6",
     "classnames": "^2.2.6",
     "handsontable": "^6.2.2",
     "highlight.js": "^10.5.0",
