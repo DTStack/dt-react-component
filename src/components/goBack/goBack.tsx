@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'antd/lib'
+import { Icon } from 'antd'
 import { browserHistory, hashHistory } from 'react-router'
 import { GoBackProps } from './index'
 

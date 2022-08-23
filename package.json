@@ -3,6 +3,12 @@
   "version": "2.2.0",
   "description": "react-component",
   "repository": "https://github.com/DTStack/dt-react-component",
+  "sideEffects": [
+    "lib/*",
+    "esm/**/style/*",
+    "lib/**/style/*",
+    "*.scss"
+  ],
   "main": "lib/index.js",
   "module": "esm/index.js",
   "types": "esm/index.d.ts",
