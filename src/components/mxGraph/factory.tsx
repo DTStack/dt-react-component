@@ -337,6 +337,26 @@ class MxFactory {
     }
 
     /**
+     * 渲染 tooltips 的 HTML 样式
+     * @description Returns the string or DOM node to be used as the tooltip for the given cell. This implementation uses the cells getTooltip function if it exists, or else it returns convertValueToString for the cell.
+     */
+    renderTooltips (handler: (cell: mxCell) => string | undefined) {
+        if (this.mxGraph) {
+            // 默认 tooltips
+            this.mxGraph.getTooltipForCell = (cell) => {
+                if (cell && cell.vertex) {
+                    const result = handler(cell);
+                    if (result === undefined) {
+                        return this.mxGraph.getLabel(cell) as string;
+                    }
+                    return result;
+                }
+                return '';
+            };
+        }
+    }
+
+    /**
      * 初始化 graph 相关配置
      */
     public initContainerScroll = () => {

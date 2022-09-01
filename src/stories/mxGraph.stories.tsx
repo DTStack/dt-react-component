@@ -84,24 +84,24 @@ stories.add('mxGraph 基础使用', () => {
                         </Tooltip>
                     </div>
                 )}
-                onRenderCell={(cell, graph) => {
+                onRenderCell={(cell) => {
                     if (cell.vertex && cell.value) {
                         const task = cell.value;
                         if (task) {
-                            const cellDom = ReactDOMServer.renderToString(
+                            return ReactDOMServer.renderToString(
                                 <div>
-                                    <span>{task?.taskName}</span>
+                                    <span>{task.taskName}</span>
                                     <br />
-                                    <span>{task?.taskId}</span>
+                                    <span>{task.taskId}</span>
                                 </div>
                             );
-                            // 自定义 tooltips
-                            graph.getTooltipForCell = (cell) => {
-                                return cellDom;
-                            };
-
-                            return cellDom;
                         }
+                    }
+                    return '';
+                }}
+                onRenderTooltips={(cell) => {
+                    if (cell.vertex && cell.value) {
+                        return cell.value.taskName;
                     }
                     return '';
                 }}
@@ -169,24 +169,24 @@ stories.add('mxGraph 基础使用', () => {
                             </Tooltip>
                         </div>
                     )}
-                    onRenderCell={(cell, graph) => {
+                    onRenderCell={(cell) => {
                         if (cell.vertex && cell.value) {
                             const task = cell.value;
                             if (task) {
-                                const cellDom = ReactDOMServer.renderToString(
+                                return ReactDOMServer.renderToString(
                                     <div>
-                                        <span>{task?.taskName}</span>
+                                        <span>{task.taskName}</span>
                                         <br />
-                                        <span>{task?.taskId}</span>
+                                        <span>{task.taskId}</span>
                                     </div>
                                 );
-                                // 自定义 tooltips
-                                graph.getTooltipForCell = (cell) => {
-                                    return cellDom;
-                                };
-
-                                return cellDom;
                             }
+                        }
+                        return '';
+                    }}
+                    onRenderTooltips={(cell) => {
+                        if (cell.vertex && cell.value) {
+                            return cell.value.taskName;
                         }
                         return '';
                     }}

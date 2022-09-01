@@ -190,6 +190,10 @@ export interface IContainerProps<T> {
      */
     onRenderCell?: (cell: mxCell, graph: mxGraph) => string;
     /**
+     * 渲染 cell 的 tooltips，返回 string 类型或 undefined
+     */
+     onRenderTooltips?: (cell: mxCell, graph: mxGraph) => string;
+    /**
      * 获取 vertex 的 style，由于存在默认样式，所以通常用于设置特殊状态的 vertex
      */
     onDrawVertex?: (data: T) => string;
@@ -268,6 +272,7 @@ function MxGraphContainer<T extends IMxGraphData>(
         direction,
         children,
         onRenderCell,
+        onRenderTooltips,
         onDrawVertex,
         onDrawEdge,
         onClick,
@@ -393,6 +398,11 @@ function MxGraphContainer<T extends IMxGraphData>(
         // 转换value显示的内容
         Mx.renderVertex((cell) => {
             return onRenderCell?.(cell, graph.current!) || '';
+        });
+
+        // 自定义 tooltips
+        Mx.renderTooltips((cell) => {
+            return onRenderTooltips?.(cell, graph.current!);
         });
 
         Mx.layoutEventHandler = () => {
