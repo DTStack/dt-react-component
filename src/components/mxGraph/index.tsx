@@ -914,12 +914,12 @@ function MxGraphContainer<T extends IMxGraphData>(
     }, []);
 
     return (
-        <div className="graph-editor" style={style}>
+        <div className="dtc-graph-editor" style={style}>
             <Spin
                 tip="Loading..."
                 size="large"
                 spinning={loading}
-                wrapperClassName="task-graph"
+                wrapperClassName="dtc-task-graph"
             >
                 <div
                     style={{
@@ -934,14 +934,14 @@ function MxGraphContainer<T extends IMxGraphData>(
             </Spin>
             {onRenderWidgets && (
                 <div
-                    className="graph-widgets"
+                    className="dtc-graph-widgets"
                     onContextMenu={(e) => e.preventDefault()}
                 >
                     {onRenderWidgets?.()}
                 </div>
             )}
-            <div className="graph-bottom">{children?.(current)}</div>
-            <div className="graph-toolbar" style={config?.toolbarStyle}>
+            <div className="dtc-graph-bottom">{children?.(current)}</div>
+            <div className="dtc-graph-toolbar" style={config?.toolbarStyle}>
                 {onRenderActions?.(graph.current, Mx.mxInstance)}
             </div>
         </div>
