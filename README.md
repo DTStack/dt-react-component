@@ -102,7 +102,15 @@ $ cd dt-react-component
 $ npm install
 $ npm run storybook
 ```
-Open your browser and visit [http://127.0.0.1:9001](http://127.0.0.1:9001)，We manage components based on stroybook. see more at [Storybook](https://storybook.js.org/).
+Open your browser and visit [http://127.0.0.1:9001](http://127.0.0.1:9001)，We manage components based on storybook. see more at [Storybook](https://storybook.js.org/).
+
+## Publish
+
+``` bash
+yarn compile
+yarn release -r 2.2.1
+npm publish --registry https://registry.npmjs.org/
+```
 
 ## Roadmap
 + We will support and improve more components
