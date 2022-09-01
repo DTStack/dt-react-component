@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/DTStack/dt-react-component/compare/v2.2.0...v2.2.1) (2022-09-01)
+
+
+### Features
+
+* enable tree shaking optimization ([#197](https://github.com/DTStack/dt-react-component/issues/197)) ([6c1b047](https://github.com/DTStack/dt-react-component/commit/6c1b047e5aef64bd2701c0a26b5f5f67802b2ba4))
+* mxgraph css ([#199](https://github.com/DTStack/dt-react-component/issues/199)) ([e791eee](https://github.com/DTStack/dt-react-component/commit/e791eeeffc669c53f52338e5d9bb472011a11706))
+
 ## [2.2.0](https://github.com/DTStack/dt-react-component/compare/v2.0.12...v2.2.0) (2022-08-15)
 
 

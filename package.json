@@ -1,6 +1,6 @@
 {
   "name": "dt-react-component",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "react-component",
   "repository": "https://github.com/DTStack/dt-react-component",
   "sideEffects": [
@@ -109,6 +109,7 @@
     "babel-plugin-transform-require-context": "^0.1.1",
     "babel-preset-react-app": "9.0.0",
     "commitizen": "^4.0.3",
+    "conventional-changelog-cli": "^2.2.2",
     "cross-env": "^7.0.2",
     "css-loader": "^3.1.0",
     "cz-conventional-changelog": "^3.0.2",
@@ -156,6 +157,7 @@
     "react-test-renderer": "16.13.0",
     "require-context.macro": "^1.1.0",
     "sass-loader": "^7.1.0",
+    "standard-version": "^9.5.0",
     "storybook-react-router": "^1.0.8",
     "storybook-readme": "^5.0.5",
     "style-loader": "^0.23.1",
