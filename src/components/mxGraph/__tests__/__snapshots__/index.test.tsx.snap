@@ -3,10 +3,10 @@
 exports[`The mxGraph Container test Match Snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="graph-editor"
+    class="dtc-graph-editor"
   >
     <div
-      class="ant-spin-nested-loading task-graph"
+      class="ant-spin-nested-loading dtc-task-graph"
     >
       <div
         class="ant-spin-container"
@@ -29,10 +29,10 @@ exports[`The mxGraph Container test Match Snapshot 1`] = `
       </div>
     </div>
     <div
-      class="graph-bottom"
+      class="dtc-graph-bottom"
     />
     <div
-      class="graph-toolbar"
+      class="dtc-graph-toolbar"
     />
   </div>
 </DocumentFragment>
@@ -41,10 +41,10 @@ exports[`The mxGraph Container test Match Snapshot 1`] = `
 exports[`The mxGraph Container test Match Snapshot with data and toolbar 1`] = `
 <DocumentFragment>
   <div
-    class="graph-editor"
+    class="dtc-graph-editor"
   >
     <div
-      class="ant-spin-nested-loading task-graph"
+      class="ant-spin-nested-loading dtc-task-graph"
     >
       <div
         class="ant-spin-container"
@@ -162,10 +162,10 @@ exports[`The mxGraph Container test Match Snapshot with data and toolbar 1`] = `
       </div>
     </div>
     <div
-      class="graph-bottom"
+      class="dtc-graph-bottom"
     />
     <div
-      class="graph-toolbar"
+      class="dtc-graph-toolbar"
     >
       <button>
         +
@@ -181,10 +181,10 @@ exports[`The mxGraph Container test Match Snapshot with data and toolbar 1`] = `
 exports[`The mxGraph Container test Match Snapshot with data and widgets 1`] = `
 <DocumentFragment>
   <div
-    class="graph-editor"
+    class="dtc-graph-editor"
   >
     <div
-      class="ant-spin-nested-loading task-graph"
+      class="ant-spin-nested-loading dtc-task-graph"
     >
       <div
         class="ant-spin-container"
@@ -302,7 +302,7 @@ exports[`The mxGraph Container test Match Snapshot with data and widgets 1`] = `
       </div>
     </div>
     <div
-      class="graph-widgets"
+      class="dtc-graph-widgets"
     >
       <div
         style="height: 20px; background: rgb(221, 221, 221);"
@@ -321,10 +321,10 @@ exports[`The mxGraph Container test Match Snapshot with data and widgets 1`] = `
       </ul>
     </div>
     <div
-      class="graph-bottom"
+      class="dtc-graph-bottom"
     />
     <div
-      class="graph-toolbar"
+      class="dtc-graph-toolbar"
     />
   </div>
 </DocumentFragment>
@@ -333,11 +333,11 @@ exports[`The mxGraph Container test Match Snapshot with data and widgets 1`] = `
 exports[`The mxGraph Container test Match Snapshot with style and bottom status bar 1`] = `
 <DocumentFragment>
   <div
-    class="graph-editor"
+    class="dtc-graph-editor"
     style="background: rgb(221, 221, 221);"
   >
     <div
-      class="ant-spin-nested-loading task-graph"
+      class="ant-spin-nested-loading dtc-task-graph"
     >
       <div
         class="ant-spin-container"
@@ -455,14 +455,14 @@ exports[`The mxGraph Container test Match Snapshot with style and bottom status 
       </div>
     </div>
     <div
-      class="graph-bottom"
+      class="dtc-graph-bottom"
     >
       <div>
         This is legend
       </div>
     </div>
     <div
-      class="graph-toolbar"
+      class="dtc-graph-toolbar"
     />
   </div>
 </DocumentFragment>
