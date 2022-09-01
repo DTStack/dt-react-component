@@ -1,6 +1,6 @@
 {
   "name": "dt-react-component",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "react-component",
   "repository": "https://github.com/DTStack/dt-react-component",
   "sideEffects": [
