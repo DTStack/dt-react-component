@@ -63,7 +63,7 @@ describe('The mxGraph Container test', () => {
         );
 
         const widgetsParentNode = container.querySelector<HTMLDivElement>(
-            '.graph-widgets'
+            '.dtc-graph-widgets'
         );
         // NOTHING happened
         fireEvent.contextMenu(widgetsParentNode);

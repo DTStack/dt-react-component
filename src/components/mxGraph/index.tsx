@@ -190,6 +190,10 @@ export interface IContainerProps<T> {
      */
     onRenderCell?: (cell: mxCell, graph: mxGraph) => string;
     /**
+     * 渲染 cell 的 tooltips，返回 string 类型或 undefined
+     */
+     onRenderTooltips?: (cell: mxCell, graph: mxGraph) => string;
+    /**
      * 获取 vertex 的 style，由于存在默认样式，所以通常用于设置特殊状态的 vertex
      */
     onDrawVertex?: (data: T) => string;
@@ -268,6 +272,7 @@ function MxGraphContainer<T extends IMxGraphData>(
         direction,
         children,
         onRenderCell,
+        onRenderTooltips,
         onDrawVertex,
         onDrawEdge,
         onClick,
@@ -393,6 +398,11 @@ function MxGraphContainer<T extends IMxGraphData>(
         // 转换value显示的内容
         Mx.renderVertex((cell) => {
             return onRenderCell?.(cell, graph.current!) || '';
+        });
+
+        // 自定义 tooltips
+        Mx.renderTooltips((cell) => {
+            return onRenderTooltips?.(cell, graph.current!);
         });
 
         Mx.layoutEventHandler = () => {
@@ -914,12 +924,12 @@ function MxGraphContainer<T extends IMxGraphData>(
     }, []);
 
     return (
-        <div className="graph-editor" style={style}>
+        <div className="dtc-graph-editor" style={style}>
             <Spin
                 tip="Loading..."
                 size="large"
                 spinning={loading}
-                wrapperClassName="task-graph"
+                wrapperClassName="dtc-task-graph"
             >
                 <div
                     style={{
@@ -934,14 +944,14 @@ function MxGraphContainer<T extends IMxGraphData>(
             </Spin>
             {onRenderWidgets && (
                 <div
-                    className="graph-widgets"
+                    className="dtc-graph-widgets"
                     onContextMenu={(e) => e.preventDefault()}
                 >
                     {onRenderWidgets?.()}
                 </div>
             )}
-            <div className="graph-bottom">{children?.(current)}</div>
-            <div className="graph-toolbar" style={config?.toolbarStyle}>
+            <div className="dtc-graph-bottom">{children?.(current)}</div>
+            <div className="dtc-graph-toolbar" style={config?.toolbarStyle}>
                 {onRenderActions?.(graph.current, Mx.mxInstance)}
             </div>
         </div>

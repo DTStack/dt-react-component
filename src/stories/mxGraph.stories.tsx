@@ -14,14 +14,19 @@ const otherDependencies =
 stories.add('mxGraph 基础使用', () => {
     return (
         <div className="story_wrapper">
+            <h2>Tips</h2>
+            <p>mxTooltip、mxPopupMenu、mxPopupMenuItem 等样式请自行实现，可参考：
+                <a href="https://github.com/DTStack/dt-react-component/blob/master/src/stories/style/mxGraph.scss" target="blank">mxGraph.scss</a>
+            </p>
+
             <h2>示例</h2>
-            <p>mxGraph 的基础使用，展示图数据</p>
+            <p>mxGraph 的基础使用，展示图数据，开启了 tooltips</p>
             <ExampleContainer
                 otherDependencies={otherDependencies}
                 code={`<MxGraphContainer
                 style={{ height: 400 }}
                 config={{
-                    tooltips: false,
+                    tooltips: true,
                     highlight: true
                 }}
                 graphData={[
@@ -94,13 +99,19 @@ stories.add('mxGraph 基础使用', () => {
                     }
                     return '';
                 }}
+                onRenderTooltips={(cell) => {
+                    if (cell.vertex && cell.value) {
+                        return cell.value.taskName;
+                    }
+                    return '';
+                }}
             />`}
                 hasCodeSandBox={true}
             >
                 <MxGraphContainer
                     style={{ height: 400 }}
                     config={{
-                        tooltips: false,
+                        tooltips: true,
                         highlight: true
                     }}
                     graphData={[
@@ -170,6 +181,12 @@ stories.add('mxGraph 基础使用', () => {
                                     </div>
                                 );
                             }
+                        }
+                        return '';
+                    }}
+                    onRenderTooltips={(cell) => {
+                        if (cell.vertex && cell.value) {
+                            return cell.value.taskName;
                         }
                         return '';
                     }}
