@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { State, Store } from '@sambego/storybook-state';
 import { storiesOf } from '@storybook/react';
-import { Alert, Icon, message, Tooltip } from 'antd';
+import { Alert, message, Tooltip } from 'antd';
+import { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
 import MxGraphContainer, { WIDGETS_PREFIX } from '../components/mxGraph';
 import ExampleContainer from './components/exampleCode';
 import '../styles/index.scss';
 
 const stories = storiesOf('mxGraph', module);
 const otherDependencies =
-    "import { mxGraphContainer } from 'dt-react-component';\nimport ReactDOMServer from 'react-dom/server';\nimport { Icon, Tooltip } from 'antd';";
+    "import { mxGraphContainer } from 'dt-react-component';\nimport ReactDOMServer from 'react-dom/server';\nimport { Tooltip } from 'antd';\nimport { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';";
 
 stories.add('mxGraph 基础使用', () => {
     return (
@@ -71,16 +72,10 @@ stories.add('mxGraph 基础使用', () => {
                         }}
                     >
                         <Tooltip title="放大">
-                            <Icon
-                                type="zoom-in"
-                                onClick={() => graph.zoomIn()}
-                            />
+                            <ZoomInOutlined onClick={() => graph.zoomIn()} />
                         </Tooltip>
                         <Tooltip title="缩小">
-                            <Icon
-                                type="zoom-out"
-                                onClick={() => graph.zoomOut()}
-                            />
+                            <ZoomOutOutlined onClick={() => graph.zoomOut()} />
                         </Tooltip>
                     </div>
                 )}
@@ -156,16 +151,10 @@ stories.add('mxGraph 基础使用', () => {
                             }}
                         >
                             <Tooltip title="放大">
-                                <Icon
-                                    type="zoom-in"
-                                    onClick={() => graph.zoomIn()}
-                                />
+                                <ZoomInOutlined onClick={() => graph.zoomIn()} />
                             </Tooltip>
                             <Tooltip title="缩小">
-                                <Icon
-                                    type="zoom-out"
-                                    onClick={() => graph.zoomOut()}
-                                />
+                                <ZoomOutOutlined onClick={() => graph.zoomOut()} />
                             </Tooltip>
                         </div>
                     )}
