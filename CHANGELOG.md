@@ -2,18 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [](https://github.com/DTStack/dt-react-component/compare/v2.0.12...v) (2022-03-15)
+### [2.2.1](https://github.com/DTStack/dt-react-component/compare/v2.2.0...v2.2.1) (2022-09-01)
 
 
 ### Features
 
-* delete @ant-design/compatible/assets/index.css ([fc92b60](https://github.com/DTStack/dt-react-component/commit/fc92b600162942e60e51dc52b4ad048f5eae6966))
-* update stories of ToolModal ([#165](https://github.com/DTStack/dt-react-component/issues/165)) ([238585e](https://github.com/DTStack/dt-react-component/commit/238585e536fde6eef903ff08db5aab23d20bc29e))
+* enable tree shaking optimization ([#197](https://github.com/DTStack/dt-react-component/issues/197)) ([6c1b047](https://github.com/DTStack/dt-react-component/commit/6c1b047e5aef64bd2701c0a26b5f5f67802b2ba4))
+* mxgraph css ([#199](https://github.com/DTStack/dt-react-component/issues/199)) ([e791eee](https://github.com/DTStack/dt-react-component/commit/e791eeeffc669c53f52338e5d9bb472011a11706))
+
+## [2.2.0](https://github.com/DTStack/dt-react-component/compare/v2.0.12...v2.2.0) (2022-08-15)
+
+
+### Features
+
+* develop mxGraph container ([#186](https://github.com/DTStack/dt-react-component/issues/186)) ([9793910](https://github.com/DTStack/dt-react-component/commit/979391053524350bf8f4cd4caca4b0079a83e75e))
 
 
 ### Bug Fixes
 
-* import is replaced with require ([7a6263f](https://github.com/DTStack/dt-react-component/commit/7a6263f57ced1804902ec9f76dda8034a097a5a0))
+* resolve property does not exist on type IMxgraph(TS2339) ([510835a](https://github.com/DTStack/dt-react-component/commit/510835ad6e975341f3ad3de83ea726155ed11347))
 
 ### [2.0.12](https://github.com/DTStack/dt-react-component/compare/v2.0.11...v2.0.12) (2021-10-22)
 

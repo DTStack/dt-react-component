@@ -23,6 +23,7 @@
     "typeRoots": [
       "node",
       "node_modules/@types",
+      "node_modules/@typed-mxgraph",
       "./typings"
     ]
   },

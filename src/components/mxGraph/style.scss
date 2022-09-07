@@ -1,0 +1,44 @@
+.dtc-graph-editor {
+    position: relative;
+    height: 100%;
+    background-color: #fff;
+
+    .dtc-task-graph {
+        height: 100%;
+    }
+
+    .ant-spin-container {
+        height: 100%;
+    }
+
+    .dtc-graph-widgets {
+        background: #fff;
+        border: 1px solid #ddd;
+        max-height: 517px;
+        left: 20px;
+        overflow: auto;
+        position: absolute;
+        text-align: center;
+        top: 20px;
+        width: 150px;
+        z-index: 3;
+    }
+
+    .dtc-graph-bottom {
+        position: absolute;
+        bottom: 0;
+        z-index: 999;
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .dtc-graph-toolbar {
+        position: absolute;
+        top: 20px;
+        right: 14px;
+        z-index: 901;
+        height: 18px;
+        text-align: center;
+        border-radius: 0;
+    }
+}

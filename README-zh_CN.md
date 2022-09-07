@@ -108,7 +108,15 @@ $ cd dt-react-component
 $ npm install
 $ npm run storybook
 ```
-打开浏览器并访问 [http://127.0.0.1:9001](http://127.0.0.1:9001)，我们基于 stroybook 管理组件。 更多信息请访问 [Storybook](https://storybook.js.org/).
+打开浏览器并访问 [http://127.0.0.1:9001](http://127.0.0.1:9001)，我们基于 storybook 管理组件。 更多信息请访问 [Storybook](https://storybook.js.org/).
+
+## 发布
+
+``` bash
+yarn compile
+yarn release -r 2.2.1
+npm publish --registry https://registry.npmjs.org/
+```
 
 ## 路线图
 + 支持和改进更多组件
