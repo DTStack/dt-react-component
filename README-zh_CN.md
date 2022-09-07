@@ -110,6 +110,7 @@ $ npm run storybook
 yarn compile
 yarn release -r 2.2.1
 npm publish --registry https://registry.npmjs.org/
+yarn deploy-storybook
 ```
 
 ## 路线图
