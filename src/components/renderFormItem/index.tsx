@@ -18,12 +18,13 @@ interface ItemType {
             normalize?: any;
         };
         rules?: Rule[];
+        initialValue?: any;
     };
     layout?: {};
 }
 
 export default function RenderFormItem({ item, layout }: ItemType) {
-    const { label, key, required = true, component, options = {}, rules } = item;
+    const { label, key, required = true, component, options = {}, rules, initialValue } = item;
     const { validateFirst = false, validateTrigger = 'onChange', valuePropName, normalize } = options;
     return (
         <FormItem
@@ -31,6 +32,7 @@ export default function RenderFormItem({ item, layout }: ItemType) {
             name={key}
             label={label}
             {...layout}
+            initialValue={initialValue}
             className={options.className}
             rules={rules || [{ required, message: `${label} 为空` }]}
             validateFirst={validateFirst}
