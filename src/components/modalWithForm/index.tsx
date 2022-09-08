@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Modal, Form } from 'antd';
 import { ButtonProps, ButtonType } from 'antd/lib/button';
+import type { FormInstance } from 'antd/es/form';
+
 export interface ModalProps {
     hideModelHandler: () => any;
     onSubmit?: (values: any, record: any) => void;
@@ -19,27 +21,38 @@ export interface ModalProps {
     notSubmitCloseModal?: boolean;
 }
 
-function ModalWithForm (FormComponent: any) {
-    return class ModalForm extends Component<ModalProps, any> {
+interface ModalState {
+    form: null | FormInstance;
+}
+
+function ModalWithForm(FormComponent: any) {
+    return class ModalForm extends Component<ModalProps, ModalState> {
         formRef: any = React.createRef();
-        constructor (props: any) {
+        constructor(props: any) {
             super(props);
+            this.state = {
+                form: null
+            };
         }
-        okHandler = () => {
-            const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = this.props;
-            this.formRef.current?.validateFields().then((err: any, values: any) => {
-                if (!err) {
-                    onSubmit(values, record);
-                    notSubmitCloseModal && hideModelHandler();
-                }
+        componentDidMount(): void {
+            this.setState({
+                form: this.formRef.current
             });
+        }
+        okHandler = async () => {
+            const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = this.props;
+            try {
+                const values = await this.formRef.current?.validateFields()
+                onSubmit(values, record);
+                notSubmitCloseModal && hideModelHandler();
+            } catch (error) {}
         };
         cancelHandler = () => {
-            const { hideModelHandler } = this.props
-            hideModelHandler()
-            this.formRef.current?.resetFields();     
-        }
-        render () {
+            const { hideModelHandler } = this.props;
+            hideModelHandler();
+            this.formRef.current?.resetFields();
+        };
+        render() {
             const {
                 title,
                 visible,
@@ -51,8 +64,9 @@ function ModalWithForm (FormComponent: any) {
                 centered,
                 cancelButtonProps
             } = this.props;
+            const { form } = this.state;
             return (
-                <>
+                <Form ref={this.formRef}>
                     <Modal
                         className={modelClass}
                         title={title}
@@ -66,11 +80,11 @@ function ModalWithForm (FormComponent: any) {
                         centered={centered}
                         cancelButtonProps={cancelButtonProps}
                     >
-                        <FormComponent {...this.props} ref={this.formRef}/>
+                        {form && <FormComponent {...this.props} />}
                     </Modal>
-                </>
-            )
+                </Form>
+            );
         }
-    }
+    };
 }
 export default ModalWithForm;
