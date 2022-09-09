@@ -19,6 +19,7 @@ export interface ModalProps {
     centered?: boolean;
     cancelButtonProps?: ButtonProps;
     notSubmitCloseModal?: boolean;
+    layout?: 'horizontal' | 'vertical' | 'inline';
 }
 
 interface ModalState {
@@ -31,18 +32,22 @@ function ModalWithForm(FormComponent: any) {
         constructor(props: any) {
             super(props);
             this.state = {
-                form: null
+                form: null,
             };
         }
-        componentDidMount(): void {
-            this.setState({
-                form: this.formRef.current
-            });
+
+        componentDidUpdate(prevProps: Readonly<ModalProps>, prevState: Readonly<ModalState>): void {
+            if(this.props.visible && prevProps.visible != this.props.visible){
+                this.formRef.current && this.setState({
+                    form: this.formRef.current,
+                });
+            }
         }
+
         okHandler = async () => {
             const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = this.props;
             try {
-                const values = await this.formRef.current?.validateFields()
+                const values = await this.formRef.current?.validateFields();
                 onSubmit(values, record);
                 notSubmitCloseModal && hideModelHandler();
             } catch (error) {}
@@ -62,27 +67,28 @@ function ModalWithForm(FormComponent: any) {
                 okType,
                 footer,
                 centered,
-                cancelButtonProps
+                cancelButtonProps,
+                layout = 'vertical',
             } = this.props;
             const { form } = this.state;
             return (
-                <Form ref={this.formRef}>
-                    <Modal
-                        className={modelClass}
-                        title={title}
-                        visible={visible}
-                        onOk={this.okHandler}
-                        onCancel={this.cancelHandler}
-                        okText={okText}
-                        cancelText={cancelText}
-                        okType={okType}
-                        footer={footer}
-                        centered={centered}
-                        cancelButtonProps={cancelButtonProps}
-                    >
-                        {form && <FormComponent {...this.props} />}
-                    </Modal>
-                </Form>
+                <Modal
+                    className={modelClass}
+                    title={title}
+                    visible={visible}
+                    onOk={this.okHandler}
+                    onCancel={this.cancelHandler}
+                    okText={okText}
+                    cancelText={cancelText}
+                    okType={okType}
+                    footer={footer}
+                    centered={centered}
+                    cancelButtonProps={cancelButtonProps}
+                >
+                    <Form ref={this.formRef} layout={layout}>
+                        {form && <FormComponent {...this.props} form={form} />}
+                    </Form>
+                </Modal>
             );
         }
     };
