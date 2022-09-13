@@ -10,6 +10,7 @@ interface ItemType {
         key: string | number;
         required?: boolean;
         component?: React.ReactNode;
+        tooltip?: React.ReactNode | string;
         options?: {
             className?: string;
             validateFirst?: boolean;
@@ -24,8 +25,22 @@ interface ItemType {
 }
 
 export default function RenderFormItem({ item, layout }: ItemType) {
-    const { label, key, required = true, component, options = {}, rules, initialValue } = item;
-    const { validateFirst = false, validateTrigger = 'onChange', valuePropName, normalize } = options;
+    const {
+        label,
+        key,
+        required,
+        component,
+        options = {},
+        rules,
+        initialValue,
+        tooltip,
+    } = item;
+    const {
+        validateFirst = false,
+        validateTrigger = 'onChange',
+        valuePropName,
+        normalize,
+    } = options;
     return (
         <FormItem
             key={key}
@@ -39,10 +54,9 @@ export default function RenderFormItem({ item, layout }: ItemType) {
             validateTrigger={validateTrigger}
             valuePropName={valuePropName}
             normalize={normalize}
+            tooltip={tooltip}
         >
-            {
-                component || (<Input data-testid='test-input' />)
-            }
+            {component || <Input data-testid="test-input" />}
         </FormItem>
-    )
+    );
 }
