@@ -17,7 +17,6 @@ export interface ModalProps {
     footer?: string | React.ReactNode;
     centered?: boolean;
     cancelButtonProps?: ButtonProps;
-    notSubmitCloseModal?: boolean;
     layout?: 'horizontal' | 'vertical' | 'inline';
     children?: React.ReactElement;
     [key: string]: any;
@@ -27,6 +26,7 @@ const ModalForm = (props: ModalProps) => {
     const {
         title,
         visible,
+        record,
         okText = '确定',
         cancelText = '取消',
         modelClass,
@@ -36,17 +36,16 @@ const ModalForm = (props: ModalProps) => {
         cancelButtonProps,
         layout = 'vertical',
         hideModelHandler,
+        onSubmit,
         children,
     } = props;
 
     const [form] = Form.useForm();
 
     const okHandler = async () => {
-        const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = props;
         try {
             const values = await form.validateFields();
             onSubmit(values, record);
-            !notSubmitCloseModal && hideModelHandler();
         } catch (error) {}
     };
 
