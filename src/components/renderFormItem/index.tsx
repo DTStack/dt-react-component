@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 interface ItemType {
     item?: {
         label?: React.ReactNode;
-        key: string | number;
+        key: string | number | (string | number)[];
         required?: boolean;
         component?: React.ReactNode;
         options?: {
@@ -27,7 +27,6 @@ export default function RenderFormItem({ item, layout }: ItemType) {
     const { validateFirst = false, validateTrigger = 'onChange', valuePropName, normalize } = options;
     return (
         <FormItem
-            key={key}
             name={key}
             label={label}
             {...layout}
