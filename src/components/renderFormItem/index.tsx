@@ -7,7 +7,7 @@ const FormItem = Form.Item;
 interface ItemType {
     item?: {
         label?: React.ReactNode;
-        key: string | number;
+        key: string | number | (string | number)[];
         required?: boolean;
         component?: React.ReactNode;
         tooltip?: React.ReactNode | string;
@@ -43,7 +43,6 @@ export default function RenderFormItem({ item, layout }: ItemType) {
     } = options;
     return (
         <FormItem
-            key={key}
             name={key}
             label={label}
             {...layout}
