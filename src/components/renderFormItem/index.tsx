@@ -11,6 +11,7 @@ interface ItemType {
         required?: boolean;
         component?: React.ReactNode;
         tooltip?: React.ReactNode | string;
+        extra?: React.ReactNode;
         options?: {
             className?: string;
             validateFirst?: boolean;
@@ -34,6 +35,7 @@ export default function RenderFormItem({ item, layout }: ItemType) {
         rules,
         initialValue,
         tooltip,
+        extra,
     } = item;
     const {
         validateFirst = false,
@@ -54,8 +56,9 @@ export default function RenderFormItem({ item, layout }: ItemType) {
             valuePropName={valuePropName}
             normalize={normalize}
             tooltip={tooltip}
+            extra={extra}
         >
-            {component || <Input data-testid="test-input" />}
+            {component || <Input data-testid='test-input' />}
         </FormItem>
     );
 }

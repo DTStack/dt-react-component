@@ -39,16 +39,8 @@ const IProps = {
     }
 }
 
-const fontStyle = {
-    color: 'red',
-    fontSize: '16px'
-}
-
 stories.add('FormItem', () => (
     <div className='story_wrapper'>
-        <h2 style={fontStyle}>！！！ 请注意 ！！！</h2>
-        <p style={fontStyle}>{` 该组件在 antd 4.x 升级后将会被完全废除，请依赖了此组件的代码自行按照 antd 4.x formItem 规范进行开发！！！`}</p>
-        <p style={fontStyle}>{` 以下示例仅仅作为 3.x 中的常用配置在 4.x 下的常规写法，仅供参考！！！ `}</p>
         <h2>示例</h2>
         <div style={{ width: '300px' }}>
             <FormItem {...IProps} />
