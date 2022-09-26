@@ -27,7 +27,7 @@ describe('test dragDrawer', () => {
         const { container: wrapper } = render(
             <DragDrawer visible getContainer={false} draggable={false}/>
         );
-        expect(wrapper.firstChild).not.toHaveClass(`${prefixCls}`);
+        expect(wrapper.firstChild).toHaveClass(`${prefixCls}`);
     })
 
     // test('call onDrag callback', () => {

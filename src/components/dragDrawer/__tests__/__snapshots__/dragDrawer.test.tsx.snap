@@ -2,7 +2,7 @@
 
 exports[`test dragDrawer disVisible correctly 1`] = `
 <div
-  class="ant-drawer ant-drawer-right no-mask ant-drawer-inline"
+  class="ant-drawer ant-drawer-right no-mask dtc-drag-drawer ant-drawer-inline"
   tabindex="-1"
 >
   <div
@@ -22,7 +22,7 @@ exports[`test dragDrawer disVisible correctly 1`] = `
 
 exports[`test dragDrawer render correctly 1`] = `
 <div
-  class="ant-drawer ant-drawer-right no-mask ant-drawer-open ant-drawer-inline"
+  class="ant-drawer ant-drawer-right no-mask dtc-drag-drawer ant-drawer-open ant-drawer-inline"
   tabindex="-1"
 >
   <div
