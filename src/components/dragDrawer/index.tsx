@@ -46,6 +46,7 @@ const DragDrawer: React.FC<DragDrawerProps> = function (props) {
             bodyStyle={bodyStyle}
             width={defaultWidth}
             closable={closable}
+            className={`${prefixCls}`}
             {...props}
             placement="right"
         >
