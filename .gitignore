@@ -4,6 +4,7 @@ lib
 esm
 dist
 .temporary_files
+ .idea
 coverage
 package-lock.json
 yarn.lock
