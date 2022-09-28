@@ -1,6 +1,7 @@
 import React from 'react'
 import { Breadcrumb as  BreadcrumbRender } from 'antd';
 import { Link } from 'react-router';
+import { RightOutlined } from '@ant-design/icons';
 
 const BreadcrumbItem = BreadcrumbRender.Item
 interface Route {
@@ -18,7 +19,7 @@ export default function Breadcrumb (props: IProps) {
     const len = routes.length - 1;
     return (
         <div style={style} data-testid="test-breadcrumb">
-            <BreadcrumbRender>
+            <BreadcrumbRender separator={<RightOutlined />}>
                 {routes.map((item: Route, index: number) => (
                     <BreadcrumbItem key={item.path}>
                         {index == len ? (
