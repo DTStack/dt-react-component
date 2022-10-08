@@ -1,5 +1,5 @@
 import React from 'react'
-import { Breadcrumb as  BreadcrumbRender } from 'antd';
+import { Breadcrumb as BreadcrumbRender } from 'antd'
 import { Link } from 'react-router';
 import { RightOutlined } from '@ant-design/icons';
 
@@ -11,15 +11,16 @@ interface Route {
 
 interface IProps {
     routes: Route[];
+    separator?: React.ReactNode;
     style?: React.CSSProperties;
 }
 
 export default function Breadcrumb (props: IProps) {
-    const { routes, style = {} } = props;
+    const { routes, style = {}, separator = <RightOutlined /> } = props;
     const len = routes.length - 1;
     return (
         <div style={style} data-testid="test-breadcrumb">
-            <BreadcrumbRender separator={<RightOutlined />}>
+            <BreadcrumbRender separator={separator}>
                 {routes.map((item: Route, index: number) => (
                     <BreadcrumbItem key={item.path}>
                         {index == len ? (
