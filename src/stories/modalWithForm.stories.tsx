@@ -104,6 +104,13 @@ const propDefinitions = [
         require: false,
         description: '禁止提交后自动关闭modal',
         defaultValue: 'false'
+    },
+    {
+        property: 'confirmLoading',
+        propType: 'Boolean',
+        require: false,
+        description: '确定按钮 loading',
+        defaultValue: 'false'
     }
 ]
 
@@ -150,7 +157,7 @@ stories.add('ModalWithForm', () => (
 ), {
     info: {
         text: `
-            代码示例：
+            代码示例: 
             ~~~js
             import { Form, Input } from 'antd';
             import { ModalWithForm } from 'dt-react-component'
