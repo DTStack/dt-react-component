@@ -114,7 +114,7 @@ const propDefinitions = [
     }
 ]
 
-const otherDependencies = `import { ModalWithForm } from 'dt-react-component';`
+const otherDependencies = `import { ModalWithForm } from 'dt-react-component';import { Form, Input } from 'antd';`
 
 const basicFunctionCode = `
     constructor (props) {
@@ -129,15 +129,17 @@ const basicFunctionCode = `
         this.setState({ visible: !visible });
     }
     
-    const EnhancedModal = ModalWithForm(props => {
-        return (
-            <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
-                <Input data-testid="test-input" />)
-            </FormItem>
-        );
-    });
 `
-
+const basicOtherCode = `
+const FormItem = Form.Item;
+const EnhancedModal = ModalWithForm(props => {
+    return (
+        <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
+            <Input data-testid="test-input" />)
+        </FormItem>
+    );
+});
+`
 const basicModalWithForm = `
             <EnhancedModal
                 title='ModalWithForm'
@@ -152,7 +154,7 @@ stories.add('ModalWithForm', () => (
         <h2>何时使用</h2>
         <p>{`当需要在模态框中收集用户的表单信息，可以在这个组件中传入自己想要的表单元素`}</p>
         <h2>示例</h2>
-        <ExampleContainer otherDependencies={otherDependencies} code={basicModalWithForm} functionCode={basicFunctionCode} hasCodeSandBox={true}>
+        <ExampleContainer otherDependencies={otherDependencies} code={basicModalWithForm} functionCode={basicFunctionCode} otherCode={basicOtherCode} hasCodeSandBox={true}>
             <ModalWithForm />
         </ExampleContainer>
     </div>
@@ -163,7 +165,7 @@ stories.add('ModalWithForm', () => (
             示例1 带表单的对话框
             ~~~js
             import { Form, Input } from 'antd';
-            import { ModalWithForm } from 'dt-react-component'
+            import { ModalWithForm } from 'dt-react-component';
             
             const EnhancedModal = ModalWithForm(props => {
                 return (
