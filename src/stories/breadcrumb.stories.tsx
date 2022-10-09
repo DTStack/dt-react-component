@@ -39,6 +39,7 @@ stories.add('Breadcrumb 面包屑', () => (
             <Breadcrumb
                 routes = {[{ name: 'home', path: '/home' }, { name: 'about', path: '/about' }]}
                 style = {{ background: 'dedede' }}
+                separator=">"
             />
             ~~~
         `,
