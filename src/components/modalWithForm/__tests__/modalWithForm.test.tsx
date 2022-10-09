@@ -20,18 +20,18 @@ class App extends React.Component<any, any> {
             visible: false
         };
     }
-    hideModelHandler = () => {
+    hideModalHandler = () => {
         const { visible } = this.state;
         this.setState({ visible: !visible });
     };
     render () {
         return (
             <>
-                <button onClick={this.hideModelHandler}>click</button>
+                <button onClick={this.hideModalHandler}>click</button>
                 <EnhancedModal
                     title="test-title"
                     visible={this.state.visible}
-                    hideModelHandler={this.hideModelHandler}
+                    hideModalHandler={this.hideModalHandler}
                     okText="ok"
                     cancelText="quit"
                     record="hi"
