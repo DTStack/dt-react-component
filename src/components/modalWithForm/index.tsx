@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, Form } from 'antd';
+import { Modal, Form } from 'antd';
 import { ButtonProps, ButtonType } from 'antd/es/button';
 
 export interface ModalProps {

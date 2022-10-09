@@ -163,14 +163,15 @@ stories.add('ModalWithForm', () => (
             ~~~js
             import { Form, Input } from 'antd';
             import { ModalWithForm } from 'dt-react-component'
-            const Modal = ModalWithForm(props => {
+            
+            const EnhancedModal = ModalWithForm(props => {
                 return (
                     <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
                         <Input data-testid="test-input" />)
                     </FormItem>
                 );
             });
-            export default class Demo extends React.Component<any, any> {
+            class Demo extends React.Component<any, any> {
                 constructor (props) {
                     super(props);
                     this.state = {
@@ -183,7 +184,7 @@ stories.add('ModalWithForm', () => (
                 }
                 render () {
                     return (
-                        <Modal
+                        <EnhancedModal
                             title='ModalWithForm'
                             visible={this.state.visible}
                             hideModelHandler={this.hideModelHandler}
