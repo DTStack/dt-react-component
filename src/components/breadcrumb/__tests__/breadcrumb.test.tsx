@@ -57,18 +57,4 @@ describe('test breadcrumb', () => {
         fireEvent.click(getByTestId('/home-link'))
         expect(container.innerHTML).toMatch('home page')
     })
-    test('should not navigate when click', () => {
-        const history = createMemoryHistory()
-        const { container, getByText } = render(
-            <Router history={history}>
-                <Route path="/" component={App}>
-                    <IndexRoute component={About} />
-                    <Route path="/about" component={About} />
-                    <Route path="/home" component={Home} />
-                </Route>
-            </Router>
-        );
-        fireEvent.click(getByText('about page'));
-        expect(container.innerHTML).toMatch('about page');
-    })
 })
