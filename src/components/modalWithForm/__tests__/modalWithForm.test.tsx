@@ -5,7 +5,7 @@ import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 const FormItem = Form.Item;
-const Modal = ModalWithForm(props => {
+const EnhancedModal = ModalWithForm(props => {
     return (
         <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
             <Input data-testid="test-input" />)
@@ -28,7 +28,7 @@ class App extends React.Component<any, any> {
         return (
             <>
                 <button onClick={this.hideModelHandler}>click</button>
-                <Modal
+                <EnhancedModal
                     title="test-title"
                     visible={this.state.visible}
                     hideModelHandler={this.hideModelHandler}

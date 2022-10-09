@@ -4,7 +4,7 @@ import { ButtonProps, ButtonType } from 'antd/es/button';
 
 export interface ModalProps {
     confirmLoading?: boolean;
-    hideModelHandler: () => any;
+    hideModalHandler: () => any;
     onSubmit?: (values: any, record: any) => void;
     cancelText?: string;
     okText?: string;
@@ -37,7 +37,7 @@ const ModalForm = (props: ModalProps) => {
         cancelButtonProps,
         confirmLoading,
         layout = 'vertical',
-        hideModelHandler,
+        hideModalHandler,
         onSubmit,
         children,
     } = props;
@@ -52,7 +52,7 @@ const ModalForm = (props: ModalProps) => {
     };
 
     const cancelHandler = () => {
-        hideModelHandler();
+        hideModalHandler();
         form.resetFields();
     };
 

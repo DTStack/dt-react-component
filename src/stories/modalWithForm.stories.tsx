@@ -115,42 +115,44 @@ const propDefinitions = [
 ]
 
 const otherDependencies = `import { ModalWithForm } from 'dt-react-component';`
-const code = `const Modal = ModalWithForm(props => {
-                return (
-                    <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
-                        <Input data-testid="test-input" />)
-                    </FormItem>
-                );
-            });
-        export default class Demo extends React.Component<any, any> {
-            constructor (props) {
-                super(props);
-                this.state = {
-                    visible: false
-                };
-            }
-            hideModelHandler = () => {
-                const { visible } = this.state
-                this.setState({ visible: !visible });
-            }
-            render () {
-                return (
-                    <Modal
-                        title='ModalWithForm'
-                        visible={this.state.visible}
-                        hideModelHandler={this.hideModelHandler}
-                        onSubmit={(value) => { console.log(value) }}
-                    />
-                )
-            }
-        }`
+
+const basicFunctionCode = `
+    constructor (props) {
+        super(props);
+        this.state = {
+            visible: false
+        };
+     }
+     
+    hideModalHandler = () => {
+        const { visible } = this.state
+        this.setState({ visible: !visible });
+    }
+    
+    const EnhancedModal = ModalWithForm(props => {
+        return (
+            <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
+                <Input data-testid="test-input" />)
+            </FormItem>
+        );
+    });
+`
+
+const basicModalWithForm = `
+            <EnhancedModal
+                title='ModalWithForm'
+                visible={this.state.visible}
+                hideModalHandler={this.hideModalHandler}
+                onSubmit={(value) => { console.log(value) }}
+            />
+`
 
 stories.add('ModalWithForm', () => (
     <div className='story_wrapper'>
         <h2>何时使用</h2>
         <p>{`当需要在模态框中收集用户的表单信息，可以在这个组件中传入自己想要的表单元素`}</p>
         <h2>示例</h2>
-        <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
+        <ExampleContainer otherDependencies={otherDependencies} code={basicModalWithForm} functionCode={basicFunctionCode} hasCodeSandBox={true}>
             <ModalWithForm />
         </ExampleContainer>
     </div>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5aad2739-75b6-4bac-9554-6dc96f586c28" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/modalWithForm/__tests__/modalWithForm.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modalWithForm/__tests__/modalWithForm.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modalWithForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modalWithForm/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stories/components/modalWithForm/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stories/components/modalWithForm/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/stories/modalWithForm.stories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/stories/modalWithForm.stories.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ts.external.directory.path": "/Users/zhenglin/Desktop/Dtstack/dt-react-component/node_modules/typescript/lib"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
