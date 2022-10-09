@@ -159,7 +159,44 @@ stories.add('ModalWithForm', () => (
 ), {
     info: {
         text: `
-            代码示例: 
+            代码示例: \n
+            示例1 带表单的对话框
+            ~~~js
+            import { Form, Input } from 'antd';
+            import { ModalWithForm } from 'dt-react-component'
+            
+            const EnhancedModal = ModalWithForm(props => {
+                return (
+                    <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
+                        <Input data-testid="test-input" />)
+                    </FormItem>
+                );
+            });
+            
+            class Demo extends React.Component<any, any> {
+                constructor (props) {
+                    super(props);
+                    this.state = {
+                        visible: false
+                    };
+                }
+                hideModalHandler = () => {
+                    const { visible } = this.state
+                    this.setState({ visible: false });
+                }
+                render () {
+                    return (
+                        <EnhancedModal
+                            title='ModalWithForm'
+                            visible={this.state.visible}
+                            hideModalHandler={this.hideModalHandler}
+                            onSubmit={(value) => { console.log(value) }}
+                        />
+                    )
+                }
+            }
+            ~~~
+            示例2 点击确定后异步关闭对话框，例如提交表单
             ~~~js
             import { Form, Input } from 'antd';
             import { ModalWithForm } from 'dt-react-component'
@@ -175,21 +212,43 @@ stories.add('ModalWithForm', () => (
                 constructor (props) {
                     super(props);
                     this.state = {
+                        confirmLoading: false;
                         visible: false
                     };
                 }
-                hideModelHandler = () => {
+                hideModalHandler = () => {
                     const { visible } = this.state
-                    this.setState({ visible: !visible });
+                    this.setState({ visible: false});
+                }
+                onSubmit = () => {
+                    this.setState({
+                       confirmLoading: true;
+                    });
+                    
+                    setTimeout(() => {
+                        this.setState({
+                           visible: false,
+                           confirmLoading: false
+                        })
+                    })
+                   
+                }
+                showModal = () => {
+                    this.setState({
+                        visible: true;
+                    })
                 }
                 render () {
                     return (
-                        <EnhancedModal
-                            title='ModalWithForm'
-                            visible={this.state.visible}
-                            hideModelHandler={this.hideModelHandler}
-                            onSubmit={(value) => { console.log(value) }}
-                        />
+                        <>
+                            <Button type="primary" onClick={showModal}> Open Modal with async logic </Button>
+                            <EnhancedModal
+                                title='ModalWithForm'
+                                visible={this.state.visible}
+                                hideModalHandler={this.hideModalHandler}
+                                onSubmit={this.onSubmit}
+                            />
+                        </>
                     )
                 }
             }
