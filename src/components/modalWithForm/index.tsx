@@ -1,9 +1,10 @@
 import React from 'react';
 import { Modal, Form } from 'antd';
-import { ButtonProps, ButtonType } from 'antd/lib/button';
+import { ButtonProps, ButtonType } from 'antd/es/button';
 
 export interface ModalProps {
-    hideModelHandler: () => any;
+    confirmLoading?: boolean;
+    hideModalHandler: () => void;
     onSubmit?: (values: any, record: any) => void;
     cancelText?: string;
     okText?: string;
@@ -14,7 +15,7 @@ export interface ModalProps {
     onCancel?: (func: Function) => any;
     width?: string | number;
     modelClass?: string;
-    footer?: string | React.ReactNode;
+    footer?: React.ReactNode;
     centered?: boolean;
     cancelButtonProps?: ButtonProps;
     layout?: 'horizontal' | 'vertical' | 'inline';
@@ -34,8 +35,9 @@ const ModalForm = (props: ModalProps) => {
         footer,
         centered,
         cancelButtonProps,
+        confirmLoading,
         layout = 'vertical',
-        hideModelHandler,
+        hideModalHandler,
         onSubmit,
         children,
     } = props;
@@ -50,7 +52,7 @@ const ModalForm = (props: ModalProps) => {
     };
 
     const cancelHandler = () => {
-        hideModelHandler();
+        hideModalHandler();
         form.resetFields();
     };
 
@@ -67,6 +69,7 @@ const ModalForm = (props: ModalProps) => {
             footer={footer}
             centered={centered}
             cancelButtonProps={cancelButtonProps}
+            confirmLoading={confirmLoading}
         >
             <Form form={form} layout={layout}>
                 {React.cloneElement(children, { form: form, ...props })}
