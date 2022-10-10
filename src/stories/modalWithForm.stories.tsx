@@ -9,7 +9,7 @@ stories.addDecorator(withKnobs)
 
 const propDefinitions = [
     {
-        property: 'hideModelHandler',
+        property: 'hideModalHandler',
         propType: 'Function',
         required: true,
         description: '控制模态框的显示影藏',
