@@ -35,4 +35,5 @@ export { default as TableCell } from './tableCell';
 export { default as TextMark } from './textMark';
 export { default as ToolModal } from './toolModal';
 export { default as ProgressLine } from './progressLine'
+export { default as Empty } from './empty'
 
