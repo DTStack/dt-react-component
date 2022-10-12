@@ -4,7 +4,7 @@ import { render, fireEvent, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect';
 import { createMemoryHistory, Router, Route, IndexRoute } from 'react-router'
 
-const testProps = {
+const defaultProps = {
     routes: [
         {
             name: 'home',
@@ -23,7 +23,7 @@ const testProps = {
 const App = (props) => {
     return (
         <div>
-            {<Breadcrumb {...testProps} />}
+            {<Breadcrumb {...defaultProps} />}
             {props.children}
         </div>
     )
@@ -35,14 +35,24 @@ describe('test breadcrumb', () => {
     afterEach(() => {
         cleanup();
     })
-    test('should render correct BreadCrumb with testProps', () => {
-        const { getByTestId } = render(<Breadcrumb {...testProps} />);
-        const element = getByTestId('test-breadcrumb');
-        expect(element).toBeInTheDocument();
-        expect(element).toHaveStyle('background-color: #dedede');
+
+    test('should support BreadCrumb render correct with defaultProps', () => {
+        const { container } = render(<Breadcrumb {...defaultProps} />);
+        expect(container.querySelector('.dtc-breadcrumb')).toHaveStyle('background-color: #dedede');
+        expect(container.querySelector('.anticon-right')).toHaveAttribute('aria-label', 'right');
+        expect(container.firstChild).toMatchSnapshot();
     })
 
-    test('should navigate to home router when click ', () => {
+    test('should support Breadcrumb custom separator', () => {
+        const { container } = render(<Breadcrumb separator=">" {...defaultProps}/>);
+        expect(container.querySelector('.ant-breadcrumb-separator')).toHaveTextContent('>');
+    })
+    test('should support Breadcrumb custom CSSProperties', () => {
+        const { container } = render(<Breadcrumb {...defaultProps} style = {{ background: '#333', color: '#000' }} />);
+        expect(container.querySelector('.dtc-breadcrumb')).toHaveStyle({ background: '#333', color: '#000' });
+    })
+
+    test('should support Breadcrumb navigate to home router when click ', () => {
         const history = createMemoryHistory()
         const { container, getByTestId } = render(
             <Router history={history}>
@@ -56,19 +66,5 @@ describe('test breadcrumb', () => {
         expect(container.innerHTML).toMatch('about')
         fireEvent.click(getByTestId('/home-link'))
         expect(container.innerHTML).toMatch('home page')
-    })
-    test('should not navigate when click', () => {
-        const history = createMemoryHistory()
-        const { container, getByText } = render(
-            <Router history={history}>
-                <Route path="/" component={App}>
-                    <IndexRoute component={About} />
-                    <Route path="/about" component={About} />
-                    <Route path="/home" component={Home} />
-                </Route>
-            </Router>
-        );
-        fireEvent.click(getByText('about page'));
-        expect(container.innerHTML).toMatch('about page');
     })
 })

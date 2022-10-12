@@ -19,18 +19,18 @@ export default class ModalWithForm extends Component<any, any> {
             visible: false
         };
     }
-    hideModelHandler = () => {
+    hideModalHandler = () => {
         const { visible } = this.state
         this.setState({ visible: !visible });
     }
     render () {
         return (
             <>
-                <Button onClick={this.hideModelHandler}>click</Button>
+                <Button onClick={this.hideModalHandler}>click</Button>
                 <Modal
                     title='ModalWithForm'
                     visible={this.state.visible}
-                    hideModelHandler={this.hideModelHandler}
+                    hideModalHandler={this.hideModalHandler}
                     onSubmit={(value) => { console.log(value) }}
                 />
             </>

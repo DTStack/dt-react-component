@@ -9,11 +9,13 @@ table td, table th {
     padding: 12px;
     font-size: 13px;
 }
-table thead th {
-    background-color: rgba(0,0,0,.02);
-    width: 100px;
-}
+
 table {
+    thead th {
+        background-color: rgba(0,0,0,.02);
+        width: 100px;
+    }
+
     tbody {
         tr {
             font-weight: 400;
