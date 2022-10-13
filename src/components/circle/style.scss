@@ -1,28 +1,45 @@
-$card_prefix: 'dtc-circle';
-$await_color: #FFB310;
-$running_color: #3F87FF;
-$finished_color: #12BC6A;
-$stopped_color: #9DA7C2;
-$fail_color: #FF5F5C;
+$card_prefix: "dtc-circle";
+$warning_color: #FBB310;
+$run_color: #1D78FF;
+$success_color: #11D782;
+$frozen_color: #EBECF0;
+$error_color: #F96C5B;
+$stopped_color: #AC9DFF;
 
-.#{$card_prefix}-default {
-    width: 8px;
-    height: 8px;
-    display: inline-block;
-    border-radius: 50% 50%;
-}
-.#{$card_prefix}-waitSubmit, .#{$card_prefix}-run, .#{$card_prefix}-created, .#{$card_prefix}-submitting, .#{$card_prefix}-restarting {
-    background: $await_color;
-}
-.#{$card_prefix}-running {
-    background: $running_color;
-}
-.#{$card_prefix}-finished {
-    background: $finished_color;
-}
-.#{$card_prefix}-stopped, .#{$card_prefix}-frozen {
-    background: $stopped_color;
-}
-.#{$card_prefix}-fail {
-    background: $fail_color;
+.#{$card_prefix} {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 24px;
+    color: #3d446e;
+    &-border {
+        padding: 2px 12px;
+        border: 1px solid #ebecf0;
+        border-radius: 14px;
+    }
+    &-text {
+        margin-left: 8px;
+        line-height: 22px;
+    }
+    &-default {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50% 50%;
+    }
+    &-warning {
+        background: $warning_color;
+    }
+    &-error {
+        background: $error_color;
+    }
+    &-success {
+        background: $success_color;
+    }
+    &-run {
+        background: $run_color;
+    }
+    &-stopped {
+        background: $stopped_color;
+    }
 }

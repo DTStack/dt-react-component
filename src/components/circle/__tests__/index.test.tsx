@@ -1,26 +1,30 @@
 
 import React from 'react';
 import Circle from '../index';
-import { render, cleanup } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('test Circle suite', () => {
-    const defaultCls = 'dtc-circle-default';
-    let wrapper, wrapperCus, element, elementCus
-    beforeEach(() => {
-        wrapper = render(<Circle data-testid='test1'></Circle>)
-        wrapperCus = render(<Circle type='finished' data-testid='test2' />)
-        element = wrapper.getByTestId('test1');
-        elementCus = wrapperCus.getByTestId('test2')
+    test('should support circle success render', () => {
+        const wrapper = render(<Circle>完成</Circle>)
+        expect(wrapper).toMatchSnapshot();
     })
-    afterEach(() => {
-        cleanup();
+    test('should support circle render the default className in Circle', () => {
+        const { container } = render(<Circle>完成</Circle>)
+        expect(container.firstChild).toHaveClass(...['dtc-circle', 'dtc-circle-border']);
     })
-    test('should render the correct className in Circle', () => {
-        expect(element).toBeInTheDocument();
-        expect(element).toHaveClass(defaultCls);
+    test('should render circle render correct type', () => {
+        const { container } = render(<Circle type="run">完成</Circle>)
+        expect(container.firstChild.firstChild).toHaveClass('dtc-circle-run');
     })
-    test('should render the finished className in Circle', () => {
-        expect(elementCus).toHaveClass('dtc-circle-finished');
+    test('should render circle render correct color', () => {
+        const { container } = render(<Circle color="#2177b8">完成</Circle>)
+        const textWapper = container.firstChild.firstChild
+        expect(textWapper).toHaveStyle({ background: '#2177b8' });
+    })
+    test('should render circle render correct text', () => {
+        const { container } = render(<Circle>自定义文案</Circle>)
+        const textWapper = container.querySelector('.dtc-circle-text')
+        expect(textWapper.innerHTML).toEqual('自定义文案');
     })
 })
