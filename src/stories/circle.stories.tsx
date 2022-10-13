@@ -44,7 +44,11 @@ const typeCode = `<Circle type="run">运行中</Circle>
             <Circle type="stopped">取消</Circle>
             <Circle type="error">运行失败</Circle>
             <Circle type="warning">提交中</Circle>`;
-const noBorderCode = `<Circle type="run" showBorder={false}>运行中</Circle>`;
+const noBorderCode = `<Circle type="run" showBorder={false}>运行中</Circle>
+            <Circle type="error" showBorder={false}>运行失败</Circle>
+            <Circle type="success" showBorder={false}>成功</Circle>
+            <Circle type="stopped" showBorder={false}>取消</Circle>
+            <Circle type="warning" showBorder={false}>等待提交</Circle>`;
 const customizeCode = `<Circle type="run" color="#bc84a8">运行中</Circle>
             <Circle type="run" color="#2177b8" showBorder={false}>运行中</Circle>`
 
