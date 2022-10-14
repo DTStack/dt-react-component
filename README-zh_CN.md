@@ -39,10 +39,10 @@ yarn add dt-react-component
 ## 使用
 
 ```js
-import { Circle, GoBack } from 'dt-react-component'
+import { StatusTag, GoBack } from 'dt-react-component'
 const App = () => (
   <>
-    <Circle type='finished'/>
+    <StatusTag type='success'>已完成</StatusTag>
     <GoBack url='/api/manage' />
   </>
 );
