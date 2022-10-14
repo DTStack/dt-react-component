@@ -1,7 +1,7 @@
 export { default as BlockHeader } from './blockHeader';
 export { default as Breadcrumb } from './breadcrumb';
 export { default as ChromeDownload } from './chromeDownload';
-export { default as Circle } from './circle';
+export { default as StatusTag } from './statusTag';
 export { default as ContextMenu } from './contextMenu';
 export { default as Cookies } from './cookies';
 export { default as ContextMenuCombiner } from './contextMenuCombiner';

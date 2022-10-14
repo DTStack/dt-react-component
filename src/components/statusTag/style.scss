@@ -1,4 +1,4 @@
-$card_prefix: "dtc-circle";
+$card_prefix: "dtc-statusTag";
 $warning_color: #FBB310;
 $run_color: #1D78FF;
 $success_color: #11D782;
@@ -12,34 +12,34 @@ $stopped_color: #AC9DFF;
     width: fit-content;
     height: 24px;
     color: #3d446e;
-    &-border {
+    &__border {
         padding: 2px 12px;
         border: 1px solid #ebecf0;
         border-radius: 14px;
     }
-    &-text {
+    &__text {
         margin-left: 8px;
         line-height: 22px;
     }
-    &-default {
+    &__default {
         display: inline-block;
         width: 8px;
         height: 8px;
         border-radius: 50% 50%;
     }
-    &-warning {
+    &__warning {
         background: $warning_color;
     }
-    &-error {
+    &__error {
         background: $error_color;
     }
-    &-success {
+    &__success {
         background: $success_color;
     }
-    &-run {
+    &__run {
         background: $run_color;
     }
-    &-stopped {
+    &__stopped {
         background: $stopped_color;
     }
 }

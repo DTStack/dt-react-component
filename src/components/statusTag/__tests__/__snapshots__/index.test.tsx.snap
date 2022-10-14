@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test Circle suite should support circle success render 1`] = `
+exports[`test StatusTag suite should support StatusTag success render 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
       <div
-        class="dtc-circle dtc-circle-border"
+        class="dtc-statusTag dtc-statusTag__border"
       >
         <div
-          class="dtc-circle-default dtc-circle-finished"
+          class="dtc-statusTag__default dtc-statusTag__finished"
         />
         <span
-          class="dtc-circle-text"
+          class="dtc-statusTag__text"
         >
           完成
         </span>
@@ -21,13 +21,13 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="dtc-circle dtc-circle-border"
+      class="dtc-statusTag dtc-statusTag__border"
     >
       <div
-        class="dtc-circle-default dtc-circle-finished"
+        class="dtc-statusTag__default dtc-statusTag__finished"
       />
       <span
-        class="dtc-circle-text"
+        class="dtc-statusTag__text"
       >
         完成
       </span>
