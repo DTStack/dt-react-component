@@ -24,14 +24,14 @@ const StatusTag: React.FC<StatusTagProps> = function StatusTag(props) {
     const classes = classNames(`${prefixCls}`, className, {
         [`${prefixCls}__border`]: showBorder,
     });
-    const stutusClass = classNames(`${prefixCls}__default`, {
+    const statusClass = classNames(`${prefixCls}__default`, {
         [`${prefixCls}__${type}`]: type,
     });
     const style = color && { background: `${color}` };
 
     return (
         <div {...other} className={classes}>
-            <div className={stutusClass} style={style} />
+            <div className={statusClass} style={style} />
             <span className={`${prefixCls}__text`}>{props.children || ""}</span>
         </div>
     );
