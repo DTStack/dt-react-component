@@ -9,7 +9,7 @@ Object {
         class="dtc-statusTag dtc-statusTag__border"
       >
         <div
-          class="dtc-statusTag__default dtc-statusTag__finished"
+          class="dtc-statusTag__default dtc-statusTag__success"
         />
         <span
           class="dtc-statusTag__text"
@@ -24,7 +24,7 @@ Object {
       class="dtc-statusTag dtc-statusTag__border"
     >
       <div
-        class="dtc-statusTag__default dtc-statusTag__finished"
+        class="dtc-statusTag__default dtc-statusTag__success"
       />
       <span
         class="dtc-statusTag__text"
