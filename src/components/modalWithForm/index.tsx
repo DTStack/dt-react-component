@@ -19,6 +19,7 @@ export interface ModalProps {
     centered?: boolean;
     cancelButtonProps?: ButtonProps;
     layout?: 'horizontal' | 'vertical' | 'inline';
+    preserve?: boolean;
     children?: React.ReactElement;
     [key: string]: any;
 }
@@ -37,6 +38,7 @@ const ModalForm = (props: ModalProps) => {
         cancelButtonProps,
         confirmLoading,
         layout = 'vertical',
+        preserve = true,
         hideModalHandler,
         onSubmit,
         children,
@@ -71,7 +73,7 @@ const ModalForm = (props: ModalProps) => {
             cancelButtonProps={cancelButtonProps}
             confirmLoading={confirmLoading}
         >
-            <Form form={form} layout={layout}>
+            <Form form={form} layout={layout} preserve={preserve}>
                 {React.cloneElement(children, { form: form, ...props })}
             </Form>
         </Modal>
