@@ -1,8 +1,8 @@
 import React from 'react';
-import { Modal, Form } from 'antd';
+import { Modal, Form, FormProps } from 'antd';
 import { ButtonProps, ButtonType } from 'antd/es/button';
 
-export interface ModalProps {
+export interface IProps {
     confirmLoading?: boolean;
     hideModalHandler: () => void;
     onSubmit?: (values: any, record: any) => void;
@@ -24,6 +24,8 @@ export interface ModalProps {
     [key: string]: any;
 }
 
+type ModalProps = IProps & FormProps;
+
 const ModalForm = (props: ModalProps) => {
     const {
         title,
@@ -38,10 +40,10 @@ const ModalForm = (props: ModalProps) => {
         cancelButtonProps,
         confirmLoading,
         layout = 'vertical',
-        preserve = true,
         hideModalHandler,
         onSubmit,
         children,
+        ...rest
     } = props;
 
     const [form] = Form.useForm();
@@ -73,7 +75,7 @@ const ModalForm = (props: ModalProps) => {
             cancelButtonProps={cancelButtonProps}
             confirmLoading={confirmLoading}
         >
-            <Form form={form} layout={layout} preserve={preserve}>
+            <Form form={form} layout={layout} {...rest} >
                 {React.cloneElement(children, { form: form, ...props })}
             </Form>
         </Modal>
