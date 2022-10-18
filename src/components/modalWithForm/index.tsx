@@ -4,15 +4,12 @@ import { ButtonProps, ButtonType } from 'antd/es/button';
 
 export interface IProps {
     confirmLoading?: boolean;
-    hideModalHandler: () => void;
-    onSubmit?: (values: any, record: any) => void;
     cancelText?: string;
     okText?: string;
     okType?: ButtonType;
     record?: string | number | object;
     visible?: boolean;
     title?: React.ReactNode | string;
-    onCancel?: (func: Function) => any;
     width?: string | number;
     modelClass?: string;
     footer?: React.ReactNode;
@@ -21,6 +18,10 @@ export interface IProps {
     layout?: 'horizontal' | 'vertical' | 'inline';
     preserve?: boolean;
     children?: React.ReactElement;
+    okButtonProps?: ButtonProps;
+    hideModalHandler: () => void;
+    onCancel?: (func: Function) => any;
+    onSubmit?: (values: any, record: any) => void;
     [key: string]: any;
 }
 
@@ -43,6 +44,7 @@ const ModalForm = (props: ModalProps) => {
         hideModalHandler,
         onSubmit,
         children,
+        okButtonProps,
         ...restProps
     } = props;
 
@@ -74,6 +76,7 @@ const ModalForm = (props: ModalProps) => {
             centered={centered}
             cancelButtonProps={cancelButtonProps}
             confirmLoading={confirmLoading}
+            okButtonProps={okButtonProps}
         >
             <Form form={form} layout={layout} {...restProps} >
                 {React.cloneElement(children, { form: form, ...props })}
