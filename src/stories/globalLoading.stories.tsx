@@ -83,11 +83,7 @@ stories.add(
             <h2>何时使用</h2>
             <p>应用等待加载时使用，可自定义样式。(PS：宽度和高度均为100%，所以其大小基于其父级)</p>
             <h2>示例</h2>
-            <ExampleContainer
-                otherDependencies={otherDependencies}
-                code={code}
-                hasCodeSandBox
-            >
+            <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                 <p className="strory-dt_easy_select_p">
                     1、传递参数prefix和loadingTitle，同时自定义样式
                 </p>

@@ -170,7 +170,8 @@ const utils = {
         const d = new Date(0);
         domainTemp = domainTemp ? `; domain=${domainTemp}` : '';
         pathTemp = pathTemp || '/';
-        document.cookie = name + '=; expires=' + d.toUTCString() + domainTemp + '; path=' + pathTemp;
+        document.cookie =
+            name + '=; expires=' + d.toUTCString() + domainTemp + '; path=' + pathTemp;
     },
 
     deleteAllCookies(domain: string, path: string) {

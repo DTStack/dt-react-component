@@ -62,11 +62,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>全屏操作</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <p>白色主题</p>
                     <Fullscreen iconStyle={iconStyle} />
                     <p>暗黑主题</p>

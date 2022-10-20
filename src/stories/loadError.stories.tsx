@@ -19,11 +19,7 @@ stories.add(
                     当发生错误时，错误会被componentDidCatch捕获，避免页面崩溃降低用户体验，在这时可以渲染这个组件
                 </p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <LoadError />
                 </ExampleContainer>
             </div>

@@ -153,10 +153,7 @@ describe('The mxGraph Container test', () => {
 
     test('Should support to set loading', () => {
         const { getByText } = render(
-            <MxGraphContainer
-                loading
-                graphData={[{ taskId: 1, childNode: [{ taskId: 2 }] }]}
-            />
+            <MxGraphContainer loading graphData={[{ taskId: 1, childNode: [{ taskId: 2 }] }]} />
         );
         expect(getByText('Loading...')).toBeInTheDocument();
     });

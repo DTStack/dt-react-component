@@ -40,11 +40,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>路由未匹配上的展示页</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <MarkdownRender text={`${testHtml && testHtml.default}`} dark={false} />
                 </ExampleContainer>
                 <p style={{ marginTop: '10px' }}>配置参数</p>

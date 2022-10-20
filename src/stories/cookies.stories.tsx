@@ -42,11 +42,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>监听页面 Cookie 信息变更</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <p>监听页面 Cookie 信息变更</p>
                     <Cookies
                         // 当页面cookie如下字段的值发生变更时会触发页面刷新

@@ -169,9 +169,7 @@ ReactDOM.render(
     };
     render() {
         const { codeShow } = this.state;
-        const example = codeShow ? (
-            <ExampleCode code={this.handleCodeInCodeSandBox()} />
-        ) : null;
+        const example = codeShow ? <ExampleCode code={this.handleCodeInCodeSandBox()} /> : null;
         const toggleCodeSrc = codeShow
             ? 'https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg'
             : 'https://gw.alipayobjects.com/zos/rmsportal/wSAkBuJFbdxsosKKpqyq.svg';

@@ -72,11 +72,7 @@ stories.add(
                 当页面上的操作命令过多时，用此组件可以收纳操作元素。点击触点，会出现一个多选下拉菜单。可在列表中进行选择，并执行相应的命令。
             </p>
             <h2>示例</h2>
-            <ExampleContainer
-                otherDependencies={otherDependencies}
-                code={code}
-                hasCodeSandBox
-            >
+            <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                 <MulSelectDropdown
                     options={[
                         { label: '选项一', value: 1 },

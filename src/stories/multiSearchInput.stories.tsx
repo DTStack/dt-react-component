@@ -68,11 +68,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>多功能 input （区分大小写匹配、精确匹配、头部匹配、尾部匹配）</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <MultiSearchInput
                         placeholder="按名称搜索"
                         style={{ width: '250px', height: '26px' }}

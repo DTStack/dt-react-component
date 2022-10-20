@@ -24,11 +24,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>数据同步任务字段类型输入框</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    code={code}
-                    hasCodeSandBox
-                    otherDependencies={otherDependencies}
-                >
+                <ExampleContainer code={code} hasCodeSandBox otherDependencies={otherDependencies}>
                     <ScrollText value="string" />
                 </ExampleContainer>
             </div>

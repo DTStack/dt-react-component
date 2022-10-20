@@ -32,11 +32,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>引导用户使用 Chrome 浏览器</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <ChromeDownload
                         downloadChrome={(os: 'macChrome' | 'windowsChrome') => {
                             window.open(chromeAddRes[os], '_blank');

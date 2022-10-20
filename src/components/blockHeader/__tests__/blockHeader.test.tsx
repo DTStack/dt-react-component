@@ -31,9 +31,7 @@ describe('test BlockHeader render', () => {
         expect(getByText('标题2')).toBeTruthy();
     });
     test('props default in BlockHeader', () => {
-        const { container } = render(
-            <BlockHeader title="测试" isSmall showBackground />
-        );
+        const { container } = render(<BlockHeader title="测试" isSmall showBackground />);
         const wrap = container.firstChild;
         expect(wrap.firstChild.firstChild.firstChild).toHaveClass(`${prefixCls}-before-title`);
         expect(wrap.firstChild.firstChild.firstChild.firstChild).toHaveClass('small');

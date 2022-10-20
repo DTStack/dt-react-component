@@ -35,11 +35,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>网络请求过程提示进度条</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <Button
                         onClick={() => {
                             ProgressBar.show();

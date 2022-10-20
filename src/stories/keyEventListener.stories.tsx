@@ -70,11 +70,7 @@ const { KeyCombiner } = KeyEventListener`;
                 <h2>何时使用</h2>
                 <p>监听键盘事件</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <KeyCombiner
                         onTrigger={keyAction}
                         keyMap={{
@@ -132,11 +128,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>监听键盘事件</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <KeyEventListener onKeyDown={onkeyDown}>
                         {<div>尝试按下任意键盘，看看控制台打印结果</div>}
                     </KeyEventListener>

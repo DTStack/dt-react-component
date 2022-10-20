@@ -92,11 +92,7 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>ProgressLine 组件作用于进度条状态效果展示</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <div>
                         <div style={wrapperStyle}>
                             <div style={labelStyle}>禁用头部描述:</div>
@@ -194,32 +190,17 @@ stories.add(
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 num 属性控制描述属性 value</p>
                 <div className="strory-code_border">
-                    <ProgressLine
-                        color={style}
-                        title={title}
-                        num={num}
-                        percent="60%"
-                    />
+                    <ProgressLine color={style} title={title} num={num} percent="60%" />
                     &nbsp;
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 percent 属性控制百分比</p>
                 <div className="strory-code_border">
-                    <ProgressLine
-                        color={style}
-                        title={title}
-                        num={num}
-                        percent={percent}
-                    />
+                    <ProgressLine color={style} title={title} num={num} percent={percent} />
                     &nbsp;
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 color 属性控制颜色</p>
                 <div className="strory-code_border">
-                    <ProgressLine
-                        color={style}
-                        title="原子标签"
-                        num={35}
-                        percent="60%"
-                    />
+                    <ProgressLine color={style} title="原子标签" num={35} percent="60%" />
                     &nbsp;
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 width 属性控制长度</p>

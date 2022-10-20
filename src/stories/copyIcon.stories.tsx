@@ -61,11 +61,7 @@ stories.add(
                 <p>复制文本到粘贴版</p>
                 <h2>示例</h2>
                 <p>点击按钮，复制文本。</p>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <CopyIcon text={text} />
                     <p>{text}</p>
                 </ExampleContainer>
