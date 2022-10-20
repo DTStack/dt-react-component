@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-/* eslint-disable new-cap */
 import MxFactory from '../factory';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';

@@ -30,7 +30,6 @@ class ContextMenuCombiner extends React.Component<ContextMenuCombinerProps, any>
         document.addEventListener('click', this.hideMenu, false);
     }
 
-    // eslint-disable-next-line
     componentWillUnmount () {
         this.box.removeEventListener('contextmenu', this.showMenu, false);
         document.removeEventListener('click', this.hideMenu, false);

@@ -23,7 +23,6 @@ showdown.extension('highlight', function () {
                 // Append hljs class
                 left = left.slice(0, 18) + 'hljs ' + left.slice(18);
 
-                // eslint-disable-next-line
                 let lang = (left.match(/class=\"([^ \"]+)/) || [])[1];
                 if (lang && hljs.getLanguage(lang)) {
                     return left + hljs.highlight(lang, match).value + right;

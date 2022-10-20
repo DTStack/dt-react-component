@@ -76,7 +76,6 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                     name: '复制',
                     callback: function () {
                         let indexArr = this.getSelected();
-                        /* eslint-disable-next-line */
                         let copyDataArr = this.getData.apply(this, indexArr[0]);
                         that.beforeCopy(copyDataArr);
                     }

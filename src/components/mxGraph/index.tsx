@@ -697,7 +697,6 @@ function MxGraphContainer<T extends IMxGraphData>(
         mxPopupMenu.prototype.showMenu = function (this: { graph: mxGraph }) {
             const cells = this.graph.getSelectionCells() || [];
             if (cells.length > 0) {
-                // eslint-disable-next-line prefer-rest-params
                 mxPopupMenuShowMenu.apply(this, arguments as any);
             } else return false;
         };

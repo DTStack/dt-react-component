@@ -1202,7 +1202,6 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                         if (container.innerHTML) {
                                             container.innerHTML = '';
                                         } else {
-                                            // eslint-disable-next-line no-new
                                             new MxOutline(
                                                 graph,
                                                 container
@@ -1459,7 +1458,6 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                 if (container.innerHTML) {
                                                     container.innerHTML = '';
                                                 } else {
-                                                    // eslint-disable-next-line no-new
                                                     new MxOutline(
                                                         graph,
                                                         container

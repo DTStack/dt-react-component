@@ -1,6 +1,3 @@
-/* eslint-disable no-useless-escape */
-/* eslint-disable no-cond-assign */
-/* eslint-disable no-unused-expressions */
 import {
     BrowserInter
 } from './interface';

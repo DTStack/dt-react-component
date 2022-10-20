@@ -299,10 +299,8 @@ class MxFactory {
         mxConstants.HANDLE_FILLCOLOR = '#ffffff';
         mxConstants.HANDLE_STROKECOLOR = '#2491F7';
         mxConstants.VERTEX_SELECTION_COLOR = 'transparent';
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         mxConstants.CURSOR_MOVABLE_VERTEX = 'pointer';
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         mxConstants.STYLE_OVERFLOW = 'hidden';
 
@@ -488,7 +486,6 @@ class MxFactory {
                         pad.y / this.scale - (this.y0 || 0) * size.height;
                 }
 
-                // eslint-disable-next-line prefer-rest-params
                 graphViewValidate.apply(this, arguments as any);
             };
 
@@ -562,7 +559,6 @@ class MxFactory {
                         this.autoTranslate = false;
                     }
 
-                    // eslint-disable-next-line prefer-rest-params
                     graphSizeDidChange.apply(this, arguments as any);
                 }
             };
