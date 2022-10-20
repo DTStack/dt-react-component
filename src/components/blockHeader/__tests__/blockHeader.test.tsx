@@ -32,7 +32,7 @@ describe('test BlockHeader render', () => {
     });
     test('props default in BlockHeader', () => {
         const { container } = render(
-            <BlockHeader title="测试" isSmall={true} showBackground={true} />
+            <BlockHeader title="测试" isSmall showBackground />
         );
         const wrap = container.firstChild;
         expect(wrap.firstChild.firstChild.firstChild).toHaveClass(`${prefixCls}-before-title`);

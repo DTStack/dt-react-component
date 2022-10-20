@@ -40,7 +40,7 @@ const onValuesChange = (index, field, value) => {
     const dataSource = cloneDeep(store.get('dataSource'));
     dataSource[index][field] = value;
     store.set({
-        dataSource: dataSource,
+        dataSource,
     });
 };
 

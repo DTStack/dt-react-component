@@ -11,6 +11,7 @@ export interface SlidePaneProps {
     width?: string | number;
     className?: string;
     style?: React.CSSProperties;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onClose?<HTMLSpanElement, MouseEvent>(): void;
     [propName: string]: any;
 }

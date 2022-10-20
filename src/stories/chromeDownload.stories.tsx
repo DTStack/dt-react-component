@@ -35,7 +35,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <ChromeDownload
                         downloadChrome={(os: 'macChrome' | 'windowsChrome') => {

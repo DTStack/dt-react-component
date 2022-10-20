@@ -107,7 +107,7 @@ stories.add('mxGraph 基础使用', () => {
                     return '';
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MxGraphContainer
                     style={{ height: 400 }}
@@ -315,7 +315,7 @@ stories.add('mxGraph 支持 contextMenu', () => {
                     return '';
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MxGraphContainer
                     style={{ height: 400 }}
@@ -431,7 +431,7 @@ stories.add('mxGraph 支持鼠标，键盘，布局事件', () => {
             <h2>示例</h2>
             <p>支持 onClick 事件，onDoubleClick 事件，键盘注册事件，以及 scroll 事件的监听</p>
             <p>
-                <Alert type="warning" message="部分事件存在相同交集，需要自行区分判断"></Alert>
+                <Alert type="warning" message="部分事件存在相同交集，需要自行区分判断" />
             </p>
             <ExampleContainer
                 otherDependencies={otherDependencies}
@@ -529,7 +529,7 @@ stories.add('mxGraph 支持鼠标，键盘，布局事件', () => {
                     return '';
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MxGraphContainer
                     style={{ height: 400 }}
@@ -794,7 +794,7 @@ stories.add('mxGraph 拖拽', () => {
                     );
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MxGraphContainer
                     enableDrag
@@ -1288,7 +1288,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                     </div>
                 )}
             </MxGraphContainer>`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <State store={store}>
                     <MxGraphContainer
@@ -1415,6 +1415,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                 if (container.innerHTML) {
                                                     container.innerHTML = '';
                                                 } else {
+                                                    // eslint-disable-next-line no-new
                                                     new MxOutline(graph, container);
                                                 }
                                             }}
@@ -1724,7 +1725,7 @@ stories.add('mxGraph 详细展示', () => {
                     return '';
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <State store={detailStore}>
                     <MxGraphContainer

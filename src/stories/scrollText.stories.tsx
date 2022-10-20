@@ -26,7 +26,7 @@ stories.add(
                 <h2>示例</h2>
                 <ExampleContainer
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                     otherDependencies={otherDependencies}
                 >
                     <ScrollText value="string" />

@@ -52,7 +52,7 @@ describe('test ellipsis text if set max width', () => {
     beforeEach(() => {
         Object.defineProperty(window, 'getComputedStyle', {
             value: () => ({
-                getPropertyValue: (prop) => {
+                getPropertyValue: (_prop) => {
                     return '';
                 },
             }),

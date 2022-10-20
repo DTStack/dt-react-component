@@ -12,9 +12,9 @@ const planHtml = require('./markdown/plan.md');
 const { name, repository, version } = require('../../package.json');
 const summaryComponent = require('../components/index');
 const getComponentNum = (): number => {
-    let componentKey = [];
+    const componentKey = [];
     if (summaryComponent) {
-        for (let key in summaryComponent) {
+        for (const key in summaryComponent) {
             if (summaryComponent.hasOwnProperty(key)) {
                 componentKey.push(key);
             }

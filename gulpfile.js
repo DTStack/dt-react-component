@@ -20,13 +20,13 @@ const ENV = process.env.NODE_MODULE_ENV;
  * componentCatalogName ---- All component catalog names
  * folderName ---- JavaScript temporary folder name
  */
-let existStyleCatalogName = [];
-let componentCatalogName = [];
+const existStyleCatalogName = [];
+const componentCatalogName = [];
 const folderName = '.temporary_files';
 const basePath = 'src/components/';
 
 function difference(array, arrCompare) {
-    return array.concat(arrCompare).filter(function(v, i, arr) {
+    return array.concat(arrCompare).filter(function (v, i, arr) {
         return arr.indexOf(v) === arr.lastIndexOf(v);
     });
 }
@@ -36,7 +36,7 @@ function unique(arr) {
 }
 
 function writeStyleFile(catalogArr) {
-    for (let catalogName of catalogArr) {
+    for (const catalogName of catalogArr) {
         fs.writeFile(`${basePath}${catalogName}/style.scss`, '', { flag: 'wx' }, (err) => {
             if (err) {
                 throw err;
@@ -46,7 +46,7 @@ function writeStyleFile(catalogArr) {
 }
 
 function delStyleFile(catalogArr) {
-    for (let catalogName of catalogArr) {
+    for (const catalogName of catalogArr) {
         del([`${basePath}${catalogName}/style.scss`]);
     }
 }
@@ -58,15 +58,15 @@ function delStyleFile(catalogArr) {
 function traverseExistStyleFile(isDelete) {
     return src([`${basePath}*/*.scss`])
         .pipe(
-            through.obj(function(file, enc, callback) {
-                isExist = Boolean(file.contents.toString());
+            through.obj(function (file, enc, callback) {
+                const isExist = Boolean(file.contents.toString());
                 if (isExist) {
                     existStyleCatalogName.push(file.relative.split('/')[0]);
                 }
                 callback();
             })
         )
-        .on('end', async function() {
+        .on('end', async function () {
             const noStyleComp = difference(
                 unique(componentCatalogName),
                 unique(existStyleCatalogName)
@@ -86,12 +86,12 @@ function traverseComponent() {
     console.warn('Do not edit the source file when the project is compiled !!!');
     return src([`${basePath}*/`, `!${basePath}utils/`]) // exclude utils/
         .pipe(
-            through.obj(function(file, enc, callback) {
+            through.obj(function (file, enc, callback) {
                 componentCatalogName.push(file.relative.split('/')[0]);
                 callback();
             })
         )
-        .on('end', function() {
+        .on('end', function () {
             console.log('traverseComponent exec end ~');
         });
 }
@@ -142,7 +142,7 @@ function outputStyleTask(componentCatalogName) {
         componentCatalogName.length !== 0
     ) {
         componentCatalogName.map((componentName) => {
-            convertStyles(componentName);
+            return convertStyles(componentName);
         });
         return Promise.resolve('Components style file output completed');
     }

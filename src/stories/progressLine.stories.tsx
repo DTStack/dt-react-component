@@ -95,7 +95,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <div>
                         <div style={wrapperStyle}>
@@ -106,7 +106,7 @@ stories.add(
                                 title="衍生标签"
                                 num={20}
                                 percent="20%"
-                            ></ProgressLine>
+                            />
                             &nbsp;
                         </div>
                         <div style={wrapperStyle}>
@@ -117,7 +117,7 @@ stories.add(
                                 num={20}
                                 percent="20%"
                                 width="280px"
-                            ></ProgressLine>
+                            />
                             &nbsp;
                         </div>
                         <div style={wrapperStyle}>
@@ -128,7 +128,7 @@ stories.add(
                                 num={20}
                                 percent="20%"
                                 width="280px"
-                            ></ProgressLine>
+                            />
                             &nbsp;
                         </div>
                         <div style={wrapperStyle}>
@@ -139,7 +139,7 @@ stories.add(
                                 num={20}
                                 percent="20%"
                                 width="280px"
-                            ></ProgressLine>
+                            />
                             &nbsp;
                         </div>
                         <div style={wrapperStyle}>
@@ -150,7 +150,7 @@ stories.add(
                                 num={45}
                                 percent="45%"
                                 width="280px"
-                            ></ProgressLine>
+                            />
                             &nbsp;
                         </div>
                         <div style={wrapperStyle}>
@@ -161,7 +161,7 @@ stories.add(
                                 num={20}
                                 percent="20%"
                                 width="350px"
-                            ></ProgressLine>
+                            />
                             &nbsp;
                         </div>
                         <div style={wrapperStyle}>
@@ -172,7 +172,7 @@ stories.add(
                                 num={75}
                                 percent="75%"
                                 width="280px"
-                            ></ProgressLine>
+                            />
                             &nbsp;
                         </div>
                     </div>
@@ -185,11 +185,11 @@ stories.add(
                         title="衍生标签"
                         num={20}
                         percent="20%"
-                    ></ProgressLine>
+                    />
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 title 属性控制描述属性 label</p>
                 <div className="strory-code_border">
-                    <ProgressLine color={style} title={title} num={35} percent="60%"></ProgressLine>
+                    <ProgressLine color={style} title={title} num={35} percent="60%" />
                     &nbsp;
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 num 属性控制描述属性 value</p>
@@ -199,7 +199,7 @@ stories.add(
                         title={title}
                         num={num}
                         percent="60%"
-                    ></ProgressLine>
+                    />
                     &nbsp;
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 percent 属性控制百分比</p>
@@ -209,7 +209,7 @@ stories.add(
                         title={title}
                         num={num}
                         percent={percent}
-                    ></ProgressLine>
+                    />
                     &nbsp;
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 color 属性控制颜色</p>
@@ -219,7 +219,7 @@ stories.add(
                         title="原子标签"
                         num={35}
                         percent="60%"
-                    ></ProgressLine>
+                    />
                     &nbsp;
                 </div>
                 <p style={{ marginTop: '10px' }}>通过自定义 width 属性控制长度</p>
@@ -230,7 +230,7 @@ stories.add(
                         num={35}
                         percent="60%"
                         width={width}
-                    ></ProgressLine>
+                    />
                     &nbsp;
                 </div>
             </div>

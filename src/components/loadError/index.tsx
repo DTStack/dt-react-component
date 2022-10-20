@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadError: React.FC = function() {
+const LoadError: React.FC = function () {
     return (
         <div className="error" data-testid="test-error">
             <div>

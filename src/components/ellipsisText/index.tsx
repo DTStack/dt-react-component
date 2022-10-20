@@ -14,6 +14,7 @@ export interface EllipsisTextProps extends AbstractTooltipProps {
 const initialState = {
     visible: false,
     isEllipsis: false,
+    // eslint-disable-next-line no-void
     actMaxWidth: void 0,
 };
 

@@ -97,7 +97,7 @@ stories.add(
             <ExampleContainer
                 otherDependencies={otherDependencies}
                 code={code}
-                hasCodeSandBox={true}
+                hasCodeSandBox
                 functionCode={functionCode}
             >
                 <div style={{ position: 'relative' }}>

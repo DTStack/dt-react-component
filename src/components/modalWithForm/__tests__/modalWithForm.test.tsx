@@ -5,7 +5,7 @@ import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 const FormItem = Form.Item;
-const EnhancedModal = ModalWithForm((props) => {
+const EnhancedModal = ModalWithForm((_props) => {
     return (
         <FormItem label="test-label" name="test" rules={[{ max: 10 }]}>
             <Input data-testid="test-input" />)

@@ -75,7 +75,7 @@ stories.add(
             <ExampleContainer
                 otherDependencies={otherDependencies}
                 code={code}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MulSelectDropdown
                     options={[

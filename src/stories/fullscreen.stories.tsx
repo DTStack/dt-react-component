@@ -65,12 +65,12 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <p>白色主题</p>
                     <Fullscreen iconStyle={iconStyle} />
                     <p>暗黑主题</p>
-                    <Fullscreen iconStyle={iconStyle} themeDark={true} />
+                    <Fullscreen iconStyle={iconStyle} themeDark />
                 </ExampleContainer>
             </div>
         );

@@ -63,7 +63,7 @@ stories.add(
                 otherDependencies={otherDependencies}
                 code={basicEmpty}
                 functionCode={basicFunctionCode}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <Empty />
             </ExampleContainer>
@@ -72,7 +72,7 @@ stories.add(
                 otherDependencies={otherDependencies}
                 code={basicGreyEmpty}
                 functionCode={basicFunctionCode}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <Empty type="grey" />
             </ExampleContainer>
@@ -81,7 +81,7 @@ stories.add(
                 otherDependencies={otherDependencies}
                 code={customizeImage}
                 functionCode={basicFunctionCode}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <Empty image="https://user-images.githubusercontent.com/38368040/195246598-5adf8985-3f78-48b1-8116-bc4d78982df8.jpeg" />
             </ExampleContainer>
@@ -90,7 +90,7 @@ stories.add(
                 otherDependencies={otherDependencies}
                 code={moreSettingImage}
                 functionCode={basicFunctionCode}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <Empty description="自定义的文案" imageStyle={{ height: 60 }} />
             </ExampleContainer>

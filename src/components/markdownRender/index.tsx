@@ -12,31 +12,33 @@ export interface MarkdownRenderProps {
 }
 
 hljs.registerLanguage('sql', sql);
-showdown.extension('highlight', function() {
+showdown.extension('highlight', function () {
     return [
         {
             type: 'output',
-            filter: function(text: string, converter: any, options: any) {
+            filter: function (text: string, _converter: any, _options: any) {
+                let textTemp = text;
                 const left = '<pre><code\\b[^>]*>';
                 const right = '</code></pre>';
                 const flags = 'g';
-                const replacement = function(wholeMatch: any, match: any, left: any, right: any) {
+                const replacement = function (wholeMatch: any, match: any, left: any, right: any) {
                     // Append hljs class
-                    left = left.slice(0, 18) + 'hljs ' + left.slice(18);
+                    let leftTemp = left;
+                    leftTemp = leftTemp.slice(0, 18) + 'hljs ' + leftTemp.slice(18);
 
-                    let lang = (left.match(/class=\"([^ \"]+)/) || [])[1];
+                    const lang = (leftTemp.match(/class=\"([^ \"]+)/) || [])[1];
                     if (lang && hljs.getLanguage(lang)) {
-                        return left + hljs.highlight(lang, match).value + right;
+                        return leftTemp + hljs.highlight(lang, match).value + right;
                     } else {
-                        return left + hljs.highlightAuto(match).value + right;
+                        return leftTemp + hljs.highlightAuto(match).value + right;
                     }
                 };
 
-                text = text.replace(/&gt;/g, '>');
-                text = text.replace(/&lt;/g, '<');
+                textTemp = textTemp.replace(/&gt;/g, '>');
+                textTemp = textTemp.replace(/&lt;/g, '<');
 
                 return showdown.helper.replaceRecursiveRegExp(
-                    text,
+                    textTemp,
                     replacement,
                     left,
                     right,

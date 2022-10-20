@@ -34,21 +34,22 @@ class ContextMenuCombiner extends React.Component<ContextMenuCombinerProps, any>
         document.removeEventListener('click', this.hideMenu, false);
     }
 
-    hideMenu(e: any) {
+    hideMenu(_e: any) {
         if (!this.menu) return;
         const style = this.menu.style;
         style.display = 'none';
     }
 
     findParent(child: any, selector: any) {
+        let selectorTemp = selector;
         try {
-            if (!selector || !child) return;
-            selector = selector.toLowerCase();
+            if (!selectorTemp || !child) return;
+            selectorTemp = selectorTemp.toLowerCase();
             let node = child;
             while (node) {
                 if (node.nodeType === 1) {
                     const className = node.getAttribute('class');
-                    if (className && className.includes(selector)) return node;
+                    if (className && className.includes(selectorTemp)) return node;
                 }
                 node = node.parentNode;
             }
@@ -59,7 +60,7 @@ class ContextMenuCombiner extends React.Component<ContextMenuCombinerProps, any>
     }
 
     hideAll = () => {
-        let allEles: any = document.querySelectorAll('.ctx-menu');
+        const allEles: any = document.querySelectorAll('.ctx-menu');
         for (let i = 0; i < allEles.length; i++) {
             allEles[i].style.display = 'none';
         }
@@ -75,7 +76,7 @@ class ContextMenuCombiner extends React.Component<ContextMenuCombinerProps, any>
         const parent = this.findParent(e.target, ctxMenuWrapperClsName);
         if (parent) {
             this.hideAll();
-            let style = menu.style;
+            const style = menu.style;
             style.display = 'block';
 
             const pointerY = e.clientY;

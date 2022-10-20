@@ -15,7 +15,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
     copyUtils = new CopyUtils();
     _renderColck: any;
 
-    componentDidUpdate(prevProps: any, prevState: any) {
+    componentDidUpdate(prevProps: any, _prevState: any) {
         if (prevProps != this.props) {
             if (this.tableRef) {
                 this.removeRenderClock();
@@ -58,7 +58,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         }
         return null;
     }
-    beforeCopy(arr: any, arr2?: any) {
+    beforeCopy(arr: any, _arr2?: any) {
         /**
          * 去除格式化
          */
@@ -76,9 +76,10 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
             items: {
                 copy: {
                     name: '复制',
-                    callback: function() {
-                        let indexArr = this.getSelected();
-                        let copyDataArr = this.getData.apply(this, indexArr[0]);
+                    callback: function () {
+                        const indexArr = this.getSelected();
+                        // eslint-disable-next-line prefer-spread
+                        const copyDataArr = this.getData.apply(this, indexArr[0]);
                         that.beforeCopy(copyDataArr);
                     },
                 },
@@ -104,11 +105,11 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                 data={showData}
                 mergeCells={this.getMergeCells()}
                 cell={this.getCell()}
-                readOnly={true}
-                rowHeaders={true} // 数字行号
+                readOnly
+                rowHeaders // 数字行号
                 fillHandle={false} // 拖动复制单元格
-                manualRowResize={true} // 拉伸功能
-                manualColumnResize={true} // 拉伸功能
+                manualRowResize // 拉伸功能
+                manualColumnResize // 拉伸功能
                 colWidths={200}
                 beforeCopy={this.beforeCopy.bind(this)}
                 columnHeaderHeight={25}

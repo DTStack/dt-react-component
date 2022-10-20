@@ -56,7 +56,7 @@ stories
                     <ExampleContainer
                         otherDependencies={otherDependencies}
                         code={code}
-                        hasCodeSandBox={true}
+                        hasCodeSandBox
                     >
                         <GoBack />
                     </ExampleContainer>
@@ -87,7 +87,7 @@ stories
                     <ExampleContainer
                         otherDependencies={buttonDependencies}
                         code={buttonCode}
-                        hasCodeSandBox={true}
+                        hasCodeSandBox
                     >
                         <GoBackButton />
                     </ExampleContainer>

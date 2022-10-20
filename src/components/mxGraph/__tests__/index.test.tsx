@@ -154,7 +154,7 @@ describe('The mxGraph Container test', () => {
     test('Should support to set loading', () => {
         const { getByText } = render(
             <MxGraphContainer
-                loading={true}
+                loading
                 graphData={[{ taskId: 1, childNode: [{ taskId: 2 }] }]}
             />
         );

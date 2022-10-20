@@ -25,14 +25,14 @@ const ProgressLine = ({
     return (
         <div className={`${slidePrefixCls} ${className}`}>
             {needTitle && (
-                <div className={`${slidePrefixCls}-title`} style={{ width: width }}>
+                <div className={`${slidePrefixCls}-title`} style={{ width }}>
                     <Tooltip title={label}>
                         <div className={`${slidePrefixCls}-content`}>{label}</div>
                     </Tooltip>
                     <div className={`${slidePrefixCls}-content`}>{percent}</div>
                 </div>
             )}
-            <div className={`${slidePrefixCls}-wrap`} style={{ width: width }}>
+            <div className={`${slidePrefixCls}-wrap`} style={{ width }}>
                 <div
                     className={`${slidePrefixCls}-line`}
                     style={{ width: percent, backgroundColor: color }}

@@ -43,7 +43,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <MarkdownRender text={`${testHtml && testHtml.default}`} dark={false} />
                 </ExampleContainer>

@@ -61,7 +61,7 @@ type SearchType = 'fuzzy' | 'precise' | 'front' | 'tail';
 stories.add(
     'multiSearchInput',
     () => {
-        let searchType: any = store.get('searchType');
+        const searchType: any = store.get('searchType');
 
         return (
             <div className="story_wrapper">
@@ -71,7 +71,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <MultiSearchInput
                         placeholder="按名称搜索"

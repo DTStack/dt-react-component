@@ -16,7 +16,7 @@ function isEqual(a: any, b: any) {
 }
 
 export default function shouldRender(targetComponent: any) {
-    targetComponent.prototype.shouldComponentUpdate = function(props: any, state: any) {
+    targetComponent.prototype.shouldComponentUpdate = function (props: any, state: any) {
         return !isEqual(this.state, state) || !isEqual(this.props, props);
     };
 }

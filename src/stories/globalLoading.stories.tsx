@@ -86,7 +86,7 @@ stories.add(
             <ExampleContainer
                 otherDependencies={otherDependencies}
                 code={code}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <p className="strory-dt_easy_select_p">
                     1、传递参数prefix和loadingTitle，同时自定义样式

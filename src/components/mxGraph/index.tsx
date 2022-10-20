@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, {
     CSSProperties,
     ForwardedRef,
@@ -461,7 +462,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                 true
             );
 
-            draggableEle.createPreviewElement = function() {
+            draggableEle.createPreviewElement = function () {
                 // ctx._currentSourceType = type;
                 return dragElt;
             };
@@ -483,7 +484,7 @@ function MxGraphContainer<T extends IMxGraphData>(
         if (onKeyDown) {
             const keyHandler = new MxKeyHandler(graph.current!);
             // @ts-ignore
-            keyHandler.getFunction = function(evt: any) {
+            keyHandler.getFunction = function (evt: any) {
                 if (evt !== null && !mxEvent.isAltDown(evt)) {
                     if (this.isControlDown(evt) || (mxClient.IS_MAC && evt.metaKey)) {
                         if (mxEvent.isShiftDown(evt)) {
@@ -523,7 +524,7 @@ function MxGraphContainer<T extends IMxGraphData>(
             // Constraint highlight color
             MxConstraintHandler.prototype.highlightColor = '#3f87ff';
             // Overridden to define per-shape connection points
-            MxGraph.prototype.getAllConnectionConstraints = function(terminal: mxCellState) {
+            MxGraph.prototype.getAllConnectionConstraints = function (terminal: mxCellState) {
                 if (terminal?.shape) {
                     if (terminal.shape.stencil) {
                         return terminal.shape.stencil.constraints;
@@ -548,7 +549,7 @@ function MxGraphContainer<T extends IMxGraphData>(
             // Disables floating connections (only connections via ports allowed)
             graph.current!.connectionHandler.isConnectableCell = () => false;
 
-            graph.current!.isValidConnection = function(source: mxCell, target: mxCell) {
+            graph.current!.isValidConnection = function (source: mxCell, target: mxCell) {
                 // Only connectable between vertexes
                 if (!source.vertex || !target.vertex) return false;
 
@@ -644,16 +645,17 @@ function MxGraphContainer<T extends IMxGraphData>(
 
         // ContextMenu 事件
         const mxPopupMenuShowMenu = mxPopupMenu.prototype.showMenu;
-        mxPopupMenu.prototype.showMenu = function(this: { graph: mxGraph }) {
+        mxPopupMenu.prototype.showMenu = function (this: { graph: mxGraph }) {
             const cells = this.graph.getSelectionCells() || [];
             if (cells.length > 0) {
+                // eslint-disable-next-line prefer-rest-params
                 mxPopupMenuShowMenu.apply(this, arguments as any);
             } else return false;
         };
         graph.current!.popupMenuHandler.autoExpand = true;
 
         // change it to for supporting async factoryMethod
-        mxPopupMenu.prototype.popup = async function(
+        mxPopupMenu.prototype.popup = async function (
             this: mxPopupMenuHandler & {
                 div: HTMLDivElement;
                 tbody: HTMLElement;

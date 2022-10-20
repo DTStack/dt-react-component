@@ -1,6 +1,7 @@
 import React from 'react';
 import DragDrawer from '../index';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+// import { render, fireEvent, cleanup } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 const prefixCls = 'dtc-drag-drawer';

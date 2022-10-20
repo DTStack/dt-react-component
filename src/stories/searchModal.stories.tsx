@@ -142,7 +142,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                     functionCode={functionCode}
                 >
                     <Button
@@ -187,7 +187,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={searchCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                     functionCode={functionCode}
                 >
                     <Button

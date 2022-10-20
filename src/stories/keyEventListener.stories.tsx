@@ -73,7 +73,7 @@ const { KeyCombiner } = KeyEventListener`;
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <KeyCombiner
                         onTrigger={keyAction}
@@ -135,7 +135,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <KeyEventListener onKeyDown={onkeyDown}>
                         {<div>尝试按下任意键盘，看看控制台打印结果</div>}

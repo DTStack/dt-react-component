@@ -11,6 +11,7 @@ class CodeSandBoxDefine extends React.Component<any, any> {
     form = null;
 
     handleClick = () => {
+        // eslint-disable-next-line react/no-find-dom-node
         const formDOMNode = ReactDOM.findDOMNode(this.form);
         if (formDOMNode) {
             formDOMNode.submit();
@@ -169,7 +170,7 @@ ReactDOM.render(
     render() {
         const { codeShow } = this.state;
         const example = codeShow ? (
-            <ExampleCode code={this.handleCodeInCodeSandBox()}></ExampleCode>
+            <ExampleCode code={this.handleCodeInCodeSandBox()} />
         ) : null;
         const toggleCodeSrc = codeShow
             ? 'https://gw.alipayobjects.com/zos/rmsportal/OpROPHYqWmrMDBFMZtKF.svg'

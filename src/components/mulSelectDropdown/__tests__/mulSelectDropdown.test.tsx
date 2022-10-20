@@ -33,7 +33,7 @@ describe('mulSelectDropdown Component test', () => {
         const optionBoxEle = document.querySelector('.dtc-option-select-overlay-menu');
         expect(dropdownEle).not.toBeNull();
         expect(optionBoxEle.childNodes.length).toBe(2);
-        let checkoutItem = optionBoxEle.getElementsByClassName('ant-checkbox-wrapper')[1];
+        const checkoutItem = optionBoxEle.getElementsByClassName('ant-checkbox-wrapper')[1];
         expect(checkoutItem.classList.contains('ant-checkbox-wrapper-disabled')).toEqual(true);
         expect(checkoutItem.classList.contains('ant-checkbox-wrapper-checked')).toEqual(true);
 

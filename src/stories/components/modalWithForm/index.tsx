@@ -4,7 +4,7 @@ import RenderBaseForm from '../../../components/modalWithForm';
 
 const FormItem = Form.Item;
 
-const Modal = RenderBaseForm((props) => {
+const Modal = RenderBaseForm((_props) => {
     return (
         <FormItem label="username" name={'username'} rules={[{ max: 10 }]}>
             <Input />

@@ -56,7 +56,7 @@ export default class KeyCombiner extends React.Component<KeyCombinerProps, KeyCo
             });
 
             let keyAllRight = true;
-            for (let key in keyMap) {
+            for (const key in keyMap) {
                 if (!currentKeys[key]) {
                     keyAllRight = false;
                     break;

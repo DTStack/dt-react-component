@@ -9,7 +9,7 @@ interface DragDrawerProps extends DrawerProps {
 }
 
 const prefixCls = 'dtc-drag-drawer';
-const DragDrawer: React.FC<DragDrawerProps> = function(props) {
+const DragDrawer: React.FC<DragDrawerProps> = function (props) {
     const {
         visible,
         draggable = true,

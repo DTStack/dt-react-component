@@ -62,7 +62,7 @@ stories.add(
             border: '1px solid rgba(0,0,0,.1)',
         };
         const style = object('style', defaultStyle, groupId);
-        const onSwitch = (e) => {
+        const onSwitch = () => {
             store.set({ msg: 'window listener' });
             console.log('window listener');
         };
@@ -76,7 +76,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                     functionCode={functionCode}
                 >
                     <SwitchWindow onSwitch={onSwitch}>

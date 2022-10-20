@@ -1,3 +1,5 @@
+/* eslint-disable no-cond-assign */
+/* eslint-disable no-unused-expressions */
 import { BrowserInter } from './interface';
 const utils = {
     /**
@@ -72,11 +74,13 @@ const utils = {
      * @param  {[type]} url  [description]
      */
     getParameterByName(name: string, url?: string) {
-        if (!url) {
-            url = window.location.href;
+        let urlTemp = url;
+        let nameTemp = name;
+        if (!urlTemp) {
+            urlTemp = window.location.href;
         }
-        name = name.replace(/[\[\]]/g, '\\$&');
-        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        nameTemp = nameTemp.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + nameTemp + '(=([^&#]*)|&|#|$)');
 
         const results = regex.exec(url);
         if (!results) {
@@ -105,15 +109,17 @@ const utils = {
      * @param  {[type]} precision [description]
      */
     percent(num: number, precision?: number) {
-        if (!num || num === Infinity) {
+        let numTemp = num;
+        let precisionTemp = precision;
+        if (!numTemp || numTemp === Infinity) {
             return 0 + '%';
         }
-        if (num > 1) {
-            num = 1;
+        if (numTemp > 1) {
+            numTemp = 1;
         }
-        precision = precision || 2;
-        precision = Math.pow(10, precision);
-        return Math.round(num * precision * 100) / precision + '%';
+        precisionTemp = precisionTemp || 2;
+        precisionTemp = Math.pow(10, precisionTemp);
+        return Math.round(numTemp * precisionTemp * 100) / precisionTemp + '%';
     },
 
     getCssText(object: any = {}) {
@@ -159,10 +165,12 @@ const utils = {
     },
 
     deleteCookie(name: string, domain?: string, path?: string) {
+        let domainTemp = domain;
+        let pathTemp = path;
         const d = new Date(0);
-        domain = domain ? `; domain=${domain}` : '';
-        path = path || '/';
-        document.cookie = name + '=; expires=' + d.toUTCString() + domain + '; path=' + path;
+        domainTemp = domainTemp ? `; domain=${domainTemp}` : '';
+        pathTemp = pathTemp || '/';
+        document.cookie = name + '=; expires=' + d.toUTCString() + domainTemp + '; path=' + pathTemp;
     },
 
     deleteAllCookies(domain: string, path: string) {
@@ -190,23 +198,25 @@ const utils = {
      * @param value 'B' | 'KB' | 'MB' | 'GB' | 'TB' | 'PB' 转换原始值
      */
     convertBytes(value: number) {
+        let valueTemp = value;
         const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
         let i = 0;
-        while (value >= 1024) {
-            value = Number((value / 1024).toFixed(2));
+        while (valueTemp >= 1024) {
+            valueTemp = Number((valueTemp / 1024).toFixed(2));
             i++;
         }
-        return `${value} ${units[i]}`;
+        return `${valueTemp} ${units[i]}`;
     },
     // 千位分割
     toQfw(str: string) {
-        if (!str) {
+        let strTemp = str;
+        if (!strTemp) {
             return 0;
         }
-        str = str.toString ? str.toString() : str;
+        strTemp = strTemp.toString ? strTemp.toString() : strTemp;
         const re = /(?=(?!(\b))(\d{3})+$)/g;
-        str = str.replace(re, ',');
-        return str;
+        strTemp = strTemp.replace(re, ',');
+        return strTemp;
     },
     // 文字溢出转换
     textOverflowExchange(text: string, length: number) {
@@ -278,10 +288,11 @@ const utils = {
      * @return {Boolean}   是否是JSON字符串
      */
     isJSONStr(str: string) {
-        str = this.trimlr(str);
+        let strTemp = str;
+        strTemp = this.trimlr(strTemp);
         return (
-            (str.charAt(0) === '{' && str.charAt(str.length - 1) === '}') ||
-            (str.charAt(0) === '[' && str.charAt(str.length - 1) === ']')
+            (strTemp.charAt(0) === '{' && strTemp.charAt(strTemp.length - 1) === '}') ||
+            (strTemp.charAt(0) === '[' && strTemp.charAt(strTemp.length - 1) === ']')
         );
     },
     /**

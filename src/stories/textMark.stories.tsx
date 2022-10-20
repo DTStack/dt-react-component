@@ -55,7 +55,7 @@ stories.add(
         const groupId = 'textmark';
         const defaultText = 'testText';
         const testText = text('text', defaultText, groupId);
-        store.subscribe((state: any) => {
+        store.subscribe((_state: any) => {
             console.log();
         });
         return (

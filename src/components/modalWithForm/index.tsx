@@ -76,7 +76,7 @@ const ModalForm = (props: ModalProps) => {
             confirmLoading={confirmLoading}
         >
             <Form form={form} layout={layout} {...restProps}>
-                {React.cloneElement(children, { form: form, ...props })}
+                {React.cloneElement(children, { form, ...props })}
             </Form>
         </Modal>
     );

@@ -26,7 +26,7 @@ export interface BlockHeaderProps {
     onChange?: (expand: boolean) => void;
     children?: React.ReactNode;
 }
-const BlockHeader: React.FC<BlockHeaderProps> = function(props) {
+const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
     const prefixCls = 'dtc-block-header';
     const {
         title,

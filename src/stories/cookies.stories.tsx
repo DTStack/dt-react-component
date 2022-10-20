@@ -45,7 +45,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <p>监听页面 Cookie 信息变更</p>
                     <Cookies

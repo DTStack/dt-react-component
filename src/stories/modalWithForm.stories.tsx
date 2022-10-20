@@ -192,7 +192,7 @@ stories.add(
                 code={basicModalWithForm}
                 functionCode={basicFunctionCode}
                 otherCode={basicOtherCode}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <ModalWithForm />
             </ExampleContainer>

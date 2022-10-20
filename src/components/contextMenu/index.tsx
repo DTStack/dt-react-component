@@ -55,7 +55,7 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
         if (parent) {
             this.hideAll();
 
-            let style = selfEle.style;
+            const style = selfEle.style;
             style.display = 'block';
 
             const pointerY = evt.clientY;
@@ -84,28 +84,29 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
         }
     }
 
-    closeMenu(evt: MouseEvent) {
+    closeMenu(_evt: MouseEvent) {
         if (!this.selfEle) return;
         const style = this.selfEle.style;
         style.display = 'none';
     }
 
-    removeMenu(evt: MouseEvent) {
+    removeMenu(_evt: MouseEvent) {
         if (!this.selfEle) return;
         const style = this.selfEle.style;
         style.display = 'none';
     }
 
     findParent(child: HTMLElement, selector: string) {
+        let selectorTemp = selector;
         try {
-            if (!selector || !child) return;
-            selector = selector.toLowerCase();
+            if (!selectorTemp || !child) return;
+            selectorTemp = selectorTemp.toLowerCase();
             let node: any = child;
             while (node) {
                 if (node.nodeType === 1) {
                     // just hand dom element
                     const className = node.getAttribute('class');
-                    if (className && className.includes(selector)) return node;
+                    if (className && className.includes(selectorTemp)) return node;
                 }
                 node = node.parentNode;
             }

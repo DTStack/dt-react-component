@@ -65,7 +65,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={typeCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <StatusTag type="run">运行中</StatusTag>
                     <StatusTag type="success">成功</StatusTag>
@@ -77,7 +77,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={noBorderCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <StatusTag type="run" showBorder={false}>
                         运行中
@@ -99,7 +99,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={customizeCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <StatusTag type="run" color="#bc84a8">
                         运行中
@@ -112,7 +112,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={circleCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <StatusTag type="run" showBorder={false} />
                     <StatusTag color="#2177b8" showBorder={false} />

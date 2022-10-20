@@ -95,13 +95,13 @@ const contextMenus = [
         menuItems: [
             {
                 text: '新建实验',
-                onClick: (activeNode: any) => {
+                onClick: (_activeNode: any) => {
                     console.log('新建实验');
                 },
             },
             {
                 text: '新建文件夹',
-                onClick: (activeNode: any) => {
+                onClick: (_activeNode: any) => {
                     console.log('新建文件夹');
                 },
             },
@@ -112,13 +112,13 @@ const contextMenus = [
         menuItems: [
             {
                 text: '编辑',
-                onClick: (activeNode: any) => {
+                onClick: (_activeNode: any) => {
                     console.log('编辑');
                 },
             },
             {
                 text: '移动',
-                onClick: (activeNode: any) => {
+                onClick: (_activeNode: any) => {
                     console.log('移动');
                 },
             },
@@ -152,7 +152,7 @@ function renderContextMenu(contextMenu: any) {
 function loopContextMenu() {
     return (
         contextMenus &&
-        contextMenus.map((contextMenu: any, index: any) => {
+        contextMenus.map((contextMenu: any, _index: any) => {
             return renderContextMenu(contextMenu);
         })
     );
@@ -168,7 +168,7 @@ stories.add(
             <ExampleContainer
                 otherDependencies={otherDependencies}
                 code={code}
-                hasCodeSandBox={true}
+                hasCodeSandBox
                 functionCode={functionCode}
             >
                 <div style={{ position: 'relative' }}>

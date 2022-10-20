@@ -1,6 +1,6 @@
 const type = require('@babel/types');
 
-module.exports = function() {
+module.exports = function () {
     return {
         visitor: {
             ImportDeclaration(path) {

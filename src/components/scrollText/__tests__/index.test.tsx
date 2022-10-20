@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 describe('test ScrollText suite', () => {
     let dom, element;
     beforeEach(() => {
-        dom = render(<ScrollText value="scroll"></ScrollText>);
+        dom = render(<ScrollText value="scroll" />);
         element = dom.getByTestId('test-scroll-text');
     });
     afterEach(() => {

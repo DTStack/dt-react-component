@@ -183,7 +183,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={codeStaticJson}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <p className="strory-dt_easy_select_p">
                         1、静态本地数据源(json格式，带本地模糊查询功能)
@@ -204,7 +204,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={codeStaticNomal}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <p className="strory-dt_easy_select_p">2、静态本地数据源(普通数组格式)</p>
                     <EasySelect
@@ -220,7 +220,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={codeRemote}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <p className="strory-dt_easy_select_p">
                         3、远程获取数据（自动请求, 带有默认请求字段）
@@ -240,7 +240,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={codeRemoteSearch}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <p className="strory-dt_easy_select_p">
                         4、远程获取数据（自动请求, 带有默认请求字段,前端本地模糊查询）
@@ -260,7 +260,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={codeRemoteNotAuto}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <p className="strory-dt_easy_select_p">5、远程获取数据（非自动请求）</p>
                     <EasySelect
@@ -275,7 +275,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={codeBigData}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <p className="strory-dt_easy_select_p">6、大数据(虚拟滚动)</p>
                     <EasySelect
@@ -290,7 +290,7 @@ stories.add(
                 &nbsp;&nbsp;
                 <p style={{ marginTop: '10px' }}>通过组件预置的几种 dataSource 控制数据源</p>
                 <div className="strory-code_border">
-                    <EasySelect style={{ width: '100%' }} dataSource={dataSource}></EasySelect>
+                    <EasySelect style={{ width: '100%' }} dataSource={dataSource} />
                 </div>
             </div>
         );

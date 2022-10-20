@@ -5,7 +5,7 @@ import MyIcon from './icon';
 import KeyEventListener from '../keyEventListener';
 
 const { KeyCombiner } = KeyEventListener;
-declare var document: any;
+declare let document: any;
 
 export interface FullscreenProps {
     themeDark?: boolean;
@@ -34,7 +34,7 @@ export default class Fullscreen extends React.Component<FullscreenProps, Fullscr
         const { target } = this.props;
         const propsDom = document.getElementById(target);
         const domEle: any = propsDom || document.body;
-        let callBack = (event: any) => {
+        const callBack = (_event: any) => {
             let node: any;
             if (domEle.requestFullscreen) {
                 node = document.fullscreenElement;
