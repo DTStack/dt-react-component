@@ -1,25 +1,20 @@
-import React from 'react'
+import React from 'react';
 import { Tooltip } from 'antd';
 import { PieChartOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import  BlockHeader  from '../../../components/blockHeader';
+import BlockHeader from '../../../components/blockHeader';
 
-export default function BlockHeaderRender () {
+export default function BlockHeaderRender() {
     const style = {
-        margin: '15px 0 10px'
-    }
+        margin: '15px 0 10px',
+    };
 
     return (
         <React.Fragment>
             <p style={style}>1、默认大标题</p>
-            <BlockHeader
-                title="分类标题"
-            />
+            <BlockHeader title="分类标题" />
 
             <p style={style}>2、小标题</p>
-            <BlockHeader
-                title="小分类标题"
-                isSmall
-            />
+            <BlockHeader title="小分类标题" isSmall />
 
             <p style={style}>3、标题 + icon，有说明文字</p>
             <BlockHeader
@@ -50,18 +45,12 @@ export default function BlockHeaderRender () {
             />
 
             <p style={style}>6、展开/收起内容</p>
-            <BlockHeader
-                title="分类标题"
-                onChange={(expand) => console.log(expand)}
-            >
+            <BlockHeader title="分类标题" onChange={(expand) => console.log(expand)}>
                 Hello World!
             </BlockHeader>
 
             <p style={style}>7、简洁版</p>
-            <BlockHeader
-                title="分类标题"
-                beforeTitle=""
-            />
+            <BlockHeader title="分类标题" beforeTitle="" />
         </React.Fragment>
-    )
+    );
 }

@@ -15,36 +15,36 @@ const propDefinitions = [
         propType: 'string',
         required: true,
         description: '复制的文本',
-        defaultValue: ''
+        defaultValue: '',
     },
     {
         property: 'title',
         propType: 'string',
         required: false,
         description: 'Tooltip 文本',
-        defaultValue: '复制'
+        defaultValue: '复制',
     },
     {
         property: 'style',
         propType: 'CSSProperties',
         required: false,
         description: '自定义图标样式',
-        defaultValue: ''
+        defaultValue: '',
     },
     {
         property: 'customRender',
         propType: 'ReactNode',
         required: false,
         description: '自定义图标',
-        defaultValue: ''
+        defaultValue: '',
     },
     {
         property: '其余属性',
         propType: '--',
         required: false,
         description: '继承 Antd Icon API',
-        defaultValue: ''
-    }
+        defaultValue: '',
+    },
 ];
 
 const otherDependencies = `import { CopyIcon } from 'dt-react-component';`;
@@ -61,7 +61,11 @@ stories.add(
                 <p>复制文本到粘贴版</p>
                 <h2>示例</h2>
                 <p>点击按钮，复制文本。</p>
-                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
+                <ExampleContainer
+                    otherDependencies={otherDependencies}
+                    code={code}
+                    hasCodeSandBox={true}
+                >
                     <CopyIcon text={text} />
                     <p>{text}</p>
                 </ExampleContainer>
@@ -77,7 +81,7 @@ stories.add(
         ${code}
         ~~~
         `,
-            TableComponent: () => PropsTable({ propDefinitions })
-        }
+            TableComponent: () => PropsTable({ propDefinitions }),
+        },
     }
 );

@@ -11,7 +11,7 @@ export default class CopyUtils {
     fakeHandler: any = null;
     fakeElem: any;
 
-    copy (value: any, callback?: Function) {
+    copy(value: any, callback?: Function) {
         this.removeFake();
 
         this.fakeHandlerCallback = () => this.removeFake();
@@ -43,7 +43,7 @@ export default class CopyUtils {
         this.copyText(callback);
     }
 
-    removeFake () {
+    removeFake() {
         if (this.fakeHandler) {
             document.body.removeEventListener('click', this.fakeHandlerCallback);
             this.fakeHandler = null;
@@ -56,7 +56,7 @@ export default class CopyUtils {
         }
     }
 
-    copyText (callback: Function) {
+    copyText(callback: Function) {
         let succeeded;
 
         try {
@@ -64,6 +64,6 @@ export default class CopyUtils {
         } catch (err) {
             succeeded = false;
         }
-        if (callback) callback(succeeded)
+        if (callback) callback(succeeded);
     }
 }

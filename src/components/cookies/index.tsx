@@ -1,9 +1,8 @@
-
-import React from 'react'
+import React from 'react';
 
 export interface Fields {
     key?: string;
-    value? : string;
+    value?: string;
 }
 export interface CookiesProps {
     watchFields?: string[];
@@ -19,13 +18,13 @@ export interface CookiesProps {
 const defaultIntervalTime = 200;
 class Cookies extends React.Component<CookiesProps, any> {
     _currentCookies: string;
-    private _timerId: NodeJS.Timer | null = null;;
+    private _timerId: NodeJS.Timer | null = null;
 
-    componentDidMount () {
+    componentDidMount() {
         this.initEvent();
     }
-    componentWillUnmount () {
-        clearInterval(this._timerId)
+    componentWillUnmount() {
+        clearInterval(this._timerId);
     }
 
     compareValue = () => {
@@ -37,7 +36,7 @@ class Cookies extends React.Component<CookiesProps, any> {
             this._currentCookies = newCookies;
             this.onFieldsChange(old, newCookies);
         }
-    }
+    };
 
     onFieldsChange = (old: string, newCookies: string) => {
         const { watchFields, onFieldsChanged } = this.props;
@@ -55,34 +54,26 @@ class Cookies extends React.Component<CookiesProps, any> {
                 onFieldsChanged(changedFields);
             }
         }
-    }
+    };
 
     // 根据 Cookies获取 name
     getCookieValue = (cookies: string, name: string) => {
         if (cookies) {
-            const arr = cookies.match(
-                new RegExp('(^| )' + name + '=([^;]*)(;|$)')
-            );
+            const arr = cookies.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
             if (arr != null) return decodeURI(arr[2]);
         }
         return null;
-    }
+    };
 
     initEvent = () => {
         this._timerId = setInterval(() => {
             this.compareValue();
         }, defaultIntervalTime);
-    }
+    };
 
-    render () {
-        return (
-            <React.Fragment>
-                {
-                    this.props.children
-                }
-            </React.Fragment>
-        )
+    render() {
+        return <React.Fragment>{this.props.children}</React.Fragment>;
     }
 }
 
-export default Cookies
+export default Cookies;

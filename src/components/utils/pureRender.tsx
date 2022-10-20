@@ -1,7 +1,9 @@
-function isEqual (a: any, b: any) {
+function isEqual(a: any, b: any) {
     for (const key in a) {
-        if ({}.hasOwnProperty.call(a, key) &&
-      (!{}.hasOwnProperty.call(b, key) || a[key] !== b[key])) {
+        if (
+            {}.hasOwnProperty.call(a, key) &&
+            (!{}.hasOwnProperty.call(b, key) || a[key] !== b[key])
+        ) {
             return false;
         }
     }
@@ -13,8 +15,8 @@ function isEqual (a: any, b: any) {
     return true;
 }
 
-export default function shouldRender (targetComponent: any) {
-    targetComponent.prototype.shouldComponentUpdate = function (props: any, state: any) {
-        return !isEqual(this.state, state) || !isEqual(this.props, props)
-    }
+export default function shouldRender(targetComponent: any) {
+    targetComponent.prototype.shouldComponentUpdate = function(props: any, state: any) {
+        return !isEqual(this.state, state) || !isEqual(this.props, props);
+    };
 }

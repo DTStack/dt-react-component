@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export interface ScrollTextProps {
     value?: string;
@@ -6,7 +6,7 @@ export interface ScrollTextProps {
     children?: React.ReactNode;
 }
 
-export default function scrollText (props: ScrollTextProps) {
+export default function scrollText(props: ScrollTextProps) {
     const style: any = {
         height: '28px',
         margin: '5px 5px 5px 0px',
@@ -14,15 +14,17 @@ export default function scrollText (props: ScrollTextProps) {
         textAlign: 'left',
         backgroundColor: 'transparent',
         backgroundImage: 'none',
-        border: 'none'
-    }
+        border: 'none',
+    };
     const { value } = props;
-    return <input
-        data-testid='test-scroll-text'
-        style={Object.assign({}, style, props.style || {})}
-        title={value}
-        readOnly
-        className="cell-input"
-        value={value}
-    />
+    return (
+        <input
+            data-testid="test-scroll-text"
+            style={Object.assign({}, style, props.style || {})}
+            title={value}
+            readOnly
+            className="cell-input"
+            value={value}
+        />
+    );
 }

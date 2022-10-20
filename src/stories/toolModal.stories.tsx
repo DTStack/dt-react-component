@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { State, Store } from '@sambego/storybook-state';
 import { text, boolean, array } from '@storybook/addon-knobs';
@@ -16,38 +16,42 @@ const propDefinitions = [
         propType: 'boolean',
         required: false,
         description: '是否使用 FullScreenButton 组件内置的图标',
-        defaultValue: 'false'
-    }, {
+        defaultValue: 'false',
+    },
+    {
         property: 'toolbox',
         propType: 'React.DOM || []',
         required: false,
         description: '用户自定义一些 tool',
-        defaultValue: 'null'
-    }, {
+        defaultValue: 'null',
+    },
+    {
         property: 'visible',
         propType: 'boolean',
         required: true,
         description: '控制 modal 显示隐藏',
-        defaultValue: 'false'
-    }, {
+        defaultValue: 'false',
+    },
+    {
         property: '其余属性',
         propType: '--',
         required: false,
         description: '继承自Antd Modal API',
-        defaultValue: '--'
-    }]
+        defaultValue: '--',
+    },
+];
 const store = new Store({
-    visible: false
-})
+    visible: false,
+});
 
 const otherDependencies = `import { Button } from 'antd';
 import { LockOutlined, UnlockOutlined } from '@ant-design/icons';
-import { ToolModal } from 'dt-react-component'`
+import { ToolModal } from 'dt-react-component'`;
 
 const functionCode = `state={
         visible: false
     }
-`
+`;
 
 const code = `<div>
                 <Button onClick={() => {
@@ -73,68 +77,77 @@ const code = `<div>
                 >
                     <p style={{ textAlign: 'center' }}>i am tool modal</p>
                 </ToolModal>
-            </div>`
+            </div>`;
 
 const stories = storiesOf('ToolModal 工具弹框', module);
 
-stories.add('toolModal', () => {
-    const groupId = 'toolmodal'
-    const defaultTitle = `ToolModal`
-    const defaultMaskClosable = false
-    const maskClosable = boolean('maskClosable', defaultMaskClosable, groupId)
-    const defaultFullscreen = true
-    const fullscreen = boolean('fullscreen', defaultFullscreen, groupId)
-    const title = text('title', defaultTitle, groupId)
-    const defaultText = `i am tool modal`
-    const children = text('children', defaultText, groupId)
-    const defaultToolbox = [<LockOutlined key='1' />, <UnlockOutlined key='2' />]
-    const toolbox = array('toolbox', defaultToolbox, groupId)
+stories.add(
+    'toolModal',
+    () => {
+        const groupId = 'toolmodal';
+        const defaultTitle = `ToolModal`;
+        const defaultMaskClosable = false;
+        const maskClosable = boolean('maskClosable', defaultMaskClosable, groupId);
+        const defaultFullscreen = true;
+        const fullscreen = boolean('fullscreen', defaultFullscreen, groupId);
+        const title = text('title', defaultTitle, groupId);
+        const defaultText = `i am tool modal`;
+        const children = text('children', defaultText, groupId);
+        const defaultToolbox = [<LockOutlined key="1" />, <UnlockOutlined key="2" />];
+        const toolbox = array('toolbox', defaultToolbox, groupId);
 
-    return (
-        <div className='story_wrapper'>
-            <h2>何时使用</h2>
-            <p>带有全屏以及可在 modal 上自定义一些 tool</p>
-            <h2>示例</h2>
-            <ExampleContainer
-                otherDependencies={otherDependencies}
-                code={code}
-                hasCodeSandBox={true}
-                functionCode={functionCode}
-            >
-                <Button onClick={() => {
-                    store.set({
-                        visible: !store.get('visible')
-                    })
-                }}>click me</Button>
-                <State store={store}>
-                    <ToolModal
-                        bodyStyle={{
-                            padding: '0 0 0 0',
-                            position: 'relative'
+        return (
+            <div className="story_wrapper">
+                <h2>何时使用</h2>
+                <p>带有全屏以及可在 modal 上自定义一些 tool</p>
+                <h2>示例</h2>
+                <ExampleContainer
+                    otherDependencies={otherDependencies}
+                    code={code}
+                    hasCodeSandBox={true}
+                    functionCode={functionCode}
+                >
+                    <Button
+                        onClick={() => {
+                            store.set({
+                                visible: !store.get('visible'),
+                            });
                         }}
-                        title={title}
-                        width={800}
-                        maskClosable={maskClosable}
-                        fullscreen={fullscreen}
-                        toolbox={toolbox}
-                        style={{ height: '560px' }}
-                        wrapClassName="vertical-center-modal m-log-modal dt_modal-close__icon"
-                        visible={store.get('visible')}
-                        onOk={() => { store.set({ visible: false }) }}
-                        onCancel={() => { store.set({ visible: false }) }}
                     >
-                        <p style={{ textAlign: 'center' }}>{children}</p>
-                    </ToolModal>
-                </State>
-            </ExampleContainer>
-            <p>
-                尝试在 knobs 栏调试 toolModal 组件
-            </p>
-        </div>
-    )
-}, {
-    info: {
-        text: `
+                        click me
+                    </Button>
+                    <State store={store}>
+                        <ToolModal
+                            bodyStyle={{
+                                padding: '0 0 0 0',
+                                position: 'relative',
+                            }}
+                            title={title}
+                            width={800}
+                            maskClosable={maskClosable}
+                            fullscreen={fullscreen}
+                            toolbox={toolbox}
+                            style={{ height: '560px' }}
+                            wrapClassName="vertical-center-modal m-log-modal dt_modal-close__icon"
+                            visible={store.get('visible')}
+                            onOk={() => {
+                                store.set({ visible: false });
+                            }}
+                            onCancel={() => {
+                                store.set({ visible: false });
+                            }}
+                        >
+                            <p style={{ textAlign: 'center' }}>{children}</p>
+                        </ToolModal>
+                    </State>
+                </ExampleContainer>
+                <p>尝试在 knobs 栏调试 toolModal 组件</p>
+            </div>
+        );
+    },
+    {
+        info: {
+            text: `
         代码示例：
         ~~~js
             import { ToolModal } from 'dt-react-component';
@@ -155,7 +168,8 @@ stories.add('toolModal', () => {
             </ToolModal>
         ~~~
         `,
-        propTablesExclude: [State, Button],
-        TableComponent: () => PropsTable({ propDefinitions })
+            propTablesExclude: [State, Button],
+            TableComponent: () => PropsTable({ propDefinitions }),
+        },
     }
-})
+);

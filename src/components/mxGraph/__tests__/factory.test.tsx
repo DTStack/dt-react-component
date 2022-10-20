@@ -9,14 +9,14 @@ describe('mxGraph Factory Component Tests', () => {
     test('Static Properties in Factory', () => {
         expect(MxFactory.VertexSize).toEqual({
             width: 210,
-            height: 50
+            height: 50,
         });
 
         expect(MxFactory.config).toEqual({
             mxImageBasePath: 'images',
             mxLanguage: 'none',
             mxLoadResources: false,
-            mxLoadStylesheets: false
+            mxLoadStylesheets: false,
         });
     });
 
@@ -61,7 +61,7 @@ describe('mxGraph Factory Component Tests', () => {
             fontStyle: 1,
             shape: 'rectangle',
             verticalAlign: 'middle',
-            whiteSpace: 'nowrap'
+            whiteSpace: 'nowrap',
         });
         expect(graph.getStylesheet().getDefaultEdgeStyle()).toEqual({
             align: 'center',
@@ -72,7 +72,7 @@ describe('mxGraph Factory Component Tests', () => {
             shape: 'connector',
             strokeColor: '#3f87ff',
             strokeWidth: 1,
-            verticalAlign: 'middle'
+            verticalAlign: 'middle',
         });
     });
 
@@ -83,13 +83,10 @@ describe('mxGraph Factory Component Tests', () => {
         const graph = factory.create(container, {
             tooltips: false,
             connectable: true,
-            vertexMovable: false
+            vertexMovable: false,
         });
         graph.getSelectionCell = jest.fn().mockImplementation(() => {
-            const cell = new factory.mxInstance.mxCell(
-                '',
-                new factory.mxInstance.mxGeometry(0, 0)
-            );
+            const cell = new factory.mxInstance.mxCell('', new factory.mxInstance.mxGeometry(0, 0));
             return cell;
         });
         expect(graph.tooltipHandler.enabled).toBe(false);
@@ -104,24 +101,24 @@ describe('mxGraph Factory Component Tests', () => {
         const graph = factory.create(container, {
             defaultEdgeStyle: {
                 fontSize: '12',
-                strokeWidth: 2
+                strokeWidth: 2,
             },
             defaultVertexStyle: {
                 fontSize: '14',
-                fontFamily: 'sans-serif'
-            }
+                fontFamily: 'sans-serif',
+            },
         });
 
         expect(graph.getStylesheet().getDefaultVertexStyle()).toEqual(
             expect.objectContaining({
                 fontSize: '14',
-                fontFamily: 'sans-serif'
+                fontFamily: 'sans-serif',
             })
         );
         expect(graph.getStylesheet().getDefaultEdgeStyle()).toEqual(
             expect.objectContaining({
                 fontSize: '12',
-                strokeWidth: 2
+                strokeWidth: 2,
             })
         );
     });
@@ -233,8 +230,6 @@ describe('mxGraph Factory Component Tests', () => {
             MxFactory.VertexSize.height
         );
 
-        expect(
-            container.querySelector('div[data-testid=mxGraph]')
-        ).toBeInTheDocument();
+        expect(container.querySelector('div[data-testid=mxGraph]')).toBeInTheDocument();
     });
 });

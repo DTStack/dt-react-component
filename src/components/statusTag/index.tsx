@@ -1,12 +1,7 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
-export type StatusTagType =
-    | "warning"
-    | "error"
-    | "success"
-    | "run"
-    | "stopped"
+export type StatusTagType = 'warning' | 'error' | 'success' | 'run' | 'stopped';
 
 export interface StatusTagProps {
     type?: StatusTagType;
@@ -18,8 +13,8 @@ export interface StatusTagProps {
 }
 
 const StatusTag: React.FC<StatusTagProps> = function StatusTag(props) {
-    const { className, type="success", showBorder = true, color, ...other } = props;
-    const prefixCls = "dtc-statusTag";
+    const { className, type = 'success', showBorder = true, color, ...other } = props;
+    const prefixCls = 'dtc-statusTag';
 
     const classes = classNames(`${prefixCls}`, className, {
         [`${prefixCls}__border`]: showBorder,
@@ -32,7 +27,7 @@ const StatusTag: React.FC<StatusTagProps> = function StatusTag(props) {
     return (
         <div {...other} className={classes}>
             <div className={statusClass} style={style} />
-            <span className={`${prefixCls}__text`}>{props.children || ""}</span>
+            <span className={`${prefixCls}__text`}>{props.children || ''}</span>
         </div>
     );
 };

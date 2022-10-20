@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Input, message } from 'antd';
 export interface EditInputProps {
     value?: string | number;
@@ -14,25 +14,25 @@ export default class EditInput extends React.PureComponent<EditInputProps, EditI
     constructor(props: EditInputProps) {
         super(props);
         this.state = {
-            value: ''
-        }
+            value: '',
+        };
     }
-    componentDidMount () {
+    componentDidMount() {
         this.setState({
-            value: this.props.value
-        })
+            value: this.props.value,
+        });
     }
     componentDidUpdate(preProps: EditInputProps) {
         const { value } = this.props;
         if (value != preProps.value) {
             this.setState({
-                value
-            })
+                value,
+            });
         }
     }
     onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.props.onChange(e)
-    }
+        this.props.onChange(e);
+    };
     onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
         const { max } = this.props;
@@ -40,14 +40,21 @@ export default class EditInput extends React.PureComponent<EditInputProps, EditI
             message.warning(`字符长度不可超过${max}`);
         } else {
             this.setState({
-                value
-            })
+                value,
+            });
         }
-    }
-    render () {
+    };
+    render() {
         const { value } = this.state;
         return (
-            <Input className="input" {...this.props} value={value} onChange={this.onChangeValue} onBlur={this.onChangeInput} data-testid='test-input' />
-        )
+            <Input
+                className="input"
+                {...this.props}
+                value={value}
+                onChange={this.onChangeValue}
+                onBlur={this.onChangeInput}
+                data-testid="test-input"
+            />
+        );
     }
 }

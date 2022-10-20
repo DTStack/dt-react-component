@@ -1,6 +1,6 @@
 import { assign } from 'lodash';
 import { DoubleRightOutlined } from '@ant-design/icons';
-import React from 'react'
+import React from 'react';
 
 import classNames from 'classnames';
 
@@ -25,7 +25,7 @@ class SlidePane extends React.Component<SlidePaneProps, any> {
         const slidePrefixCls = 'dtc-slide-pane';
         let myStyle: any = {
             top: 0,
-            transform: visible ? undefined : 'translate3d(150%, 0, 0)'
+            transform: visible ? undefined : 'translate3d(150%, 0, 0)',
         };
         const classes = classNames(slidePrefixCls, className);
         if (!visible) {

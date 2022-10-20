@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 const contextPrefix = 'dtc-context-menu';
 
 export interface ContextMenuProps {
@@ -15,47 +15,45 @@ export interface ContextMenuItemProps {
 }
 
 export class ContextMenuItem extends React.Component<ContextMenuItemProps, any> {
-    render () {
+    render() {
         return (
-            <li {...this.props}
-                className={`${contextPrefix}-context-list_li`}>
-                <a className={`${contextPrefix}-context-list_a`}
-                    data-value={this.props.value}>
+            <li {...this.props} className={`${contextPrefix}-context-list_li`}>
+                <a className={`${contextPrefix}-context-list_a`} data-value={this.props.value}>
                     {this.props.children}
                 </a>
             </li>
-        )
+        );
     }
 }
 
 export default class ContextMenu extends React.Component<ContextMenuProps, any> {
     constructor(props: ContextMenuProps) {
         super(props);
-        this.toggleMenu = this.toggleMenu.bind(this)
+        this.toggleMenu = this.toggleMenu.bind(this);
         this.removeMenu = this.removeMenu.bind(this);
     }
     static ContextMenuItem = ContextMenuItem;
 
     selfEle: HTMLElement;
 
-    componentDidMount () {
+    componentDidMount() {
         document.addEventListener('contextmenu', this.toggleMenu, false);
         document.addEventListener('click', this.removeMenu, false);
     }
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         document.removeEventListener('click', this.removeMenu, false);
         document.removeEventListener('contextmenu', this.toggleMenu, false);
     }
 
     toggleMenu(evt: MouseEvent) {
-        const { targetClassName, onChange } = this.props
-        const selfEle = this.selfEle
+        const { targetClassName, onChange } = this.props;
+        const selfEle = this.selfEle;
         if (!selfEle) return;
         const parent = this.findParent(evt.target as HTMLElement, targetClassName);
 
         if (parent) {
-            this.hideAll()
+            this.hideAll();
 
             let style = selfEle.style;
             style.display = 'block';
@@ -71,29 +69,29 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
                 top: ${menuTop}px;
                 left: ${pointerX}px;
                 display: block;
-            `
+            `;
             if (onChange) {
-                onChange(parent)
+                onChange(parent);
             }
             evt.preventDefault();
         }
     }
 
-    hideAll () {
-        const allEles: any = document.querySelectorAll(`.${contextPrefix}`)
+    hideAll() {
+        const allEles: any = document.querySelectorAll(`.${contextPrefix}`);
         for (let i = 0; i < allEles.length; i++) {
             allEles[i].style.display = 'none';
         }
     }
 
-    closeMenu (evt: MouseEvent) {
+    closeMenu(evt: MouseEvent) {
         if (!this.selfEle) return;
         const style = this.selfEle.style;
         style.display = 'none';
     }
 
-    removeMenu (evt: MouseEvent) {
-        if (!this.selfEle) return
+    removeMenu(evt: MouseEvent) {
+        if (!this.selfEle) return;
         const style = this.selfEle.style;
         style.display = 'none';
     }
@@ -104,25 +102,30 @@ export default class ContextMenu extends React.Component<ContextMenuProps, any> 
             selector = selector.toLowerCase();
             let node: any = child;
             while (node) {
-                if (node.nodeType === 1) { // just hand dom element
+                if (node.nodeType === 1) {
+                    // just hand dom element
                     const className = node.getAttribute('class');
                     if (className && className.includes(selector)) return node;
                 }
                 node = node.parentNode;
             }
         } catch (e) {
-            throw new Error(e)
+            throw new Error(e);
         }
         return null;
     }
 
-    render () {
+    render() {
         return (
-            <div ref={(e) => { this.selfEle = e } } className={contextPrefix} style={{ display: 'none' }}>
-                <ul className={`${contextPrefix}-context-menu_list`}>
-                    {this.props.children}
-                </ul>
+            <div
+                ref={(e) => {
+                    this.selfEle = e;
+                }}
+                className={contextPrefix}
+                style={{ display: 'none' }}
+            >
+                <ul className={`${contextPrefix}-context-menu_list`}>{this.props.children}</ul>
             </div>
-        )
+        );
     }
 }

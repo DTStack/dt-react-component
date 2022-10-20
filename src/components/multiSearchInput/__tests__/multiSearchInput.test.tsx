@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import MulSelectDropdown from '../index';
 
@@ -14,7 +14,7 @@ describe('mulSelectDropdown Component test', () => {
         expect(queryByTestId('icon-precise')).toBeNull();
     });
     it('input value change', () => {
-        const myMockChange = jest.fn(value => value);
+        const myMockChange = jest.fn((value) => value);
         const { queryByTestId } = render(
             <MulSelectDropdown searchType="tail" onChange={myMockChange} />
         );

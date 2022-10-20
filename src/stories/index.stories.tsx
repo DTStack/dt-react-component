@@ -44,15 +44,15 @@ stories
                 <h2>在线示例</h2>
                 <p>这是一个最简单的 dt-react-component 组件的在线 codesandbox 演示。</p>
                 <iframe
-                    src='https://codesandbox.io/s/dt-react-component-reproduction-template-0obrl'
+                    src="https://codesandbox.io/s/dt-react-component-reproduction-template-0obrl"
                     style={{
                         width: '100%',
                         height: '500px',
                         border: 0,
                         borderRadius: '4px',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
                     }}
-                    sandbox='allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
+                    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
                 />
 
                 <h2>贡献</h2>
@@ -76,7 +76,7 @@ stories
             </article>
         ),
         {
-            ...notShowProps(false, [FaGitlab])
+            ...notShowProps(false, [FaGitlab]),
         }
     )
     .add(
@@ -89,7 +89,7 @@ stories
             );
         },
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     )
     .add(
@@ -102,7 +102,7 @@ stories
             );
         },
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     )
     .add(
@@ -115,7 +115,7 @@ stories
             );
         },
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     )
     .add(
@@ -128,7 +128,7 @@ stories
             );
         },
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     )
     .add(
@@ -139,6 +139,6 @@ stories
             </div>
         ),
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     );

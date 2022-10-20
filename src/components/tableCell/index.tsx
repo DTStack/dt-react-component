@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export interface TableCellProps {
     value?: string;
@@ -11,14 +11,11 @@ export default function TableCell(props: TableCellProps) {
         backgroundColor: 'transparent',
         backgroundImage: 'none',
         width: '100%',
-        border: 'none'
-    }
+        border: 'none',
+    };
 
     const { style } = props;
     let newStyle: any = { ...originStyle, ...style };
 
-    return <textarea
-        {...props}
-        style={newStyle}
-    />
+    return <textarea {...props} style={newStyle} />;
 }

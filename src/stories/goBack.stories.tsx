@@ -6,7 +6,7 @@ import { PropsTable } from './components/propsTable';
 import ExampleContainer from './components/exampleCode';
 import GoBack from '../components/goBack';
 
-const { GoBackButton } = GoBack
+const { GoBackButton } = GoBack;
 
 const stories = storiesOf('GoBack 返回', module);
 stories.addDecorator(withKnobs);
@@ -17,15 +17,15 @@ const propDefinitions = [
         propType: 'string',
         required: false,
         description: '返回的路由， 如不传参数，则默认返回浏览器上一级url',
-        defaultValue: ''
+        defaultValue: '',
     },
     {
         property: 'autoClose',
         propType: 'boolean',
         required: false,
         description: '是否关闭浏览器窗口',
-        defaultValue: 'false'
-    }
+        defaultValue: 'false',
+    },
 ];
 
 const propButtonDefinitions = [
@@ -34,8 +34,8 @@ const propButtonDefinitions = [
         propType: 'string',
         required: false,
         description: '显示文字',
-        defaultValue: '返回'
-    }
+        defaultValue: '返回',
+    },
 ];
 
 const otherDependencies = `import { GoBack } from 'dt-react-component';`;
@@ -53,7 +53,11 @@ stories
                     <p>返回匹配的路由， 默认返回浏览器上一级路由</p>
                     <h2>示例</h2>
                     <p>点击我试试看</p>
-                    <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox={true}>
+                    <ExampleContainer
+                        otherDependencies={otherDependencies}
+                        code={code}
+                        hasCodeSandBox={true}
+                    >
                         <GoBack />
                     </ExampleContainer>
                 </div>
@@ -67,8 +71,8 @@ stories
                     <GoBack url='/api/manage' />
                     ~~~
                 `,
-                TableComponent: () => PropsTable({ propDefinitions })
-            }
+                TableComponent: () => PropsTable({ propDefinitions }),
+            },
         }
     )
     .add(
@@ -80,7 +84,11 @@ stories
                     <p>返回匹配的路由， 默认返回浏览器上一级路由</p>
                     <h2>示例</h2>
                     <p>点击我试试看</p>
-                    <ExampleContainer otherDependencies={buttonDependencies} code={buttonCode} hasCodeSandBox={true}>
+                    <ExampleContainer
+                        otherDependencies={buttonDependencies}
+                        code={buttonCode}
+                        hasCodeSandBox={true}
+                    >
                         <GoBackButton />
                     </ExampleContainer>
                 </div>
@@ -94,7 +102,7 @@ stories
                     <GoBackButton title='返回上一级页面' />
                     ~~~
                 `,
-                TableComponent: () => PropsTable({ propDefinitions: propButtonDefinitions })
-            }
+                TableComponent: () => PropsTable({ propDefinitions: propButtonDefinitions }),
+            },
         }
     );

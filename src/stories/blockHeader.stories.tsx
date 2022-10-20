@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { PropsTable } from './components/propsTable';
 import BlockHeaderRender from './components/blockHeader';
 
 const stories = storiesOf('Header 头部内容', module);
-stories.addDecorator(withKnobs)
+stories.addDecorator(withKnobs);
 
 const propDefinitions = [
     {
@@ -13,83 +13,86 @@ const propDefinitions = [
         propType: 'string',
         required: true,
         description: '标题',
-        defaultValue: '-'
+        defaultValue: '-',
     },
     {
         property: 'beforeTitle',
         propType: 'React.ReactNode',
         required: false,
         description: '标题前的图标，默认是一个色块',
-        defaultValue: '-'
+        defaultValue: '-',
     },
     {
         property: 'afterTitle',
         propType: 'string | React.ReactNode',
         required: false,
         description: '标题后的提示图标或文案',
-        defaultValue: '-'
+        defaultValue: '-',
     },
     {
         property: 'isSmall',
         propType: 'boolean',
         required: false,
         description: '大标题、小标题',
-        defaultValue: 'false'
+        defaultValue: 'false',
     },
     {
         property: 'titleRowClassName',
         propType: 'string',
         required: false,
         description: '标题一行的样式类名',
-        defaultValue: '-'
+        defaultValue: '-',
     },
     {
         property: 'titleClassName',
         propType: 'string',
         required: false,
         description: '标题的样式类名',
-        defaultValue: '-'
+        defaultValue: '-',
     },
     {
         property: 'showBackground',
         propType: 'boolean',
         required: false,
         description: '是否显示背景',
-        defaultValue: 'true'
+        defaultValue: 'true',
     },
     {
         property: 'defaultExpand',
         propType: 'boolean',
         required: false,
         description: '是否默认展开内容',
-        defaultValue: 'true'
+        defaultValue: 'true',
     },
     {
         property: 'children',
         propType: 'React.ReactNode',
         required: false,
         description: '展开/收起的内容',
-        defaultValue: '-'
+        defaultValue: '-',
     },
     {
         property: 'onChange',
         propType: 'Function',
         required: false,
         description: '展开/收起时的回调',
-        defaultValue: '(expand) => {}'
-    }
-]
+        defaultValue: '(expand) => {}',
+    },
+];
 
-stories.add('BlockHeader 标题', () => (
-    <div className='story_wrapper'>
-        <h2>何时使用</h2>
-        <p>{`适合使用在需要简单描述的场景，或适用于将大量数据按照模块划分的场景。`}</p>
-        <h2>示例</h2>
-        <BlockHeaderRender />
-    </div>
-), {
-    info: {
-        text: `
+stories.add(
+    'BlockHeader 标题',
+    () => (
+        <div className="story_wrapper">
+            <h2>何时使用</h2>
+            <p>{`适合使用在需要简单描述的场景，或适用于将大量数据按照模块划分的场景。`}</p>
+            <h2>示例</h2>
+            <BlockHeaderRender />
+        </div>
+    ),
+    {
+        info: {
+            text: `
             代码示例：
             ~~~js
             <p style={style}>1、默认大标题</p>
@@ -145,6 +148,7 @@ stories.add('BlockHeader 标题', () => (
             />
             ~~~
         `,
-        TableComponent: () => PropsTable({ propDefinitions })
+            TableComponent: () => PropsTable({ propDefinitions }),
+        },
     }
-})
+);

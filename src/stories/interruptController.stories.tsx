@@ -6,20 +6,19 @@ import { PropsTable } from './components/propsTable';
 const stories = storiesOf('Interrupt 中止请求', module);
 stories.addDecorator(withKnobs);
 
-stories
-    .add(
-        '@InterruptController',
-        () => {
-            return (
-                <div className="story_wrapper">
-                    <h2>何时使用</h2>
-                    <p>「切换路由」或「销毁页面」时中止还在 pending 中的请求</p>
-                </div>
-            );
-        },
-        {
-            info: {
-                text: `
+stories.add(
+    '@InterruptController',
+    () => {
+        return (
+            <div className="story_wrapper">
+                <h2>何时使用</h2>
+                <p>「切换路由」或「销毁页面」时中止还在 pending 中的请求</p>
+            </div>
+        );
+    },
+    {
+        info: {
+            text: `
                     在 class 组件中使用：
                     ~~~js
                     interface IProps {
@@ -56,7 +55,7 @@ stories
                     }
                     ~~~
                 `,
-                TableComponent: () => PropsTable({})
-            }
-        }
-    )
+            TableComponent: () => PropsTable({}),
+        },
+    }
+);

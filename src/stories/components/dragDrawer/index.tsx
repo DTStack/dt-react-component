@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Button } from 'antd';
 import { State, Store } from '@sambego/storybook-state';
-import  DragDrawer  from '../../../components/dragDrawer';
-const drawerStr = '这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容'
+import DragDrawer from '../../../components/dragDrawer';
+const drawerStr =
+    '这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容, 这里有很长的一段内容';
 const store = new Store({
     visible1: false,
     visible2: false,
@@ -11,17 +12,13 @@ const store = new Store({
     drawerStr,
 });
 
-export default function DragDrawerRender () {
+export default function DragDrawerRender() {
     const style = {
-        margin: '15px 0 10px'
-    }
+        margin: '15px 0 10px',
+    };
     const drawerRender = (str) => {
-        return (
-            <div style={{ fontSize: 18, lineHeight: 3, padding: 24 }}>
-                {str}
-            </div>
-        )
-    }
+        return <div style={{ fontSize: 18, lineHeight: 3, padding: 24 }}>{str}</div>;
+    };
 
     return (
         <React.Fragment>
@@ -29,8 +26,17 @@ export default function DragDrawerRender () {
             <State store={store}>
                 {(state) => (
                     <React.Fragment>
-                        <Button type="primary" onClick={() => store.set({ visible1: !state.visible1 })}>{state.visible1 ? '关闭' : '打开'}</Button>
-                        <DragDrawer visible={state.visible1} closable onClose={() => store.set({ visible1: false })}>
+                        <Button
+                            type="primary"
+                            onClick={() => store.set({ visible1: !state.visible1 })}
+                        >
+                            {state.visible1 ? '关闭' : '打开'}
+                        </Button>
+                        <DragDrawer
+                            visible={state.visible1}
+                            closable
+                            onClose={() => store.set({ visible1: false })}
+                        >
                             {drawerRender(state.drawerStr)}
                         </DragDrawer>
                     </React.Fragment>
@@ -41,8 +47,18 @@ export default function DragDrawerRender () {
             <State store={store}>
                 {(state) => (
                     <React.Fragment>
-                        <Button type="primary" onClick={() => store.set({ visible2: !state.visible2 })}>{state.visible2 ? '关闭' : '打开'}</Button>
-                        <DragDrawer draggable={false} visible={state.visible2} width={500} onClose={() => store.set({ visible2: false })}>
+                        <Button
+                            type="primary"
+                            onClick={() => store.set({ visible2: !state.visible2 })}
+                        >
+                            {state.visible2 ? '关闭' : '打开'}
+                        </Button>
+                        <DragDrawer
+                            draggable={false}
+                            visible={state.visible2}
+                            width={500}
+                            onClose={() => store.set({ visible2: false })}
+                        >
                             {drawerRender(state.drawerStr)}
                         </DragDrawer>
                     </React.Fragment>
@@ -53,11 +69,32 @@ export default function DragDrawerRender () {
             <State store={store}>
                 {(state) => (
                     <React.Fragment>
-                        <Button type="primary" onClick={() => store.set({ visible3: !state.visible3 })}>{state.visible3 ? '关闭' : '打开'}</Button>
-                        {
-                            state.visible3 && (<Button type="primary" style={{ marginLeft: 12 }} onClick={() => store.set({ drawerStr: state.drawerStr === '我是新的抽屉内容' ? drawerStr : '我是新的抽屉内容' })}>更换内容</Button>)
-                        }
-                        <DragDrawer visible={state.visible3} onClose={() => store.set({ visible3: false })}>
+                        <Button
+                            type="primary"
+                            onClick={() => store.set({ visible3: !state.visible3 })}
+                        >
+                            {state.visible3 ? '关闭' : '打开'}
+                        </Button>
+                        {state.visible3 && (
+                            <Button
+                                type="primary"
+                                style={{ marginLeft: 12 }}
+                                onClick={() =>
+                                    store.set({
+                                        drawerStr:
+                                            state.drawerStr === '我是新的抽屉内容'
+                                                ? drawerStr
+                                                : '我是新的抽屉内容',
+                                    })
+                                }
+                            >
+                                更换内容
+                            </Button>
+                        )}
+                        <DragDrawer
+                            visible={state.visible3}
+                            onClose={() => store.set({ visible3: false })}
+                        >
                             {drawerRender(state.drawerStr)}
                         </DragDrawer>
                     </React.Fragment>
@@ -68,13 +105,23 @@ export default function DragDrawerRender () {
             <State store={store}>
                 {(state) => (
                     <React.Fragment>
-                        <Button type="primary" onClick={() => store.set({ visible4: !state.visible4 })}>{state.visible4 ? '关闭' : '打开'}</Button>
-                        <DragDrawer draggable={false} mask visible={state.visible4} onClose={() => store.set({ visible4: false })}>
+                        <Button
+                            type="primary"
+                            onClick={() => store.set({ visible4: !state.visible4 })}
+                        >
+                            {state.visible4 ? '关闭' : '打开'}
+                        </Button>
+                        <DragDrawer
+                            draggable={false}
+                            mask
+                            visible={state.visible4}
+                            onClose={() => store.set({ visible4: false })}
+                        >
                             {drawerRender(state.drawerStr)}
                         </DragDrawer>
                     </React.Fragment>
                 )}
             </State>
         </React.Fragment>
-    )
+    );
 }
