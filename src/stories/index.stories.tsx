@@ -12,9 +12,9 @@ const planHtml = require('./markdown/plan.md');
 const { name, repository, version } = require('../../package.json');
 const summaryComponent = require('../components/index');
 const getComponentNum = (): number => {
-    let componentKey = [];
+    const componentKey = [];
     if (summaryComponent) {
-        for (let key in summaryComponent) {
+        for (const key in summaryComponent) {
             if (summaryComponent.hasOwnProperty(key)) {
                 componentKey.push(key);
             }
@@ -23,10 +23,6 @@ const getComponentNum = (): number => {
     return componentKey.length;
 };
 const isGitlab = repository.includes('gitlab');
-console.log(
-    '%c欢迎使用 dt-react-component\n使用过程中如有问题欢迎联系 qingyi@dtstack.com ',
-    'color:#2517b1'
-);
 const stories = storiesOf('综述', module);
 stories
     .add(
@@ -48,15 +44,15 @@ stories
                 <h2>在线示例</h2>
                 <p>这是一个最简单的 dt-react-component 组件的在线 codesandbox 演示。</p>
                 <iframe
-                    src='https://codesandbox.io/s/dt-react-component-reproduction-template-0obrl'
+                    src="https://codesandbox.io/s/dt-react-component-reproduction-template-0obrl"
                     style={{
                         width: '100%',
                         height: '500px',
                         border: 0,
                         borderRadius: '4px',
-                        overflow: 'hidden'
+                        overflow: 'hidden',
                     }}
-                    sandbox='allow-modals allow-forms allow-popups allow-scripts allow-same-origin'
+                    sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
                 />
 
                 <h2>贡献</h2>
@@ -80,7 +76,7 @@ stories
             </article>
         ),
         {
-            ...notShowProps(false, [FaGitlab])
+            ...notShowProps(false, [FaGitlab]),
         }
     )
     .add(
@@ -93,7 +89,7 @@ stories
             );
         },
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     )
     .add(
@@ -106,7 +102,7 @@ stories
             );
         },
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     )
     .add(
@@ -119,7 +115,7 @@ stories
             );
         },
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     )
     .add(
@@ -132,7 +128,7 @@ stories
             );
         },
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     )
     .add(
@@ -143,6 +139,6 @@ stories
             </div>
         ),
         {
-            ...notShowProps(false, [MarkdownRender])
+            ...notShowProps(false, [MarkdownRender]),
         }
     );

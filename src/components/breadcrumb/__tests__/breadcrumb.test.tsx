@@ -1,24 +1,24 @@
-import React from 'react'
+import React from 'react';
 import Breadcrumb from '../index';
-import { render, fireEvent, cleanup } from '@testing-library/react'
+import { render, fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { createMemoryHistory, Router, Route, IndexRoute } from 'react-router'
+import { createMemoryHistory, Router, Route, IndexRoute } from 'react-router';
 
 const defaultProps = {
     routes: [
         {
             name: 'home',
-            path: '/home'
+            path: '/home',
         },
         {
             name: 'about',
-            path: '/about'
-        }
+            path: '/about',
+        },
     ],
     style: {
-        backgroundColor: '#dedede'
-    }
-}
+        backgroundColor: '#dedede',
+    },
+};
 
 const App = (props) => {
     return (
@@ -26,34 +26,39 @@ const App = (props) => {
             {<Breadcrumb {...defaultProps} />}
             {props.children}
         </div>
-    )
-}
-const About = () => <h1>about page</h1>
-const Home = () => <h1>home page</h1>
+    );
+};
+const About = () => <h1>about page</h1>;
+const Home = () => <h1>home page</h1>;
 
 describe('test breadcrumb', () => {
     afterEach(() => {
         cleanup();
-    })
+    });
 
     test('should support BreadCrumb render correct with defaultProps', () => {
         const { container } = render(<Breadcrumb {...defaultProps} />);
         expect(container.querySelector('.dtc-breadcrumb')).toHaveStyle('background-color: #dedede');
         expect(container.querySelector('.anticon-right')).toHaveAttribute('aria-label', 'right');
         expect(container.firstChild).toMatchSnapshot();
-    })
+    });
 
     test('should support Breadcrumb custom separator', () => {
-        const { container } = render(<Breadcrumb separator=">" {...defaultProps}/>);
+        const { container } = render(<Breadcrumb separator=">" {...defaultProps} />);
         expect(container.querySelector('.ant-breadcrumb-separator')).toHaveTextContent('>');
-    })
+    });
     test('should support Breadcrumb custom CSSProperties', () => {
-        const { container } = render(<Breadcrumb {...defaultProps} style = {{ background: '#333', color: '#000' }} />);
-        expect(container.querySelector('.dtc-breadcrumb')).toHaveStyle({ background: '#333', color: '#000' });
-    })
+        const { container } = render(
+            <Breadcrumb {...defaultProps} style={{ background: '#333', color: '#000' }} />
+        );
+        expect(container.querySelector('.dtc-breadcrumb')).toHaveStyle({
+            background: '#333',
+            color: '#000',
+        });
+    });
 
     test('should support Breadcrumb navigate to home router when click ', () => {
-        const history = createMemoryHistory()
+        const history = createMemoryHistory();
         const { container, getByTestId } = render(
             <Router history={history}>
                 <Route path="/" component={App}>
@@ -63,8 +68,8 @@ describe('test breadcrumb', () => {
                 </Route>
             </Router>
         );
-        expect(container.innerHTML).toMatch('about')
-        fireEvent.click(getByTestId('/home-link'))
-        expect(container.innerHTML).toMatch('home page')
-    })
-})
+        expect(container.innerHTML).toMatch('about');
+        fireEvent.click(getByTestId('/home-link'));
+        expect(container.innerHTML).toMatch('home page');
+    });
+});

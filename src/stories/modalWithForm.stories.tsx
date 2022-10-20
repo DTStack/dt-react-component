@@ -13,7 +13,7 @@ const propDefinitions = [
         propType: 'Function',
         required: true,
         description: '控制模态框的显示影藏',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'onSubmit',
@@ -21,112 +21,112 @@ const propDefinitions = [
         required: false,
         description:
             '点击确定按钮后，表单的值验证无误后的回调，接受两个参数value:表单的值，record:其他想要提交的值',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'cancelText',
         propType: 'string',
         required: false,
         description: '模态框取消按钮的文本',
-        defaultValue: '取消'
+        defaultValue: '取消',
     },
     {
         property: 'okText',
         propType: 'string',
         required: false,
         description: '模态框确定按钮的文本',
-        defaultValue: '确定'
+        defaultValue: '确定',
     },
     {
         property: 'okType',
         propType: 'string',
         required: false,
         description: '确认按钮类型',
-        defaultValue: 'primary'
+        defaultValue: 'primary',
     },
     {
         property: 'record',
         propType: 'string | number | object',
         required: false,
         description: '其他想要提交的参数',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'visible',
         propType: 'boolean',
         required: false,
         description: '模态框显示隐藏的状态',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'title',
         propType: 'React.ReactNode | string',
         required: false,
         description: '标题',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'onCancel',
         propType: 'Function',
         required: false,
         description: '点击取消的回调',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'width',
         propType: 'string | number',
         required: false,
         description: 'modal宽度',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'modelClass',
         propType: 'string',
         required: false,
         description: 'modal样式类名',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'FormComponent',
         propType: 'FormComponentProps',
         required: true,
         description: '传入模态框的表单元素',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'footer',
         propType: 'string | React.ReactNode',
         required: false,
         description: '底部内容，当不需要默认底部按钮时，可以设为 footer={null}',
-        defaultValue: '确定取消按钮'
+        defaultValue: '确定取消按钮',
     },
     {
         property: 'centered',
         propType: 'Boolean',
         required: false,
         description: '垂直居中展示 Modal',
-        defaultValue: 'false'
+        defaultValue: 'false',
     },
     {
         property: 'cancelButtonProps',
         propType: 'ButtonProps',
         required: false,
         description: 'cancel 按钮 props',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'notSubmitCloseModal',
         propType: 'Boolean',
         require: false,
         description: '禁止提交后自动关闭modal',
-        defaultValue: 'false'
+        defaultValue: 'false',
     },
     {
         property: 'confirmLoading',
         propType: 'Boolean',
         require: false,
         description: '确定按钮 loading',
-        defaultValue: 'false'
+        defaultValue: 'false',
     },
     {
         property: '其他参数',
@@ -134,16 +134,16 @@ const propDefinitions = [
         required: false,
         description: (
             <a
-                target='_blank'
-                rel='noopener noreferrer'
-                href='https://ant.design/components/form-cn/#API'
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://ant.design/components/form-cn/#API"
             >
                 继承antd4.x的Form
             </a>
         ),
-        defaultValue: ''
-    }
-]
+        defaultValue: '',
+    },
+];
 
 const otherDependencies = `import { ModalWithForm } from 'dt-react-component';import { Form, Input } from 'antd';`;
 
@@ -180,18 +180,27 @@ const basicModalWithForm = `
             />
 `;
 
-stories.add('ModalWithForm', () => (
-    <div className='story_wrapper'>
-        <h2>何时使用</h2>
-        <p>{`当需要在模态框中收集用户的表单信息，可以在这个组件中传入自己想要的表单元素`}</p>
-        <h2>示例</h2>
-        <ExampleContainer otherDependencies={otherDependencies} code={basicModalWithForm} functionCode={basicFunctionCode} otherCode={basicOtherCode} hasCodeSandBox={true}>
-            <ModalWithForm />
-        </ExampleContainer>
-    </div>
-), {
-    info: {
-        text: `
+stories.add(
+    'ModalWithForm',
+    () => (
+        <div className="story_wrapper">
+            <h2>何时使用</h2>
+            <p>{`当需要在模态框中收集用户的表单信息，可以在这个组件中传入自己想要的表单元素`}</p>
+            <h2>示例</h2>
+            <ExampleContainer
+                otherDependencies={otherDependencies}
+                code={basicModalWithForm}
+                functionCode={basicFunctionCode}
+                otherCode={basicOtherCode}
+                hasCodeSandBox
+            >
+                <ModalWithForm />
+            </ExampleContainer>
+        </div>
+    ),
+    {
+        info: {
+            text: `
             代码示例: \n
             示例1 带表单的对话框
             ~~~js
@@ -287,6 +296,7 @@ stories.add('ModalWithForm', () => (
             }
             ~~~
         `,
-        TableComponent: () => PropsTable({ propDefinitions })
+            TableComponent: () => PropsTable({ propDefinitions }),
+        },
     }
-})
+);

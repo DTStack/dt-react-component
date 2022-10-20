@@ -49,6 +49,69 @@ jobs:
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: yarn
 
+  eslint:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Restore cache from yarn.lock
+        uses: actions/cache@v2
+        with:
+          path: package-temp-dir
+          key: lock-${{ github.sha }}
+
+      - name: Restore cache from node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
+
+      - name: Run ESlint
+        run: yarn eslint
+
+  stylelint:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Restore cache from yarn.lock
+        uses: actions/cache@v2
+        with:
+          path: package-temp-dir
+          key: lock-${{ github.sha }}
+
+      - name: Restore cache from node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
+
+      - name: Run Stylelint
+        run: yarn stylelint
+
+  lint-doc:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Restore cache from yarn.lock
+        uses: actions/cache@v2
+        with:
+          path: package-temp-dir
+          key: lock-${{ github.sha }}
+
+      - name: Restore cache from node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
+
+      - name: Run Doc Lint
+        run: yarn lint-doc
+
   check-types:
     needs: [setup]
     runs-on: ubuntu-latest
@@ -69,27 +132,6 @@ jobs:
 
       - name: Run Check Types
         run: yarn check-types
-
-  eslint:
-    needs: [setup]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Restore cache from yarn.lock
-        uses: actions/cache@v2
-        with:
-          path: package-temp-dir
-          key: lock-${{ github.sha }}
-
-      - name: Restore cache from node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
-
-      - name: Run ESlint
-        run: yarn lint
 
   test:
     runs-on: ubuntu-latest

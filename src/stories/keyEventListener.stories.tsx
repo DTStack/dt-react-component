@@ -13,16 +13,16 @@ const propDefinitions = [
         propType: 'object',
         required: false,
         description:
-      '监听的一组 key map，eg: { 70: true, 91: true, 16: true } 则表示监听 command+shift+f 组合键',
-        defaultValue: ''
+            '监听的一组 key map，eg: { 70: true, 91: true, 16: true } 则表示监听 command+shift+f 组合键',
+        defaultValue: '',
     },
     {
         property: 'onTrigger',
         propType: 'function',
         required: false,
         description: '触发事件',
-        defaultValue: ''
-    }
+        defaultValue: '',
+    },
 ];
 
 const keyListenerPropDefinitions = [
@@ -31,15 +31,15 @@ const keyListenerPropDefinitions = [
         propType: 'function',
         required: false,
         description: '触发键盘按下事件',
-        defaultValue: ''
+        defaultValue: '',
     },
     {
         property: 'onKeyUp',
         propType: 'function',
         required: false,
         description: '触发键盘弹起事件',
-        defaultValue: ''
-    }
+        defaultValue: '',
+    },
 ];
 
 const stories = storiesOf('KeyEventListener 键盘监听', module);
@@ -70,17 +70,13 @@ const { KeyCombiner } = KeyEventListener`;
                 <h2>何时使用</h2>
                 <p>监听键盘事件</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox={true}
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <KeyCombiner
                         onTrigger={keyAction}
                         keyMap={{
                             70: true,
                             91: true,
-                            16: true
+                            16: true,
                         }}
                     >
                         {<div>尝试按下 command+shift+f 看看控制台是否监听了键盘事件</div>}
@@ -103,8 +99,8 @@ const { KeyCombiner } = KeyEventListener`;
         </KeyCombiner>
         ~~~
         `,
-            TableComponent: () => PropsTable({ propDefinitions })
-        }
+            TableComponent: () => PropsTable({ propDefinitions }),
+        },
     }
 );
 
@@ -132,16 +128,11 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>监听键盘事件</p>
                 <h2>示例</h2>
-                <ExampleContainer
-                    otherDependencies={otherDependencies}
-                    code={code}
-                    hasCodeSandBox={true}
-                >
+                <ExampleContainer otherDependencies={otherDependencies} code={code} hasCodeSandBox>
                     <KeyEventListener onKeyDown={onkeyDown}>
                         {<div>尝试按下任意键盘，看看控制台打印结果</div>}
                     </KeyEventListener>
                 </ExampleContainer>
-
             </div>
         );
     },
@@ -155,8 +146,7 @@ stories.add(
         </KeyEventListener>
         ~~~
         `,
-            TableComponent: () =>
-                PropsTable({ propDefinitions: keyListenerPropDefinitions })
-        }
+            TableComponent: () => PropsTable({ propDefinitions: keyListenerPropDefinitions }),
+        },
     }
 );

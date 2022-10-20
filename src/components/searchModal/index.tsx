@@ -33,7 +33,7 @@ class SearchModal extends React.Component<SearchModalProps, any> {
             title = '搜索并打开',
             prefixRender,
             dataSource = [],
-            bodyStyle,
+            // bodyStyle,
             placeholder = '请输入',
             ...rest
         } = this.props;

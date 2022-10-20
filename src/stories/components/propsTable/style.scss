@@ -1,21 +1,18 @@
-table {
-    font-family: sfmono-regular,Consolas,liberation mono,Menlo,Courier,monospace;
-    border-collapse: collapse;
-    margin: 0 auto;
-}
 table td, table th {
-    border: 1px solid #ebedf0;
+    border: 1px solid #EBEDF0;
     color: #666;
     padding: 12px;
     font-size: 13px;
 }
 
 table {
+    font-family: sfmono-regular, Consolas, "liberation mono", Menlo, Courier, monospace;
+    border-collapse: collapse;
+    margin: 0 auto;
     thead th {
-        background-color: rgba(0,0,0,.02);
+        background-color: rgba(0, 0, 0, 0.02);
         width: 100px;
     }
-
     tbody {
         tr {
             font-weight: 400;
@@ -23,13 +20,13 @@ table {
                 font-weight: bold;
             }
             td:nth-child(3) {
-                color: #c41d7f;
+                color: #C41D7F;
                 font-size: 13px;
                 word-break: break-all;
             }
         }
         tr:hover {
-            background: rgba(60,90,100,.04);
+            background: rgba(60, 90, 100, 0.04);
         }
     }
 }

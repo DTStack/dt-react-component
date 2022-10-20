@@ -7,7 +7,7 @@ export interface GoBackProps {
     style?: React.CSSProperties;
     history?: boolean;
 }
-export interface GoBackButtonProps extends GoBackProps{
+export interface GoBackButtonProps extends GoBackProps {
     title?: string;
 }
 

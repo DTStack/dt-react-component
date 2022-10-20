@@ -13,29 +13,29 @@ const propDefinitions = [
         propType: 'string',
         required: false,
         description: '设置状态类型，可选值为 warning、error、success、run、stopped',
-        defaultValue: 'success'
+        defaultValue: 'success',
     },
     {
         property: 'showBorder',
         propType: 'boolean',
         required: false,
         description: '是否展示外面的border',
-        defaultValue: 'true'
+        defaultValue: 'true',
     },
     {
         property: 'color',
         propType: 'string',
         required: false,
         description: '自定义颜色(当 type 所支持的颜色不满足时可用，优先级更高)',
-        defaultValue: '-'
+        defaultValue: '-',
     },
     {
         property: 'onClick',
         propType: '() => void',
         required: false,
         description: '点击事件',
-        defaultValue: '-'
-    }
+        defaultValue: '-',
+    },
 ];
 
 const otherDependencies = `import { StatusTag } from 'dt-react-component';`;
@@ -50,9 +50,9 @@ const noBorderCode = `<StatusTag type="run" showBorder={false}>运行中</Status
             <StatusTag type="stopped" showBorder={false}>取消</StatusTag>
             <StatusTag type="warning" showBorder={false}>等待提交</StatusTag>`;
 const customizeCode = `<StatusTag type="run" color="#bc84a8">运行中</StatusTag>
-            <StatusTag type="run" color="#2177b8" showBorder={false}>运行中</StatusTag>`
+            <StatusTag type="run" color="#2177b8" showBorder={false}>运行中</StatusTag>`;
 const circleCode = `<StatusTag type="run" showBorder={false}/>
-            <StatusTag color="#2177b8" showBorder={false}/>`
+            <StatusTag color="#2177b8" showBorder={false}/>`;
 
 stories.add(
     'StatusTag',
@@ -65,7 +65,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={typeCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
                     <StatusTag type="run">运行中</StatusTag>
                     <StatusTag type="success">成功</StatusTag>
@@ -77,31 +77,45 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={noBorderCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
-                    <StatusTag type="run" showBorder={false}>运行中</StatusTag>
-                    <StatusTag type="error" showBorder={false}>运行失败</StatusTag>
-                    <StatusTag type="success" showBorder={false}>成功</StatusTag>
-                    <StatusTag type="stopped" showBorder={false}>取消</StatusTag>
-                    <StatusTag type="warning" showBorder={false}>等待提交</StatusTag>
+                    <StatusTag type="run" showBorder={false}>
+                        运行中
+                    </StatusTag>
+                    <StatusTag type="error" showBorder={false}>
+                        运行失败
+                    </StatusTag>
+                    <StatusTag type="success" showBorder={false}>
+                        成功
+                    </StatusTag>
+                    <StatusTag type="stopped" showBorder={false}>
+                        取消
+                    </StatusTag>
+                    <StatusTag type="warning" showBorder={false}>
+                        等待提交
+                    </StatusTag>
                 </ExampleContainer>
                 <h2>自定义颜色</h2>
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={customizeCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
-                    <StatusTag type="run" color="#bc84a8">运行中</StatusTag>
-                    <StatusTag type="run" color="#2177b8" showBorder={false}>运行中</StatusTag>
+                    <StatusTag type="run" color="#bc84a8">
+                        运行中
+                    </StatusTag>
+                    <StatusTag type="run" color="#2177b8" showBorder={false}>
+                        运行中
+                    </StatusTag>
                 </ExampleContainer>
                 <h2>圆点使用</h2>
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={circleCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                 >
-                    <StatusTag type="run" showBorder={false}/>
-                    <StatusTag color="#2177b8" showBorder={false}/>
+                    <StatusTag type="run" showBorder={false} />
+                    <StatusTag color="#2177b8" showBorder={false} />
                 </ExampleContainer>
             </div>
         );
@@ -121,7 +135,7 @@ stories.add(
         <StatusTag type="run" showBorder={false}/>
         ~~~
         `,
-            TableComponent: () => PropsTable({ propDefinitions })
-        }
+            TableComponent: () => PropsTable({ propDefinitions }),
+        },
     }
 );

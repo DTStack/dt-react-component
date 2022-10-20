@@ -1,26 +1,26 @@
-$prefix: 'dtc-slide-pane';
+$prefix: "dtc-slide-pane";
 
 .#{$prefix} {
-    background: #FFFFFF;
-    border-left: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    box-shadow: -2px 0 2px 0 rgba(0,0,0,0.10);
+    background: #FFF;
+    border-left: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    box-shadow: -2px 0 2px 0 rgba(0, 0, 0, 0.1);
     position: absolute;
     display: inline-block;
-    transition: transform .3s ease-in;
+    transition: transform 0.3s ease-in;
     z-index: 99;
     &.l-#{$prefix}--fixed {
         position: fixed;
-        top:0px;
-        right: 0px;
+        top: 0;
+        right: 0;
     }
     .#{$prefix}-conent {
         position: relative;
     }
 
     .#{$prefix}-toggle {
-        background: #EEEEEE;
-        border: 1px solid #DDDDDD;
+        background: #EEE;
+        border: 1px solid #DDD;
         width: 18px;
         font-size: 12px;
         height: 50px;
@@ -32,8 +32,7 @@ $prefix: 'dtc-slide-pane';
         margin: auto;
         cursor: pointer;
         position: absolute;
-
-        > i { 
+        > i {
             margin: auto;
             top: 0;
             left: 0;

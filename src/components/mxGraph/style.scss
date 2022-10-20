@@ -1,19 +1,16 @@
 .dtc-graph-editor {
     position: relative;
     height: 100%;
-    background-color: #fff;
-
+    background-color: #FFF;
     .dtc-task-graph {
         height: 100%;
     }
-
     .ant-spin-container {
         height: 100%;
     }
-
     .dtc-graph-widgets {
-        background: #fff;
-        border: 1px solid #ddd;
+        background: #FFF;
+        border: 1px solid #DDD;
         max-height: 517px;
         left: 20px;
         overflow: auto;
@@ -23,7 +20,6 @@
         width: 150px;
         z-index: 3;
     }
-
     .dtc-graph-bottom {
         position: absolute;
         bottom: 0;
@@ -31,7 +27,6 @@
         border-radius: 0;
         width: 100%;
     }
-
     .dtc-graph-toolbar {
         position: absolute;
         top: 20px;

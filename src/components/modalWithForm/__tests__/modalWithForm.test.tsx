@@ -5,26 +5,26 @@ import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 const FormItem = Form.Item;
-const EnhancedModal = ModalWithForm(props => {
+const EnhancedModal = ModalWithForm((_props) => {
     return (
-        <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
+        <FormItem label="test-label" name="test" rules={[{ max: 10 }]}>
             <Input data-testid="test-input" />)
         </FormItem>
     );
 });
 
 class App extends React.Component<any, any> {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
-            visible: false
+            visible: false,
         };
     }
     hideModalHandler = () => {
         const { visible } = this.state;
         this.setState({ visible: !visible });
     };
-    render () {
+    render() {
         return (
             <>
                 <button onClick={this.hideModalHandler}>click</button>

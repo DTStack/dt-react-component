@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { UpOutlined } from '@ant-design/icons'
+import { UpOutlined } from '@ant-design/icons';
 
 export interface BlockHeaderProps {
     // 标题
@@ -38,51 +37,42 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         showBackground = true,
         defaultExpand = true,
         children = '',
-        onChange
+        onChange,
     } = props;
-    const {
-        beforeTitle = (<div className={`default ${isSmall ? 'small' : ''}`}></div>),
-    } = props
+    const { beforeTitle = <div className={`default ${isSmall ? 'small' : ''}`}></div> } = props;
     const [expand, setExpand] = useState(defaultExpand);
 
     const handleExpand = (expand) => {
-        if (!children) return
+        if (!children) return;
         setExpand(expand);
         onChange?.(expand);
-    }
+    };
     return (
-        <div
-            className={`${prefixCls}`}
-        >
-            <div className={`${prefixCls}-title-row ${isSmall ? 'small' : 'default'} ${showBackground ? 'background' : ''} ${children ? 'pointer' : ''} ${titleRowClassName}`} onClick={() => handleExpand(!expand)}>
+        <div className={`${prefixCls}`}>
+            <div
+                className={`${prefixCls}-title-row ${isSmall ? 'small' : 'default'} ${
+                    showBackground ? 'background' : ''
+                } ${children ? 'pointer' : ''} ${titleRowClassName}`}
+                onClick={() => handleExpand(!expand)}
+            >
                 <div className={`${prefixCls}-title-box`}>
-                    <div className={`${prefixCls}-before-title`}>
-                        {beforeTitle}
-                    </div>
-                    <div className={`${prefixCls}-title ${titleClassName}`}>
-                        {title}
-                    </div>
+                    <div className={`${prefixCls}-before-title`}>{beforeTitle}</div>
+                    <div className={`${prefixCls}-title ${titleClassName}`}>{title}</div>
 
-                    <div className={`${prefixCls}-after-title`}>
-                        {afterTitle}
-                    </div>
+                    <div className={`${prefixCls}-after-title`}>{afterTitle}</div>
                 </div>
 
-                {
-                    children && (
-                        <div className={`${prefixCls}-collapse-box`}>
-                            <div className="text">{expand ? '收起' : '展开'}</div>
-                            <UpOutlined className={`icon ${expand ? 'up' : 'down'}`}/>
-                        </div>
-                    )
-                }
+                {children && (
+                    <div className={`${prefixCls}-collapse-box`}>
+                        <div className="text">{expand ? '收起' : '展开'}</div>
+                        <UpOutlined className={`icon ${expand ? 'up' : 'down'}`} />
+                    </div>
+                )}
             </div>
 
-            <div className={`${prefixCls}-content ${expand ? '' : 'hide'}`}>
-                {children}
-            </div>
+            <div className={`${prefixCls}-content ${expand ? '' : 'hide'}`}>{children}</div>
         </div>
-    )
-}
+    );
+};
 
-export default BlockHeader
+export default BlockHeader;

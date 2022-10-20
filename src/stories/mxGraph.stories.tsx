@@ -16,8 +16,14 @@ stories.add('mxGraph 基础使用', () => {
     return (
         <div className="story_wrapper">
             <h2>Tips</h2>
-            <p>mxTooltip、mxPopupMenu、mxPopupMenuItem 等样式请自行实现，可参考：
-                <a href="https://github.com/DTStack/dt-react-component/blob/master/src/stories/style/mxGraph.scss" target="blank">mxGraph.scss</a>
+            <p>
+                mxTooltip、mxPopupMenu、mxPopupMenuItem 等样式请自行实现，可参考：
+                <a
+                    href="https://github.com/DTStack/dt-react-component/blob/master/src/stories/style/mxGraph.scss"
+                    target="blank"
+                >
+                    mxGraph.scss
+                </a>
             </p>
 
             <h2>示例</h2>
@@ -101,13 +107,13 @@ stories.add('mxGraph 基础使用', () => {
                     return '';
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MxGraphContainer
                     style={{ height: 400 }}
                     config={{
                         tooltips: true,
-                        highlight: true
+                        highlight: true,
                     }}
                     graphData={[
                         {
@@ -117,7 +123,7 @@ stories.add('mxGraph 基础使用', () => {
                                 {
                                     taskId: 'test-11',
                                     taskName: '你好-11',
-                                    childNode: []
+                                    childNode: [],
                                 },
                                 {
                                     taskId: 'test-12',
@@ -130,24 +136,22 @@ stories.add('mxGraph 基础使用', () => {
                                                 {
                                                     taskId: 'test-31',
                                                     taskName: '你好-31',
-                                                    childNode: []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
+                                                    childNode: [],
+                                                },
+                                            ],
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
                     ]}
-                    onDrawVertex={() =>
-                        'whiteSpace=wrap;fillColor=#f5ffe6;strokeColor=#12bc6a;'
-                    }
+                    onDrawVertex={() => 'whiteSpace=wrap;fillColor=#f5ffe6;strokeColor=#12bc6a;'}
                     onRenderActions={(graph) => (
                         <div
                             style={{
                                 display: 'grid',
                                 gridGap: 5,
-                                gridTemplateColumns: '15px 15px'
+                                gridTemplateColumns: '15px 15px',
                             }}
                         >
                             <Tooltip title="放大">
@@ -311,13 +315,13 @@ stories.add('mxGraph 支持 contextMenu', () => {
                     return '';
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MxGraphContainer
                     style={{ height: 400 }}
                     config={{
                         tooltips: false,
-                        highlight: true
+                        highlight: true,
                     }}
                     graphData={[
                         {
@@ -329,7 +333,7 @@ stories.add('mxGraph 支持 contextMenu', () => {
                                     taskId: 'test-11',
                                     taskName: '你好-11',
                                     taskType: 2,
-                                    childNode: []
+                                    childNode: [],
                                 },
                                 {
                                     taskId: 'test-12',
@@ -345,29 +349,23 @@ stories.add('mxGraph 支持 contextMenu', () => {
                                                     taskId: 'test-31',
                                                     taskName: '你好-31',
                                                     taskType: 5,
-                                                    childNode: []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
+                                                    childNode: [],
+                                                },
+                                            ],
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
                     ]}
                     onDrawVertex={(data) => {
-                        const fillColors = [
-                            '#fffbe6',
-                            '#e6f6ff',
-                            '#f5ffe6',
-                            '#fff1f0',
-                            '#e6e9f2'
-                        ];
+                        const fillColors = ['#fffbe6', '#e6f6ff', '#f5ffe6', '#fff1f0', '#e6e9f2'];
                         const strokeColors = [
                             '#fdb313',
                             '#3f87ff',
                             '#12bc6a',
                             '#fe615c',
-                            '#5b6da6'
+                            '#5b6da6',
                         ];
                         return (
                             'whiteSpace=wrap;fillColor=' +
@@ -378,42 +376,33 @@ stories.add('mxGraph 支持 contextMenu', () => {
                         );
                     }}
                     onContextMenu={(data, cell) => {
-                        const titles = [
-                            '执行中',
-                            '部署中',
-                            '取消中',
-                            '运行成功',
-                            '运行失败'
-                        ];
+                        const titles = ['执行中', '部署中', '取消中', '运行成功', '运行失败'];
                         return cell.vertex
                             ? [
-                                {
-                                    id: 'operation',
-                                    title: titles[data.taskType - 1],
-                                    callback: () => {
-                                        alert(
-                                            '当前 vertex 处于' +
-                                                  titles[data.taskType - 1]
-                                        );
-                                    }
-                                },
-                                {
-                                    id: 'remove',
-                                    title: '删除当前节点',
-                                    callback: () => {
-                                        console.log('删除');
-                                    }
-                                }
-                            ]
+                                  {
+                                      id: 'operation',
+                                      title: titles[data.taskType - 1],
+                                      callback: () => {
+                                          alert('当前 vertex 处于' + titles[data.taskType - 1]);
+                                      },
+                                  },
+                                  {
+                                      id: 'remove',
+                                      title: '删除当前节点',
+                                      callback: () => {
+                                          console.log('删除');
+                                      },
+                                  },
+                              ]
                             : [
-                                {
-                                    id: 'remove',
-                                    title: '删除连线',
-                                    callback: () => {
-                                        console.log('删除');
-                                    }
-                                }
-                            ];
+                                  {
+                                      id: 'remove',
+                                      title: '删除连线',
+                                      callback: () => {
+                                          console.log('删除');
+                                      },
+                                  },
+                              ];
                     }}
                     onRenderCell={(cell) => {
                         if (cell.vertex && cell.value) {
@@ -440,15 +429,9 @@ stories.add('mxGraph 支持鼠标，键盘，布局事件', () => {
     return (
         <div className="story_wrapper">
             <h2>示例</h2>
+            <p>支持 onClick 事件，onDoubleClick 事件，键盘注册事件，以及 scroll 事件的监听</p>
             <p>
-                支持 onClick 事件，onDoubleClick 事件，键盘注册事件，以及 scroll
-                事件的监听
-            </p>
-            <p>
-                <Alert
-                    type="warning"
-                    message="部分事件存在相同交集，需要自行区分判断"
-                ></Alert>
+                <Alert type="warning" message="部分事件存在相同交集，需要自行区分判断" />
             </p>
             <ExampleContainer
                 otherDependencies={otherDependencies}
@@ -546,13 +529,13 @@ stories.add('mxGraph 支持鼠标，键盘，布局事件', () => {
                     return '';
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MxGraphContainer
                     style={{ height: 400 }}
                     config={{
                         tooltips: false,
-                        highlight: true
+                        highlight: true,
                     }}
                     graphData={[
                         {
@@ -564,7 +547,7 @@ stories.add('mxGraph 支持鼠标，键盘，布局事件', () => {
                                     taskId: 'test-11',
                                     taskName: '你好-11',
                                     taskType: 2,
-                                    childNode: []
+                                    childNode: [],
                                 },
                                 {
                                     taskId: 'test-12',
@@ -580,14 +563,14 @@ stories.add('mxGraph 支持鼠标，键盘，布局事件', () => {
                                                     taskId: 'test-31',
                                                     taskName: '你好-31',
                                                     taskType: 5,
-                                                    childNode: []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
+                                                    childNode: [],
+                                                },
+                                            ],
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
                     ]}
                     onClick={(cell, graph, event) => {
                         console.group('onClick');
@@ -616,16 +599,14 @@ stories.add('mxGraph 支持鼠标，键盘，布局事件', () => {
                                 keyCode: 8,
                                 func: () => {
                                     alert('删除');
-                                }
-                            }
+                                },
+                            },
                         ];
                     }}
                     onContextMenu={() => {
                         return [{ id: 'remove', title: '删除' }];
                     }}
-                    onDrawVertex={() =>
-                        'whiteSpace=wrap;fillColor=#f5ffe6;strokeColor=#12bc6a;'
-                    }
+                    onDrawVertex={() => 'whiteSpace=wrap;fillColor=#f5ffe6;strokeColor=#12bc6a;'}
                     onRenderCell={(cell) => {
                         if (cell.vertex && cell.value) {
                             const task = cell.value;
@@ -813,7 +794,7 @@ stories.add('mxGraph 拖拽', () => {
                     );
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <MxGraphContainer
                     enableDrag
@@ -821,7 +802,7 @@ stories.add('mxGraph 拖拽', () => {
                     config={{
                         tooltips: false,
                         connectable: true,
-                        highlight: true
+                        highlight: true,
                     }}
                     graphData={[
                         {
@@ -833,7 +814,7 @@ stories.add('mxGraph 拖拽', () => {
                                     taskId: 'test-11',
                                     taskName: '你好-11',
                                     taskType: 2,
-                                    childNode: []
+                                    childNode: [],
                                 },
                                 {
                                     taskId: 'test-12',
@@ -849,14 +830,14 @@ stories.add('mxGraph 拖拽', () => {
                                                     taskId: 'test-31',
                                                     taskName: '你好-31',
                                                     taskType: 5,
-                                                    childNode: []
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
+                                                    childNode: [],
+                                                },
+                                            ],
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
                     ]}
                     onDropWidgets={(node, graph, target, x, y) => {
                         console.group('onDropWidgets');
@@ -871,7 +852,7 @@ stories.add('mxGraph 拖拽', () => {
                             taskId,
                             {
                                 taskName: node.innerText,
-                                taskId
+                                taskId,
                             },
                             x,
                             y,
@@ -885,9 +866,7 @@ stories.add('mxGraph 拖拽', () => {
                         console.log('cell:', cell);
                         console.groupEnd();
                     }}
-                    onDrawVertex={() =>
-                        'whiteSpace=wrap;fillColor=#f5ffe6;strokeColor=#12bc6a;'
-                    }
+                    onDrawVertex={() => 'whiteSpace=wrap;fillColor=#f5ffe6;strokeColor=#12bc6a;'}
                     onRenderCell={(cell) => {
                         if (cell.vertex && cell.value) {
                             const task = cell.value;
@@ -922,21 +901,19 @@ stories.add('mxGraph 拖拽', () => {
                     onRenderWidgets={() => {
                         return (
                             <>
-                                <div style={{ height: 20, background: '#ddd' }}>
-                                    拖拽组件
-                                </div>
+                                <div style={{ height: 20, background: '#ddd' }}>拖拽组件</div>
                                 <ul
                                     style={{
                                         listStyle: 'none',
                                         margin: 0,
-                                        padding: 0
+                                        padding: 0,
                                     }}
                                 >
                                     <li
                                         className={WIDGETS_PREFIX + '__'}
                                         style={{
                                             cursor: 'move',
-                                            margin: '5px 0'
+                                            margin: '5px 0',
                                         }}
                                     >
                                         你好1
@@ -945,7 +922,7 @@ stories.add('mxGraph 拖拽', () => {
                                         className={WIDGETS_PREFIX + '__'}
                                         style={{
                                             cursor: 'move',
-                                            margin: '5px 0'
+                                            margin: '5px 0',
                                         }}
                                     >
                                         你好2
@@ -954,7 +931,7 @@ stories.add('mxGraph 拖拽', () => {
                                         className={WIDGETS_PREFIX + '__'}
                                         style={{
                                             cursor: 'move',
-                                            margin: '5px 0'
+                                            margin: '5px 0',
                                         }}
                                     >
                                         你好3
@@ -963,7 +940,7 @@ stories.add('mxGraph 拖拽', () => {
                                         className={WIDGETS_PREFIX + '__'}
                                         style={{
                                             cursor: 'move',
-                                            margin: '5px 0'
+                                            margin: '5px 0',
                                         }}
                                     >
                                         你好4
@@ -984,71 +961,71 @@ const store = new Store({
             metaId: 'test-1',
             metaInfo: {
                 name: 'tableName',
-                type: 1
+                type: 1,
             },
             childNode: [
                 {
                     metaId: 'test-2',
                     metaInfo: {
                         name: 'tableName2',
-                        type: 2
-                    }
+                        type: 2,
+                    },
                 },
                 {
                     metaId: 'test-3',
                     metaInfo: {
                         name: 'tableName3',
-                        type: 2
-                    }
+                        type: 2,
+                    },
                 },
                 {
                     metaId: 'test-4',
                     metaInfo: {
                         name: 'tableName4',
-                        type: 2
-                    }
+                        type: 2,
+                    },
                 },
                 {
                     metaId: 'test-5',
                     metaInfo: {
                         name: 'tableName5',
-                        type: 2
-                    }
-                }
+                        type: 2,
+                    },
+                },
             ],
             parentNode: [
                 {
                     metaId: 'test-6',
                     metaInfo: {
                         name: 'tableName6',
-                        type: 3
-                    }
+                        type: 3,
+                    },
                 },
                 {
                     metaId: 'test-7',
                     metaInfo: {
                         name: 'tableName7',
-                        type: 3
-                    }
+                        type: 3,
+                    },
                 },
                 {
                     metaId: 'test-8',
                     metaInfo: {
                         name: 'tableName8',
-                        type: 3
-                    }
+                        type: 3,
+                    },
                 },
                 {
                     metaId: 'test-9',
                     metaInfo: {
                         name: 'tableName9',
-                        type: 3
-                    }
-                }
-            ]
-        }
+                        type: 3,
+                    },
+                },
+            ],
+        },
     ],
-    loading: false
+    loading: false,
 });
 
 stories.add('mxGraph 实现血缘相关展示', () => {
@@ -1202,7 +1179,6 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                         if (container.innerHTML) {
                                             container.innerHTML = '';
                                         } else {
-                                            // eslint-disable-next-line no-new
                                             new MxOutline(
                                                 graph,
                                                 container
@@ -1312,7 +1288,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                     </div>
                 )}
             </MxGraphContainer>`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <State store={store}>
                     <MxGraphContainer
@@ -1321,7 +1297,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                         style={{ height: 400 }}
                         vertexSize={{
                             width: 196,
-                            height: 54
+                            height: 54,
                         }}
                         config={{
                             tooltips: false,
@@ -1330,38 +1306,34 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                             toolbarStyle: {
                                 bottom: 100,
                                 right: 0,
-                                top: 'initial'
+                                top: 'initial',
                             },
-                            defaultEdgeStyle: ({
-                                mxConstants,
-                                mxEdgeStyle
-                            }) => ({
+                            defaultEdgeStyle: ({ mxConstants, mxEdgeStyle }) => ({
                                 [mxConstants.STYLE_ROUNDED]: 1,
                                 [mxConstants.STYLE_CURVED]: 0,
-                                [mxConstants.STYLE_EDGE]:
-                                    mxEdgeStyle.EntityRelation
-                            })
+                                [mxConstants.STYLE_EDGE]: mxEdgeStyle.EntityRelation,
+                            }),
                         }}
                         vertexKey="metaId"
                         onContextMenu={(_, cell) =>
                             cell.vertex
                                 ? [
-                                    {
-                                        id: 'insert',
-                                        title: '插入'
-                                    },
-                                    {
-                                        id: 'remove',
-                                        title: '删除'
-                                    }
-                                ]
+                                      {
+                                          id: 'insert',
+                                          title: '插入',
+                                      },
+                                      {
+                                          id: 'remove',
+                                          title: '删除',
+                                      },
+                                  ]
                                 : []
                         }
                         onClick={(cell, graph, event) => {
                             const target: any = event.target;
                             if (target.closest('.loadData')) {
                                 store.set({
-                                    loading: true
+                                    loading: true,
                                 });
                                 setTimeout(() => {
                                     const graphData = store.get('graphData');
@@ -1369,22 +1341,18 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                     while (stack.length) {
                                         const item = stack.pop();
                                         if (item.metaId === cell.value.metaId) {
-                                            const uniqueId =
-                                                'randomId__' +
-                                                new Date().valueOf();
+                                            const uniqueId = 'randomId__' + new Date().valueOf();
                                             const insertHandler =
                                                 cell.value.metaInfo.type === 2
                                                     ? 'childNode'
                                                     : 'parentNode';
-                                            item[insertHandler] =
-                                                item[insertHandler] || [];
+                                            item[insertHandler] = item[insertHandler] || [];
                                             item[insertHandler].push({
                                                 metaId: uniqueId,
                                                 metaInfo: {
-                                                    name:
-                                                        uniqueId + 'tableName',
-                                                    type: item.metaInfo.type
-                                                }
+                                                    name: uniqueId + 'tableName',
+                                                    type: item.metaInfo.type,
+                                                },
                                             });
                                             break;
                                         }
@@ -1395,7 +1363,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
 
                                     store.set({
                                         graphData: [...graphData],
-                                        loading: false
+                                        loading: false,
                                     });
                                 }, 300);
                             }
@@ -1406,7 +1374,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                 '',
                                 'whiteSpace=wrap;fillColor=#ffffff;strokeColor=#3F87FF;',
                                 'whiteSpace=wrap;fillColor=#ffffff;strokeColor=#7460EF;',
-                                'whiteSpace=wrap;fillColor=#ffffff;strokeColor=#26D6AE;'
+                                'whiteSpace=wrap;fillColor=#ffffff;strokeColor=#26D6AE;',
                             ][data.metaInfo.type];
                         }}
                         onDrawEdge={(source, target) => {
@@ -1426,28 +1394,16 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                     <div
                                         style={{
                                             display: 'flex',
-                                            flexDirection: 'column'
+                                            flexDirection: 'column',
                                         }}
                                     >
-                                        <button
-                                            onClick={() =>
-                                                graph.center(true, true)
-                                            }
-                                        >
-                                            <Tooltip title="居中">
-                                                center
-                                            </Tooltip>
+                                        <button onClick={() => graph.center(true, true)}>
+                                            <Tooltip title="居中">center</Tooltip>
                                         </button>
                                         <button
-                                            onClick={() =>
-                                                message.success(
-                                                    'download successfully'
-                                                )
-                                            }
+                                            onClick={() => message.success('download successfully')}
                                         >
-                                            <Tooltip title="下载">
-                                                download
-                                            </Tooltip>
+                                            <Tooltip title="下载">download</Tooltip>
                                         </button>
                                     </div>
                                     <div style={{ marginTop: 10 }}>
@@ -1460,16 +1416,11 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                     container.innerHTML = '';
                                                 } else {
                                                     // eslint-disable-next-line no-new
-                                                    new MxOutline(
-                                                        graph,
-                                                        container
-                                                    );
+                                                    new MxOutline(graph, container);
                                                 }
                                             }}
                                         >
-                                            <Tooltip title="导航器">
-                                                navigator
-                                            </Tooltip>
+                                            <Tooltip title="导航器">navigator</Tooltip>
                                         </button>
                                         <div id="outline"></div>
                                     </div>
@@ -1488,7 +1439,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                 position: 'relative',
                                                 width: 196,
                                                 height: 54,
-                                                paddingTop: 10
+                                                paddingTop: 10,
                                             }}
                                         >
                                             <span>{meta.metaInfo.name}</span>
@@ -1504,10 +1455,8 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                         top: '50%',
                                                         transform:
                                                             'translate(' +
-                                                            (isLeft
-                                                                ? '-50%'
-                                                                : '50%') +
-                                                            ',-50%)'
+                                                            (isLeft ? '-50%' : '50%') +
+                                                            ',-50%)',
                                                     }}
                                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAAXNSR0IArs4c6QAAADNQTFRFAAAAscTOtr/Isb7HsLzGsL7Frr3Fr73Gr7zFr73Frr3FrrzFrrzGrrzF5+vt5+vu////mHsMmQAAAA10Uk5TABocTmtum7bZ8vP8/XH+TQkAAACASURBVCjPdVLZAoAgCMMjb8r//9oOjazcnpApzAFRg7Y+pBS81TRCucwd2aknbyIPiObOL4VfKEu//8kfzPVGRf4hnn2cHLdNQnfoFD1cq4RZk+UZwZb8nPAU5kSg1PpWQVOQ/sTaCVgKNody4QdHS9bREmwitB0PCo8WL8NsfXarIha/m4rePQAAAABJRU5ErkJggg=="
                                                 />
@@ -1526,7 +1475,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                         listStyle: 'none',
                                         display: 'flex',
                                         justifyContent: 'center',
-                                        gap: '15px'
+                                        gap: '15px',
                                     }}
                                 >
                                     <li>
@@ -1536,7 +1485,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                 width: 12,
                                                 height: 12,
                                                 marginRight: 5,
-                                                background: 'rgb(38, 214, 174)'
+                                                background: 'rgb(38, 214, 174)',
                                             }}
                                         />
                                         1
@@ -1548,7 +1497,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                 width: 12,
                                                 height: 12,
                                                 marginRight: 5,
-                                                background: 'rgb(63, 135, 255)'
+                                                background: 'rgb(63, 135, 255)',
                                             }}
                                         />
                                         2
@@ -1560,7 +1509,7 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                                 width: 12,
                                                 height: 12,
                                                 marginRight: 5,
-                                                background: 'rgb(116, 96, 239)'
+                                                background: 'rgb(116, 96, 239)',
                                             }}
                                         />
                                         3
@@ -1583,7 +1532,7 @@ const detailStore = new Store({
             metaInfo: {
                 name: 'tableName',
                 type: 1,
-                list: ['a', 'b', 'c', 'd']
+                list: ['a', 'b', 'c', 'd'],
             },
             childNode: [
                 {
@@ -1591,21 +1540,21 @@ const detailStore = new Store({
                     metaInfo: {
                         name: 'tableName',
                         type: 2,
-                        list: ['1-c']
-                    }
+                        list: ['1-c'],
+                    },
                 },
                 {
                     metaId: '3',
                     metaInfo: {
                         name: 'tableName',
                         type: 2,
-                        list: ['1-c']
-                    }
-                }
-            ]
-        }
+                        list: ['1-c'],
+                    },
+                },
+            ],
+        },
     ],
-    currentSelect: 'b'
+    currentSelect: 'b',
 });
 
 stories.add('mxGraph 详细展示', () => {
@@ -1613,12 +1562,12 @@ stories.add('mxGraph 详细展示', () => {
         if (data.metaId === '1') {
             return {
                 width: 194,
-                height: 120
+                height: 120,
             };
         }
         return {
             width: 196,
-            height: 54
+            height: 54,
         };
     };
     return (
@@ -1776,7 +1725,7 @@ stories.add('mxGraph 详细展示', () => {
                     return '';
                 }}
             />`}
-                hasCodeSandBox={true}
+                hasCodeSandBox
             >
                 <State store={detailStore}>
                     <MxGraphContainer
@@ -1785,74 +1734,64 @@ stories.add('mxGraph 详细展示', () => {
                         style={{ height: 400 }}
                         vertexSize={{
                             width: 196,
-                            height: 54
+                            height: 54,
                         }}
                         config={{
                             tooltips: false,
                             connectable: false,
                             highlight: false,
                             vertexMovable: false,
-                            defaultEdgeStyle: ({
-                                mxConstants,
-                                mxEdgeStyle
-                            }) => ({
+                            defaultEdgeStyle: ({ mxConstants, mxEdgeStyle }) => ({
                                 [mxConstants.STYLE_ROUNDED]: 1,
                                 [mxConstants.STYLE_CURVED]: 0,
-                                [mxConstants.STYLE_EDGE]:
-                                    mxEdgeStyle.EntityRelation
+                                [mxConstants.STYLE_EDGE]: mxEdgeStyle.EntityRelation,
                             }),
                             getPortOffset: (edgeState, source) => {
-                                const container = edgeState[source ? 'visibleSourceState' : 'visibleTargetState'].text.node.querySelectorAll('div')[1];
+                                const container = edgeState[
+                                    source ? 'visibleSourceState' : 'visibleTargetState'
+                                ].text.node.querySelectorAll('div')[1];
                                 const portDom =
                                     container.querySelector<HTMLLIElement>(
-                                        'li[data-id=' +
-                                            detailStore.get('currentSelect') +
-                                            ']'
+                                        'li[data-id=' + detailStore.get('currentSelect') + ']'
                                     ) || container.querySelector('li');
 
                                 return portDom;
-                            }
+                            },
                         }}
                         vertexKey="metaId"
                         onClick={(cell, graph, event) => {
                             if (cell.value.metaId === '1') {
                                 detailStore.set({
-                                    loading: true
+                                    loading: true,
                                 });
                                 setTimeout(() => {
                                     const nextGraph = [
                                         {
                                             ...detailStore.get('graphData')[0],
                                             childNode: [],
-                                            parentNode: []
-                                        }
+                                            parentNode: [],
+                                        },
                                     ];
                                     const handler =
-                                        Math.random() > 0.5
-                                            ? 'childNode'
-                                            : 'parentNode';
-                                    const length = Math.floor(
-                                        Math.random() * 5 + 1
-                                    );
+                                        Math.random() > 0.5 ? 'childNode' : 'parentNode';
+                                    const length = Math.floor(Math.random() * 5 + 1);
                                     nextGraph[0][handler].push(
-                                        ...new Array(length)
-                                            .fill({})
-                                            .map((i, idx) => {
-                                                return {
-                                                    metaId: '1-' + idx,
-                                                    metaInfo: {
-                                                        name: 'tableName',
-                                                        type: 2,
-                                                        list: ['1-c']
-                                                    }
-                                                };
-                                            })
+                                        ...new Array(length).fill({}).map((i, idx) => {
+                                            return {
+                                                metaId: '1-' + idx,
+                                                metaInfo: {
+                                                    name: 'tableName',
+                                                    type: 2,
+                                                    list: ['1-c'],
+                                                },
+                                            };
+                                        })
                                     );
                                     const target: any = event.target;
                                     detailStore.set({
-                                        currentSelect: (target).dataset.id,
+                                        currentSelect: target.dataset.id,
                                         graphData: nextGraph,
-                                        loading: false
+                                        loading: false,
                                     });
                                 }, 300);
                             }
@@ -1862,9 +1801,7 @@ stories.add('mxGraph 详细展示', () => {
                         onDrawVertex={() =>
                             'whiteSpace=wrap;fillColor=#ffffff;strokeColor=#7460EF;'
                         }
-                        onDrawEdge={() =>
-                            'whiteSpace=wrap;fillColor=#ffffff;strokeColor=#7460EF;'
-                        }
+                        onDrawEdge={() => 'whiteSpace=wrap;fillColor=#ffffff;strokeColor=#7460EF;'}
                         onRenderCell={(cell) => {
                             if (cell.vertex && cell.value) {
                                 const meta = cell.value;
@@ -1875,50 +1812,47 @@ stories.add('mxGraph 详细展示', () => {
                                             style={{
                                                 overflow: 'hidden',
                                                 width: size.width,
-                                                height: size.height
+                                                height: size.height,
                                             }}
                                         >
                                             {meta.metaInfo.name}
                                             <hr
                                                 style={{
                                                     borderTop: '1px solid #ddd',
-                                                    margin: 0
+                                                    margin: 0,
                                                 }}
                                             />
                                             <div
                                                 style={{
                                                     width: '100%',
-                                                    overflow: 'auto'
+                                                    overflow: 'auto',
                                                 }}
                                             >
                                                 <ul
                                                     style={{
                                                         listStyle: 'none',
                                                         margin: 0,
-                                                        padding: 0
+                                                        padding: 0,
                                                     }}
                                                 >
-                                                    {meta.metaInfo.list.map(
-                                                        (l) => (
-                                                            <li
-                                                                key={l}
-                                                                data-id={l}
-                                                                style={{
-                                                                    height: 20,
-                                                                    borderBottom:
-                                                                        '1px solid #ddd',
-                                                                    background:
-                                                                        detailStore.get(
-                                                                            'currentSelect'
-                                                                        ) === l
-                                                                            ? 'red'
-                                                                            : 'transparent'
-                                                                }}
-                                                            >
-                                                                {l}
-                                                            </li>
-                                                        )
-                                                    )}
+                                                    {meta.metaInfo.list.map((l) => (
+                                                        <li
+                                                            key={l}
+                                                            data-id={l}
+                                                            style={{
+                                                                height: 20,
+                                                                borderBottom: '1px solid #ddd',
+                                                                background:
+                                                                    detailStore.get(
+                                                                        'currentSelect'
+                                                                    ) === l
+                                                                        ? 'red'
+                                                                        : 'transparent',
+                                                            }}
+                                                        >
+                                                            {l}
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
                                         </div>

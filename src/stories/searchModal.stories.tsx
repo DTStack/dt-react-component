@@ -14,7 +14,7 @@ const store = new Store({
     visible: false,
     visible1: false,
     dataSource: initDataSource,
-    key: Math.random()
+    key: Math.random(),
 });
 const propDefinitions = [
     {
@@ -22,36 +22,36 @@ const propDefinitions = [
         propType: 'string',
         required: false,
         description: 'modal 标题',
-        defaultValue: '搜索并打开'
+        defaultValue: '搜索并打开',
     },
     {
         property: 'dataSource',
         propType: 'Array',
         required: true,
         description: '自定义DOM前缀',
-        defaultValue: '【】'
+        defaultValue: '【】',
     },
     {
         property: 'placeholder',
         propType: 'string',
         required: false,
         description: '搜索框提示信息',
-        defaultValue: ''
+        defaultValue: '',
     },
     {
         property: 'prefixRender',
         propType: 'ReactNode',
         required: false,
         description: '自定义DOM前缀',
-        defaultValue: '搜索并打开'
+        defaultValue: '搜索并打开',
     },
     {
         property: '其余属性',
         propType: '--',
         required: false,
         description: '继承 Antd Modal、AutoComplete API',
-        defaultValue: ''
-    }
+        defaultValue: '',
+    },
 ];
 
 const otherDependencies = `import { Button } from 'antd';
@@ -142,7 +142,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={code}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                     functionCode={functionCode}
                 >
                     <Button
@@ -173,7 +173,9 @@ stories.add(
                                 onChange={(value) => {
                                     console.log('onChange' + value);
                                     store.set({
-                                        dataSource: initDataSource.filter((item: string) => item.indexOf(value) !== -1)
+                                        dataSource: initDataSource.filter(
+                                            (item: string) => item.indexOf(value) !== -1
+                                        ),
                                     });
                                 }}
                             />
@@ -185,7 +187,7 @@ stories.add(
                 <ExampleContainer
                     otherDependencies={otherDependencies}
                     code={searchCode}
-                    hasCodeSandBox={true}
+                    hasCodeSandBox
                     functionCode={functionCode}
                 >
                     <Button
@@ -210,7 +212,9 @@ stories.add(
                                 onChange={(value) => {
                                     console.log('onChange' + value);
                                     store.set({
-                                        dataSource: initDataSource.filter((item: string) => item.indexOf(value) !== -1)
+                                        dataSource: initDataSource.filter(
+                                            (item: string) => item.indexOf(value) !== -1
+                                        ),
                                     });
                                 }}
                                 title={null}
@@ -238,7 +242,7 @@ stories.add(
         ~~~
         `,
             TableComponent: () => PropsTable({ propDefinitions }),
-            propTablesExclude: [Button, State]
-        }
+            propTablesExclude: [Button, State],
+        },
     }
 );

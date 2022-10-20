@@ -14,9 +14,11 @@ const Empty = (props: EmptyProps & IProps) => {
     const { type = 'default', image, ...restProps } = props;
     let newImage: React.ReactNode = type === 'default' ? DEFAULT_BASE64 : GREY_BASE64;
     if (image) newImage = image as React.ReactNode;
-    return <div className='dtc-empty'>
-        <AntdEmpty {...restProps} image={newImage} />
-    </div>
+    return (
+        <div className="dtc-empty">
+            <AntdEmpty {...restProps} image={newImage} />
+        </div>
+    );
 };
 
 export default Empty;

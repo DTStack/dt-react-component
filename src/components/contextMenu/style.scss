@@ -1,11 +1,11 @@
-$context-prefix: 'dtc-context-menu';
+$context-prefix: "dtc-context-menu";
 .#{$context-prefix} {
     position: fixed;
     min-width: 90px;
     max-width: 160px;
     display: none;
     z-index: 9999;
-    background: #fff;
+    background: #FFF;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
     .#{$context-prefix}-context-menu_list {
@@ -27,7 +27,7 @@ $context-prefix: 'dtc-context-menu';
             transition: all 0.3s;
             text-decoration: none;
             &:hover {
-                background: #eef6fe;
+                background: #EEF6FE;
             }
         }
     }

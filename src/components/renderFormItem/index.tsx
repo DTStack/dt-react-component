@@ -58,7 +58,7 @@ export default function RenderFormItem({ item, layout }: ItemType) {
             tooltip={tooltip}
             extra={extra}
         >
-            {component || <Input data-testid='test-input' />}
+            {component || <Input data-testid="test-input" />}
         </FormItem>
     );
 }
