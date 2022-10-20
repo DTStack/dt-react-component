@@ -1,4 +1,4 @@
-$card_prefix: 'dtc-block-header';
+$card_prefix: "dtc-block-header";
 
 .#{$card_prefix} {
     .#{$card_prefix}-title-row {
@@ -70,7 +70,7 @@ $card_prefix: 'dtc-block-header';
             }
             .icon {
                 font-size: 16px;
-                transition: transform .4s;
+                transition: transform 0.4s;
                 &.down {
                     transform: rotate(-180deg);
                 }

@@ -11,10 +11,10 @@ $stopped_color: #AC9DFF;
     align-items: center;
     width: fit-content;
     height: 24px;
-    color: #3d446e;
+    color: #3D446E;
     &__border {
         padding: 2px 12px;
-        border: 1px solid #ebecf0;
+        border: 1px solid #EBECF0;
         border-radius: 14px;
     }
     &__text {
@@ -25,7 +25,7 @@ $stopped_color: #AC9DFF;
         display: inline-block;
         width: 8px;
         height: 8px;
-        border-radius: 50% 50%;
+        border-radius: 50%;
     }
     &__warning {
         background: $warning_color;

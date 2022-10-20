@@ -1,4 +1,4 @@
-$prefix: 'dtc-progress-line';
+$prefix: "dtc-progress-line";
 
 .#{$prefix} {
     width: 100%;
@@ -11,9 +11,9 @@ $prefix: 'dtc-progress-line';
         .#{$prefix}-content {
             height: 22px;
             font-size: 12px;
-            font-family: PingFangSC-Regular, PingFang SC;
+            font-family: PingFangSC-Regular, "PingFang SC";
             font-weight: 400;
-            color: #666666;
+            color: #666;
             line-height: 22px;
         }
 

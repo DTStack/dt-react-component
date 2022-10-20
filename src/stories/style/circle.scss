@@ -1,26 +1,26 @@
 .strory-code_border {
-    border: 1px solid #f0f0f0;
+    border: 1px solid #F0F0F0;
     padding: 10px 10px 10px 5px;
 }
 
 .story-example_container {
     .story-example_border {
-        border: 1px solid #f0f0f0;
+        border: 1px solid #F0F0F0;
         border-bottom: 0;
     }
     .story-example_display {
-        padding: 10px 5px 10px 5px;
+        padding: 10px 5px;
     }
     .story-example_actions {
         display: flex;
         justify-content: center;
-        border-top: 1px dashed #f0f0f0;
+        border-top: 1px dashed #F0F0F0;
         height: 40px;
         line-height: 40px;
-        border-bottom: 1px solid #f0f0f0;;
+        border-bottom: 1px solid #F0F0F0;
         .story-example_toggle-code {
             cursor: pointer;
-            margin: 0 10px 0 10px;
+            margin: 0 10px;
             opacity: 0.5;
             transition: 0.5s;
         }
@@ -32,7 +32,7 @@
         width: 15px;
         height: 15px;
         cursor: pointer;
-        margin: 0 10px 0 10px;
+        margin: 0 10px;
         opacity: 0.55;
         transition: 0.5s;
     }

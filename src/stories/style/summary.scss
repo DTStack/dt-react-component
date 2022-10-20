@@ -1,5 +1,4 @@
-
-$prefix-cls: 'summary-story';
+$prefix-cls: "summary-story";
 .#{$prefix-cls} {
     h1 {
         span {
@@ -11,6 +10,6 @@ $prefix-cls: 'summary-story';
         }
     }
     p.#{$prefix-cls}_version {
-        color: #31c27c;
+        color: #31C27C;
     }
 }
