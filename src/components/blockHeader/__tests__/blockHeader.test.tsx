@@ -21,7 +21,7 @@ const props3 = {
 const props4 = {
     title: 'hover',
     tooltip: 'hover 展示',
-    afterTitle: "我的优先级更高",
+    afterTitle: '我的优先级更高',
 };
 const prefixCls = 'dtc-block-header';
 
@@ -99,13 +99,24 @@ describe('test BlockHeader render', () => {
         const { container } = render(<BlockHeader {...props3} />);
         const wrap = container.firstChild;
         const afterTitleWrap = wrap.firstChild.firstChild.lastChild;
-        expect(afterTitleWrap.firstChild).toHaveClass("anticon-question-circle");
+        expect(afterTitleWrap.firstChild).toHaveClass('anticon-question-circle');
     });
 
     test('should render BlockHeader tooltip and afterTitle success', () => {
         const { container } = render(<BlockHeader {...props4} />);
         const wrap = container.firstChild;
         const afterTitleWrap = wrap.firstChild.firstChild.lastChild;
-        expect(afterTitleWrap).toHaveTextContent("我的优先级更高");
+        expect(afterTitleWrap).toHaveTextContent('我的优先级更高');
+    });
+    test('should render BlockHeader correct dom length', () => {
+        const { container } = render(<BlockHeader title="分类级别" beforeTitle="" />);
+        const titleBoxWrap = container.firstChild.firstChild.firstChild;
+        expect(titleBoxWrap.childNodes.length).toEqual(1);
+
+        const { container: container1 } = render(
+            <BlockHeader title="分类级别" afterTitle="测试" />
+        );
+        const titleBoxWrap1 = container1.firstChild.firstChild.firstChild;
+        expect(titleBoxWrap1.childNodes.length).toEqual(3);
     });
 });

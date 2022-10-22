@@ -44,7 +44,7 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         onChange,
     } = props;
     const { beforeTitle = <div className={`default ${isSmall ? 'small' : ''}`}></div> } = props;
-    const questionTooltip = (
+    const questionTooltip = tooltip && (
         <Tooltip title={tooltip}>
             <QuestionCircleOutlined />
         </Tooltip>
@@ -66,13 +66,13 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
                 onClick={() => handleExpand(!expand)}
             >
                 <div className={`${prefixCls}-title-box`}>
-                    {beforeTitle && (
+                    {beforeTitle ? (
                         <div className={`${prefixCls}-before-title`}>{beforeTitle}</div>
-                    )}
+                    ) : null}
                     <div className={`${prefixCls}-title ${titleClassName}`}>{title}</div>
-                    {newAfterTitle && (
+                    {newAfterTitle ? (
                         <div className={`${prefixCls}-after-title`}>{newAfterTitle}</div>
-                    )}
+                    ) : null}
                 </div>
 
                 {children && (
