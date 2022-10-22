@@ -125,6 +125,13 @@ const propDefinitions = [
         property: 'confirmLoading',
         propType: 'Boolean',
         require: false,
+        description: 'ok 按钮 props',
+        defaultValue: '--'
+    },
+    {
+        property: 'okButtonProps',
+        propType: 'ButtonProps',
+        require: false,
         description: '确定按钮 loading',
         defaultValue: 'false'
     },
@@ -154,12 +161,12 @@ const basicFunctionCode = `
             visible: false
         };
      }
-     
+
     hideModalHandler = () => {
         const { visible } = this.state
         this.setState({ visible: !visible });
     }
-    
+
 `;
 const basicOtherCode = `
 const FormItem = Form.Item;
@@ -197,7 +204,7 @@ stories.add('ModalWithForm', () => (
             ~~~js
             import { Form, Input } from 'antd';
             import { ModalWithForm } from 'dt-react-component';
-            
+
             const EnhancedModal = ModalWithForm(props => {
                 return (
                     <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
@@ -205,7 +212,7 @@ stories.add('ModalWithForm', () => (
                     </FormItem>
                 );
             });
-            
+
             class Demo extends React.Component<any, any> {
                 constructor (props) {
                     super(props);
@@ -233,7 +240,7 @@ stories.add('ModalWithForm', () => (
             ~~~js
             import { Form, Input } from 'antd';
             import { ModalWithForm } from 'dt-react-component'
-            
+
             const EnhancedModal = ModalWithForm(props => {
                 return (
                     <FormItem label="test-label" name='test' rules={[{ max: 10 }]}>
@@ -257,14 +264,14 @@ stories.add('ModalWithForm', () => (
                     this.setState({
                        confirmLoading: true;
                     });
-                    
+
                     setTimeout(() => {
                         this.setState({
                            visible: false,
                            confirmLoading: false
                         })
                     })
-                   
+
                 }
                 showModal = () => {
                     this.setState({

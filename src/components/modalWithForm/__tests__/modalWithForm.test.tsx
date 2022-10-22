@@ -98,5 +98,5 @@ test('should trigger submit methond when form validate successful', () => {
 test('should render ModalWithForm render correct button props', () => {
     fireEvent.click(wrapper.getByText('click'));
     const eleOk = wrapper.getByText('ok');
-    expect(eleOk.parentNode).toHaveClass('ant-btn-dangerous')
+    expect(eleOk.parentNode).toHaveClass('ant-btn-dangerous');
 });
