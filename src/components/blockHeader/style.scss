@@ -2,7 +2,6 @@ $card_prefix: "dtc-block-header";
 
 .#{$card_prefix} {
     .#{$card_prefix}-title-row {
-        padding: 0 12px;
         border-radius: 4px;
         display: flex;
         align-items: center;
@@ -26,6 +25,7 @@ $card_prefix: "dtc-block-header";
             }
         }
         &.background {
+            padding: 0 12px;
             background-color: #F9F9FA;
         }
         &.pointer {

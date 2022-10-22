@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { UpOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 
 export interface BlockHeaderProps {
     // 标题
@@ -8,6 +9,8 @@ export interface BlockHeaderProps {
     beforeTitle?: React.ReactNode;
     // 标题后的提示图标或文案
     afterTitle?: string | React.ReactNode;
+    // 默认展示为问号的toolip
+    tooltip?: React.ReactNode;
     /**
      * true 小标题 font-size: 12px; line-height: 32px
      * false 大标题 font-size: 14px; line-height: 40px
@@ -31,6 +34,7 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
     const {
         title,
         afterTitle = '',
+        tooltip = '',
         isSmall = false,
         titleRowClassName = '',
         titleClassName = '',
@@ -40,6 +44,12 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         onChange,
     } = props;
     const { beforeTitle = <div className={`default ${isSmall ? 'small' : ''}`}></div> } = props;
+    const questionTooltip = (
+        <Tooltip title={tooltip}>
+            <QuestionCircleOutlined />
+        </Tooltip>
+    );
+    const newAfterTitle = afterTitle || questionTooltip;
     const [expand, setExpand] = useState(defaultExpand);
 
     const handleExpand = (expand) => {
@@ -56,10 +66,13 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
                 onClick={() => handleExpand(!expand)}
             >
                 <div className={`${prefixCls}-title-box`}>
-                    <div className={`${prefixCls}-before-title`}>{beforeTitle}</div>
+                    {beforeTitle && (
+                        <div className={`${prefixCls}-before-title`}>{beforeTitle}</div>
+                    )}
                     <div className={`${prefixCls}-title ${titleClassName}`}>{title}</div>
-
-                    <div className={`${prefixCls}-after-title`}>{afterTitle}</div>
+                    {newAfterTitle && (
+                        <div className={`${prefixCls}-after-title`}>{newAfterTitle}</div>
+                    )}
                 </div>
 
                 {children && (
