@@ -126,7 +126,7 @@ const propDefinitions = [
         propType: 'Boolean',
         require: false,
         description: 'ok 按钮 props',
-        defaultValue: '--'
+        defaultValue: '--',
     },
     {
         property: 'okButtonProps',
