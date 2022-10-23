@@ -30,6 +30,13 @@ const propDefinitions = [
         defaultValue: '-',
     },
     {
+        property: 'tooltip',
+        propType: 'string | React.ReactNode',
+        required: false,
+        description: '默认展示问号提示(优先级低于 afterTitle)',
+        defaultValue: '-',
+    },
+    {
         property: 'isSmall',
         propType: 'boolean',
         required: false,
@@ -95,16 +102,12 @@ stories.add(
             text: `
             代码示例：
             ~~~js
+
             <p style={style}>1、默认大标题</p>
-            <BlockHeader
-                title="分类标题"
-            />
+            <BlockHeader title="分类标题" />
 
             <p style={style}>2、小标题</p>
-            <BlockHeader
-                title="小分类标题"
-                isSmall
-            />
+            <BlockHeader title="小分类标题" isSmall />
 
             <p style={style}>3、标题 + icon，有说明文字</p>
             <BlockHeader
@@ -113,39 +116,33 @@ stories.add(
                 afterTitle="说明文字"
             />
 
-            <p style={style}>4、hover 显示说明文字</p>
+            <p style={style}>4、使用 tooltip 展示问号提示</p>
+            <BlockHeader title="分类标题" tooltip="hover 才会显示说明文字哦~" />
+
+            <p style={style}>5、自定义标题图案</p>
             <BlockHeader
                 title="分类标题"
                 afterTitle={
-                    <Tooltip title={'hover 才会显示说明文字哦~'}>
-                        <QuestionCircleOutlined style={{ cursor: 'pointer' }} />
+                    <Tooltip title={'自定义图标'}>
+                        <DingdingOutlined style={{ cursor: 'pointer' }} />
                     </Tooltip>
                 }
             />
 
-            <p style={style}>5、无背景</p>
+            <p style={style}>6、无背景</p>
             <BlockHeader
                 title="分类标题"
                 showBackground={false}
-                afterTitle={
-                    <Tooltip title={'hover 才会显示说明文字哦~'}>
-                        <QuestionCircleOutlined style={{ cursor: 'pointer' }} />
-                    </Tooltip>
-                }
+                tooltip="hover 才会显示说明文字哦~"
             />
 
-            <p style={style}>6、展开/收起内容</p>
-            <BlockHeader
-                title="分类标题"
-            >
+            <p style={style}>7、展开/收起内容</p>
+            <BlockHeader title="分类标题" onChange={(expand) => console.log(expand)}>
                 Hello World!
             </BlockHeader>
 
-            <p style={style}>7、简洁版</p>
-            <BlockHeader
-                title="分类标题"
-                beforeTitle=""
-            />
+            <p style={style}>8、简洁版</p>
+            <BlockHeader title="分类标题" beforeTitle="" />
             ~~~
         `,
             TableComponent: () => PropsTable({ propDefinitions }),

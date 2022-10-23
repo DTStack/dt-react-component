@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test BlockHeader render success render 1`] = `
+exports[`test BlockHeader render should render BlockHeader success render 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -26,9 +26,6 @@ Object {
             >
               标题1
             </div>
-            <div
-              class="dtc-block-header-after-title"
-            />
           </div>
           
         </div>
@@ -60,9 +57,6 @@ Object {
           >
             标题1
           </div>
-          <div
-            class="dtc-block-header-after-title"
-          />
         </div>
         
       </div>
