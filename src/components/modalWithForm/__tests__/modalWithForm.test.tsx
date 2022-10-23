@@ -35,6 +35,7 @@ class App extends React.Component<any, any> {
                     okText="ok"
                     cancelText="quit"
                     record="hi"
+                    okButtonProps={{ danger: true }}
                 />
             </>
         );
@@ -92,4 +93,10 @@ test('should trigger submit methond when form validate successful', () => {
     eleOk.onclick = jest.fn();
     fireEvent.click(eleOk);
     expect(eleOk.onclick).toHaveBeenCalled();
+});
+
+test('should render ModalWithForm render correct button props', () => {
+    fireEvent.click(wrapper.getByText('click'));
+    const eleOk = wrapper.getByText('ok');
+    expect(eleOk.parentNode).toHaveClass('ant-btn-dangerous');
 });
