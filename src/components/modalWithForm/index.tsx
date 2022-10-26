@@ -27,6 +27,40 @@ export interface IProps {
 
 type ModalProps = IProps & FormProps;
 
+export const FORM_PROPS = [
+    'colon',
+    'disabled',
+    'component',
+    'fields',
+    'initialValues',
+    'labelAlign',
+    'labelWrap',
+    'labelCol',
+    'layout',
+    'name',
+    'preserve',
+    'requiredMark',
+    'scrollToFirstError',
+    'size',
+    'validateMessages',
+    'validateTrigger',
+    'wrapperCol',
+    'onFieldsChange',
+    'onFinish',
+    'onFinishFailed',
+    'onValuesChange',
+];
+
+export const useFilterFormProps = (props = {}) => {
+    const formProps = {};
+    Object.keys(props).forEach((item) => {
+        if (FORM_PROPS.includes(item)) {
+            formProps[item] = props[item];
+        }
+    });
+    return formProps;
+};
+
 const ModalForm = (props: ModalProps) => {
     const {
         title,
@@ -47,6 +81,8 @@ const ModalForm = (props: ModalProps) => {
         okButtonProps,
         ...restProps
     } = props;
+
+    const formProps = useFilterFormProps();
 
     const [form] = Form.useForm();
 
@@ -78,7 +114,7 @@ const ModalForm = (props: ModalProps) => {
             confirmLoading={confirmLoading}
             okButtonProps={okButtonProps}
         >
-            <Form form={form} layout={layout} {...restProps}>
+            <Form form={form} layout={layout} {...formProps}>
                 {React.cloneElement(children, { form, ...props })}
             </Form>
         </Modal>
