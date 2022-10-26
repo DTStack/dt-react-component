@@ -1,14 +1,15 @@
 import React from 'react';
-import ModalWithForm from '../index';
+import ModalWithForm, { useFilterFormProps } from '../index';
 import { Input, Form } from 'antd';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 import '@testing-library/jest-dom/extend-expect';
 
 const FormItem = Form.Item;
 const EnhancedModal = ModalWithForm((_props) => {
     return (
         <FormItem label="test-label" name="test" rules={[{ max: 10 }]}>
-            <Input data-testid="test-input" />)
+            <Input data-testid="test-input" />
         </FormItem>
     );
 });
@@ -99,4 +100,17 @@ test('should render ModalWithForm render correct button props', () => {
     fireEvent.click(wrapper.getByText('click'));
     const eleOk = wrapper.getByText('ok');
     expect(eleOk.parentNode).toHaveClass('ant-btn-dangerous');
+});
+
+test('test useFilterFormProps', () => {
+    const { result } = renderHook(() =>
+        useFilterFormProps({
+            a: 1,
+            onOk: () => {},
+            disabled: false,
+        })
+    );
+    expect(result.current).toEqual({
+        disabled: false,
+    });
 });
