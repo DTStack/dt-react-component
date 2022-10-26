@@ -79,7 +79,6 @@ const ModalForm = (props: ModalProps) => {
         onSubmit,
         children,
         okButtonProps,
-        ...restProps
     } = props;
 
     const formProps = useFilterFormProps();

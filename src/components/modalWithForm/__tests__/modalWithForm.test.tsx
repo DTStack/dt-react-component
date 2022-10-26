@@ -2,7 +2,7 @@ import React from 'react';
 import ModalWithForm, { useFilterFormProps } from '../index';
 import { Input, Form } from 'antd';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react-hooks';
 import '@testing-library/jest-dom/extend-expect';
 
 const FormItem = Form.Item;
@@ -103,12 +103,14 @@ test('should render ModalWithForm render correct button props', () => {
 });
 
 test('test useFilterFormProps', () => {
-    const { result } = renderHook(() => useFilterFormProps({
-        a: 1,
-        onOk: () => {},
-        disabled: false
-    }))
+    const { result } = renderHook(() =>
+        useFilterFormProps({
+            a: 1,
+            onOk: () => {},
+            disabled: false,
+        })
+    );
     expect(result.current).toEqual({
-        disabled: false
-    })
+        disabled: false,
+    });
 });
