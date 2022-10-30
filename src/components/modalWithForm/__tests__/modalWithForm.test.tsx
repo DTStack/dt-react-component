@@ -37,6 +37,7 @@ class App extends React.Component<any, any> {
                     cancelText="quit"
                     record="hi"
                     okButtonProps={{ danger: true }}
+                    width={400}
                 />
             </>
         );
@@ -100,6 +101,12 @@ test('should render ModalWithForm render correct button props', () => {
     fireEvent.click(wrapper.getByText('click'));
     const eleOk = wrapper.getByText('ok');
     expect(eleOk.parentNode).toHaveClass('ant-btn-dangerous');
+});
+
+test('should render ModalWithForm render correct width props', async () => {
+    fireEvent.click(wrapper.getByText('click'));
+    const eleModal = document.querySelector('.ant-modal');
+    expect(eleModal).toHaveStyle({ width: '400px' });
 });
 
 test('test useFilterFormProps', () => {
