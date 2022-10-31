@@ -70,6 +70,7 @@ const ModalForm = (props: ModalProps) => {
         cancelText = '取消',
         modelClass,
         okType,
+        width,
         footer,
         centered,
         cancelButtonProps,
@@ -102,6 +103,7 @@ const ModalForm = (props: ModalProps) => {
             className={modelClass}
             title={title}
             visible={visible}
+            width={width}
             onOk={okHandler}
             onCancel={cancelHandler}
             okText={okText}
