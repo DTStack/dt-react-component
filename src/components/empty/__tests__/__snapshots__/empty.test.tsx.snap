@@ -13,6 +13,7 @@ Object {
         >
           <div
             class="ant-empty-image"
+            style="height: 80px;"
           >
             <img
               alt="No Data"
@@ -37,6 +38,7 @@ Object {
       >
         <div
           class="ant-empty-image"
+          style="height: 80px;"
         >
           <img
             alt="No Data"

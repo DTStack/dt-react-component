@@ -14,7 +14,7 @@ const propDefinitions = [
         propType: 'string',
         required: false,
         description: '默认展示图片的类型',
-        defaultValue: 'default',
+        defaultValue: 'default | search | chart | project | overview | permission',
     },
     {
         property: 'image',
@@ -22,6 +22,13 @@ const propDefinitions = [
         required: false,
         description: '自定义图片(设置该参数时，默认的图片不生效)',
         defaultValue: '',
+    },
+    {
+        property: 'height',
+        propType: 'number',
+        required: false,
+        description: '图片大小(会被 imageStyle 中的 height 覆盖)',
+        defaultValue: 80,
     },
     {
         property: '其他参数',
@@ -46,11 +53,19 @@ const basicFunctionCode = ``;
 
 const basicEmpty = `<Empty />`;
 
-const basicGreyEmpty = `<Empty type="grey" />`;
+const basicGreyEmpty = `<Empty type="project" description="空项目" />
+<Empty type="chart" description="图表空数据" />
+<Empty type="search" description="搜索无数据" />
+<Empty type="permission" description="无权限" />`;
 
 const customizeImage = `<Empty image="https://user-images.githubusercontent.com/38368040/195246598-5adf8985-3f78-48b1-8116-bc4d78982df8.jpeg" />`;
 
-const moreSettingImage = `<Empty description="自定义的文案" imageStyle={{ height: 60 }}/>`;
+const moreSettingImage = `<Empty description="使用 height 定义图片大小" height={60} />
+<Empty
+    height={60}
+    imageStyle={{ height: 120 }}
+    description="imageStyle 和 height 共同设置"
+/>`;
 
 stories.add(
     'Empty 空状态',
@@ -67,14 +82,17 @@ stories.add(
             >
                 <Empty />
             </ExampleContainer>
-            <h2>2、使用灰色空状态</h2>
+            <h2>2、使用别的空状态</h2>
             <ExampleContainer
                 otherDependencies={otherDependencies}
                 code={basicGreyEmpty}
                 functionCode={basicFunctionCode}
                 hasCodeSandBox
             >
-                <Empty type="grey" />
+                <Empty type="project" description="空项目" />
+                <Empty type="chart" description="图表空数据" />
+                <Empty type="search" description="搜索无数据" />
+                <Empty type="permission" description="无权限" />
             </ExampleContainer>
             <h2>3、使用自定义图片</h2>
             <ExampleContainer
@@ -92,7 +110,12 @@ stories.add(
                 functionCode={basicFunctionCode}
                 hasCodeSandBox
             >
-                <Empty description="自定义的文案" imageStyle={{ height: 60 }} />
+                <Empty description="使用 height 定义图片大小" height={60} />
+                <Empty
+                    height={60}
+                    imageStyle={{ height: 120 }}
+                    description="imageStyle 和 height 共同设置"
+                />
             </ExampleContainer>
         </div>
     ),
