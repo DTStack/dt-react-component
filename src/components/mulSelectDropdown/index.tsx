@@ -1,6 +1,7 @@
 import React from 'react';
 import { Checkbox, Dropdown, Button, Divider } from 'antd';
 import { isEqual } from 'lodash';
+import classNames from 'classnames';
 
 interface Opts {
     label?: string;
@@ -8,6 +9,7 @@ interface Opts {
     disabled?: boolean;
 }
 interface MulSelectDropdownProps {
+    className?: string;
     popupContainer?: any;
     onChange?: (checked) => void;
     options: Opts[];
@@ -103,6 +105,7 @@ export default class MulSelectDropdown extends React.Component<
         const {
             popupContainer = () => document.body,
             options = [],
+            className = '',
             renderNode = (openFun) => <span onClick={openFun}>打开</span>,
         } = this.props;
         const { visible, selectVal, indeterminate, allKeys } = this.state;
@@ -148,7 +151,7 @@ export default class MulSelectDropdown extends React.Component<
                 visible={visible}
                 trigger={['click']}
                 overlay={overlay}
-                overlayClassName="dtc-mul-select-dropdown"
+                overlayClassName={classNames('dtc-mul-select-dropdown', className)}
                 getPopupContainer={popupContainer}
                 onVisibleChange={(visible) => {
                     !visible && this.handleCancel();

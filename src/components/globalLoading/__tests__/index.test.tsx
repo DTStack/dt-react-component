@@ -7,7 +7,7 @@ describe('test GlobalLoading', () => {
     let wrapper, element;
     const text = 'BatchWorks · 离线开发';
     beforeEach(() => {
-        wrapper = render(<GlobalLoading loadingTitle={text} />);
+        wrapper = render(<GlobalLoading loadingTitle={text} className="testGlobalLoading" />);
         element = wrapper.getByTestId('test-globalLoading');
     });
     afterEach(() => {
@@ -18,5 +18,9 @@ describe('test GlobalLoading', () => {
         expect(element).toHaveStyle({
             background: '#2E3943',
         });
+    });
+
+    test('should render GlobalLoading custom className', () => {
+        expect(wrapper.container.firstChild).toHaveClass('testGlobalLoading');
     });
 });

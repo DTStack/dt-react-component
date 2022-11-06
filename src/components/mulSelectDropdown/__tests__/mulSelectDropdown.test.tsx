@@ -21,6 +21,7 @@ describe('mulSelectDropdown Component test', () => {
         };
         const { getByTestId } = render(
             <MulSelectDropdown
+                className="testMulSelectDropdown"
                 value={expectValues.value}
                 onOk={expectValues.onOk}
                 renderNode={expectValues.renderNode}
@@ -30,8 +31,10 @@ describe('mulSelectDropdown Component test', () => {
         fireEvent.click(getByTestId('drop_down_btn'));
 
         const dropdownEle = document.querySelector('.dtc-mul-select-dropdown');
+        const classDownEle = document.querySelector('.testMulSelectDropdown');
         const optionBoxEle = document.querySelector('.dtc-option-select-overlay-menu');
         expect(dropdownEle).not.toBeNull();
+        expect(classDownEle).not.toBeNull();
         expect(optionBoxEle.childNodes.length).toBe(2);
         const checkoutItem = optionBoxEle.getElementsByClassName('ant-checkbox-wrapper')[1];
         expect(checkoutItem.classList.contains('ant-checkbox-wrapper-disabled')).toEqual(true);

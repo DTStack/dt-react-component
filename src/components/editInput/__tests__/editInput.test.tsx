@@ -6,6 +6,7 @@ const defaultProps = {
     value: 'input',
     onChange: jest.fn(),
     max: 10,
+    className: 'testEditInput',
 };
 
 let wrapper, element;
@@ -33,5 +34,10 @@ describe('test edit input', () => {
     test('should render message when length more then max', () => {
         fireEvent.change(element, { target: { value: '12345678910' } });
         expect(wrapper.getByText('字符长度不可超过10')).toBeInTheDocument();
+    });
+
+    test('should support Breadcrumb custom className', () => {
+        const wrap = wrapper.container.firstChild;
+        expect(wrap).toHaveClass('testEditInput');
     });
 });
