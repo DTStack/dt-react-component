@@ -2,12 +2,14 @@ import React from 'react';
 
 import CopyUtils from '../utils/copy';
 import { HotTable } from '@handsontable/react';
+import classNames from 'classnames';
 import 'handsontable/dist/handsontable.full.css';
 import 'handsontable/languages/zh-CN.js';
 
 export interface SpreadSheetProps {
     data: Array<Array<string>>;
     columns: any;
+    className?: string;
 }
 
 class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
@@ -87,7 +89,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         } as any;
     }
     render() {
-        const { columns = [] } = this.props;
+        const { columns = [], className = '' } = this.props;
         const showData = this.getData();
         // 空数组情况，不显示colHeaders，否则colHeaders默认会按照 A、B...显示
         // 具体可见 https://handsontable.com/docs/7.1.1/Options.html#colHeaders
@@ -98,7 +100,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         return (
             <HotTable
                 ref={this.tableRef}
-                className="dtc-handsontable-no-border"
+                className={classNames('dtc-handsontable-no-border', className)}
                 style={{ width: '100%' }}
                 language="zh-CN"
                 colHeaders={isShowColHeaders ? columns : false}
