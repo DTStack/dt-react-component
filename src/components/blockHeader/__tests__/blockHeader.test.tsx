@@ -10,6 +10,7 @@ const props2 = {
     title: '标题2',
     beforeTitle: <span>Icon</span>,
     afterTitle: '说明文字',
+    addonAfter: <div className="test-button-after">新增按钮</div>,
     isSmall: true,
     titleRowClassName: 'test-row-className',
     titleClassName: 'test-title-className',
@@ -54,6 +55,7 @@ describe('test BlockHeader render', () => {
         expect(wrap.firstChild).toHaveClass(`test-row-className`);
         expect(getByText('标题2')).toHaveClass('test-title-className');
         expect(getByText('说明文字')).toHaveClass(`${prefixCls}-after-title`);
+        expect(getByText('新增按钮')).toHaveClass(`test-button-after`);
         expect(getByText('Icon')).toBeTruthy();
     });
     test('should render BlockHeader test click event', () => {

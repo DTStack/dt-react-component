@@ -143,6 +143,9 @@ stories.add(
 
             <p style={style}>8、简洁版</p>
             <BlockHeader title="分类标题" beforeTitle="" />
+
+            <p style={style}>9、自定义后缀元素</p>
+            <BlockHeader title="分类标题" addonAfter={<Button type="primary" onClick={() => alert('触发了点击事件')} size="small">点击</Button>} />
             ~~~
         `,
             TableComponent: () => PropsTable({ propDefinitions }),
