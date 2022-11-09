@@ -3,6 +3,7 @@ import React from 'react';
 export interface TextMarkProps {
     text?: string;
     markText?: string;
+    className?: string;
     [propName: string]: any;
 }
 class TextMark extends React.Component<TextMarkProps, any> {
@@ -22,8 +23,12 @@ class TextMark extends React.Component<TextMarkProps, any> {
     }
 
     render() {
-        const { text, markText, ...others } = this.props;
-        return <span {...others}>{this.renderMark(text, markText)}</span>;
+        const { text, markText, className = '', ...others } = this.props;
+        return (
+            <span className={className} {...others}>
+                {this.renderMark(text, markText)}
+            </span>
+        );
     }
 }
 

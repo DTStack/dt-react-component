@@ -27,6 +27,12 @@ describe('test dragDrawer', () => {
         );
         expect(wrapper.firstChild).toHaveClass(`${prefixCls}`);
     });
+    test('should  support DragDrawer custom className', () => {
+        const { container: wrapper } = render(
+            <DragDrawer visible getContainer={false} draggable={false} className="testDragDrawer" />
+        );
+        expect(wrapper.firstChild).toHaveClass('testDragDrawer');
+    });
 
     // test('call onDrag callback', () => {
     //     const onDrag = jest.fn();

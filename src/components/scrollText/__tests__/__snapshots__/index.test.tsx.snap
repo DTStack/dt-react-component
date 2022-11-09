@@ -2,7 +2,7 @@
 
 exports[`test ScrollText suite snapshot match 1`] = `
 <input
-  class="cell-input"
+  class="cell-input testScrollText"
   data-testid="test-scroll-text"
   readonly=""
   style="height: 28px; margin: 5px 5px 5px 0px; width: 100%; text-align: left; background-color: transparent; background-image: none;"

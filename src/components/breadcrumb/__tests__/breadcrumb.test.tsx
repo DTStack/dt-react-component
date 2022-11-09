@@ -57,6 +57,12 @@ describe('test breadcrumb', () => {
         });
     });
 
+    test('should support Breadcrumb custom className', () => {
+        const { container } = render(<Breadcrumb {...defaultProps} className="testBreadcrumb" />);
+        const wrap = container.firstChild;
+        expect(wrap).toHaveClass('testBreadcrumb');
+    });
+
     test('should support Breadcrumb navigate to home router when click ', () => {
         const history = createMemoryHistory();
         const { container, getByTestId } = render(

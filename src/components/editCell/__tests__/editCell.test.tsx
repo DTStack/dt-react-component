@@ -15,6 +15,7 @@ const defaultProps = {
     keyField: 'name',
     onHandleEdit: jest.fn(),
     isView: false,
+    className: 'testEditCell',
 };
 
 let wrapper, ele;
@@ -47,5 +48,10 @@ describe('test edit cell', () => {
         fireEvent.click(editorEle);
         expect(editorEle.onclick).toHaveBeenCalled();
         expect(defaultProps.onHandleEdit).toHaveBeenCalled();
+    });
+
+    test('should support EditCell custom className', () => {
+        const wrap = wrapper.container.firstChild;
+        expect(wrap).toHaveClass('testEditCell');
     });
 });

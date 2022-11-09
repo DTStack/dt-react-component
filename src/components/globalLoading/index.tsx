@@ -1,6 +1,8 @@
+import classNames from 'classnames';
 import React from 'react';
 
 export interface GlobalLoadingProps {
+    className?: string;
     prefix?: string;
     loadingTitle?: string;
     mainBackground?: string;
@@ -16,10 +18,11 @@ export default class GlobalLoading extends React.Component<GlobalLoadingProps, a
             mainBackground = '#2E3943',
             circleBackground = '#fff',
             titleColor = '#fff',
+            className = '',
         } = this.props;
         return (
             <div
-                className="dtc-loading-wrapper"
+                className={classNames('dtc-loading-wrapper', className)}
                 style={{ background: mainBackground }}
                 data-testid="test-globalLoading"
             >

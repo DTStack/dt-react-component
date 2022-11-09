@@ -1,9 +1,11 @@
 import React from 'react';
 import { Input } from 'antd';
 import EllipsisText from '../ellipsisText';
+import classNames from 'classnames';
 
 type EditType = string | number;
 export interface EditCellProps {
+    className?: string;
     value: string;
     keyField: string;
     isView?: boolean;
@@ -45,9 +47,9 @@ export default class EditCell extends React.PureComponent<EditCellProps, EditCel
 
     render() {
         const { isEdit, editValue } = this.state;
-        const { isView } = this.props;
+        const { isView, className = '' } = this.props;
         return (
-            <div className="dtc-edit-Cell">
+            <div className={classNames('dtc-edit-Cell', className)}>
                 {isEdit ? (
                     <div className="dtc-edit-input-row">
                         <Input

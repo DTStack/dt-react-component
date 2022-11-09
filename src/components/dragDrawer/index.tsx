@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { DrawerProps, Drawer } from 'antd';
+import classNames from 'classnames';
 
 interface DragDrawerProps extends DrawerProps {
     draggable?: boolean;
@@ -21,6 +22,7 @@ const DragDrawer: React.FC<DragDrawerProps> = function (props) {
         width: defaultWidth = 1000,
         children = '',
         onDrag,
+        className = '',
     } = props;
 
     const assertWidth = (width) => {
@@ -46,12 +48,12 @@ const DragDrawer: React.FC<DragDrawerProps> = function (props) {
             bodyStyle={bodyStyle}
             width={defaultWidth}
             closable={closable}
-            className={`${prefixCls}`}
+            className={classNames(prefixCls, className)}
             {...props}
             placement="right"
         >
             {draggable && (
-                <div className={`${prefixCls}`}>
+                <div className={classNames(prefixCls, className)}>
                     <img
                         id="dragDrawerIcon"
                         draggable

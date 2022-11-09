@@ -6,6 +6,12 @@ describe('mulSelectDropdown Component test', () => {
     afterEach(() => {
         cleanup();
     });
+    it('should render mulSelectDropdown correctly', () => {
+        const { container: wrapper } = render(
+            <MulSelectDropdown searchType="tail" value="this is value" placeholder="hello" />
+        );
+        expect(wrapper.firstChild).toMatchSnapshot();
+    });
     it('custom filter rendering', () => {
         const { queryByTestId } = render(<MulSelectDropdown filterOptions={['front', 'tail']} />);
         expect(queryByTestId('icon-front')).not.toBeNull();
@@ -36,5 +42,17 @@ describe('mulSelectDropdown Component test', () => {
         );
         fireEvent.keyDown(queryByTestId('input'), { key: 'Enter', keyCode: 13 });
         expect(myMockSearch.mock.calls.length).toBe(1);
+    });
+    it('should  support MulSelectDropdown custom className', () => {
+        render(
+            <MulSelectDropdown
+                searchType="tail"
+                value="this is value"
+                placeholder="hello"
+                className="testMulSelectDropdown"
+            />
+        );
+        const ele = document.querySelector('.testMulSelectDropdown');
+        expect(ele).not.toBeNull();
     });
 });
