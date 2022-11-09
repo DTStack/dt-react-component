@@ -11,6 +11,8 @@ export interface BlockHeaderProps {
     afterTitle?: string | React.ReactNode;
     // 默认展示为问号的toolip
     tooltip?: React.ReactNode;
+    // 后缀自定义内容块
+    addonAfter?: React.ReactNode;
     /**
      * true 小标题 font-size: 12px; line-height: 32px
      * false 大标题 font-size: 14px; line-height: 40px
@@ -40,6 +42,7 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         titleClassName = '',
         showBackground = true,
         defaultExpand = true,
+        addonAfter,
         children = '',
         onChange,
     } = props;
@@ -74,7 +77,7 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
                         <div className={`${prefixCls}-after-title`}>{newAfterTitle}</div>
                     ) : null}
                 </div>
-
+                {addonAfter && <div className={`${prefixCls}-addonAfter-box`}>{addonAfter}</div>}
                 {children && (
                     <div className={`${prefixCls}-collapse-box`}>
                         <div className="text">{expand ? '收起' : '展开'}</div>
