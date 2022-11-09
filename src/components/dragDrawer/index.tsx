@@ -37,7 +37,9 @@ const DragDrawer: React.FC<DragDrawerProps> = function (props) {
             if (e.clientX < 0) return;
             onDrag?.(e);
             const width = assertWidth(document.body.clientWidth - e.clientX);
-            e['path'][6]['style']['width'] = `${width}px`;
+            if (e['path']?.[6]?.children?.[1]?.style?.width !== undefined) {
+                e['path'][6].children[1].style.width = `${width}px`;
+            }
             // document.getElementsByClassName('ant-drawer-content-wrapper')[0]['style']['width'] = `${width}px`;
         });
     }, [visible]);
