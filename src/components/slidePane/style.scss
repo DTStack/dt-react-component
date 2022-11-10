@@ -14,32 +14,17 @@ $prefix: "dtc-slide-pane";
         top: 0;
         right: 0;
     }
-    .#{$prefix}-conent {
+    .#{$prefix}-content {
         position: relative;
     }
 
-    .#{$prefix}-toggle {
-        background: #EEE;
-        border: 1px solid #DDD;
-        width: 18px;
-        font-size: 12px;
-        height: 50px;
-        line-height: 50px;
-        top: 0;
-        bottom: 0;
-        z-index: 999;
-        left: 0;
-        margin: auto;
-        cursor: pointer;
+    .#{$prefix}-icon {
+        width: 12px;
+        height: 56px;
         position: absolute;
-        > i {
-            margin: auto;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 12px;
-            position: absolute;
-        }
+        top: calc(50% - 28px);
+        left: 0;
+        z-index: 999;
+        cursor: pointer;
     }
 }

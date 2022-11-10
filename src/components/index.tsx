@@ -6,7 +6,6 @@ export { default as ContextMenu } from './contextMenu';
 export { default as Cookies } from './cookies';
 export { default as ContextMenuCombiner } from './contextMenuCombiner';
 export { default as CopyIcon } from './copyIcon';
-export { default as DragDrawer } from './dragDrawer';
 export { default as EasySelect } from './easySelect';
 export { default as EditCell } from './editCell';
 export { default as EditInput } from './editInput';

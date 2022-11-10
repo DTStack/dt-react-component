@@ -44,12 +44,4 @@ describe('Empty', () => {
         const srcValue = container.querySelector('img').getAttribute('src');
         expect(srcValue).toEqual(IMG_MAP['project']);
     });
-
-    it('should support empty render correct img when have image props', () => {
-        const { container } = render(
-            <Empty image="public/iamges/drag-drawer-icon.png" type="project" />
-        );
-        const srcValue = container.querySelector('img').getAttribute('src');
-        expect(srcValue).toEqual('public/iamges/drag-drawer-icon.png');
-    });
 });
