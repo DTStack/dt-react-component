@@ -11,8 +11,8 @@
 English | [简体中文](./README-zh_CN.md)
 
 ## Docs
+- [v3.x](https://dtstack.github.io/dt-react-component/)
 - [v2.x](https://liuxy0551.github.io/dt-react-component/)
-- [v3.x-beta](https://dtstack.github.io/dt-react-component/)
 
 React UI component library based on [ant-design](https://github.com/ant-design/ant-design). Mainly used for middle and back-end products. Our goal is to **meet more specific and more specific business scenario components**. Of course, we also have excellent business components based on native javascript, such as **ContextMenu**, **KeyEventListener** and so on.
 
@@ -118,9 +118,8 @@ Open your browser and visit [http://127.0.0.1:9001](http://127.0.0.1:9001)，We 
 
 ``` bash
 yarn compile
-yarn release -r 2.2.1
+yarn release -r 3.0.1
 npm publish --registry https://registry.npmjs.org/
-yarn deploy-storybook
 ```
 
 ## Roadmap
