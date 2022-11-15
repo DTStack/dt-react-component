@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/DTStack/dt-react-component/compare/v2.2.0...v3.0.0) (2022-11-15)
+
+
+### Features
+
+* add addonAfter param the blockHeader component ([#246](https://github.com/DTStack/dt-react-component/issues/246)) ([8780a46](https://github.com/DTStack/dt-react-component/commit/8780a468c23d50206205e13ee0a086fae7d37171))
+* add empty component ([#226](https://github.com/DTStack/dt-react-component/issues/226)) ([b42b77a](https://github.com/DTStack/dt-react-component/commit/b42b77a4fb08b9eaafb408ac255029e68767938c))
+* add first pure business component ([#168](https://github.com/DTStack/dt-react-component/issues/168)) ([12c8eac](https://github.com/DTStack/dt-react-component/commit/12c8eacbc5cd0c569fe17c9e39f16b0c76a6e1bf))
+* add form.layout ([#205](https://github.com/DTStack/dt-react-component/issues/205)) ([b2680b0](https://github.com/DTStack/dt-react-component/commit/b2680b07a1f372a3947bfed91f75da25c7e58d42))
+* add okbuttonprops for modalwithform ([#234](https://github.com/DTStack/dt-react-component/issues/234)) ([944f04d](https://github.com/DTStack/dt-react-component/commit/944f04d93e34b3ad683279021f515d078f66a9a0)), closes [#235](https://github.com/DTStack/dt-react-component/issues/235)
+* add preserve attr ([#231](https://github.com/DTStack/dt-react-component/issues/231)) ([b0a7ac6](https://github.com/DTStack/dt-react-component/commit/b0a7ac6e2b2d8ab4a897c00d955e832ed14b9362))
+* add unit cases in dragDrawer ([#188](https://github.com/DTStack/dt-react-component/issues/188)) ([bce68f0](https://github.com/DTStack/dt-react-component/commit/bce68f059b6b4fae687361cb56a2c1c412dfcecd))
+* antd 4.x icon ([2ab9d42](https://github.com/DTStack/dt-react-component/commit/2ab9d427446f6706440d47f5d264821001492d9d))
+* antd 4.x icon ([#187](https://github.com/DTStack/dt-react-component/issues/187)) ([44a8747](https://github.com/DTStack/dt-react-component/commit/44a8747310aa8b4ffd7f71958af4102a357fb454))
+* config node version ([bbf5e91](https://github.com/DTStack/dt-react-component/commit/bbf5e91194675e2789722e245531080f1f3b05b1))
+* delete @ant-design/compatible/assets/index.css ([fc92b60](https://github.com/DTStack/dt-react-component/commit/fc92b600162942e60e51dc52b4ad048f5eae6966))
+* develop contextMenu ([#240](https://github.com/DTStack/dt-react-component/issues/240)) ([dadfedc](https://github.com/DTStack/dt-react-component/commit/dadfedc43bc347a808d92661c4d565d290568099))
+* enable tree shaking optimization ([#197](https://github.com/DTStack/dt-react-component/issues/197)) ([6c1b047](https://github.com/DTStack/dt-react-component/commit/6c1b047e5aef64bd2701c0a26b5f5f67802b2ba4))
+* mxgraph css ([#199](https://github.com/DTStack/dt-react-component/issues/199)) ([e791eee](https://github.com/DTStack/dt-react-component/commit/e791eeeffc669c53f52338e5d9bb472011a11706))
+* support more image for empty ([#244](https://github.com/DTStack/dt-react-component/issues/244)) ([5daace3](https://github.com/DTStack/dt-react-component/commit/5daace3fbdcb0547264d7ec5bc97b57485793901))
+* support width for ModalWithForm ([#242](https://github.com/DTStack/dt-react-component/issues/242)) ([f7bc09b](https://github.com/DTStack/dt-react-component/commit/f7bc09b90451a2d1f6dafa853ed7a00513440177))
+* supprt initialValue for RenderFormItem ([#204](https://github.com/DTStack/dt-react-component/issues/204)) ([3abd052](https://github.com/DTStack/dt-react-component/commit/3abd0526ca35460f52f55fbaecc8bb89d3e51c5e))
+* supprt name for NamePath ([#211](https://github.com/DTStack/dt-react-component/issues/211)) ([88a9524](https://github.com/DTStack/dt-react-component/commit/88a95246bf170f547b5b89c2c679d9e628b05649))
+* the hideModelHandler method removed from the successful callback ([#208](https://github.com/DTStack/dt-react-component/issues/208)) ([739d2a4](https://github.com/DTStack/dt-react-component/commit/739d2a4d887e805fc2fd902bb6daf67196984125))
+* update antd version ([#220](https://github.com/DTStack/dt-react-component/issues/220)) ([41d1787](https://github.com/DTStack/dt-react-component/commit/41d17878d7b053ec13c3ecc799657817c003b77d))
+* update BlockHeader ([#236](https://github.com/DTStack/dt-react-component/issues/236)) ([cb42586](https://github.com/DTStack/dt-react-component/commit/cb425865c80992c6a45fe16940ee76f93f9e4d33))
+* update stories of ToolModal ([#165](https://github.com/DTStack/dt-react-component/issues/165)) ([238585e](https://github.com/DTStack/dt-react-component/commit/238585e536fde6eef903ff08db5aab23d20bc29e))
+
+
+### Bug Fixes
+
+* import is replaced with require ([7a6263f](https://github.com/DTStack/dt-react-component/commit/7a6263f57ced1804902ec9f76dda8034a097a5a0))
+* rename with restProps in empty Component ([060d7c7](https://github.com/DTStack/dt-react-component/commit/060d7c7cd2587abe6d81cba4f8d68716a8e1db04))
+* update circle width 6px ([#238](https://github.com/DTStack/dt-react-component/issues/238)) ([315e7d5](https://github.com/DTStack/dt-react-component/commit/315e7d560823aa8688ef83c07384306a5e992828))
+* yarn check-types ([c61340e](https://github.com/DTStack/dt-react-component/commit/c61340e56b6b90256dcc700e05748426bcbf2e64))
+* yarn check-types ([#194](https://github.com/DTStack/dt-react-component/issues/194)) ([a24b360](https://github.com/DTStack/dt-react-component/commit/a24b360dabe7716c71d164c600203698f19701f8))
+
 ### [2.2.1](https://github.com/DTStack/dt-react-component/compare/v2.2.0...v2.2.1) (2022-09-01)
 
 
