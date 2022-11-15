@@ -1,34 +1,19 @@
-$context-prefix: "dtc-context-menu";
-.#{$context-prefix} {
-    position: fixed;
-    min-width: 90px;
-    max-width: 160px;
-    display: none;
-    z-index: 9999;
+.dt-contextMenu-menu {
+    padding: 0;
     background: #FFF;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
-    .#{$context-prefix}-context-menu_list {
-        margin: 0;
-        padding: 0;
-        .#{$context-prefix}-context-list_li {
-            list-style-type: none;
-        }
-        .#{$context-prefix}-context-list_a {
-            display: block;
-            padding: 7px 8px;
-            margin: 0;
-            clear: both;
-            font-size: 12px;
-            font-weight: normal;
-            color: rgba(0, 0, 0, 0.65);
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            &:hover {
-                background: #EEF6FE;
-            }
+    min-width: 90px;
+    max-width: 160px;
+    .ant-dropdown-menu-item {
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 12px;
+        font-weight: normal;
+        white-space: nowrap;
+        text-decoration: none;
+        line-height: inherit;
+        &:hover {
+            background: #EEF6FE;
         }
     }
 }
