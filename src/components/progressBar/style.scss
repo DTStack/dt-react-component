@@ -1,4 +1,4 @@
-$prefix: 'dtc-progress';
+$prefix: "dtc-progress";
 .#{$prefix}-progress-bar {
     position: fixed;
     top: 0;
@@ -7,7 +7,7 @@ $prefix: 'dtc-progress';
     width: 100%;
     height: 1px;
     background: #2491F7;
-    box-shadow: 0px 1px 3px #2491F7;
+    box-shadow: 0 1px 3px #2491F7;
     animation: dtc-progress-loading-anim 1s ease-in-out infinite;
 }
 
@@ -20,14 +20,14 @@ $prefix: 'dtc-progress';
     z-index: 10000;
 }
 
-@-webkit-keyframes dtc-progress-loading-anim {
+@keyframes dtc-progress-loading-anim {
     to {
-        transform: translateX(200%)
+        transform: translateX(200%);
     }
 }
 
 @keyframes dtc-progress-loading-anim {
     to {
-        transform: translateX(200%)
+        transform: translateX(200%);
     }
 }

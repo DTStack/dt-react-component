@@ -20,6 +20,12 @@
 + 当发现其他组件库提供的基本组件不符合当前的业务场景，并且需要基于这些基本组件实现功能时，可以考虑使用 dt-react-component 解决问题。
 + 当业务复杂时，将沉淀越来越多的业务组件。 为了更好地管理组件并减少代码的冗余，可以使用 dt-react-component。 当然，我们欢迎 PR。 我们也将及时审查和合并常见的业务场景组件。
 
+
+## 如何贡献
+
+[贡献指南](./CONTRIBUTING.md)
+
+
 ## 安装
 
 ```js
@@ -33,10 +39,10 @@ yarn add dt-react-component
 ## 使用
 
 ```js
-import { Circle, GoBack } from 'dt-react-component'
+import { StatusTag, GoBack } from 'dt-react-component'
 const App = () => (
   <>
-    <Circle type='finished'/>
+    <StatusTag type='success'>已完成</StatusTag>
     <GoBack url='/api/manage' />
   </>
 );

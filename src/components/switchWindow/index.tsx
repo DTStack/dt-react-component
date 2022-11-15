@@ -1,5 +1,4 @@
-
-import React from 'react'
+import React from 'react';
 export interface SwitchWindowProps {
     onSwitch?: (evt) => void;
     style?: React.CSSProperties;
@@ -11,33 +10,27 @@ export interface SwitchWindowProps {
  * <SwitchWindow onSwitch={}></SwitchWindow>
  */
 class SwitchWindow extends React.Component<SwitchWindowProps, any> {
-    componentDidMount () {
+    componentDidMount() {
         this.initEvent();
     }
 
     listener = (e: any) => {
         const { onSwitch } = this.props;
-        console.log('switch window is focusing!', window.location)
+        console.log('switch window is focusing!', window.location);
         if (onSwitch) onSwitch(e);
-    }
+    };
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         window.removeEventListener('focus', this.listener);
     }
 
     initEvent = () => {
         window.addEventListener('focus', this.listener);
-    }
+    };
 
-    render () {
-        return (
-            <React.Fragment>
-                {
-                    this.props.children
-                }
-            </React.Fragment>
-        )
+    render() {
+        return <React.Fragment>{this.props.children}</React.Fragment>;
     }
 }
 
-export default SwitchWindow
+export default SwitchWindow;

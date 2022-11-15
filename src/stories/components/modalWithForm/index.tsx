@@ -1,44 +1,41 @@
-import React, { Component } from 'react'
-import { Form, Input, Button } from 'antd';
-import RenderBaseForm from '../../../components/modalWithForm'
+import React, { Component } from 'react';
+import { Input, Button, Form } from 'antd';
+import RenderBaseForm from '../../../components/modalWithForm';
 
 const FormItem = Form.Item;
 
-const Modal = RenderBaseForm((props) => {
-    const { form: { getFieldDecorator } } = props
+const Modal = RenderBaseForm((_props) => {
     return (
-        <FormItem label='username'>
-            {getFieldDecorator('username', {
-                rules: [{ max: 10 }]
-            })(
-                <Input />
-            )}
+        <FormItem label="username" name={'username'} rules={[{ max: 10 }]}>
+            <Input />
         </FormItem>
-    )
-})
+    );
+});
 
 export default class ModalWithForm extends Component<any, any> {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
-            visible: false
+            visible: false,
         };
     }
-    hideModelHandler = () => {
-        const { visible } = this.state
+    hideModalHandler = () => {
+        const { visible } = this.state;
         this.setState({ visible: !visible });
-    }
-    render () {
+    };
+    render() {
         return (
             <>
-                <Button onClick={this.hideModelHandler}>click</Button>
+                <Button onClick={this.hideModalHandler}>click</Button>
                 <Modal
-                    title='ModalWithForm'
+                    title="ModalWithForm"
                     visible={this.state.visible}
-                    hideModelHandler={this.hideModelHandler}
-                    onSubmit={(value) => { console.log(value) }}
+                    hideModalHandler={this.hideModalHandler}
+                    onSubmit={(value) => {
+                        console.log(value);
+                    }}
                 />
             </>
-        )
+        );
     }
 }

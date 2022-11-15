@@ -1,0 +1,45 @@
+$card_prefix: "dtc-statusTag";
+$warning_color: #FBB310;
+$run_color: #1D78FF;
+$success_color: #11D782;
+$frozen_color: #EBECF0;
+$error_color: #F96C5B;
+$stopped_color: #AC9DFF;
+
+.#{$card_prefix} {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    height: 24px;
+    color: #3D446E;
+    &__border {
+        padding: 2px 12px;
+        border: 1px solid #EBECF0;
+        border-radius: 14px;
+    }
+    &__text {
+        margin-left: 8px;
+        line-height: 22px;
+    }
+    &__default {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+    }
+    &__warning {
+        background: $warning_color;
+    }
+    &__error {
+        background: $error_color;
+    }
+    &__success {
+        background: $success_color;
+    }
+    &__run {
+        background: $run_color;
+    }
+    &__stopped {
+        background: $stopped_color;
+    }
+}

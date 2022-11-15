@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, {
     CSSProperties,
     ForwardedRef,
@@ -6,7 +7,7 @@ import React, {
     useEffect,
     useImperativeHandle,
     useRef,
-    useState
+    useState,
 } from 'react';
 import { Spin } from 'antd';
 import {
@@ -17,7 +18,7 @@ import {
     mxEventSource,
     mxGraph,
     mxGraphExportObject,
-    mxPopupMenuHandler
+    mxPopupMenuHandler,
 } from 'mxgraph';
 import MxFactory from './factory';
 
@@ -141,7 +142,7 @@ export interface IContainerProps<T> {
         defaultEdgeStyle?:
             | Record<string, any>
             | ((instances: mxGraphExportObject) => Record<string, any>);
-        getPortOffset?:(edgeState: mxCellState, source:boolean) => HTMLElement;
+        getPortOffset?: (edgeState: mxCellState, source: boolean) => HTMLElement;
         [key: string]: any;
     };
     /**
@@ -159,14 +160,11 @@ export interface IContainerProps<T> {
     /**
      * 渲染自定义 actions
      */
-    onRenderActions?: (
-        graph: mxGraph,
-        instances: mxGraphExportObject
-    ) => JSX.Element;
+    onRenderActions?: (graph: mxGraph, instances: mxGraphExportObject) => JSX.Element;
     /**
      * 针对不同的数据渲染不同 size 的 vertex
      */
-    onGetSize?: (data: T)=> { width: number; height: number } | undefined;
+    onGetSize?: (data: T) => { width: number; height: number } | undefined;
     /**
      * 渲染 widgets 的组件
      */
@@ -192,7 +190,7 @@ export interface IContainerProps<T> {
     /**
      * 渲染 cell 的 tooltips，返回 string 类型或 undefined
      */
-     onRenderTooltips?: (cell: mxCell, graph: mxGraph) => string;
+    onRenderTooltips?: (cell: mxCell, graph: mxGraph) => string;
     /**
      * 获取 vertex 的 style，由于存在默认样式，所以通常用于设置特殊状态的 vertex
      */
@@ -285,7 +283,7 @@ function MxGraphContainer<T extends IMxGraphData>(
         onRenderActions,
         onKeyDown,
         onCellsChanged,
-        onContainerChanged
+        onContainerChanged,
     }: IContainerProps<T>,
     ref: Ref<IContainerRef<T>>
 ) {
@@ -301,8 +299,7 @@ function MxGraphContainer<T extends IMxGraphData>(
         insertCell: (data, x, y) => {
             if (graph.current) {
                 const width = vertexSize?.width || MxFactory.VertexSize.width;
-                const height =
-                    vertexSize?.height || MxFactory.VertexSize.height;
+                const height = vertexSize?.height || MxFactory.VertexSize.height;
                 const style = onDrawVertex?.(data);
 
                 graph.current.insertVertex(
@@ -362,9 +359,7 @@ function MxGraphContainer<T extends IMxGraphData>(
          */
         getCells: () => {
             const cells =
-                graph.current
-                    ?.getModel()
-                    .getChildCells(graph.current.getDefaultParent()) || [];
+                graph.current?.getModel().getChildCells(graph.current.getDefaultParent()) || [];
             return cells;
         },
         /**
@@ -384,12 +379,12 @@ function MxGraphContainer<T extends IMxGraphData>(
                     setTimeout(() => {
                         graph.current?.container.scrollTo({
                             top: geometry.scrollTop,
-                            left: geometry.scrollLeft
+                            left: geometry.scrollLeft,
                         });
                     }, 0);
                 }
             }
-        }
+        },
     }));
 
     const initGraph = () => {
@@ -409,10 +404,7 @@ function MxGraphContainer<T extends IMxGraphData>(
             const parent = graph.current!.getDefaultParent();
             graph.current!.getModel().beginUpdate();
             try {
-                const layout2 = new MxHierarchicalLayout(
-                    graph.current!,
-                    direction || 'north'
-                );
+                const layout2 = new MxHierarchicalLayout(graph.current!, direction || 'north');
                 layout2.disableEdgeStyle = false;
                 layout2.interRankCellSpacing = 60;
                 layout2.intraCellSpacing = 80;
@@ -427,9 +419,7 @@ function MxGraphContainer<T extends IMxGraphData>(
     };
 
     const initWidgetDraggable = () => {
-        const nodes = document.querySelectorAll<HTMLElement>(
-            `*[class*="${WIDGETS_PREFIX}"]`
-        );
+        const nodes = document.querySelectorAll<HTMLElement>(`*[class*="${WIDGETS_PREFIX}"]`);
         nodes.forEach((node) => {
             if (Object.hasOwnProperty(draggableEleSymbol)) return;
             const dragElt =
@@ -460,13 +450,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                     }
                     return null;
                 },
-                (
-                    g: mxGraph,
-                    _: mxEventSource,
-                    target: mxCell,
-                    x: number,
-                    y: number
-                ) => {
+                (g: mxGraph, _: mxEventSource, target: mxCell, x: number, y: number) => {
                     if (g.canImportCell(target)) {
                         onDropWidgets?.(node, g, target, x, y);
                     }
@@ -485,14 +469,13 @@ function MxGraphContainer<T extends IMxGraphData>(
             draggableEle.isGuidesEnabled = () => {
                 return graph.current!.graphHandler.guidesEnabled;
             };
-            draggableEle.createDragElement =
-                mxDragSource.prototype.createDragElement;
+            draggableEle.createDragElement = mxDragSource.prototype.createDragElement;
 
             // insert a flag into element
             Object.defineProperty(node, draggableEleSymbol, {
                 value: true,
                 writable: false,
-                enumerable: false
+                enumerable: false,
             });
         });
     };
@@ -503,10 +486,7 @@ function MxGraphContainer<T extends IMxGraphData>(
             // @ts-ignore
             keyHandler.getFunction = function (evt: any) {
                 if (evt !== null && !mxEvent.isAltDown(evt)) {
-                    if (
-                        this.isControlDown(evt) ||
-                        (mxClient.IS_MAC && evt.metaKey)
-                    ) {
+                    if (this.isControlDown(evt) || (mxClient.IS_MAC && evt.metaKey)) {
                         if (mxEvent.isShiftDown(evt)) {
                             return this.controlShiftKeys[evt.keyCode];
                         }
@@ -540,17 +520,11 @@ function MxGraphContainer<T extends IMxGraphData>(
     const initConnectionConstraints = () => {
         if (enableDrag) {
             // Replaces the port image
-            MxConstraintHandler.prototype.pointImage = new MxImage(
-                'images/points.gif',
-                5,
-                5
-            );
+            MxConstraintHandler.prototype.pointImage = new MxImage('images/points.gif', 5, 5);
             // Constraint highlight color
             MxConstraintHandler.prototype.highlightColor = '#3f87ff';
             // Overridden to define per-shape connection points
-            MxGraph.prototype.getAllConnectionConstraints = function (
-                terminal: mxCellState
-            ) {
+            MxGraph.prototype.getAllConnectionConstraints = function (terminal: mxCellState) {
                 if (terminal?.shape) {
                     if (terminal.shape.stencil) {
                         return terminal.shape.stencil.constraints;
@@ -568,17 +542,14 @@ function MxGraphContainer<T extends IMxGraphData>(
                 new MxConnectionConstraint(new MxPoint(0.5, 0), true),
                 new MxConnectionConstraint(new MxPoint(0, 0.5), true),
                 new MxConnectionConstraint(new MxPoint(1, 0.5), true),
-                new MxConnectionConstraint(new MxPoint(0.5, 1), true)
+                new MxConnectionConstraint(new MxPoint(0.5, 1), true),
             ];
             // Edges have no connection points
             MxPolyline.prototype.constraints = [];
             // Disables floating connections (only connections via ports allowed)
             graph.current!.connectionHandler.isConnectableCell = () => false;
 
-            graph.current!.isValidConnection = function (
-                source: mxCell,
-                target: mxCell
-            ) {
+            graph.current!.isValidConnection = function (source: mxCell, target: mxCell) {
                 // Only connectable between vertexes
                 if (!source.vertex || !target.vertex) return false;
 
@@ -605,32 +576,23 @@ function MxGraphContainer<T extends IMxGraphData>(
         const highlightEdges: mxCellHighlight[] = [];
 
         // 添加 cells 事件，包括 vertexes 和 edges
-        graph.current?.addListener(
-            mxEvent.ADD_CELLS,
-            (_, evt: mxEventObject) => {
-                const cell: mxCell = evt.getProperty('cell');
-                onCellsChanged?.(cell);
-            }
-        );
+        graph.current?.addListener(mxEvent.ADD_CELLS, (_, evt: mxEventObject) => {
+            const cell: mxCell = evt.getProperty('cell');
+            onCellsChanged?.(cell);
+        });
         // 删除 cell 事件
         // TODO: Interesting, MOVE cell will call REMOVE_CELLS event
         // Don't know why yet
-        graph.current?.addListener(
-            mxEvent.REMOVE_CELLS,
-            (_, evt: mxEventObject) => {
-                const cell: mxCell = evt.getProperty('cell');
-                onCellsChanged?.(cell);
-            }
-        );
+        graph.current?.addListener(mxEvent.REMOVE_CELLS, (_, evt: mxEventObject) => {
+            const cell: mxCell = evt.getProperty('cell');
+            onCellsChanged?.(cell);
+        });
 
         // 移动 cell 事件
-        graph.current?.addListener(
-            mxEvent.MOVE_END,
-            (_, evt: mxEventObject) => {
-                const cell: mxCell = evt.getProperty('cell');
-                onCellsChanged?.(cell);
-            }
-        );
+        graph.current?.addListener(mxEvent.MOVE_END, (_, evt: mxEventObject) => {
+            const cell: mxCell = evt.getProperty('cell');
+            onCellsChanged?.(cell);
+        });
 
         // Click 事件
         graph.current?.addListener(mxEvent.CLICK, (_, evt) => {
@@ -642,8 +604,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                 if (cell) {
                     if (cell.vertex) {
                         // highlight cells and edges
-                        const outEdges =
-                            graph.current?.getOutgoingEdges(cell) || [];
+                        const outEdges = graph.current?.getOutgoingEdges(cell) || [];
                         const inEdges =
                             graph.current?.getIncomingEdges(
                                 cell,
@@ -651,24 +612,14 @@ function MxGraphContainer<T extends IMxGraphData>(
                             ) || [];
                         const edges = outEdges.concat(inEdges);
                         for (let i = 0; i < edges.length; i += 1) {
-                            const highlight = new MxCellHighlight(
-                                graph.current!,
-                                '#3f87ff',
-                                2
-                            );
-                            const state = graph.current!.view.getState(
-                                edges[i]
-                            );
+                            const highlight = new MxCellHighlight(graph.current!, '#3f87ff', 2);
+                            const state = graph.current!.view.getState(edges[i]);
                             highlight.highlight(state);
                             highlightEdges.push(highlight);
                         }
                     } else {
                         // only highlight current edge
-                        const highlight = new MxCellHighlight(
-                            graph.current!,
-                            '#3f87ff',
-                            2
-                        );
+                        const highlight = new MxCellHighlight(graph.current!, '#3f87ff', 2);
                         const state = graph.current!.view.getState(cell);
                         highlight.highlight(state);
                         highlightEdges.push(highlight);
@@ -715,11 +666,7 @@ function MxGraphContainer<T extends IMxGraphData>(
             cell: mxCell,
             evt: any
         ) {
-            if (
-                this.div != null &&
-                this.tbody != null &&
-                this.factoryMethod != null
-            ) {
+            if (this.div != null && this.tbody != null && this.factoryMethod != null) {
                 this.div.style.left = `${x}px`;
                 this.div.style.top = `${y}px`;
 
@@ -748,61 +695,55 @@ function MxGraphContainer<T extends IMxGraphData>(
         ) => {
             if (!cell) return;
 
-            const contextMenus = await onContextMenu?.(
-                cell.value!,
-                cell,
-                graph.current!
-            );
+            const contextMenus = await onContextMenu?.(cell.value!, cell, graph.current!);
 
-            contextMenus?.forEach(
-                ({ id, title, disabled, children: subMenu, callback }) => {
-                    // 如果发现当前菜单项在快捷键里存在相同 id 的注册事件
-                    const target =
-                        !!keybindingsRef.current.length &&
-                        !!id &&
-                        keybindingsRef.current.find((k) => k.id === id);
+            contextMenus?.forEach(({ id, title, disabled, children: subMenu, callback }) => {
+                // 如果发现当前菜单项在快捷键里存在相同 id 的注册事件
+                const target =
+                    !!keybindingsRef.current.length &&
+                    !!id &&
+                    keybindingsRef.current.find((k) => k.id === id);
 
-                    const parent = menu.addItem(
-                        target
-                            ? `${title}(${(() => {
-                                  switch (target.method) {
-                                      case 'bindControlKey':
-                                          return mxClient.IS_MAC ? '⌘' : 'Meta';
-                                      case 'bindKey':
-                                      default:
-                                          return '';
-                                  }
-                              })()} ${renderCharacterByCode(target.keyCode)})`
-                            : title,
-                        undefined,
-                        () => {
-                            if (target) {
-                                target.func();
-                                return;
-                            }
+                const parent = menu.addItem(
+                    target
+                        ? `${title}(${(() => {
+                              switch (target.method) {
+                                  case 'bindControlKey':
+                                      return mxClient.IS_MAC ? '⌘' : 'Meta';
+                                  case 'bindKey':
+                                  default:
+                                      return '';
+                              }
+                          })()} ${renderCharacterByCode(target.keyCode)})`
+                        : title,
+                    undefined,
+                    () => {
+                        if (target) {
+                            target.func();
+                            return;
+                        }
 
-                            callback?.();
-                        },
-                        undefined,
-                        undefined,
-                        !disabled
-                    );
+                        callback?.();
+                    },
+                    undefined,
+                    undefined,
+                    !disabled
+                );
 
-                    // 暂时先支持两层菜单
-                    if (subMenu?.length) {
-                        subMenu.forEach((child) => {
-                            menu.addItem(
-                                child.title,
-                                undefined,
-                                child.callback,
-                                parent,
-                                undefined,
-                                !child.disabled
-                            );
-                        });
-                    }
+                // 暂时先支持两层菜单
+                if (subMenu?.length) {
+                    subMenu.forEach((child) => {
+                        menu.addItem(
+                            child.title,
+                            undefined,
+                            child.callback,
+                            parent,
+                            undefined,
+                            !child.disabled
+                        );
+                    });
                 }
-            );
+            });
         };
     };
 
@@ -813,11 +754,10 @@ function MxGraphContainer<T extends IMxGraphData>(
                 setCurrent(graphData[0]);
             }
 
-            const stack: { sourceOrTarget: mxCell | null; data: T }[] =
-                graphData.map((d) => ({
-                    sourceOrTarget: null,
-                    data: d
-                }));
+            const stack: { sourceOrTarget: mxCell | null; data: T }[] = graphData.map((d) => ({
+                sourceOrTarget: null,
+                data: d,
+            }));
 
             while (stack.length) {
                 const { sourceOrTarget, data } = stack.pop()!;
@@ -866,7 +806,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                     data.childNode.forEach((i: T) => {
                         stack.push({
                             sourceOrTarget: vertex,
-                            data: i
+                            data: i,
                         });
                     });
                 }
@@ -875,7 +815,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                     data.parentNode.forEach((i: T) => {
                         stack.push({
                             sourceOrTarget: vertex,
-                            data: i
+                            data: i,
                         });
                     });
                 }
@@ -887,7 +827,7 @@ function MxGraphContainer<T extends IMxGraphData>(
     };
 
     const restoreView = () => {
-          // Sets initial scrollbar positions
+        // Sets initial scrollbar positions
         window.setTimeout(() => {
             Mx.resetScrollPosition();
         }, 0);
@@ -912,7 +852,7 @@ function MxGraphContainer<T extends IMxGraphData>(
             onContainerChanged?.({
                 scrollTop: container.current!.scrollTop,
                 scrollLeft: container.current!.scrollLeft,
-                scale: graph.current?.getView().getScale() || -1
+                scale: graph.current?.getView().getScale() || -1,
             });
         }
 
@@ -936,17 +876,14 @@ function MxGraphContainer<T extends IMxGraphData>(
                         position: 'relative',
                         overflow: 'auto',
                         width: '100%',
-                        height: '100%'
+                        height: '100%',
                     }}
                     tabIndex={-1}
                     ref={container}
                 />
             </Spin>
             {onRenderWidgets && (
-                <div
-                    className="dtc-graph-widgets"
-                    onContextMenu={(e) => e.preventDefault()}
-                >
+                <div className="dtc-graph-widgets" onContextMenu={(e) => e.preventDefault()}>
                     {onRenderWidgets?.()}
                 </div>
             )}

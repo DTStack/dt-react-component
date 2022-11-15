@@ -1,129 +1,74 @@
-import React from 'react'
-const contextPrefix = 'dtc-context-menu';
+import React, { CSSProperties, PropsWithChildren } from 'react';
+import { Dropdown, Menu, DropdownProps, Popconfirm, PopconfirmProps } from 'antd';
 
-export interface ContextMenuProps {
-    key?: string;
-    targetClassName?: string;
-    onChange?: Function;
-    [propName: string]: any;
+interface IMenuProps {
+    /**
+     * @required
+     */
+    key: React.Key;
+    /**
+     * 菜单栏的标题文案
+     */
+    text: React.ReactNode;
+    /**
+     * 菜单栏的样式
+     */
+    style?: CSSProperties;
+    /**
+     * 是否支持 popconfirm 的弹出
+     */
+    confirm?: boolean;
+    /**
+     * 只有设置了 `confirm` 项的情况下，该属性才会生效
+     */
+    confirmProps?: PopconfirmProps;
+    /**
+     * 菜单栏的点击事件
+     */
+    cb?: () => void;
 }
-export interface ContextMenuItemProps {
-    key?: string;
-    onClick?: () => void;
-    children?: React.ReactNode;
-    value?: string;
-    [propName: string]: any;
+
+interface IContextMenu
+    extends Pick<
+        DropdownProps,
+        'destroyPopupOnHide' | 'getPopupContainer' | 'placement' | 'overlayClassName'
+    > {
+    data: IMenuProps[];
+    wrapperClassName?: string;
 }
 
-export class ContextMenuItem extends React.Component<ContextMenuItemProps, any> {
-    render () {
-        return (
-            <li {...this.props}
-                className={`${contextPrefix}-context-list_li`}>
-                <a className={`${contextPrefix}-context-list_a`}
-                    data-value={this.props.value}>
-                    {this.props.children}
-                </a>
-            </li>
-        )
-    }
-}
+export default function ContextMenu({
+    data = [],
+    children,
+    wrapperClassName,
+    ...restProps
+}: PropsWithChildren<IContextMenu>) {
+    const menu = (
+        <Menu
+            className="dt-contextMenu-menu"
+            onClick={(item) => data.find((i) => i.key === item.key)?.cb?.()}
+        >
+            {data.map((item) =>
+                item.confirm ? (
+                    <Menu.Item style={item.style} key={item.key}>
+                        <Popconfirm key={item.key} {...item.confirmProps}>
+                            <div>{item.text}</div>
+                        </Popconfirm>
+                    </Menu.Item>
+                ) : (
+                    <Menu.Item style={item.style} key={item.key}>
+                        {item.text}
+                    </Menu.Item>
+                )
+            )}
+        </Menu>
+    );
 
-export default class ContextMenu extends React.Component<ContextMenuProps, any> {
-    constructor(props: ContextMenuProps) {
-        super(props);
-        this.toggleMenu = this.toggleMenu.bind(this)
-        this.removeMenu = this.removeMenu.bind(this);
-    }
-    static ContextMenuItem = ContextMenuItem;
+    if (!data.length) return <span className={wrapperClassName}>{children}</span>;
 
-    selfEle: HTMLElement;
-
-    componentDidMount () {
-        document.addEventListener('contextmenu', this.toggleMenu, false);
-        document.addEventListener('click', this.removeMenu, false);
-    }
-
-    componentWillUnmount () {
-        document.removeEventListener('click', this.removeMenu, false);
-        document.removeEventListener('contextmenu', this.toggleMenu, false);
-    }
-
-    toggleMenu(evt: MouseEvent) {
-        const { targetClassName, onChange } = this.props
-        const selfEle = this.selfEle
-        if (!selfEle) return;
-        const parent = this.findParent(evt.target as HTMLElement, targetClassName);
-
-        if (parent) {
-            this.hideAll()
-
-            let style = selfEle.style;
-            style.display = 'block';
-
-            const pointerY = evt.clientY;
-            const pointerX = evt.clientX;
-            const viewHeight = document.body.offsetHeight; // 可视区高度
-            const distanceToBottom = viewHeight - pointerY;
-            const menuHeight = selfEle.offsetHeight;
-            const menuTop = distanceToBottom > menuHeight ? pointerY : pointerY - menuHeight;
-
-            style.cssText = `
-                top: ${menuTop}px;
-                left: ${pointerX}px;
-                display: block;
-            `
-            if (onChange) {
-                onChange(parent)
-            }
-            evt.preventDefault();
-        }
-    }
-
-    hideAll () {
-        const allEles: any = document.querySelectorAll(`.${contextPrefix}`)
-        for (let i = 0; i < allEles.length; i++) {
-            allEles[i].style.display = 'none';
-        }
-    }
-
-    closeMenu (evt: MouseEvent) {
-        if (!this.selfEle) return;
-        const style = this.selfEle.style;
-        style.display = 'none';
-    }
-
-    removeMenu (evt: MouseEvent) {
-        if (!this.selfEle) return
-        const style = this.selfEle.style;
-        style.display = 'none';
-    }
-
-    findParent(child: HTMLElement, selector: string) {
-        try {
-            if (!selector || !child) return;
-            selector = selector.toLowerCase();
-            let node: any = child;
-            while (node) {
-                if (node.nodeType === 1) { // just hand dom element
-                    const className = node.getAttribute('class');
-                    if (className && className.includes(selector)) return node;
-                }
-                node = node.parentNode;
-            }
-        } catch (e) {
-            throw new Error(e)
-        }
-        return null;
-    }
-
-    render () {
-        return (
-            <div ref={(e) => { this.selfEle = e } } className={contextPrefix} style={{ display: 'none' }}>
-                <ul className={`${contextPrefix}-context-menu_list`}>
-                    {this.props.children}
-                </ul>
-            </div>
-        )
-    }
+    return (
+        <Dropdown overlay={menu} trigger={['contextMenu']} {...restProps}>
+            <span className={wrapperClassName}>{children}</span>
+        </Dropdown>
+    );
 }

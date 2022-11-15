@@ -1,14 +1,18 @@
-import React from 'react'
-import { Icon } from 'antd'
-import { browserHistory, hashHistory } from 'react-router'
-import { GoBackProps } from './index'
+import React from 'react';
+import { LeftCircleOutlined } from '@ant-design/icons';
+import { browserHistory, hashHistory } from 'react-router';
+import { GoBackProps } from './index';
 
 export default class GoBack extends React.Component<GoBackProps, any> {
     go = () => {
-        const { url, history, autoClose } = this.props
+        const { url, history, autoClose } = this.props;
 
         if (url) {
-            if (history) { browserHistory.push(url) } else { hashHistory.push(url) }
+            if (history) {
+                browserHistory.push(url);
+            } else {
+                hashHistory.push(url);
+            }
         } else {
             if (window.history.length == 1) {
                 if (autoClose) {
@@ -18,11 +22,11 @@ export default class GoBack extends React.Component<GoBackProps, any> {
                 hashHistory.go(-1);
             }
         }
-    }
+    };
 
-    static GoBackButton: typeof import('./goBackButton').default
+    static GoBackButton: typeof import('./goBackButton').default;
 
-    getButtonView () {
+    getButtonView() {
         const { style } = this.props;
 
         let iconStyle: React.CSSProperties = {
@@ -32,23 +36,17 @@ export default class GoBack extends React.Component<GoBackProps, any> {
             color: 'rgb(148, 168, 198)',
             letterSpacing: '5px',
             position: 'relative',
-            top: '2px'
-        }
+            top: '2px',
+        };
 
         if (style) {
-            iconStyle = Object.assign(iconStyle, style)
+            iconStyle = Object.assign(iconStyle, style);
         }
 
-        return (
-            <Icon
-                style={iconStyle}
-                type={'left-circle-o'}
-                onClick={this.go}
-            />
-        )
+        return <LeftCircleOutlined style={iconStyle} onClick={this.go} />;
     }
 
-    render () {
+    render() {
         return this.getButtonView();
     }
 }

@@ -5,23 +5,23 @@ import '@testing-library/jest-dom/extend-expect';
 
 class Component extends React.PureComponent {
     state = {
-        count: 0
-    }
-    render () {
+        count: 0,
+    };
+    render() {
         const { count } = this.state;
         return (
-            <Resize onResize={() => this.setState({ count: count + 1 })} >
+            <Resize onResize={() => this.setState({ count: count + 1 })}>
                 <div
-                    data-testid='test'
+                    data-testid="test"
                     style={{
                         height: '240px',
-                        width: '100%'
+                        width: '100%',
                     }}
                 >
                     {count}
                 </div>
-            </ Resize >
-        )
+            </Resize>
+        );
     }
 }
 
@@ -30,16 +30,13 @@ describe('test Resize', () => {
     beforeEach(() => {
         wrapper = render(<Component />);
         element = wrapper.getByTestId('test');
-    })
+    });
     afterEach(() => {
         cleanup();
-    })
+    });
     test('should calculate current width', () => {
         expect(element.firstChild).toMatchInlineSnapshot('0');
-        fireEvent(
-            window,
-            new Event('resize')
-        )
+        fireEvent(window, new Event('resize'));
         expect(element.firstChild).toMatchInlineSnapshot('1');
-    })
-})
+    });
+});

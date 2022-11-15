@@ -1,3 +1,5 @@
+/* eslint-disable prefer-rest-params */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import factory from 'mxgraph';
 import type {
     mxGraphExportObject,
@@ -8,7 +10,7 @@ import type {
     mxRectangle,
     mxGraphView,
     mxPoint,
-    mxCellState
+    mxCellState,
 } from 'mxgraph';
 import { IContainerProps } from '.';
 
@@ -17,7 +19,7 @@ type IMxGraph = mxGraph & {
     getPagePadding?: () => mxPoint;
     getPageSize?: () => mxRectangle;
     getPageLayout?: () => mxRectangle;
-}
+};
 
 /**
  * refer to: https://jgraph.github.io/mxgraph/docs/js-api/files/index-txt.html
@@ -28,21 +30,22 @@ class MxFactory {
         mxImageBasePath: 'images',
         mxLanguage: 'none',
         mxLoadResources: false,
-        mxLoadStylesheets: false
+        mxLoadStylesheets: false,
     };
 
     static VertexSize = {
         width: 210,
-        height: 50
+        height: 50,
     };
 
+    // eslint-disable-next-line no-void
     public layoutEventHandler: () => void = () => void 0;
 
     public mxInstance: mxGraphExportObject;
 
     public mxGraph: IMxGraph | null = null;
 
-    constructor () {
+    constructor() {
         this.mxInstance = factory(MxFactory.config);
     }
 
@@ -85,7 +88,7 @@ class MxFactory {
     /**
      * 初始化 mxgraph 实例
      */
-    create (containerDom: HTMLElement, config?: IContainerProps<any>['config']) {
+    create(containerDom: HTMLElement, config?: IContainerProps<any>['config']) {
         const {
             mxGraphView,
             mxText,
@@ -95,7 +98,7 @@ class MxFactory {
             mxGraphHandler,
             mxSvgCanvas2D,
             mxClient,
-            mxPoint: MxPoint
+            mxPoint: MxPoint,
         } = this.mxInstance;
 
         /**
@@ -236,7 +239,7 @@ class MxFactory {
 
         graph.getStylesheet().putDefaultVertexStyle({
             ...this.getDefaultVertexStyle(),
-            ...(userVertexStyle || {})
+            ...(userVertexStyle || {}),
         });
 
         const userEdgeStyle: Record<string, any> | undefined =
@@ -246,7 +249,7 @@ class MxFactory {
         // 默认边界样式
         graph.getStylesheet().putDefaultEdgeStyle({
             ...this.getDefaultEdgeStyle(),
-            ...(userEdgeStyle || {})
+            ...(userEdgeStyle || {}),
         });
 
         mxGraphView.prototype.updateFloatingTerminalPoint = function (
@@ -299,10 +302,8 @@ class MxFactory {
         mxConstants.HANDLE_FILLCOLOR = '#ffffff';
         mxConstants.HANDLE_STROKECOLOR = '#2491F7';
         mxConstants.VERTEX_SELECTION_COLOR = 'transparent';
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         mxConstants.CURSOR_MOVABLE_VERTEX = 'pointer';
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore
         mxConstants.STYLE_OVERFLOW = 'hidden';
 
@@ -312,7 +313,7 @@ class MxFactory {
     /**
      * Event handler that selects rectangular regions.
      */
-    createRubberBand () {
+    createRubberBand() {
         const { mxRubberband: MxRubberband } = this.mxInstance;
         if (!this.mxGraph) {
             throw new Error('Please call create before createRubberBand');
@@ -325,7 +326,7 @@ class MxFactory {
      * Vertex 渲染的 HTML 样式
      * @description Returns the textual representation for the given cell.  This implementation returns the nodename or string-representation of the user object.
      */
-    renderVertex (handler: (cell: mxCell) => string) {
+    renderVertex(handler: (cell: mxCell) => string) {
         if (this.mxGraph) {
             this.mxGraph.getLabel = (cell) => {
                 if (cell && cell.vertex) {
@@ -340,7 +341,7 @@ class MxFactory {
      * 渲染 tooltips 的 HTML 样式
      * @description Returns the string or DOM node to be used as the tooltip for the given cell. This implementation uses the cells getTooltip function if it exists, or else it returns convertValueToString for the cell.
      */
-    renderTooltips (handler: (cell: mxCell) => string | undefined) {
+    renderTooltips(handler: (cell: mxCell) => string | undefined) {
         if (this.mxGraph) {
             // 默认 tooltips
             this.mxGraph.getTooltipForCell = (cell) => {
@@ -363,7 +364,7 @@ class MxFactory {
         const {
             mxRectangle: MxRectangle,
             mxPoint: MxPoint,
-            mxUtils
+            mxUtils,
         } = this.mxInstance;
         if (this.mxGraph) {
             const graph = this.mxGraph;
@@ -488,7 +489,6 @@ class MxFactory {
                         pad.y / this.scale - (this.y0 || 0) * size.height;
                 }
 
-                // eslint-disable-next-line prefer-rest-params
                 graphViewValidate.apply(this, arguments as any);
             };
 
@@ -562,21 +562,20 @@ class MxFactory {
                         this.autoTranslate = false;
                     }
 
-                    // eslint-disable-next-line prefer-rest-params
                     graphSizeDidChange.apply(this, arguments as any);
                 }
             };
         }
     };
 
-    setView ({ scale, dx, dy }: { scale: number; dx: number; dy: number }) {
+    setView({ scale, dx, dy }: { scale: number; dx: number; dy: number }) {
         if (this.mxGraph) {
             this.mxGraph.view.setScale(scale);
             this.mxGraph.view.setTranslate(dx, dy);
         }
     }
 
-    resetScrollPosition () {
+    resetScrollPosition() {
         if (this.mxGraph && this.mxGraph.container) {
             const graph = this.mxGraph;
             const bounds = graph.getGraphBounds();
@@ -611,7 +610,7 @@ class MxFactory {
         }
     }
 
-    dispose () {
+    dispose() {
         if (this.mxGraph) {
             this.mxGraph.destroy();
         }

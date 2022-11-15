@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { Input } from 'antd';
 import EllipsisText from '../ellipsisText';
+import classNames from 'classnames';
 
 type EditType = string | number;
 export interface EditCellProps {
+    className?: string;
     value: string;
     keyField: string;
     isView?: boolean;
@@ -17,12 +19,12 @@ export interface EditCellStates {
 export default class EditCell extends React.PureComponent<EditCellProps, EditCellStates> {
     state: EditCellStates = {
         isEdit: false,
-        editValue: ''
-    }
+        editValue: '',
+    };
 
-    componentDidMount () {
+    componentDidMount() {
         const { value } = this.props;
-        this.setState({ editValue: value })
+        this.setState({ editValue: value });
     }
 
     onEdit = () => this.setState({ isEdit: true });
@@ -30,24 +32,24 @@ export default class EditCell extends React.PureComponent<EditCellProps, EditCel
     onChangeEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         this.setState({
-            editValue: value ? value.slice(0, 20) : ''
+            editValue: value ? value.slice(0, 20) : '',
         });
-    }
+    };
 
     onOkEdit = () => {
         const { editValue } = this.state;
         const { keyField } = this.props;
         this.props.onHandleEdit(keyField, editValue);
         this.onCancelEdit();
-    }
+    };
 
     onCancelEdit = () => this.setState({ isEdit: false });
 
-    render () {
+    render() {
         const { isEdit, editValue } = this.state;
-        const { isView } = this.props;
+        const { isView, className = '' } = this.props;
         return (
-            <div className="dtc-edit-Cell">
+            <div className={classNames('dtc-edit-Cell', className)}>
                 {isEdit ? (
                     <div className="dtc-edit-input-row">
                         <Input
@@ -60,10 +62,8 @@ export default class EditCell extends React.PureComponent<EditCellProps, EditCel
                     </div>
                 ) : (
                     <>
-                        <EllipsisText value={editValue} maxWidth={120}/>
-                        {
-                            !isView && <a onClick={this.onEdit}>修改</a>
-                        }
+                        <EllipsisText value={editValue} maxWidth={120} />
+                        {!isView && <a onClick={this.onEdit}>修改</a>}
                     </>
                 )}
             </div>

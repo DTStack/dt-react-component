@@ -33,13 +33,13 @@ class SearchModal extends React.Component<SearchModalProps, any> {
             title = '搜索并打开',
             prefixRender,
             dataSource = [],
-            bodyStyle,
+            // bodyStyle,
             placeholder = '请输入',
             ...rest
         } = this.props;
         return (
             <Modal {...rest} visible={visible} onCancel={this.onCancel} footer={null} title={title}>
-                <Row align="middle" justify="center" type="flex">
+                <Row align="middle" justify="center">
                     {prefixRender && (
                         <Col span={6} style={{ paddingRight: '12px' }}>
                             {prefixRender}

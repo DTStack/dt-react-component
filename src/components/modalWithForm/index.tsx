@@ -1,78 +1,132 @@
-import React, { Component } from 'react';
-import { Modal, Form } from 'antd';
-import { FormComponentProps } from 'antd/lib/form/Form'
-import { ButtonProps, ButtonType } from 'antd/lib/button';
+import React from 'react';
+import { Modal, Form, FormProps } from 'antd';
+import { ButtonProps, ButtonType } from 'antd/es/button';
 
-export interface ModalProps {
-    hideModelHandler: () => any;
-    onSubmit?: (values: any, record: any) => void;
+export interface IProps {
+    confirmLoading?: boolean;
     cancelText?: string;
     okText?: string;
     okType?: ButtonType;
     record?: string | number | object;
     visible?: boolean;
     title?: React.ReactNode | string;
-    onCancel?: (func: Function) => any;
     width?: string | number;
     modelClass?: string;
-    footer?: string | React.ReactNode;
+    footer?: React.ReactNode;
     centered?: boolean;
     cancelButtonProps?: ButtonProps;
-    notSubmitCloseModal?: boolean;
+    layout?: 'horizontal' | 'vertical' | 'inline';
+    preserve?: boolean;
+    children?: React.ReactElement;
+    okButtonProps?: ButtonProps;
+    hideModalHandler: () => void;
+    onCancel?: (func: Function) => any;
+    onSubmit?: (values: any, record: any) => void;
+    [key: string]: any;
 }
 
-function ModalWithForm (FormComponent: any) {
-    return Form.create<any>()(class ModalForm extends Component<ModalProps & FormComponentProps, any> {
-        constructor (props: any) {
-            super(props);
+type ModalProps = IProps & FormProps;
+
+export const FORM_PROPS = [
+    'colon',
+    'disabled',
+    'component',
+    'fields',
+    'initialValues',
+    'labelAlign',
+    'labelWrap',
+    'labelCol',
+    'layout',
+    'name',
+    'preserve',
+    'requiredMark',
+    'scrollToFirstError',
+    'size',
+    'validateMessages',
+    'validateTrigger',
+    'wrapperCol',
+    'onFieldsChange',
+    'onFinish',
+    'onFinishFailed',
+    'onValuesChange',
+];
+
+export const useFilterFormProps = (props = {}) => {
+    const formProps = {};
+    Object.keys(props).forEach((item) => {
+        if (FORM_PROPS.includes(item)) {
+            formProps[item] = props[item];
         }
-        okHandler = () => {
-            const { record, notSubmitCloseModal = false, onSubmit, hideModelHandler } = this.props;
-            this.props.form.validateFields((err: any, values: any) => {
-                if (!err) {
-                    onSubmit(values, record);
-                    !notSubmitCloseModal && hideModelHandler();
-                }
-            });
-        };
-        cancelHandler = () => {
-            const { form: { resetFields }, hideModelHandler } = this.props
-            resetFields()
-            hideModelHandler()
-        }
-        render () {
-            const {
-                form,
-                title,
-                visible,
-                okText,
-                cancelText,
-                modelClass,
-                okType,
-                footer,
-                centered,
-                cancelButtonProps
-            } = this.props;
-            return (
-                <>
-                    <Modal
-                        className={modelClass}
-                        title={title}
-                        visible={visible}
-                        onOk={this.okHandler}
-                        onCancel={this.cancelHandler}
-                        okText={okText}
-                        cancelText={cancelText}
-                        okType={okType}
-                        footer={footer}
-                        centered={centered}
-                        cancelButtonProps={cancelButtonProps}
-                    >
-                        <FormComponent form={form} {...this.props} />
-                    </Modal>
-                </>
-            )
-        }
-    })
+    });
+    return formProps;
+};
+
+const ModalForm = (props: ModalProps) => {
+    const {
+        title,
+        visible,
+        record,
+        okText = '确定',
+        cancelText = '取消',
+        modelClass,
+        okType,
+        width,
+        footer,
+        centered,
+        cancelButtonProps,
+        confirmLoading,
+        layout = 'vertical',
+        hideModalHandler,
+        onSubmit,
+        children,
+        okButtonProps,
+    } = props;
+
+    const formProps = useFilterFormProps();
+
+    const [form] = Form.useForm();
+
+    const okHandler = async () => {
+        try {
+            const values = await form.validateFields();
+            onSubmit(values, record);
+        } catch (error) {}
+    };
+
+    const cancelHandler = () => {
+        hideModalHandler();
+        form.resetFields();
+    };
+
+    return (
+        <Modal
+            className={modelClass}
+            title={title}
+            visible={visible}
+            width={width}
+            onOk={okHandler}
+            onCancel={cancelHandler}
+            okText={okText}
+            cancelText={cancelText}
+            okType={okType}
+            footer={footer}
+            centered={centered}
+            cancelButtonProps={cancelButtonProps}
+            confirmLoading={confirmLoading}
+            okButtonProps={okButtonProps}
+        >
+            <Form form={form} layout={layout} {...formProps}>
+                {React.cloneElement(children, { form, ...props })}
+            </Form>
+        </Modal>
+    );
+};
+
+function ModalWithForm(FormComponent: any) {
+    return (props: ModalProps) => (
+        <ModalForm {...props}>
+            <FormComponent />
+        </ModalForm>
+    );
 }
 export default ModalWithForm;

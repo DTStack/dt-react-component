@@ -1,8 +1,7 @@
-
+@import "../components//blockHeader//style.scss";
 @import "../components/chromeDownload/style.scss";
-@import "../components/circle/style";
-@import "../components/contextMenu/style";
-@import "../components/contextMenuCombiner/style.scss";
+@import "../components/statusTag/style.scss";
+@import "../components/contextMenu/style.scss";
 @import "../components/copyIcon/style.scss";
 @import "../components/editCell/style.scss";
 @import "../components/fullscreen/style.scss";
@@ -13,13 +12,14 @@
 @import "../components/mulSelectDropdown/style.scss";
 @import "../components/progressBar/style.scss";
 @import "../components/progressLine/style.scss";
-@import "../components/slidePane/style";
+@import "../components/slidePane/style.scss";
 @import "../components/spreadSheet/style.scss";
 @import "../components/toolModal/style.scss";
 @import "../components/mxGraph/style.scss";
+@import "../components/empty/style.scss";
 
-.sb-show-main{
-    #root>div:nth-child(3) {
+.sb-show-main {
+    #root > div:nth-child(3) {
         h1 {
             margin-top: 30px !important;
             font-size: 1.5em !important;
@@ -34,9 +34,9 @@
         }
     }
 }
+
 #story-root {
     margin-top: -30px;
-    
     h2 {
         margin-top: 30px;
     }

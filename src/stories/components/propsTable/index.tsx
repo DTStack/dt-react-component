@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import './style.scss';
 
-export function PropsTable (props: any) {
+export function PropsTable(props: any) {
     const { propDefinitions } = props;
     const propsFields = propDefinitions.map(
         ({ property, propType, required, description, defaultValue }: any) => {
@@ -9,7 +9,9 @@ export function PropsTable (props: any) {
                 <tr key={property}>
                     <td>
                         {property}
-                        {required ? <span style={{ color: 'red', marginLeft: '5px' }}>*</span> : null}
+                        {required ? (
+                            <span style={{ color: 'red', marginLeft: '5px' }}>*</span>
+                        ) : null}
                     </td>
                     <td>{description}</td>
                     <td>{propType}</td>
