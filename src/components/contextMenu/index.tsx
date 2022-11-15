@@ -1,10 +1,31 @@
-import React, { PropsWithChildren } from 'react';
-import { Dropdown, Menu, DropdownProps } from 'antd';
+import React, { CSSProperties, PropsWithChildren } from 'react';
+import { Dropdown, Menu, DropdownProps, Popconfirm, PopconfirmProps } from 'antd';
 
 interface IMenuProps {
+    /**
+     * @required
+     */
     key: React.Key;
-    text: string;
-    cb: () => void;
+    /**
+     * 菜单栏的标题文案
+     */
+    text: React.ReactNode;
+    /**
+     * 菜单栏的样式
+     */
+    style?: CSSProperties;
+    /**
+     * 是否支持 popconfirm 的弹出
+     */
+    confirm?: boolean;
+    /**
+     * 只有设置了 `confirm` 项的情况下，该属性才会生效
+     */
+    confirmProps?: PopconfirmProps;
+    /**
+     * 菜单栏的点击事件
+     */
+    cb?: () => void;
 }
 
 interface IContextMenu
@@ -17,7 +38,7 @@ interface IContextMenu
 }
 
 export default function ContextMenu({
-    data,
+    data = [],
     children,
     wrapperClassName,
     ...restProps
@@ -25,18 +46,26 @@ export default function ContextMenu({
     const menu = (
         <Menu
             className="dt-contextMenu-menu"
-            onClick={(item) => {
-                data.find((i) => i.key === item.key)?.cb();
-            }}
-            items={data.map((item) => ({
-                label: item.text,
-                key: item.key,
-            }))}
-        />
+            onClick={(item) => data.find((i) => i.key === item.key)?.cb?.()}
+        >
+            {data.map((item) =>
+                item.confirm ? (
+                    <Menu.Item style={item.style} key={item.key}>
+                        <Popconfirm key={item.key} {...item.confirmProps}>
+                            <div>{item.text}</div>
+                        </Popconfirm>
+                    </Menu.Item>
+                ) : (
+                    <Menu.Item style={item.style} key={item.key}>
+                        {item.text}
+                    </Menu.Item>
+                )
+            )}
+        </Menu>
     );
 
     return (
-        <Dropdown overlay={menu} trigger={['contextMenu']} destroyPopupOnHide {...restProps}>
+        <Dropdown overlay={menu} trigger={['contextMenu']} {...restProps}>
             <span className={wrapperClassName}>{children}</span>
         </Dropdown>
     );

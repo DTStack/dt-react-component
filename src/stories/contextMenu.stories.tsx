@@ -155,7 +155,15 @@ stories.add(
                                         {
                                             key: 'remove',
                                             text: '删除',
-                                            cb: () => {},
+                                            confirm: true,
+                                            confirmProps: {
+                                                title: '确定删除这个资源吗',
+                                                okText: '确定',
+                                                cancelText: '取消',
+                                                onConfirm: () => {
+                                                    console.log('删除');
+                                                },
+                                            },
                                         },
                                     ]}
                                 >
@@ -193,29 +201,7 @@ stories.add(
                             />
                             <TreeNode
                                 key="0-0-1"
-                                title={
-                                    <ContextMenu
-                                        data={[
-                                            {
-                                                key: 'edit',
-                                                text: '编辑',
-                                                cb: () => {},
-                                            },
-                                            {
-                                                key: 'clone',
-                                                text: '克隆',
-                                                cb: () => {},
-                                            },
-                                            {
-                                                key: 'remove',
-                                                text: '删除',
-                                                cb: () => {},
-                                            },
-                                        ]}
-                                    >
-                                        file2
-                                    </ContextMenu>
-                                }
+                                title={<ContextMenu data={[]}>file2</ContextMenu>}
                                 className="anchor-experiment-file"
                             />
                         </TreeNode>
