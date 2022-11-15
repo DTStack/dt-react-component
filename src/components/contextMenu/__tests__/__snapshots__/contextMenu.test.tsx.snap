@@ -37,6 +37,20 @@ exports[`test contextMenu should match snapshot 1`] = `
               test
             </span>
           </li>
+          <li
+            class="ant-dropdown-menu-item ant-dropdown-menu-item-only-child"
+            data-menu-id="rc-menu-uuid-test-confirm"
+            role="menuitem"
+            tabindex="-1"
+          >
+            <span
+              class="ant-dropdown-menu-title-content"
+            >
+              <div>
+                confirm
+              </div>
+            </span>
+          </li>
         </ul>
         <div
           aria-hidden="true"

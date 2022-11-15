@@ -8,7 +8,18 @@ describe('test contextMenu', () => {
     test('should match snapshot', () => {
         const { asFragment, getByTestId } = render(
             <ContextMenu
-                data={[{ text: 'test', key: 'test', cb: () => {} }]}
+                data={[
+                    { text: 'test', key: 'test', cb: () => {} },
+                    {
+                        text: 'confirm',
+                        key: 'confirm',
+                        confirm: true,
+                        confirmProps: {
+                            title: 'confirmTitle',
+                            getPopupContainer: (node) => node.parentElement,
+                        },
+                    },
+                ]}
                 getPopupContainer={(node) => node.parentElement}
             >
                 <span data-testid="test">test</span>
