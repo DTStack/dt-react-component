@@ -64,6 +64,8 @@ export default function ContextMenu({
         </Menu>
     );
 
+    if (!data.length) return <span className={wrapperClassName}>{children}</span>;
+
     return (
         <Dropdown overlay={menu} trigger={['contextMenu']} {...restProps}>
             <span className={wrapperClassName}>{children}</span>
