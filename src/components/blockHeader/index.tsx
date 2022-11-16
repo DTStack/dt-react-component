@@ -9,7 +9,7 @@ export interface BlockHeaderProps {
     beforeTitle?: React.ReactNode;
     // 标题后的提示图标或文案
     afterTitle?: string | React.ReactNode;
-    // 默认展示为问号的toolip
+    // 默认展示为问号的tooltip
     tooltip?: React.ReactNode;
     // 后缀自定义内容块
     addonAfter?: React.ReactNode;
