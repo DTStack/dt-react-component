@@ -11,8 +11,8 @@
 [English](./README.md) | 简体中文
 
 ## 文档
+- [v3.x](https://dtstack.github.io/dt-react-component/)
 - [v2.x](https://liuxy0551.github.io/dt-react-component/)
-- [v3.x-beta](https://dtstack.github.io/dt-react-component/)
 
 基于 [ant-design](https://github.com/ant-design/ant-design) 的 React UI 组件库。 主要用于中，后台产品。我们的目标是**满足更具体的业务场景组件**。 当然，我们也有基于原生 javascript 实现的业务组件，例如**ContextMenu**，**KeyEventListener**等。
 
@@ -118,9 +118,8 @@ $ npm run storybook
 
 ``` bash
 yarn compile
-yarn release -r 2.2.1
+yarn release -r 3.0.1
 npm publish --registry https://registry.npmjs.org/
-yarn deploy-storybook
 ```
 
 ## 路线图
