@@ -103,49 +103,97 @@ stories.add(
             代码示例：
             ~~~js
 
-            <p style={style}>1、默认大标题</p>
+            <h2>大标题</h2>
+            <h3>大标题 + 有背景</h3>
+            <p style={style}>1、默认</p>
             <BlockHeader title="分类标题" />
-
-            <p style={style}>2、小标题</p>
-            <BlockHeader title="小分类标题" isSmall />
-
-            <p style={style}>3、标题 + icon，有说明文字</p>
+            <p style={style}>2、标题 + 自定义 icon</p>
             <BlockHeader
                 title="分类标题"
-                beforeTitle={<PieChartOutlined style={{ fontSize: '16px' }} />}
-                afterTitle="说明文字"
+                beforeTitle={<PieChartOutlined style={{ fontSize: '14px' }} />}
             />
-
-            <p style={style}>4、使用 tooltip 展示问号提示</p>
-            <BlockHeader title="分类标题" tooltip="hover 才会显示说明文字哦~" />
-
-            <p style={style}>5、自定义标题图案</p>
-            <BlockHeader
-                title="分类标题"
-                afterTitle={
-                    <Tooltip title={'自定义图标'}>
-                        <DingdingOutlined style={{ cursor: 'pointer' }} />
-                    </Tooltip>
-                }
-            />
-
-            <p style={style}>6、无背景</p>
-            <BlockHeader
-                title="分类标题"
-                showBackground={false}
-                tooltip="hover 才会显示说明文字哦~"
-            />
-
-            <p style={style}>7、展开/收起内容</p>
+            <p style={style}>3、标题 + 自定义说明</p>
+            <BlockHeader title="分类标题" afterTitle="说明文字" />
+            <p style={style}>4、标题 + tooltip</p>
+            <BlockHeader title="分类标题" tooltip="hover展示更多" />
+            <p style={style}>5、简洁版</p>
+            <BlockHeader title="分类标题" beforeTitle="" />
+            <p style={style}>6、展开/收起内容</p>
             <BlockHeader title="分类标题" onChange={(expand) => console.log(expand)}>
                 Hello World!
             </BlockHeader>
-
-            <p style={style}>8、简洁版</p>
-            <BlockHeader title="分类标题" beforeTitle="" />
-
-            <p style={style}>9、自定义后缀元素</p>
-            <BlockHeader title="分类标题" addonAfter={<Button type="primary" onClick={() => alert('触发了点击事件')} size="small">点击</Button>} />
+            <h3>大标题 + 无背景</h3>
+            <p style={style}>1、默认</p>
+            <BlockHeader title="分类标题" showBackground={false} />
+            <p style={style}>2、标题 + 自定义 icon</p>
+            <BlockHeader
+                title="分类标题"
+                showBackground={false}
+                beforeTitle={<PieChartOutlined style={{ fontSize: '14px' }} />}
+            />
+            <p style={style}>3、标题 + 自定义说明</p>
+            <BlockHeader title="分类标题" afterTitle="说明文字" showBackground={false} />
+            <p style={style}>4、标题 + tooltip</p>
+            <BlockHeader title="分类标题" tooltip="hover展示更多" showBackground={false} />
+            <p style={style}>5、简洁版</p>
+            <BlockHeader title="分类标题" beforeTitle="" showBackground={false} />
+            <p style={style}>6、展开/收起内容</p>
+            <BlockHeader
+                title="分类标题"
+                showBackground={false}
+                onChange={(expand) => console.log(expand)}
+            >
+                Hello World!
+            </BlockHeader>
+            <h2>小标题</h2>
+            <h3>小标题 + 有背景</h3>
+            <p style={style}>1、默认</p>
+            <BlockHeader title="分类标题" isSmall />
+            <p style={style}>2、标题 + 自定义 icon</p>
+            <BlockHeader
+                title="分类标题"
+                isSmall
+                beforeTitle={<PieChartOutlined style={{ fontSize: '14px' }} />}
+            />
+            <p style={style}>3、标题 + 自定义说明</p>
+            <BlockHeader title="分类标题" afterTitle="说明文字" isSmall />
+            <p style={style}>4、标题 + tooltip</p>
+            <BlockHeader title="分类标题" tooltip="hover展示更多" isSmall />
+            <p style={style}>5、简洁版</p>
+            <BlockHeader title="分类标题" beforeTitle="" isSmall />
+            <p style={style}>6、展开/收起内容</p>
+            <BlockHeader
+                title="分类标题"
+                isSmall
+                onChange={(expand) => console.log(expand)}
+            >
+                Hello World!
+            </BlockHeader>
+            <h3>小标题 + 无背景</h3>
+            <p style={style}>1、默认</p>
+            <BlockHeader title="分类标题" showBackground={false} isSmall />
+            <p style={style}>2、标题 + 自定义 icon</p>
+            <BlockHeader
+                title="分类标题"
+                showBackground={false}
+                isSmall
+                beforeTitle={<PieChartOutlined style={{ fontSize: '14px' }} />}
+            />
+            <p style={style}>3、标题 + 自定义说明</p>
+            <BlockHeader title="分类标题" afterTitle="说明文字" showBackground={false} isSmall />
+            <p style={style}>4、标题 + tooltip</p>
+            <BlockHeader title="分类标题" tooltip="hover展示更多" showBackground={false} isSmall />
+            <p style={style}>5、简洁版</p>
+            <BlockHeader title="分类标题" beforeTitle="" showBackground={false} isSmall />
+            <p style={style}>6、展开/收起内容</p>
+            <BlockHeader
+                title="分类标题"
+                showBackground={false}
+                isSmall
+                onChange={(expand) => console.log(expand)}
+            >
+                Hello World!
+            </BlockHeader>
             ~~~
         `,
             TableComponent: () => PropsTable({ propDefinitions }),
