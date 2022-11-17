@@ -46,7 +46,10 @@ export default function ContextMenu({
     const menu = (
         <Menu
             className="dt-contextMenu-menu"
-            onClick={(item) => data.find((i) => i.key === item.key)?.cb?.()}
+            onClick={(item) => {
+                item.domEvent.stopPropagation();
+                data.find((i) => i.key === item.key)?.cb?.();
+            }}
         >
             {data.map((item) =>
                 item.confirm ? (
