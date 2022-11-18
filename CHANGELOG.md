@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/DTStack/dt-react-component/compare/v3.0.1...v3.0.2) (2022-11-18)
+
+
+### Bug Fixes
+
+* prevent menu event propagation to treeNode ([#254](https://github.com/DTStack/dt-react-component/issues/254)) ([149cb66](https://github.com/DTStack/dt-react-component/commit/149cb6683605f2d04b8685ba83b1ec83923cd2ea))
+
 ### [3.0.1](https://github.com/DTStack/dt-react-component/compare/v2.2.0...v3.0.1) (2022-11-16)
 
 
