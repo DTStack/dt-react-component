@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.3](https://github.com/DTStack/dt-react-component/compare/v3.0.1...v3.0.3) (2022-11-23)
+
+
+### Features
+
+* copy allKeys array ([#255](https://github.com/DTStack/dt-react-component/issues/255)) ([#256](https://github.com/DTStack/dt-react-component/issues/256)) ([2e5808e](https://github.com/DTStack/dt-react-component/commit/2e5808e01bb5d8e0b827f87dfcdd17a27fa13f9d))
+
+
+### Bug Fixes
+
+* prevent menu event propagation to treeNode ([#254](https://github.com/DTStack/dt-react-component/issues/254)) ([149cb66](https://github.com/DTStack/dt-react-component/commit/149cb6683605f2d04b8685ba83b1ec83923cd2ea))
+
 ### [3.0.2](https://github.com/DTStack/dt-react-component/compare/v3.0.1...v3.0.2) (2022-11-18)
 
 
