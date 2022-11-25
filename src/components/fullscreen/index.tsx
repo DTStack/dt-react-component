@@ -55,6 +55,18 @@ export default class Fullscreen extends React.Component<FullscreenProps, Fullscr
                 this.dispatchResizeEvent
             );
         };
+        const isFullScreen = !!(
+            document.fullscreen ||
+            document.mozFullScreen ||
+            document.webkitIsFullScreen ||
+            document.webkitFullScreen ||
+            document.msFullScreen
+        );
+        if (isFullScreen) {
+            this.setState({
+                isFullScreen: true,
+            });
+        }
         if (domEle.requestFullscreen) {
             domEle.onfullscreenchange = callBack;
         } else if (domEle.msRequestFullscreen) {
