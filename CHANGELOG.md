@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.4](https://github.com/DTStack/dt-react-component/compare/v3.0.3...v3.0.4) (2022-11-27)
+
+
+### Bug Fixes
+
+* get init fullscreen state when mount ([#258](https://github.com/DTStack/dt-react-component/issues/258)) ([3496bb9](https://github.com/DTStack/dt-react-component/commit/3496bb9987806e62eecb96086678c7534209b879))
+
 ### [3.0.3](https://github.com/DTStack/dt-react-component/compare/v3.0.1...v3.0.3) (2022-11-23)
 
 
