@@ -1,0 +1,93 @@
+$card_prefix: "dtc-block-header";
+
+.#{$card_prefix} {
+    .#{$card_prefix}-title-row {
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &.default {
+            .#{$card_prefix}-title-box {
+                line-height: 22px;
+                .#{$card_prefix}-title {
+                    font-size: 14px;
+                }
+            }
+        }
+        &.small {
+            .#{$card_prefix}-title-box {
+                line-height: 20px;
+                .#{$card_prefix}-title {
+                    font-size: 12px;
+                }
+            }
+        }
+        &.background {
+            padding: 0 12px;
+            background-color: #F9F9FA;
+            &.default {
+                height: 40px;
+            }
+            &.small {
+                height: 32px;
+            }
+        }
+        &.pointer {
+            cursor: pointer;
+        }
+
+        .#{$card_prefix}-title-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            .#{$card_prefix}-before-title {
+                margin-right: 8px;
+                .default {
+                    width: 4px;
+                    height: 16px;
+                    background-color: #1D78FF;
+                }
+                .small {
+                    height: 12px;
+                }
+            }
+            .#{$card_prefix}-title {
+                color: #3D446E;
+                font-weight: 500;
+                margin-right: 4px;
+            }
+            .#{$card_prefix}-after-title {
+                color: #8B8FA8;
+                font-size: 12px;
+            }
+        }
+
+        .#{$card_prefix}-collapse-box {
+            color: #8B8FA8;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+            .text {
+                font-size: 12px;
+                margin: 0 4px;
+            }
+            .icon {
+                font-size: 16px;
+                transition: transform 0.4s;
+                &.down {
+                    transform: rotate(-180deg);
+                }
+                &.up {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+    }
+
+    .#{$card_prefix}-content {
+        &.hide {
+            display: none;
+        }
+    }
+}

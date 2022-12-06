@@ -1,0 +1,67 @@
+@import '../../style/const.scss';
+
+@media only screen and (min-width: 767px) {
+    #root {
+        // reset dumi style
+        .dumi-default-header {
+            background-color: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 3%), 0 1px 6px -1px rgb(0 0 0 / 2%),
+                0 2px 4px 0 rgb(0 0 0 / 2%);
+        }
+
+        .dumi-default-header-content {
+            height: 64px;
+            max-width: 100vw;
+        }
+
+        .dumi-default-header-left {
+            width: auto;
+        }
+
+        .dumi-default-header-right {
+            justify-content: end;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .dumi-default-logo {
+            font-family: 'Smiley Sans Oblique';
+            font-size: 24px;
+            font-weight: 600;
+            color: $basic-black-color;
+
+            img {
+                height: 40px;
+            }
+        }
+
+        .dumi-default-navbar > li {
+            font-size: 20px;
+            padding: 0 20px;
+
+            &:not(:last-child) {
+                margin-inline-end: 0;
+            }
+            a {
+                color: $basic-black-color;
+            }
+
+            a.active {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #root {
+        .dtc-github-icon {
+            width: 100%;
+            padding: 12px 0;
+            font-size: 18px;
+            line-height: 1;
+            text-align: center;
+            display: block;
+        }
+    }
+}

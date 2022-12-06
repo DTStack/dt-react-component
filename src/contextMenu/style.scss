@@ -1,0 +1,19 @@
+.dt-contextMenu-menu {
+    padding: 0;
+    background: #FFF;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+    min-width: 90px;
+    max-width: 160px;
+    .ant-dropdown-menu-item {
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 12px;
+        font-weight: normal;
+        white-space: nowrap;
+        text-decoration: none;
+        line-height: inherit;
+        &:hover {
+            background: #EEF6FE;
+        }
+    }
+}

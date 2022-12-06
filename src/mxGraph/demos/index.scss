@@ -1,0 +1,68 @@
+.mxTooltip {
+    position: absolute;
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+    color: #333;
+    font-size: 11px;
+    font-family: Arial, sans-serif;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+    word-wrap: break-word;
+    list-style: none;
+    background: #FFF;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.08);
+    cursor: default;
+    font-feature-settings: "tnum";
+    .vertex-title {
+        color: inherit;
+    }
+    .vertex {
+        color: #FFF;
+    }
+}
+
+div.mxPopupMenu {
+    position: absolute;
+    background: #FFF;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.08);
+    table.mxPopupMenu {
+        margin: 4px 0;
+        border-collapse: collapse;
+        tr.mxPopupMenuItem {
+            color: #000;
+            cursor: default;
+        }
+        td.mxPopupMenuItem {
+            padding: 6px 60px 6px 30px;
+            color: #000;
+            font-size: 12px;
+            font-family: PingFangSC-Regular, sans-serif;
+            letter-spacing: 0;
+            border: none;
+            &.mxDisabled {
+                color: #DDD;
+                cursor: not-allowed;
+            }
+        }
+        td.mxPopupMenuIcon {
+            padding: 0;
+            background-color: #FFF;
+        }
+        tr.mxPopupMenuItemHover {
+            background-color: #E6F7FF;
+            cursor: pointer;
+            .mxPopupMenuItem {
+                color: #2491F7;
+            }
+        }
+        hr {
+            border-top: solid 1px #CCC;
+        }
+    }
+}

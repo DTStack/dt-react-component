@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "es6",
+        "moduleResolution": "Node",
+        "keyofStringsOnly": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "strict": true,
+        "declaration": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "lib": ["es6", "es2016", "dom"],
+        "jsx": "react",
+        "baseUrl": "./",
+        "outDir": "./dist",
+        "typeRoots": ["node", "node_modules/@types", "node_modules/@typed-mxgraph"],
+        "paths": {
+            "@@/*": [".dumi/tmp/*"],
+            "dt-react-component": ["src"],
+            "dt-react-component/*": ["src/*", "*"]
+        }
+    }
+}

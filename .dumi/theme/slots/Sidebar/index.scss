@@ -1,0 +1,52 @@
+@import '../../style/const.scss';
+
+@media only screen and (min-width: 767px) {
+    .dumi-default-sidebar {
+        height: 100vh;
+        max-height: calc(100vh - 64px);
+        background-color: #fff;
+        top: 64px;
+        width: 275px;
+        border-right: 1px solid #f2f2f2;
+        padding-right: 0;
+        padding-left: 0;
+
+        > dl {
+            > dt {
+                padding: 8px 16px;
+                color: #00000073;
+                line-height: 1.5715;
+                font-size: 13px;
+                margin: 16px 0;
+            }
+
+            > dd {
+                height: 40px;
+                line-height: 40px;
+                font-size: 22px;
+                margin: 4px;
+                box-sizing: content-box;
+                padding: 0;
+
+                > a {
+                    font-size: inherit;
+                    line-height: inherit;
+                    padding: 0 12px;
+                    margin: 0;
+                    border-radius: 8px;
+                    color: $basic-black-color;
+
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.06);
+                    }
+
+                    &.active {
+                        color: inherit;
+                        background-color: #bae0ff;
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+    }
+}

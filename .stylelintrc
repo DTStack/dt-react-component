@@ -1,0 +1,3 @@
+{
+  "extends": "ko-lint-config/.stylelintrc"
+}
