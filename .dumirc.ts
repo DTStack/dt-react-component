@@ -5,7 +5,9 @@ export default defineConfig({
     themeConfig: {
         name: 'dt-react-component',
     },
-    ssr: process.env.NODE_ENV === 'production' ? {} : false,
+    // TODO 先关闭，后面再看
+    base: 'dt-react-component',
+    ssr: false,
     logo: 'http://assets.dtstack.com/UEDLanding/Home/logo.png',
     favicons: ['http://assets.dtstack.com/UEDLanding/Home/logo.png'],
     links: [

@@ -1,7 +1,8 @@
 {
     "name": "dt-react-component",
-    "version": "0.0.1",
+    "version": "4.0.0",
     "description": "react-component",
+    "repository": "https://github.com/DTStack/dt-react-component",
     "module": "esm/index.js",
     "types": "esm/index.d.ts",
     "scripts": {
@@ -16,7 +17,8 @@
         "lint": "npm run lint:es && npm run lint:css",
         "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
         "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
-        "prepublishOnly": "father doctor && npm run build"
+        "prepublishOnly": "father doctor && npm run build",
+        "deploy": "gh-pages -d docs-dist"
     },
     "authors": [
         "dtinsight UED"
@@ -72,6 +74,7 @@
         "eslint": "^8.23.0",
         "father": "^4.1.0",
         "fetch-jsonp": "^1.2.3",
+        "gh-pages": "^4.0.0",
         "husky": "^8.0.1",
         "jest": "^29.3.1",
         "jest-environment-jsdom": "^29.3.1",

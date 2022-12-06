@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'dumi';
 import { Button } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
 import './index.scss';
@@ -13,9 +14,9 @@ export default function Homepage() {
             </div>
             <div className="dtc-homepage-description">一个基于 ant design 的组件库</div>
             <div className="dtc-homepage-btnGroups">
-                <Button type="primary" href="/guide">
+                <Link className="ant-btn" to="/guide">
                     Quick Start
-                </Button>
+                </Link>
                 <Button
                     icon={<GithubOutlined />}
                     href="https://github.com/DTStack/dt-react-component"
