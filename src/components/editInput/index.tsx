@@ -35,7 +35,7 @@ export default class EditInput extends React.PureComponent<EditInputProps, EditI
     };
     onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        const { max } = this.props;
+        const { max = 64 } = this.props;
         if (value && max && value.length > max) {
             message.warning(`字符长度不可超过${max}`);
             this.setState({
