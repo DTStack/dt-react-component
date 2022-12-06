@@ -16,7 +16,7 @@ describe('test GlobalLoading', () => {
     test('should render the correct text', () => {
         expect(element).toBeInTheDocument();
         expect(element).toHaveStyle({
-            background: '#2E3943',
+            background: '#F2F7FA',
         });
     });
 

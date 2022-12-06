@@ -18,13 +18,19 @@
     height: 160px;
 }
 
-.dtc-bouncywrap {
-    position: relative;
-    display: inline-block;
-    margin-top: 20px;
+.dtc-loading-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: PingFangSC-Semibold, "PingFang SC";
+    margin-bottom: 16px;
 }
 
-.dtc-dotcon {
+.dtc-bouncy-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.dtc-dot-icon {
     display: block;
     float: left;
     width: 50px;

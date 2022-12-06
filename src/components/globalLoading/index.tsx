@@ -15,11 +15,12 @@ export default class GlobalLoading extends React.Component<GlobalLoadingProps, a
         const {
             prefix = '',
             loadingTitle = '应用加载中，请等候～',
-            mainBackground = '#2E3943',
-            circleBackground = '#fff',
-            titleColor = '#fff',
+            mainBackground = '#F2F7FA',
+            circleBackground = '#1D78FF',
+            titleColor = '#3D446E',
             className = '',
         } = this.props;
+
         return (
             <div
                 className={classNames('dtc-loading-wrapper', className)}
@@ -27,15 +28,15 @@ export default class GlobalLoading extends React.Component<GlobalLoadingProps, a
                 data-testid="test-globalLoading"
             >
                 <div className="dtc-loading-center">
-                    <h1 style={{ color: titleColor }}>{`${prefix}  ${loadingTitle}`}</h1>
-                    <div className="dtc-bouncywrap">
-                        <div className="dtc-dotcon dtc-dc1">
+                    <div className="dtc-loading-title" style={{ color: titleColor }}>{`${prefix}  ${loadingTitle}`}</div>
+                    <div className="dtc-bouncy-wrap">
+                        <div className="dtc-dot-icon dtc-dc1">
                             <div className="dtc-dot" style={{ background: circleBackground }}></div>
                         </div>
-                        <div className="dtc-dotcon dtc-dc2">
+                        <div className="dtc-dot-icon dtc-dc2">
                             <div className="dtc-dot" style={{ background: circleBackground }}></div>
                         </div>
-                        <div className="dtc-dotcon dtc-dc3">
+                        <div className="dtc-dot-icon dtc-dc3">
                             <div className="dtc-dot" style={{ background: circleBackground }}></div>
                         </div>
                     </div>

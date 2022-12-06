@@ -31,21 +31,21 @@ const propDefinitions = [
         propType: 'string',
         required: false,
         description: '整体背景色',
-        defaultValue: '#2E3943',
+        defaultValue: '#F2F7FA',
     },
     {
         property: 'titleColor',
         propType: 'string',
         required: false,
         description: '文案字体颜色',
-        defaultValue: '#fff',
+        defaultValue: '#3D446E',
     },
     {
         property: 'circleBackground',
         propType: 'string',
         required: false,
-        description: '等待动画cicle背景色',
-        defaultValue: '#fff',
+        description: '等待动画circle背景色',
+        defaultValue: '#1D78FF',
     },
 ];
 const otherDependencies = `import { GlobalLoading } from 'dt-react-component';`;
