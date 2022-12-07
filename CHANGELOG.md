@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.6](https://github.com/DTStack/dt-react-component/compare/v3.0.5...v3.0.6) (2022-12-07)
+
+
+### Features
+
+* ui5.0 global loading ([#266](https://github.com/DTStack/dt-react-component/issues/266)) ([832b603](https://github.com/DTStack/dt-react-component/commit/832b603d40a639bfecbd8136950ed40771020567))
+
+
+### Bug Fixes
+
+* optimize editInput(issue [#263](https://github.com/DTStack/dt-react-component/issues/263)) ([#267](https://github.com/DTStack/dt-react-component/issues/267)) ([bbecf42](https://github.com/DTStack/dt-react-component/commit/bbecf42fbb53c53bda4e3467aad962f6a9217877))
+* update css for statusTag and empty example ([#270](https://github.com/DTStack/dt-react-component/issues/270)) ([78b25f2](https://github.com/DTStack/dt-react-component/commit/78b25f2399db1d67f7d51b3faaeb296cac5ebb70))
+
 ### [3.0.5](https://github.com/DTStack/dt-react-component/compare/v3.0.4...v3.0.5) (2022-11-28)
 
 
