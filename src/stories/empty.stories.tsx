@@ -93,6 +93,7 @@ stories.add(
                 <Empty type="chart" description="图表空数据" />
                 <Empty type="search" description="搜索无数据" />
                 <Empty type="permission" description="无权限" />
+                <Empty type="overview" description="概览无数据" />
             </ExampleContainer>
             <h2>3、使用自定义图片</h2>
             <ExampleContainer
