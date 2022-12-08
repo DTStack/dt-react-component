@@ -12,6 +12,7 @@ export { default as Empty } from './empty';
 export { default as ErrorBoundary } from './errorBoundary';
 export { default as Fullscreen } from './fullscreen';
 export { default as GlobalLoading } from './globalLoading';
+export { default as GoBack } from './goBack';
 export { default as InterruptController } from './InterruptController';
 export { default as KeyEventListener } from './keyEventListener';
 export { default as LoadError } from './loadError';
