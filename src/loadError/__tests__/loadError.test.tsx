@@ -6,7 +6,6 @@ let wrapper: RenderResult;
 
 describe('test error', () => {
     const location: Location = window.location;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     delete window.location;
     window.location = {

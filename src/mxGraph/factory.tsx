@@ -1,5 +1,4 @@
 /* eslint-disable prefer-rest-params */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import factory from 'mxgraph';
 import type {
     mxGraphExportObject,

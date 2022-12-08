@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable new-cap */
 import MxFactory from '../factory';
 import { cleanup } from '@testing-library/react';
