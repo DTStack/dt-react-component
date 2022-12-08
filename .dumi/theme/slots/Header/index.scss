@@ -25,8 +25,7 @@
         }
 
         .dumi-default-logo {
-            font-family: 'Smiley Sans Oblique';
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 600;
             color: $basic-black-color;
 
@@ -36,8 +35,8 @@
         }
 
         .dumi-default-navbar > li {
-            font-size: 20px;
-            padding: 0 20px;
+            font-size: $navbar-font-size;
+            padding: 0 $navbar-font-size;
 
             &:not(:last-child) {
                 margin-inline-end: 0;

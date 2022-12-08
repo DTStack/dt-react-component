@@ -20,5 +20,6 @@
             "dt-react-component": ["src"],
             "dt-react-component/*": ["src/*", "*"]
         }
-    }
+    },
+    "include": ["src/**/*", ".dumi/theme/**/*", ".dumi/pages/**/*", "typings.d.ts"]
 }

@@ -7,7 +7,6 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    font-family: 'Smiley Sans Oblique';
 
     .dtc-homepage-title {
         font-size: 70px;
@@ -32,7 +31,6 @@
 
     .dtc-homepage-btnGroups {
         margin: 12px auto 0;
-        width: 200px;
         display: grid;
         grid-gap: 18px;
         grid-template-columns: 1fr 1fr;
@@ -49,8 +47,20 @@
     .dtc-homepage {
         height: calc(100vh - 52px);
 
+        .dtc-homepage-title {
+            font-size: 60px;
+        }
+
+        .dtc-homepage-description {
+            font-size: 26px;
+        }
+
         .dtc-homepage-btnGroups {
-            width: 300px;
+            > .ant-btn {
+                font-size: 16px;
+                height: 32px;
+                line-height: 32px;
+            }
         }
     }
 }

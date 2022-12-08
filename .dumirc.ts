@@ -5,16 +5,12 @@ export default defineConfig({
     themeConfig: {
         name: 'dt-react-component',
     },
+    base: '/dt-react-component/',
+    publicPath: '/dt-react-component/',
+    exportStatic: {},
     // TODO 先关闭，后面再看
-    base: 'dt-react-component',
     ssr: false,
     logo: 'http://assets.dtstack.com/UEDLanding/Home/logo.png',
     favicons: ['http://assets.dtstack.com/UEDLanding/Home/logo.png'],
-    links: [
-        {
-            href: 'https://unpkg.com/@chinese-fonts/dyh@1.1.0/dist/SmileySans-Oblique/result.css',
-            rel: 'stylesheet',
-        },
-        { href: 'https://cdn.jsdelivr.net/npm/antd@4.22.5/dist/antd.css', rel: 'stylesheet' },
-    ],
+    links: [{ href: 'https://cdn.jsdelivr.net/npm/antd@4.22.5/dist/antd.css', rel: 'stylesheet' }],
 });

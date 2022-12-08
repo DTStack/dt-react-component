@@ -1,20 +1,19 @@
 @import '../../style/const.scss';
 
 .dtc-footer {
-    font-family: 'Smiley Sans Oblique';
     background: rgb(250, 250, 252);
 
     .dtc-footer-links {
         padding-top: 20px;
-        width: 800px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
         .dtc-footer-rows {
+            width: 200px;
+            flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            padding-left: 50%;
 
             .dtc-footer-rows-title {
                 line-height: 28px;
@@ -46,13 +45,8 @@
 @media only screen and (max-width: 767px) {
     .dtc-footer {
         .dtc-footer-links {
-            width: 100%;
-            padding-top: 20px;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-
             .dtc-footer-rows {
-                padding-left: 50px;
+                width: 100px;
             }
         }
     }

@@ -13,17 +13,17 @@
 
         > dl {
             > dt {
-                padding: 8px 16px;
+                padding: 2px 16px;
                 color: #00000073;
                 line-height: 1.5715;
                 font-size: 13px;
-                margin: 16px 0;
+                margin: 2px 0;
             }
 
             > dd {
                 height: 40px;
                 line-height: 40px;
-                font-size: 22px;
+                font-size: $sidebar-font-size;
                 margin: 4px;
                 box-sizing: content-box;
                 padding: 0;

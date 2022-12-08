@@ -15,7 +15,7 @@ export default function Homepage() {
             <div className="dtc-homepage-description">一个基于 ant design 的组件库</div>
             <div className="dtc-homepage-btnGroups">
                 <Link className="ant-btn" to="/guide">
-                    Quick Start
+                    快速开始
                 </Link>
                 <Button
                     icon={<GithubOutlined />}

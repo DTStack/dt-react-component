@@ -1,29 +1,9 @@
-$default-font: 'Smiley Sans Oblique', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
-
-body {
-    font-family: $default-font;
-}
-
 .dumi-default-doc-layout {
     background: #ebf5fd;
-    font-family: $default-font;
-}
-
-// NOT use SmileySans in markdown content
-.dumi-default-content {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-        'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
 }
 
 .dumi-default-doc-layout > main {
     max-width: 100vw;
-}
-
-.ant-tooltip {
-    font-size: 18px;
 }
 
 @media only screen and (min-width: 767px) {
