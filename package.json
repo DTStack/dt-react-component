@@ -28,6 +28,13 @@
     "files": [
         "esm"
     ],
+    "keywords": [
+        "react",
+        "react-component",
+        "ui-library",
+        "typescript",
+        "ant-design"
+    ],
     "commitlint": {
         "extends": [
             "@commitlint/config-conventional"
