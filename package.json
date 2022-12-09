@@ -3,6 +3,7 @@
     "version": "4.0.0",
     "description": "react-component",
     "repository": "https://github.com/DTStack/dt-react-component",
+    "main": "lib/index.js",
     "module": "esm/index.js",
     "types": "esm/index.d.ts",
     "scripts": {
@@ -26,6 +27,7 @@
     ],
     "license": "MIT",
     "files": [
+        "lib",
         "esm"
     ],
     "keywords": [
