@@ -17,6 +17,7 @@ specifiers:
   '@types/testing-library__jest-dom': ^5.14.5
   '@umijs/lint': ^4.0.0
   antd: 4.22.5
+  babel-plugin-import: ^1.13.5
   babel-types: ^6.26.0
   classnames: ^2.2.6
   dumi: ^2.0.12
@@ -69,6 +70,7 @@ devDependencies:
   '@types/showdown': registry.npmmirror.com/@types/showdown/1.9.4
   '@types/testing-library__jest-dom': registry.npmmirror.com/@types/testing-library__jest-dom/5.14.5
   '@umijs/lint': registry.npmmirror.com/@umijs/lint/4.0.33_hchyp4zyec522oxmgx7cqfblaa
+  babel-plugin-import: registry.npmmirror.com/babel-plugin-import/1.13.5
   babel-types: registry.npmmirror.com/babel-types/6.26.0
   dumi: registry.npmmirror.com/dumi/2.0.12_s2jkoxn4fwqhuyeyqytyootjlq
   eslint: registry.npmmirror.com/eslint/8.28.0
@@ -4626,6 +4628,14 @@ packages:
     version: 2.3.3
     dependencies:
       object.assign: registry.npmmirror.com/object.assign/4.1.4
+    dev: true
+
+  registry.npmmirror.com/babel-plugin-import/1.13.5:
+    resolution: {integrity: sha512-IkqnoV+ov1hdJVofly9pXRJmeDm9EtROfrc5i6eII0Hix2xMs5FEm8FG3ExMvazbnZBbgHIt6qdO8And6lCloQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/babel-plugin-import/-/babel-plugin-import-1.13.5.tgz}
+    name: babel-plugin-import
+    version: 1.13.5
+    dependencies:
+      '@babel/helper-module-imports': registry.npmmirror.com/@babel/helper-module-imports/7.18.6
     dev: true
 
   registry.npmmirror.com/babel-plugin-istanbul/6.1.1:
