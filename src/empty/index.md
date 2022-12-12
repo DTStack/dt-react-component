@@ -44,6 +44,8 @@ export default () => {
             <Empty type="search" description="搜索无数据" />
             <Divider />
             <Empty type="permission" description="无权限" />
+            <Divider />
+            <Empty type="overview" description="概览无数据" />
         </>
     );
 };

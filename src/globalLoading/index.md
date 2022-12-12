@@ -41,6 +41,6 @@ export default () => {
 | ---------------- | ---------------------- | -------- | -------------------- |
 | prefix           | 应用前缀               | `string` | -                    |
 | loadingTitle     | 应用名称               | `string` | 应用加载中，请等候～ |
-| mainBackground   | 整体背景色             | `string` | `#2E3943`            |
-| titleColor       | 文案字体颜色           | `string` | `#fff`               |
-| circleBackground | 等待动画 circle 背景色 | `string` | `#fff`               |
+| mainBackground   | 整体背景色             | `string` | `#F2F7FA`            |
+| titleColor       | 文案字体颜色           | `string` | `#3D446E`            |
+| circleBackground | 等待动画 circle 背景色 | `string` | `#1D78FF`            |
