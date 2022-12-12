@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`test ErrorBoundary should render children without error 1`] = `
-<div>
-  children
-</div>
-`;
