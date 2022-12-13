@@ -18,6 +18,20 @@ const propDefinitions = [
         defaultValue: '',
     },
     {
+        property: 'okText',
+        propType: 'String',
+        required: false,
+        description: '确定按钮的文本',
+        defaultValue: '确定',
+    },
+    {
+        property: 'cancelText',
+        propType: 'String',
+        required: false,
+        description: '取消按钮的文本',
+        defaultValue: '取消',
+    },
+    {
         property: 'onOk',
         propType: 'function(selectValues)',
         required: true,
