@@ -136,6 +136,13 @@ const propDefinitions = [
         defaultValue: 'false',
     },
     {
+        property: 'maskClosable',
+        propType: 'Boolean',
+        require: false,
+        description: '点击蒙层是否隐藏Modal',
+        defaultValue: 'false',
+    },
+    {
         property: '其他参数',
         propType: '',
         required: false,
