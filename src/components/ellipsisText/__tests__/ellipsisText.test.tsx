@@ -48,6 +48,32 @@ describe('test ellipsis text if not set max width', () => {
     });
 });
 
+describe('auto calculate ellipsis text if the parent element does not exist', () => {
+    beforeEach(() => {
+        Object.defineProperty(window, 'getComputedStyle', {
+            value: jest.fn(() => ({
+                paddingLeft: '0px',
+                paddingRight: '0px',
+            })),
+        });
+
+        wrapper = render(<EllipsisText {...defaultProps} />);
+    });
+
+    afterEach(() => {
+        cleanup();
+    });
+
+    test('render correct value in ellipsis', () => {
+        const { getByText } = wrapper;
+        const { value } = defaultProps;
+        element = getByText(value);
+
+        expect(element).toBeInTheDocument();
+        expect(element.style.maxWidth).toBe('120px');
+    });
+});
+
 describe('test ellipsis text if set max width', () => {
     beforeEach(() => {
         Object.defineProperty(window, 'getComputedStyle', {
