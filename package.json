@@ -157,10 +157,10 @@
     },
     "dependencies": {
         "@ant-design/icons": "^4.7.0",
-        "@handsontable/react": "3.0.0",
+        "@handsontable/react": "2.1.0",
         "antd": "4.22.5",
         "classnames": "^2.2.6",
-        "handsontable": "7.0.1",
+        "handsontable": "6.2.2",
         "highlight.js": "^10.5.0",
         "lodash": "^4.17.15",
         "moment": "^2.22.2",
