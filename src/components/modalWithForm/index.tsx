@@ -23,6 +23,7 @@ export interface IProps {
     onCancel?: (func: Function) => any;
     onSubmit?: (values: any, record: any) => void;
     [key: string]: any;
+    maskClosable?: boolean;
 }
 
 type ModalProps = IProps & FormProps;
@@ -80,6 +81,7 @@ const ModalForm = (props: ModalProps) => {
         onSubmit,
         children,
         okButtonProps,
+        maskClosable = false,
     } = props;
 
     const formProps = useFilterFormProps();
@@ -114,6 +116,7 @@ const ModalForm = (props: ModalProps) => {
             cancelButtonProps={cancelButtonProps}
             confirmLoading={confirmLoading}
             okButtonProps={okButtonProps}
+            maskClosable={maskClosable}
         >
             <Form form={form} layout={layout} {...formProps}>
                 {React.cloneElement(children, { form, ...props })}
