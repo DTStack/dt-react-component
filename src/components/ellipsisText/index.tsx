@@ -24,6 +24,8 @@ export interface NewHTMLElement extends HTMLElement {
     currentStyle?: CSSStyleDeclaration;
 }
 
+const DEFAULT_MAX_WIDTH = 120;
+
 export default class EllipsisText extends PureComponent<EllipsisTextProps, State> {
     ellipsisRef: HTMLElement | null = null;
     state = {
@@ -58,7 +60,7 @@ export default class EllipsisText extends PureComponent<EllipsisTextProps, State
     // The nearest block parent element
     getMaxWidth = (ele: HTMLElement) => {
         // The default maximum width is 120px when the element does not exist
-        if (!ele) return 120;
+        if (!ele) return DEFAULT_MAX_WIDTH;
         const { scrollWidth, offsetWidth, parentElement } = ele;
         // If inline element, find the parent element
         if (scrollWidth === 0) {
