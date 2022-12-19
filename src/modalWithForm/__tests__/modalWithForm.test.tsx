@@ -73,18 +73,6 @@ test('should toggle modalWithForm when click button', () => {
     expect(element).toBeValid();
 });
 
-test('should change input value when input', () => {
-    // 点击按钮打开模态框
-    fireEvent.click(wrapper.getByText('click'));
-    const ele = wrapper.getByTestId('test-input');
-    ele.onchange = jest.fn();
-    fireEvent.change(ele, { target: { value: '1' } });
-    expect(ele.onchange).toHaveBeenCalled();
-    expect(ele.value).toBe('1');
-    const eleQuit = wrapper.getByText('quit');
-    fireEvent.click(eleQuit);
-});
-
 test('should trigger submit methond when form validate successful', () => {
     fireEvent.click(wrapper.getByText('click'));
     const eleInput = wrapper.getByTestId('test-input');
@@ -95,18 +83,6 @@ test('should trigger submit methond when form validate successful', () => {
     eleOk.onclick = jest.fn();
     fireEvent.click(eleOk);
     expect(eleOk.onclick).toHaveBeenCalled();
-});
-
-test('should render ModalWithForm render correct button props', () => {
-    fireEvent.click(wrapper.getByText('click'));
-    const eleOk = wrapper.getByText('ok');
-    expect(eleOk.parentNode).toHaveClass('ant-btn-dangerous');
-});
-
-test('should render ModalWithForm render correct width props', async () => {
-    fireEvent.click(wrapper.getByText('click'));
-    const eleModal = document.querySelector('.ant-modal');
-    expect(eleModal).toHaveStyle({ width: '400px' });
 });
 
 test('test useFilterFormProps', () => {

@@ -7,5 +7,7 @@ module.exports = {
         '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
             '<rootDir>/mock/mock.js',
         '\\.(css|scss|less)$': '<rootDir>/tests/styleMock.js',
+        // make tests access in handsontable@6.22.0
+        '@babel/polyfill/lib/noConflict': '<rootDir>/tests/styleMock.js',
     },
 };

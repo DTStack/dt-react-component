@@ -67,6 +67,7 @@ export default () => {
 | notSubmitCloseModal | 禁止提交后自动关闭 modal                                                                       | `boolean`                    | `false`   |
 | confirmLoading      | ok 按钮 props                                                                                  | `boolean`                    | -         |
 | okButtonProps       | 确定按钮 loading                                                                               | `boolean`                    | `false`   |
+| maskClosable        | 点击蒙层是否隐藏 Modal                                                                         | `boolean`                    | `false`   |
 
 :::info
 其余参数[继承 antd4.x 的 Form](https://ant.design/components/form-cn/#API)

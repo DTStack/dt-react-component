@@ -17,6 +17,8 @@ interface MulSelectDropdownProps {
     value: any[];
     onOk: (sel: any[]) => void;
     renderNode: Function;
+    cancelText?: string;
+    okText?: string;
 }
 
 interface MulSelectDropdownStates {
@@ -108,6 +110,8 @@ export default class MulSelectDropdown extends React.Component<
             options = [],
             className = '',
             renderNode = (openFun: any) => <span onClick={openFun}>打开</span>,
+            cancelText = '取消',
+            okText = '确定',
         } = this.props;
         const { visible, selectVal, indeterminate, allKeys } = this.state;
         const overlay = (
@@ -133,15 +137,21 @@ export default class MulSelectDropdown extends React.Component<
                         全选
                     </Checkbox>
                     <span>
-                        <a
+                        <Button
+                            size="small"
                             style={{ marginRight: 8 }}
                             data-testid="select_cancel_btn"
                             onClick={this.handleCancel}
                         >
-                            关闭
-                        </a>
-                        <Button type="primary" size="small" onClick={this.handleOk}>
-                            确定
+                            {cancelText}
+                        </Button>
+                        <Button
+                            type="primary"
+                            size="small"
+                            data-testid="select_ok_btn"
+                            onClick={this.handleOk}
+                        >
+                            {okText}
                         </Button>
                     </span>
                 </div>

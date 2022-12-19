@@ -2,6 +2,9 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import MulSelectDropdown from '../index';
 
+const cancelText = '取消';
+const okText = '确定';
+
 describe('mulSelectDropdown Component test', () => {
     test('should render correct', () => {
         const expectValues = {
@@ -10,6 +13,8 @@ describe('mulSelectDropdown Component test', () => {
                 { label: '选项二', value: 2, disabled: true },
             ],
             value: [2],
+            cancelText,
+            okText,
             onOk: (value: any) => {
                 console.log(value);
             },
@@ -20,13 +25,7 @@ describe('mulSelectDropdown Component test', () => {
             ),
         };
         const { getByTestId } = render(
-            <MulSelectDropdown
-                className="testMulSelectDropdown"
-                value={expectValues.value}
-                onOk={expectValues.onOk}
-                renderNode={expectValues.renderNode}
-                options={expectValues.options}
-            />
+            <MulSelectDropdown className="testMulSelectDropdown" {...expectValues} />
         );
         fireEvent.click(getByTestId('drop_down_btn'));
 
@@ -40,7 +39,12 @@ describe('mulSelectDropdown Component test', () => {
         expect(checkoutItem.classList.contains('ant-checkbox-wrapper-disabled')).toEqual(true);
         expect(checkoutItem.classList.contains('ant-checkbox-wrapper-checked')).toEqual(true);
 
-        fireEvent.click(getByTestId('select_cancel_btn'));
+        const okButton = getByTestId('select_ok_btn');
+        expect(okButton.textContent?.replace(' ', '')).toEqual(okText);
+
+        const cancelButton = getByTestId('select_cancel_btn');
+        expect(cancelButton.textContent?.replace(' ', '')).toEqual(cancelText);
+        fireEvent.click(cancelButton);
         expect(dropdownEle.classList.contains('ant-dropdown-hidden')).toEqual(true);
     });
 });
