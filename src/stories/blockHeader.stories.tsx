@@ -72,6 +72,20 @@ const propDefinitions = [
         defaultValue: 'true',
     },
     {
+        property: 'hasBottom',
+        propType: 'boolean',
+        required: false,
+        description: '是否有默认下边距16px',
+        defaultValue: 'false',
+    },
+    {
+        property: 'spaceBottom',
+        propType: 'number',
+        required: false,
+        description: '自定义下边距，优先级高于 hasBottom',
+        defaultValue: 0,
+    },
+    {
         property: 'children',
         propType: 'React.ReactNode',
         required: false,
