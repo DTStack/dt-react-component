@@ -26,7 +26,7 @@ export interface IProps {
     maskClosable?: boolean;
 }
 
-type ModalProps = IProps & FormProps;
+type ModalProps = IProps & Omit<FormProps, 'title'>;
 
 export const FORM_PROPS = [
     'colon',
