@@ -60,7 +60,7 @@ const propDefinitions = [
     },
     {
         property: 'title',
-        propType: 'React.ReactNode | string',
+        propType: 'React.ReactNode',
         required: false,
         description: '标题',
         defaultValue: '--',

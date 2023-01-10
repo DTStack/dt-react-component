@@ -9,7 +9,7 @@ export interface IProps {
     okType?: ButtonType;
     record?: string | number | object;
     visible?: boolean;
-    title?: React.ReactNode | string;
+    title?: React.ReactNode;
     width?: string | number;
     modelClass?: string;
     footer?: React.ReactNode;

@@ -7,7 +7,7 @@ export interface TextMarkProps {
     [propName: string]: any;
 }
 class TextMark extends React.Component<TextMarkProps, any> {
-    renderMark(text = '', markText = ''): React.ReactNode | string {
+    renderMark(text = '', markText = ''): React.ReactNode {
         const markTextIndex = text.indexOf(markText);
         if (markTextIndex !== -1) {
             return (
