@@ -21,6 +21,13 @@ const propDefinitions = [
         description: '表格数据',
         defaultValue: '',
     },
+    {
+        property: 'options.showCopyWithHeader',
+        propType: 'Boolean',
+        required: false,
+        description: '右键菜单中是否展示“复制值以及列名”按钮',
+        defaultValue: '',
+    },
 ];
 
 const otherDependencies = `import { SpreadSheet } from 'dt-react-component';`;
