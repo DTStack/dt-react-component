@@ -81,7 +81,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         const items = {
             copy: {
                 name: '复制',
-                callback: function (_key, selection, event) {
+                callback: function (_key) {
                     const indexArr = this.getSelected();
                     // eslint-disable-next-line prefer-spread
                     const copyDataArr = this.getData.apply(this, indexArr[0]);
