@@ -68,11 +68,7 @@ export default function BlockHeaderRender() {
             <p style={style}>5、简洁版</p>
             <BlockHeader title="分类标题" beforeTitle="" isSmall />
             <p style={style}>6、展开/收起内容</p>
-            <BlockHeader
-                title="分类标题"
-                isSmall
-                onChange={(expand) => console.log(expand)}
-            >
+            <BlockHeader title="分类标题" isSmall onChange={(expand) => console.log(expand)}>
                 Hello World!
             </BlockHeader>
             <h3>小标题 + 无背景</h3>

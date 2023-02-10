@@ -1409,9 +1409,8 @@ stories.add('mxGraph 实现血缘相关展示', () => {
                                     <div style={{ marginTop: 10 }}>
                                         <button
                                             onClick={() => {
-                                                const container = document.getElementById(
-                                                    'outline'
-                                                );
+                                                const container =
+                                                    document.getElementById('outline');
                                                 if (container.innerHTML) {
                                                     container.innerHTML = '';
                                                 } else {
@@ -1747,9 +1746,10 @@ stories.add('mxGraph 详细展示', () => {
                                 [mxConstants.STYLE_EDGE]: mxEdgeStyle.EntityRelation,
                             }),
                             getPortOffset: (edgeState, source) => {
-                                const container = edgeState[
-                                    source ? 'visibleSourceState' : 'visibleTargetState'
-                                ].text.node.querySelectorAll('div')[1];
+                                const container =
+                                    edgeState[
+                                        source ? 'visibleSourceState' : 'visibleTargetState'
+                                    ].text.node.querySelectorAll('div')[1];
                                 const portDom =
                                     container.querySelector<HTMLLIElement>(
                                         'li[data-id=' + detailStore.get('currentSelect') + ']'

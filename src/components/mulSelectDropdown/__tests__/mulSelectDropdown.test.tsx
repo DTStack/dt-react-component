@@ -25,10 +25,7 @@ describe('mulSelectDropdown Component test', () => {
             ),
         };
         const { getByTestId } = render(
-            <MulSelectDropdown
-                className="testMulSelectDropdown"
-                {...expectValues}
-            />
+            <MulSelectDropdown className="testMulSelectDropdown" {...expectValues} />
         );
         fireEvent.click(getByTestId('drop_down_btn'));
 

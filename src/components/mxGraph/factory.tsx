@@ -113,16 +113,11 @@ class MxFactory {
             this.node.setAttribute(
                 'stroke',
                 // Prevent transform css constiables into lower case
-                strokeColor.startsWith('const')
-                    ? strokeColor
-                    : strokeColor.toLowerCase()
+                strokeColor.startsWith('const') ? strokeColor : strokeColor.toLowerCase()
             );
 
             if (s.alpha < 1 || s.strokeAlpha < 1) {
-                this.node.setAttribute(
-                    'stroke-opacity',
-                    s.alpha * s.strokeAlpha
-                );
+                this.node.setAttribute('stroke-opacity', s.alpha * s.strokeAlpha);
             }
 
             const sw = this.getCurrentStrokeWidth();
@@ -138,9 +133,7 @@ class MxFactory {
             if (s.dashed) {
                 this.node.setAttribute(
                     'stroke-dasharray',
-                    this.createDashPattern(
-                        (s.fixDash ? 1 : s.strokeWidth) * s.scale
-                    )
+                    this.createDashPattern((s.fixDash ? 1 : s.strokeWidth) * s.scale)
                 );
             }
         };
@@ -175,10 +168,7 @@ class MxFactory {
                         this.root.ownerDocument === document
                     ) {
                         // Workaround for potential base tag and brackets must be escaped
-                        const base = this.getBaseUrl().replace(
-                            /([()])/g,
-                            '\\$1'
-                        );
+                        const base = this.getBaseUrl().replace(/([()])/g, '\\$1');
                         this.node.setAttribute('fill', `url(${base}#${id})`);
                     } else {
                         this.node.setAttribute('fill', `url(#${id})`);
@@ -188,9 +178,7 @@ class MxFactory {
                     this.node.setAttribute(
                         'fill',
                         // Prevent transform css constiables into lower case
-                        fillColor.startsWith('const')
-                            ? fillColor
-                            : fillColor.toLowerCase()
+                        fillColor.startsWith('const') ? fillColor : fillColor.toLowerCase()
                     );
                 }
             }
@@ -252,12 +240,7 @@ class MxFactory {
             ...(userEdgeStyle || {}),
         });
 
-        mxGraphView.prototype.updateFloatingTerminalPoint = function (
-            edge,
-            start,
-            end,
-            source
-        ) {
+        mxGraphView.prototype.updateFloatingTerminalPoint = function (edge, start, end, source) {
             if (config?.getPortOffset) {
                 const next = this.getNextPoint(edge, end, source);
                 if (!start.text) return;
@@ -287,7 +270,10 @@ class MxFactory {
 
                 edge.setAbsoluteTerminalPoint(new MxPoint(x, y), source);
             } else {
-                edge.setAbsoluteTerminalPoint(this.getFloatingTerminalPoint(edge, start, end, source), source);
+                edge.setAbsoluteTerminalPoint(
+                    this.getFloatingTerminalPoint(edge, start, end, source),
+                    source
+                );
             }
         };
 
@@ -361,11 +347,7 @@ class MxFactory {
      * 初始化 graph 相关配置
      */
     public initContainerScroll = () => {
-        const {
-            mxRectangle: MxRectangle,
-            mxPoint: MxPoint,
-            mxUtils,
-        } = this.mxInstance;
+        const { mxRectangle: MxRectangle, mxPoint: MxPoint, mxUtils } = this.mxInstance;
         if (this.mxGraph) {
             const graph = this.mxGraph;
             /**
@@ -393,11 +375,11 @@ class MxFactory {
             graph.getPageSize = function (this: mxGraph & { scrollTileSize: mxRectangle }) {
                 return this.pageVisible
                     ? new MxRectangle(
-                        0,
-                        0,
-                        this.pageFormat.width * this.pageScale,
-                        this.pageFormat.height * this.pageScale
-                    )
+                          0,
+                          0,
+                          this.pageFormat.width * this.pageScale,
+                          this.pageFormat.height * this.pageScale
+                      )
                     : this.scrollTileSize!;
             };
 
@@ -408,9 +390,7 @@ class MxFactory {
              * page count.
              */
             graph.getPageLayout = function () {
-                const size = this.pageVisible
-                    ? this.getPageSize!()
-                    : this.scrollTileSize!;
+                const size = this.pageVisible ? this.getPageSize!() : this.scrollTileSize!;
                 const bounds = this.getGraphBounds();
 
                 if (bounds.width === 0 || bounds.height === 0) {
@@ -418,12 +398,8 @@ class MxFactory {
                 }
 
                 // Computes untransformed graph bounds
-                const x = Math.ceil(
-                    bounds.x / this.view.scale - this.view.translate.x
-                );
-                const y = Math.ceil(
-                    bounds.y / this.view.scale - this.view.translate.y
-                );
+                const x = Math.ceil(bounds.x / this.view.scale - this.view.translate.x);
+                const y = Math.ceil(bounds.y / this.view.scale - this.view.translate.y);
                 const w = Math.floor(bounds.width / this.view.scale);
                 const h = Math.floor(bounds.height / this.view.scale);
 
@@ -452,12 +428,7 @@ class MxFactory {
                 const pages = this.getPageLayout!();
                 const size = this.getPageSize!();
 
-                return new MxRectangle(
-                    0,
-                    0,
-                    pages.width * size.width,
-                    pages.height * size.height
-                );
+                return new MxRectangle(0, 0, pages.width * size.width, pages.height * size.height);
             };
 
             /**
@@ -474,19 +445,14 @@ class MxFactory {
                 x0: number;
                 y0: number;
             }) {
-                if (
-                    this.graph.container != null &&
-                    mxUtils.hasScrollbars(this.graph.container)
-                ) {
+                if (this.graph.container != null && mxUtils.hasScrollbars(this.graph.container)) {
                     const pad = this.graph.getPagePadding!();
                     const size = this.graph.getPageSize!();
 
                     // Updating scrollbars here causes flickering in quirks and is not needed
                     // if zoom method is always used to set the current scale on the graph.
-                    this.translate.x =
-                        pad.x / this.scale - (this.x0 || 0) * size.width;
-                    this.translate.y =
-                        pad.y / this.scale - (this.y0 || 0) * size.height;
+                    this.translate.x = pad.x / this.scale - (this.x0 || 0) * size.width;
+                    this.translate.y = pad.y / this.scale - (this.y0 || 0) * size.height;
                 }
 
                 graphViewValidate.apply(this, arguments as any);
@@ -500,10 +466,7 @@ class MxFactory {
                     view: mxGraphView & { x0: number; y0: number };
                 }
             ) {
-                if (
-                    this.container != null &&
-                    mxUtils.hasScrollbars(this.container)
-                ) {
+                if (this.container != null && mxUtils.hasScrollbars(this.container)) {
                     const pages = this.getPageLayout!();
                     const pad = this.getPagePadding!();
                     const size = this.getPageSize!();
@@ -513,25 +476,15 @@ class MxFactory {
                         (2 * pad.x) / this.view.scale + pages.width * size.width
                     );
                     const minh = Math.ceil(
-                        (2 * pad.y) / this.view.scale +
-                        pages.height * size.height
+                        (2 * pad.y) / this.view.scale + pages.height * size.height
                     );
 
                     const min = graph.minimumGraphSize;
 
                     // LATER: Fix flicker of scrollbar size in IE quirks mode
                     // after delayed call in window.resize event handler
-                    if (
-                        min === null ||
-                        min.width !== minw ||
-                        min.height !== minh
-                    ) {
-                        graph.minimumGraphSize = new MxRectangle(
-                            0,
-                            0,
-                            minw,
-                            minh
-                        );
+                    if (min === null || min.width !== minw || min.height !== minh) {
+                        graph.minimumGraphSize = new MxRectangle(0, 0, minw, minh);
                     }
 
                     // Updates auto-translate to include padding and graph size
@@ -540,8 +493,7 @@ class MxFactory {
 
                     if (
                         !this.autoTranslate &&
-                        (this.view.translate.x !== dx ||
-                            this.view.translate.y !== dy)
+                        (this.view.translate.x !== dx || this.view.translate.y !== dy)
                     ) {
                         this.autoTranslate = true;
                         this.view.x0 = pages.x;
@@ -554,10 +506,8 @@ class MxFactory {
                         const ty = graph.view.translate.y;
 
                         graph.view.setTranslate(dx, dy);
-                        graph.container.scrollLeft +=
-                            (dx - tx) * graph.view.scale;
-                        graph.container.scrollTop +=
-                            (dy - ty) * graph.view.scale;
+                        graph.container.scrollLeft += (dx - tx) * graph.view.scale;
+                        graph.container.scrollTop += (dy - ty) * graph.view.scale;
 
                         this.autoTranslate = false;
                     }
@@ -590,22 +540,11 @@ class MxFactory {
             graph.container.scrollTop = Math.floor(
                 Math.max(
                     0,
-                    bounds.y -
-                    Math.max(
-                        20,
-                        (graph.container.clientHeight - boundsHeight) / 2
-                    )
+                    bounds.y - Math.max(20, (graph.container.clientHeight - boundsHeight) / 2)
                 )
             );
             graph.container.scrollLeft = Math.floor(
-                Math.max(
-                    0,
-                    bounds.x -
-                    Math.max(
-                        0,
-                        (graph.container.clientWidth - boundsWidth) / 2
-                    )
-                )
+                Math.max(0, bounds.x - Math.max(0, (graph.container.clientWidth - boundsWidth) / 2))
             );
         }
     }

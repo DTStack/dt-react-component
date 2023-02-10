@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 export type StatusTagType = 'warning' | 'error' | 'success' | 'run' | 'stopped';
 
-export interface StatusTagProps extends React.HTMLAttributes<HTMLDivElement>{
+export interface StatusTagProps extends React.HTMLAttributes<HTMLDivElement> {
     type?: StatusTagType;
     className?: string;
     showBorder?: boolean;

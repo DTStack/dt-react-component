@@ -28,7 +28,10 @@ export default class GlobalLoading extends React.Component<GlobalLoadingProps, a
                 data-testid="test-globalLoading"
             >
                 <div className="dtc-loading-center">
-                    <div className="dtc-loading-title" style={{ color: titleColor }}>{`${prefix}  ${loadingTitle}`}</div>
+                    <div
+                        className="dtc-loading-title"
+                        style={{ color: titleColor }}
+                    >{`${prefix}  ${loadingTitle}`}</div>
                     <div className="dtc-bouncy-wrap">
                         <div className="dtc-dot-icon dtc-dc1">
                             <div className="dtc-dot" style={{ background: circleBackground }}></div>
