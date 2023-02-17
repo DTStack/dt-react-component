@@ -20,6 +20,8 @@ export interface BlockHeaderProps {
      * 默认 false
      */
     isSmall?: boolean;
+    hasBottom?: boolean;
+    spaceBottom?: number;
     // 标题一行的样式类名
     titleRowClassName?: string;
     // 标题的样式类名
@@ -39,6 +41,8 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         afterTitle = '',
         tooltip = '',
         isSmall = false,
+        hasBottom = false,
+        spaceBottom = 0,
         titleRowClassName = '',
         titleClassName = '',
         showBackground = true,
@@ -54,6 +58,9 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         </Tooltip>
     );
     const newAfterTitle = afterTitle || questionTooltip;
+    let bottomStyle;
+    if (hasBottom) bottomStyle = { marginBottom: 16 };
+    if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
     const [expand, setExpand] = useState(defaultExpand);
 
     const handleExpand = (expand: boolean) => {
@@ -62,7 +69,7 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         onChange?.(expand);
     };
     return (
-        <div className={`${prefixCls}`}>
+        <div className={`${prefixCls}`} style={bottomStyle}>
             <div
                 className={`${prefixCls}-title-row ${isSmall ? 'small' : 'default'} ${
                     showBackground ? 'background' : ''

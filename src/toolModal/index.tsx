@@ -6,7 +6,7 @@ import './style.scss';
 
 export interface ToolModalProps {
     visible: boolean;
-    toolbox?: React.ReactNode | string;
+    toolbox?: React.ReactNode;
     fullscreen?: boolean | undefined;
     [propName: string]: any;
 }
