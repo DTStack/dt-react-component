@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import EllipsisText from '../index';
 
@@ -23,9 +23,12 @@ describe('test ellipsis text if not set max width', () => {
             value: jest.fn(() => ({
                 paddingLeft: '0px',
                 paddingRight: '0px',
+                cursor: 'pointer',
             })),
         });
-
+        document.documentElement.getBoundingClientRect = jest.fn().mockReturnValueOnce({
+            width: 600,
+        });
         wrapper = render(
             <div>
                 <EllipsisText {...defaultProps} />
@@ -46,6 +49,15 @@ describe('test ellipsis text if not set max width', () => {
         expect(element).toBeInTheDocument();
         expect(element.style.maxWidth).toBe('100px');
     });
+
+    test('render correct hover cursor in ellipsis', () => {
+        const { getByText } = wrapper;
+        const { value } = defaultProps;
+        element = getByText(value);
+
+        expect(element).toBeInTheDocument();
+        expect(element.style.cursor).toBe('pointer');
+    });
 });
 
 describe('auto calculate ellipsis text if the parent element does not exist', () => {
@@ -54,6 +66,7 @@ describe('auto calculate ellipsis text if the parent element does not exist', ()
             value: jest.fn(() => ({
                 paddingLeft: '0px',
                 paddingRight: '0px',
+                cursor: 'pointer',
             })),
         });
 
@@ -77,18 +90,12 @@ describe('auto calculate ellipsis text if the parent element does not exist', ()
 describe('test ellipsis text if set max width', () => {
     beforeEach(() => {
         Object.defineProperty(window, 'getComputedStyle', {
-            value: () => ({
-                getPropertyValue: (_prop) => {
-                    return '';
-                },
-            }),
+            value: jest.fn(() => ({
+                paddingLeft: '0px',
+                paddingRight: '0px',
+                cursor: 'default',
+            })),
         });
-
-        wrapper = render(
-            <div>
-                <EllipsisText {...defaultProps} maxWidth={100} />
-            </div>
-        );
     });
 
     afterEach(() => {
@@ -96,19 +103,21 @@ describe('test ellipsis text if set max width', () => {
         jest.restoreAllMocks();
     });
 
-    test('render correct value in ellipsis', () => {
-        const { getByText } = wrapper;
+    test('The maximum is a number, render correct value in ellipsis', () => {
+        waitFor(() => {
+            wrapper = render(
+                <div>
+                    <EllipsisText {...defaultProps} maxWidth={100} />
+                </div>
+            );
+        });
+        const { getByText, baseElement, getAllByText } = wrapper;
         const { value } = defaultProps;
         element = getByText(value);
 
         expect(element).toBeInTheDocument();
         expect(element.style.maxWidth).toBe('100px');
-    });
-
-    test('render correct prompt info if mouse hover the text ', () => {
-        const { getByText, getAllByText, baseElement } = wrapper;
-        const { value } = defaultProps;
-        element = getByText(value);
+        expect(element.style.cursor).toBe('pointer');
 
         jest.useFakeTimers();
         fireEvent.mouseOver(element);
@@ -117,37 +126,99 @@ describe('test ellipsis text if set max width', () => {
         expect(baseElement.querySelector('.ant-tooltip-open')).toBeInTheDocument();
         expect(getAllByText(value).length).toBe(2);
     });
-});
 
-describe('test ellipsis text if in IE8', () => {
-    beforeEach(() => {
-        jest.spyOn(document.documentElement, 'scrollWidth', 'get').mockImplementation(() => 100);
-        jest.spyOn(document.documentElement, 'offsetWidth', 'get').mockImplementation(() => 100);
-        Object.defineProperty(document.documentElement, 'currentStyle', {
-            value: {
-                paddingLeft: '0px',
-                paddingRight: '0px',
-            },
+    test('The maximum is a string，render correct value in ellipsis', () => {
+        waitFor(() => {
+            wrapper = render(
+                <div>
+                    <EllipsisText {...defaultProps} maxWidth="1000px" />
+                </div>
+            );
         });
-
-        wrapper = render(
-            <div>
-                <EllipsisText {...defaultProps} />
-            </div>
-        );
-    });
-
-    afterEach(() => {
-        cleanup();
-        jest.restoreAllMocks();
-    });
-
-    test('render correct value in ellipsis', () => {
-        const { getByText } = wrapper;
+        const { getByText, baseElement } = wrapper;
         const { value } = defaultProps;
         element = getByText(value);
 
         expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('0');
+        expect(element.style.maxWidth).toBe('1000px');
+        expect(element.style.cursor).toBe('default');
+
+        jest.useFakeTimers();
+        fireEvent.mouseOver(element);
+        jest.runAllTimers();
+
+        expect(baseElement.querySelector('.ant-tooltip-open')).not.toBeInTheDocument();
+    });
+
+    test('The maximum is a percent，render correct value in ellipsis', () => {
+        waitFor(() => {
+            wrapper = render(
+                <div>
+                    <EllipsisText {...defaultProps} maxWidth="80%" />
+                </div>
+            );
+        });
+        const { getByText, baseElement, getAllByText } = wrapper;
+        const { value } = defaultProps;
+        element = getByText(value);
+
+        expect(element).toBeInTheDocument();
+        expect(element.style.maxWidth).toBe('80%');
+        expect(element.style.cursor).toBe('pointer');
+
+        jest.useFakeTimers();
+        fireEvent.mouseOver(element);
+        jest.runAllTimers();
+
+        expect(baseElement.querySelector('.ant-tooltip-open')).toBeInTheDocument();
+        expect(getAllByText(value).length).toBe(2);
+    });
+
+    test('The maximum is a relative value，render correct value in ellipsis', () => {
+        waitFor(() => {
+            wrapper = render(
+                <div>
+                    <EllipsisText {...defaultProps} maxWidth="calc(100% - 10px)" />
+                </div>
+            );
+        });
+        const { getByText, baseElement, getAllByText } = wrapper;
+        const { value } = defaultProps;
+        element = getByText(value);
+
+        expect(element).toBeInTheDocument();
+        expect(element.style.maxWidth).toBe('calc(100% - 10px)');
+        expect(element.style.cursor).toBe('pointer');
+
+        jest.useFakeTimers();
+        fireEvent.mouseOver(element);
+        jest.runAllTimers();
+
+        expect(baseElement.querySelector('.ant-tooltip-open')).toBeInTheDocument();
+        expect(getAllByText(value).length).toBe(2);
+    });
+
+    test('The maximum is a relative value view，render correct value in ellipsis', () => {
+        waitFor(() => {
+            wrapper = render(
+                <div>
+                    <EllipsisText {...defaultProps} maxWidth="calc(100vh - 10px)" />
+                </div>
+            );
+        });
+        const { getByText, baseElement, getAllByText } = wrapper;
+        const { value } = defaultProps;
+        element = getByText(value);
+
+        expect(element).toBeInTheDocument();
+        expect(element.style.maxWidth).toBe('calc(100vh - 10px)');
+        expect(element.style.cursor).toBe('pointer');
+
+        jest.useFakeTimers();
+        fireEvent.mouseOver(element);
+        jest.runAllTimers();
+
+        expect(baseElement.querySelector('.ant-tooltip-open')).toBeInTheDocument();
+        expect(getAllByText(value).length).toBe(2);
     });
 });
