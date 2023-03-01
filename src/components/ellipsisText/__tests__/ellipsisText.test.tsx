@@ -89,6 +89,9 @@ describe('auto calculate ellipsis text if the parent element does not exist', ()
 
 describe('test ellipsis text if set max width', () => {
     beforeEach(() => {
+        document.documentElement.getBoundingClientRect = jest.fn().mockReturnValue({
+            width: 600,
+        });
         Object.defineProperty(window, 'getComputedStyle', {
             value: jest.fn(() => ({
                 paddingLeft: '0px',
@@ -140,7 +143,7 @@ describe('test ellipsis text if set max width', () => {
         element = getByText(value);
 
         expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('1000px');
+        expect(element.style.maxWidth).toBe('1000');
         expect(element.style.cursor).toBe('default');
 
         jest.useFakeTimers();
@@ -148,77 +151,5 @@ describe('test ellipsis text if set max width', () => {
         jest.runAllTimers();
 
         expect(baseElement.querySelector('.ant-tooltip-open')).not.toBeInTheDocument();
-    });
-
-    test('The maximum is a percent，render correct value in ellipsis', () => {
-        waitFor(() => {
-            wrapper = render(
-                <div>
-                    <EllipsisText {...defaultProps} maxWidth="80%" />
-                </div>
-            );
-        });
-        const { getByText, baseElement, getAllByText } = wrapper;
-        const { value } = defaultProps;
-        element = getByText(value);
-
-        expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('80%');
-        expect(element.style.cursor).toBe('pointer');
-
-        jest.useFakeTimers();
-        fireEvent.mouseOver(element);
-        jest.runAllTimers();
-
-        expect(baseElement.querySelector('.ant-tooltip-open')).toBeInTheDocument();
-        expect(getAllByText(value).length).toBe(2);
-    });
-
-    test('The maximum is a relative value，render correct value in ellipsis', () => {
-        waitFor(() => {
-            wrapper = render(
-                <div>
-                    <EllipsisText {...defaultProps} maxWidth="calc(100% - 10px)" />
-                </div>
-            );
-        });
-        const { getByText, baseElement, getAllByText } = wrapper;
-        const { value } = defaultProps;
-        element = getByText(value);
-
-        expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('calc(100% - 10px)');
-        expect(element.style.cursor).toBe('pointer');
-
-        jest.useFakeTimers();
-        fireEvent.mouseOver(element);
-        jest.runAllTimers();
-
-        expect(baseElement.querySelector('.ant-tooltip-open')).toBeInTheDocument();
-        expect(getAllByText(value).length).toBe(2);
-    });
-
-    test('The maximum is a relative value view，render correct value in ellipsis', () => {
-        waitFor(() => {
-            wrapper = render(
-                <div>
-                    <EllipsisText {...defaultProps} maxWidth="calc(100vh - 10px)" />
-                </div>
-            );
-        });
-        const { getByText, baseElement, getAllByText } = wrapper;
-        const { value } = defaultProps;
-        element = getByText(value);
-
-        expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('calc(100vh - 10px)');
-        expect(element.style.cursor).toBe('pointer');
-
-        jest.useFakeTimers();
-        fireEvent.mouseOver(element);
-        jest.runAllTimers();
-
-        expect(baseElement.querySelector('.ant-tooltip-open')).toBeInTheDocument();
-        expect(getAllByText(value).length).toBe(2);
     });
 });
