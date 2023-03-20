@@ -47,8 +47,7 @@
             "prettier --write --no-error-on-unmatched-pattern"
         ],
         "*.{css,scss}": [
-            "stylelint --fix",
-            "prettier --write"
+            "stylelint --fix"
         ],
         "*.{js,jsx}": [
             "eslint --fix",
