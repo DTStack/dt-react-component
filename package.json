@@ -83,7 +83,7 @@
         "@umijs/lint": "^4.0.0",
         "babel-plugin-import": "^1.13.5",
         "babel-types": "^6.26.0",
-        "dumi": "^2.0.12",
+        "dumi": "^2.1.13",
         "eslint": "^8.23.0",
         "father": "^4.1.0",
         "fetch-jsonp": "^1.2.3",
