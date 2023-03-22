@@ -30,8 +30,10 @@ function redirectReactRouterPath() {
 try {
     const config = fs.readFileSync(path.join(__dirname, '../.git/config'), 'utf-8');
     // 如果非本仓库的情况下也去修改
-    if (!config.includes('dt-react-component.git')) {
-        console.log(config);
+    if (
+        !config.includes('dt-react-component.git') ||
+        !config.includes('https://github.com/DTStack/dt-react-component')
+    ) {
         redirectReactRouterPath();
     }
 } catch (error) {
