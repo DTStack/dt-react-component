@@ -79,10 +79,10 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
     getContextMenu() {
         const that = this;
         const { columns = [], options } = this.props;
-        const items = {
+        const items: any = {
             copy: {
                 name: '复制',
-                callback: function (_key) {
+                callback: function (this: any, _key: any) {
                     const indexArr = this.getSelected();
                     // eslint-disable-next-line prefer-spread
                     const copyDataArr = this.getData.apply(this, indexArr[0]);
@@ -93,7 +93,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         if (options?.showCopyWithHeader) {
             const copyWithHeaderItem = {
                 name: '复制值以及列名',
-                callback: function (_key, selection) {
+                callback: function (this: any, _key: any, selection: any) {
                     const indexArr = this.getSelected();
                     // eslint-disable-next-line prefer-spread
                     let copyDataArr = this.getData.apply(this, indexArr[0]);
@@ -116,6 +116,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
             items,
         } as any;
     }
+
     render() {
         const { columns = [], className = '' } = this.props;
         const showData = this.getData();
