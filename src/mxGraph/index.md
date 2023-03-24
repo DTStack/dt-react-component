@@ -6,6 +6,10 @@ toc: content
 
 # mxGraph
 
+:::warning{title=deprecated}
+该组件已废弃
+:::
+
 :::info
 mxTooltip、mxPopupMenu、mxPopupMenuItem 等样式请自行实现，可参考：[mxGraph.scss](https://github.com/DTStack/dt-react-component/blob/master/src/stories/style/mxGraph.scss)
 :::

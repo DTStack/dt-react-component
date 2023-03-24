@@ -6,11 +6,7 @@ const path = require('path');
 
 function redirectReactRouterPath() {
     try {
-        const files = [
-            'src/breadcrumb/index.tsx',
-            'src/goBack/goBack.tsx',
-            'src/goBack/goBackButton.tsx',
-        ];
+        const files = ['src/breadcrumb/index.tsx'];
         const baseUrl = path.join(__dirname, '../');
 
         if (fs.existsSync(path.join(__dirname, '../src'))) {
