@@ -10,42 +10,54 @@ demo:
 
 ## 何时使用
 
-当目前没有数据时，用于显式的用户提示。初始化场景时的引导创建流程
+-   当目前没有数据时，用于显式的用户提示。
+-   初始化场景时的引导创建流程。
+-   内置 6 种空状态类型。
 
 ## 示例
 
 ```jsx
 /**
- * title="使用默认空状态"
+ * title: "使用内置状态"
  */
-import React from 'react';
+import React, { useState } from 'react';
 import { Empty } from 'dt-react-component';
+import { Radio, Space } from 'antd';
 
-export default () => {
-    return <Empty />;
+const options = [
+    { label: 'default', value: 'default' },
+    { label: 'project', value: 'project' },
+    { label: 'chart', value: 'chart' },
+    { label: 'search', value: 'search' },
+    { label: 'permission', value: 'permission' },
+    { label: 'overview', value: 'overview' },
+];
+
+const emptyMap = {
+    default: { type: 'default' },
+    project: { type: 'project', description: '空项目' },
+    chart: { type: 'chart', description: '图表空数据' },
+    search: { type: 'search', description: '搜索无数据' },
+    permission: { type: 'permission', description: '无权限' },
+    overview: { type: 'overview', description: '概览无数据' },
 };
-```
-
-```jsx
-/**
- * title="使用别的空状态"
- */
-import React from 'react';
-import { Empty } from 'dt-react-component';
-import { Divider } from 'antd';
 
 export default () => {
+    const [emptyValue, setEmptyValue] = useState('default');
     return (
         <>
-            <Empty type="project" description="空项目" />
-            <Divider />
-            <Empty type="chart" description="图表空数据" />
-            <Divider />
-            <Empty type="search" description="搜索无数据" />
-            <Divider />
-            <Empty type="permission" description="无权限" />
-            <Divider />
-            <Empty type="overview" description="概览无数据" />
+            <Space direction="vertical" style={{ width: '100%' }} size={16}>
+                <Radio.Group
+                    defaultValue="default"
+                    optionType="button"
+                    options={options}
+                    onChange={(e) => setEmptyValue(e.target.value)}
+                />
+                <Empty
+                    type={emptyMap[emptyValue].type}
+                    description={emptyMap[emptyValue].description}
+                />
+            </Space>
         </>
     );
 };
@@ -53,7 +65,7 @@ export default () => {
 
 ```jsx
 /**
- * title="使用自定义图片"
+ * title: "使用自定义图片"
  */
 import React from 'react';
 import { Empty } from 'dt-react-component';
@@ -68,7 +80,7 @@ export default () => {
 
 ```jsx
 /**
- * title="更多配置"
+ * title: "更多配置"
  */
 import React from 'react';
 import { Empty } from 'dt-react-component';
@@ -81,7 +93,7 @@ export default () => {
             <Empty
                 height={60}
                 imageStyle={{ height: 120 }}
-                description="imageStyle 和 height 共同设置"
+                description="使用继承自antd的属性imageStyle"
             />
         </>
     );
@@ -90,11 +102,10 @@ export default () => {
 
 ## API
 
-| 参数   | 说明                                       | 类型              | 默认值    |
-| ------ | ------------------------------------------ | ----------------- | --------- |
-| type   | 默认展示图片的类型                         | `string`          | `default` |
-| image  | 自定义图片(设置该参数时，默认的图片不生效) | `React.ReactNode` | -         |
-| height | 图片大小(会被 imageStyle 中的 height 覆盖) | `number`          | `80`      |
+| 参数  | 说明                                       | 类型                                                                        | 默认值    |
+| ----- | ------------------------------------------ | --------------------------------------------------------------------------- | --------- |
+| type  | 默认展示图片的类型                         | `default` \| `project` \| `chart` \| `search` \| `permission` \| `overview` | `default` |
+| image | 自定义图片(设置该参数时，默认的图片不生效) | `React.ReactNode`                                                           | -         |
 
 :::info
 其余属性[继承 antd4.x 的 Empty](https://ant.design/components/empty-cn/#API)
