@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const ControllerServer = <P extends object>(Component: React.ComponentType<P>): any => {
+const ControllerServer = <P extends object>(Component: any): any => {
     return class extends React.Component<P> {
         controller = new AbortController();
         componentWillUnmount() {

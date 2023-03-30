@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface ResizeProps {
     onResize?: Function;
-    children?: React.ReactNode;
+    children?: React.ReactComponentElement<any, any>;
 }
 export default class Resize extends React.Component<ResizeProps, any> {
     componentDidMount() {

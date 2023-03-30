@@ -18,7 +18,7 @@ export interface CookiesProps {
 const defaultIntervalTime = 200;
 class Cookies extends React.Component<CookiesProps, any> {
     _currentCookies: string;
-    private _timerId: NodeJS.Timer | null = null;
+    private _timerId: ReturnType<typeof setTimeout> | null = null;
 
     componentDidMount() {
         this.initEvent();
