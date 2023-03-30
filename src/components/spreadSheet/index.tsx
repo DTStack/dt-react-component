@@ -125,6 +125,8 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
             isShowColHeaders = true;
         }
         return (
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             <HotTable
                 ref={this.tableRef}
                 className={classNames('dtc-handsontable-no-border', className)}

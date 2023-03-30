@@ -24,6 +24,7 @@
         "lib",
         "storybook-static",
         "src/public/**/*",
+        "src/stories/*",
         "./gulpfile.js"
     ],
     "include": ["./**/*.ts", "./**/*.tsx", "src/**/*", "gulpfile.js"]
