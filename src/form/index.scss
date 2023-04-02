@@ -1,0 +1,37 @@
+$gap: 16px;
+$errorColor: #FF4D4F;
+
+.dtc-form {
+    &__table {
+        height: 100%;
+        &__column {
+            &--required {
+                &::before {
+                    content: "*";
+                    display: inline-block;
+                    margin-inline-end: 4px;
+                    font-size: 14px;
+                    line-height: 1;
+                    color: $errorColor;
+                }
+                vertical-align: -0.1em;
+            }
+        }
+    }
+    .ant-table,
+    .ant-table-container {
+        height: 100%;
+    }
+    .ant-form-item {
+        margin-bottom: 0;
+    }
+    table colgroup > col.ant-table-selection-col {
+        width: 48px;
+    }
+    .ant-table-thead > tr > th.ant-table-selection-column {
+        padding: 0 $gap;
+    }
+    .ant-table-tbody > tr > td.ant-table-selection-column {
+        padding: 0 $gap;
+    }
+}
