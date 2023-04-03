@@ -17,21 +17,21 @@ $errorColor: #FF4D4F;
                 vertical-align: -0.1em;
             }
         }
-    }
-    .ant-table,
-    .ant-table-container {
-        height: 100%;
-    }
-    .ant-form-item {
-        margin-bottom: 0;
-    }
-    table colgroup > col.ant-table-selection-col {
-        width: 48px;
-    }
-    .ant-table-thead > tr > th.ant-table-selection-column {
-        padding: 0 $gap;
-    }
-    .ant-table-tbody > tr > td.ant-table-selection-column {
-        padding: 0 $gap;
+        .ant-table,
+        .ant-table-container {
+            height: 100%;
+        }
+        .ant-form-item {
+            margin-bottom: 0;
+        }
+        table colgroup > col.ant-table-selection-col {
+            width: 48px;
+        }
+        .ant-table-thead > tr > th.ant-table-selection-column {
+            padding: 0 $gap;
+        }
+        .ant-table-tbody > tr > td.ant-table-selection-column {
+            padding: 0 $gap;
+        }
     }
 }
