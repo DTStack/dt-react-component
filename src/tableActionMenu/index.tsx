@@ -16,8 +16,8 @@ interface IProps {
     className?: string;
     divider?: React.ReactNode; // 分隔符
     collapseIcon?: React.ReactNode; // 折叠菜单图标
-    dropdownProps?: DropDownProps;
-    buttonProps?: ButtonProps;
+    dropdownProps?: Partial<DropDownProps>;
+    buttonProps?: Partial<ButtonProps>;
     onItemClick?(key: React.Key): void;
 }
 
@@ -40,7 +40,7 @@ const TableActionMenu: React.FC<IProps> = (props) => {
                 <span
                     className="dtc-table-action-btn-wrapper"
                     key={item.key}
-                    onClick={() => onItemClick?.(item.key)}
+                    onClick={() => !item.disabled && onItemClick?.(item.key)}
                 >
                     {customRender || (
                         <Button type="link" disabled={item.disabled} {...buttonProps}>
