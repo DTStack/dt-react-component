@@ -32,6 +32,7 @@ export { default as SlidePane } from './slidePane';
 export { default as SpreadSheet } from './spreadSheet';
 export { default as StatusTag } from './statusTag';
 export { default as SwitchWindow } from './switchWindow';
+export { default as TableActionMenu } from './tableActionMenu';
 export { default as TableCell } from './tableCell';
 export { default as TextMark } from './textMark';
 export { default as ToolModal } from './toolModal';
