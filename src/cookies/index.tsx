@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import utils from '../utils';
 
 export interface Fields {
     key?: string;
-    value?: string;
+    value?: string | null;
 }
 export interface CookiesProps {
     watchFields?: string[];
+    intervalTime?: number;
     onChanged?: (old: string, newCookie: string) => void;
     onFieldsChanged?: (fields: Fields[]) => void;
     children?: React.ReactNode;
@@ -15,37 +17,28 @@ export interface CookiesProps {
  * 用法：
  * <Cookies onChanged={callback}></Cookies>
  */
-const defaultIntervalTime = 200;
-class Cookies extends React.Component<CookiesProps, any> {
-    _currentCookies = '';
-    private _timerId: number | undefined = undefined;
 
-    componentDidMount() {
-        this.initEvent();
-    }
-    componentWillUnmount() {
-        window.clearInterval(this._timerId);
-    }
+const Cookies: React.FC<CookiesProps> = (props) => {
+    const { watchFields, intervalTime = 200, onChanged, onFieldsChanged, children } = props;
+    const timerRef = useRef<number>();
+    const currentCookiesRef = useRef<string>(document.cookie);
 
-    compareValue = () => {
-        const { onChanged } = this.props;
-        const old = '' + this._currentCookies;
-        const newCookies = document.cookie;
-        if (old !== newCookies) {
-            if (onChanged) onChanged(old, newCookies);
-            this._currentCookies = newCookies;
-            this.onFieldsChange(old, newCookies);
-        }
-    };
+    useEffect(() => {
+        timerRef.current = window.setInterval(() => {
+            compareValue();
+        }, intervalTime);
+        return () => {
+            window.clearInterval(timerRef.current);
+        };
+    }, []);
 
-    onFieldsChange = (old: string, newCookies: string) => {
-        const { watchFields, onFieldsChanged } = this.props;
+    const onFieldsChange = (old: string, newCookies: string) => {
         if (watchFields) {
             const changedFields: Fields[] = [];
             for (let i = 0; i < watchFields.length; i++) {
                 const key = watchFields[i];
-                const originValue = this.getCookieValue(old, key);
-                const newValue = this.getCookieValue(newCookies, key);
+                const originValue = utils.getCookieValue(old, key);
+                const newValue = utils.getCookieValue(newCookies, key);
                 if (originValue !== null && originValue !== newValue) {
                     changedFields.push({ key, value: newValue });
                 }
@@ -56,24 +49,17 @@ class Cookies extends React.Component<CookiesProps, any> {
         }
     };
 
-    // 根据 Cookies获取 name
-    getCookieValue = (cookies: string, name: string) => {
-        if (cookies) {
-            const arr = cookies.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
-            if (arr != null) return decodeURI(arr[2]);
+    const compareValue = () => {
+        const old = '' + currentCookiesRef.current;
+        const newCookies = document.cookie;
+        if (old !== newCookies) {
+            if (onChanged) onChanged(old, newCookies);
+            currentCookiesRef.current = newCookies;
+            onFieldsChange(old, newCookies);
         }
-        return null;
     };
 
-    initEvent = () => {
-        this._timerId = setInterval(() => {
-            this.compareValue();
-        }, defaultIntervalTime);
-    };
-
-    render() {
-        return <React.Fragment>{this.props.children}</React.Fragment>;
-    }
-}
+    return <React.Fragment>{children}</React.Fragment>;
+};
 
 export default Cookies;

@@ -156,7 +156,16 @@ const utils = {
      * @param name
      */
     getCookie(name: string) {
-        const arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
+        const cookie = document.cookie;
+        return this.getCookieValue(cookie, name);
+    },
+
+    /**
+     * 解析指定cookie字符串的值
+     */
+    getCookieValue(cookie: string, name: string) {
+        if (!cookie) return null;
+        const arr = cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
         if (arr != null) {
             return unescape(decodeURI(arr[2]));
         }
