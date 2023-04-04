@@ -11,7 +11,7 @@
         "dev": "dumi dev",
         "build": "father build",
         "build:watch": "father dev",
-        "test": "jest src/dropdown/__tests__/dropdown.test.tsx --coverage",
+        "test": "jest",
         "docs:build": "dumi build",
         "prepare": "husky install && dumi setup",
         "doctor": "father doctor",
