@@ -11,7 +11,7 @@
         "dev": "dumi dev",
         "build": "father build",
         "build:watch": "father dev",
-        "test": "jest",
+        "test": "jest src/dropdown/__tests__/dropdown.test.tsx --coverage",
         "docs:build": "dumi build",
         "prepare": "husky install && dumi setup",
         "doctor": "father doctor",
@@ -111,6 +111,7 @@
         "highlight.js": "^10.5.0",
         "lodash": "^4.17.21",
         "mxgraph": "^4.2.2",
+        "rc-virtual-list": "^3.4.13",
         "showdown": "^1.9.0"
     }
 }
