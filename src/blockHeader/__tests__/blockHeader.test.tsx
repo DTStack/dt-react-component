@@ -70,6 +70,16 @@ describe('test BlockHeader render', () => {
         expect(getByText('展开')).toBeTruthy();
         expect(onChange).toHaveBeenCalledTimes(1);
     });
+    test('should render expanded and collapsed BlockHeader normally if the onChange event is not set', () => {
+        const { getByText } = render(
+            <BlockHeader title="测试">
+                <div>Hello World!</div>
+            </BlockHeader>
+        );
+        expect(getByText('收起')).toBeTruthy();
+        fireEvent.click(document.getElementsByClassName(`${prefixCls}-title-row`)[0]);
+        expect(getByText('展开')).toBeTruthy();
+    });
     test('should render BlockHeader with different props', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild;
