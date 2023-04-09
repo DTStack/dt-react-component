@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Checkbox, Col, Dropdown, Row, Space, type DropDownProps } from 'antd';
 import classNames from 'classnames';
 import List from 'rc-virtual-list';
+import { isEqual } from 'lodash';
 import type { CheckboxGroupProps, CheckboxValueType } from 'antd/lib/checkbox/Group';
 import type { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import './style.scss';
@@ -93,14 +94,22 @@ export default function Select({
     // If options' number is larger then the maxHeight, then enable virtual list
     const virtual = options.length > Math.floor(MAX_HEIGHT / ITEM_HEIGHT);
 
+    // ONLY the options are all be pushed into value array means select all
+    const checkAll = !!value?.length && isEqual(options.map((i) => i.value).sort(), value.sort());
+    // At least one option's value is included in value array but not all options means indeterminate select
+    const indeterminate =
+        !!value?.length &&
+        !isEqual(options.map((i) => i.value).sort(), value.sort()) &&
+        options.some((o) => value.includes(o.value));
+
     const overlay = (
         <>
             <Row>
                 <Col span={24} className={`${prefix}__col`}>
                     <Checkbox
                         onChange={handleCheckedAll}
-                        checked={!!value?.length && value.length === options?.length}
-                        indeterminate={!!value?.length && value.length !== options?.length}
+                        checked={checkAll}
+                        indeterminate={indeterminate}
                     >
                         全选
                     </Checkbox>

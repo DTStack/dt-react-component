@@ -5,6 +5,6 @@ type OriginalInterface = typeof Dropdown;
 interface DropdownInterface extends OriginalInterface {
     Select: typeof Select;
 }
-const Wrapper = Dropdown;
-(Wrapper as DropdownInterface).Select = Select;
-export default Wrapper as DropdownInterface;
+const WrapperDropdown = Dropdown;
+(WrapperDropdown as DropdownInterface).Select = Select;
+export default WrapperDropdown as DropdownInterface;

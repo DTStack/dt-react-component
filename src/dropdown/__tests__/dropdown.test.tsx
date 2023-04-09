@@ -263,4 +263,91 @@ describe('Test Dropdown.Select Component', () => {
         expect(fn).toBeCalledWith([2]);
         expect(fn).toBeCalledTimes(2);
     });
+
+    it('Should render correct status for selectAll checkbox', () => {
+        const { getByTestId, getByText, rerender } = render(
+            <Dropdown.Select
+                value={[2]}
+                options={[
+                    { label: '选项一', value: 1 },
+                    { label: '选项二', value: 2, disabled: true },
+                ]}
+                onChange={jest.fn()}
+                getPopupContainer={(node) => node}
+            >
+                <Button type="link" data-testid="trigger">
+                    打开下拉
+                </Button>
+            </Dropdown.Select>
+        );
+
+        fireEvent.click(getByTestId('trigger'));
+        act(() => {
+            jest.runAllTimers();
+        });
+        // Should be indeterminate
+        expect(getByText('全选').previousElementSibling?.className).toContain(
+            'ant-checkbox-indeterminate'
+        );
+
+        rerender(
+            <Dropdown.Select
+                value={[1, 2]}
+                options={[
+                    { label: '选项一', value: 1 },
+                    { label: '选项二', value: 2, disabled: true },
+                ]}
+                onChange={jest.fn()}
+                getPopupContainer={(node) => node}
+            >
+                <Button type="link" data-testid="trigger">
+                    打开下拉
+                </Button>
+            </Dropdown.Select>
+        );
+        // Should be checked
+        expect(getByText('全选').previousElementSibling?.className).toContain(
+            'ant-checkbox-checked'
+        );
+
+        rerender(
+            <Dropdown.Select
+                value={[1, 3, 4]}
+                options={[
+                    { label: '选项一', value: 1 },
+                    { label: '选项二', value: 2, disabled: true },
+                ]}
+                onChange={jest.fn()}
+                getPopupContainer={(node) => node}
+            >
+                <Button type="link" data-testid="trigger">
+                    打开下拉
+                </Button>
+            </Dropdown.Select>
+        );
+        // Should be indeterminate
+        expect(getByText('全选').previousElementSibling?.className).toContain(
+            'ant-checkbox-indeterminate'
+        );
+
+        rerender(
+            <Dropdown.Select
+                value={[3, 4]}
+                options={[
+                    { label: '选项一', value: 1 },
+                    { label: '选项二', value: 2, disabled: true },
+                ]}
+                onChange={jest.fn()}
+                getPopupContainer={(node) => node}
+            >
+                <Button type="link" data-testid="trigger">
+                    打开下拉
+                </Button>
+            </Dropdown.Select>
+        );
+        // Should be not checked
+        expect(getByText('全选').previousElementSibling?.className).not.toContain(
+            'ant-checkbox-checked'
+        );
+    });
 });
