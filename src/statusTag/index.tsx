@@ -28,7 +28,7 @@ const StatusTag: React.FC<StatusTagProps> = function StatusTag(props) {
     return (
         <div {...other} className={classes}>
             <div className={statusClass} style={style} />
-            <span className={`${prefixCls}__text`}>{props.children || ''}</span>
+            <span className={`${prefixCls}__text`}>{props.children}</span>
         </div>
     );
 };
