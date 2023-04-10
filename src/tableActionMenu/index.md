@@ -88,13 +88,66 @@ export default () => {
 };
 ```
 
+```jsx
+/**
+ * title: "自定义分割符与下拉图标"
+ */
+import React, { useState } from 'react';
+import { TableActionMenu } from 'dt-react-component';
+import { Table, message, Popconfirm } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+
+export default () => {
+    const [dataSource, setDataSource] = useState([
+        {
+            id: 1,
+            name: '我是测试数据',
+        },
+    ]);
+
+    const cols = [
+        {
+            title: 'id',
+            dataIndex: 'id',
+        },
+        {
+            title: '名称',
+            dataIndex: 'name',
+        },
+        {
+            title: '操作',
+            dataIndex: '',
+            width: 230,
+            render: () => {
+                const actions = [
+                    { key: 'edit', name: '编辑' },
+                    { key: 'delete', name: '删除' },
+                    { key: 'close', name: '关闭' },
+                    { key: 'open', name: '开启' },
+                ];
+                return (
+                    <TableActionMenu
+                        maxCount={3}
+                        actionItems={actions}
+                        divider="-"
+                        collapseIcon={<DownOutlined />}
+                    />
+                );
+            },
+        },
+    ];
+
+    return <Table rowKey="id" dataSource={dataSource} columns={cols} />;
+};
+```
+
 ## API
 
 ### TableActionMenu
 
 | 参数          | 说明                                                                                                  | 类型                        | 默认值                       |
 | ------------- | ----------------------------------------------------------------------------------------------------- | --------------------------- | ---------------------------- |
-| actionItems   | 操作项                                                                                                | [ActionItem](#actionitem)[] | []                           |
+| actionItems   | 操作项                                                                                                | [ActionItem](#actionitem)[] | -                            |
 | maxCount      | 最大展示数量，超出部分会折叠至下拉菜单中                                                              | `number`                    | 3                            |
 | divider       | 操作项分割符                                                                                          | `React.ReactNode`           | `<Divider type='vertical'/>` |
 | collapseIcon  | 下拉菜单折叠图标                                                                                      | `React.ReactNode`           | `<EllipsisOutlined />`       |
