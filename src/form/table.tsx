@@ -2,23 +2,37 @@ import React, { useMemo } from 'react';
 import { Form, Table, type FormListFieldData, type TableProps } from 'antd';
 import classnames from 'classnames';
 import utils from '../utils';
-import type { FormInstance, FormItemProps, FormListProps } from 'antd/lib/form';
-import type { NamePath } from 'antd/lib/form/interface';
+import type { FormItemProps, FormListProps, Rule, RuleObject, RuleRender } from 'antd/lib/form';
 import type { ColumnsType, ColumnType as TableColumnType } from 'antd/lib/table';
 import './index.scss';
 
 type NotNullRowSelection = NonNullable<TableProps<any>['rowSelection']>;
+/**
+ * Override NamePath parameters type
+ */
+type OverrideParameters = (string | number)[];
+type RcFormInstance = Parameters<RuleRender>[0];
 
 /**
  * Form.Table 组件类型
  */
 export interface IFormTableProps
-    extends Pick<FormListProps, 'name' | 'rules' | 'initialValue'>,
-        Pick<TableProps<any>, 'scroll' | 'bordered'> {
     /**
-     * 页面是否加载中
+     * Support all FormListProps except children for which is re-defined in this component
+     * and prefixCls for which is not expected to be supported
      */
-    loading?: boolean;
+    extends Pick<FormListProps, 'name' | 'rules' | 'initialValue'>,
+        /**
+         * Support all TableProps except
+         * - re-define columns and re-defined rowSelection
+         * - and pagination which is expect to be not supported in Form.Table
+         * - and className which is renamed to tableClassName
+         * - and rowKey, dataSource for which are defined and not allowed to be modified
+         */
+        Omit<
+            TableProps<any>,
+            'columns' | 'rowSelection' | 'pagination' | 'className' | 'rowKey' | 'dataSource'
+        > {
     /**
      * 表格列的配置描述
      */
@@ -26,7 +40,7 @@ export interface IFormTableProps
     /**
      * Table 的 className
      */
-    tableClassName?: string;
+    tableClassName?: TableProps<any>['className'];
     /**
      * 表格行是否可选择
      */
@@ -38,115 +52,134 @@ export interface IFormTableProps
 }
 
 export interface ColumnType
-    extends Pick<FormItemProps, 'validateTrigger'>,
-        Pick<
-            TableColumnType<FormListFieldData>,
-            'key' | 'title' | 'width' | 'fixed' | 'filters' | 'onFilter'
-        > {
-    rules?: ((namePath: [number, string?]) => FormItemProps['rules']) | FormItemProps['rules'];
-    dataIndex?: string;
-    required?: boolean;
-    // 只能是 dataIndex 的值
-    dependencies?: string | string[];
+    /**
+     * Support all FormItemProps, and re-defined `rules` and `dependencies`
+     */
+    extends Omit<FormItemProps, 'rules' | 'dependencies' | 'prefixCls' | 'children'>,
+        /**
+         * Support all TableColumnType, and re-defined `render`
+         */
+        Omit<TableColumnType<FormListFieldData>, 'render'> {
+    /**
+     * 设置依赖字段, 支持通过回调函数获取当前字段名
+     */
+    dependencies?:
+        | ((namePath: OverrideParameters) => FormItemProps['dependencies'])
+        | FormItemProps['dependencies'];
+    /**
+     * 校验规则，设置字段的校验逻辑，支持通过回调函数获取当前字段名
+     */
+    rules?: (RuleObject | ((form: RcFormInstance, namePath: OverrideParameters) => RuleObject))[];
+    /**
+     * 渲染函数
+     * @param formInstance 只有在设置了 `dependencies` 的情况下才有该参数
+     */
     render?: (
         record: FormListFieldData,
-        namePath: NamePath,
-        formInstance?: Partial<FormInstance>
-    ) => React.ReactElement;
+        namePath: OverrideParameters,
+        formInstance?: RcFormInstance
+    ) => React.ReactNode;
 }
 
 const className = 'dtc-form__table';
 
 export default function InternalTable({
-    tableClassName,
     name,
     rules,
     initialValue,
-    loading,
-    columns: rawColumns,
-    scroll,
-    rowSelection,
-    bordered,
+    ...tableProps
 }: IFormTableProps) {
+    const { tableClassName, columns: rawColumns, ...restProps } = tableProps;
     const columns: ColumnsType<FormListFieldData> = useMemo(() => {
         return (
             rawColumns?.map(
                 ({
-                    render,
-                    rules: rawRules,
-                    validateTrigger,
-                    dependencies,
+                    noStyle,
+                    style,
+                    className,
+                    id,
+                    hasFeedback,
+                    validateStatus,
                     required,
-                    title,
+                    hidden,
+                    initialValue,
+                    messageVariables,
+                    tooltip,
+                    dependencies,
+                    rules: rawRules,
+                    render,
                     ...cols
-                }) => ({
-                    ...cols,
-                    title: (
-                        <span>
-                            <>
-                                {required && <span className="dtc-form__table__column--required" />}
-                                {title}
-                            </>
-                        </span>
-                    ),
-                    render(_, record) {
-                        const rules =
-                            typeof rawRules === 'function'
-                                ? rawRules([record.name, cols.dataIndex])
-                                : rawRules;
+                }) => {
+                    const formItemProps = {
+                        noStyle,
+                        style,
+                        className,
+                        id,
+                        hasFeedback,
+                        validateStatus,
+                        required,
+                        hidden,
+                        initialValue,
+                        messageVariables,
+                        tooltip,
+                    };
 
-                        if (dependencies) {
+                    const isRequired =
+                        required ||
+                        rawRules?.some((rule) => typeof rule === 'object' && rule.required);
+
+                    return {
+                        ...cols,
+                        title: (
+                            <>
+                                {isRequired && (
+                                    <span className="dtc-form__table__column--required" />
+                                )}
+                                {cols.title}
+                            </>
+                        ),
+                        render(_, record) {
+                            const currentNamePath = [record.name, cols.dataIndex]
+                                .filter(utils.checkExist)
+                                .flat() as OverrideParameters;
+
+                            const rules: Rule[] | undefined = rawRules?.map((rule) =>
+                                typeof rule === 'function'
+                                    ? (form) => rule(form, currentNamePath)
+                                    : rule
+                            );
+
+                            if (dependencies) {
+                                return (
+                                    <Form.Item
+                                        noStyle
+                                        dependencies={
+                                            typeof dependencies === 'function'
+                                                ? dependencies(currentNamePath)
+                                                : dependencies
+                                        }
+                                    >
+                                        {(formInstance) => (
+                                            <Form.Item
+                                                name={currentNamePath}
+                                                rules={rules}
+                                                {...formItemProps}
+                                            >
+                                                {render?.(record, currentNamePath, formInstance)}
+                                            </Form.Item>
+                                        )}
+                                    </Form.Item>
+                                );
+                            }
+
                             return (
-                                <Form.Item
-                                    noStyle
-                                    dependencies={
-                                        typeof dependencies === 'string'
-                                            ? [['data', record.name, dependencies]]
-                                            : dependencies.map((d) => ['data', record.name, d])
-                                    }
-                                >
-                                    {(formInstance) => (
-                                        <Form.Item
-                                            name={
-                                                [record.name, cols.dataIndex].filter(
-                                                    utils.checkExist
-                                                ) as string[]
-                                            }
-                                            rules={rules}
-                                            validateTrigger={validateTrigger}
-                                        >
-                                            {render?.(
-                                                record,
-                                                [record.name, cols.dataIndex].filter(
-                                                    utils.checkExist
-                                                ) as string[],
-                                                formInstance
-                                            )}
-                                        </Form.Item>
-                                    )}
+                                <Form.Item name={currentNamePath} rules={rules} {...formItemProps}>
+                                    {render?.(record, currentNamePath)}
                                 </Form.Item>
                             );
-                        }
-
-                        return (
-                            <Form.Item
-                                name={
-                                    [record.name, cols.dataIndex].filter(
-                                        utils.checkExist
-                                    ) as string[]
-                                }
-                                rules={rules}
-                            >
-                                {render?.(
-                                    record,
-                                    [record.name, cols.dataIndex].filter(
-                                        utils.checkExist
-                                    ) as string[]
-                                )}
-                            </Form.Item>
-                        );
-                    },
-                })
+                        },
+                    };
+                }
             ) || []
         );
     }, [rawColumns]);
@@ -157,13 +190,10 @@ export default function InternalTable({
                 <Table
                     className={classnames(className, tableClassName)}
                     rowKey="key"
-                    bordered={bordered}
-                    loading={loading}
                     dataSource={fields}
                     pagination={false}
                     columns={columns}
-                    scroll={scroll}
-                    rowSelection={rowSelection}
+                    {...restProps}
                 />
             )}
         </Form.List>

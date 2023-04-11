@@ -22,60 +22,36 @@ demo:
 
 <code src="./demos/related.tsx" title="联动更新" description="如果性别是男性展示体重，否则不展示" compact="true"></code>
 
-<code src="./demos/check.tsx" title="配置可选择项" description="取消勾选禁用当前行的相关输入框" compact="true"></code>
+<code src="./demos/check.tsx" title="配置可选择项" description="勾选禁用当前行的相关输入框" compact="true"></code>
+
+<code src="./demos/rules.tsx" title="联动规则校验" description="只有性别为男性时，才需要填写地址" compact="true"></code>
+
+## FAQ
+
+### 如何设置 title 上的必选标识？
+
+通过显式声明 `required` 或自动探测 `rules` 中是否存在 `required` 为 `true` 的项
 
 ## API
 
 ### Form.Table
 
-| 参数           | 说明                                               | 类型           | 默认值 |
-| -------------- | -------------------------------------------------- | -------------- | ------ |
-| loading        | 页面是否加载中                                     | `boolean`      | -      |
-| columns        | 表格列的配置描述，<a href="#columntype">配置项</a> | `ColumnType[]` | -      |
-| tableClassName | Table 的 className                                 | `string`       | -      |
-| rowSelection   | 表格行是否可选择                                   | `RowSelection` | -      |
+| 参数           | 说明                                   | 类型 | 默认值 |
+| -------------- | -------------------------------------- | ---- | ------ |
+| name           | 继承自 `Form.Item`                     | -    | -      |
+| rules          | 继承自 `Form.Item`                     | -    | -      |
+| initialValue   | 继承自 `Form.Item`                     | -    | -      |
+| columns        | 表格列<a href="#columntype">配置项</a> | -    | -      |
+| tableClassName | 继承自 `Table` 的 `className`          | -    | -      |
 
-<details><summary>以下属性继承自 Form 组件</summary>
-
-| 参数         | 说明                         | 类型       | 默认值 |
-| ------------ | ---------------------------- | ---------- | ------ |
-| name         | 字段名，支持数组             | `	NamePath` | -      |
-| rules        | 校验规则，设置字段的校验逻辑 | `Rule[]`   | -      |
-| initialValue | 设置 Table 组件的默认值      | `any[]`    | -      |
-
-详见：<a href="https://4x.ant.design/components/form-cn/#Form.Item" target="_blank">配置项</a>
-
-</details>
-
-<details><summary>以下属性继承自 Table 组件</summary>
-
-| 参数     | 说明                                       | 类型      | 默认值  |
-| -------- | ------------------------------------------ | --------- | ------- |
-| scroll   | 表格是否可滚动，也可以指定滚动区域的宽、高 | `object`  | -       |
-| bordered | 是否展示外边框和列边框                     | `boolean` | `false` |
-
-详见：<a href="https://4x.ant.design/components/table-cn/#Table" target="_blank">配置项</a>
-
-</details>
+其余属性均即成自 `Table` 组件，参考 <a href="https://4x.ant.design/components/table-cn/#Table" target="_blank">Table API</a>
 
 ### ColumnType
 
-| 参数         | 说明                                                                                                         | 类型           | 默认值 |
-| ------------ | ------------------------------------------------------------------------------------------------------------ | -------------- | ------ |
-| rules        | 校验规则，设置字段的校验逻辑                                                                                 | `Rule[]`       | -      |
-| dataIndex    | 列数据在数据项中对应的路径                                                                                   | `string`       | -      |
-| required     | 是否必选，仅影响样式                                                                                         | `boolean`      | -      |
-| dependencies | 表格行是否可选择                                                                                             | `RowSelection` | -      |
-| render       | 生成复杂数据的渲染函数，参数分别为当前索引值，当前路径值，当前 Form 实例（仅当存在 dependencies 时才会支持） | `Function`     | -      |
+继承全部 `Form.Item` 以及 `ColumnType` 类型, 以下类型有所不同
 
-除此之外，还继承以下来自 `Form.Item` 以及 `Table.Column` 的类型
-
-| 参数            | 说明                  | 类型 | 默认值 |
-| --------------- | --------------------- | ---- | ------ |
-| validateTrigger | 继承自 `Form.Item`    | -    | -      |
-| key             | 继承自 `Table.Column` | -    | -      |
-| title           | 继承自 `Table.Column` | -    | -      |
-| width           | 继承自 `Table.Column` | -    | -      |
-| fixed           | 继承自 `Table.Column` | -    | -      |
-| filters         | 继承自 `Table.Column` | -    | -      |
-| onFilter        | 继承自 `Table.Column` | -    | -      |
+| 参数         | 说明                                                                      | 类型                                          | 默认值 |
+| ------------ | ------------------------------------------------------------------------- | --------------------------------------------- | ------ |
+| dependencies | 支持回调函数形式获取当前字段名，详见<a href="#form-demo-related">Demo</a> | -                                             | -      |
+| rules        | 支持回调函数形式获取当前字段名，详见<a href="#form-demo-rules">Demo</a>   | -                                             | -      |
+| render       | 生成复杂数据的渲染函数，详见<a href="#form-demo-related">Demo</a>         | `(record, namePath, form) => React.ReactNode` | -      |

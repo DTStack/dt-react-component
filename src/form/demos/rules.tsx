@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { EllipsisText, Form } from 'dt-react-component';
-import { Button, Input, message, Select } from 'antd';
+import { Button, Input, message } from 'antd';
 import getMockData from './data';
 
 export default () => {
@@ -36,6 +36,7 @@ export default () => {
                         key: 'name',
                         title: 'Name',
                         dataIndex: 'name',
+                        required: true,
                         rules: [
                             {
                                 required: true,
@@ -48,36 +49,19 @@ export default () => {
                         key: 'gender',
                         title: 'gender',
                         dataIndex: 'gender',
-                        required: true,
-                        render: () => (
-                            <Select
-                                options={[
-                                    { label: 'female', value: 'female' },
-                                    {
-                                        label: 'male',
-                                        value: 'male',
-                                    },
-                                ]}
-                            />
-                        ),
-                    },
-                    {
-                        key: 'weight',
-                        title: 'weight',
-                        dataIndex: 'weight',
-                        dependencies: ([name]) => [['data', name, 'gender']],
-                        render: ({ name }, _, form) => {
-                            return form?.getFieldValue?.(['data', name, 'gender']) === 'female' ? (
-                                '--'
-                            ) : (
-                                <EllipsisText maxWidth="95%" />
-                            );
-                        },
+                        render: () => <EllipsisText maxWidth="95%" />,
                     },
                     {
                         key: 'address',
                         title: 'Address',
                         dataIndex: 'address',
+                        required: true,
+                        rules: [
+                            ({ getFieldValue }, [name]) => ({
+                                required: getFieldValue(['data', name, 'gender']) === 'male',
+                                message: 'address is Required for male',
+                            }),
+                        ],
                         render: () => <Input placeholder="Address" />,
                     },
                     {

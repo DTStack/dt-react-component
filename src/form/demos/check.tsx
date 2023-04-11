@@ -54,7 +54,6 @@ export default () => {
                         key: 'name',
                         title: 'Name',
                         dataIndex: 'name',
-                        required: true,
                         rules: [
                             {
                                 required: true,
