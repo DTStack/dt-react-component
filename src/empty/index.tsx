@@ -14,6 +14,8 @@ export const IMG_MAP = {
 interface IProps {
     type?: 'default' | 'search' | 'chart' | 'project' | 'overview' | 'permission';
     height?: number;
+    image?: React.ReactNode;
+    imageStyle?: React.CSSProperties;
 }
 
 const Empty = (props: EmptyProps & IProps) => {
