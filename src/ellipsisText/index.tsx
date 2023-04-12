@@ -110,7 +110,7 @@ const EllipsisText = (props: EllipsisTextProps) => {
         if (scrollWidth === 0) {
             return getContainerWidth(parentElement!);
         }
-        // 如果设置了最大宽度，则直接返回的宽度
+        // 如果设置了最大宽度，则直接返回宽度
         if (maxWidth) {
             return transitionWidth(ele, maxWidth);
         }

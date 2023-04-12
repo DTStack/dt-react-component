@@ -10,18 +10,19 @@ demo:
 
 ## 何时使用
 
-用于长文本省略，根据最近块级父元素自动计算文本最大宽度，也可以手动传最大宽度，当传入 maxWidth 时不会去动态计算文本宽度，hover 显示完整内容。
+用于长文本省略，根据最近块级父元素自动计算文本最大宽度，也可以手动传最大宽度，hover 显示完整内容。
 
--   自动计算宽度仅限于最近块级父元素下都为行内元素
--   如果最近块级元素为行内块级元素，必须设置宽度
--   使用 antd table 当表头 fixed：true 时，请传 maxWidth
--   某个元素下使用多个 EllipsisText 最好传 maxWidth
--   大批量数据使用时最好传 maxWidth，防止出现性能问题
+## 注意
+
+-   宽度的计算过程是一个比较耗时的动作，同一页面内该组件使用次数保持在 100 个以内，如果存在性能问题，考虑先支持虚拟滚动等技术后，在使用该组件。
 
 ## 示例
 
-<code src="./demos/basic.tsx" title="基础使用"></code>
-<code src="./demos/maxWidth.tsx" title="进阶使用" description="请更改窗口大小"></code>
+<code src="./demos/basic.tsx" title="基础使用" description="请更改窗口大小"></code>
+<code src="./demos/maxWidth.tsx" title="宽度限制" ></code>
+<code src="./demos/inlineElement.tsx" title="行内元素" description="行内元素无法获得宽度，在计算时会不断向上查找，直到找到一个能够正确获取宽度的父元素，并以找到父元素宽度当作文本的可视宽度" ></code>
+<code src="./demos/flex.tsx" title="flex" description="请更改窗口大小"></code>
+<code src="./demos/multiple.tsx" title="同一容器多个 EllipsisText 组件" description="都必须传入 maxWidth"></code>
 
 ## API
 
@@ -30,8 +31,8 @@ demo:
 | value     | 显示文本内容                       | `string \| number` | -      |
 | className | 为文本内容所在节点添加自定义样式名 | `string`           | -      |
 | maxWidth  | 文本内容的最大宽度                 | `string \| number` | -      |
-| title     | 提示文字                           | `string \| number` | -      |
+| title     | 提示文字                           | `ReactNode`        | -      |
 
 :::info
-其余参数继承自 [继承 antd3.x 的 Tooltip](https://3x.ant.design/components/tooltip-cn/#header)
+其余参数继承自 [继承 antd4.x 的 Tooltip](https://4x.ant.design/components/tooltip-cn/#API)
 :::
