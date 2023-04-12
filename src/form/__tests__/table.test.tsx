@@ -1,7 +1,7 @@
+import React from 'react';
 import { render } from '@testing-library/react';
 import { Input } from 'antd';
 import Form from '../';
-import React from 'react';
 
 describe('Test Form.Table Component', () => {
     it('Should match snapshot', () => {
@@ -57,7 +57,7 @@ describe('Test Form.Table Component', () => {
                             key: 'age',
                             title: 'Age',
                             dataIndex: 'age',
-                            dependencies: 'name',
+                            dependencies: ([name]) => ['data', name, 'name'],
                             render: ({ name }, _, form) => {
                                 return form?.getFieldValue?.(['data', name, 'name']) ===
                                     'dtstack' ? (
@@ -127,5 +127,61 @@ describe('Test Form.Table Component', () => {
 
         expect(getByTestId('test-0').innerHTML).toBe('larger');
         expect(getByTestId('test-1').innerHTML).toBe('smaller');
+    });
+
+    it("Should render required on columns' title", () => {
+        const { container } = render(
+            <Form
+                layout="vertical"
+                style={{ height: 400 }}
+                initialValues={{
+                    data: [{ name: 'dtstack' }],
+                }}
+            >
+                <Form.Table
+                    name="data"
+                    columns={[
+                        {
+                            key: 'name',
+                            title: 'Name',
+                            dataIndex: 'name',
+                            required: true,
+                            render: () => <Input placeholder="Name" />,
+                        },
+                        {
+                            key: 'age',
+                            title: 'Age',
+                            dataIndex: 'age',
+                            render: () => <Input placeholder="age" />,
+                        },
+                        {
+                            key: 'sex',
+                            title: 'Sex',
+                            dataIndex: 'sex',
+                            rules: [{ required: true }],
+                            render: () => <Input placeholder="sex" />,
+                        },
+                        {
+                            key: 'sex',
+                            title: 'Sex',
+                            dataIndex: 'sex',
+                            rules: [
+                                ({ getFieldValue }, [name]) => ({
+                                    required: getFieldValue(['data', name, 'name']) === 'dtstack',
+                                }),
+                            ],
+                            render: () => <Input placeholder="sex" />,
+                        },
+                    ]}
+                />
+            </Form>
+        );
+
+        const rows = container.querySelectorAll('th.ant-table-cell');
+        expect(rows.length).toBe(4);
+        expect(rows[0].querySelector('.dtc-form__table__column--required')).not.toBeNull();
+        expect(rows[1].querySelector('.dtc-form__table__column--required')).toBeNull();
+        expect(rows[2].querySelector('.dtc-form__table__column--required')).not.toBeNull();
+        expect(rows[3].querySelector('.dtc-form__table__column--required')).toBeNull();
     });
 });

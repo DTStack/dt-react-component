@@ -35,12 +35,10 @@ exports[`Test Form.Table Component Should match snapshot 1`] = `
                       <th
                         class="ant-table-cell"
                       >
-                        <span>
-                          <span
-                            class="dtc-form__table__column--required"
-                          />
-                          Name
-                        </span>
+                        <span
+                          class="dtc-form__table__column--required"
+                        />
+                        Name
                       </th>
                     </tr>
                   </thead>
