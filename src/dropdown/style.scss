@@ -1,0 +1,82 @@
+// .dtc-mul-select-dropdown {
+//     .dtc-option-select-overlay {
+//         background: #FFF;
+//         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+//         border-radius: 2px;
+//         width: 220px;
+//         height: auto;
+//         .dtc-option-select-overlay-menu {
+//             max-height: 240px;
+//             overflow-y: scroll;
+//         }
+//         .ant-checkbox-group {
+//             width: 100%;
+//         }
+//         .ant-divider-horizontal {
+//             background: #E8E8E8;
+//             width: 204px;
+//             margin: 0 0 0 8px;
+//             min-width: 204px;
+//         }
+//         .dtc-option-select-overlay-row {
+//             padding: 8px;
+//             &.footer-box {
+//                 display: flex;
+//                 justify-content: space-between;
+//                 align-items: center;
+//                 width: 100%;
+//             }
+//         }
+//     }
+// }
+
+$gap: 8px;
+$item-size: 32px;
+
+.dtc-dropdown-select {
+    &__container {
+        background: #FFF;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+        height: auto;
+        padding: $gap 0;
+        .ant-checkbox-group {
+            width: 100%;
+            display: block;
+        }
+    }
+    &__shadow {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        box-shadow: inset 0 10px 10px -10px #EBECF0;
+        height: 10px;
+        z-index: 999;
+        opacity: 0;
+        transform: opacity 0.3s;
+        pointer-events: none;
+        &.active {
+            opacity: 1;
+        }
+    }
+    &__col {
+        height: $item-size;
+        line-height: $item-size;
+        padding: 0 $gap;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        .ant-checkbox-wrapper {
+            width: 100%;
+        }
+        &:hover {
+            background-color: #F9F9FA;
+        }
+    }
+    &__btns {
+        height: $item-size;
+        line-height: $item-size;
+        padding: 0 $gap;
+        width: 100%;
+        justify-content: end;
+    }
+}

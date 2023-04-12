@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, cleanup, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import BlockHeader from '../index';
+import '@testing-library/jest-dom/extend-expect';
 
 const props = {
     title: '标题1',
@@ -120,5 +120,19 @@ describe('test BlockHeader render', () => {
         );
         const titleBoxWrap1 = container1.firstChild!.firstChild!.firstChild;
         expect(titleBoxWrap1!.childNodes.length).toEqual(3);
+    });
+    test('should render BlockHeader correct margin-bottom', () => {
+        const { container: noStyle } = render(<BlockHeader title="分类级别" beforeTitle="" />);
+        expect(noStyle.querySelector('.dtc-block-header')).not.toHaveAttribute('style');
+        const { container: defaultBottom } = render(
+            <BlockHeader title="分类级别" beforeTitle="" />
+        );
+        expect(defaultBottom.querySelector('.dtc-block-header')).toHaveStyle({ marginBottom: 16 });
+        const { container: customizeBottom } = render(
+            <BlockHeader title="分类级别" beforeTitle="" hasBottom spaceBottom={10} />
+        );
+        expect(customizeBottom.querySelector('.dtc-block-header')).toHaveStyle({
+            marginBottom: 10,
+        });
     });
 });

@@ -35,5 +35,7 @@ demo:
 | titleClassName    | 标题的样式类名                            | `string`                    | -       |
 | showBackground    | 是否显示背景                              | `boolean`                   | `true`  |
 | defaultExpand     | 是否默认展开内容                          | `boolean`                   | `true`  |
+| hasBottom         | 是否有默认下边距 16px                     | `boolean`                   | `false` |
+| spaceBottom       | 自定义下边距，优先级高于 hasBottom        | `number`                    | `0`     |
 | children          | 展开/收起的内容                           | `React.ReactNode`           | -       |
 | onChange          | 展开/收起时的回调                         | `(expand: boolean) => void` | -       |

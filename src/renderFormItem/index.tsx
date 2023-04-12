@@ -10,7 +10,7 @@ interface ItemType {
         key: string | number | (string | number)[];
         required?: boolean;
         component?: React.ReactNode;
-        tooltip?: React.ReactNode | string;
+        tooltip?: React.ReactNode;
         extra?: React.ReactNode;
         options?: {
             className?: string;

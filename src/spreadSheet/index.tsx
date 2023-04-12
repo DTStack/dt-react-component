@@ -11,18 +11,21 @@ export interface SpreadSheetProps {
     data: Array<Array<string>>;
     columns: any;
     className?: string;
+    options?: {
+        showCopyWithHeader?: boolean;
+    };
 }
 
 class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
     tableRef: any = React.createRef();
     copyUtils = new CopyUtils();
-    _renderColck: any;
+    _renderTimer: any;
 
     componentDidUpdate(prevProps: any, _prevState: any) {
         if (prevProps != this.props) {
             if (this.tableRef) {
                 this.removeRenderClock();
-                this._renderColck = setTimeout(() => {
+                this._renderTimer = setTimeout(() => {
                     console.log('render sheet');
                     this.tableRef.current.hotInstance.render();
                 }, 100);
@@ -30,8 +33,8 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         }
     }
     removeRenderClock() {
-        if (this._renderColck) {
-            clearTimeout(this._renderColck);
+        if (this._renderTimer) {
+            clearTimeout(this._renderTimer);
         }
     }
     componentWillUnmount() {
@@ -75,20 +78,45 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
     }
     getContextMenu() {
         const that = this;
-        return {
-            items: {
-                copy: {
-                    name: '复制',
-                    callback: function (this: any) {
-                        const indexArr = this.getSelected();
-                        // eslint-disable-next-line prefer-spread
-                        const copyDataArr = this.getData.apply(this, indexArr[0]);
-                        that.beforeCopy(copyDataArr);
-                    },
+        const { columns = [], options } = this.props;
+        const items: any = {
+            copy: {
+                name: '复制',
+                callback: function (this: any, _key: any) {
+                    const indexArr = this.getSelected();
+                    // eslint-disable-next-line prefer-spread
+                    const copyDataArr = this.getData.apply(this, indexArr[0]);
+                    that.beforeCopy(copyDataArr);
                 },
             },
+        };
+        if (options?.showCopyWithHeader) {
+            const copyWithHeaderItem = {
+                name: '复制值以及列名',
+                callback: function (this: any, _key: any, selection: any) {
+                    const indexArr = this.getSelected();
+                    // eslint-disable-next-line prefer-spread
+                    let copyDataArr = this.getData.apply(this, indexArr[0]);
+                    const columnStart = selection?.[0]?.start?.col;
+                    const columnEnd = selection?.[0]?.end?.col;
+                    let columnArr;
+                    if (columnStart !== undefined && columnEnd !== undefined) {
+                        columnArr = columns.slice(columnStart, columnEnd + 1);
+                    }
+                    if (columnArr) {
+                        copyDataArr = [columnArr, ...copyDataArr];
+                    }
+                    that.beforeCopy(copyDataArr);
+                },
+            };
+            // 目前版本不支持 copy_with_column_headers 暂时用 cut 代替，以达到与copy类似的表现
+            items['cut'] = copyWithHeaderItem;
+        }
+        return {
+            items,
         } as any;
     }
+
     render() {
         const { columns = [], className = '' } = this.props;
         const showData = this.getData();
@@ -116,6 +144,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                 manualColumnResize // 拉伸功能
                 colWidths={200}
                 beforeCopy={this.beforeCopy.bind(this)}
+                beforeCut={() => false}
                 columnHeaderHeight={25}
                 contextMenu={this.getContextMenu()}
                 stretchH="all" // 填充空白区域

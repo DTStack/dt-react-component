@@ -6,11 +6,7 @@ const path = require('path');
 
 function redirectReactRouterPath() {
     try {
-        const files = [
-            'src/breadcrumb/index.tsx',
-            'src/goBack/goBack.tsx',
-            'src/goBack/goBackButton.tsx',
-        ];
+        const files = ['src/breadcrumb/index.tsx'];
         const baseUrl = path.join(__dirname, '../');
 
         if (fs.existsSync(path.join(__dirname, '../src'))) {
@@ -30,8 +26,10 @@ function redirectReactRouterPath() {
 try {
     const config = fs.readFileSync(path.join(__dirname, '../.git/config'), 'utf-8');
     // 如果非本仓库的情况下也去修改
-    if (!config.includes('dt-react-component.git')) {
-        console.log(config);
+    if (
+        !config.includes('dt-react-component.git') &&
+        !config.includes('https://github.com/DTStack/dt-react-component')
+    ) {
         redirectReactRouterPath();
     }
 } catch (error) {

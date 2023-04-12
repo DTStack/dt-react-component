@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Dropdown.Select Component Should match snapshot 1`] = `
+<DocumentFragment>
+  <button
+    class="ant-btn ant-btn-link ant-dropdown-trigger ant-dropdown-open"
+    data-testid="trigger"
+    type="button"
+  >
+    <span>
+      打开下拉
+    </span>
+    <div
+      style="position: absolute; top: 0px; left: 0px; width: 100%;"
+    >
+      <div>
+        <div
+          class="ant-dropdown dtc-dropdown-select__container"
+          style="opacity: 0;"
+        >
+          <div
+            class="ant-row"
+          >
+            <div
+              class="ant-col ant-col-24 dtc-dropdown-select__col"
+            >
+              <label
+                class="ant-checkbox-wrapper"
+              >
+                <span
+                  class="ant-checkbox ant-checkbox-indeterminate"
+                >
+                  <input
+                    aria-checked="mixed"
+                    class="ant-checkbox-input"
+                    type="checkbox"
+                    value=""
+                  />
+                  <span
+                    class="ant-checkbox-inner"
+                  />
+                </span>
+                <span>
+                  全选
+                </span>
+              </label>
+            </div>
+            <div
+              class="ant-col ant-col-24 dtc-dropdown-select__menu"
+            >
+              <div
+                class="ant-checkbox-group"
+              >
+                <div
+                  class="rc-virtual-list"
+                  style="position: relative;"
+                >
+                  <div
+                    class="rc-virtual-list-holder"
+                  >
+                    <div>
+                      <div
+                        class="rc-virtual-list-holder-inner"
+                        style="display: flex; flex-direction: column;"
+                      >
+                        <div
+                          class="ant-col ant-col-24 dtc-dropdown-select__col"
+                        >
+                          <label
+                            class="ant-checkbox-wrapper"
+                          >
+                            <span
+                              class="ant-checkbox"
+                            >
+                              <input
+                                class="ant-checkbox-input"
+                                type="checkbox"
+                                value="1"
+                              />
+                              <span
+                                class="ant-checkbox-inner"
+                              />
+                            </span>
+                            <span>
+                              选项一
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          class="ant-col ant-col-24 dtc-dropdown-select__col"
+                        >
+                          <label
+                            class="ant-checkbox-wrapper ant-checkbox-wrapper-checked ant-checkbox-wrapper-disabled"
+                          >
+                            <span
+                              class="ant-checkbox ant-checkbox-checked ant-checkbox-disabled"
+                            >
+                              <input
+                                checked=""
+                                class="ant-checkbox-input"
+                                disabled=""
+                                type="checkbox"
+                                value="2"
+                              />
+                              <span
+                                class="ant-checkbox-inner"
+                              />
+                            </span>
+                            <span>
+                              选项二
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="ant-space ant-space-horizontal ant-space-align-center dtc-dropdown-select__btns"
+          >
+            <div
+              class="ant-space-item"
+              style="margin-right: 8px;"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </button>
+  <button
+    class="ant-btn ant-btn-default ant-btn-sm"
+    disabled=""
+    type="button"
+  >
+    <span>
+      重 置
+    </span>
+  </button>
+  <div
+    class="ant-space-item"
+  >
+    <button
+      class="ant-btn ant-btn-primary ant-btn-sm"
+      type="button"
+    >
+      <span>
+        确 定
+      </span>
+    </button>
+  </div>
+</DocumentFragment>
+`;
