@@ -1,5 +1,6 @@
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+import './style.scss';
 
 export interface IconProps {
     themeDark?: boolean;
@@ -36,14 +37,6 @@ export default class Icon extends React.Component<IconProps, any> {
         const { themeDark, type, ...otherProps } = this.props;
         const cls = classNames('dtc-fullscreen-icon', otherProps.className);
         const src = this.getBase64ImgSrc(type, themeDark);
-        return (
-            <img
-                {...otherProps}
-                data-testid="test_myIcon"
-                className={cls}
-                alt={otherProps.alt}
-                src={src}
-            />
-        );
+        return <img {...otherProps} className={cls} alt={otherProps.alt} src={src} />;
     }
 }
