@@ -5,21 +5,29 @@ import { EllipsisText } from 'dt-react-component';
 export default () => {
     return (
         <>
-            <div>
+            <div
+                style={{
+                    display: 'flex',
+                }}
+            >
                 <EllipsisText
                     value={
                         '我是很长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长的文本'
                     }
-                    maxWidth={200}
                 />
+                我是来捣乱的
             </div>
             <Divider />
-            <div>
+            <div
+                style={{
+                    display: 'flex',
+                }}
+            >
+                我是来捣乱的
                 <EllipsisText
                     value={
                         '我是很长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长的文本'
                     }
-                    maxWidth={'30%'}
                 />
             </div>
         </>
