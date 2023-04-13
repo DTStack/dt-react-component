@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalWithForm, { useFilterFormProps } from '../index';
+import ModalWithForm, { FORM_PROPS, MODAL_PROPS, useFilterProps } from '../index';
 import { Input, Form } from 'antd';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
@@ -86,14 +86,32 @@ test('should trigger submit methond when form validate successful', () => {
 });
 
 test('test useFilterFormProps', () => {
-    const { result } = renderHook(() =>
-        useFilterFormProps({
-            a: 1,
-            onOk: () => {},
-            disabled: false,
-        })
+    const { result: formResult } = renderHook(() =>
+        useFilterProps(
+            {
+                a: 1,
+                onOk: () => {},
+                disabled: false,
+            },
+            FORM_PROPS
+        )
     );
-    expect(result.current).toEqual({
+    expect(formResult.current).toEqual({
         disabled: false,
+    });
+
+    const { result: modalResult } = renderHook(() =>
+        useFilterProps(
+            {
+                a: 1,
+                open: false,
+                visible: true,
+            },
+            MODAL_PROPS
+        )
+    );
+    expect(modalResult.current).toEqual({
+        open: false,
+        visible: true,
     });
 });
