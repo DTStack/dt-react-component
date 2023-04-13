@@ -40,6 +40,7 @@ specifiers:
   rc-virtual-list: ^3.4.13
   react: ^18.0.0
   react-dom: ^18.0.0
+  react-test-renderer: ^18.2.0
   showdown: ^1.9.0
   stylelint: ^14.9.1
   ts-jest: ^29.0.3
@@ -63,7 +64,7 @@ devDependencies:
   '@faker-js/faker': 7.6.0
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_react-dom@18.2.0+react@18.2.0
-  '@testing-library/react-hooks': 8.0.1_4076cec502acd4bd096bfc1f1d17cbac
+  '@testing-library/react-hooks': 8.0.1_a293e27d6b4aabb48b28366e2db4bdd8
   '@typed-mxgraph/typed-mxgraph': 1.0.7
   '@types/jest': 29.2.4
   '@types/lodash': 4.14.191
@@ -88,6 +89,7 @@ devDependencies:
   prettier-plugin-packagejson: 2.3.0_prettier@2.8.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-test-renderer: 18.2.0_react@18.2.0
   stylelint: 14.16.0
   ts-jest: 29.0.3_jest@29.3.1+typescript@4.5.5
   typescript: 4.5.5
@@ -1798,7 +1800,7 @@ packages:
       chalk: 4.1.2
       convert-source-map: 2.0.0
       fast-json-stable-stringify: 2.1.0
-      graceful-fs: 4.2.10
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.10
       jest-haste-map: 29.5.0
       jest-regex-util: 29.4.3
       jest-util: 29.5.0
@@ -2000,15 +2002,6 @@ packages:
       fastq: 1.14.0
     dev: true
 
-  /@parcel/css-darwin-x64/1.9.0:
-    resolution: {integrity: sha512-4SpuwiM/4ayOgKflqSLd87XT7YwyC3wd2QuzOOkasjbe38UU+tot/87l2lQYEB538YinLdfwFQuFLDY0x9MxgA==}
-    engines: {node: '>= 12.0.0'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /@parcel/css/1.9.0:
     resolution: {integrity: sha512-egCetUQ1H6pgYxOIxVQ8X/YT5e8G0R8eq6aVaUHrqnZ7A8cc6FYgknl9XRmoy2Xxo9h1htrbzdaEShQ5gROwvw==}
     engines: {node: '>= 12.0.0'}
@@ -2016,7 +2009,7 @@ packages:
       detect-libc: 1.0.3
     optionalDependencies:
       '@parcel/css-darwin-arm64': registry.npmmirror.com/@parcel/css-darwin-arm64/1.9.0
-      '@parcel/css-darwin-x64': 1.9.0
+      '@parcel/css-darwin-x64': registry.npmmirror.com/@parcel/css-darwin-x64/1.9.0
       '@parcel/css-linux-arm-gnueabihf': registry.npmmirror.com/@parcel/css-linux-arm-gnueabihf/1.9.0
       '@parcel/css-linux-arm64-gnu': registry.npmmirror.com/@parcel/css-linux-arm64-gnu/1.9.0
       '@parcel/css-linux-arm64-musl': registry.npmmirror.com/@parcel/css-linux-arm64-musl/1.9.0
@@ -2072,7 +2065,7 @@ packages:
       loader-utils: 2.0.4
       react-refresh: 0.14.0
       schema-utils: 3.1.1
-      source-map: 0.7.4
+      source-map: registry.npmmirror.com/source-map/0.7.4
     dev: true
 
   /@pmmmwh/react-refresh-webpack-plugin/0.5.7_react-refresh@0.14.0:
@@ -2519,7 +2512,7 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/react-hooks/8.0.1_4076cec502acd4bd096bfc1f1d17cbac:
+  /@testing-library/react-hooks/8.0.1_a293e27d6b4aabb48b28366e2db4bdd8:
     resolution: {integrity: sha512-Aqhl2IVmLt8IovEVarNDFuJDVWVvhnr9/GCU6UUnrYXwgDFF9h2L2o2P9KBni1AST5sT6riAyoukFLyjQUgD/g==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -2540,6 +2533,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-error-boundary: 3.1.4_react@18.2.0
+      react-test-renderer: 18.2.0_react@18.2.0
     dev: true
 
   /@testing-library/react/13.4.0_react-dom@18.2.0+react@18.2.0:
@@ -4286,7 +4280,7 @@ packages:
       babel-plugin-istanbul: 6.1.1
       babel-preset-jest: 29.5.0
       chalk: 4.1.2
-      graceful-fs: 4.2.10
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.10
       slash: 3.0.0
     transitivePeerDependencies:
       - supports-color
@@ -4670,7 +4664,7 @@ packages:
       bluebird: 3.7.2
       chownr: 1.1.4
       glob: 7.2.3
-      graceful-fs: 4.2.10
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.10
       lru-cache: 4.1.5
       mississippi: 2.0.0
       mkdirp: 0.5.6
@@ -4851,7 +4845,7 @@ packages:
     resolution: {integrity: sha512-lCr8OHhiWCTw4v8POJovCoh4T7I9U11yVsPjMWWnnMmp9ZowCxyad1Pathle/9HjaDp+fdQKjO9fQydE6RHTZg==}
     engines: {node: '>= 10.0'}
     dependencies:
-      source-map: 0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
     dev: true
 
   /clean-stack/2.2.0:
@@ -5424,7 +5418,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       mdn-data: 2.0.14
-      source-map: 0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
     dev: true
 
   /css-what/6.1.0:
@@ -6134,15 +6128,6 @@ packages:
       es6-promise: 4.2.8
     dev: true
 
-  /esbuild-darwin-64/0.15.18:
-    resolution: {integrity: sha512-2WAvs95uPnVJPuYKP0Eqx+Dl/jaYseZEUUT1sjg97TJa4oBtbAKnPnl3b5M9l51/nbx7+QAEtuummJZW0sBEmg==}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
-
   /esbuild/0.15.18:
     resolution: {integrity: sha512-x/R72SmW3sSFRm5zrrIjAhCeQSAWoni3CmHEqfQrZIQTM3lVCdehdwuIqaOtfC2slvpdlLa62GYoN8SxT23m6Q==}
     engines: {node: '>=12'}
@@ -6153,7 +6138,7 @@ packages:
       '@esbuild/linux-loong64': registry.npmmirror.com/@esbuild/linux-loong64/0.15.18
       esbuild-android-64: registry.npmmirror.com/esbuild-android-64/0.15.18
       esbuild-android-arm64: registry.npmmirror.com/esbuild-android-arm64/0.15.18
-      esbuild-darwin-64: 0.15.18
+      esbuild-darwin-64: registry.npmmirror.com/esbuild-darwin-64/0.15.18
       esbuild-darwin-arm64: registry.npmmirror.com/esbuild-darwin-arm64/0.15.18
       esbuild-freebsd-64: registry.npmmirror.com/esbuild-freebsd-64/0.15.18
       esbuild-freebsd-arm64: registry.npmmirror.com/esbuild-freebsd-arm64/0.15.18
@@ -6238,7 +6223,7 @@ packages:
       esutils: 2.0.3
       optionator: 0.8.3
     optionalDependencies:
-      source-map: 0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
     dev: true
 
   /eslint-config-prettier/8.5.0_eslint@8.22.0:
@@ -7295,7 +7280,7 @@ packages:
   /fs-write-stream-atomic/1.0.10:
     resolution: {integrity: sha512-gehEzmPn2nAwr39eay+x3X34Ra+M2QlVUTLhkXPjWdeO8RF9kszk116avgBJM3ZyNHgHXBNx+VmPaFC36k0PzA==}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.10
       iferr: 0.1.5
       imurmurhash: 0.1.4
       readable-stream: 2.3.7
@@ -7304,14 +7289,6 @@ packages:
   /fs.realpath/1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
-
-  /fsevents/2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-    requiresBuild: true
-    dev: true
-    optional: true
 
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
@@ -8905,7 +8882,7 @@ packages:
       micromatch: 4.0.5
       walker: 1.0.8
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: registry.npmmirror.com/fsevents/2.3.2
     dev: true
 
   /jest-haste-map/29.5.0:
@@ -8917,7 +8894,7 @@ packages:
       '@types/node': 18.11.17
       anymatch: 3.1.3
       fb-watchman: 2.0.2
-      graceful-fs: 4.2.10
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.10
       jest-regex-util: 29.4.3
       jest-util: 29.5.0
       jest-worker: 29.5.0
@@ -9127,7 +9104,7 @@ packages:
       '@types/node': 18.11.17
       chalk: 4.1.2
       ci-info: 3.7.0
-      graceful-fs: 4.2.10
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.10
       picomatch: 2.3.1
     dev: true
 
@@ -13388,6 +13365,27 @@ packages:
       react: 18.2.0
     dev: true
 
+  /react-shallow-renderer/16.15.0_react@18.2.0:
+    resolution: {integrity: sha512-oScf2FqQ9LFVQgA73vr86xl2NaOIX73rh+YFqcOp68CWj56tSfgtGKrEbyhCj0rSijyG9M1CYprTh39fBi5hzA==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      object-assign: 4.1.1
+      react: 18.2.0
+      react-is: 18.2.0
+    dev: true
+
+  /react-test-renderer/18.2.0_react@18.2.0:
+    resolution: {integrity: sha512-JWD+aQ0lh2gvh4NM3bBM42Kx+XybOxCpgYK7F8ugAlpaTSnWsX+39Z4XkOykGZAHrjwwTZT3x3KxswVWxHPUqA==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      react: 18.2.0
+      react-is: 18.2.0
+      react-shallow-renderer: 16.15.0_react@18.2.0
+      scheduler: 0.23.0
+    dev: true
+
   /react/18.1.0:
     resolution: {integrity: sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==}
     engines: {node: '>=0.10.0'}
@@ -13799,7 +13797,7 @@ packages:
     dependencies:
       open: 8.4.0
       picomatch: 2.3.1
-      source-map: 0.7.4
+      source-map: registry.npmmirror.com/source-map/0.7.4
       yargs: 17.6.2
     dev: true
 
@@ -14153,7 +14151,7 @@ packages:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
     dependencies:
       buffer-from: 1.1.2
-      source-map: 0.6.1
+      source-map: registry.npmmirror.com/source-map/0.6.1
     dev: true
 
   /source-map/0.6.1:
@@ -15616,7 +15614,7 @@ packages:
   /write-file-atomic/2.4.3:
     resolution: {integrity: sha512-GaETH5wwsX+GcnzhPgKcKjJ6M2Cq3/iZp1WyY/X1CSqrW+jVNM9Y7D8EC2sM4ZG/V8wZlSniJnCKWPmBYAucRQ==}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: registry.npmmirror.com/graceful-fs/4.2.10
       imurmurhash: 0.1.4
       signal-exit: 3.0.7
     dev: true
@@ -16042,6 +16040,17 @@ packages:
     dev: true
     optional: true
 
+  registry.npmmirror.com/@parcel/css-darwin-x64/1.9.0:
+    resolution: {integrity: sha512-4SpuwiM/4ayOgKflqSLd87XT7YwyC3wd2QuzOOkasjbe38UU+tot/87l2lQYEB538YinLdfwFQuFLDY0x9MxgA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@parcel/css-darwin-x64/-/css-darwin-x64-1.9.0.tgz}
+    name: '@parcel/css-darwin-x64'
+    version: 1.9.0
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: true
+    optional: true
+
   registry.npmmirror.com/@parcel/css-linux-arm-gnueabihf/1.9.0:
     resolution: {integrity: sha512-KxCyX5fFvX5636Y8LSXwCxXMtIncgP7Lkw8nLsqd24C5YqMokmuOtAcHb/vQ9zQG6YiUWTv0MybqDuL7dBDfVw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@parcel/css-linux-arm-gnueabihf/-/css-linux-arm-gnueabihf-1.9.0.tgz}
     name: '@parcel/css-linux-arm-gnueabihf'
@@ -16236,6 +16245,17 @@ packages:
     engines: {node: '>=12'}
     cpu: [arm64]
     os: [android]
+    requiresBuild: true
+    dev: true
+    optional: true
+
+  registry.npmmirror.com/esbuild-darwin-64/0.15.18:
+    resolution: {integrity: sha512-2WAvs95uPnVJPuYKP0Eqx+Dl/jaYseZEUUT1sjg97TJa4oBtbAKnPnl3b5M9l51/nbx7+QAEtuummJZW0sBEmg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/esbuild-darwin-64/-/esbuild-darwin-64-0.15.18.tgz}
+    name: esbuild-darwin-64
+    version: 0.15.18
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
@@ -16442,7 +16462,6 @@ packages:
     name: graceful-fs
     version: 4.2.10
     dev: true
-    optional: true
 
   registry.npmmirror.com/image-size/0.5.5:
     resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/image-size/-/image-size-0.5.5.tgz}
@@ -16586,4 +16605,10 @@ packages:
     version: 0.6.1
     engines: {node: '>=0.10.0'}
     dev: true
-    optional: true
+
+  registry.npmmirror.com/source-map/0.7.4:
+    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/source-map/-/source-map-0.7.4.tgz}
+    name: source-map
+    version: 0.7.4
+    engines: {node: '>= 8'}
+    dev: true
