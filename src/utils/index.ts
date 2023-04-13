@@ -153,17 +153,10 @@ const utils = {
 
     /**
      * 原生 JavaScript 获取 cookie 值
-     * @param name
+     * @param {string} name
+     * @param {string} cookie - 默认为document.cookie
      */
-    getCookie(name: string) {
-        const cookie = document.cookie;
-        return this.getCookieValue(cookie, name);
-    },
-
-    /**
-     * 解析指定cookie字符串的值
-     */
-    getCookieValue(cookie: string, name: string) {
+    getCookie(name: string, cookie: string = document.cookie) {
         if (!cookie) return null;
         const arr = cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
         if (arr != null) {

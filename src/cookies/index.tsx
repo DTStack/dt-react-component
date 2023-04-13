@@ -32,30 +32,28 @@ const Cookies: React.FC<CookiesProps> = (props) => {
         };
     }, []);
 
-    const onFieldsChange = (old: string, newCookies: string) => {
-        if (watchFields) {
+    const onFieldsChange = (oldCookies: string, newCookies: string) => {
+        if (watchFields?.length && onFieldsChanged) {
             const changedFields: Fields[] = [];
             for (let i = 0; i < watchFields.length; i++) {
                 const key = watchFields[i];
-                const originValue = utils.getCookieValue(old, key);
-                const newValue = utils.getCookieValue(newCookies, key);
+                const originValue = utils.getCookie(key, oldCookies);
+                const newValue = utils.getCookie(key, newCookies);
                 if (originValue !== null && originValue !== newValue) {
                     changedFields.push({ key, value: newValue });
                 }
             }
-            if (onFieldsChanged) {
-                onFieldsChanged(changedFields);
-            }
+            onFieldsChanged(changedFields);
         }
     };
 
     const compareValue = () => {
-        const old = '' + currentCookiesRef.current;
+        const oldCookies = currentCookiesRef.current;
         const newCookies = document.cookie;
-        if (old !== newCookies) {
-            if (onChanged) onChanged(old, newCookies);
+        if (oldCookies !== newCookies) {
+            onChanged?.(oldCookies, newCookies);
+            onFieldsChange(oldCookies, newCookies);
             currentCookiesRef.current = newCookies;
-            onFieldsChange(old, newCookies);
         }
     };
 
