@@ -7,6 +7,7 @@ export { default as Dropdown } from './dropdown';
 export { default as EllipsisText } from './ellipsisText';
 export { default as Empty } from './empty';
 export { default as ErrorBoundary } from './errorBoundary';
+export { default as Form } from './form';
 export { default as Fullscreen } from './fullscreen';
 export { default as GlobalLoading } from './globalLoading';
 export { default as KeyEventListener } from './keyEventListener';
