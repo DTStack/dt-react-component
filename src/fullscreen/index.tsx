@@ -23,13 +23,14 @@ interface DocumentWithFullscreen extends Document {
     webkitFullscreenElement?: Element;
 }
 
-export interface FullscreenProps {
+export interface IFullscreenProps
+    extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
     themeDark?: boolean;
     target?: string;
     iconStyle?: object;
     fullIcon?: React.ReactNode;
     exitFullIcon?: React.ReactNode;
-    [propName: string]: any;
+    onFullscreen?: (isFullScreen: boolean) => void;
 }
 export interface FullscreenState {
     isFullScreen: boolean;
@@ -40,17 +41,17 @@ export default function Fullscreen({
     fullIcon,
     exitFullIcon,
     iconStyle,
+    onFullscreen,
     ...other
-}: FullscreenProps) {
+}: IFullscreenProps) {
     const [isFullScreen, setIsFullScreen] = useState(false);
-    const { onFullscreen } = other;
     const customIcon = isFullScreen ? exitFullIcon : fullIcon;
     useEffect(() => {
         const propsDom = document.getElementById(target);
         const domEle = propsDom || document.body;
         const isFullScreen = getIsFullScreen();
         isFullScreen && setIsFullScreen(isFullScreen);
-        onFullChange(domEle, () => {
+        handleFullChange(domEle, () => {
             let node: any;
             const doc: DocumentWithFullscreen = document;
             if (domEle.requestFullscreen) {
@@ -69,7 +70,7 @@ export default function Fullscreen({
             dispatchResizeEvent();
         });
         return () => {
-            onFullChange(domEle, null);
+            handleFullChange(domEle, null);
         };
     }, []);
     /**
@@ -83,19 +84,19 @@ export default function Fullscreen({
      * @description 键盘按下执行的回调函数
      * @param evt
      */
-    const keyPressFullScreen = (evt: React.KeyboardEvent) => {
+    const handlePressFullScreen = (evt: React.KeyboardEvent) => {
         evt.preventDefault();
-        fullScreen();
+        handleFullScreen();
     };
 
-    const fullScreen = (): void => {
+    const handleFullScreen = (): void => {
         onFullscreen?.(isFullScreen);
         if (isFullScreen) {
-            exitFullscreen();
+            handleExitFullscreen();
         } else {
             const propsDom = document.getElementById(target);
             const domEle = propsDom || document.body;
-            requestFullscreen(domEle);
+            handleRequestFullscreen(domEle);
         }
     };
     /**
@@ -110,7 +111,10 @@ export default function Fullscreen({
             document.msFullScreen
         );
     };
-    const onFullChange = (domEle: DocumentElementWithFullscreen, callBack: (() => any) | null) => {
+    const handleFullChange = (
+        domEle: DocumentElementWithFullscreen,
+        callBack: (() => any) | null
+    ) => {
         if (domEle.requestFullscreen) {
             domEle.addEventListener('fullscreenchange', () => callBack?.());
         } else if (domEle.msRequestFullscreen) {
@@ -127,7 +131,7 @@ export default function Fullscreen({
     /**
      * 用于请求从全屏模式切换到窗口模式;
      */
-    const exitFullscreen = () => {
+    const handleExitFullscreen = () => {
         if (document.exitFullscreen) {
             // 用于请求从全屏模式切换到窗口模式;
             document.exitFullscreen();
@@ -143,7 +147,7 @@ export default function Fullscreen({
      * @description 请求浏览器将特定元素置为全屏模式;
      * @param domEle
      */
-    const requestFullscreen = (domEle: DocumentElementWithFullscreen) => {
+    const handleRequestFullscreen = (domEle: DocumentElementWithFullscreen) => {
         if (domEle.requestFullscreen) {
             domEle.requestFullscreen();
         } else if (domEle.msRequestFullscreen) {
@@ -160,7 +164,7 @@ export default function Fullscreen({
 
     return (
         <KeyCombiner
-            onTrigger={keyPressFullScreen}
+            onTrigger={handlePressFullScreen}
             keyMap={{
                 70: true,
                 91: true,
@@ -168,11 +172,11 @@ export default function Fullscreen({
             }}
         >
             {customIcon ? (
-                <span {...other} onClick={fullScreen}>
+                <span {...other} onClick={handleFullScreen}>
                     {customIcon}
                 </span>
             ) : (
-                <Button {...other} onClick={fullScreen}>
+                <Button onClick={handleFullScreen}>
                     <MyIcon style={iconStyle} type={isFullScreen} themeDark={themeDark} />
                     {isFullScreen ? '退出全屏' : '全屏'}
                 </Button>

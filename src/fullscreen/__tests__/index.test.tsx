@@ -50,4 +50,11 @@ describe('test Fullscreen', () => {
         const button = screen.getByRole('button', { name: '全屏' });
         fireEvent.click(button);
     });
+    test('button props onFullscreen correct', () => {
+        const callback = jest.fn();
+        render(<Fullscreen onFullscreen={callback} />);
+        const button = screen.getByRole('button', { name: '全屏' });
+        fireEvent.click(button);
+        expect(callback).toHaveBeenCalledTimes(1);
+    });
 });
