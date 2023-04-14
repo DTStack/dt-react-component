@@ -1,5 +1,7 @@
 import React, { ReactElement, useMemo } from 'react';
 import { Modal, FormProps, ModalFuncProps } from 'antd';
+import { FORM_PROPS, MODAL_PROPS } from '../utils/antdProps';
+import Utils from '../utils';
 import Form from '../form';
 
 export interface ModalProps<Values = any, Record = any> extends FormProps, ModalFuncProps {
@@ -24,27 +26,8 @@ export interface ModalProps<Values = any, Record = any> extends FormProps, Modal
      * @returns
      */
     onSubmit?: (values: Values, record: Record) => void;
-    /**
-     * 关闭弹窗，新版本可用 onCancel
-     * @returns
-     */
-    hideModalHandler?: () => void;
     [key: string]: any;
 }
-
-export const useFilterProps = (props: { [key: string]: any }, basis: string[]) => {
-    const resultProps = useMemo(() => {
-        const filterProps: any = {};
-        Object.keys(props).forEach((item) => {
-            if (basis.includes(item)) {
-                filterProps[item] = props[item];
-            }
-        });
-        return filterProps;
-    }, [props, basis]);
-
-    return resultProps;
-};
 
 const ModalForm = (props: ModalProps) => {
     const {
@@ -52,14 +35,15 @@ const ModalForm = (props: ModalProps) => {
         cancelText = '取消',
         layout = 'vertical',
         maskClosable = false,
-        hideModalHandler,
         record,
         children,
         onSubmit,
     } = props;
 
-    const formProps = useFilterProps(props, FORM_PROPS);
-    const modalProps = useFilterProps(props, MODAL_PROPS);
+    const [formProps, modalProps] = useMemo(
+        () => Utils.filterPropsByAntdProps(props, [FORM_PROPS, MODAL_PROPS]),
+        [props]
+    );
 
     const [form] = Form.useForm();
 
@@ -71,9 +55,6 @@ const ModalForm = (props: ModalProps) => {
     };
 
     const onCancel = () => {
-        // 兼容老版本，新版本直接用 onCancel
-        hideModalHandler?.();
-
         props.onCancel?.();
     };
 
@@ -98,69 +79,11 @@ const ModalForm = (props: ModalProps) => {
     );
 };
 
-function ModalWithForm(FormComponent: React.ComponentType) {
+const ModalWithForm = (FormComponent: React.ComponentType) => {
     return (props: ModalProps) => (
         <ModalForm {...props}>
             <FormComponent />
         </ModalForm>
     );
-}
+};
 export default ModalWithForm;
-
-export const MODAL_PROPS = [
-    'afterClose',
-    'bodyStyle',
-    'cancelButtonProps',
-    'cancelText',
-    'centered',
-    'closable',
-    'closeIcon',
-    'confirmLoading',
-    'destroyOnClose',
-    'focusTriggerAfterClose',
-    'footer',
-    'forceRender',
-    'getContainer',
-    'keyboard',
-    'mask',
-    'maskClosable',
-    'maskStyle',
-    'modalRender',
-    'okButtonProps',
-    'okText',
-    'okType',
-    'style',
-    'title',
-    'open',
-    'visible', // 兼容老版本
-    'width',
-    'zIndex',
-    'wrapClassName',
-    'onCancel',
-    'onOk',
-];
-
-export const FORM_PROPS = [
-    'colon',
-    'disabled',
-    'component',
-    'fields',
-    'form',
-    'initialValues',
-    'labelAlign',
-    'labelWrap',
-    'labelCol',
-    'layout',
-    'name',
-    'preserve',
-    'requiredMark',
-    'scrollToFirstError',
-    'size',
-    'validateMessages',
-    'validateTrigger',
-    'wrapperCol',
-    'onFieldsChange',
-    'onFinish',
-    'onFinishFailed',
-    'onValuesChange',
-];
