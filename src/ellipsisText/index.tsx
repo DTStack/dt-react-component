@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect, useCallback } from 'react';
+import React, { useRef, useState, useLayoutEffect, useCallback, ReactNode } from 'react';
 import { Tooltip } from 'antd';
 import { AbstractTooltipProps, RenderFunction } from 'antd/lib/tooltip';
 import classNames from 'classnames';
@@ -6,10 +6,26 @@ import Resize from '../resize';
 import './style.scss';
 
 export interface EllipsisTextProps extends AbstractTooltipProps {
-    value: string | number;
-    title?: React.ReactNode | RenderFunction;
+    /**
+     * 文本内容
+     */
+    value: string | number | ReactNode | RenderFunction;
+    /**
+     * 提示内容
+     * @default value
+     */
+    title?: string | ReactNode | RenderFunction;
+    /**
+     * 类名
+     */
     className?: string;
+    /**
+     * 可视区宽度
+     */
     maxWidth?: string | number;
+    /**
+     * antd Tooltip
+     */
     [propName: string]: any;
 }
 
@@ -20,7 +36,7 @@ export interface NewHTMLElement extends HTMLElement {
 const DEFAULT_MAX_WIDTH = 120;
 
 const EllipsisText = (props: EllipsisTextProps) => {
-    const { title, value, className, maxWidth, ...otherProps } = props;
+    const { value, title = value, className, maxWidth, ...otherProps } = props;
 
     const ellipsisRef = useRef<HTMLSpanElement>(null);
 
@@ -30,7 +46,7 @@ const EllipsisText = (props: EllipsisTextProps) => {
 
     useLayoutEffect(() => {
         onResize();
-    }, [value]);
+    }, [value, maxWidth]);
 
     /**
      * @description: 根据属性名，获取dom的属性值
@@ -193,7 +209,7 @@ const EllipsisText = (props: EllipsisTextProps) => {
                 className={classNames('dtc-ellipsis-text', className)}
                 style={style}
             >
-                {value}
+                {typeof value === 'function' ? value() : value}
             </span>
         );
     }, [width, cursor, value]);
@@ -201,12 +217,7 @@ const EllipsisText = (props: EllipsisTextProps) => {
     return (
         <Resize onResize={onResize}>
             {visible ? (
-                <Tooltip
-                    title={title || value}
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    {...otherProps}
-                >
+                <Tooltip title={title} mouseEnterDelay={0} mouseLeaveDelay={0} {...otherProps}>
                     {renderText()}
                 </Tooltip>
             ) : (
