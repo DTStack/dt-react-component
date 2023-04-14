@@ -1,5 +1,6 @@
 /* eslint-disable no-cond-assign */
 import { BrowserInter } from './interface';
+
 const utils = {
     /**
      * 获取页面宽度
@@ -332,6 +333,33 @@ const utils = {
     isEqualArr(arr1: string[], arr2: string[]): boolean {
         const toString = JSON.stringify;
         return toString(arr1.sort()) === toString(arr2.sort());
+    },
+    /**
+     * 根据 antd props 过滤当前的 props，返回的结果会根据 antdPropsList 中的顺序进行排序，最后一个为命中的集合
+     * @param props  \{ a: 123, b: 321, onCancel: () => {}, disabled: true }
+     * @param antdPropsList [MODAL_PROPS, FORM_PROPS]
+     * @returns {[props]} [{ onCancel: () => {} }, { disabled: true }, { a: 123, b: 321 }]
+     */
+    filterPropsByAntdProps(props: { [key: string]: any }, antdPropsList: string[][]) {
+        const result = new Array(antdPropsList.length + 1); // 多出来一个用来存放 restProps
+        for (let index = 0; index < result.length; index++) {
+            result[index] = {};
+        }
+
+        Object.keys(props).forEach((key: string) => {
+            const isFind = antdPropsList.find((antdProps, index) => {
+                if (antdProps.includes(key)) {
+                    result[index][key] = props[key];
+                    return true;
+                }
+                return false;
+            });
+
+            if (!isFind) {
+                result[antdPropsList.length][key] = props[key];
+            }
+        });
+        return result;
     },
 };
 
