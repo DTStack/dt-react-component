@@ -21,7 +21,7 @@ interface IProps {
     onItemClick?(key: React.Key): void;
 }
 
-const TableActionMenu: React.FC<IProps> = (props) => {
+const CollapsibleActionItems: React.FC<IProps> = (props) => {
     const {
         actionItems,
         maxCount = 3,
@@ -38,7 +38,7 @@ const TableActionMenu: React.FC<IProps> = (props) => {
         if (!isCollapse)
             return (
                 <span
-                    className="dtc-table-action-btn-wrapper"
+                    className="dtc-action-btn-wrapper"
                     key={item.key}
                     onClick={() => !item.disabled && onItemClick?.(item.key)}
                 >
@@ -93,4 +93,4 @@ const TableActionMenu: React.FC<IProps> = (props) => {
     );
 };
 
-export default TableActionMenu;
+export default CollapsibleActionItems;

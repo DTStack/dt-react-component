@@ -1,16 +1,16 @@
 ---
-title: TableActionMenu 表格操作栏菜单
+title: CollapsibleActionItems 可折叠操作项
 group: 组件
 toc: content
 demo:
     cols: 2
 ---
 
-# TableActionMenu 表格操作栏菜单
+# CollapsibleActionItems 可折叠操作项
 
 ## 何时使用
 
-当表格操作项过多时，将多余的操作项展示在下拉菜单中
+当操作项过多时，将多余的操作项展示在下拉菜单中，一般用于表格的操作栏
 
 ## 示例
 
@@ -19,8 +19,8 @@ demo:
  * title: "表格内使用"
  */
 import React, { useState } from 'react';
-import { TableActionMenu } from 'dt-react-component';
-import { Table, message, Popconfirm } from 'antd';
+import { CollapsibleActionItems } from 'dt-react-component';
+import { Table, message, Popconfirm, Button } from 'antd';
 
 export default () => {
     const [dataSource, setDataSource] = useState([
@@ -70,7 +70,9 @@ export default () => {
                         name: '删除',
                         render: (isCollapse) => (
                             <Popconfirm title="确认删除？">
-                                <a style={{ color: 'red' }}>删除</a>
+                                <Button type="link" style={{ color: 'red' }}>
+                                    删除
+                                </Button>
                             </Popconfirm>
                         ),
                     },
@@ -78,7 +80,11 @@ export default () => {
                     { key: 'open', name: '开启', disabled: true },
                 ];
                 return (
-                    <TableActionMenu maxCount={3} actionItems={actions} onItemClick={handleClick} />
+                    <CollapsibleActionItems
+                        maxCount={3}
+                        actionItems={actions}
+                        onItemClick={handleClick}
+                    />
                 );
             },
         },
@@ -93,7 +99,7 @@ export default () => {
  * title: "自定义分割符与下拉图标"
  */
 import React, { useState } from 'react';
-import { TableActionMenu } from 'dt-react-component';
+import { CollapsibleActionItems } from 'dt-react-component';
 import { Table, message, Popconfirm } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
@@ -126,11 +132,11 @@ export default () => {
                     { key: 'open', name: '开启' },
                 ];
                 return (
-                    <TableActionMenu
+                    <CollapsibleActionItems
                         maxCount={3}
                         actionItems={actions}
-                        divider="-"
-                        collapseIcon={<DownOutlined />}
+                        divider={<span style={{ color: '#eee' }}>-</span>}
+                        collapseIcon={<DownOutlined style={{ marginLeft: 16 }} />}
                     />
                 );
             },
@@ -143,7 +149,7 @@ export default () => {
 
 ## API
 
-### TableActionMenu
+### CollapsibleActionItems
 
 | 参数          | 说明                                                                                                  | 类型                        | 默认值                       |
 | ------------- | ----------------------------------------------------------------------------------------------------- | --------------------------- | ---------------------------- |

@@ -1,11 +1,11 @@
 import React from 'react';
-import TableActionMenu from '../index';
+import CollapsibleActionItems from '../index';
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { act } from 'react-dom/test-utils';
 import { Button } from 'antd';
 
-describe('test TableActionMenu', () => {
+describe('test CollapsibleActionItems', () => {
     const items = [
         { key: 'edit', name: '编辑' },
         { key: 'delete', name: '删除' },
@@ -28,7 +28,7 @@ describe('test TableActionMenu', () => {
 
     test('should render link button when item count less than maxCount', () => {
         const { container } = render(
-            <TableActionMenu
+            <CollapsibleActionItems
                 actionItems={items}
                 maxCount={3}
                 onItemClick={(key) => {
@@ -36,14 +36,14 @@ describe('test TableActionMenu', () => {
                 }}
             />
         );
-        const btns = container.querySelectorAll('.dtc-table-action-btn-wrapper');
+        const btns = container.querySelectorAll('.dtc-action-btn-wrapper');
         expect(btns).toHaveLength(3);
         btns.forEach(testClick);
     });
 
     test('should render link button when item count more than maxCount', () => {
         const { container, getByTestId } = render(
-            <TableActionMenu
+            <CollapsibleActionItems
                 actionItems={items}
                 maxCount={2}
                 onItemClick={(key) => {
@@ -52,7 +52,7 @@ describe('test TableActionMenu', () => {
                 dropdownProps={{ trigger: ['click'] }}
             />
         );
-        const btns = container.querySelectorAll('.dtc-table-action-btn-wrapper');
+        const btns = container.querySelectorAll('.dtc-action-btn-wrapper');
         const dropdownEl = getByTestId('action-dropdown-link');
         expect(btns).toHaveLength(1);
         expect(dropdownEl).toBeInTheDocument();
@@ -93,7 +93,7 @@ describe('test TableActionMenu', () => {
             ...items,
         ];
         const { getByText } = render(
-            <TableActionMenu
+            <CollapsibleActionItems
                 actionItems={customItems}
                 onItemClick={(key) => {
                     clickHandler(key);
