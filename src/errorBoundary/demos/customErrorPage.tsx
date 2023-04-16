@@ -31,9 +31,20 @@ const ThrowError = () => {
     );
 };
 
+const ErrorPage = () => {
+    return (
+        <div style={{ textAlign: 'center' }}>
+            <h2>这是自定义捕获异常页面</h2>
+        </div>
+    );
+};
+
 export default () => {
     return (
-        <ErrorBoundary onError={(err) => message.error('捕获到错误：' + err.message)}>
+        <ErrorBoundary
+            onError={(err) => message.error('捕获到错误：' + err.message)}
+            errorPage={<ErrorPage />}
+        >
             <ThrowError />
         </ErrorBoundary>
     );

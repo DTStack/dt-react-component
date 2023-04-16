@@ -15,7 +15,7 @@ export { default as GlobalLoading } from './globalLoading';
 export { default as GoBack } from './goBack';
 export { default as InterruptController } from './InterruptController';
 export { default as KeyEventListener } from './keyEventListener';
-export { default as LoadError } from './loadError';
+export { default as LoadError } from './errorBoundary/loadError';
 export { default as MarkdownRender } from './markdownRender';
 export { default as ModalWithForm } from './modalWithForm';
 export { default as MulSelectDropdown } from './mulSelectDropdown';

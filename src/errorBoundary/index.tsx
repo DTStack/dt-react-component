@@ -1,8 +1,10 @@
 import React from 'react';
-import LoadError from '../loadError';
+import LoadError from './loadError';
 
 interface ErrorBoundaryProps {
     children?: React.ReactNode;
+    errorPage?: React.ReactNode;
+    onError?: (error: Error) => void;
 }
 
 interface ErrorBoundaryStates {
@@ -18,16 +20,20 @@ export default class ErrorBoundary extends React.Component<
         return { hasError: true };
     }
 
-    componentDidCatch(error: any, errorInfo: any) {
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
         this.setState({ hasError: true });
+        this.props.onError?.(error);
         console.log(error);
         console.log(errorInfo);
     }
 
     render() {
-        if (this.state.hasError) {
-            return <LoadError />;
+        const { children, errorPage = <LoadError /> } = this.props;
+        const { hasError } = this.state;
+
+        if (hasError) {
+            return errorPage;
         }
-        return this.props.children;
+        return children;
     }
 }
