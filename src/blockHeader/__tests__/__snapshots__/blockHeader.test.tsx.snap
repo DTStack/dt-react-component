@@ -9,7 +9,7 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
         class="dtc-block-header"
       >
         <div
-          class="dtc-block-header-title-row default background  "
+          class="dtc-block-header-title-row dtc-block-header-title-row-middle dtc-block-header-title-row-background"
         >
           <div
             class="dtc-block-header-title-box"
@@ -18,7 +18,7 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
               class="dtc-block-header-before-title"
             >
               <div
-                class="default "
+                class="dtc-block-header__beforeTitle-middle"
               />
             </div>
             <div
@@ -39,7 +39,7 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
       class="dtc-block-header"
     >
       <div
-        class="dtc-block-header-title-row default background  "
+        class="dtc-block-header-title-row dtc-block-header-title-row-middle dtc-block-header-title-row-background"
       >
         <div
           class="dtc-block-header-title-box"
@@ -48,7 +48,7 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
             class="dtc-block-header-before-title"
           >
             <div
-              class="default "
+              class="dtc-block-header__beforeTitle-middle"
             />
           </div>
           <div
