@@ -175,7 +175,7 @@ const utils = {
             name + '=; expires=' + d.toUTCString() + domainTemp + '; path=' + pathTemp;
     },
 
-    deleteAllCookies(domain: string, path: string) {
+    deleteAllCookies(domain?: string, path?: string) {
         const cookies = document.cookie.split(';');
         // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < cookies.length; i++) {

@@ -6,7 +6,6 @@ import { Button, message } from 'antd';
 export default () => {
     useEffect(() => {
         utils.deleteCookie('dt_token');
-        utils.deleteCookie('dt_userid');
         return () => utils.deleteAllCookies();
     }, []);
 
@@ -20,12 +19,9 @@ export default () => {
                 );
             }
         },
-        ['dt_token']
+        ['dt_token'],
+        { immediately: true, intervalTime: 1000 }
     );
-
-    useCookieListener(({ oldCookies, newCookies }) => {
-        message.info(`监听到Cookie从 ${oldCookies} 变更为了 ${newCookies} `);
-    }, []);
 
     return (
         <div style={{ textAlign: 'center', paddingTop: 60 }}>
@@ -33,7 +29,6 @@ export default () => {
                 <Button
                     onClick={() => {
                         utils.setCookie('dt_token', `im_new_token_${Date.now()}`);
-                        utils.setCookie('dt_userid', `im_new_userid_${Date.now()}`);
                     }}
                 >
                     修改Cookie值
