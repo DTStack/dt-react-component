@@ -17,7 +17,7 @@ demo:
 ## 示例
 
 <code src="./demos/basic.tsx" description="通过设置 `showBackground={false}` 去除标题背景，默认为 `true`">基础使用</code>
-<code src="./demos/size.tsx" description="标题有大、小两种尺寸，默认为大尺寸，通过设置 `isSmall` 把标题设置为小尺寸">标题尺寸</code>
+<code src="./demos/size.tsx" description="标题有中、小两种尺寸，默认为中尺寸，通过设置 `size='small'` 把标题设置为小尺寸">标题尺寸</code>
 <code src="./demos/extraInfo.tsx" description="通过设置 `afterTitle` 和 `tooltip` 可以增加两种不同形式的提示信息，同时存在时仅 `afterTitle` 生效">带提示信息的标题</code>
 <code src="./demos/customIcon.tsx" description="通过设置 `beforeTitle` 可以自定义标题icon，不设置时默认是一个色块">自定义 icon</code>
 <code src="./demos/expand.tsx" description="若存在 `children` 则支持展开">展开/收起内容</code>
@@ -30,8 +30,8 @@ demo:
 | ----------------- | ----------------------------------------- | --------------------------- | ------- |
 | title             | 标题                                      | `string`                    | -       |
 | beforeTitle       | 标题前的图标，默认是一个色块              | `React.ReactNode`           | -       |
-| afterTitle        | 标题后的提示图标或文案                    | `string \| React.ReactNode` | -       |
-| tooltip           | 默认展示问号提示(优先级低于 `afterTitle`) | `string \| React.ReactNode` | -       |
+| afterTitle        | 标题后的提示图标或文案                    | `React.ReactNode`           | -       |
+| tooltip           | 默认展示问号提示(优先级低于 `afterTitle`) | `React.ReactNode`           | -       |
 | isSmall           | 大标题、小标题，默认为大标题              | `boolean`                   | `false` |
 | titleRowClassName | 标题一行的样式类名                        | `string`                    | -       |
 | titleClassName    | 标题的样式类名                            | `string`                    | -       |
