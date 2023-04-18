@@ -1,8 +1,8 @@
 import { FORM_PROPS, MODAL_PROPS } from '../antdProps';
 import Utils from '../index';
 
-test('test Utils filterPropsByAntdProps', () => {
-    const [modalProps, formProps, restProps] = Utils.filterPropsByAntdProps(
+test('test Utils filterAttrByArrays', () => {
+    const [modalProps, formProps, restProps] = Utils.filterAttrByArrays(
         { a: 123, b: 321, visible: false, disabled: true },
         [MODAL_PROPS, FORM_PROPS]
     );
