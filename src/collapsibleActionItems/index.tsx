@@ -6,7 +6,7 @@ type ActionItem = {
     key: React.Key;
     name: React.ReactNode;
     disabled?: boolean;
-    render?: (isCollapse: boolean) => React.ReactNode;
+    render?: (collapsible: boolean) => React.ReactNode;
     [propName: string]: any;
 };
 
