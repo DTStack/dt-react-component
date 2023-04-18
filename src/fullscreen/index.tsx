@@ -27,7 +27,7 @@ export interface IFullscreenProps
     extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
     themeDark?: boolean;
     target?: string;
-    iconStyle?: object;
+    iconStyle?: React.CSSProperties;
     fullIcon?: React.ReactNode;
     exitFullIcon?: React.ReactNode;
     onFullscreen?: (isFullScreen: boolean) => void;
@@ -51,7 +51,7 @@ export default function Fullscreen({
         const domEle = propsDom || document.body;
         const isFullScreen = getIsFullScreen();
         isFullScreen && setIsFullScreen(isFullScreen);
-        handleFullChange(domEle, () => {
+        const handleFullChangeCallback = () => {
             let node: any;
             const doc: DocumentWithFullscreen = document;
             if (domEle.requestFullscreen) {
@@ -68,9 +68,10 @@ export default function Fullscreen({
             }
             setIsFullScreen(!!node);
             dispatchResizeEvent();
-        });
+        };
+        handleFullChange(domEle, handleFullChangeCallback, 'add');
         return () => {
-            handleFullChange(domEle, null);
+            handleFullChange(domEle, handleFullChangeCallback, 'remove');
         };
     }, []);
     /**
@@ -113,19 +114,29 @@ export default function Fullscreen({
     };
     const handleFullChange = (
         domEle: DocumentElementWithFullscreen,
-        callBack: (() => any) | null
+        callBack: () => any,
+        type: 'add' | 'remove'
     ) => {
+        const isAdd = type === 'add';
         if (domEle.requestFullscreen) {
-            domEle.addEventListener('fullscreenchange', () => callBack?.());
+            isAdd
+                ? domEle.addEventListener('fullscreenchange', callBack, false)
+                : domEle.removeEventListener('fullscreenchange', callBack, false);
         } else if (domEle.msRequestFullscreen) {
             // IE
-            domEle.addEventListener('msfullscreenchange', () => callBack?.());
+            isAdd
+                ? domEle.addEventListener('msfullscreenchange', callBack, false)
+                : domEle.removeEventListener('msfullscreenchange', callBack, false);
         } else if (domEle.mozRequestFullscreen) {
             // Firefox (Gecko)
-            domEle.addEventListener('mozfullscreenchange', () => callBack?.());
+            isAdd
+                ? domEle.addEventListener('mozfullscreenchange', callBack, false)
+                : domEle.removeEventListener('mozfullscreenchange', callBack, false);
         } else if (domEle.webkitRequestFullscreen) {
             // Webkit
-            domEle.addEventListener('webkitfullscreenchange', () => callBack?.());
+            isAdd
+                ? domEle.addEventListener('webkitfullscreenchange', callBack, false)
+                : domEle.removeEventListener('webkitfullscreenchange', callBack, false);
         }
     };
     /**

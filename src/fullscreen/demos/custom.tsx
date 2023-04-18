@@ -13,16 +13,16 @@ export default () => {
         <Fullscreen
             iconStyle={iconStyle}
             fullIcon={
-                <>
+                <div style={{ cursor: 'pointer' }}>
                     <ArrowsAltOutlined />
                     全屏
-                </>
+                </div>
             }
             exitFullIcon={
-                <>
+                <div style={{ cursor: 'pointer' }}>
                     <ShrinkOutlined />
                     退出全屏
-                </>
+                </div>
             }
         />
     );
