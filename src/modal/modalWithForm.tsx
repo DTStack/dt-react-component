@@ -41,7 +41,7 @@ const ModalForm = (props: ModalProps) => {
     } = props;
 
     const [formProps, modalProps] = useMemo(
-        () => Utils.filterPropsByAntdProps(props, [FORM_PROPS, MODAL_PROPS]),
+        () => Utils.filterAttrByArrays(props, [FORM_PROPS, MODAL_PROPS]),
         [props]
     );
 
