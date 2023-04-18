@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalWithForm } from 'dt-react-component';
+import { Modal } from 'dt-react-component';
 import { Button, Form, Input, InputNumber, Table } from 'antd';
 
 interface Data {
@@ -24,7 +24,7 @@ const data: Data[] = [
     },
 ];
 
-const Modal = ModalWithForm((_props) => {
+const ModalWithForm = Modal.Form((_props) => {
     return (
         <>
             <Form.Item label="name" name={'name'}>
@@ -93,7 +93,7 @@ export default () => {
     return (
         <>
             <Table columns={columns} dataSource={dataSource} />
-            <Modal
+            <ModalWithForm
                 title="ModalWithForm"
                 visible={visible}
                 onCancel={changeVisible}
