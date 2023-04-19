@@ -1,7 +1,6 @@
-import React from 'react';
-import Cookies from '../index';
-import { render, cleanup } from '@testing-library/react';
+import { cleanup, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import useCookieListener from '../index';
 
 jest.useFakeTimers({ advanceTimers: true });
 jest.spyOn(global, 'setInterval');
@@ -29,29 +28,67 @@ describe('test cookies', () => {
     });
 
     // 新增的cookie项不会触发
-    test('shoud trigger onFieldsChanged with empty array when change cookie from an empty value', () => {
+    test('should not trigger when change cookie from an empty value', () => {
         const mockFieldsChanged = jest.fn();
-        const intervalTime = 200;
+        const timeout = 200;
 
-        render(<Cookies watchFields={['dt_token']} onFieldsChanged={mockFieldsChanged} />);
+        renderHook(() =>
+            useCookieListener(
+                ({ changedFields }) => mockFieldsChanged(changedFields),
+                ['dt_token'],
+                { timeout }
+            )
+        );
+
         document.cookie = 'dt_token=token1';
 
         return new Promise((resolve) => {
             setTimeout(() => {
-                expect(mockFieldsChanged.mock.calls).toHaveLength(1);
-                expect(mockFieldsChanged.mock.calls[0][0]).toEqual([]);
+                expect(mockFieldsChanged).not.toBeCalled();
                 resolve(true);
-            }, intervalTime);
+            }, timeout);
             jest.runAllTimers();
         });
     });
 
-    test('shoud trigger onFieldsChanged with fields when change cookie from an exist value', () => {
+    test('should trigger when change cookie from an empty value with immediately option', () => {
         const mockFieldsChanged = jest.fn();
-        const intervalTime = 200;
+        const timeout = 200;
+
+        renderHook(() =>
+            useCookieListener(
+                ({ changedFields }) => mockFieldsChanged(changedFields),
+                ['dt_token'],
+                { timeout, immediately: true }
+            )
+        );
 
         document.cookie = 'dt_token=token1';
-        render(<Cookies watchFields={['dt_token']} onFieldsChanged={mockFieldsChanged} />);
+
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                expect(mockFieldsChanged).toBeCalled();
+                expect(mockFieldsChanged.mock.calls[0][0]).toEqual([
+                    { key: 'dt_token', value: 'token1' },
+                ]);
+                resolve(true);
+            }, timeout);
+            jest.runAllTimers();
+        });
+    });
+
+    test('should trigger when change cookie from an exist value', () => {
+        const mockFieldsChanged = jest.fn();
+        const timeout = 200;
+
+        document.cookie = 'dt_token=token1';
+        renderHook(() =>
+            useCookieListener(
+                ({ changedFields }) => mockFieldsChanged(changedFields),
+                ['dt_token'],
+                { timeout }
+            )
+        );
         document.cookie = 'dt_token=token2';
 
         return new Promise((resolve) => {
@@ -61,52 +98,60 @@ describe('test cookies', () => {
                     { key: 'dt_token', value: 'token2' },
                 ]);
                 resolve(true);
-            }, intervalTime);
+            }, timeout);
             jest.runAllTimers();
         });
     });
 
-    test('shoud trigger onChanged when change cookies', () => {
+    test('should trigger with prevCookies and nextCookies when change cookie with empty watchfields', () => {
         const mockCookiesChanged = jest.fn();
-        const intervalTime = 200;
+        const timeout = 200;
 
-        render(<Cookies onChanged={mockCookiesChanged} />);
+        renderHook(() => useCookieListener(mockCookiesChanged, [], { timeout }));
+
         document.cookie = 'dt_token=token1';
         document.cookie = 'dt_userId=123';
 
         return new Promise((resolve) => {
             setTimeout(() => {
                 expect(mockCookiesChanged.mock.calls).toHaveLength(1);
-                expect(mockCookiesChanged.mock.calls[0][0]).toBe('');
-                expect(mockCookiesChanged.mock.calls[0][1]).toBe('dt_token=token1; dt_userId=123');
+                expect(mockCookiesChanged).toBeCalledWith({
+                    prevCookies: '',
+                    nextCookies: 'dt_token=token1; dt_userId=123',
+                });
                 resolve(true);
-            }, intervalTime);
+            }, timeout);
             jest.runAllTimers();
         });
     });
 
-    test('should compare cookie every intervalTime', () => {
+    test('should compare cookie every timeout', () => {
         const mockCookiesChanged = jest.fn();
-        const intervalTime = 100;
+        const timeout = 100;
 
-        render(<Cookies intervalTime={intervalTime} onChanged={mockCookiesChanged} />);
+        renderHook(() => useCookieListener(mockCookiesChanged, [], { timeout }));
+
         document.cookie = 'dt_token=token1';
         document.cookie = 'dt_userId=123';
 
         setTimeout(() => {
             document.cookie = 'dt_token=token2';
             document.cookie = 'dt_userId=1234';
-        }, 1.5 * intervalTime);
+        }, 1.5 * timeout);
 
         return new Promise((resolve) => {
             setTimeout(() => {
                 expect(mockCookiesChanged.mock.calls).toHaveLength(2);
-                expect(mockCookiesChanged.mock.calls[0][0]).toBe('');
-                expect(mockCookiesChanged.mock.calls[0][1]).toBe('dt_token=token1; dt_userId=123');
-                expect(mockCookiesChanged.mock.calls[1][0]).toBe('dt_token=token1; dt_userId=123');
-                expect(mockCookiesChanged.mock.calls[1][1]).toBe('dt_token=token2; dt_userId=1234');
+                expect(mockCookiesChanged.mock.calls[0][0]).toEqual({
+                    prevCookies: '',
+                    nextCookies: 'dt_token=token1; dt_userId=123',
+                });
+                expect(mockCookiesChanged.mock.calls[1][0]).toEqual({
+                    prevCookies: 'dt_token=token1; dt_userId=123',
+                    nextCookies: 'dt_token=token2; dt_userId=1234',
+                });
                 resolve(true);
-            }, 2 * intervalTime);
+            }, 2 * timeout);
             jest.runAllTimers();
         });
     });

@@ -6,18 +6,18 @@ export interface Fields {
     value: string | null;
 }
 export interface ICookieOptions {
-    intervalTime?: number; // 轮训间隔
+    timeout?: number; // 轮训间隔
     immediately?: boolean; // 当Cookie字段为新增时是否会触发
 }
 
 const defaultOptions: ICookieOptions = {
-    intervalTime: 200,
+    timeout: 200,
     immediately: false,
 };
 
 type CompareCookieHandler = (params: {
-    oldCookies: string;
-    newCookies: string;
+    prevCookies: string;
+    nextCookies: string;
     changedFields?: Fields[];
 }) => void;
 
@@ -26,7 +26,7 @@ const useCookieListener = (
     watchFields: string[],
     options: ICookieOptions = defaultOptions
 ) => {
-    const { intervalTime, immediately } = options;
+    const { timeout, immediately } = options;
     const timerRef = useRef<number>();
     const currentCookiesRef = useRef<string>(document.cookie);
     const isWatchAll = !watchFields.length;
@@ -34,33 +34,33 @@ const useCookieListener = (
     useEffect(() => {
         timerRef.current = window.setInterval(() => {
             compareValue();
-        }, intervalTime);
+        }, timeout);
         return () => {
             window.clearInterval(timerRef.current);
         };
     }, []);
 
-    const onFieldsChange = (oldCookies: string, newCookies: string) => {
+    const handleFieldsChange = (prevCookies: string, nextCookies: string) => {
         const changedFields: Fields[] = [];
         for (let i = 0; i < watchFields.length; i++) {
             const key = watchFields[i];
-            const originValue = utils.getCookie(key, oldCookies);
-            const newValue = utils.getCookie(key, newCookies);
+            const originValue = utils.getCookie(key, prevCookies);
+            const newValue = utils.getCookie(key, nextCookies);
             if ((originValue !== null || immediately) && originValue !== newValue) {
                 changedFields.push({ key, value: newValue });
             }
         }
-        changedFields.length && handler({ changedFields, oldCookies, newCookies });
+        changedFields.length && handler({ changedFields, prevCookies, nextCookies });
     };
 
     const compareValue = () => {
-        const oldCookies = currentCookiesRef.current;
-        const newCookies = document.cookie;
-        if (oldCookies !== newCookies) {
+        const prevCookies = currentCookiesRef.current;
+        const nextCookies = document.cookie;
+        if (prevCookies !== nextCookies) {
             isWatchAll
-                ? handler({ oldCookies, newCookies })
-                : onFieldsChange(oldCookies, newCookies);
-            currentCookiesRef.current = newCookies;
+                ? handler({ prevCookies, nextCookies })
+                : handleFieldsChange(prevCookies, nextCookies);
+            currentCookiesRef.current = nextCookies;
         }
     };
 };

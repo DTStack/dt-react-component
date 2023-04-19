@@ -23,8 +23,8 @@ export default () => {
         ['dt_token']
     );
 
-    useCookieListener(({ oldCookies, newCookies }) => {
-        message.info(`监听到Cookie从 ${oldCookies} 变更为了 ${newCookies} `);
+    useCookieListener(({ prevCookies, nextCookies }) => {
+        message.info(`监听到Cookie从 ${prevCookies} 变更为了 ${nextCookies} `);
     }, []);
 
     return (

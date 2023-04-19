@@ -20,7 +20,7 @@ export default () => {
             }
         },
         ['dt_token'],
-        { immediately: true, intervalTime: 1000 }
+        { immediately: true, timeout: 1000 }
     );
 
     return (
