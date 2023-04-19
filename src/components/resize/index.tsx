@@ -19,6 +19,6 @@ export default class Resize extends React.Component<ResizeProps, any> {
     };
 
     render() {
-        return this.props.children;
+        return <>{this.props.children}</>;
     }
 }
