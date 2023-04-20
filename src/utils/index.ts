@@ -153,10 +153,12 @@ const utils = {
 
     /**
      * 原生 JavaScript 获取 cookie 值
-     * @param name
+     * @param {string} name
+     * @param {string} cookie - 默认为document.cookie
      */
-    getCookie(name: string) {
-        const arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
+    getCookie(name: string, cookie: string = document.cookie) {
+        if (!cookie) return null;
+        const arr = cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
         if (arr != null) {
             return unescape(decodeURI(arr[2]));
         }
@@ -173,7 +175,7 @@ const utils = {
             name + '=; expires=' + d.toUTCString() + domainTemp + '; path=' + pathTemp;
     },
 
-    deleteAllCookies(domain: string, path: string) {
+    deleteAllCookies(domain?: string, path?: string) {
         const cookies = document.cookie.split(';');
         // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < cookies.length; i++) {

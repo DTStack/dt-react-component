@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test MarkdownRender Component Should detect language by highlight 1`] = `
+<DocumentFragment>
+  <div
+    class="dtc-markdown-render-body dtc-vs-dark"
+  >
+    <pre>
+      <code>
+        hljs console.
+        <span
+          class="hljs-built_in"
+        >
+          log
+        </span>
+        (
+        <span
+          class="hljs-string"
+        >
+          'test'
+        </span>
+        );
+
+      </code>
+    </pre>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test MarkdownRender Component Should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="dtc-markdown-render-body dtc-vs"
+  >
+    <h1
+      id="h1"
+    >
+      h1
+    </h1>
+    
+
+    <h2
+      id="h2"
+    >
+      h2
+    </h2>
+    
+
+    <h3
+      id="h3"
+    >
+      h3
+    </h3>
+    
+
+    <ul>
+      
+
+      <li>
+        a
+      </li>
+      
+
+      <li>
+        b
+      </li>
+      
+
+      <li>
+        c
+      </li>
+      
+
+    </ul>
+    
+
+    <p>
+      <a
+        href="https://github.com/DTStack/dt-react-component"
+      >
+        url
+      </a>
+    </p>
+    
+
+    <p>
+      <strong>
+        strong1
+      </strong>
+    </p>
+    
+
+    <p>
+      <strong>
+        strong2
+      </strong>
+    </p>
+    
+
+    <p>
+      <em>
+        Italic
+      </em>
+    </p>
+    
+
+    <blockquote>
+      
+  
+      <p>
+        blockquote
+      </p>
+      
+
+    </blockquote>
+    
+
+    <p>
+      <code>
+        code block
+      </code>
+    </p>
+    
+
+    <hr />
+    
+
+    <table>
+      
+    
+      <tbody>
+        <tr>
+          
+        
+          <td>
+            Foo
+          </td>
+          
+    
+        </tr>
+        
+
+      </tbody>
+    </table>
+    
+
+    <pre>
+      <code
+        class="hljs sql language-sql"
+      >
+        <span
+          class="hljs-comment"
+        >
+          -- desc
+        </span>
+        
+
+        <span
+          class="hljs-keyword"
+        >
+          select
+        </span>
+         
+        <span
+          class="hljs-operator"
+        >
+          *
+        </span>
+         
+        <span
+          class="hljs-keyword"
+        >
+          from
+        </span>
+         employees
+
+      </code>
+    </pre>
+  </div>
+</DocumentFragment>
+`;
