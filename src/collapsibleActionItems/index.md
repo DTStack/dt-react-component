@@ -68,7 +68,7 @@ export default () => {
                     {
                         key: 'delete',
                         name: '删除',
-                        render: (collapsible) => (
+                        render: () => (
                             <Popconfirm title="确认删除？">
                                 <Button type="link" style={{ color: 'red' }}>
                                     删除
@@ -163,9 +163,9 @@ export default () => {
 
 ### ActionItem
 
-| 参数     | 说明                                                                                               | 类型                                        | 默认值  |
-| -------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------- | ------- |
-| key      | 唯一标识                                                                                           | `React.Key`                                 | -       |
-| name     | 显示的名称                                                                                         | `string`                                    | -       |
-| disabled | 是否禁用                                                                                           | `boolean`                                   | `false` |
-| render   | 自定义渲染，未折叠的操作项默认会以`link`类型的 `Button`形式展示, `collapsible`表示该项是否会被折叠 | `(collapsible: boolean) => React.ReactNode` | -       |
+| 参数     | 说明                                                            | 类型                    | 默认值  |
+| -------- | --------------------------------------------------------------- | ----------------------- | ------- |
+| key      | 唯一标识                                                        | `React.Key`             | -       |
+| name     | 显示的名称                                                      | `string`                | -       |
+| disabled | 是否禁用                                                        | `boolean`               | `false` |
+| render   | 自定义渲染，未折叠的操作项默认会以`link`类型的 `Button`形式展示 | `() => React.ReactNode` | -       |

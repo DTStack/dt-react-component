@@ -6,7 +6,7 @@ type ActionItem = {
     key: React.Key;
     name: React.ReactNode;
     disabled?: boolean;
-    render?: (collapsible: boolean) => React.ReactNode;
+    render?: () => React.ReactNode;
     [propName: string]: any;
 };
 
@@ -34,7 +34,7 @@ const CollapsibleActionItems: React.FC<IProps> = (props) => {
     } = props;
     const isOverMaxCount = actionItems.length > maxCount;
     const getActionItemNode = (item: ActionItem, isCollapse = false) => {
-        const customRender = item.render ? item.render(isCollapse) : null;
+        const customRender = item.render ? item.render() : null;
         if (!isCollapse)
             return (
                 <span
