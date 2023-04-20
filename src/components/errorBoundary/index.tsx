@@ -2,7 +2,7 @@ import React from 'react';
 import LoadError from '../loadError';
 
 interface ErrorBoundaryProps {
-    children?: React.ReactComponentElement<any, any>;
+    children?: React.ReactNode | React.ReactComponentElement<any, any>;
 }
 
 interface ErrorBoundaryStates {
@@ -28,6 +28,6 @@ export default class ErrorBoundary extends React.Component<
         if (this.state.hasError) {
             return <LoadError />;
         }
-        return this.props.children;
+        return <>{this.props.children}</>;
     }
 }
