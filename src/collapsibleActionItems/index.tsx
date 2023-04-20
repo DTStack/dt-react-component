@@ -10,7 +10,7 @@ type ActionItem = {
     [propName: string]: any;
 };
 
-interface IProps {
+interface ICollapsibleActionItems {
     maxCount?: number; // 最多展示数量，超出折叠到下拉菜单中
     actionItems: ActionItem[];
     className?: string;
@@ -21,7 +21,7 @@ interface IProps {
     onItemClick?(key: React.Key): void;
 }
 
-const CollapsibleActionItems: React.FC<IProps> = (props) => {
+const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
     const {
         actionItems,
         maxCount = 3,
