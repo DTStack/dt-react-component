@@ -1,7 +1,6 @@
 export { default as BlockHeader } from './blockHeader';
 export { default as Breadcrumb } from './breadcrumb';
 export { default as ContextMenu } from './contextMenu';
-export { default as Cookies } from './cookies';
 export { default as CopyIcon } from './copyIcon';
 export { default as CollapsibleActionItems } from './collapsibleActionItems';
 export { default as Dropdown } from './dropdown';
@@ -26,3 +25,4 @@ export { default as SlidePane } from './slidePane';
 export { default as SpreadSheet } from './spreadSheet';
 export { default as StatusTag } from './statusTag';
 export { default as SwitchWindow } from './switchWindow';
+export { default as useCookieListener } from './cookies';
