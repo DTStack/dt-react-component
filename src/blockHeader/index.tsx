@@ -3,7 +3,7 @@ import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import './style.scss';
 
-export interface BlockHeaderProps {
+export interface IBlockHeaderProps {
     // 标题
     title: string;
     // 标题前的图标，默认是一个色块
@@ -34,7 +34,7 @@ export interface BlockHeaderProps {
     onChange?: (expand: boolean) => void;
     children?: React.ReactNode;
 }
-const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
+const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const prefixCls = 'dtc-block-header';
     const {
         title,
