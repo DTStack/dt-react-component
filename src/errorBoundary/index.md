@@ -3,7 +3,7 @@ title: ErrorBoundary 错误边界
 group: 组件
 toc: content
 demo:
-    cols: 2
+    cols: 1
 ---
 
 # ErrorBoundary 错误边界
@@ -14,10 +14,13 @@ demo:
 
 ## 示例
 
-<code src="./demos/basic.tsx" iframe="true"></code>
+<code src="./demos/basic.tsx" iframe="true">基本使用</code>
+<code src="./demos/customErrorPage.tsx" iframe="true" description='可以自定义渲染错误处理页面'>自定义错误页面</code>
 
 ## API
 
-| 参数     | 说明   | 类型              | 默认值 |
-| -------- | ------ | ----------------- | ------ |
-| children | 子组件 | `React.ReactNode` | -      |
+| 参数      | 说明               | 类型                     | 默认值          |
+| --------- | ------------------ | ------------------------ | --------------- |
+| children  | 子组件             | `React.ReactNode`        | -               |
+| errorPage | 自定义错误展示页面 | `React.ReactNode`        | `<LoadError />` |
+| onError   | 发生错误捕获时触发 | `(error: Error) => void` | -               |

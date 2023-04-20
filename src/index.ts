@@ -11,7 +11,7 @@ export { default as Form } from './form';
 export { default as Fullscreen } from './fullscreen';
 export { default as GlobalLoading } from './globalLoading';
 export { default as KeyEventListener } from './keyEventListener';
-export { default as LoadError } from './loadError';
+export { default as LoadError } from './errorBoundary/loadError';
 export { default as MarkdownRender } from './markdownRender';
 export { default as ModalWithForm } from './modalWithForm';
 export { default as MultiSearchInput } from './multiSearchInput';
