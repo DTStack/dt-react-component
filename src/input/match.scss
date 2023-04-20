@@ -1,0 +1,8 @@
+.dtc-input-match {
+    &-suffixItem {
+        cursor: pointer;
+        &__active {
+            border: 1px solid rgb(36, 145, 247);
+        }
+    }
+}
