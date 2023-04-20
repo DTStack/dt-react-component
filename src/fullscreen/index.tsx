@@ -32,9 +32,7 @@ export interface IFullscreenProps
     exitFullIcon?: React.ReactNode;
     onFullscreen?: (isFullScreen: boolean) => void;
 }
-export interface FullscreenState {
-    isFullScreen: boolean;
-}
+
 export default function Fullscreen({
     themeDark,
     target,
