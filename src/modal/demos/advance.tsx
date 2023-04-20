@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Modal } from 'dt-react-component';
 import { Button, Form, Input, InputNumber, Table } from 'antd';
+import { Modal } from 'dt-react-component';
 
 interface Data {
     key: string;
