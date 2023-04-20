@@ -2,7 +2,7 @@ import React from 'react';
 
 const LoadError: React.FC = function () {
     return (
-        <div className="error" data-testid="test-error">
+        <div className="dtc-error" data-testid="test-error">
             <div>
                 
                 <h2 style={{ textAlign: 'center' }} data-testid="test-error">

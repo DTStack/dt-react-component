@@ -10,40 +10,21 @@ demo:
 
 ## 何时使用
 
-全屏操作
+全屏切换操作
 
-## 示例
+## 代码演示
 
-```jsx
-import React from 'react';
-import { Fullscreen } from 'dt-react-component';
-import { Divider } from 'antd';
-
-export default () => {
-    const iconStyle = {
-        width: 12,
-        height: 12,
-        marginRight: 5,
-    };
-
-    return (
-        <>
-            <p>白色主题</p>
-            <Fullscreen iconStyle={iconStyle} />
-            <Divider />
-            <p>暗黑主题</p>
-            <Fullscreen iconStyle={iconStyle} themeDark />
-        </>
-    );
-};
-```
+<code src="./demos/basic.tsx" title="基本使用"></code>
+<code src="./demos/theme.tsx" title="主题切换"></code>
+<code src="./demos/local.tsx" title="局部全屏" iframe="124"></code>
+<code src="./demos/custom.tsx" title="自定义全屏图标" ></code>
 
 ## API
 
-| 参数         | 说明                 | 类型              | 默认值  |
-| ------------ | -------------------- | ----------------- | ------- |
-| themeDark    | 是否使用暗黑主题模式 | `boolean`         | `false` |
-| iconStyle    | 图标元素样式         | `CSSProperties`   | -       |
-| customIcon   | 是否自定义图标       | `boolean`         | `false` |
-| fullIcon     | 自定义全屏图标       | `React.ReactNode` | -       |
-| exitFullIcon | 自定义退出全屏图标   | `React.ReactNode` | -       |
+| 参数         | 说明                       | 类型              | 默认值  |
+| ------------ | -------------------------- | ----------------- | ------- |
+| target       | 全局操作作用于指定目标对象 | `string`          | -       |
+| themeDark    | 是否使用暗黑主题模式       | `boolean`         | `false` |
+| iconStyle    | 图标元素样式               | `CSSProperties`   | -       |
+| fullIcon     | 自定义全屏图标             | `React.ReactNode` | -       |
+| exitFullIcon | 自定义退出全屏图标         | `React.ReactNode` | -       |
