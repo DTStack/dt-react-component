@@ -1,25 +1,29 @@
 import React from 'react';
 import { Result, Table, Input } from 'antd';
-import { isEqual } from 'lodash';
 import { useList } from 'dt-react-component';
 import getMockData, { type MockData } from './data';
 import type { Fetcher } from 'dt-react-component/useList';
+import type { SorterResult } from 'antd/lib/table/interface';
 
 type Params = {
     current: number;
     pageSize: number;
     search?: string;
-    sorter?: [{ field: string; asc: boolean }];
-    filters?: string[];
+    sorter?: SorterResult<MockData>;
+    filters?: Record<string, any>;
 };
+
+const convert = (p: any) => p;
 
 const fetcher: Fetcher<MockData, Params> = (params) => {
     return new Promise<{
         data: MockData[];
         total: number;
     }>((resolve) => {
+        // 统一对 params 做一些改造传给服务端
+        const next = convert(params);
         setTimeout(() => {
-            resolve(getMockData(params));
+            resolve(getMockData(next));
         }, 150);
     });
 };
@@ -77,29 +81,13 @@ export default () => {
                         sorter: true,
                     },
                 ]}
-                onChange={(pagination, rawFilters, rawSorter) => {
-                    const sorter = (() => {
-                        if (rawSorter?.columnKey) {
-                            return [
-                                {
-                                    field: rawSorter.columnKey,
-                                    asc: rawSorter.order === 'ascend',
-                                },
-                            ] as Params['sorter'];
-                        }
-
-                        return undefined;
-                    })();
-
-                    const filters = (rawFilters?.gender as string[]) || undefined;
-
-                    if (!isEqual(sorter, params.sorter)) {
-                        mutate({ current: 1, sorter });
-                    } else if (!isEqual(filters, params.filters)) {
-                        mutate({ current: 1, filters });
-                    } else {
-                        mutate({ current: pagination.current, pageSize: pagination.pageSize });
-                    }
+                onChange={(pagination, filters, sorter) => {
+                    mutate({
+                        current: pagination.current,
+                        pageSize: pagination.pageSize,
+                        filters,
+                        sorter: sorter as SorterResult<MockData>,
+                    });
                 }}
                 size="small"
                 scroll={{ y: 200 }}
