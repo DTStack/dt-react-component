@@ -56,7 +56,7 @@ export default () => {
 | okType              | 确认按钮类型                                                                                   | `string`                     | `primary` |
 | record              | 其他想要提交的参数                                                                             | `string \| number \| object` | -         |
 | visible             | 模态框显示隐藏的状态                                                                           | `boolean`                    | -         |
-| title               | 标题                                                                                           | `React.ReactNode \| string`  | -         |
+| title               | 标题                                                                                           | `React.ReactNode`            | -         |
 | onCancel            | 点击取消的回调                                                                                 | `Function`                   | -         |
 | width               | modal 宽度                                                                                     | `string \| number`           | -         |
 | modelClass          | modal 样式类名                                                                                 | `string`                     | -         |

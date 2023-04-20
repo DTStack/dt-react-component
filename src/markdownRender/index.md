@@ -1,35 +1,25 @@
 ---
-title: MarkdownRender markdown 渲染
+title: MarkdownRender 渲染
 group: 组件
 toc: content
-demo:
-    cols: 2
 ---
 
-# MarkdownRender markdown 渲染
+# MarkdownRender 渲染
 
 ## 何时使用
 
-路由未匹配上的展示页
+用于 Markdown 语法在 HTML 上展示，只负责渲染
 
 ## 示例
 
-```jsx
-import React from 'react';
-import { MarkdownRender } from 'dt-react-component';
-
-export default () => {
-    const md = `# Test
-+ 我是测试数据
-+ 我是测试数据
-### hello markdownRender`;
-    return <MarkdownRender text={md} dark={false} />;
-};
-```
+<code src="./demos/basic.tsx" compact="true" title="展示 Markdown 内容"></code>
+<code src="./demos/dark.tsx" compact="true" title="暗黑模式下"></code>
+<code src="./demos/sql.tsx" compact="true" title="SQL 语法高亮"></code>
 
 ## API
 
-| 参数 | 说明              | 类型      | 默认值 |
-| ---- | ----------------- | --------- | ------ |
-| text | markdown 文本数据 | `string`  | -      |
-| dark | 主题设置          | `boolean` | -      |
+| 参数      | 说明              | 类型      | 默认值 |
+| --------- | ----------------- | --------- | ------ |
+| value     | markdown 文本数据 | `string`  | -      |
+| dark      | 暗黑主题          | `boolean` | -      |
+| className | 类名              | `string`  | -      |

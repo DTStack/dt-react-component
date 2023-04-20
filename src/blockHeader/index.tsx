@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
+import classNames from 'classnames';
 import './style.scss';
+
+export declare type SizeType = 'small' | 'middle' | undefined;
 
 export interface BlockHeaderProps {
     // 标题
@@ -9,17 +12,19 @@ export interface BlockHeaderProps {
     // 标题前的图标，默认是一个色块
     beforeTitle?: React.ReactNode;
     // 标题后的提示图标或文案
-    afterTitle?: string | React.ReactNode;
+    afterTitle?: React.ReactNode;
     // 默认展示为问号的tooltip
     tooltip?: React.ReactNode;
     // 后缀自定义内容块
     addonAfter?: React.ReactNode;
     /**
-     * true 小标题 font-size: 12px; line-height: 32px
-     * false 大标题 font-size: 14px; line-height: 40px
-     * 默认 false
+     * 小标题 font-size: 12px; line-height: 32px
+     * 中标题 font-size: 14px; line-height: 40px
+     * 默认 中标题
      */
-    isSmall?: boolean;
+    size?: SizeType;
+    hasBottom?: boolean;
+    spaceBottom?: number;
     // 标题一行的样式类名
     titleRowClassName?: string;
     // 标题的样式类名
@@ -38,35 +43,52 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         title,
         afterTitle = '',
         tooltip = '',
-        isSmall = false,
+        size = 'middle',
+        hasBottom = false,
+        spaceBottom = 0,
         titleRowClassName = '',
         titleClassName = '',
         showBackground = true,
         defaultExpand = true,
         addonAfter,
         children = '',
+        beforeTitle = <div className={`${prefixCls}__beforeTitle-${size}`}></div>,
         onChange,
     } = props;
-    const { beforeTitle = <div className={`default ${isSmall ? 'small' : ''}`}></div> } = props;
+
+    const [expand, setExpand] = useState(defaultExpand);
+
+    const preTitleRowCls = `${prefixCls}-title-row`;
+
     const questionTooltip = tooltip && (
         <Tooltip title={tooltip}>
             <QuestionCircleOutlined />
         </Tooltip>
     );
+
     const newAfterTitle = afterTitle || questionTooltip;
-    const [expand, setExpand] = useState(defaultExpand);
+    let bottomStyle;
+    if (hasBottom) bottomStyle = { marginBottom: 16 };
+    if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
 
     const handleExpand = (expand: boolean) => {
         if (!children) return;
         setExpand(expand);
         onChange?.(expand);
     };
+
     return (
-        <div className={`${prefixCls}`}>
+        <div className={`${prefixCls}`} style={bottomStyle}>
             <div
-                className={`${prefixCls}-title-row ${isSmall ? 'small' : 'default'} ${
-                    showBackground ? 'background' : ''
-                } ${children ? 'pointer' : ''} ${titleRowClassName}`}
+                className={classNames(
+                    preTitleRowCls,
+                    `${preTitleRowCls}-${size}`,
+                    titleRowClassName,
+                    {
+                        [`${preTitleRowCls}-background`]: showBackground,
+                        [`${preTitleRowCls}-pointer`]: children,
+                    }
+                )}
                 onClick={() => handleExpand(!expand)}
             >
                 <div className={`${prefixCls}-title-box`}>
