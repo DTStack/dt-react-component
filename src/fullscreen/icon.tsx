@@ -1,15 +1,17 @@
-import React from 'react';
 import classNames from 'classnames';
+import React from 'react';
+import './style.scss';
 
-export interface IconProps {
+export interface IconProps
+    extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
     themeDark?: boolean;
     type?: boolean;
     className?: string;
     alt?: string;
-    [propName: string]: any;
 }
-export default class Icon extends React.Component<IconProps, any> {
-    getBase64ImgSrc = (type: boolean | undefined, themeDark: boolean | undefined): string => {
+
+export default function Icon({ themeDark, type, className, alt, ...otherProps }: IconProps) {
+    const getBase64ImgSrc = (type: boolean | undefined, themeDark: boolean | undefined): string => {
         let src = '';
         if (themeDark) {
             // 全屏状态
@@ -32,18 +34,12 @@ export default class Icon extends React.Component<IconProps, any> {
         }
         return src;
     };
-    render() {
-        const { themeDark, type, ...otherProps } = this.props;
-        const cls = classNames('dtc-fullscreen-icon', otherProps.className);
-        const src = this.getBase64ImgSrc(type, themeDark);
-        return (
-            <img
-                {...otherProps}
-                data-testid="test_myIcon"
-                className={cls}
-                alt={otherProps.alt}
-                src={src}
-            />
-        );
-    }
+    return (
+        <img
+            {...otherProps}
+            className={classNames('dtc-fullscreen-icon', className)}
+            alt={alt}
+            src={getBase64ImgSrc(type, themeDark)}
+        />
+    );
 }
