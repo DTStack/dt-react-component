@@ -1,18 +1,18 @@
 import React from 'react';
 import LoadError from './loadError';
 
-interface ErrorBoundaryProps {
+interface IErrorBoundaryProps {
     children?: React.ReactNode;
     errorPage?: React.ReactNode;
     onError?: (error: Error) => void;
 }
 
-interface ErrorBoundaryStates {
+interface IErrorBoundaryState {
     hasError: boolean;
 }
 export default class ErrorBoundary extends React.Component<
-    ErrorBoundaryProps,
-    ErrorBoundaryStates
+    IErrorBoundaryProps,
+    IErrorBoundaryState
 > {
     state = { hasError: false };
     static getDerivedStateFromError(_error: any) {
