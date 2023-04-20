@@ -1,5 +1,4 @@
 export { default as BlockHeader } from './blockHeader';
-export { default as Breadcrumb } from './breadcrumb';
 export { default as ContextMenu } from './contextMenu';
 export { default as CopyIcon } from './copyIcon';
 export { default as CollapsibleActionItems } from './collapsibleActionItems';
