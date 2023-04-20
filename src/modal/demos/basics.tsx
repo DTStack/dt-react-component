@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Modal } from 'dt-react-component';
 import { Button, Form, Input } from 'antd';
+import { Modal } from 'dt-react-component';
 
 const ModalWithForm = Modal.Form((_props) => {
     return (
