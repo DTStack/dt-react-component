@@ -46,7 +46,10 @@ const useCookieListener = (
             const key = watchFields[i];
             const originValue = utils.getCookie(key, prevCookies);
             const newValue = utils.getCookie(key, nextCookies);
-            if ((originValue !== null || immediately) && originValue !== newValue) {
+            if (
+                (originValue !== null || (originValue === null && immediately)) &&
+                originValue !== newValue
+            ) {
                 changedFields.push({ key, value: newValue });
             }
         }
