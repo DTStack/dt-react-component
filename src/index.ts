@@ -3,6 +3,7 @@ export { default as Breadcrumb } from './breadcrumb';
 export { default as ContextMenu } from './contextMenu';
 export { default as Cookies } from './cookies';
 export { default as CopyIcon } from './copyIcon';
+export { default as CollapsibleActionItems } from './collapsibleActionItems';
 export { default as Dropdown } from './dropdown';
 export { default as EllipsisText } from './ellipsisText';
 export { default as Empty } from './empty';
