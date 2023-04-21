@@ -24,7 +24,7 @@ const data: Data[] = [
     },
 ];
 
-const ModalWithForm = Modal.Form((_props) => {
+const ModalForm = Modal.Form((_props) => {
     return (
         <>
             <Form.Item label="name" name={'name'}>
@@ -93,8 +93,8 @@ export default () => {
     return (
         <>
             <Table columns={columns} dataSource={dataSource} />
-            <ModalWithForm
-                title="ModalWithForm"
+            <ModalForm
+                title="advanceModalForm"
                 visible={visible}
                 onCancel={changeVisible}
                 record={index}
