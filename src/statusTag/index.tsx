@@ -4,7 +4,7 @@ import './style.scss';
 
 export type StatusTagType = 'warning' | 'error' | 'success' | 'run' | 'stopped';
 
-export interface StatusTagProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IStatusTagProps extends React.HTMLAttributes<HTMLDivElement> {
     type?: StatusTagType;
     className?: string;
     showBorder?: boolean;
@@ -13,7 +13,7 @@ export interface StatusTagProps extends React.HTMLAttributes<HTMLDivElement> {
     onClick?: () => void;
 }
 
-const StatusTag: React.FC<StatusTagProps> = function StatusTag(props) {
+const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
     const { className, type = 'success', showBorder = true, color, ...other } = props;
     const prefixCls = 'dtc-statusTag';
 
@@ -28,7 +28,7 @@ const StatusTag: React.FC<StatusTagProps> = function StatusTag(props) {
     return (
         <div {...other} className={classes}>
             <div className={statusClass} style={style} />
-            <span className={`${prefixCls}__text`}>{props.children || ''}</span>
+            <span className={`${prefixCls}__text`}>{props.children}</span>
         </div>
     );
 };
