@@ -1,12 +1,11 @@
 import React from 'react';
-import ModalWithForm, { useFilterFormProps } from '../index';
+import Modal from '../';
 import { Input, Form } from 'antd';
 import { render, fireEvent, screen, cleanup } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
 import '@testing-library/jest-dom/extend-expect';
 
 const FormItem = Form.Item;
-const EnhancedModal = ModalWithForm((_props: any) => {
+const EnhancedModal = Modal.Form((_props: any) => {
     return (
         <FormItem label="test-label" name="test" rules={[{ max: 10 }]}>
             <Input data-testid="test-input" />
@@ -83,17 +82,4 @@ test('should trigger submit methond when form validate successful', () => {
     eleOk.onclick = jest.fn();
     fireEvent.click(eleOk);
     expect(eleOk.onclick).toHaveBeenCalled();
-});
-
-test('test useFilterFormProps', () => {
-    const { result } = renderHook(() =>
-        useFilterFormProps({
-            a: 1,
-            onOk: () => {},
-            disabled: false,
-        })
-    );
-    expect(result.current).toEqual({
-        disabled: false,
-    });
 });
