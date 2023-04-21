@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Modal } from 'dt-react-component';
 
-const ModalWithForm = Modal.Form((_props) => {
+const ModalForm = Modal.Form((_props) => {
     return (
         <Form.Item label="username" name={'username'} rules={[{ max: 10 }]}>
             <Input />
@@ -15,10 +15,10 @@ export default () => {
     return (
         <>
             <Button onClick={() => setVisible(true)}>click</Button>
-            <ModalWithForm
-                title="ModalWithForm"
+            <ModalForm
+                title="BasicModalForm"
                 visible={visible}
-                hideModalHandler={() => setVisible((v) => !v)}
+                onCancel={() => setVisible((v) => !v)}
                 onSubmit={(value) => {
                     console.log(value);
                 }}

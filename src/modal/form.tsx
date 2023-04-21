@@ -4,7 +4,7 @@ import { FORM_PROPS, MODAL_PROPS } from '../utils/antdProps';
 import Utils from '../utils';
 import Form from '../form';
 
-export interface ModalProps<Values = any, Record = any> extends FormProps, ModalFuncProps {
+export interface IModalFormProps<Values = any, Record = any> extends FormProps, ModalFuncProps {
     /**
      * modal title
      * @param {string}
@@ -14,7 +14,7 @@ export interface ModalProps<Values = any, Record = any> extends FormProps, Modal
      * modal className
      * @param {string}
      */
-    modelClass?: string;
+    modalClassName?: string;
     /**
      * 需要在提交时一块处理的数据
      */
@@ -29,7 +29,7 @@ export interface ModalProps<Values = any, Record = any> extends FormProps, Modal
     [key: string]: any;
 }
 
-const ModalForm = (props: ModalProps) => {
+const ModalForm = (props: IModalFormProps) => {
     const {
         okText = '确定',
         cancelText = '取消',
@@ -38,6 +38,7 @@ const ModalForm = (props: ModalProps) => {
         record,
         children,
         onSubmit,
+        modalClassName,
     } = props;
 
     const [formProps, modalProps] = useMemo(
@@ -71,6 +72,7 @@ const ModalForm = (props: ModalProps) => {
             okText={okText}
             cancelText={cancelText}
             maskClosable={maskClosable}
+            className={modalClassName}
         >
             <Form form={form} layout={layout} {...formProps}>
                 {React.cloneElement(children as ReactElement, { form, ...props })}
@@ -79,11 +81,11 @@ const ModalForm = (props: ModalProps) => {
     );
 };
 
-const ModalWithForm = (FormComponent: React.ComponentType) => {
-    return (props: ModalProps) => (
+const InternalForm = (FormComponent: React.ComponentType) => {
+    return (props: IModalFormProps) => (
         <ModalForm {...props}>
             <FormComponent />
         </ModalForm>
     );
 };
-export default ModalWithForm;
+export default InternalForm;

@@ -1,11 +1,11 @@
 import { Modal } from 'antd';
-import ModalWithForm from './modalWithForm';
+import InternalForm from './form';
 
 type OriginalInterface = typeof Modal;
 interface ModalInterface extends OriginalInterface {
-    Form: typeof ModalWithForm;
+    Form: typeof InternalForm;
 }
 
 const WrapperModal = Modal;
-(WrapperModal as ModalInterface).Form = ModalWithForm;
+(WrapperModal as ModalInterface).Form = InternalForm;
 export default WrapperModal as ModalInterface;
