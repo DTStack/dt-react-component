@@ -1,20 +1,24 @@
 import './style.scss';
 
 class ProgressBar {
-    _clock: any;
+    // 定时器
+    _timer: any;
+    // 计数，小于等于 0 时表示需要清除进度条
     _count: number;
-    className: string;
+    // 进度条
     img: HTMLDivElement;
-    hodor: HTMLDivElement;
+    // loading 图片
+    bar: HTMLDivElement;
+
     constructor() {
-        this._clock = null;
+        this._timer = null;
         this._count = 0;
-        this.className = 'dtc-progress-progress-bar';
-        this.hodor = document.createElement('div');
-        this.hodor.className = this.className;
+
+        this.bar = document.createElement('div');
+        this.bar.className = 'dtc-progress-bar';
 
         this.img = document.createElement('div');
-        this.img.className = 'dtc-progress-progress-img';
+        this.img.className = 'dtc-progress-img';
         this.img.innerHTML = `<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          width="30px" height="30px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
                         <path fill="#2491F7" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
@@ -31,9 +35,9 @@ class ProgressBar {
 
     show() {
         this._count++;
-        if (!this.hasAdded() && !this._clock) {
-            this._clock = setTimeout(() => {
-                document.body.appendChild(this.hodor);
+        if (!this.hasAdded() && !this._timer) {
+            this._timer = setTimeout(() => {
+                document.body.appendChild(this.bar);
                 document.body.appendChild(this.img);
             }, 200);
         }
@@ -42,19 +46,20 @@ class ProgressBar {
     hide() {
         this._count--;
         if (this._count <= 0) {
-            if (this._clock) {
-                clearTimeout(this._clock);
-                this._clock = null;
+            if (this._timer) {
+                clearTimeout(this._timer);
+                this._timer = null;
             }
             if (this.hasAdded()) {
-                this.hodor.remove();
+                this.bar.remove();
                 this.img.remove();
             }
         }
     }
 
     hasAdded() {
-        return document.getElementsByClassName(this.className).length > 0;
+        return document.getElementsByClassName('dtc-progress-bar').length > 0;
     }
 }
+
 export default new ProgressBar();

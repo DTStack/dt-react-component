@@ -26,6 +26,8 @@ export default () => {
     return (
         <>
             <Button
+                style={{ margin: '40px 10px 0 20px' }}
+                type="primary"
                 onClick={() => {
                     ProgressBar.show();
                 }}
@@ -33,7 +35,6 @@ export default () => {
                 发起请求
             </Button>
             <Button
-                style={{ marginLeft: '10px' }}
                 onClick={() => {
                     ProgressBar.hide();
                 }}
@@ -44,3 +45,10 @@ export default () => {
     );
 };
 ```
+
+## API
+
+| 参数 | 说明       | 类型       | 默认值 |
+| ---- | ---------- | ---------- | ------ |
+| show | 显示进度条 | `Function` | -      |
+| hide | 隐藏进度条 | `Function` | -      |
