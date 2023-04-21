@@ -145,18 +145,4 @@ describe('test BlockHeader render', () => {
             marginBottom: 10,
         });
     });
-    test('should render BlockHeader correct margin-bottom', () => {
-        const { container: noStyle } = render(<BlockHeader title="分类级别" beforeTitle="" />);
-        expect(noStyle.querySelector('.dtc-block-header')).not.toHaveAttribute('style');
-        const { container: defaultBottom } = render(
-            <BlockHeader title="分类级别" beforeTitle="" />
-        );
-        expect(defaultBottom.querySelector('.dtc-block-header')).toHaveStyle({ marginBottom: 16 });
-        const { container: customizeBottom } = render(
-            <BlockHeader title="分类级别" beforeTitle="" hasBottom spaceBottom={10} />
-        );
-        expect(customizeBottom.querySelector('.dtc-block-header')).toHaveStyle({
-            marginBottom: 10,
-        });
-    });
 });

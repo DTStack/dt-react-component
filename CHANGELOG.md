@@ -16,6 +16,22 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
+### Features
+
+-   update blockHeader margin-bottom ([#281](https://github.com/DTStack/dt-react-component/issues/281)) ([2962911](https://github.com/DTStack/dt-react-component/commit/29629111840bd68a142b4f49e083ba2a23e97355))
+
+### Bug Fixes
+
+-   fix ModalProps for modalWithForm ([#283](https://github.com/DTStack/dt-react-component/issues/283)) ([f0c813a](https://github.com/DTStack/dt-react-component/commit/f0c813a306dc2cadd495ce15cae7b4328b155ad4))
+
+### [3.0.7](https://github.com/DTStack/dt-react-component/compare/v3.0.6...v3.0.7) (2022-12-16)
+
+### Bug Fixes
+
+-   [#278](https://github.com/DTStack/dt-react-component/issues/278) use handsontable lower version ([#279](https://github.com/DTStack/dt-react-component/issues/279)) ([ee59dd9](https://github.com/DTStack/dt-react-component/commit/ee59dd93aa4578be9f4353b9deb85a4d6cd034e4))
+
+### [3.0.6](https://github.com/DTStack/dt-react-component/compare/v3.0.5...v3.0.6) (2022-12-07)
+
 -   [#278](https://github.com/DTStack/dt-react-component/issues/278) use handsontable lower version ([#279](https://github.com/DTStack/dt-react-component/issues/279)) ([ee59dd9](https://github.com/DTStack/dt-react-component/commit/ee59dd93aa4578be9f4353b9deb85a4d6cd034e4))
 
 ### [3.0.6](https://github.com/DTStack/dt-react-component/compare/v3.0.5...v3.0.6) (2022-12-07)
