@@ -18,7 +18,6 @@ export { default as MxGraphContainer, WIDGETS_PREFIX } from './mxGraph';
 export { default as NotFound } from './notFound';
 export { default as ProgressBar } from './progressBar';
 export { default as ProgressLine } from './progressLine';
-export { default as RenderFormItem } from './renderFormItem';
 export { default as Resize } from './resize';
 export { default as SlidePane } from './slidePane';
 export { default as SpreadSheet } from './spreadSheet';
