@@ -81,8 +81,8 @@ export default () => {
         },
     ];
 
-    const onSubmit = (values: Data, record: number) => {
-        dataSource.splice(record, 0, { ...values, key: new Date() + '' });
+    const onSubmit = (values: Data) => {
+        dataSource.splice(index, 0, { ...values, key: new Date() + '' });
         setDataSource([...dataSource]);
 
         changeVisible();
@@ -97,7 +97,6 @@ export default () => {
                 title="advanceModalForm"
                 visible={visible}
                 onCancel={changeVisible}
-                record={index}
                 onSubmit={onSubmit}
             />
         </>
