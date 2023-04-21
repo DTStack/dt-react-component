@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Resize from '../resize';
 import './style.scss';
 
-export interface EllipsisTextProps extends AbstractTooltipProps {
+export interface IEllipsisTextProps extends AbstractTooltipProps {
     /**
      * 文本内容
      */
@@ -35,7 +35,7 @@ export interface NewHTMLElement extends HTMLElement {
 
 const DEFAULT_MAX_WIDTH = 120;
 
-const EllipsisText = (props: EllipsisTextProps) => {
+const EllipsisText = (props: IEllipsisTextProps) => {
     const { value, title = value, className, maxWidth, ...otherProps } = props;
 
     const ellipsisRef = useRef<HTMLSpanElement>(null);
