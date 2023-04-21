@@ -14,33 +14,15 @@ demo:
 
 ## 示例
 
-<code src="./demos/basic.tsx" title="基础使用" description="传递参数prefix和loadingTitle，同时自定义样式" compact="true"></code>
+<code src="./demos/basic.tsx" title="基础使用" description="传递参数 loadingTitle，同时自定义样式" compact="true"></code>
 <code src="./demos/default.tsx" title="默认值" description="参数全部不传，使用默认值" compact="true"></code>
-<code src="./demos/prefix.tsx" title="Prefix" compact="true"></code>
-<code src="./demos/loadingTitle.tsx" title="loadingTitle" compact="true"></code>
-
-```jsx
-/**
- * compact: "true"
- */
-import React from 'react';
-import { GlobalLoading } from 'dt-react-component';
-
-export default () => {
-    return (
-        <div style={{ width: '100%', height: 300 }}>
-            <GlobalLoading prefix="DtStack" loadingTitle="BatchWorks · 离线开发" />
-        </div>
-    );
-};
-```
 
 ## API
 
 | 参数             | 说明                   | 类型     | 默认值               |
 | ---------------- | ---------------------- | -------- | -------------------- |
-| prefix           | 应用前缀               | `string` | -                    |
 | loadingTitle     | 应用名称               | `string` | 应用加载中，请等候～ |
 | mainBackground   | 整体背景色             | `string` | `#F2F7FA`            |
 | titleColor       | 文案字体颜色           | `string` | `#3D446E`            |
 | circleBackground | 等待动画 circle 背景色 | `string` | `#1D78FF`            |
+| className        | 设置组件 className     | `string` | -                    |
