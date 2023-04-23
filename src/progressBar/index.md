@@ -17,6 +17,7 @@ demo:
 ```jsx
 /**
  * iframe: "true"
+ * title: "基础使用"
  */
 import React from 'react';
 import { ProgressBar } from 'dt-react-component';
