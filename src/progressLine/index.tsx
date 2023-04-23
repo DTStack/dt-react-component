@@ -5,7 +5,7 @@ import './style.scss';
 
 interface IProgressLineProps {
     // 顶部左侧的内容
-    title?: string | React.ReactNode;
+    title?: React.ReactNode;
     // 顶部右侧的百分比，需要带上 %
     percent?: string;
     // 进度条的颜色
