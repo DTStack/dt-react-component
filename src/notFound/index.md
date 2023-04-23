@@ -15,6 +15,9 @@ demo:
 ## 示例
 
 ```jsx
+/**
+ * title: "基础使用"
+ */
 import React from 'react';
 import { NotFound } from 'dt-react-component';
 
