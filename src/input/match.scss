@@ -1,8 +1,26 @@
 .dtc-input-match {
+    &-items {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
     &-suffixItem {
         cursor: pointer;
+        transition: color 0.15s;
+        color: #B1B4C5;
+        outline: 1px solid transparent;
+        outline-offset: -1px;
+        &:hover {
+            color: #1D78FF;
+        }
+        &:active,
+        &:focus {
+            color: #005CE6;
+        }
         &__active {
-            border: 1px solid rgb(36, 145, 247);
+            color: #1D78FF;
+            outline-color: #1D78FF;
+            border-radius: 2px;
         }
     }
 }
