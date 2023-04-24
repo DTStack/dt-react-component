@@ -1,36 +1,25 @@
-import React from 'react';
-export interface SwitchWindowProps {
-    onSwitch?: (evt) => void;
-    style?: React.CSSProperties;
-    children?: React.ReactNode;
+import { useEffect } from 'react';
+export interface ISwitchWindowProps {
+    onSwitch?: (evt: FocusEvent) => void;
 }
-/**
- * 窗口切换事件监听，
- * 用法：
- * <SwitchWindow onSwitch={}></SwitchWindow>
- */
-class SwitchWindow extends React.Component<SwitchWindowProps, any> {
-    componentDidMount() {
-        this.initEvent();
-    }
 
-    listener = (e: any) => {
-        const { onSwitch } = this.props;
+const useWindowSwitchListener = ({ onSwitch }: ISwitchWindowProps) => {
+    useEffect(() => {
+        handleAddListener();
+        return () => {
+            handleRemoveListener();
+        };
+    }, []);
+    const listener = (e: FocusEvent) => {
         console.log('switch window is focusing!', window.location);
-        if (onSwitch) onSwitch(e);
+        onSwitch?.(e);
     };
-
-    componentWillUnmount() {
-        window.removeEventListener('focus', this.listener);
-    }
-
-    initEvent = () => {
-        window.addEventListener('focus', this.listener);
+    const handleAddListener = () => {
+        window.addEventListener('focus', listener);
     };
+    const handleRemoveListener = () => {
+        window.removeEventListener('focus', listener);
+    };
+};
 
-    render() {
-        return <React.Fragment>{this.props.children}</React.Fragment>;
-    }
-}
-
-export default SwitchWindow;
+export default useWindowSwitchListener;

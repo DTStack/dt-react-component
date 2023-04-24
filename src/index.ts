@@ -22,5 +22,5 @@ export { default as Resize } from './resize';
 export { default as SlidePane } from './slidePane';
 export { default as SpreadSheet } from './spreadSheet';
 export { default as StatusTag } from './statusTag';
-export { default as SwitchWindow } from './switchWindow';
+export { default as useWindowSwitchListener } from './switchWindow';
 export { default as useCookieListener } from './cookies';
