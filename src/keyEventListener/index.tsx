@@ -1,36 +1,49 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import KeyCombiner from './listener';
 
-export interface KeyEventListenerProps {
-    onKeyDown?: (e: MouseEvent) => void;
-    onKeyUp?: (e: MouseEvent) => void;
+export interface IKeyEventListenerProps {
+    onKeyDown?: (e: KeyboardEvent) => void;
+    onKeyUp?: (e: KeyboardEvent) => void;
     children?: React.ReactNode;
 }
+interface CompoundedComponent extends React.ForwardRefExoticComponent<IKeyEventListenerProps> {
+    KeyCombiner: typeof KeyCombiner;
+}
 
-export default class KeyEventListener extends React.Component<KeyEventListenerProps, any> {
-    static KeyCombiner = KeyCombiner;
-    componentDidMount() {
-        addEventListener('keydown', this.bindEvent as any, false);
-        addEventListener('keyup', this.bindEvent as any, false);
-    }
+const InternalKeyEventListener = ({ onKeyDown, onKeyUp, children }: IKeyEventListenerProps) => {
+    useEffect(() => {
+        handleAddEventListener();
+        return () => {
+            handleRemoveEventListener();
+        };
+    }, []);
 
-    componentWillUnmount() {
-        removeEventListener('keydown', this.bindEvent as any, false);
-        removeEventListener('keyup', this.bindEvent as any, false);
-    }
-
-    bindEvent = (target: MouseEvent) => {
-        const { onKeyDown, onKeyUp } = this.props;
-        const isKeyDown = target.type === 'keydown';
-
-        if (isKeyDown && onKeyDown) {
-            onKeyDown(target);
-        } else if (!isKeyDown && onKeyUp) {
-            onKeyUp(target);
-        }
+    const handleAddEventListener = () => {
+        addEventListener('keydown', bindEvent, false);
+        addEventListener('keyup', bindEvent, false);
+    };
+    const handleRemoveEventListener = () => {
+        removeEventListener('keydown', bindEvent, false);
+        removeEventListener('keyup', bindEvent, false);
     };
 
-    render() {
-        return this.props.children;
-    }
-}
+    const bindEvent = useCallback(
+        (target: KeyboardEvent) => {
+            const isKeyDown = target.type === 'keydown';
+            if (isKeyDown) {
+                onKeyDown?.(target);
+            } else {
+                onKeyUp?.(target);
+            }
+        },
+        [onKeyDown, onKeyUp]
+    );
+
+    return children;
+};
+
+const KeyEventListener = InternalKeyEventListener as CompoundedComponent;
+
+KeyEventListener.KeyCombiner = KeyCombiner;
+
+export default KeyEventListener;

@@ -1,11 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test KeyCombiner suite snapshot match 1`] = `
-<span
-  data-testid="test_keyCombiner"
->
-  <div>
-    command+shift+f
-  </div>
-</span>
+<DocumentFragment>
+  <span>
+    <div>
+      command+shift+f
+    </div>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`test KeyEventListener suite snapshot match 1`] = `
+<DocumentFragment>
+  任意键盘监听
+</DocumentFragment>
 `;

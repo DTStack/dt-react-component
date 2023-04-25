@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`test Fullscreen should default render correctly 1`] = `
-<span
-  data-testid="test_keyCombiner"
->
+<span>
   <button
     class="ant-btn ant-btn-default"
     type="button"
