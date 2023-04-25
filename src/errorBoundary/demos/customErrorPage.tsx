@@ -12,6 +12,7 @@ const ThrowError = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                paddingTop: 60,
             }}
         >
             <button
@@ -19,8 +20,8 @@ const ThrowError = () => {
                     border: 'none',
                     backgroundColor: '#1890ff',
                     cursor: 'pointer',
-                    height: '32px',
-                    borderRadius: '4px',
+                    height: 32,
+                    borderRadius: 4,
                 }}
                 onClick={() => setCount((count) => count + 1)}
             >
