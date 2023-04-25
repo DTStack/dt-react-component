@@ -1,24 +1,24 @@
-import { useEffect } from 'react';
-export interface ISwitchWindowProps {
-    onSwitch?: (evt: FocusEvent) => void;
-}
+import { useCallback, useEffect } from 'react';
 
-const useWindowSwitchListener = ({ onSwitch }: ISwitchWindowProps) => {
+const useWindowSwitchListener = (onSwitch: (evt: FocusEvent) => void) => {
     useEffect(() => {
-        handleAddListener();
+        const eventListener = (e: FocusEvent) => listener(e);
+        handleAddListener(eventListener);
         return () => {
-            handleRemoveListener();
+            handleRemoveListener(eventListener);
         };
     }, []);
-    const listener = (e: FocusEvent) => {
-        console.log('switch window is focusing!', window.location);
-        onSwitch?.(e);
+    const listener = useCallback(
+        (e: FocusEvent) => {
+            return onSwitch(e);
+        },
+        [onSwitch]
+    );
+    const handleAddListener = (eventListener: (e: FocusEvent) => void) => {
+        window.addEventListener('focus', eventListener);
     };
-    const handleAddListener = () => {
-        window.addEventListener('focus', listener);
-    };
-    const handleRemoveListener = () => {
-        window.removeEventListener('focus', listener);
+    const handleRemoveListener = (eventListener: (e: FocusEvent) => void) => {
+        window.removeEventListener('focus', eventListener);
     };
 };
 

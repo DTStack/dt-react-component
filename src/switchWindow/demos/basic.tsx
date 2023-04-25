@@ -7,7 +7,9 @@ export default () => {
         setMsg('window listener');
         console.log('window listener');
     };
-    useWindowSwitchListener({ onSwitch: handleSwitch });
+    useWindowSwitchListener(() => {
+        handleSwitch();
+    });
 
     return (
         <div
