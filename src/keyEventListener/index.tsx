@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import KeyCombiner from './listener';
 
 export interface IKeyEventListenerProps {
@@ -26,14 +26,19 @@ const InternalKeyEventListener = ({ onKeyDown, onKeyUp, children }: IKeyEventLis
         removeEventListener('keydown', bindEvent, false);
         removeEventListener('keyup', bindEvent, false);
     };
-    const bindEvent = (target: KeyboardEvent) => {
-        const isKeyDown = target.type === 'keydown';
-        if (isKeyDown) {
-            onKeyDown?.(target);
-        } else {
-            onKeyUp?.(target);
-        }
-    };
+
+    const bindEvent = useCallback(
+        (target: KeyboardEvent) => {
+            const isKeyDown = target.type === 'keydown';
+            if (isKeyDown) {
+                onKeyDown?.(target);
+            } else {
+                onKeyUp?.(target);
+            }
+        },
+        [onKeyDown, onKeyUp]
+    );
+
     return children;
 };
 
