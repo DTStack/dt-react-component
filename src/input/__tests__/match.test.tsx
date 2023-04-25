@@ -11,23 +11,26 @@ describe('Test Input.Match component', () => {
     it('Should support searchType', () => {
         const fn = jest.fn();
         const { rerender, container } = render(<Match onTypeChange={fn} />);
-        const dom = container.querySelector('img[alt="front"]')!;
-        expect(dom).not.toBeNull();
+        const elements = container.querySelectorAll('svg.dtc-input-match-suffixItem')!;
+        expect(elements).toHaveLength(4);
 
-        fireEvent.click(dom);
+        fireEvent.click(elements[0]);
 
-        expect(fn).toBeCalledWith('front');
+        expect(fn).toBeCalledWith('caseSensitive');
 
-        rerender(<Match searchType="front" onTypeChange={fn} />);
-        fireEvent.click(container.querySelector('img[alt="front"]')!);
+        rerender(<Match searchType="caseSensitive" onTypeChange={fn} />);
+        expect(container.querySelectorAll('svg.dtc-input-match-suffixItem')!).toHaveLength(4);
+        expect(container.querySelectorAll('svg.dtc-input-match-suffixItem')[0].classList).toContain(
+            'dtc-input-match-suffixItem__active'
+        );
+        fireEvent.click(container.querySelectorAll('svg.dtc-input-match-suffixItem')[0]);
         expect(fn).toBeCalledWith('fuzzy');
     });
 
     it('Should support filterOptions', () => {
         const { container } = render(<Match filterOptions={['tail']} />);
 
-        expect(container.querySelector('img[alt="front"]')).toBeNull();
-        expect(container.querySelector('img[alt="tail"]')).not.toBeNull();
+        expect(container.querySelectorAll('svg.dtc-input-match-suffixItem')!).toHaveLength(1);
     });
 
     it('Should support onSearch and onPressEnter', () => {
