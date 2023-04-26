@@ -2,8 +2,8 @@ import React from 'react';
 import { Tooltip, message } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
 import useClippy from 'use-clippy';
-import './style.scss';
 import classNames from 'classnames';
+import './style.scss';
 
 export interface ICopyButtonProps {
     text: string;

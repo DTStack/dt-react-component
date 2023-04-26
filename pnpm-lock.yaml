@@ -9,6 +9,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/react': ^13.4.0
   '@testing-library/react-hooks': ^8.0.1
+  '@testing-library/user-event': ^14.4.3
   '@typed-mxgraph/typed-mxgraph': ^1.0.7
   '@types/jest': ^29.2.3
   '@types/lodash': ^4.14.191
@@ -68,6 +69,7 @@ devDependencies:
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_react-dom@18.2.0+react@18.2.0
   '@testing-library/react-hooks': 8.0.1_a293e27d6b4aabb48b28366e2db4bdd8
+  '@testing-library/user-event': 14.4.3
   '@typed-mxgraph/typed-mxgraph': 1.0.7
   '@types/jest': 29.2.4
   '@types/lodash': 4.14.191
@@ -2928,7 +2930,6 @@ packages:
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
-    dev: false
 
   /@tootallnate/once/2.0.0:
     resolution: {integrity: sha512-XCuKFP5PS55gnMVu3dty8KPatLqUoy/ZYzDzAGCQ8JNFCkLXzmI7vNHCR+XpbZaMWQK/vQubr7PkYq8g470J/A==}
