@@ -110,6 +110,7 @@
         "highlight.js": "^10.5.0",
         "lodash": "^4.17.21",
         "mxgraph": "^4.2.2",
+        "rc-drawer": "~5.1.0",
         "rc-virtual-list": "^3.4.13",
         "showdown": "^1.9.0"
     },

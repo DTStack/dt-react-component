@@ -26,3 +26,5 @@ exports[`test SlidePane  should render correct 1`] = `
   </div>
 </div>
 `;
+
+exports[`test SlidePane  snapshot match 1`] = `<DocumentFragment />`;

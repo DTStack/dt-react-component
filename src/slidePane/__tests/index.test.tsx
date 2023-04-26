@@ -1,6 +1,6 @@
 import React from 'react';
 import SlidePane from '../index';
-import { render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('test SlidePane ', () => {
@@ -13,24 +13,38 @@ describe('test SlidePane ', () => {
         visible: true,
         style: { color: 'red', background: '#FF7C12' },
     };
+    test('snapshot match', () => {
+        const { asFragment } = render(
+            <SlidePane visible={expectValues.visible}>{expectValues.children}</SlidePane>
+        );
+        expect(asFragment()).toMatchSnapshot();
+    });
     test('should render correct', () => {
-        const { container, getByTestId } = render(
+        render(
             <SlidePane visible={expectValues.visible} style={expectValues.style}>
                 {expectValues.children}
             </SlidePane>
         );
-        expect(container.firstChild).toHaveStyle(expectValues.style);
-        const oDiv = getByTestId('slidepane_container');
-        expect(oDiv).not.toBeNull();
-        expect(oDiv).toBeVisible();
-        expect(oDiv.innerHTML).toEqual('<div><h1>success</h1></div>');
-        expect(container).toMatchSnapshot();
+        const wrapper = document.getElementsByClassName('dtc-slide-pane');
+        expect(wrapper?.[0]).toHaveStyle(expectValues.style);
+        expect(screen.getByRole('heading')).toHaveTextContent('success');
     });
     test('should be invisible', () => {
-        const { getByTestId } = render(
+        const { container } = render(
             <SlidePane visible={false}>{expectValues.children}</SlidePane>
         );
-        const oDiv = getByTestId('slidepane_container');
-        expect(oDiv).not.toBeVisible();
+        console.log(container.firstChild);
+        expect(container).not.toHaveClass();
+    });
+    test('should callback to be called', () => {
+        const fn = jest.fn();
+        const { getByRole } = render(
+            <SlidePane visible onClose={fn}>
+                {expectValues.children}
+            </SlidePane>
+        );
+        const oImg = getByRole('img');
+        fireEvent.click(oImg);
+        expect(fn).toHaveBeenCalledTimes(1);
     });
 });
