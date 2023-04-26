@@ -33,7 +33,6 @@ describe('test SlidePane ', () => {
         const { container } = render(
             <SlidePane visible={false}>{expectValues.children}</SlidePane>
         );
-        console.log(container.firstChild);
         expect(container).not.toHaveClass();
     });
     test('should callback to be called', () => {
