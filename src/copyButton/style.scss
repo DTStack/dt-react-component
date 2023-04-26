@@ -1,0 +1,7 @@
+.dtc-copy-button {
+    display: inline-block;
+    cursor: pointer;
+    &__default-icon:hover {
+        color: #58ABF9;
+    }
+}

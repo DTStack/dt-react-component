@@ -46,6 +46,7 @@ specifiers:
   stylelint: ^14.9.1
   ts-jest: ^29.0.3
   typescript: ~4.5.2
+  use-clippy: ^1.0.9
 
 dependencies:
   '@ant-design/icons': 4.8.0_react-dom@18.2.0+react@18.2.0
@@ -58,6 +59,7 @@ dependencies:
   mxgraph: 4.2.2
   rc-virtual-list: 3.4.13_react-dom@18.2.0+react@18.2.0
   showdown: 1.9.1
+  use-clippy: 1.0.9_react@18.2.0
 
 devDependencies:
   '@commitlint/cli': 17.3.0
@@ -16229,6 +16231,14 @@ packages:
       punycode: 1.3.2
       querystring: 0.2.0
     dev: true
+
+  /use-clippy/1.0.9_react@18.2.0:
+    resolution: {integrity: sha512-B/zuIpRwonntyMsTz01hY4c2GF291tl+zN+qK1+A2xlAVxP27I9segLx6GquWtA3vI6FELaxBBmS5F2xUvu8uw==}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /use-isomorphic-layout-effect/1.1.2_d8f62834e1575261de4cbae3f1eb8d7f:
     resolution: {integrity: sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==}
