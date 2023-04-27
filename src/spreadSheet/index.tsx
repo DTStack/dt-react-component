@@ -19,12 +19,12 @@ export interface ISpreadSheetProps {
 const SpreadSheet: React.FC<ISpreadSheetProps> = ({ data, columns = [], className, options }) => {
     const tableRef = useRef<any>(null);
     const copyUtils = new CopyUtils();
-    const _timer = useRef<NodeJS.Timeout>();
+    const _timer = useRef<number>();
 
     useEffect(() => {
         if (tableRef.current) {
             removeRenderClock();
-            _timer.current = setTimeout(() => {
+            _timer.current = window.setTimeout(() => {
                 tableRef.current.hotInstance.render();
             }, 100);
         }
