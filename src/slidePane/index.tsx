@@ -18,9 +18,9 @@ const SlidePane = ({
     bodyStyle,
     children,
     onClose,
-}: PropsWithChildren<{}> & ISlidePaneProps) => {
+}: PropsWithChildren<ISlidePaneProps>) => {
     const slidePrefixCls = 'dtc-slide-pane';
-    let rootStyle: any = {
+    let rootStyle: React.CSSProperties = {
         top: 0,
         right: 0,
         transform: visible ? undefined : 'translate3d(150%, 0, 0)',
