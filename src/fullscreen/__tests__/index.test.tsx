@@ -41,7 +41,6 @@ describe('test Fullscreen', () => {
         };
         render(<Fullscreen iconStyle={iconStyle} />);
         const img = screen.getByRole('img');
-        screen.debug(img);
         expect(img).toHaveStyle(`width: 12px; height: 12px; margin-right: 5px;`);
     });
     test('button fireEvent correct', () => {
