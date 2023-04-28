@@ -2,9 +2,9 @@ import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
-import CopyButton from '../';
+import Copy from '..';
 
-describe('test CopyButton', () => {
+describe('test Copy', () => {
     const mockText = 'This is a mock text';
 
     afterEach(() => {
@@ -14,9 +14,7 @@ describe('test CopyButton', () => {
     it('should copy text to clipboard on click', () => {
         const user = userEvent.setup({ writeToClipboard: true });
         const mockCopy = jest.fn();
-        const { container } = render(
-            <CopyButton text={mockText} onCopy={(text) => mockCopy(text)} />
-        );
+        const { container } = render(<Copy text={mockText} onCopy={(text) => mockCopy(text)} />);
         const button = container.querySelector('.dtc-copy-button');
 
         expect(button).toBeInTheDocument();
@@ -31,7 +29,7 @@ describe('test CopyButton', () => {
     it('should render with custom button', () => {
         const user = userEvent.setup({ writeToClipboard: true });
         const { getByText } = render(
-            <CopyButton text={mockText} button={<button>测试复制文本</button>} hideTooltip />
+            <Copy text={mockText} button={<button>测试复制文本</button>} hideTooltip />
         );
         const customButton = getByText('测试复制文本');
 

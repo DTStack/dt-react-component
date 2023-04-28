@@ -5,7 +5,7 @@ import useClippy from 'use-clippy';
 import classNames from 'classnames';
 import './style.scss';
 
-export interface ICopyButtonProps {
+export interface ICopyProps {
     text: string;
     title?: React.ReactNode;
     button?: React.ReactNode;
@@ -15,9 +15,9 @@ export interface ICopyButtonProps {
     onCopy?: (text: string) => void;
 }
 
-const CopyButton: React.FC<ICopyButtonProps> = (props) => {
+const Copy: React.FC<ICopyProps> = (props) => {
     const {
-        button = <CopyOutlined className="dtc-copy-button__default-icon" />,
+        button = <CopyOutlined className="dtc-copy__default-icon" />,
         text,
         title = '复制',
         hideTooltip,
@@ -34,7 +34,7 @@ const CopyButton: React.FC<ICopyButtonProps> = (props) => {
 
     const renderCopyButton = () => (
         <span
-            className={classNames(['dtc-copy-button', className])}
+            className={classNames(['dtc-copy', className])}
             style={style}
             onClick={() => handleCopy()}
         >
@@ -51,4 +51,4 @@ const CopyButton: React.FC<ICopyButtonProps> = (props) => {
     );
 };
 
-export default CopyButton;
+export default Copy;

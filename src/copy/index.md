@@ -1,12 +1,12 @@
 ---
-title: CopyButton 复制文本
+title: Copy 复制文本
 group: 组件
 toc: content
 demo:
     cols: 1
 ---
 
-# CopyButton 复制文本
+# Copy 复制文本
 
 ## 何时使用
 

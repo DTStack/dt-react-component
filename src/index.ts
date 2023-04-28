@@ -1,6 +1,6 @@
 export { default as BlockHeader } from './blockHeader';
 export { default as ContextMenu } from './contextMenu';
-export { default as CopyButton } from './copyButton';
+export { default as Copy } from './copy';
 export { default as CollapsibleActionItems } from './collapsibleActionItems';
 export { default as Dropdown } from './dropdown';
 export { default as EllipsisText } from './ellipsisText';
