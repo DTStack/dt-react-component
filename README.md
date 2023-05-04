@@ -1,4 +1,8 @@
-# dt-react-component
+<h1 align="center">dt-react-component</h1>
+
+<div align="center">
+
+React UI component library based on [Ant Design](https://github.com/ant-design/ant-design)
 
 [![NPM version][npm-image]][npm-url] [![NPM downloads][download-img]][download-url]
 
@@ -7,129 +11,79 @@
 [download-img]: https://img.shields.io/npm/dm/dt-react-component.svg?style=flat
 [download-url]: https://www.npmjs.com/package/dt-react-component
 
+</div>
+
 English | [简体中文](./README-zh_CN.md)
 
 ## Docs
 
+You can view [**online document**](https://dtstack.github.io/dt-react-component/)
+
+or view legacy documents following:
+
 -   [v3.x](https://dtstack.github.io/dt-react-component/)
 -   [v2.x](https://liuxy0551.github.io/dt-react-component/)
 
-React UI component library based on [ant-design](https://github.com/ant-design/ant-design). Mainly used for middle and back-end products. Our goal is to **meet more specific and more specific business scenario components**. Of course, we also have excellent business components based on native javascript, such as **ContextMenu**, **KeyEventListener** and so on.
+React UI component library based on [Ant Design](https://github.com/ant-design/ant-design). Mainly used for middle and back-end products. Our goal is to **meet more specific and more specific business scenario components**. Of course, we also have excellent business components based on native javascript, such as **ContextMenu**, **KeyEventListener** and so on.
 
 ## When to use
 
 -   When you find that the basic components provided by other component libraries do not meet the current business scenario, and you need to implement functions based on the basic components, you can use dt-react-component to solve the problem.
 -   When the business is complex, more and more business components are deposited. In order to better manage the components and reduce the redundancy of the code, you can use dt-react-component. Of course, we welcome PR. We will review and merge common business scenario components in a timely manner.
 
-## How to contribute
-
-[CONTRIBUTING](./CONTRIBUTING.md)
-
 ## Install
 
-```js
-// use npm
+```shell
+# use npm
 npm install dt-react-component
 
-// use yarn
+# use yarn
 yarn add dt-react-component
+
+# use pnpm
+pnpm install dt-react-component
 ```
 
 ## Usage
 
-```js
-import { StatusTag, GoBack } from 'dt-react-component';
-const App = () => (
-    <>
-        <StatusTag type="success">已完成</StatusTag>
-        <GoBack url="/api/manage" />
-    </>
-);
-```
-
-And import style manually:
-
-```js
-import 'dt-react-component/lib/style/index.css';
-
-// or
-import 'dt-react-component/lib/style/index.scss';
+```jsx
+import React from 'react';
+import { BlockHeader } from 'dt-react-component';
+const App = () => <BlockHeader title="分类标题" showBackground />;
 ```
 
 ### Load on demand
 
-The following two methods can only load the components used.
-
--   We strongly recommend using the [babel-plugin-treasure](https://github.com/DTStack/babel-plugin-treasure) plugin that perfectly adapts to dt-react-component.
-
-```js
-// .babelrc or babel-loader option
-"plugins": [
-    [
-      "treasure",
-      {
-        "libraryName": "dt-react-component",
-        "libraryDirectory": "lib",
-        "style": "css" // `style: true` Will load the scss file
-      }
-    ]
-  ]
-
-```
-
-Then just import the module from dt-react-component, no need to import style separately. It is equivalent to the manual introduction below.
-
-```js
-// babel-plugin-treasure will help you load JS and CSS
-import { ContextMenu } from 'dt-react-component';
-```
-
-See more [babel-plugin-treasure](https://github.com/DTStack/babel-plugin-treasure).
-
--   Manual introduction
-
-```js
-import MarkdownRender from 'dt-react-component/lib/markdownRender'; // Load JS
-import 'dt-react-component/lib/markdownRender/style/css'; // Load CSS
-// import 'dt-react-component/lib/markdownRender/style'; // Load SCSS
-```
+We supports tree shaking of ES modules, so using `import { BlockHeader } from 'dt-react-component';` would drop js code you didn't use.
 
 ### TypeScript
 
 dt-react-component is written in TypeScript with complete definitions, So you will have a better smart reminder experience.
 
-### Preview address
+## How to contribute
 
-You can view the latest components and documents at this address
-
-[https://dtstack.github.io/dt-react-component/](https://dtstack.github.io/dt-react-component/)
+[CONTRIBUTING](./CONTRIBUTING.md)
 
 ## Development
 
 clone locally:
 
-```js
+```bash
 $ git clone git@github.com:DTStack/dt-react-component.git
 $ cd dt-react-component
 $ npm install
-$ npm run storybook
+$ npm run dev
 ```
 
-Open your browser and visit [http://127.0.0.1:9001](http://127.0.0.1:9001)，We manage components based on storybook. see more at [Storybook](https://storybook.js.org/).
+Open your browser and visit [http://127.0.0.1:8000](http://127.0.0.1:8000)，We manage components based on dumi. see more at [dumi](https://d.umijs.org/).
 
 ## Publish
 
 ```bash
-yarn compile
+yarn build
 yarn release -r 3.0.1
 npm publish --registry https://registry.npmjs.org/
 ```
-
-## Roadmap
-
--   We will support and improve more components
--   Internationalized language support
--   Support theme customization
 
 ## Contributing
 

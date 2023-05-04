@@ -12,25 +12,16 @@ group: 研发
 [download-img]: https://img.shields.io/npm/dm/dt-react-component.svg?style=flat
 [download-url]: https://www.npmjs.com/package/dt-react-component
 
-English | [简体中文](./README-zh_CN.md)
+## 文档
 
-## Docs
+基于 [Ant Design](https://github.com/ant-design/ant-design) 的 React UI 组件库。 主要用于中，后台产品。我们的目标是**满足更具体的业务场景组件**。 当然，我们也有基于原生 JavaScript 实现的业务组件，例如 **EllipsisText**，**KeyEventListener** 等。
 
--   [v3.x](https://dtstack.github.io/dt-react-component/)
--   [v2.x](https://liuxy0551.github.io/dt-react-component/)
+## 何时使用
 
-React UI component library based on [ant-design](https://github.com/ant-design/ant-design). Mainly used for middle and back-end products. Our goal is to **meet more specific and more specific business scenario components**. Of course, we also have excellent business components based on native javascript, such as **ContextMenu**, **KeyEventListener** and so on.
+-   当发现其他组件库提供的基本组件不符合当前的业务场景，并且需要基于这些基本组件实现功能时，可以考虑使用 dt-react-component 解决问题。
+-   当业务复杂时，将沉淀越来越多的业务组件。 为了更好地管理组件并减少代码的冗余，可以使用 dt-react-component。 当然，我们欢迎 PR。 我们也将及时审查和合并常见的业务场景组件。
 
-## When to use
-
--   When you find that the basic components provided by other component libraries do not meet the current business scenario, and you need to implement functions based on the basic components, you can use dt-react-component to solve the problem.
--   When the business is complex, more and more business components are deposited. In order to better manage the components and reduce the redundancy of the code, you can use dt-react-component. Of course, we welcome PR. We will review and merge common business scenario components in a timely manner.
-
-## How to contribute
-
-[CONTRIBUTING](./CONTRIBUTING.md)
-
-## Install
+## 安装
 
 ```js
 // use npm
@@ -38,110 +29,68 @@ npm install dt-react-component
 
 // use yarn
 yarn add dt-react-component
+
+// use pnpm
+pnpm install dt-react-component
 ```
 
-## Usage
+## 使用
+
+:::info
+在开始之前，请确保已经熟悉 [Ant Design 的上手方式](https://4x.ant.design/docs/react/getting-started-cn/)，官方默认以下使用方式是在 Ant Design 的基础上进行使用
+:::
 
 ```js
-import { StatusTag, GoBack } from 'dt-react-component';
-const App = () => (
-    <>
-        <StatusTag type="success">已完成</StatusTag>
-        <GoBack url="/api/manage" />
-    </>
-);
+import React from 'react';
+import { BlockHeader } from 'dt-react-component';
+const App = () => <BlockHeader title="分类标题" showBackground />;
 ```
 
-And import style manually:
+渲染如下：
 
-```js
-import 'dt-react-component/lib/style/index.css';
-
-// or
-import 'dt-react-component/lib/style/index.scss';
-```
-
-### Load on demand
-
-The following two methods can only load the components used.
-
--   We strongly recommend using the [babel-plugin-treasure](https://github.com/DTStack/babel-plugin-treasure) plugin that perfectly adapts to dt-react-component.
-
-```js
-// .babelrc or babel-loader option
-"plugins": [
-    [
-      "treasure",
-      {
-        "libraryName": "dt-react-component",
-        "libraryDirectory": "lib",
-        "style": "css" // `style: true` Will load the scss file
-      }
-    ]
-  ]
-
-```
-
-Then just import the module from dt-react-component, no need to import style separately. It is equivalent to the manual introduction below.
-
-```js
-// babel-plugin-treasure will help you load JS and CSS
-import { ContextMenu } from 'dt-react-component';
-```
-
-See more [babel-plugin-treasure](https://github.com/DTStack/babel-plugin-treasure).
-
--   Manual introduction
-
-```js
-import MarkdownRender from 'dt-react-component/lib/markdownRender'; // Load JS
-import 'dt-react-component/lib/markdownRender/style/css'; // Load CSS
-// import 'dt-react-component/lib/markdownRender/style'; // Load SCSS
+```jsx
+/**
+ * inline: true
+ */
+import React from 'react';
+import { BlockHeader } from 'dt-react-component';
+export default () => <BlockHeader title="分类标题" showBackground />;
 ```
 
 ### TypeScript
 
-dt-react-component is written in TypeScript with complete definitions, So you will have a better smart reminder experience.
+dt-react-component 完全基于 TypeScript 编写，具有完整的类型定义，因此您将拥有更好的体验。
 
-### Preview address
+### 开发
 
-You can view the latest components and documents at this address
-
-[https://dtstack.github.io/dt-react-component/](https://dtstack.github.io/dt-react-component/)
-
-## Development
-
-clone locally:
+本地克隆:
 
 ```js
 $ git clone git@github.com:DTStack/dt-react-component.git
 $ cd dt-react-component
 $ npm install
-$ npm run storybook
+$ npm run dev
 ```
 
-Open your browser and visit [http://127.0.0.1:9001](http://127.0.0.1:9001)，We manage components based on storybook. see more at [Storybook](https://storybook.js.org/).
+打开浏览器并访问 [http://127.0.0.1:8000](http://127.0.0.1:8000)，我们基于 dumi 管理组件。 更多信息请访问 [dumi](https://d.umijs.org/).
 
-## Publish
+## 发布
+
+### 发布组件库
 
 ```bash
-yarn compile
+yarn build
 yarn release -r 3.0.1
 npm publish --registry https://registry.npmjs.org/
 ```
 
-## Roadmap
+### 发布组件库 website
 
--   We will support and improve more components
--   Internationalized language support
--   Support theme customization
+```bash
+yarn docs:build
+npm deploy
+```
 
-## Contributing
+## 按需加载
 
-We welcome all contributions. You can submit any ideas as [pull requests](https://github.com/DTStack/dt-react-component/pulls) or as [issues](https://github.com/DTStack/dt-react-component/issues).
-
-Finally, thank all our code [contributors](https://github.com/DTStack/dt-react-component/graphs/contributors)
-
-## License
-
-ISC
+默认支持基于 ES modules 的 tree shaking，直接引入 `import { BlockHeader } from 'dt-react-component';` 就会有按需加载的效果。
