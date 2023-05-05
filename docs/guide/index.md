@@ -40,13 +40,17 @@ pnpm install dt-react-component
 在开始之前，请确保已经熟悉 [Ant Design 的上手方式](https://4x.ant.design/docs/react/getting-started-cn/)，官方默认以下使用方式是在 Ant Design 的基础上进行使用
 :::
 
+<div style="display:flex;gap:8px;">
+<div style="flex:1;width: 50%;">
+
 ```js
 import React from 'react';
 import { BlockHeader } from 'dt-react-component';
 const App = () => <BlockHeader title="分类标题" showBackground />;
 ```
 
-渲染如下：
+</div>
+<div style="flex:1;width: 50%;border-radius: 5px;border: 1px solid #ddd;">
 
 ```jsx
 /**
@@ -57,39 +61,12 @@ import { BlockHeader } from 'dt-react-component';
 export default () => <BlockHeader title="分类标题" showBackground />;
 ```
 
+</div>
+</div>
+
 ### TypeScript
 
 dt-react-component 完全基于 TypeScript 编写，具有完整的类型定义，因此您将拥有更好的体验。
-
-### 开发
-
-本地克隆:
-
-```js
-$ git clone git@github.com:DTStack/dt-react-component.git
-$ cd dt-react-component
-$ npm install
-$ npm run dev
-```
-
-打开浏览器并访问 [http://127.0.0.1:8000](http://127.0.0.1:8000)，我们基于 dumi 管理组件。 更多信息请访问 [dumi](https://d.umijs.org/).
-
-## 发布
-
-### 发布组件库
-
-```bash
-yarn build
-yarn release -r 3.0.1
-npm publish --registry https://registry.npmjs.org/
-```
-
-### 发布组件库 website
-
-```bash
-yarn docs:build
-npm deploy
-```
 
 ## 按需加载
 

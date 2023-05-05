@@ -71,8 +71,8 @@ clone locally:
 ```bash
 $ git clone git@github.com:DTStack/dt-react-component.git
 $ cd dt-react-component
-$ npm install
-$ npm run dev
+$ pnpm install
+$ pnpm run dev
 ```
 
 Open your browser and visit [http://127.0.0.1:8000](http://127.0.0.1:8000)，We manage components based on dumi. see more at [dumi](https://d.umijs.org/).
@@ -80,9 +80,16 @@ Open your browser and visit [http://127.0.0.1:8000](http://127.0.0.1:8000)，We 
 ## Publish
 
 ```bash
-yarn build
-yarn release -r 3.0.1
-npm publish --registry https://registry.npmjs.org/
+pnpm build
+pnpm release -r 3.0.1
+pnpm publish --registry https://registry.npmjs.org/
+```
+
+### Publish website
+
+```bash
+pnpm docs:build
+pnpm deploy
 ```
 
 ## Contributing

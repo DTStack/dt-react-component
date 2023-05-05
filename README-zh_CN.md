@@ -71,8 +71,8 @@ dt-react-component 完全基于 TypeScript 编写，具有完整的类型定义�
 ```bash
 git clone git@github.com:DTStack/dt-react-component.git
 cd dt-react-component
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 打开浏览器并访问 [http://127.0.0.1:8000](http://127.0.0.1:8000)，我们基于 dumi 管理组件。 更多信息请访问 [dumi](https://d.umijs.org/).
@@ -80,9 +80,16 @@ npm run dev
 ## 发布
 
 ```bash
-yarn build
-yarn release -r 3.0.1
-npm publish --registry https://registry.npmjs.org/
+pnpm build
+pnpm release -r 3.0.1
+pnpm publish --registry https://registry.npmjs.org/
+```
+
+### 发布站点
+
+```bash
+pnpm docs:build
+pnpm deploy
 ```
 
 ## 贡献
