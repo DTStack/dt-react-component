@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import { Tooltip } from 'antd';
 import { TooltipProps } from 'antd/lib/tooltip';
 import './style.scss';
 
 interface IProgressLineProps {
     // 顶部左侧的内容
-    title?: React.ReactNode;
+    title?: ReactNode;
     // 顶部右侧的百分比，需要带上 %
     percent?: string;
     // 进度条的颜色

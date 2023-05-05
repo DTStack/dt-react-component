@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, ReactNode } from 'react';
 import { Form, Table, type FormListFieldData, type TableProps } from 'antd';
 import classnames from 'classnames';
 import utils from '../utils';
@@ -78,7 +78,7 @@ export interface ColumnType
         record: FormListFieldData,
         namePath: OverrideParameters,
         formInstance?: RcFormInstance
-    ) => React.ReactNode;
+    ) => ReactNode;
 }
 
 const className = 'dtc-form__table';

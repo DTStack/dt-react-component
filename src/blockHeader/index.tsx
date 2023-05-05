@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
@@ -10,13 +10,13 @@ export interface IBlockHeaderProps {
     // 标题
     title: string;
     // 标题前的图标，默认是一个色块
-    beforeTitle?: React.ReactNode;
+    beforeTitle?: ReactNode;
     // 标题后的提示图标或文案
-    afterTitle?: React.ReactNode;
+    afterTitle?: ReactNode;
     // 默认展示为问号的tooltip
-    tooltip?: React.ReactNode;
+    tooltip?: ReactNode;
     // 后缀自定义内容块
-    addonAfter?: React.ReactNode;
+    addonAfter?: ReactNode;
     /**
      * 小标题 font-size: 12px; line-height: 32px
      * 中标题 font-size: 14px; line-height: 40px
@@ -35,7 +35,7 @@ export interface IBlockHeaderProps {
     defaultExpand?: boolean;
     // 展开/收起时的回调
     onChange?: (expand: boolean) => void;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const prefixCls = 'dtc-block-header';
