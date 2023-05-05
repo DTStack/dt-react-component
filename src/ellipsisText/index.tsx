@@ -1,4 +1,11 @@
-import React, { useRef, useState, useLayoutEffect, useCallback, ReactNode } from 'react';
+import React, {
+    useRef,
+    useState,
+    useLayoutEffect,
+    useCallback,
+    ReactNode,
+    CSSProperties,
+} from 'react';
 import { Tooltip } from 'antd';
 import { AbstractTooltipProps, RenderFunction } from 'antd/lib/tooltip';
 import classNames from 'classnames';
@@ -199,7 +206,7 @@ const EllipsisText = (props: IEllipsisTextProps) => {
     };
 
     const renderText = useCallback(() => {
-        const style: React.CSSProperties = {
+        const style: CSSProperties = {
             maxWidth: width,
             cursor,
         };

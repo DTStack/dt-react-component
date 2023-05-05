@@ -1,4 +1,4 @@
-import React, { CSSProperties, PropsWithChildren } from 'react';
+import React, { CSSProperties, PropsWithChildren, ReactNode } from 'react';
 import { Dropdown, Menu, DropdownProps, Popconfirm, PopconfirmProps } from 'antd';
 import './style.scss';
 
@@ -10,7 +10,7 @@ interface IMenuProps {
     /**
      * 菜单栏的标题文案
      */
-    text: React.ReactNode;
+    text: ReactNode;
     /**
      * 菜单栏的样式
      */
@@ -46,7 +46,7 @@ export default function ContextMenu({
 }: PropsWithChildren<IContextMenu>) {
     const menu = (
         <Menu
-            className="dt-contextMenu-menu"
+            className="dtc-contextMenu-menu"
             onClick={(item) => {
                 item.domEvent.stopPropagation();
                 data.find((i) => i.key === item.key)?.cb?.();

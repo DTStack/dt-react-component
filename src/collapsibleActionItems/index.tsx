@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { Button, ButtonProps, Divider, Dropdown, DropDownProps, Menu } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
 
 type ActionItem = {
     key: React.Key;
-    name: React.ReactNode;
+    name: ReactNode;
     disabled?: boolean;
-    render?: () => React.ReactNode;
+    render?: () => ReactNode;
     [propName: string]: any;
 };
 
@@ -14,8 +14,8 @@ interface ICollapsibleActionItems {
     maxCount?: number; // 最多展示数量，超出折叠到下拉菜单中
     actionItems: ActionItem[];
     className?: string;
-    divider?: React.ReactNode; // 分隔符
-    collapseIcon?: React.ReactNode; // 折叠菜单图标
+    divider?: ReactNode; // 分隔符
+    collapseIcon?: ReactNode; // 折叠菜单图标
     dropdownProps?: Partial<DropDownProps>;
     buttonProps?: Partial<ButtonProps>;
     onItemClick?(key: React.Key): void;

@@ -20,7 +20,7 @@ exports[`test contextMenu should match snapshot 1`] = `
         style="opacity: 0;"
       >
         <ul
-          class="ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light dt-contextMenu-menu"
+          class="ant-dropdown-menu ant-dropdown-menu-root ant-dropdown-menu-vertical ant-dropdown-menu-light dtc-contextMenu-menu"
           data-menu-list="true"
           role="menu"
           tabindex="0"

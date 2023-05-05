@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState, ReactNode } from 'react';
 
 export interface IKeyCombinerProps {
     onTrigger?: (evt: any) => void;
     keyMap?: {
         [key: string]: boolean;
     };
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 
 export default ({ onTrigger, keyMap, children }: IKeyCombinerProps) => {

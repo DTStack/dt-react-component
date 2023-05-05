@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, Component } from 'react';
 import { EllipsisText } from 'dt-react-component';
 import { Divider } from 'antd';
 
@@ -18,8 +18,8 @@ const element = (
 
 const useEllipsisText = () => element;
 
-class WithEllipsisText extends React.Component {
-    render(): React.ReactNode {
+class WithEllipsisText extends Component {
+    render(): ReactNode {
         return element;
     }
 }

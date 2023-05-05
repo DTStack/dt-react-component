@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, ReactNode, ForwardRefExoticComponent } from 'react';
 import KeyCombiner from './listener';
 
 export interface IKeyEventListenerProps {
     onKeyDown?: (e: KeyboardEvent) => void;
     onKeyUp?: (e: KeyboardEvent) => void;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
-interface CompoundedComponent extends React.ForwardRefExoticComponent<IKeyEventListenerProps> {
+interface CompoundedComponent extends ForwardRefExoticComponent<IKeyEventListenerProps> {
     KeyCombiner: typeof KeyCombiner;
 }
 

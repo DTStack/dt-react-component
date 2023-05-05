@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, ReactNode } from 'react';
 
 export interface ResizeProps {
     observerEle?: HTMLElement | null;
-    children?: React.ReactNode;
+    children?: ReactNode;
     onResize?: () => void;
 }
 

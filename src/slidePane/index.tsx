@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, CSSProperties, MouseEvent, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 import { assign } from 'lodash';
 import RcDrawer from 'rc-drawer';
@@ -7,9 +7,9 @@ import './style.scss';
 export interface ISlidePaneProps {
     visible: boolean;
     className?: string;
-    style?: React.CSSProperties;
-    bodyStyle?: React.CSSProperties;
-    onClose?: (e: React.MouseEvent | React.KeyboardEvent) => void;
+    style?: CSSProperties;
+    bodyStyle?: CSSProperties;
+    onClose?: (e: MouseEvent | KeyboardEvent) => void;
 }
 const SlidePane = ({
     visible,
@@ -20,7 +20,7 @@ const SlidePane = ({
     onClose,
 }: PropsWithChildren<ISlidePaneProps>) => {
     const slidePrefixCls = 'dtc-slide-pane';
-    let rootStyle: React.CSSProperties = {
+    let rootStyle: CSSProperties = {
         top: 0,
         right: 0,
         transform: visible ? undefined : 'translate3d(150%, 0, 0)',

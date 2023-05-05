@@ -1,5 +1,5 @@
 import { Button } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ReactNode, CSSProperties, HTMLAttributes } from 'react';
 import KeyEventListener from '../keyEventListener';
 import MyIcon from './icon';
 
@@ -24,12 +24,12 @@ interface DocumentWithFullscreen extends Document {
 }
 
 export interface IFullscreenProps
-    extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
+    extends React.DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
     themeDark?: boolean;
     target?: string;
-    iconStyle?: React.CSSProperties;
-    fullIcon?: React.ReactNode;
-    exitFullIcon?: React.ReactNode;
+    iconStyle?: CSSProperties;
+    fullIcon?: ReactNode;
+    exitFullIcon?: ReactNode;
     onFullscreen?: (isFullScreen: boolean) => void;
 }
 

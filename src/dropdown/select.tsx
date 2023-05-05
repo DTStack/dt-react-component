@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { Button, Checkbox, Col, Dropdown, Row, Space, type DropDownProps } from 'antd';
 import classNames from 'classnames';
 import List from 'rc-virtual-list';
@@ -10,7 +10,7 @@ import './style.scss';
 interface IDropdownSelectProps
     extends Pick<DropDownProps, 'getPopupContainer'>,
         Required<Pick<CheckboxGroupProps, 'value' | 'options' | 'onChange'>> {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     onSubmit?: (value: CheckboxValueType[]) => void;
 }

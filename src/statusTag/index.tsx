@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { ReactNode, CSSProperties, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import './style.scss';
 
 export type StatusTagType = 'warning' | 'error' | 'success' | 'run' | 'stopped';
 
-export interface IStatusTagProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IStatusTagProps extends HTMLAttributes<HTMLDivElement> {
     type?: StatusTagType;
     className?: string;
     showBorder?: boolean;
     color?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     onClick?: () => void;
 }
 
@@ -23,7 +23,7 @@ const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
     const statusClass = classNames(`${prefixCls}__default`, {
         [`${prefixCls}__${type}`]: type,
     });
-    const style: React.CSSProperties = color ? { background: `${color}` } : {};
+    const style: CSSProperties = color ? { background: `${color}` } : {};
 
     return (
         <div {...other} className={classes}>
