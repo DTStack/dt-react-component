@@ -1,6 +1,6 @@
 ---
 title: 快速上手
-group: 综述
+group: 研发
 ---
 
 # dt-react-component
