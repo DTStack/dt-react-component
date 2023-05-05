@@ -15,7 +15,7 @@ describe('test Copy', () => {
         const user = userEvent.setup({ writeToClipboard: true });
         const mockCopy = jest.fn();
         const { container } = render(<Copy text={mockText} onCopy={(text) => mockCopy(text)} />);
-        const button = container.querySelector('.dtc-copy-button');
+        const button = container.querySelector('.dtc-copy');
 
         expect(button).toBeInTheDocument();
 
