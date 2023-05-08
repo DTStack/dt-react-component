@@ -19,7 +19,10 @@
         "lint:css": "stylelint \"src/**/*.{css,less,scss}\"",
         "lint:es": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
         "prepublishOnly": "father doctor && npm run build",
-        "deploy": "npm run docs:build && gh-pages -d docs-dist"
+        "deploy": "npm run docs:build && gh-pages -d docs-dist",
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
+        "release": "bumpp && npm publish",
+        "postversion": "npm run changelog"
     },
     "authors": [
         "dtinsight UED"
@@ -81,6 +84,8 @@
         "@umijs/lint": "^4.0.0",
         "babel-plugin-import": "^1.13.5",
         "babel-types": "^6.26.0",
+        "bumpp": "^9.1.0",
+        "conventional-changelog-cli": "^2.2.2",
         "cz-conventional-changelog": "^3.3.0",
         "dumi": "^2.1.13",
         "eslint": "^8.23.0",
