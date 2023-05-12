@@ -29,7 +29,7 @@ describe('test StatusTag suite', () => {
     });
     test('should render StatusTag loading', () => {
         const { container } = render(<StatusTag loading>自定义文案</StatusTag>);
-        const loadingWapper = container.querySelector(`.ant-spin-nested-loading`)!;
+        const loadingWapper = container.querySelector(`.ant-spin-spinning`)!;
         expect(loadingWapper).toBeInTheDocument();
     });
 });

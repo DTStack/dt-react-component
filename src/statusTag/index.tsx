@@ -1,4 +1,5 @@
 import React, { ReactNode, CSSProperties, HTMLAttributes } from 'react';
+import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 import { Spin } from 'antd';
 import classNames from 'classnames';
 import './style.scss';
@@ -36,10 +37,12 @@ const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
 
     return (
         <div {...other} className={classes}>
-            <Spin spinning={loading} size="small">
+            {loading ? (
+                <Spin spinning indicator={<LoadingOutlined />} size="small" />
+            ) : (
                 <div className={statusClass} style={style} />
-                <span className={`${prefixCls}__text`}>{props.children}</span>
-            </Spin>
+            )}
+            <span className={`${prefixCls}__text`}>{props.children}</span>
         </div>
     );
 };
