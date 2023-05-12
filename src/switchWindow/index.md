@@ -1,6 +1,6 @@
 ---
 title: useWindowSwitchListener 监听窗口触发焦点事件
-group: 组件
+group: Hooks
 toc: content
 demo:
     cols: 2

@@ -88,7 +88,6 @@ pnpm publish --registry https://registry.npmjs.org/
 ### 发布站点
 
 ```bash
-pnpm docs:build
 pnpm deploy
 ```
 
