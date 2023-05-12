@@ -9,13 +9,21 @@ exports[`test StatusTag suite should support StatusTag success render 1`] = `
         class="dtc-statusTag dtc-statusTag__border"
       >
         <div
-          class="dtc-statusTag__default dtc-statusTag__success"
-        />
-        <span
-          class="dtc-statusTag__text"
+          class="ant-spin-nested-loading"
         >
-          完成
-        </span>
+          <div
+            class="ant-spin-container"
+          >
+            <div
+              class="dtc-statusTag__default dtc-statusTag__success"
+            />
+            <span
+              class="dtc-statusTag__text"
+            >
+              完成
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </body>,
@@ -24,13 +32,21 @@ exports[`test StatusTag suite should support StatusTag success render 1`] = `
       class="dtc-statusTag dtc-statusTag__border"
     >
       <div
-        class="dtc-statusTag__default dtc-statusTag__success"
-      />
-      <span
-        class="dtc-statusTag__text"
+        class="ant-spin-nested-loading"
       >
-        完成
-      </span>
+        <div
+          class="ant-spin-container"
+        >
+          <div
+            class="dtc-statusTag__default dtc-statusTag__success"
+          />
+          <span
+            class="dtc-statusTag__text"
+          >
+            完成
+          </span>
+        </div>
+      </div>
     </div>
   </div>,
   "debug": [Function],
