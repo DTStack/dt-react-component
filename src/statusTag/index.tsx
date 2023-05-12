@@ -1,4 +1,5 @@
 import React, { ReactNode, CSSProperties, HTMLAttributes } from 'react';
+import { Spin } from 'antd';
 import classNames from 'classnames';
 import './style.scss';
 
@@ -9,12 +10,20 @@ export interface IStatusTagProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
     showBorder?: boolean;
     color?: string;
+    loading?: boolean;
     children?: ReactNode;
     onClick?: () => void;
 }
 
 const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
-    const { className, type = 'success', showBorder = true, color, ...other } = props;
+    const {
+        className,
+        type = 'success',
+        showBorder = true,
+        color,
+        loading = false,
+        ...other
+    } = props;
     const prefixCls = 'dtc-statusTag';
 
     const classes = classNames(`${prefixCls}`, className, {
@@ -27,8 +36,10 @@ const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
 
     return (
         <div {...other} className={classes}>
-            <div className={statusClass} style={style} />
-            <span className={`${prefixCls}__text`}>{props.children}</span>
+            <Spin spinning={loading} size="small">
+                <div className={statusClass} style={style} />
+                <span className={`${prefixCls}__text`}>{props.children}</span>
+            </Spin>
         </div>
     );
 };
