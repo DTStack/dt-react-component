@@ -88,7 +88,6 @@ pnpm publish --registry https://registry.npmjs.org/
 ### Publish website
 
 ```bash
-pnpm docs:build
 pnpm deploy
 ```
 
