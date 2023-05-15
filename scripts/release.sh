@@ -21,13 +21,13 @@ echo "Branch is $branch"
 echo "Release as $release"
 
 # Tag prefix
-# prefix="v"
-# git pull origin $branch
-# echo "Current pull origin $branch."
+prefix="v"
+git pull origin $branch
+echo "Current pull origin $branch."
 
-# # Auto generate version number and tag
-# standard-version -r $release --tag-prefix $prefix --infile CHANGELOG.md
+# Auto generate version number and tag
+standard-version -r $release --tag-prefix $prefix --infile CHANGELOG.md
 
-# git push --follow-tags origin $branch
+git push --follow-tags origin $branch
 
-# echo "Release finished."
+echo "Release finished."
