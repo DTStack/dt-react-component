@@ -30,9 +30,9 @@ export default function useList<T extends Record<string, any>, P extends Record<
 
     const options = useMemo(() => merge(rawOptions, { immediate: true }), [rawOptions]);
 
-    const performFetch = () => {
+    const performFetch = (raw = params) => {
         setLoading(true);
-        fetcher(params)
+        fetcher(raw)
             .then(({ data, total }) => {
                 setData(data);
                 setTotal(total);
@@ -44,15 +44,28 @@ export default function useList<T extends Record<string, any>, P extends Record<
     };
 
     const mutate = (next: Partial<P> | ((prev: P) => P) = params, options: IMutateOptions = {}) => {
-        setParams(typeof next === 'function' ? next : { ...merge(params, next) });
-
         const defaultOptions: IMutateOptions = {
             revalidate: true,
         };
-
         const nextOptions = merge(defaultOptions, options);
-        if (nextOptions.revalidate) {
-            performFetch();
+
+        if (typeof next === 'function') {
+            setParams((prev) => {
+                const tmp = next(prev);
+
+                if (nextOptions.revalidate) {
+                    performFetch(tmp);
+                }
+
+                return tmp;
+            });
+        } else {
+            const tmp = { ...merge({}, params, next) };
+            setParams(tmp);
+
+            if (nextOptions.revalidate) {
+                performFetch(tmp);
+            }
         }
     };
 
