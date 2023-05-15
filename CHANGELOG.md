@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/DTStack/dt-react-component/compare/v3.0.6...v4.0.0) (2023-05-15)
+
+### Features
+
+-   [#337](https://github.com/DTStack/dt-react-component/issues/337) add statusTag loading ([#341](https://github.com/DTStack/dt-react-component/issues/341)) ([49b9b37](https://github.com/DTStack/dt-react-component/commit/49b9b372831fb649aa2b03684934374b807140a4))
+-   add Breadcrumb component ([cd64af5](https://github.com/DTStack/dt-react-component/commit/cd64af5ea1a7a047fc51c3d3d8eb7df9dab42423))
+-   add goBack component ([37ac8a9](https://github.com/DTStack/dt-react-component/commit/37ac8a9fd835bc89dbca6f80b08aab7a061701e5))
+-   add loading for markdown ([4093410](https://github.com/DTStack/dt-react-component/commit/40934108f1d6096ae41acd1b2e2249cae3e3eb41))
+-   complete SEO and rest markdown doc ([860a981](https://github.com/DTStack/dt-react-component/commit/860a98199d91df5927936717421a81f48df4e310))
+-   develop BlockHeader doc ([#298](https://github.com/DTStack/dt-react-component/issues/298)) ([f98dd6b](https://github.com/DTStack/dt-react-component/commit/f98dd6ba7717a54ad2c91a2faf1be3f6e0a2434c))
+-   disable ssr and add base url ([89cc4ce](https://github.com/DTStack/dt-react-component/commit/89cc4ced5f0d9394bf75f80bbff1ce7ee9641649))
+-   **dropdown:** develop `dropdown.select` ([#296](https://github.com/DTStack/dt-react-component/issues/296)) ([e9051ef](https://github.com/DTStack/dt-react-component/commit/e9051efe8933e4998b5501f8e87ca5a81f2a38f9))
+-   **Form:** develop `Form.Table` ([#293](https://github.com/DTStack/dt-react-component/issues/293)) ([8a58efd](https://github.com/DTStack/dt-react-component/commit/8a58efd433e67acf4c8917a4621810f2025478c9))
+-   **input:** develop input.match ([#316](https://github.com/DTStack/dt-react-component/issues/316)) ([683667c](https://github.com/DTStack/dt-react-component/commit/683667c5278d5732c1d19fbe721b6d09f0fca29e))
+-   optimize NotFound ([#318](https://github.com/DTStack/dt-react-component/issues/318)) ([a6b032d](https://github.com/DTStack/dt-react-component/commit/a6b032df2b04a81130441a7c9bbd3e750915bec9))
+-   refactor errorBoundary ([#308](https://github.com/DTStack/dt-react-component/issues/308)) ([4bf39ea](https://github.com/DTStack/dt-react-component/commit/4bf39ea6f6a9ae455d919e81bfe320c9e1445cb6))
+-   remove breadcrumb component from index.ts ([aa230a1](https://github.com/DTStack/dt-react-component/commit/aa230a16558f3936a308a9941fad894de901e86a))
+-   remove renderFormItem component ([235814d](https://github.com/DTStack/dt-react-component/commit/235814d5b77a31882470077fcb06c385cce8fa18))
+-   remove renderFormItem expose ([2bb574b](https://github.com/DTStack/dt-react-component/commit/2bb574be62f28ac4b6676bb090d331c72a9bade4))
+-   remove terrible componet ([cc54b02](https://github.com/DTStack/dt-react-component/commit/cc54b021c028c51e136eb63fb149582e40e2eced))
+-   use git cz, simplify deployment command ([#319](https://github.com/DTStack/dt-react-component/issues/319)) ([c4ef19a](https://github.com/DTStack/dt-react-component/commit/c4ef19a9969fbda9ca6c2317748dfc843d4a6e9b))
+-   **useList:** develop useList ([#297](https://github.com/DTStack/dt-react-component/issues/297)) ([2ab03eb](https://github.com/DTStack/dt-react-component/commit/2ab03ebac728ecfa45a86275fc29a10fa609c003))
+
+### Bug Fixes
+
+-   add padding for errorBoundary demos ([#328](https://github.com/DTStack/dt-react-component/issues/328)) ([e6b4028](https://github.com/DTStack/dt-react-component/commit/e6b40284aaf31863a415bf6684a0b96ea2ecec2d))
+-   fix antd dynamic import style ([#309](https://github.com/DTStack/dt-react-component/issues/309)) ([8738c61](https://github.com/DTStack/dt-react-component/commit/8738c61bf4c70c992c5f3701db705741196cdf45))
+-   remove FullScreen component unless FullscreenState declration ([b2330bd](https://github.com/DTStack/dt-react-component/commit/b2330bdbfe66053f19920309701dd30ab3e221b5))
+-   stale params when revalidate ([#342](https://github.com/DTStack/dt-react-component/issues/342)) ([f9e509d](https://github.com/DTStack/dt-react-component/commit/f9e509d9a4fc3c620e3d46542652f9544a07740b))
+-   unit coding style && name to import ([#333](https://github.com/DTStack/dt-react-component/issues/333)) ([02dd422](https://github.com/DTStack/dt-react-component/commit/02dd422de9a1416962c6840d49e2cfc29b530293))
+
 ### [3.0.8](https://github.com/DTStack/dt-react-component/compare/v3.0.7...v3.0.8) (2023-01-11)
 
 ### Features
