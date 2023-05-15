@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdt_react_component=self.webpackChunkdt_react_component||[]).push([[5322,7919],{1871:function(_,a,n){n.r(a);var s=n(50959),t=n(50741),e=n(11527);a.default=function(){return(0,e.jsx)(t.SpreadSheet,{columns:["name","gender","age","address"],data:[["zhangsan","male","20","xihu"],["lisi","male","18","yuhang"]]})}}}]);
