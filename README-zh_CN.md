@@ -81,8 +81,9 @@ pnpm run dev
 
 ```bash
 pnpm build
-pnpm release -r 3.0.1
-pnpm publish --registry https://registry.npmjs.org/
+# pnpm@6
+pnpm release -- -r 3.0.1
+npm publish --registry https://registry.npmjs.org/
 ```
 
 ### 发布站点
