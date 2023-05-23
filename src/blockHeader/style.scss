@@ -90,7 +90,6 @@ $card_prefix: "dtc-block-header";
         }
         &-small {
             @extend .#{$card_prefix}__beforeTitle-middle;
-            height: 12px;
         }
     }
 }
