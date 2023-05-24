@@ -1,8 +1,10 @@
 import React from 'react';
 import { Divider } from 'antd';
+import { useSiteData } from 'dumi';
 import './index.scss';
 
 export default function Footer() {
+    const { themeConfig } = useSiteData();
     return (
         <div className="dtc-footer">
             <div className="dtc-footer-links">
@@ -55,7 +57,7 @@ export default function Footer() {
             <div className="dtc-footer-divider">
                 <Divider />
             </div>
-            <div className="dtc-footer-copyright">dt-react-component 3.0.5 · Made by dtstack</div>
+            <div className="dtc-footer-copyright">{themeConfig.footer}</div>
         </div>
     );
 }
