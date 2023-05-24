@@ -1,9 +1,11 @@
 import { defineConfig } from 'dumi';
+import pkg from './package.json';
 
 export default defineConfig({
     outputPath: 'docs-dist',
     themeConfig: {
         name: 'dt-react-component',
+        footer: `dt-react-component ${pkg.version} · Made by dtstack`,
     },
     base: '/dt-react-component/',
     publicPath: '/dt-react-component/',
