@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/DTStack/dt-react-component/compare/v4.0.0...v4.0.1) (2023-05-26)
+
+### Bug Fixes
+
+-   **blockHeader:** improve height of small blockHeader ([#347](https://github.com/DTStack/dt-react-component/issues/347)) ([65eaba3](https://github.com/DTStack/dt-react-component/commit/65eaba38d9fd7021302cfe5e8ad8adb0ae27519e))
+-   improve footer copyright ([#348](https://github.com/DTStack/dt-react-component/issues/348)) ([f0fd407](https://github.com/DTStack/dt-react-component/commit/f0fd4079e8075fefa913c53855da231ad0a4dffa))
+
 ## [4.0.0](https://github.com/DTStack/dt-react-component/compare/v3.0.6...v4.0.0) (2023-05-15)
 
 ### Features
