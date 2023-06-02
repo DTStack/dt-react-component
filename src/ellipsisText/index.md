@@ -19,6 +19,7 @@ demo:
 ## 示例
 
 <code src="./demos/basic.tsx" title="基础使用" description="请更改窗口大小"></code>
+<code src="./demos/watchParent.tsx" title="监听父元素" description="在一些情况下会变更容器的宽度，如滚动条的消失隐藏。当宽度变更后需要重新计算可用区域，可以通过传递 isWatchParent 开启监听父元素，当父元素大小改变时会重新进行计算"></code>
 <code src="./demos/maxWidth.tsx" title="宽度限制" ></code>
 <code src="./demos/inlineElement.tsx" title="在行内元素中使用" description="行内元素无法获得宽度，在计算时会不断向上查找，直到找到一个能够正确获取宽度的父元素，并以找到父元素宽度当作文本的可视宽度" ></code>
 <code src="./demos/flex.tsx" title="在 flex 中使用" description="请更改窗口大小"></code>
@@ -27,12 +28,13 @@ demo:
 
 ## API
 
-| 参数      | 说明                               | 类型                             | 默认值 |
-| --------- | ---------------------------------- | -------------------------------- | ------ |
-| value     | 显示文本内容                       | `ReactNode   \| () => ReactNode` | -      |
-| title     | 提示文字                           | `ReactNode   \| () => ReactNode` | value  |
-| className | 为文本内容所在节点添加自定义样式名 | `string`                         | -      |
-| maxWidth  | 文本内容的最大宽度                 | `string \| number`               | -      |
+| 参数          | 说明                                       | 类型                             | 默认值 |
+| ------------- | ------------------------------------------ | -------------------------------- | ------ |
+| value         | 显示文本内容                               | `ReactNode   \| () => ReactNode` | -      |
+| title         | 提示文字                                   | `ReactNode   \| () => ReactNode` | value  |
+| className     | 为文本内容所在节点添加自定义样式名         | `string`                         | -      |
+| maxWidth      | 文本内容的最大宽度                         | `string \| number`               | -      |
+| isWatchParent | 监听父元素大小的变更，默认监听 window 窗口 | ` boolean`                       | false  |
 
 :::info
 其余参数继承自 [继承 antd4.x 的 Tooltip](https://4x.ant.design/components/tooltip-cn/#API)

@@ -31,6 +31,10 @@ export interface IEllipsisTextProps extends AbstractTooltipProps {
      */
     maxWidth?: string | number;
     /**
+     * 监听父元素大小的改变
+     */
+    isWatchParent?: boolean;
+    /**
      * antd Tooltip
      */
     [propName: string]: any;
@@ -43,9 +47,20 @@ export interface NewHTMLElement extends HTMLElement {
 const DEFAULT_MAX_WIDTH = 120;
 
 const EllipsisText = (props: IEllipsisTextProps) => {
-    const { value, title = value, className, maxWidth, ...otherProps } = props;
+    const {
+        value,
+        title = value,
+        className,
+        maxWidth,
+        isWatchParent = false,
+        ...otherProps
+    } = props;
 
     const ellipsisRef = useRef<HTMLSpanElement>(null);
+    const observerEle =
+        isWatchParent && ellipsisRef.current?.parentElement
+            ? ellipsisRef.current?.parentElement
+            : null;
 
     const [visible, setVisible] = useState(false);
     const [width, setWidth] = useState<number | string>(DEFAULT_MAX_WIDTH);
@@ -222,7 +237,7 @@ const EllipsisText = (props: IEllipsisTextProps) => {
     }, [width, cursor, value]);
 
     return (
-        <Resize onResize={onResize}>
+        <Resize onResize={onResize} observerEle={observerEle}>
             {visible ? (
                 <Tooltip title={title} mouseEnterDelay={0} mouseLeaveDelay={0} {...otherProps}>
                     {renderText()}
