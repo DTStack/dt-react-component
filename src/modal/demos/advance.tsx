@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Button, Form, Input, InputNumber, Table } from 'antd';
 import { Modal } from 'dt-react-component';
 
-interface Data {
-    key: string;
+interface FormData {
     name: string;
     age: number;
     address: string;
+}
+
+interface Data extends FormData {
+    key: string;
 }
 
 const data: Data[] = [
@@ -24,7 +27,7 @@ const data: Data[] = [
     },
 ];
 
-const ModalForm = Modal.Form((_props) => {
+const ModalForm = Modal.Form<FormData>((_props) => {
     return (
         <>
             <Form.Item label="name" name={'name'}>
@@ -81,7 +84,7 @@ export default () => {
         },
     ];
 
-    const onSubmit = (values: Data) => {
+    const onSubmit = (values: FormData) => {
         dataSource.splice(index, 0, { ...values, key: new Date() + '' });
         setDataSource([...dataSource]);
 

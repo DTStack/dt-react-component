@@ -76,11 +76,14 @@ const ModalForm = (props: IModalFormProps) => {
     );
 };
 
-const InternalForm = (FormComponent: React.ComponentType) => {
-    return (props: IModalFormProps) => (
+function InternalForm<V = any>(
+    FormComponent: React.ComponentType<IModalFormProps<V>>
+): React.FC<IModalFormProps<V>> {
+    return (props: IModalFormProps<V>) => (
         <ModalForm {...props}>
             <FormComponent />
         </ModalForm>
     );
-};
+}
+
 export default InternalForm;

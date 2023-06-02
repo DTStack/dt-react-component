@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Modal } from 'dt-react-component';
 
-const ModalForm = Modal.Form((_props) => {
+interface FormData {
+    username: string;
+}
+
+const ModalForm = Modal.Form<FormData>((_props) => {
     return (
         <Form.Item label="username" name={'username'} rules={[{ max: 10 }]}>
             <Input />
