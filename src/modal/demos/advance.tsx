@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { Button, Form, Input, InputNumber, Table } from 'antd';
 import { Modal } from 'dt-react-component';
 
-interface FormData {
+interface FormValue {
     name: string;
     age: number;
     address: string;
 }
 
-interface Data extends FormData {
+interface TableData extends FormValue {
     key: string;
 }
 
-const data: Data[] = [
+const data: TableData[] = [
     {
         key: '1',
         name: 'UED',
@@ -27,7 +27,7 @@ const data: Data[] = [
     },
 ];
 
-const ModalForm = Modal.Form<FormData>((_props) => {
+const ModalForm = Modal.Form<FormValue>((_props) => {
     return (
         <>
             <Form.Item label="name" name={'name'}>
@@ -46,7 +46,7 @@ const ModalForm = Modal.Form<FormData>((_props) => {
 export default () => {
     const [visible, setVisible] = useState(false);
     const [index, setIndex] = useState<number>(0);
-    const [dataSource, setDataSource] = useState<Data[]>(data);
+    const [dataSource, setDataSource] = useState<TableData[]>(data);
 
     const columns = [
         {
@@ -68,7 +68,7 @@ export default () => {
             title: '操作',
             dataIndex: 'operate',
             key: 'operate',
-            render: (_: void, record: Data, index: number) => {
+            render: (_: void, _record: TableData, index: number) => {
                 return (
                     <Button
                         onClick={() => {
@@ -84,7 +84,7 @@ export default () => {
         },
     ];
 
-    const onSubmit = (values: FormData) => {
+    const onSubmit = (values: FormValue) => {
         dataSource.splice(index, 0, { ...values, key: new Date() + '' });
         setDataSource([...dataSource]);
 
