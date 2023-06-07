@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.2](https://github.com/DTStack/dt-react-component/compare/v4.0.1...v4.0.2) (2023-06-07)
+
+### Features
+
+-   listen for parent element size changes ([#351](https://github.com/DTStack/dt-react-component/issues/351)) ([d87a1cd](https://github.com/DTStack/dt-react-component/commit/d87a1cd10e9f5647b2dcc0f5a3f1a95b817900d7))
+
+### Bug Fixes
+
+-   fixed Modal.Form ts problems ([#350](https://github.com/DTStack/dt-react-component/issues/350)) ([aaabc2a](https://github.com/DTStack/dt-react-component/commit/aaabc2acc5d2acb7087634ab373ecda46aecb9a7))
+
 ### [4.0.1](https://github.com/DTStack/dt-react-component/compare/v4.0.0...v4.0.1) (2023-05-26)
 
 ### Bug Fixes

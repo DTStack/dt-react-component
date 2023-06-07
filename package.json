@@ -1,6 +1,6 @@
 {
     "name": "dt-react-component",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "description": "react-component",
     "repository": "https://github.com/DTStack/dt-react-component",
     "main": "lib/index.js",
