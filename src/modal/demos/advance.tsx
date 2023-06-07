@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import { Button, Form, Input, InputNumber, Table } from 'antd';
 import { Modal } from 'dt-react-component';
 
-interface FormValue {
+interface FormValues {
     name: string;
     age: number;
     address: string;
 }
 
-interface TableData extends FormValue {
+interface TableData extends FormValues {
     key: string;
+}
+
+interface CustomModalFormProps {
+    customAttr: string;
 }
 
 const data: TableData[] = [
@@ -27,9 +31,12 @@ const data: TableData[] = [
     },
 ];
 
-const ModalForm = Modal.Form<FormValue>((_props) => {
+const ModalForm = Modal.Form<CustomModalFormProps, FormValues>((props) => {
     return (
         <>
+            <Form.Item label="我是自定义参数" name={'name'} initialValue={props.customAttr}>
+                <Input disabled />
+            </Form.Item>
             <Form.Item label="name" name={'name'}>
                 <Input />
             </Form.Item>
@@ -84,7 +91,7 @@ export default () => {
         },
     ];
 
-    const onSubmit = (values: FormValue) => {
+    const onSubmit = (values: FormValues) => {
         dataSource.splice(index, 0, { ...values, key: new Date() + '' });
         setDataSource([...dataSource]);
 
@@ -101,6 +108,7 @@ export default () => {
                 visible={visible}
                 onCancel={changeVisible}
                 onSubmit={onSubmit}
+                customAttr={'customAttr'}
             />
         </>
     );

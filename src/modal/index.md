@@ -17,7 +17,8 @@ demo:
 所用使用方式同 `Ant Design` 的 Modal 组件，新增 `Modal.Form` 组件
 
 <code src="./demos/basics.tsx" title="基础使用"></code>
-<code src="./demos/advance.tsx" title="进阶使用"></code>
+<code src="./demos/advance.tsx" title="接收函数组件"></code>
+<code src="./demos/classComponent.tsx" title="接收类组件"></code>
 
 ## API
 
