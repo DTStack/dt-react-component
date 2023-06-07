@@ -33,7 +33,7 @@ export interface IEllipsisTextProps extends AbstractTooltipProps {
     /**
      * 监听父元素大小的改变
      */
-    isWatchParent?: boolean;
+    watchParentSizeChange?: boolean;
     /**
      * antd Tooltip
      */
@@ -52,13 +52,13 @@ const EllipsisText = (props: IEllipsisTextProps) => {
         title = value,
         className,
         maxWidth,
-        isWatchParent = false,
+        watchParentSizeChange = false,
         ...otherProps
     } = props;
 
     const ellipsisRef = useRef<HTMLSpanElement>(null);
     const observerEle =
-        isWatchParent && ellipsisRef.current?.parentElement
+        watchParentSizeChange && ellipsisRef.current?.parentElement
             ? ellipsisRef.current?.parentElement
             : null;
 

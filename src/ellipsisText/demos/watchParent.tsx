@@ -22,7 +22,7 @@ export default () => {
             >
                 <EllipsisText
                     value={'长长长长长长长长长长长长长长长长长长长长长长长长长长长长'}
-                    isWatchParent
+                    watchParentSizeChange
                 />
             </div>
         </>
