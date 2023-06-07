@@ -2,11 +2,24 @@ import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Modal } from 'dt-react-component';
 
-const ModalForm = Modal.Form((_props) => {
+interface FormValues {
+    username: string;
+}
+
+interface CustomModalFormProps {
+    customAttr: string;
+}
+
+const ModalForm = Modal.Form<CustomModalFormProps, FormValues>((props) => {
     return (
-        <Form.Item label="username" name={'username'} rules={[{ max: 10 }]}>
-            <Input />
-        </Form.Item>
+        <>
+            <Form.Item label="我是自定义参数" name={'name'} initialValue={props.customAttr}>
+                <Input disabled />
+            </Form.Item>
+            <Form.Item label="username" name={'username'} rules={[{ max: 10 }]}>
+                <Input />
+            </Form.Item>
+        </>
     );
 });
 
@@ -22,6 +35,7 @@ export default () => {
                 onSubmit={(value) => {
                     console.log(value);
                 }}
+                customAttr={'customAttr'}
             />
         </>
     );

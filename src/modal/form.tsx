@@ -1,15 +1,12 @@
 import React, { ReactElement, useMemo } from 'react';
-import { Modal, FormProps, ModalFuncProps } from 'antd';
+import { Modal, FormProps, ModalProps } from 'antd';
 import { FORM_PROPS, MODAL_PROPS } from '../utils/antdProps';
 import Utils from '../utils';
 import Form from '../form';
 
-export interface IModalFormProps<Values = any> extends FormProps, ModalFuncProps {
-    /**
-     * modal title
-     * @param {string}
-     */
-    title?: string;
+export interface IModalFormProps<Values = any>
+    extends Omit<FormProps, 'title'>,
+        Omit<ModalProps, 'children'> {
     /**
      * modal className
      * @param {string}
@@ -22,7 +19,6 @@ export interface IModalFormProps<Values = any> extends FormProps, ModalFuncProps
      * @returns
      */
     onSubmit?: (values: Values) => void;
-    [key: string]: any;
 }
 
 const ModalForm = (props: IModalFormProps) => {
@@ -50,8 +46,8 @@ const ModalForm = (props: IModalFormProps) => {
         } catch (error) {}
     };
 
-    const onCancel = () => {
-        props.onCancel?.();
+    const onCancel = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        props.onCancel?.(e);
     };
 
     const afterClose = () => {
@@ -76,11 +72,14 @@ const ModalForm = (props: IModalFormProps) => {
     );
 };
 
-const InternalForm = (FormComponent: React.ComponentType) => {
-    return (props: IModalFormProps) => (
+function InternalForm<P = any, V = any>(
+    FormComponent: React.ComponentType<IModalFormProps<V> & P>
+): React.FC<IModalFormProps<V> & P> {
+    return (props: IModalFormProps<V> & P) => (
         <ModalForm {...props}>
-            <FormComponent />
+            <FormComponent {...(props as IModalFormProps<V> & P)} />
         </ModalForm>
     );
-};
+}
+
 export default InternalForm;

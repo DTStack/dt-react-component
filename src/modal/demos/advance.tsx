@@ -2,14 +2,21 @@ import React, { useState } from 'react';
 import { Button, Form, Input, InputNumber, Table } from 'antd';
 import { Modal } from 'dt-react-component';
 
-interface Data {
-    key: string;
+interface FormValues {
     name: string;
     age: number;
     address: string;
 }
 
-const data: Data[] = [
+interface TableData extends FormValues {
+    key: string;
+}
+
+interface CustomModalFormProps {
+    customAttr: string;
+}
+
+const data: TableData[] = [
     {
         key: '1',
         name: 'UED',
@@ -24,9 +31,12 @@ const data: Data[] = [
     },
 ];
 
-const ModalForm = Modal.Form((_props) => {
+const ModalForm = Modal.Form<CustomModalFormProps, FormValues>((props) => {
     return (
         <>
+            <Form.Item label="我是自定义参数" name={'name'} initialValue={props.customAttr}>
+                <Input disabled />
+            </Form.Item>
             <Form.Item label="name" name={'name'}>
                 <Input />
             </Form.Item>
@@ -43,7 +53,7 @@ const ModalForm = Modal.Form((_props) => {
 export default () => {
     const [visible, setVisible] = useState(false);
     const [index, setIndex] = useState<number>(0);
-    const [dataSource, setDataSource] = useState<Data[]>(data);
+    const [dataSource, setDataSource] = useState<TableData[]>(data);
 
     const columns = [
         {
@@ -65,7 +75,7 @@ export default () => {
             title: '操作',
             dataIndex: 'operate',
             key: 'operate',
-            render: (_: void, record: Data, index: number) => {
+            render: (_: void, _record: TableData, index: number) => {
                 return (
                     <Button
                         onClick={() => {
@@ -81,7 +91,7 @@ export default () => {
         },
     ];
 
-    const onSubmit = (values: Data) => {
+    const onSubmit = (values: FormValues) => {
         dataSource.splice(index, 0, { ...values, key: new Date() + '' });
         setDataSource([...dataSource]);
 
@@ -98,6 +108,7 @@ export default () => {
                 visible={visible}
                 onCancel={changeVisible}
                 onSubmit={onSubmit}
+                customAttr={'customAttr'}
             />
         </>
     );
