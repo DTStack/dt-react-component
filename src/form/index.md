@@ -52,8 +52,9 @@ demo:
 
 继承全部 `Form.Item` 以及 `ColumnType` 类型, 以下类型有所不同
 
-| 参数         | 说明                                                                      | 类型                                          | 默认值 |
-| ------------ | ------------------------------------------------------------------------- | --------------------------------------------- | ------ |
-| dependencies | 支持回调函数形式获取当前字段名，详见<a href="#form-demo-related">Demo</a> | -                                             | -      |
-| rules        | 支持回调函数形式获取当前字段名，详见<a href="#form-demo-rules">Demo</a>   | -                                             | -      |
-| render       | 生成复杂数据的渲染函数，详见<a href="#form-demo-related">Demo</a>         | `(record, namePath, form) => React.ReactNode` | -      |
+| 参数         | 说明                                                                      | 类型                                                                                                                             | 默认值 |
+| ------------ | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| dependencies | 支持回调函数形式获取当前字段名，详见<a href="#form-demo-related">Demo</a> | -                                                                                                                                | -      |
+| rules        | 支持回调函数形式获取当前字段名，详见<a href="#form-demo-rules">Demo</a>   | -                                                                                                                                | -      |
+| titleTooltip | 表格`title`上的`tooltip`                                                  | `ReactNode` \| <a href="https://4x.ant.design/components/tooltip-cn/#API" target="_blank">TooltipProps & { icon: ReactNode }</a> | -      |
+| render       | 生成复杂数据的渲染函数，详见<a href="#form-demo-related">Demo</a>         | `(record, namePath, form) => React.ReactNode`                                                                                    | -      |
