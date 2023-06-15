@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.3](https://github.com/DTStack/dt-react-component/compare/v4.0.2...v4.0.3) (2023-06-15)
+
+### Features
+
+-   **Form:** support title, footer, summary on Form.Table ([#353](https://github.com/DTStack/dt-react-component/issues/353)) ([cd644cf](https://github.com/DTStack/dt-react-component/commit/cd644cf135d33a8298261086b48e0994b02e7cb5))
+-   support titleTooltip attribute in form table ([#354](https://github.com/DTStack/dt-react-component/issues/354)) ([379d4dd](https://github.com/DTStack/dt-react-component/commit/379d4dd1f1365a5bff42dc3c703d94246e2d8cb0))
+
 ### [4.0.2](https://github.com/DTStack/dt-react-component/compare/v4.0.1...v4.0.2) (2023-06-07)
 
 ### Features
