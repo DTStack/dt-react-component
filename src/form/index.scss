@@ -17,6 +17,12 @@ $errorColor: #FF4D4F;
                 vertical-align: -0.1em;
             }
         }
+        &__tooltip {
+            margin-left: 4px;
+            font-size: 16px;
+            color: #B1B4C5;
+            cursor: help;
+        }
         .ant-table,
         .ant-table-container {
             height: 100%;

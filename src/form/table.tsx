@@ -1,9 +1,11 @@
 import React, { useMemo, ReactNode } from 'react';
-import { Form, Table, type FormListFieldData, type TableProps } from 'antd';
+import { Form, Table, type FormListFieldData, type TableProps, Tooltip } from 'antd';
 import classnames from 'classnames';
 import utils from '../utils';
 import type { FormItemProps, FormListProps, Rule, RuleObject, RuleRender } from 'antd/lib/form';
+import type { LabelTooltipType, WrapperTooltipProps } from 'antd/lib/form/FormItemLabel';
 import type { ColumnsType, ColumnType as TableColumnType } from 'antd/lib/table';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import './index.scss';
 
 type NotNullRowSelection = NonNullable<TableProps<any>['rowSelection']>;
@@ -91,6 +93,10 @@ export interface ColumnType
      */
     rules?: (RuleObject | ((form: RcFormInstance, namePath: OverrideParameters) => RuleObject))[];
     /**
+     * 表格title上的tooltip，使用方法与formItem中的一致
+     */
+    titleTooltip?: LabelTooltipType;
+    /**
      * 渲染函数
      * @param formInstance 只有在设置了 `dependencies` 的情况下才有该参数
      */
@@ -102,6 +108,20 @@ export interface ColumnType
 }
 
 const className = 'dtc-form__table';
+
+function toTooltipProps(tooltip: LabelTooltipType): WrapperTooltipProps | null {
+    if (!tooltip) {
+        return null;
+    }
+
+    if (typeof tooltip === 'object' && !React.isValidElement(tooltip)) {
+        return tooltip as WrapperTooltipProps;
+    }
+
+    return {
+        title: tooltip,
+    };
+}
 
 export default function InternalTable({
     name,
@@ -134,6 +154,7 @@ export default function InternalTable({
                 initialValue,
                 messageVariables,
                 tooltip,
+                titleTooltip,
                 dependencies,
                 rules: rawRules,
                 render,
@@ -156,12 +177,26 @@ export default function InternalTable({
                 const isRequired =
                     required || rawRules?.some((rule) => typeof rule === 'object' && rule.required);
 
+                const tooltipProps = toTooltipProps(titleTooltip);
+                let tooltipNode: React.ReactNode | null = null;
+                if (tooltipProps) {
+                    const { icon = <QuestionCircleOutlined />, ...restTooltipProps } = tooltipProps;
+                    tooltipNode = (
+                        <Tooltip {...restTooltipProps}>
+                            {React.cloneElement(icon, {
+                                className: `dtc-form__table__tooltip ${icon.props?.className}`,
+                            })}
+                        </Tooltip>
+                    );
+                }
+
                 return {
                     ...cols,
                     title: (
                         <>
                             {isRequired && <span className="dtc-form__table__column--required" />}
                             {cols.title}
+                            {tooltipNode}
                         </>
                     ),
                     render(_, record) {
