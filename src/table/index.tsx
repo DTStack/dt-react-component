@@ -14,7 +14,6 @@ const {
     SELECTION_NONE,
     Column,
     ColumnGroup,
-    Summary,
 } = InternalTable;
 
 export interface ColumnType<R = any> extends PrimitiveColumnType<R> {
@@ -100,7 +99,8 @@ const ForwardTable = forwardRef(Table) as unknown as RefTable & {
     SELECTION_NONE: typeof SELECTION_NONE;
     Column: typeof Column;
     ColumnGroup: typeof ColumnGroup;
-    Summary: typeof Summary;
+    // use InternalTable.Summary because of typescript bug(TS2742)
+    Summary: typeof InternalTable.Summary;
 };
 
 ForwardTable.SELECTION_COLUMN = SELECTION_COLUMN;
@@ -110,6 +110,6 @@ ForwardTable.SELECTION_INVERT = SELECTION_INVERT;
 ForwardTable.SELECTION_NONE = SELECTION_NONE;
 ForwardTable.Column = Column;
 ForwardTable.ColumnGroup = ColumnGroup;
-ForwardTable.Summary = Summary;
+ForwardTable.Summary = InternalTable.Summary;
 
 export default ForwardTable;
