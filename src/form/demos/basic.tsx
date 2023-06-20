@@ -42,7 +42,6 @@ export default () => {
                         {
                             key: 'name',
                             title: 'Name',
-                            titleTooltip: 'This is Name',
                             dataIndex: 'name',
                             required: true,
                             rules: [
