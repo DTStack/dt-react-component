@@ -12,6 +12,8 @@ export interface SpreadSheetProps {
     className?: string;
     options?: {
         showCopyWithHeader?: boolean;
+        /** handsontable 是否去除内容里的空格 */
+        trimWhitespace?: boolean;
     };
 }
 
@@ -116,7 +118,8 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         } as any;
     }
     render() {
-        const { columns = [], className = '' } = this.props;
+        const { columns = [], className = '', options } = this.props;
+        const { trimWhitespace = true } = options || {};
         const showData = this.getData();
         // 空数组情况，不显示colHeaders，否则colHeaders默认会按照 A、B...显示
         // 具体可见 https://handsontable.com/docs/7.1.1/Options.html#colHeaders
@@ -142,6 +145,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                 manualRowResize // 拉伸功能
                 manualColumnResize // 拉伸功能
                 colWidths={200}
+                trimWhitespace={trimWhitespace} // false 表示不去除内容里的空格
                 beforeCopy={this.beforeCopy.bind(this)}
                 beforeCut={() => false}
                 columnHeaderHeight={25}
