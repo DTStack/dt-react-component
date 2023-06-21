@@ -28,13 +28,24 @@ const propDefinitions = [
         description: '右键菜单中是否展示“复制值以及列名”按钮',
         defaultValue: '',
     },
+    {
+        property: 'options.trimWhitespace',
+        propType: 'Boolean',
+        required: false,
+        description: '是否去除内容里的空格',
+        defaultValue: true,
+    },
 ];
 
 const otherDependencies = `import { SpreadSheet } from 'dt-react-component';`;
 
 const functionCode = '';
 
-const code = `<SpreadSheet columns={['name', 'gender', 'age', 'address']} data={[['zhangsan', 'male', '20', 'xihu'], ['lisi', 'male', '18', 'yuhang']]} />`;
+const code = `<SpreadSheet columns={['name', 'gender', 'age', 'address']} data={[
+    ['zhangsan', 'male', '20', 'xihu'],
+    ['lisi', 'male', '18', 'yuhang'],
+    ['   前面有空格', '后面有空格   ', '中间有  空 格', 'yuhang'],
+]} options={{ trimWhitespace: false }} />`;
 
 const stories = storiesOf('SpreadSheet 多功能表', module);
 stories.add(
@@ -56,7 +67,9 @@ stories.add(
                         data={[
                             ['zhangsan', 'male', '20', 'xihu'],
                             ['lisi', 'male', '18', 'yuhang'],
+                            ['   前面有空格', '后面有空格   ', '中间有  空 格', 'yuhang'],
                         ]}
+                        options={{ trimWhitespace: false }}
                     />
                 </ExampleContainer>
             </div>
