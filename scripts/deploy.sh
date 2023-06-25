@@ -1,5 +1,6 @@
 #!/bin/bash
-#
+
+# 部署文档执行 `yarn deploy`，需要先将 `const.sh` 里的 server 改为 225 的机器 ip
 # 1. Build project locally;
 # 2. Upload dist to the temp path of target server ;
 # 3. Login remote ssh server;
