@@ -10,9 +10,6 @@
 
 English | [简体中文](./README-zh_CN.md)
 
-## Docs
-- [v3.x](https://dtstack.github.io/dt-react-component/)
-- [v2.x](https://liuxy0551.github.io/dt-react-component/)
 
 React UI component library based on [ant-design](https://github.com/ant-design/ant-design). Mainly used for middle and back-end products. Our goal is to **meet more specific and more specific business scenario components**. Of course, we also have excellent business components based on native javascript, such as **ContextMenu**, **KeyEventListener** and so on.
 
