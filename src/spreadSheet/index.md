@@ -26,3 +26,4 @@ demo:
 | columns                    | 列名                                   | `Array`           | -      |
 | className                  | 外层组件的 class 名                    | `string`          | -      |
 | options.showCopyWithHeader | 右键菜单中是否展示“复制值以及列名”按钮 | `boolean`         | -      |
+| options.trimWhitespace     | 是否去除内容里的空格                   | `boolean`         | true   |
