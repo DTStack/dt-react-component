@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.9](https://github.com/DTStack/dt-react-component/compare/v3.0.7...v3.0.9) (2023-06-25)
+
+
+### Features
+
+* add copyWithHeader item to spreadSheet context menu ([#287](https://github.com/DTStack/dt-react-component/issues/287)) ([ee6ee5c](https://github.com/DTStack/dt-react-component/commit/ee6ee5c5bfcf6f95007f4a376709d3a04d17f714))
+* update blockHeader margin-bottom ([#281](https://github.com/DTStack/dt-react-component/issues/281)) ([2962911](https://github.com/DTStack/dt-react-component/commit/29629111840bd68a142b4f49e083ba2a23e97355))
+
+
+### Bug Fixes
+
+* [#82926](https://github.com/DTStack/dt-react-component/issues/82926) handsontable trimWhitespace should be false ([#358](https://github.com/DTStack/dt-react-component/issues/358)) ([24d145d](https://github.com/DTStack/dt-react-component/commit/24d145da94cc6820c819eff8fe227a1c616411a5))
+* fix ModalProps for modalWithForm ([#283](https://github.com/DTStack/dt-react-component/issues/283)) ([f0c813a](https://github.com/DTStack/dt-react-component/commit/f0c813a306dc2cadd495ce15cae7b4328b155ad4))
+
 ### [3.0.8](https://github.com/DTStack/dt-react-component/compare/v3.0.7...v3.0.8) (2023-01-11)
 
 
