@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Form, FormProps } from 'antd';
+import { Form, FormProps, Modal } from 'antd';
 import { ButtonProps, ButtonType } from 'antd/es/button';
 
 export interface IProps {
@@ -82,6 +82,7 @@ const ModalForm = (props: ModalProps) => {
         children,
         okButtonProps,
         maskClosable = false,
+        afterClose,
     } = props;
 
     const formProps = useFilterFormProps();
@@ -97,6 +98,11 @@ const ModalForm = (props: ModalProps) => {
 
     const cancelHandler = () => {
         hideModalHandler();
+        form.resetFields();
+    };
+
+    const handleAfterClose = () => {
+        afterClose?.();
         form.resetFields();
     };
 
@@ -117,6 +123,7 @@ const ModalForm = (props: ModalProps) => {
             confirmLoading={confirmLoading}
             okButtonProps={okButtonProps}
             maskClosable={maskClosable}
+            afterClose={handleAfterClose}
         >
             <Form form={form} layout={layout} {...formProps}>
                 {React.cloneElement(children, { form, ...props })}
