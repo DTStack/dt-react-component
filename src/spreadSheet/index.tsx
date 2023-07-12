@@ -11,7 +11,7 @@ import './style.scss';
 type IOptions = HotTableProps & {
     /** 是否展示复制值以及列名 */
     showCopyWithHeader?: boolean;
-}
+};
 
 export interface ISpreadSheetProps {
     data: Array<Array<string | number | null>>;
