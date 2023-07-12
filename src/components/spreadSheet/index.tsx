@@ -10,7 +10,7 @@ import 'handsontable/languages/zh-CN.js';
 type IOptions = HotTableProps & {
     /** 是否展示复制值以及列名 */
     showCopyWithHeader?: boolean;
-}
+};
 
 export interface SpreadSheetProps {
     data: Array<Array<string | null | number>>;
@@ -123,6 +123,8 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         const { columns = [], className = '', options } = this.props;
         const { trimWhitespace = true, showCopyWithHeader, ...restOptions } = options || {};
         const showData = this.getData();
+        // 因 showCopyWithHeader 属于自定义属性，不应放到 HotTable 属性中，因此排除
+        console.log(showCopyWithHeader, '--showCopyWithHeader');
         // 空数组情况，不显示colHeaders，否则colHeaders默认会按照 A、B...显示
         // 具体可见 https://handsontable.com/docs/7.1.1/Options.html#colHeaders
         let isShowColHeaders = false;
