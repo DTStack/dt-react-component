@@ -2,27 +2,29 @@ import React, { useEffect, useRef } from 'react';
 
 import CopyUtils from '../utils/copy';
 import { HotTable } from '@handsontable/react';
+import type { HotTableProps } from '@handsontable/react';
 import classNames from 'classnames';
 import 'handsontable/dist/handsontable.full.css';
 import 'handsontable/languages/zh-CN.js';
 import './style.scss';
 
+type IOptions = HotTableProps & {
+    /** 是否展示复制值以及列名 */
+    showCopyWithHeader?: boolean;
+};
+
 export interface ISpreadSheetProps {
-    data: Array<Array<string>>;
+    data: Array<Array<string | number | null>>;
     columns: any;
     className?: string;
-    options?: {
-        showCopyWithHeader?: boolean;
-        /** handsontable 是否去除内容里的空格 */
-        trimWhitespace?: boolean;
-    };
+    options?: IOptions;
 }
 
 const SpreadSheet: React.FC<ISpreadSheetProps> = ({ data, columns = [], className, options }) => {
     const tableRef = useRef<any>(null);
     const copyUtils = new CopyUtils();
     const _timer = useRef<NodeJS.Timeout>();
-    const { trimWhitespace = true } = options || {};
+    const { showCopyWithHeader, ...restProps } = options || {};
 
     useEffect(() => {
         if (tableRef.current) {
@@ -87,7 +89,7 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = ({ data, columns = [], classNam
                 },
             },
         };
-        if (options?.showCopyWithHeader) {
+        if (showCopyWithHeader) {
             const copyWithHeaderItem = {
                 name: '复制值以及列名',
                 callback: function (this: any, _key: any, selection: any) {
@@ -132,12 +134,12 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = ({ data, columns = [], classNam
             manualColumnResize // 拉伸功能
             autoColumnSize
             colWidths={200}
-            trimWhitespace={trimWhitespace} // false 表示不去除内容里的空格
             beforeCopy={beforeCopy}
             beforeCut={() => false}
             columnHeaderHeight={25}
             contextMenu={getContextMenu()}
             stretchH="all" // 填充空白区域
+            {...restProps}
         />
     );
 };
