@@ -2,19 +2,21 @@ import React from 'react';
 
 import CopyUtils from '../utils/copy';
 import { HotTable } from '@handsontable/react';
+import type { HotTableProps } from '@handsontable/react';
 import classNames from 'classnames';
 import 'handsontable/dist/handsontable.full.css';
 import 'handsontable/languages/zh-CN.js';
 
+type IOptions = HotTableProps & {
+    /** 是否展示复制值以及列名 */
+    showCopyWithHeader?: boolean;
+}
+
 export interface SpreadSheetProps {
-    data: Array<Array<string>>;
+    data: Array<Array<string | null | number>>;
     columns: any;
     className?: string;
-    options?: {
-        showCopyWithHeader?: boolean;
-        /** handsontable 是否去除内容里的空格 */
-        trimWhitespace?: boolean;
-    };
+    options?: IOptions;
 }
 
 class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
@@ -119,7 +121,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
     }
     render() {
         const { columns = [], className = '', options } = this.props;
-        const { trimWhitespace = true } = options || {};
+        const { trimWhitespace = true, showCopyWithHeader, ...restOptions } = options || {};
         const showData = this.getData();
         // 空数组情况，不显示colHeaders，否则colHeaders默认会按照 A、B...显示
         // 具体可见 https://handsontable.com/docs/7.1.1/Options.html#colHeaders
@@ -151,6 +153,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                 columnHeaderHeight={25}
                 contextMenu={this.getContextMenu()}
                 stretchH="all" // 填充空白区域
+                {...restOptions}
             />
         );
     }
