@@ -24,7 +24,7 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = ({ data, columns = [], classNam
     const tableRef = useRef<any>(null);
     const copyUtils = new CopyUtils();
     const _timer = useRef<NodeJS.Timeout>();
-    const { trimWhitespace = true, showCopyWithHeader, ...restProps } = options || {};
+    const { showCopyWithHeader, ...restProps } = options || {};
 
     useEffect(() => {
         if (tableRef.current) {
@@ -134,7 +134,6 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = ({ data, columns = [], classNam
             manualColumnResize // 拉伸功能
             autoColumnSize
             colWidths={200}
-            trimWhitespace={trimWhitespace} // false 表示不去除内容里的空格
             beforeCopy={beforeCopy}
             beforeCut={() => false}
             columnHeaderHeight={25}
