@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/DTStack/dt-react-component/compare/v4.0.4...v4.1.0) (2023-07-12)
+
+### Features
+
+-   add table component ([#356](https://github.com/DTStack/dt-react-component/issues/356)) ([0553e28](https://github.com/DTStack/dt-react-component/commit/0553e289272c3718666f28994e5feb4853ae7ecc))
+-   spreadSheet comp support extra options from outside ([#366](https://github.com/DTStack/dt-react-component/issues/366)) ([ab9594a](https://github.com/DTStack/dt-react-component/commit/ab9594aea80ec1e816137f3a3388630c94499a1c))
+
+### Bug Fixes
+
+-   [#82926](https://github.com/DTStack/dt-react-component/issues/82926) handsontable trimWhitespace should be false ([#361](https://github.com/DTStack/dt-react-component/issues/361)) ([efe7687](https://github.com/DTStack/dt-react-component/commit/efe7687e414629562acf2ab19e4167e639b82a08))
+
 ### [4.0.4](https://github.com/DTStack/dt-react-component/compare/v4.0.3...v4.0.4) (2023-06-20)
 
 ### [4.0.3](https://github.com/DTStack/dt-react-component/compare/v4.0.2...v4.0.3) (2023-06-15)
