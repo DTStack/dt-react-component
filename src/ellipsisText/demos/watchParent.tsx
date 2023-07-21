@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { Divider, Radio, RadioChangeEvent } from 'antd';
 import { EllipsisText } from 'dt-react-component';
-import { Radio, RadioChangeEvent, Divider } from 'antd';
 
 export default () => {
     const [width, setWidth] = useState(200);

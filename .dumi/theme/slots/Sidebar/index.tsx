@@ -1,6 +1,7 @@
 import React from 'react';
-import { useSidebarData, NavLink } from 'dumi';
 import { Tooltip } from 'antd';
+import { NavLink, useSidebarData } from 'dumi';
+
 import { useMobile } from '../../hooks';
 import 'dumi/theme-default/slots/Sidebar/index.less';
 import './index.scss';

@@ -1,4 +1,5 @@
 import { Dropdown } from 'antd';
+
 import Select from './select';
 
 type OriginalInterface = typeof Dropdown;

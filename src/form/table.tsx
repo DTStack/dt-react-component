@@ -1,9 +1,10 @@
-import React, { useMemo, ReactNode } from 'react';
-import { Form, Table, type FormListFieldData, type TableProps } from 'antd';
-import classnames from 'classnames';
-import utils from '../utils';
+import React, { ReactNode, useMemo } from 'react';
+import { Form, type FormListFieldData, Table, type TableProps } from 'antd';
 import type { FormItemProps, FormListProps, Rule, RuleObject, RuleRender } from 'antd/lib/form';
 import type { ColumnsType, ColumnType as TableColumnType } from 'antd/lib/table';
+import classnames from 'classnames';
+
+import utils from '../utils';
 import './index.scss';
 
 type NotNullRowSelection = NonNullable<TableProps<any>['rowSelection']>;

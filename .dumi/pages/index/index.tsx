@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, Helmet } from 'dumi';
-import { Button } from 'antd';
 import { GithubOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
+import { Helmet, Link } from 'dumi';
+
 import './index.scss';
 
 export default function Homepage() {

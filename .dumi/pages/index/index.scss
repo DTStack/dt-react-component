@@ -1,13 +1,12 @@
-@import '../../theme/style/const.scss';
+@import "../../theme/style/const.scss";
 
 .dtc-homepage {
-    background-color: #ebf5fd;
+    background-color: #EBF5FD;
     height: calc(100vh - 64px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-
     .dtc-homepage-title {
         font-size: 70px;
         color: $basic-black-color;
@@ -15,26 +14,21 @@
         margin-bottom: 12px;
         line-height: 1.15;
     }
-
     .dtc-homepage-badges {
         margin-bottom: 12px;
-
         img:not(:last-child) {
             margin-inline-end: 20px;
         }
     }
-
     .dtc-homepage-description {
         color: $basic-black-color;
         font-size: 30px;
     }
-
     .dtc-homepage-btnGroups {
         margin: 12px auto 0;
         display: grid;
         grid-gap: 18px;
         grid-template-columns: 1fr 1fr;
-
         > .ant-btn {
             font-size: 20px;
             height: 40px;
@@ -46,15 +40,12 @@
 @media only screen and (max-width: 767px) {
     .dtc-homepage {
         height: calc(100vh - 52px);
-
         .dtc-homepage-title {
             font-size: 60px;
         }
-
         .dtc-homepage-description {
             font-size: 26px;
         }
-
         .dtc-homepage-btnGroups {
             > .ant-btn {
                 font-size: 16px;

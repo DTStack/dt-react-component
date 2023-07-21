@@ -1,7 +1,8 @@
 import React from 'react';
-import SpreadSheet from '../index';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import SpreadSheet from '../index';
 
 // mock the CopyUtils
 jest.mock('../../utils/copy', () => {

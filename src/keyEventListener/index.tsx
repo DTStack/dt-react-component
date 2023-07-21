@@ -1,4 +1,5 @@
-import { useCallback, useEffect, ReactNode, ForwardRefExoticComponent } from 'react';
+import { ForwardRefExoticComponent, ReactNode, useCallback, useEffect } from 'react';
+
 import KeyCombiner from './listener';
 
 export interface IKeyEventListenerProps {

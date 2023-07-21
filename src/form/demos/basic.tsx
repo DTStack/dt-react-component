@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { EllipsisText, Form } from 'dt-react-component';
 import { Button, Input, message, Space } from 'antd';
+import { EllipsisText, Form } from 'dt-react-component';
+
 import getMockData from './data';
 
 export default () => {

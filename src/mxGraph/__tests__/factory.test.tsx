@@ -1,7 +1,8 @@
 /* eslint-disable new-cap */
-import MxFactory from '../factory';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
+import MxFactory from '../factory';
 
 describe('mxGraph Factory Component Tests', () => {
     afterEach(() => {

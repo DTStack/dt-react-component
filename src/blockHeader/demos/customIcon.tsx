@@ -1,5 +1,5 @@
 import React from 'react';
-import { PieChartOutlined, PauseCircleOutlined } from '@ant-design/icons';
+import { PauseCircleOutlined, PieChartOutlined } from '@ant-design/icons';
 import { BlockHeader } from 'dt-react-component';
 
 export default () => {

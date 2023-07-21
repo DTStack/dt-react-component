@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ErrorBoundary } from 'dt-react-component';
 import { message } from 'antd';
+import { ErrorBoundary } from 'dt-react-component';
 
 const ThrowError = () => {
     const [count, setCount] = useState(0);

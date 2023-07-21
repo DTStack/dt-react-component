@@ -1,9 +1,10 @@
 import React, { forwardRef, useMemo } from 'react';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Table as InternalTable, Tooltip } from 'antd';
 import type { LabelTooltipType, WrapperTooltipProps } from 'antd/lib/form/FormItemLabel';
 import type { ColumnType as PrimitiveColumnType, TableProps } from 'antd/lib/table';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
+
 import './index.scss';
 
 const {

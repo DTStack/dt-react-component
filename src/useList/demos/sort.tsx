@@ -1,9 +1,10 @@
 import React from 'react';
-import { Result, Table, Input } from 'antd';
-import { useList } from 'dt-react-component';
-import getMockData, { type MockData } from './data';
-import type { Fetcher } from 'dt-react-component/useList';
+import { Input, Result, Table } from 'antd';
 import type { SorterResult } from 'antd/lib/table/interface';
+import { useList } from 'dt-react-component';
+import type { Fetcher } from 'dt-react-component/useList';
+
+import getMockData, { type MockData } from './data';
 
 type Params = {
     current: number;

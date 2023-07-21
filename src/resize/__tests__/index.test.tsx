@@ -1,7 +1,8 @@
 import React from 'react';
-import Resize from '../index';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import Resize from '../index';
 
 describe('Resize', () => {
     let originalResizeObserver: typeof global.ResizeObserver;

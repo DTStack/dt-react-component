@@ -1,8 +1,9 @@
-import React, { ReactNode, CSSProperties } from 'react';
-import { Tooltip, message } from 'antd';
+import React, { CSSProperties, ReactNode } from 'react';
 import { CopyOutlined } from '@ant-design/icons';
-import useClippy from 'use-clippy';
+import { message, Tooltip } from 'antd';
 import classNames from 'classnames';
+import useClippy from 'use-clippy';
+
 import './style.scss';
 
 export interface ICopyProps {

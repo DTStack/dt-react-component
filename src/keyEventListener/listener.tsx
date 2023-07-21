@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState, ReactNode } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 export interface IKeyCombinerProps {
     onTrigger?: (evt: any) => void;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Radio, RadioChangeEvent, Divider } from 'antd';
+import { Divider, Radio, RadioChangeEvent } from 'antd';
 import { EllipsisText } from 'dt-react-component';
 
 export default () => {

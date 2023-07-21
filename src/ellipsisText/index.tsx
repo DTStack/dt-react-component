@@ -1,14 +1,15 @@
 import React, {
+    CSSProperties,
+    ReactNode,
+    useCallback,
+    useLayoutEffect,
     useRef,
     useState,
-    useLayoutEffect,
-    useCallback,
-    ReactNode,
-    CSSProperties,
 } from 'react';
 import { Tooltip } from 'antd';
 import { AbstractTooltipProps, RenderFunction } from 'antd/lib/tooltip';
 import classNames from 'classnames';
+
 import Resize from '../resize';
 import './style.scss';
 

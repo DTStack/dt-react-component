@@ -1,6 +1,7 @@
-import showdown from 'showdown';
 import hljs from 'highlight.js';
 import sql from 'highlight.js/lib/languages/sql';
+import showdown from 'showdown';
+
 import 'highlight.js/styles/default.css';
 import '../theme/vs.scss';
 import '../theme/vs-dark.scss';

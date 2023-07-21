@@ -1,16 +1,17 @@
 /* eslint-disable prefer-rest-params */
-import factory from 'mxgraph';
 import type {
+    mxCell,
+    mxCellState,
+    mxGraph,
     mxGraphExportObject,
     mxGraphOptions,
-    mxGraph,
-    StyleMap,
-    mxCell,
-    mxRectangle,
     mxGraphView,
     mxPoint,
-    mxCellState,
+    mxRectangle,
+    StyleMap,
 } from 'mxgraph';
+import factory from 'mxgraph';
+
 import { IContainerProps } from '.';
 
 type IMxGraph = mxGraph & {

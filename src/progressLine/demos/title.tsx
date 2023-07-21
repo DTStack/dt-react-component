@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ProgressLine } from 'dt-react-component';
 import { Input } from 'antd';
+import { ProgressLine } from 'dt-react-component';
 
 export default () => {
     const [title, setTitle] = useState('衍生标签：35');

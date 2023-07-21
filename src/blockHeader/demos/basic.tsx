@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { BlockHeader } from 'dt-react-component';
 import { Switch } from 'antd';
+import { BlockHeader } from 'dt-react-component';
 
 export default () => {
     const [showBackground, setShowBackground] = useState(true);

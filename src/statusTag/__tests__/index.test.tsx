@@ -1,7 +1,8 @@
 import React from 'react';
-import StatusTag from '../index';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import StatusTag from '../index';
 
 describe('test StatusTag suite', () => {
     const prefixCls = 'dtc-statusTag';

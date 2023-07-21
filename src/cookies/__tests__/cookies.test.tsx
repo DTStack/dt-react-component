@@ -1,5 +1,6 @@
 import { cleanup, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
 import useCookieListener from '../index';
 
 jest.useFakeTimers({ advanceTimers: true });

@@ -1,6 +1,6 @@
+import React, { useState } from 'react';
 import { Switch } from 'antd';
 import { Fullscreen } from 'dt-react-component';
-import React, { useState } from 'react';
 
 export default () => {
     const [themeDark, setThemeDark] = useState(false);

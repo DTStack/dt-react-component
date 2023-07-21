@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
+
 import ProgressBar from '..';
 
 describe('test ProgressBar', () => {

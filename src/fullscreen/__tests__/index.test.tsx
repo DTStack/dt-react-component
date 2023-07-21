@@ -1,7 +1,8 @@
-import { ArrowsAltOutlined, ShrinkOutlined } from '@ant-design/icons';
-import '@testing-library/jest-dom/extend-expect';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
+import { ArrowsAltOutlined, ShrinkOutlined } from '@ant-design/icons';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+
 import Fullscreen from '..';
 describe('test Fullscreen', () => {
     afterEach(() => {

@@ -1,6 +1,6 @@
+import React from 'react';
 import { ArrowsAltOutlined, ShrinkOutlined } from '@ant-design/icons';
 import { Fullscreen } from 'dt-react-component';
-import React from 'react';
 
 export default () => {
     const iconStyle = {

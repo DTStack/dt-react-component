@@ -1,6 +1,7 @@
-import useWindowSwitchListener from '../index';
 import { cleanup, renderHook } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import useWindowSwitchListener from '../index';
 
 describe('test useWindowSwitchListener hooks', () => {
     afterEach(() => {

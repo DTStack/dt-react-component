@@ -1,4 +1,4 @@
-import React, { useEffect, ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 export interface ResizeProps {
     observerEle?: HTMLElement | null;
