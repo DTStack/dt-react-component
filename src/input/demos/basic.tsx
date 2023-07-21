@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Input } from 'dt-react-component';
 import { Radio } from 'antd';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
+import { Input } from 'dt-react-component';
 
 export default () => {
     const [size, setSize] = useState<SizeType>('middle');

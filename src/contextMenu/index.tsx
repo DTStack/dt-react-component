@@ -1,5 +1,6 @@
 import React, { CSSProperties, PropsWithChildren, ReactNode } from 'react';
-import { Dropdown, Menu, DropdownProps, Popconfirm, PopconfirmProps } from 'antd';
+import { Dropdown, DropdownProps, Menu, Popconfirm, PopconfirmProps } from 'antd';
+
 import './style.scss';
 
 interface IMenuProps {

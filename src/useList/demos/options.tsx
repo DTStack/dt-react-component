@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Result, Table, Drawer, Button } from 'antd';
-import { useList } from 'dt-react-component';
 import { faker } from '@faker-js/faker';
-import getMockData, { type MockData } from './data';
+import { Button, Drawer, Result, Table } from 'antd';
+import { useList } from 'dt-react-component';
 import type { Fetcher } from 'dt-react-component/useList';
+
+import getMockData, { type MockData } from './data';
 
 const fetcher: Fetcher<MockData, {}> = (params) => {
     return new Promise<{

@@ -1,9 +1,10 @@
 import React from 'react';
-import CollapsibleActionItems from '../index';
-import { cleanup, fireEvent, render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import { act } from 'react-dom/test-utils';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import { Button } from 'antd';
+import '@testing-library/jest-dom/extend-expect';
+
+import CollapsibleActionItems from '../index';
 
 describe('test CollapsibleActionItems', () => {
     const items = [

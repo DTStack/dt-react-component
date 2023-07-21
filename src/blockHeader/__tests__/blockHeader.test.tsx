@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import BlockHeader from '../index';
-import '@testing-library/jest-dom/extend-expect';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import { SizeType } from 'dt-react-component/esm/blockHeader';
+import '@testing-library/jest-dom/extend-expect';
+
+import BlockHeader from '../index';
 
 const props = {
     title: '标题1',

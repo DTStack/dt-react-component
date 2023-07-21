@@ -1,4 +1,5 @@
 import { Modal } from 'antd';
+
 import InternalForm from './form';
 
 type OriginalInterface = typeof Modal;

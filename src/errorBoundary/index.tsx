@@ -1,4 +1,5 @@
-import React, { ReactNode, Component, ErrorInfo } from 'react';
+import React, { Component, ErrorInfo, ReactNode } from 'react';
+
 import LoadError from './loadError';
 
 interface IErrorBoundaryProps {

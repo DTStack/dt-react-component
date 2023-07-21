@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
-import showdown from 'showdown';
 import classnames from 'classnames';
+import showdown from 'showdown';
+
 import sqlHighlightExtension from './extensions';
 import './style.scss';
 

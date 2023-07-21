@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { MxGraphContainer, WIDGETS_PREFIX } from 'dt-react-component';
+
 import './index.scss';
 
 export default () => {

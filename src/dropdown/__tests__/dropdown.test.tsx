@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, fireEvent, act, cleanup } from '@testing-library/react';
+import { act, cleanup, fireEvent, render } from '@testing-library/react';
 import { Button } from 'antd';
-import Dropdown from '..';
 import '@testing-library/jest-dom';
+
+import Dropdown from '..';
 
 describe('Test Dropdown.Select Component', () => {
     beforeEach(() => {

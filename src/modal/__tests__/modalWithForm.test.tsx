@@ -1,8 +1,9 @@
 import React from 'react';
-import Modal from '../';
-import { Input, Form } from 'antd';
-import { render, fireEvent, screen, cleanup } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { Form, Input } from 'antd';
 import '@testing-library/jest-dom/extend-expect';
+
+import Modal from '../';
 
 const FormItem = Form.Item;
 const EnhancedModal = Modal.Form((_props: any) => {

@@ -1,8 +1,9 @@
 import React from 'react';
-import Table from '../index';
+import { act } from 'react-dom/test-utils';
 import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { act } from 'react-dom/test-utils';
+
+import Table from '../index';
 
 const columns = [
     {

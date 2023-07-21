@@ -1,7 +1,8 @@
-import React, { ReactNode, CSSProperties, HTMLAttributes } from 'react';
+import React, { CSSProperties, HTMLAttributes, ReactNode } from 'react';
 import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
 import { Spin } from 'antd';
 import classNames from 'classnames';
+
 import './style.scss';
 
 export type StatusTagType = 'warning' | 'error' | 'success' | 'run' | 'stopped';

@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, cleanup, fireEvent, waitFor } from '@testing-library/react';
-import MxGraphContainer, { WIDGETS_PREFIX, IContainerRef } from '../index';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
+
+import MxGraphContainer, { IContainerRef, WIDGETS_PREFIX } from '../index';
 
 describe('The mxGraph Container test', () => {
     afterEach(() => {

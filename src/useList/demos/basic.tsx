@@ -1,8 +1,9 @@
 import React from 'react';
-import { Result, Table, Input } from 'antd';
+import { Input, Result, Table } from 'antd';
 import { useList } from 'dt-react-component';
-import getMockData, { type MockData } from './data';
 import type { Fetcher } from 'dt-react-component/useList';
+
+import getMockData, { type MockData } from './data';
 
 const fetcher: Fetcher<MockData, { current: number; pageSize: number; search?: string }> = (
     params

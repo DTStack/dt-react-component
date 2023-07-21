@@ -1,7 +1,8 @@
 import React from 'react';
-import KeyEventListener from '../index';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import KeyEventListener from '../index';
 const { KeyCombiner } = KeyEventListener;
 describe('test KeyCombiner suite', () => {
     const text = 'command+shift+f';

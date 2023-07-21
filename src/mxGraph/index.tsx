@@ -19,6 +19,7 @@ import {
     mxGraphExportObject,
     mxPopupMenuHandler,
 } from 'mxgraph';
+
 import MxFactory from './factory';
 import './style.scss';
 

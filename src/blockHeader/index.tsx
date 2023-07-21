@@ -1,7 +1,8 @@
-import React, { useState, ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
+
 import './style.scss';
 
 export declare type SizeType = 'small' | 'middle' | undefined;

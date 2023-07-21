@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
+import type { HotTableProps } from '@handsontable/react';
+import { HotTable } from '@handsontable/react';
+import classNames from 'classnames';
+import 'handsontable/languages/zh-CN.js';
 
 import CopyUtils from '../utils/copy';
-import { HotTable } from '@handsontable/react';
-import type { HotTableProps } from '@handsontable/react';
-import classNames from 'classnames';
 import 'handsontable/dist/handsontable.full.css';
-import 'handsontable/languages/zh-CN.js';
 import './style.scss';
 
 type IOptions = HotTableProps & {

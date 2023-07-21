@@ -1,5 +1,6 @@
-import React, { ReactNode, CSSProperties } from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import { Empty as AntdEmpty, EmptyProps } from 'antd';
+
 import './style.scss';
 
 export const IMG_MAP = {

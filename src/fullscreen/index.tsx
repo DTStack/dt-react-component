@@ -1,5 +1,6 @@
+import React, { CSSProperties, HTMLAttributes, ReactNode, useEffect, useState } from 'react';
 import { Button } from 'antd';
-import React, { useEffect, useState, ReactNode, CSSProperties, HTMLAttributes } from 'react';
+
 import KeyEventListener from '../keyEventListener';
 import MyIcon from './icon';
 

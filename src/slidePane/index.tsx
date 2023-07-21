@@ -1,7 +1,8 @@
-import React, { PropsWithChildren, CSSProperties, MouseEvent, KeyboardEvent } from 'react';
+import React, { CSSProperties, KeyboardEvent, MouseEvent, PropsWithChildren } from 'react';
 import classNames from 'classnames';
 import { assign } from 'lodash';
 import RcDrawer from 'rc-drawer';
+
 import './style.scss';
 
 export interface ISlidePaneProps {

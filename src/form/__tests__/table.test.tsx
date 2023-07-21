@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Input } from 'antd';
+
 import Form from '../';
 
 describe('Test Form.Table Component', () => {

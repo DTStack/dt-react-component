@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { render, cleanup, fireEvent, RenderResult } from '@testing-library/react';
+import { cleanup, fireEvent, render, RenderResult } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
 import EllipsisText from '../index';
 
 (global as any).document.createRange = () => ({

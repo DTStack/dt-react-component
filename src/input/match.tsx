@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Input, Tooltip, type InputProps } from 'antd';
+import { Input, type InputProps, Tooltip } from 'antd';
 import classNames from 'classnames';
-import { CaseSensitiveIcon, PreciseIcon, FrontIcon, TailIcon } from './icons';
+
+import { CaseSensitiveIcon, FrontIcon, PreciseIcon, TailIcon } from './icons';
 import './match.scss';
 
 /**

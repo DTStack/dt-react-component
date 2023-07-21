@@ -1,6 +1,6 @@
-import React, { ReactNode, Component } from 'react';
-import { EllipsisText } from 'dt-react-component';
+import React, { Component, ReactNode } from 'react';
 import { Divider } from 'antd';
+import { EllipsisText } from 'dt-react-component';
 
 const element = (
     <>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'dt-react-component';
+
 import { ColumnType } from '..';
 
 interface DataType {

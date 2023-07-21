@@ -1,5 +1,6 @@
 import React from 'react';
 import { FrownOutlined } from '@ant-design/icons';
+
 import './style.scss';
 
 const NotFound: React.FC<any> = function () {

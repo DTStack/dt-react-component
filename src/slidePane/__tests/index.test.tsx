@@ -1,7 +1,8 @@
 import React from 'react';
-import SlidePane from '../index';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import SlidePane from '../index';
 
 describe('test SlidePane ', () => {
     const expectValues = {

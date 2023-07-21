@@ -1,6 +1,7 @@
 import React from 'react';
 import { Divider, Space } from 'antd';
 import { StatusTag } from 'dt-react-component';
+
 import { StatusTagType } from '../index';
 
 export default () => {

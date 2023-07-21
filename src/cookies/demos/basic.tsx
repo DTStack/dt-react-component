@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
+import { Button, message } from 'antd';
 import { useCookieListener } from 'dt-react-component';
 import utils from 'dt-react-component/utils';
-import { Button, message } from 'antd';
 
 export default () => {
     useEffect(() => {

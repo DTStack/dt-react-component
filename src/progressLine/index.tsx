@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Tooltip } from 'antd';
 import { TooltipProps } from 'antd/lib/tooltip';
+
 import './style.scss';
 
 interface IProgressLineProps {

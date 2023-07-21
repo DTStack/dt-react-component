@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ProgressLine } from 'dt-react-component';
 import { InputNumber } from 'antd';
+import { ProgressLine } from 'dt-react-component';
 
 export default () => {
     const [num, setNum] = useState(60);

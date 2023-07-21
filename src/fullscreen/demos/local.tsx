@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from 'react';
 import { Card } from 'antd';
 import { Fullscreen } from 'dt-react-component';
-import React, { useEffect, useState } from 'react';
 
 export default () => {
     const [targetKey, setTargetKey] = useState('');
