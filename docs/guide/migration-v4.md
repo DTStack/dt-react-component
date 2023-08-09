@@ -90,6 +90,8 @@ useCookieListener(
 #### MultiSearchInput [#316](https://github.com/DTStack/dt-react-component/pull/316)
 
 -   重命名为 `Input.Match`。
+-   原 `onChange` 回调方法参数由 `e.target.value` 改为了 `e`，升级之后需要注意
+-   原 `filterOptions` 属性默认值由 `['precise', 'front', 'tail']` 改为了 `['caseSensitive', 'precise', 'front', 'tail']`，若使用了默认值值升级后模糊搜索会多一个 区分大小写匹配的选项，解决方式：手动传递 `filterOptions` 为 `['precise', 'front', 'tail']`。
 
 ### 2.3、属性调整
 
