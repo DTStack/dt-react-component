@@ -18,9 +18,22 @@ export interface ISpreadSheetProps {
     columns: any;
     className?: string;
     options?: IOptions;
+    /** 结果数据每一列的字段类型，由服务端返回 */
+    columnTypes?: Array<{
+        /** 字段名称 */
+        name: string;
+        /** 字段类型 */
+        type: string;
+    }>;
 }
 
-const SpreadSheet: React.FC<ISpreadSheetProps> = ({ data, columns = [], className, options }) => {
+const SpreadSheet: React.FC<ISpreadSheetProps> = ({
+    data,
+    columns = [],
+    className,
+    options,
+    columnTypes = [],
+}) => {
     const tableRef = useRef<any>(null);
     const copyUtils = new CopyUtils();
     const _timer = useRef<NodeJS.Timeout>();
@@ -123,8 +136,17 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = ({ data, columns = [], classNam
             language="zh-CN"
             // 空数组情况，不显示colHeaders，否则colHeaders默认会按照 A、B...显示
             // 具体可见 https://handsontable.com/docs/7.1.1/Options.html#colHeaders
-            colHeaders={columns?.length > 0 ? columns : false}
+            colHeaders={(index) => {
+                if (!columns?.length) return false;
+                // handsome 不支持 renderCustomHeader，所以只能用 html string 实现 tooltip
+                const fieldTypeStr = columnTypes?.[index as number]?.type;
+                const title = fieldTypeStr
+                    ? `${columns?.[index as number]}: ${fieldTypeStr}`
+                    : columns?.[index as number];
+                return `<span title="${title}">${title}</span>`;
+            }}
             data={getData()}
+            columnSorting
             mergeCells={getMergeCells()}
             cell={getCell()}
             readOnly
