@@ -34,7 +34,7 @@ toc: content
 | params  | 请求参数和表格总数       | `Record<string, any> & { total: number}`       | -       |
 | error   | 错误信息                 | `Error`                                        | -       |
 | data    | 表格数据                 | `T[]`                                          | -       |
-| mutate  | 修改 Params 的值         | `(nextParams, options: MutateOptions) => void` | -       |
+| mutate  | 修改 Params 的值。需要注意的是，用 undefined 覆盖 prevPrams 时，需采用 functional 的写法       | `(nextParams, options: MutateOptions) => void` | -       |
 | clear   | 清空状态，包括数据和参数 | `() => void`                                   | -       |
 
 ## Options
