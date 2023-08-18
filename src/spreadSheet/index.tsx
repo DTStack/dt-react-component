@@ -146,7 +146,6 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = ({
                 return `<span title="${title}">${title}</span>`;
             }}
             data={getData()}
-            columnSorting
             mergeCells={getMergeCells()}
             cell={getCell()}
             readOnly
