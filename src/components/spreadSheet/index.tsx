@@ -147,7 +147,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                 language="zh-CN"
                 colHeaders={(index) => {
                     if (!isShowColHeaders) return false;
-                    // handsome 不支持 renderCustomHeader，所以只能用 html string 实现 tooltip
+                    // handsontable 不支持 renderCustomHeader，所以只能用 html string 实现 tooltip
                     const fieldTypeStr = columnTypes?.[index]?.type;
                     const title = fieldTypeStr ? `${columns?.[index]}: ${fieldTypeStr}` : columns?.[index];
                     return `<span title="${title}">${title}</span>`;
