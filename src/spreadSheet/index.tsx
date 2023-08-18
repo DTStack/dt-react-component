@@ -138,7 +138,7 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = ({
             // 具体可见 https://handsontable.com/docs/7.1.1/Options.html#colHeaders
             colHeaders={(index) => {
                 if (!columns?.length) return false;
-                // handsome 不支持 renderCustomHeader，所以只能用 html string 实现 tooltip
+                // handsontable 不支持 renderCustomHeader，所以只能用 html string 实现 tooltip
                 const fieldTypeStr = columnTypes?.[index as number]?.type;
                 const title = fieldTypeStr
                     ? `${columns?.[index as number]}: ${fieldTypeStr}`
