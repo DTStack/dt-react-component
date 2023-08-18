@@ -153,7 +153,6 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                     return `<span title="${title}">${title}</span>`;
                 }}
                 data={showData}
-                columnSorting
                 mergeCells={this.getMergeCells()}
                 cell={this.getCell()}
                 readOnly
