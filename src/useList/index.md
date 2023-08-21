@@ -15,6 +15,7 @@ toc: content
 <code src="./demos/basic.tsx" title="基础使用"></code>
 <code src="./demos/sort.tsx" title="筛选和过滤"></code>
 <code src="./demos/options.tsx" title="相关配置" description="设置 immediate 值防止初始化的时候进行请求"></code>
+<code src="./demos/mutate.tsx" title="相关配置" description="用 undefined 覆盖 prevPrams 时，需采用 functional 的写法 "></code>
 
 ## API
 
@@ -34,7 +35,7 @@ toc: content
 | params  | 请求参数和表格总数       | `Record<string, any> & { total: number}`       | -       |
 | error   | 错误信息                 | `Error`                                        | -       |
 | data    | 表格数据                 | `T[]`                                          | -       |
-| mutate  | 修改 Params 的值。需要注意的是，用 undefined 覆盖 prevPrams 时，需采用 functional 的写法       | `(nextParams, options: MutateOptions) => void` | -       |
+| mutate  | 修改 Params 的值         | `(nextParams, options: MutateOptions) => void` | -       |
 | clear   | 清空状态，包括数据和参数 | `() => void`                                   | -       |
 
 ## Options
