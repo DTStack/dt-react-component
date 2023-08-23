@@ -351,4 +351,34 @@ describe('Test Dropdown.Select Component', () => {
             'ant-checkbox-checked'
         );
     });
+
+    it('Should get correct checked values on virtual list', () => {
+        const fn = jest.fn();
+        const { getByTestId, getByText } = render(
+            <Dropdown.Select
+                value={[2, 1000, 2000]}
+                options={Array.from({ length: 10000 }).map((_, index) => ({
+                    label: index,
+                    value: index,
+                }))}
+                onChange={fn}
+                getPopupContainer={(node) => node}
+            >
+                <Button type="link" data-testid="trigger">
+                    打开下拉
+                </Button>
+            </Dropdown.Select>
+        );
+
+        fireEvent.click(getByTestId('trigger'));
+        act(() => {
+            jest.runAllTimers();
+        });
+
+        fireEvent.click(getByText('1'));
+        expect(fn).toBeCalledWith([1000, 2, 2000, 1]);
+
+        fireEvent.click(getByText('2'));
+        expect(fn).toBeCalledWith([1000, 2000]);
+    });
 });
