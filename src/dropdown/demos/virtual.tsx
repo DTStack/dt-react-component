@@ -3,13 +3,16 @@ import { Button } from 'antd';
 import { Dropdown } from 'dt-react-component';
 
 export default () => {
-    const [selected, setSelected] = useState<number[]>([2]);
+    const [selected, setSelected] = useState<number[]>([2, 1000, 2000]);
 
     return (
         <Dropdown.Select
             value={selected}
             options={new Array(10000).fill('').map((_, idx) => idx)}
-            onChange={(val) => setSelected(val as number[])}
+            onChange={(val) => {
+                console.log(val);
+                setSelected(val as number[]);
+            }}
             onSubmit={() => {
                 console.log('submit');
             }}

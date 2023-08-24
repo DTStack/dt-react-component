@@ -49,6 +49,13 @@ export default function Select({
         onChange?.(options?.filter((i) => i.disabled).map((i) => i.value) || []);
     };
 
+    const handleChange = (e: CheckboxChangeEvent) => {
+        const next = e.target.checked
+            ? [...(value || []), e.target.value]
+            : value?.filter((i) => i !== e.target.value);
+        onChange?.(next);
+    };
+
     const handleShadow = (target: HTMLDivElement) => {
         if (target) {
             if (!target.querySelector(`.${prefix}__shadow`)) {
@@ -116,7 +123,7 @@ export default function Select({
                     </Checkbox>
                 </Col>
                 <Col span={24} className={`${prefix}__menu`}>
-                    <Checkbox.Group onChange={onChange} value={value}>
+                    <Checkbox.Group value={value}>
                         <List
                             data={options}
                             itemKey="value"
@@ -136,7 +143,11 @@ export default function Select({
                                     key={option.value.toString()}
                                     className={`${prefix}__col`}
                                 >
-                                    <Checkbox disabled={option.disabled} value={option.value}>
+                                    <Checkbox
+                                        disabled={option.disabled}
+                                        value={option.value}
+                                        onChange={handleChange}
+                                    >
                                         {option.label}
                                     </Checkbox>
                                 </Col>
