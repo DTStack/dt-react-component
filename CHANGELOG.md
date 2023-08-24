@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/DTStack/dt-react-component/compare/v4.1.0...v4.2.0) (2023-08-24)
+
+### Bug Fixes
+
+-   **dropdown:** fix lost values on virtual list ([#376](https://github.com/DTStack/dt-react-component/issues/376)) ([95f6817](https://github.com/DTStack/dt-react-component/commit/95f68173725955a9f1213404a569bfddbae6702e))
+-   update useList ([#374](https://github.com/DTStack/dt-react-component/issues/374)) ([6502282](https://github.com/DTStack/dt-react-component/commit/6502282c71f7a758ae25aaae05c4d25f4b1b0d62))
+
 ## [4.1.0](https://github.com/DTStack/dt-react-component/compare/v4.0.4...v4.1.0) (2023-07-12)
 
 ### Features
