@@ -15,6 +15,7 @@ toc: content
 <code src="./demos/basic.tsx" title="基础使用"></code>
 <code src="./demos/sort.tsx" title="筛选和过滤"></code>
 <code src="./demos/options.tsx" title="相关配置" description="设置 immediate 值防止初始化的时候进行请求"></code>
+<code src="./demos/mutate.tsx" title="相关配置" description="用 undefined 覆盖 prevPrams 时，需采用 functional 的写法 "></code>
 
 ## API
 

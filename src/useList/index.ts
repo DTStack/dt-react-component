@@ -49,23 +49,11 @@ export default function useList<T extends Record<string, any>, P extends Record<
         };
         const nextOptions = merge(defaultOptions, options);
 
-        if (typeof next === 'function') {
-            setParams((prev) => {
-                const tmp = next(prev);
+        const tmp = typeof next === 'function' ? next(params) : { ...merge({}, params, next) };
+        setParams(tmp);
 
-                if (nextOptions.revalidate) {
-                    performFetch(tmp);
-                }
-
-                return tmp;
-            });
-        } else {
-            const tmp = { ...merge({}, params, next) };
-            setParams(tmp);
-
-            if (nextOptions.revalidate) {
-                performFetch(tmp);
-            }
+        if (nextOptions.revalidate) {
+            performFetch(tmp);
         }
     };
 
