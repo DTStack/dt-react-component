@@ -76,4 +76,12 @@ describe('Test useList hook', () => {
 
         expect(fetcher).toBeCalledTimes(2);
     });
+
+    it('Should support immediate option', () => {
+        const fetcher = jest.fn();
+
+        renderHook(() => useList(fetcher, {}, { immediate: false }));
+
+        expect(fetcher).not.toBeCalled();
+    });
 });
