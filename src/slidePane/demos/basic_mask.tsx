@@ -27,6 +27,7 @@ export default () => {
                 width={`${width}%`}
                 onClose={() => setVisible(false)}
                 title="title"
+                showRenderButton={false}
             >
                 <div>hello world</div>
             </SlidePane>

@@ -16,6 +16,8 @@ demo:
 ## 示例
 
 <code src="./demos/basic.tsx" title="基础使用"></code>
+<code src="./demos/basic_mask.tsx" title="基础 mask 使用"></code>
+<code src="./demos/customTitle.tsx" title="自定义 Title"></code>
 
 ## API
 

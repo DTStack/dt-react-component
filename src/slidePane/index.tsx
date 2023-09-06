@@ -1,37 +1,30 @@
 import React, { CSSProperties, KeyboardEvent, MouseEvent, PropsWithChildren } from 'react';
-import classNames from 'classnames';
-import { assign } from 'lodash';
 import RcDrawer from 'rc-drawer';
 
 import './style.scss';
 
 export interface ISlidePaneProps {
     visible: boolean;
-    className?: string;
-    style?: CSSProperties;
+    wrapperClassName?: string;
+    width?: number | string;
+    title?: React.ReactNode;
+    showRenderButton?: boolean;
+    rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
     onClose?: (e: MouseEvent | KeyboardEvent) => void;
 }
 const SlidePane = ({
     visible,
-    className,
-    style,
+    wrapperClassName,
+    showRenderButton = true,
+    rootStyle,
     bodyStyle,
+    title,
     children,
+    width,
     onClose,
 }: PropsWithChildren<ISlidePaneProps>) => {
     const slidePrefixCls = 'dtc-slide-pane';
-    let rootStyle: CSSProperties = {
-        top: 0,
-        right: 0,
-        transform: visible ? undefined : 'translate3d(150%, 0, 0)',
-    };
-    const classes = classNames(className);
-
-    if (!visible) {
-        rootStyle['pointerEvents'] = 'none';
-    }
-    if (style) rootStyle = assign(rootStyle, style);
 
     const renderButton = () => {
         return (
@@ -46,17 +39,17 @@ const SlidePane = ({
 
     return (
         <RcDrawer
-            prefixCls={slidePrefixCls}
-            rootClassName={classes}
-            width="100%"
-            onClose={onClose}
             open={visible}
-            mask={false}
-            rootStyle={rootStyle}
             placement="right"
+            prefixCls={slidePrefixCls}
+            mask={!showRenderButton}
+            onClose={onClose}
+            rootStyle={rootStyle}
+            width={width}
         >
-            {renderButton()}
-            <div className={`${slidePrefixCls}-content`} style={bodyStyle}>
+            {showRenderButton && renderButton()}
+            <div className={`${slidePrefixCls}-header`}>{title}</div>
+            <div className={`${wrapperClassName} ${slidePrefixCls}-body`} style={bodyStyle}>
                 {children}
             </div>
         </RcDrawer>
