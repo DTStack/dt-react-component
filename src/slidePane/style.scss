@@ -45,6 +45,16 @@ $prefix: "dtc-slide-pane";
         font-size: 14px;
         line-height: 22px;
     }
+    .#{$prefix}-tabs {
+        .ant-tabs-nav-wrap {
+            background: #F9F9FA;
+            padding-left: 16px;
+            border-bottom: 1px solid #EBECF0;
+        }
+        .ant-tabs-nav {
+            margin-bottom: 0;
+        }
+    }
     .#{$prefix}-body {
         padding: 16px;
     }

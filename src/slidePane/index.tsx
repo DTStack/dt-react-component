@@ -1,4 +1,5 @@
-import React, { CSSProperties, KeyboardEvent, MouseEvent, PropsWithChildren } from 'react';
+import React, { CSSProperties, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
+import { Tabs } from 'antd';
 import RcDrawer from 'rc-drawer';
 
 import './style.scss';
@@ -11,8 +12,11 @@ export interface ISlidePaneProps {
     showRenderButton?: boolean;
     rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
+    tabs?: { key: string; title: React.ReactNode }[];
     onClose?: (e: MouseEvent | KeyboardEvent) => void;
+    children?: React.ReactNode | ((key: string) => React.ReactNode);
 }
+
 const SlidePane = ({
     visible,
     wrapperClassName,
@@ -22,9 +26,16 @@ const SlidePane = ({
     title,
     children,
     width,
+    tabs = [],
     onClose,
-}: PropsWithChildren<ISlidePaneProps>) => {
+}: ISlidePaneProps) => {
     const slidePrefixCls = 'dtc-slide-pane';
+
+    const [tabKey, setTabKey] = useState('');
+
+    useEffect(() => {
+        visible && setTabKey(tabs?.[0]?.key);
+    }, [visible]);
 
     const renderButton = () => {
         return (
@@ -49,8 +60,20 @@ const SlidePane = ({
         >
             {showRenderButton && renderButton()}
             <div className={`${slidePrefixCls}-header`}>{title}</div>
-            <div className={`${wrapperClassName} ${slidePrefixCls}-body`} style={bodyStyle}>
-                {children}
+            {!!tabs.length && (
+                <Tabs
+                    destroyInactiveTabPane
+                    activeKey={tabKey}
+                    onChange={setTabKey}
+                    className={`${slidePrefixCls}-tabs`}
+                >
+                    {tabs.map((tab) => (
+                        <Tabs.TabPane tab={tab.title} key={tab.key} />
+                    ))}
+                </Tabs>
+            )}
+            <div className={`${wrapperClassName ?? ''} ${slidePrefixCls}-body`} style={bodyStyle}>
+                {tabs.length ? children?.(tabKey) : children}
             </div>
         </RcDrawer>
     );
