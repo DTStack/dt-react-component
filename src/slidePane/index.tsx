@@ -2,6 +2,7 @@ import React, { CSSProperties, KeyboardEvent, MouseEvent, useEffect, useState } 
 import { Tabs } from 'antd';
 import RcDrawer from 'rc-drawer';
 
+import motionProps from './motion';
 import './style.scss';
 
 export interface ISlidePaneProps {
@@ -57,6 +58,7 @@ const SlidePane = ({
             onClose={onClose}
             rootStyle={rootStyle}
             width={width}
+            {...motionProps}
         >
             {showRenderButton && renderButton()}
             <div className={`${slidePrefixCls}-header`}>{title}</div>

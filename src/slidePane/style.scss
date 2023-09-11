@@ -68,3 +68,81 @@ $prefix: "dtc-slide-pane";
         cursor: pointer;
     }
 }
+
+$duration: 0.3s;
+
+.mask-motion {
+    &-enter,
+    &-appear,
+    &-leave {
+        &-active {
+            transition: all $duration;
+        }
+    }
+    &-enter,
+    &-appear {
+        opacity: 0;
+        &-active {
+            opacity: 1;
+        }
+    }
+    &-leave {
+        opacity: 1;
+        &-active {
+            opacity: 0;
+        }
+    }
+}
+
+.panel-motion {
+    &-left {
+        &-enter,
+        &-appear,
+        &-leave {
+            &-start {
+                transition: none !important;
+            }
+            &-active {
+                transition: all $duration;
+            }
+        }
+        &-enter,
+        &-appear {
+            transform: translateX(-100%);
+            &-active {
+                transform: translateX(0);
+            }
+        }
+        &-leave {
+            transform: translateX(0);
+            &-active {
+                transform: translateX(-100%) !important;
+            }
+        }
+    }
+    &-right {
+        &-enter,
+        &-appear,
+        &-leave {
+            &-start {
+                transition: none !important;
+            }
+            &-active {
+                transition: all $duration;
+            }
+        }
+        &-enter,
+        &-appear {
+            transform: translateX(100%);
+            &-active {
+                transform: translateX(0);
+            }
+        }
+        &-leave {
+            transform: translateX(0);
+            &-active {
+                transform: translateX(100%) !important;
+            }
+        }
+    }
+}
