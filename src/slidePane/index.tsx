@@ -1,41 +1,64 @@
 import React, { CSSProperties, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
 import { Tabs } from 'antd';
+import classNames from 'classnames';
 import RcDrawer from 'rc-drawer';
 
 import motionProps from './motion';
 import './style.scss';
 
-export interface ISlidePaneProps {
+type propWithTabs = {
     visible: boolean;
-    wrapperClassName?: string;
+    rootClassName?: string;
+    bodyClassName?: string;
     width?: number | string;
     title?: React.ReactNode;
     showRenderButton?: boolean;
     rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
     tabs?: { key: string; title: React.ReactNode }[];
+    children?: (key: string) => React.ReactNode;
     onClose?: (e: MouseEvent | KeyboardEvent) => void;
-    children?: React.ReactNode | ((key: string) => React.ReactNode);
+};
+
+type propWithNoTabs = {
+    visible: boolean;
+    rootClassName?: string;
+    bodyClassName?: string;
+    width?: number | string;
+    title?: React.ReactNode;
+    showRenderButton?: boolean;
+    rootStyle?: CSSProperties;
+    bodyStyle?: CSSProperties;
+    children?: React.ReactNode;
+    onClose?: (e: MouseEvent | KeyboardEvent) => void;
+};
+
+function isFunction(props: any): props is propWithTabs {
+    return typeof props.children === 'function';
 }
 
-const SlidePane = ({
-    visible,
-    wrapperClassName,
-    showRenderButton = true,
-    rootStyle,
-    bodyStyle,
-    title,
-    children,
-    width,
-    tabs = [],
-    onClose,
-}: ISlidePaneProps) => {
+export type SlidePaneProps = propWithTabs | propWithNoTabs;
+
+const SlidePane = (props: SlidePaneProps) => {
     const slidePrefixCls = 'dtc-slide-pane';
+
+    const {
+        visible,
+        rootClassName,
+        bodyClassName,
+        showRenderButton = true,
+        rootStyle,
+        bodyStyle,
+        title,
+        width,
+        children,
+        onClose,
+    } = props;
 
     const [tabKey, setTabKey] = useState('');
 
     useEffect(() => {
-        visible && setTabKey(tabs?.[0]?.key);
+        visible && isFunction(props) && setTabKey(props.tabs?.[0]?.key || '');
     }, [visible]);
 
     const renderButton = () => {
@@ -58,24 +81,25 @@ const SlidePane = ({
             onClose={onClose}
             rootStyle={rootStyle}
             width={width}
+            rootClassName={rootClassName}
             {...motionProps}
         >
             {showRenderButton && renderButton()}
-            <div className={`${slidePrefixCls}-header`}>{title}</div>
-            {!!tabs.length && (
+            {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
+            {isFunction(props) && (
                 <Tabs
                     destroyInactiveTabPane
                     activeKey={tabKey}
                     onChange={setTabKey}
                     className={`${slidePrefixCls}-tabs`}
                 >
-                    {tabs.map((tab) => (
+                    {props.tabs?.map((tab: { key: string; title: React.ReactNode }) => (
                         <Tabs.TabPane tab={tab.title} key={tab.key} />
                     ))}
                 </Tabs>
             )}
-            <div className={`${wrapperClassName ?? ''} ${slidePrefixCls}-body`} style={bodyStyle}>
-                {tabs.length ? children?.(tabKey) : children}
+            <div className={classNames(`${slidePrefixCls}-body`, bodyClassName)} style={bodyStyle}>
+                {typeof children === 'function' ? children(tabKey) : children}
             </div>
         </RcDrawer>
     );

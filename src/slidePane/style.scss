@@ -6,38 +6,40 @@ $prefix: "dtc-slide-pane";
     left: 0;
     right: 0;
     position: fixed;
-    z-index: 1050;
+    z-index: 999;
     pointer-events: none;
-    .#{$prefix}-mask {
+    &-mask {
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
         position: absolute;
-        z-index: 1050;
+        z-index: 999;
         background: rgba(0, 0, 0, 0.5);
         pointer-events: auto;
     }
-    .#{$prefix}-content-wrapper {
+    &-content-wrapper {
         position: absolute;
-        z-index: 1050;
+        z-index: 999;
         overflow: hidden;
         top: 0;
         right: 0;
         bottom: 0;
         box-shadow: -10px 0 20px 0 rgba(61, 68, 110, 0.1);
+        &-hidden {
+            display: none;
+        }
     }
-    .#{$prefix}-content-wrapper-hidden {
-        display: none;
-    }
-    .#{$prefix}-content {
+    &-content {
+        display: flex;
+        flex-direction: column;
         width: 100%;
         height: 100%;
         overflow: auto;
         background: #FFF;
         pointer-events: auto;
     }
-    .#{$prefix}-header {
+    &-header {
         padding: 16px;
         background-color: #F9F9FA;
         color: #3D446E;
@@ -45,20 +47,25 @@ $prefix: "dtc-slide-pane";
         font-size: 14px;
         line-height: 22px;
     }
-    .#{$prefix}-tabs {
+    &-tabs {
+        &.ant-tabs {
+            height: auto;
+            .ant-tabs-nav {
+                margin-bottom: 0;
+            }
+        }
         .ant-tabs-nav-wrap {
             background: #F9F9FA;
             padding-left: 16px;
             border-bottom: 1px solid #EBECF0;
         }
-        .ant-tabs-nav {
-            margin-bottom: 0;
-        }
     }
-    .#{$prefix}-body {
+    &-body {
+        flex: 1;
+        min-height: 0;
         padding: 16px;
     }
-    .#{$prefix}-icon {
+    &-icon {
         width: 12px;
         height: 56px;
         position: absolute;
