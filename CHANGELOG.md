@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.10](https://github.com/DTStack/dt-react-component/compare/v3.0.9...v3.0.10) (2023-09-13)
+
+
+### Features
+
+* add afterClose for ModalWithform ([#357](https://github.com/DTStack/dt-react-component/issues/357)) ([b2a5786](https://github.com/DTStack/dt-react-component/commit/b2a5786cac3fa5768729da3f0856586025d6ff97))
+* add spreadSheet columnSort and columnTypes ([#372](https://github.com/DTStack/dt-react-component/issues/372)) ([f4abb1c](https://github.com/DTStack/dt-react-component/commit/f4abb1c3a0d29a372d7858ac493f848275cb18dc))
+* spreadSheet comp support extra options from outside ([#365](https://github.com/DTStack/dt-react-component/issues/365)) ([5018071](https://github.com/DTStack/dt-react-component/commit/5018071af41c5ffe5c6b158d9f09ca3ba0b3586f))
+
 ### [3.0.9](https://github.com/DTStack/dt-react-component/compare/v3.0.7...v3.0.9) (2023-06-25)
 
 
