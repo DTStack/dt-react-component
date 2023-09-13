@@ -17,6 +17,13 @@ export interface SpreadSheetProps {
     columns: any;
     className?: string;
     options?: IOptions;
+    /** 结果数据每一列的字段类型，由服务端返回 */
+    columnTypes?: Array<{
+        /** 字段名称 */
+        name: string;
+        /** 字段类型 */
+        type: string;
+    }>;
 }
 
 class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
@@ -120,7 +127,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         } as any;
     }
     render() {
-        const { columns = [], className = '', options } = this.props;
+        const { columns = [], className = '', options, columnTypes = [] } = this.props;
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { trimWhitespace = true, showCopyWithHeader, ...restOptions } = options || {};
         const showData = this.getData();
@@ -138,7 +145,13 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                 className={classNames('dtc-handsontable-no-border', className)}
                 style={{ width: '100%' }}
                 language="zh-CN"
-                colHeaders={isShowColHeaders ? columns : false}
+                colHeaders={(index) => {
+                    if (!isShowColHeaders) return false;
+                    // handsontable 不支持 renderCustomHeader，所以只能用 html string 实现 tooltip
+                    const fieldTypeStr = columnTypes?.[index]?.type;
+                    const title = fieldTypeStr ? `${columns?.[index]}: ${fieldTypeStr}` : columns?.[index];
+                    return `<span title="${title}">${title}</span>`;
+                }}
                 data={showData}
                 mergeCells={this.getMergeCells()}
                 cell={this.getCell()}
