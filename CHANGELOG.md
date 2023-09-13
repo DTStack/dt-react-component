@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.1](https://github.com/DTStack/dt-react-component/compare/v4.2.0...v4.2.1) (2023-09-13)
+
+### Features
+
+-   add spreadSheet columnSort and columnTypes ([#373](https://github.com/DTStack/dt-react-component/issues/373)) ([f6a14f3](https://github.com/DTStack/dt-react-component/commit/f6a14f317376678d86e021846c5fc5d1b0e703cb))
+
+### Bug Fixes
+
+-   fix immediate option in userList ([#378](https://github.com/DTStack/dt-react-component/issues/378)) ([b8992f3](https://github.com/DTStack/dt-react-component/commit/b8992f38f918dde10cb6349e39aca2c524e70853))
+
 ## [4.2.0](https://github.com/DTStack/dt-react-component/compare/v4.1.0...v4.2.0) (2023-08-24)
 
 ### Bug Fixes
