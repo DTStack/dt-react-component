@@ -20,10 +20,6 @@ export default () => {
             </Button>
             <SlidePane
                 visible={visible}
-                rootStyle={{
-                    minHeight: '600px',
-                    height: '100%',
-                }}
                 width={`${width}%`}
                 onClose={() => setVisible(false)}
                 title="title"

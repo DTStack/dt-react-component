@@ -12,10 +12,11 @@ type propWithTabs = {
     bodyClassName?: string;
     width?: number | string;
     title?: React.ReactNode;
-    showRenderButton?: boolean;
+    showMask?: boolean;
     rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
     tabs?: { key: string; title: React.ReactNode }[];
+    activeKey?: string;
     children?: (key: string) => React.ReactNode;
     onClose?: (e: MouseEvent | KeyboardEvent) => void;
 };
@@ -26,7 +27,7 @@ type propWithNoTabs = {
     bodyClassName?: string;
     width?: number | string;
     title?: React.ReactNode;
-    showRenderButton?: boolean;
+    showMask?: boolean;
     rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
     children?: React.ReactNode;
@@ -46,7 +47,7 @@ const SlidePane = (props: SlidePaneProps) => {
         visible,
         rootClassName,
         bodyClassName,
-        showRenderButton = true,
+        showMask = false,
         rootStyle,
         bodyStyle,
         title,
@@ -58,7 +59,7 @@ const SlidePane = (props: SlidePaneProps) => {
     const [tabKey, setTabKey] = useState('');
 
     useEffect(() => {
-        visible && isFunction(props) && setTabKey(props.tabs?.[0]?.key || '');
+        visible && isFunction(props) && setTabKey(props.activeKey || props.tabs?.[0]?.key || '');
     }, [visible]);
 
     const renderButton = () => {
@@ -77,14 +78,14 @@ const SlidePane = (props: SlidePaneProps) => {
             open={visible}
             placement="right"
             prefixCls={slidePrefixCls}
-            mask={!showRenderButton}
+            mask={showMask}
             onClose={onClose}
             rootStyle={rootStyle}
             width={width}
             rootClassName={rootClassName}
             {...motionProps}
         >
-            {showRenderButton && renderButton()}
+            {!showMask && renderButton()}
             {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
             {isFunction(props) && (
                 <Tabs

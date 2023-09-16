@@ -22,10 +22,17 @@ demo:
 
 ## API
 
-| 参数      | 说明                   | 类型            | 默认值 |
-| --------- | ---------------------- | --------------- | ------ |
-| visible   | SlidePanel 是否可见    | `boolean`       | -      |
-| className | 右侧面板外层容器的类名 | `string`        | -      |
-| style     | 右侧面板外层容器的样式 | `CSSProperties` | -      |
-| bodyStyle | 右侧面板内部容器的样式 | `CSSProperties` | -      |
-| onClose   | 关闭回调               | `function`      | -      |
+| 参数          | 说明                           | 类型                                                  | 默认值 |
+| ------------- | ------------------------------ | ----------------------------------------------------- | ------ |
+| visible       | SlidePanel 是否可见            | `boolean`                                             | -      |
+| title         | 右侧面板的 title               | `React.ReactNode`                                     | -      |
+| showMask      | 是否展示遮罩层                 | `boolean`                                             | false  |
+| width         | 右侧面板的宽度                 | `number \| string`                                    | -      |
+| children      | 右侧面板展示内容               | `(key: string) => React.ReactNode \| React.ReactNode` | -      |
+| tabs          | 右侧面板的内容的 Tabs          | `{ key: string; title: React.ReactNode }[]`           | -      |
+| activeKeys    | 右侧面板的内容的 Tabs 的选中项 | `string`                                              | -      |
+| rootClassName | 右侧面板外层容器的类名         | `string`                                              | -      |
+| bodyClassName | 内容容器的类名                 | `string`                                              | -      |
+| rootStyle     | 右侧面板内部容器的样式         | `CSSProperties`                                       | -      |
+| bodyStyle     | 内容容器的样式                 | `CSSProperties`                                       | -      |
+| onClose       | 关闭回调                       | `function`                                            | -      |

@@ -22,6 +22,7 @@ export default () => {
                         title: '变更记录',
                     },
                 ]}
+                activeKey="changelog"
             >
                 {(key: string) => {
                     switch (key) {
