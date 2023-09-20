@@ -1,3 +1,5 @@
+import * as React from 'react';
+import { useCallback, useEffect, useMemo, useReducer } from 'react';
 import {
     CaretDownOutlined,
     CloseOutlined,
@@ -8,10 +10,9 @@ import type { TreeProps } from 'antd';
 import { Input, Spin, Tabs, Tree } from 'antd';
 import type { TabsProps } from 'antd/es/tabs';
 import type { DataNode } from 'antd/es/tree';
-import * as React from 'react';
-import { useCallback, useEffect, useMemo, useReducer } from 'react';
-import { Header } from './components';
+
 import type { IProps as IHeaderProps } from './components/header';
+import { Header } from './components';
 import { getExpendKeysByQuery, loopTree } from './helpers';
 import './style.scss';
 

@@ -1,8 +1,9 @@
+import * as React from 'react';
 import { FolderFilled, FolderOpenFilled } from '@ant-design/icons';
 import type { TreeProps } from 'antd';
 import type { DataNode } from 'antd/es/tree';
 import { ContextMenu } from 'dt-react-component';
-import * as React from 'react';
+
 import type { ISuperTreeDataItem } from '..';
 
 /**

@@ -1,8 +1,9 @@
+import React, { useState } from 'react';
 import { DeleteOutlined, FormOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import type { TreeProps } from 'antd';
 import { Space } from 'antd';
 import { Catalogue } from 'dt-react-component';
-import React, { useState } from 'react';
+
 import { initTreeData, sleep } from './data';
 
 export const DefaultTree = () => {

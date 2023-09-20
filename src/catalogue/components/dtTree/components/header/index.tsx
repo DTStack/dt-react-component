@@ -1,5 +1,6 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined, ProfileFilled } from '@ant-design/icons';
 import * as React from 'react';
+import { MenuFoldOutlined, MenuUnfoldOutlined, ProfileFilled } from '@ant-design/icons';
+
 import { IProps as DtTreeProps } from '../../';
 import './style.scss';
 
