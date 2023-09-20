@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
 import ErrorBoundary from '../index';
 const IProps = {
     children: <div>children</div>,
@@ -37,9 +38,24 @@ describe('test ErrorBoundary', () => {
     });
     // 测试发生错误情况
     test('should render error when some error occur', () => {
-        const wrapper = render(<ErrorBoundary>{<ThrowError />}</ErrorBoundary>);
+        const errorFn = jest.fn();
+        const wrapper = render(
+            <ErrorBoundary onError={(err) => errorFn(err)}>
+                <ThrowError />
+            </ErrorBoundary>
+        );
         const element = wrapper.getByText('刷新');
         expect(element).toBeInTheDocument();
         expect(console.error).toHaveBeenCalledTimes(2);
+        expect(errorFn.mock.calls[0][0].message).toEqual('测试error, 请忽略');
+    });
+
+    test('should render custom error page', () => {
+        const wrapper = render(
+            <ErrorBoundary errorPage={<div>这是自定义错误页面</div>}>
+                <ThrowError />
+            </ErrorBoundary>
+        );
+        expect(wrapper.getByText('这是自定义错误页面')).toBeInTheDocument();
     });
 });

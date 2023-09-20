@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { Button, Checkbox, Col, Dropdown, Row, Space, type DropDownProps } from 'antd';
-import classNames from 'classnames';
-import List from 'rc-virtual-list';
-import { isEqual } from 'lodash';
-import type { CheckboxGroupProps, CheckboxValueType } from 'antd/lib/checkbox/Group';
+import React, { ReactNode, useState } from 'react';
+import { Button, Checkbox, Col, Dropdown, type DropDownProps, Row, Space } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import type { CheckboxGroupProps, CheckboxValueType } from 'antd/lib/checkbox/Group';
+import classNames from 'classnames';
+import { isEqual } from 'lodash';
+import List from 'rc-virtual-list';
+
 import './style.scss';
 
 interface IDropdownSelectProps
     extends Pick<DropDownProps, 'getPopupContainer'>,
         Required<Pick<CheckboxGroupProps, 'value' | 'options' | 'onChange'>> {
-    children: React.ReactNode;
+    children: ReactNode;
     className?: string;
     onSubmit?: (value: CheckboxValueType[]) => void;
 }
@@ -46,6 +47,13 @@ export default function Select({
     const handleReset = () => {
         // Clear checked but disabled item
         onChange?.(options?.filter((i) => i.disabled).map((i) => i.value) || []);
+    };
+
+    const handleChange = (e: CheckboxChangeEvent) => {
+        const next = e.target.checked
+            ? [...(value || []), e.target.value]
+            : value?.filter((i) => i !== e.target.value);
+        onChange?.(next);
     };
 
     const handleShadow = (target: HTMLDivElement) => {
@@ -115,7 +123,7 @@ export default function Select({
                     </Checkbox>
                 </Col>
                 <Col span={24} className={`${prefix}__menu`}>
-                    <Checkbox.Group onChange={onChange} value={value}>
+                    <Checkbox.Group value={value}>
                         <List
                             data={options}
                             itemKey="value"
@@ -135,7 +143,11 @@ export default function Select({
                                     key={option.value.toString()}
                                     className={`${prefix}__col`}
                                 >
-                                    <Checkbox disabled={option.disabled} value={option.value}>
+                                    <Checkbox
+                                        disabled={option.disabled}
+                                        value={option.value}
+                                        onChange={handleChange}
+                                    >
                                         {option.label}
                                     </Checkbox>
                                 </Col>

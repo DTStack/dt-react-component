@@ -1,74 +1,67 @@
-import React from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
-export interface KeyCombinerProps {
+export interface IKeyCombinerProps {
     onTrigger?: (evt: any) => void;
     keyMap?: {
         [key: string]: boolean;
     };
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
 
-export interface KeyCombinerState {
-    currentKeys: {
-        [propName: string]: any;
-    };
-}
-
-export default class KeyCombiner extends React.Component<KeyCombinerProps, KeyCombinerState> {
-    constructor(props: KeyCombinerProps) {
-        super(props);
-        this.state = {
-            currentKeys: {},
+export default ({ onTrigger, keyMap, children }: IKeyCombinerProps) => {
+    const [currentKeys, setCurrentKeys] = useState<{ [propName: string]: boolean }>({});
+    const currentKeysRef = useRef(currentKeys);
+    useEffect(() => {
+        const eventListener = (ev: KeyboardEvent) => bindEvent(ev);
+        handleAddEventListener(eventListener);
+        return () => {
+            handleRemoveEventListener(eventListener);
         };
-    }
+    }, []);
+    useEffect(() => {
+        currentKeysRef.current = currentKeys;
+    }, [currentKeys]);
 
-    componentDidMount() {
-        addEventListener('keydown', this.bindEvent, false);
-        addEventListener('keyup', this.bindEvent, false);
-    }
+    const handleAddEventListener = (eventListener: (ev: KeyboardEvent) => void) => {
+        addEventListener('keydown', eventListener, false);
+        addEventListener('keyup', eventListener, false);
+    };
+    const handleRemoveEventListener = (eventListener: (ev: KeyboardEvent) => void) => {
+        removeEventListener('keydown', eventListener, false);
+        removeEventListener('keyup', eventListener, false);
+        setCurrentKeys({});
+    };
+    const bindEvent = useCallback(
+        (target: KeyboardEvent) => {
+            const keyCode = target.keyCode || target.code;
+            const isKeyDown = target.type === 'keydown';
 
-    componentWillUnmount() {
-        removeEventListener('keydown', this.bindEvent, false);
-        removeEventListener('keyup', this.bindEvent, false);
-        this.setState({ currentKeys: {} });
-    }
+            if (!isKeyDown) {
+                setCurrentKeys({});
+                return;
+            }
 
-    bindEvent = (target: KeyboardEvent) => {
-        const { onTrigger, keyMap } = this.props;
+            if (keyMap?.[keyCode] === true) {
+                const newCurrentKeys = Object.assign(currentKeysRef.current, {
+                    [keyCode]: isKeyDown,
+                });
 
-        const keyCode = target.keyCode;
-        const isKeyDown = target.type === 'keydown';
+                setCurrentKeys(newCurrentKeys);
 
-        if (!isKeyDown) {
-            this.setState({
-                currentKeys: {},
-            });
-            return;
-        }
-
-        if (keyMap?.[keyCode] === true) {
-            const currentKeys = Object.assign(this.state.currentKeys, {
-                [keyCode]: isKeyDown,
-            });
-
-            this.setState({
-                currentKeys,
-            });
-
-            let keyAllRight = true;
-            for (const key in keyMap) {
-                if (!currentKeys[key]) {
-                    keyAllRight = false;
-                    break;
+                let keyAllRight = true;
+                for (const key in keyMap) {
+                    if (!newCurrentKeys[key]) {
+                        keyAllRight = false;
+                        break;
+                    }
+                }
+                if (keyAllRight) {
+                    onTrigger?.(target);
                 }
             }
-            if (keyAllRight) {
-                onTrigger?.(target);
-            }
-        }
-    };
+        },
+        [onTrigger, keyMap]
+    );
 
-    render() {
-        return <span data-testid="test_keyCombiner">{this.props.children}</span>;
-    }
-}
+    return <span>{children}</span>;
+};

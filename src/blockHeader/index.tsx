@@ -1,25 +1,29 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
+import classNames from 'classnames';
+
 import './style.scss';
 
-export interface BlockHeaderProps {
+export declare type SizeType = 'small' | 'middle' | undefined;
+
+export interface IBlockHeaderProps {
     // 标题
     title: string;
     // 标题前的图标，默认是一个色块
-    beforeTitle?: React.ReactNode;
+    beforeTitle?: ReactNode;
     // 标题后的提示图标或文案
-    afterTitle?: string | React.ReactNode;
+    afterTitle?: ReactNode;
     // 默认展示为问号的tooltip
-    tooltip?: React.ReactNode;
+    tooltip?: ReactNode;
     // 后缀自定义内容块
-    addonAfter?: React.ReactNode;
+    addonAfter?: ReactNode;
     /**
-     * true 小标题 font-size: 12px; line-height: 32px
-     * false 大标题 font-size: 14px; line-height: 40px
-     * 默认 false
+     * 小标题 font-size: 12px; line-height: 32px
+     * 中标题 font-size: 14px; line-height: 40px
+     * 默认 中标题
      */
-    isSmall?: boolean;
+    size?: SizeType;
     hasBottom?: boolean;
     spaceBottom?: number;
     // 标题一行的样式类名
@@ -32,15 +36,15 @@ export interface BlockHeaderProps {
     defaultExpand?: boolean;
     // 展开/收起时的回调
     onChange?: (expand: boolean) => void;
-    children?: React.ReactNode;
+    children?: ReactNode;
 }
-const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
+const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const prefixCls = 'dtc-block-header';
     const {
         title,
         afterTitle = '',
         tooltip = '',
-        isSmall = false,
+        size = 'middle',
         hasBottom = false,
         spaceBottom = 0,
         titleRowClassName = '',
@@ -49,31 +53,43 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
         defaultExpand = true,
         addonAfter,
         children = '',
+        beforeTitle = <div className={`${prefixCls}__beforeTitle-${size}`}></div>,
         onChange,
     } = props;
-    const { beforeTitle = <div className={`default ${isSmall ? 'small' : ''}`}></div> } = props;
+
+    const [expand, setExpand] = useState(defaultExpand);
+
+    const preTitleRowCls = `${prefixCls}-title-row`;
+
     const questionTooltip = tooltip && (
         <Tooltip title={tooltip}>
             <QuestionCircleOutlined />
         </Tooltip>
     );
+
     const newAfterTitle = afterTitle || questionTooltip;
     let bottomStyle;
     if (hasBottom) bottomStyle = { marginBottom: 16 };
     if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
-    const [expand, setExpand] = useState(defaultExpand);
 
     const handleExpand = (expand: boolean) => {
         if (!children) return;
         setExpand(expand);
         onChange?.(expand);
     };
+
     return (
         <div className={`${prefixCls}`} style={bottomStyle}>
             <div
-                className={`${prefixCls}-title-row ${isSmall ? 'small' : 'default'} ${
-                    showBackground ? 'background' : ''
-                } ${children ? 'pointer' : ''} ${titleRowClassName}`}
+                className={classNames(
+                    preTitleRowCls,
+                    `${preTitleRowCls}-${size}`,
+                    titleRowClassName,
+                    {
+                        [`${preTitleRowCls}-background`]: showBackground,
+                        [`${preTitleRowCls}-pointer`]: children,
+                    }
+                )}
                 onClick={() => handleExpand(!expand)}
             >
                 <div className={`${prefixCls}-title-box`}>

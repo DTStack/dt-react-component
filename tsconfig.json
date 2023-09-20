@@ -3,6 +3,7 @@
         "module": "esnext",
         "target": "es6",
         "moduleResolution": "Node",
+        "resolveJsonModule": true,
         "keyofStringsOnly": true,
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
@@ -21,5 +22,5 @@
             "dt-react-component/*": ["src/*", "*"]
         }
     },
-    "include": ["src/**/*", ".dumi/**/*", "typings.d.ts", ".dumirc.ts"]
+    "include": ["src/**/*", ".dumi/**/*", ".dumirc.ts"]
 }

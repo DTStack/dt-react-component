@@ -1,27 +1,60 @@
 import React from 'react';
-import Fullscreen from '../index';
-import { render, fireEvent, cleanup } from '@testing-library/react';
+import { ArrowsAltOutlined, ShrinkOutlined } from '@ant-design/icons';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import Fullscreen from '..';
 describe('test Fullscreen', () => {
     afterEach(() => {
         cleanup();
     });
-    test('should icon render correct', () => {
-        const { getByTestId } = render(<Fullscreen />);
-        const element = getByTestId('test_myIcon');
-        expect(element).toBeInTheDocument();
-        expect(element).toHaveClass('dtc-fullscreen-icon');
+    test('should default render correctly', () => {
+        const { container } = render(<Fullscreen />);
+        expect(container.firstChild).toMatchSnapshot();
+        expect(container.querySelector('.ant-btn')?.firstChild).toHaveClass('dtc-fullscreen-icon');
+        expect(container.innerHTML).toMatch('全屏');
     });
-    test('should button render correct', () => {
-        const { getByTestId } = render(<Fullscreen />);
-        const element = getByTestId('test_myButton');
-        expect(element).toBeInTheDocument();
-        expect(element).toHaveTextContent('全屏');
+    test('should customIcon render correctly', () => {
+        const customIcon = {
+            fullIcon: (
+                <>
+                    <ArrowsAltOutlined />
+                    全屏
+                </>
+            ),
+            exitFullIcon: (
+                <>
+                    <ShrinkOutlined />
+                    退出全屏
+                </>
+            ),
+        };
+        const { container } = render(
+            <Fullscreen fullIcon={customIcon.fullIcon} exitFullIcon={customIcon.exitFullIcon} />
+        );
+        expect(container.firstChild).not.toHaveClass('dtc-fullscreen-icon');
+    });
+    test('should custom iconStyle render correctly', () => {
+        const iconStyle = {
+            width: 12,
+            height: 12,
+            marginRight: 5,
+        };
+        render(<Fullscreen iconStyle={iconStyle} />);
+        const img = screen.getByRole('img');
+        expect(img).toHaveStyle(`width: 12px; height: 12px; margin-right: 5px;`);
     });
     test('button fireEvent correct', () => {
-        const { container, getByTestId } = render(<Fullscreen />);
-        const element = getByTestId('test_myButton');
-        fireEvent.click(element);
+        const { container } = render(<Fullscreen />);
         expect(container.innerHTML).toMatch('全屏');
+        const button = screen.getByRole('button', { name: '全屏' });
+        fireEvent.click(button);
+    });
+    test('button props onFullscreen correct', () => {
+        const callback = jest.fn();
+        render(<Fullscreen onFullscreen={callback} />);
+        const button = screen.getByRole('button', { name: '全屏' });
+        fireEvent.click(button);
+        expect(callback).toHaveBeenCalledTimes(1);
     });
 });

@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import BlockHeader from '../index';
+import { cleanup, fireEvent, render } from '@testing-library/react';
+import { SizeType } from 'dt-react-component/esm/blockHeader';
 import '@testing-library/jest-dom/extend-expect';
+
+import BlockHeader from '../index';
 
 const props = {
     title: '标题1',
@@ -11,7 +13,7 @@ const props2 = {
     beforeTitle: <span>Icon</span>,
     afterTitle: '说明文字',
     addonAfter: <div className="test-button-after">新增按钮</div>,
-    isSmall: true,
+    size: 'small' as SizeType,
     titleRowClassName: 'test-row-className',
     titleClassName: 'test-title-className',
 };
@@ -41,10 +43,9 @@ describe('test BlockHeader render', () => {
         expect(getByText('标题2')).toBeTruthy();
     });
     test('should render BlockHeader props default in BlockHeader', () => {
-        const { container } = render(<BlockHeader title="测试" isSmall showBackground />);
+        const { container } = render(<BlockHeader title="测试" showBackground />);
         const wrap = container.firstChild;
         expect(wrap!.firstChild!.firstChild!.firstChild).toHaveClass(`${prefixCls}-before-title`);
-        expect(wrap!.firstChild!.firstChild!.firstChild!.firstChild).toHaveClass('small');
         fireEvent.click(document.getElementsByClassName(`${prefixCls}-title-row`)[0]);
     });
     test('should render BlockHeader with different props', () => {
@@ -69,6 +70,16 @@ describe('test BlockHeader render', () => {
         fireEvent.click(document.getElementsByClassName(`${prefixCls}-title-row`)[0]);
         expect(getByText('展开')).toBeTruthy();
         expect(onChange).toHaveBeenCalledTimes(1);
+    });
+    test('should render expanded and collapsed BlockHeader normally if the onChange event is not set', () => {
+        const { getByText } = render(
+            <BlockHeader title="测试">
+                <div>Hello World!</div>
+            </BlockHeader>
+        );
+        expect(getByText('收起')).toBeTruthy();
+        fireEvent.click(document.getElementsByClassName(`${prefixCls}-title-row`)[0]);
+        expect(getByText('展开')).toBeTruthy();
     });
     test('should render BlockHeader with different props', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);

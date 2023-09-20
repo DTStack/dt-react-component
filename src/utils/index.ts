@@ -1,5 +1,6 @@
 /* eslint-disable no-cond-assign */
 import { BrowserInter } from './interface';
+
 const utils = {
     /**
      * 获取页面宽度
@@ -153,10 +154,12 @@ const utils = {
 
     /**
      * 原生 JavaScript 获取 cookie 值
-     * @param name
+     * @param {string} name
+     * @param {string} cookie - 默认为document.cookie
      */
-    getCookie(name: string) {
-        const arr = document.cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
+    getCookie(name: string, cookie: string = document.cookie) {
+        if (!cookie) return null;
+        const arr = cookie.match(new RegExp('(^| )' + name + '=([^;]*)(;|$)'));
         if (arr != null) {
             return unescape(decodeURI(arr[2]));
         }
@@ -173,7 +176,7 @@ const utils = {
             name + '=; expires=' + d.toUTCString() + domainTemp + '; path=' + pathTemp;
     },
 
-    deleteAllCookies(domain: string, path: string) {
+    deleteAllCookies(domain?: string, path?: string) {
         const cookies = document.cookie.split(';');
         // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < cookies.length; i++) {
@@ -332,6 +335,33 @@ const utils = {
     isEqualArr(arr1: string[], arr2: string[]): boolean {
         const toString = JSON.stringify;
         return toString(arr1.sort()) === toString(arr2.sort());
+    },
+    /**
+     * 根据 arrays 过滤当前的 attr，结果会根据 arrays 中的顺序进行排序，最后一个为未命中的集合
+     * @param attr  \{ a: 123, b: 321, onCancel: () => {}, disabled: true }
+     * @param arrays [MODAL_PROPS, FORM_PROPS]
+     * @returns {attr[]} [{ onCancel: () => {} }, { disabled: true }, { a: 123, b: 321 }]
+     */
+    filterAttrByArrays(attr: { [key: string]: any }, arrays: string[][] = []) {
+        const result = new Array(arrays.length + 1); // 多出来一个用来存放 restProps
+        for (let index = 0; index < result.length; index++) {
+            result[index] = {};
+        }
+
+        Object.keys(attr).forEach((key: string) => {
+            const isFind = arrays.find((array, index) => {
+                if (array.includes(key)) {
+                    result[index][key] = attr[key];
+                    return true;
+                }
+                return false;
+            });
+
+            if (!isFind) {
+                result[arrays.length][key] = attr[key];
+            }
+        });
+        return result;
     },
 };
 

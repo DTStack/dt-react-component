@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
-import { Form, Table, type FormListFieldData, type TableProps } from 'antd';
-import classnames from 'classnames';
-import utils from '../utils';
+import React, { ReactNode, useMemo } from 'react';
+import { Form, type FormListFieldData, Table, type TableProps } from 'antd';
 import type { FormItemProps, FormListProps, Rule, RuleObject, RuleRender } from 'antd/lib/form';
 import type { ColumnsType, ColumnType as TableColumnType } from 'antd/lib/table';
+import classnames from 'classnames';
+
+import utils from '../utils';
 import './index.scss';
 
 type NotNullRowSelection = NonNullable<TableProps<any>['rowSelection']>;
@@ -12,6 +13,14 @@ type NotNullRowSelection = NonNullable<TableProps<any>['rowSelection']>;
  */
 type OverrideParameters = (string | number)[];
 type RcFormInstance = Parameters<RuleRender>[0];
+
+type RawPanelRender = NonNullable<TableProps<any>['footer']>;
+/**
+ * Override PanelRender type
+ */
+type PanelRenderFunc = (
+    ...args: Parameters<FormListProps['children']>
+) => ReturnType<RawPanelRender>;
 
 /**
  * Form.Table 组件类型
@@ -28,15 +37,24 @@ export interface IFormTableProps
          * - and pagination which is expect to be not supported in Form.Table
          * - and className which is renamed to tableClassName
          * - and rowKey, dataSource for which are defined and not allowed to be modified
+         * - and footer, title, summary for which are re-defined to pass form's operation
          */
         Omit<
             TableProps<any>,
-            'columns' | 'rowSelection' | 'pagination' | 'className' | 'rowKey' | 'dataSource'
+            | 'columns'
+            | 'rowSelection'
+            | 'pagination'
+            | 'className'
+            | 'rowKey'
+            | 'dataSource'
+            | 'footer'
+            | 'title'
+            | 'summary'
         > {
     /**
      * 表格列的配置描述
      */
-    columns?: ColumnType[];
+    columns?: ColumnType[] | ((...args: Parameters<FormListProps['children']>) => ColumnType[]);
     /**
      * Table 的 className
      */
@@ -49,6 +67,9 @@ export interface IFormTableProps
             field: FormListFieldData
         ) => ReturnType<NonNullable<NotNullRowSelection['getCheckboxProps']>>;
     };
+    title?: PanelRenderFunc;
+    footer?: PanelRenderFunc;
+    summary?: PanelRenderFunc;
 }
 
 export interface ColumnType
@@ -78,7 +99,7 @@ export interface ColumnType
         record: FormListFieldData,
         namePath: OverrideParameters,
         formInstance?: RcFormInstance
-    ) => React.ReactNode;
+    ) => ReactNode;
 }
 
 const className = 'dtc-form__table';
@@ -89,11 +110,37 @@ export default function InternalTable({
     initialValue,
     ...tableProps
 }: IFormTableProps) {
-    const { tableClassName, columns: rawColumns, ...restProps } = tableProps;
-    const columns: ColumnsType<FormListFieldData> = useMemo(() => {
-        return (
-            rawColumns?.map(
-                ({
+    const {
+        tableClassName,
+        columns: rawColumns,
+        // override title, footer, summary
+        title,
+        footer,
+        summary,
+        ...restProps
+    } = tableProps;
+
+    const convertRawToTableCol = (raw?: ColumnType[]): ColumnsType<FormListFieldData> => {
+        if (!raw?.length) return [];
+        return raw.map(
+            ({
+                noStyle,
+                style,
+                className,
+                id,
+                hasFeedback,
+                validateStatus,
+                required,
+                hidden,
+                initialValue,
+                messageVariables,
+                tooltip,
+                dependencies,
+                rules: rawRules,
+                render,
+                ...cols
+            }) => {
+                const formItemProps = {
                     noStyle,
                     style,
                     className,
@@ -105,94 +152,85 @@ export default function InternalTable({
                     initialValue,
                     messageVariables,
                     tooltip,
-                    dependencies,
-                    rules: rawRules,
-                    render,
-                    ...cols
-                }) => {
-                    const formItemProps = {
-                        noStyle,
-                        style,
-                        className,
-                        id,
-                        hasFeedback,
-                        validateStatus,
-                        required,
-                        hidden,
-                        initialValue,
-                        messageVariables,
-                        tooltip,
-                    };
+                };
 
-                    const isRequired =
-                        required ||
-                        rawRules?.some((rule) => typeof rule === 'object' && rule.required);
+                const isRequired =
+                    required || rawRules?.some((rule) => typeof rule === 'object' && rule.required);
 
-                    return {
-                        ...cols,
-                        title: (
-                            <>
-                                {isRequired && (
-                                    <span className="dtc-form__table__column--required" />
-                                )}
-                                {cols.title}
-                            </>
-                        ),
-                        render(_, record) {
-                            const currentNamePath = [record.name, cols.dataIndex]
-                                .filter(utils.checkExist)
-                                .flat() as OverrideParameters;
+                return {
+                    ...cols,
+                    title: (
+                        <>
+                            {isRequired && <span className="dtc-form__table__column--required" />}
+                            {cols.title}
+                        </>
+                    ),
+                    render(_, record) {
+                        const currentNamePath = [record.name, cols.dataIndex]
+                            .filter(utils.checkExist)
+                            .flat() as OverrideParameters;
 
-                            const rules: Rule[] | undefined = rawRules?.map((rule) =>
-                                typeof rule === 'function'
-                                    ? (form) => rule(form, currentNamePath)
-                                    : rule
-                            );
+                        const rules: Rule[] | undefined = rawRules?.map((rule) =>
+                            typeof rule === 'function'
+                                ? (form) => rule(form, currentNamePath)
+                                : rule
+                        );
 
-                            if (dependencies) {
-                                return (
-                                    <Form.Item
-                                        noStyle
-                                        dependencies={
-                                            typeof dependencies === 'function'
-                                                ? dependencies(currentNamePath)
-                                                : dependencies
-                                        }
-                                    >
-                                        {(formInstance) => (
-                                            <Form.Item
-                                                name={currentNamePath}
-                                                rules={rules}
-                                                {...formItemProps}
-                                            >
-                                                {render?.(record, currentNamePath, formInstance)}
-                                            </Form.Item>
-                                        )}
-                                    </Form.Item>
-                                );
-                            }
-
+                        if (dependencies) {
                             return (
-                                <Form.Item name={currentNamePath} rules={rules} {...formItemProps}>
-                                    {render?.(record, currentNamePath)}
+                                <Form.Item
+                                    noStyle
+                                    dependencies={
+                                        typeof dependencies === 'function'
+                                            ? dependencies(currentNamePath)
+                                            : dependencies
+                                    }
+                                >
+                                    {(formInstance) => (
+                                        <Form.Item
+                                            name={currentNamePath}
+                                            rules={rules}
+                                            {...formItemProps}
+                                        >
+                                            {render?.(record, currentNamePath, formInstance)}
+                                        </Form.Item>
+                                    )}
                                 </Form.Item>
                             );
-                        },
-                    };
-                }
-            ) || []
+                        }
+
+                        return (
+                            <Form.Item name={currentNamePath} rules={rules} {...formItemProps}>
+                                {render?.(record, currentNamePath)}
+                            </Form.Item>
+                        );
+                    },
+                };
+            }
         );
+    };
+
+    const columns = useMemo(() => {
+        if (typeof rawColumns === 'function') return rawColumns;
+        return convertRawToTableCol(rawColumns);
     }, [rawColumns]);
 
     return (
         <Form.List name={name} rules={rules} initialValue={initialValue}>
-            {(fields) => (
-                <Table
+            {(fields, ope, meta) => (
+                <Table<FormListFieldData>
                     className={classnames(className, tableClassName)}
                     rowKey="key"
                     dataSource={fields}
                     pagination={false}
-                    columns={columns}
+                    columns={
+                        typeof columns === 'function'
+                            ? convertRawToTableCol(columns(fields, ope, meta))
+                            : columns
+                    }
+                    footer={footer ? () => footer(fields, ope, meta) : undefined}
+                    title={title ? () => title(fields, ope, meta) : undefined}
+                    summary={summary ? () => summary(fields, ope, meta) : undefined}
                     {...restProps}
                 />
             )}

@@ -10,53 +10,19 @@ demo:
 
 ## 何时使用
 
-从页面右侧弹出面板，展示相应内容
+从页面右侧弹出面板，展示相应内容。用户在抽屉内操作时不必离开当前任务，操作完成后，可以平滑地回到原任务。
+常用于： 查看详情， 预览较多内容的场景下。
 
 ## 示例
 
-```jsx
-import React, { useState } from 'react';
-import { SlidePane } from 'dt-react-component';
-import { Button } from 'antd';
-
-export default () => {
-    const [visible, setVisible] = useState(false);
-    const [width, setWidth] = useState(80);
-
-    return (
-        <>
-            width: {width}%
-            <input
-                type="range"
-                value={width}
-                min={10}
-                max={100}
-                onChange={(e) => setWidth(e.target.value)}
-            />
-            <br />
-            <Button style={{ marginBottom: '10px' }} onClick={() => setVisible((v) => !v)}>
-                click me
-            </Button>
-            <SlidePane
-                visible={visible}
-                style={{
-                    right: '-20px',
-                    width: `${width}%`,
-                    minHeight: '600px',
-                    height: '100%',
-                }}
-                onClose={() => setVisible(false)}
-            >
-                <div>hello world</div>
-            </SlidePane>
-        </>
-    );
-};
-```
+<code src="./demos/basic.tsx" title="基础使用"></code>
 
 ## API
 
-| 参数    | 说明                | 类型       | 默认值 |
-| ------- | ------------------- | ---------- | ------ |
-| visible | SlidePanel 是否可见 | `boolean`  | -      |
-| onClose | 关闭回调            | `function` | -      |
+| 参数      | 说明                   | 类型            | 默认值 |
+| --------- | ---------------------- | --------------- | ------ |
+| visible   | SlidePanel 是否可见    | `boolean`       | -      |
+| className | 右侧面板外层容器的类名 | `string`        | -      |
+| style     | 右侧面板外层容器的样式 | `CSSProperties` | -      |
+| bodyStyle | 右侧面板内部容器的样式 | `CSSProperties` | -      |
+| onClose   | 关闭回调               | `function`      | -      |

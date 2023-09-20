@@ -5,7 +5,6 @@ export default () => {
     return (
         <EllipsisText
             value={'我是很长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长的文本'}
-            maxWidth={200}
         />
     );
 };

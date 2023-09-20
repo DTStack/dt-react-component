@@ -1,42 +1,53 @@
 import React from 'react';
-import Resize from '../index';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-class Component extends React.PureComponent {
-    state = {
-        count: 0,
-    };
-    render() {
-        const { count } = this.state;
-        return (
-            <Resize onResize={() => this.setState({ count: count + 1 })}>
-                <div
-                    data-testid="test"
-                    style={{
-                        height: '240px',
-                        width: '100%',
-                    }}
-                >
-                    {count}
-                </div>
-            </Resize>
-        );
-    }
-}
+import Resize from '../index';
 
-describe('test Resize', () => {
-    let wrapper: any, element: any;
+describe('Resize', () => {
+    let originalResizeObserver: typeof global.ResizeObserver;
     beforeEach(() => {
-        wrapper = render(<Component />);
-        element = wrapper.getByTestId('test');
+        originalResizeObserver = global.ResizeObserver;
+        global.ResizeObserver = class {
+            callback: any;
+            constructor(callback: any) {
+                this.callback = callback;
+            }
+            observe() {
+                this.callback();
+            }
+            unobserve() {}
+            disconnect() {}
+        };
     });
+
     afterEach(() => {
-        cleanup();
+        global.ResizeObserver = originalResizeObserver;
     });
-    test('should calculate current width', () => {
-        expect(element.firstChild).toMatchInlineSnapshot('0');
+
+    test('should render children', () => {
+        const { getByText } = render(<Resize>test</Resize>);
+        expect(getByText('test')).toBeInTheDocument();
+    });
+
+    test('should add resize event listener to window if observerEle is not provided', () => {
+        const onResize = jest.fn();
+        const { unmount } = render(<Resize onResize={onResize} />);
         fireEvent(window, new Event('resize'));
-        expect(element.firstChild).toMatchInlineSnapshot('1');
+
+        expect(onResize).toBeCalledTimes(1);
+        unmount();
+    });
+
+    test('should add resize observer to observerEle if observerEle is provided', () => {
+        const onResize = jest.fn();
+        const observerEle = document.createElement('div');
+        const { unmount } = render(<Resize onResize={onResize} observerEle={observerEle} />);
+        observerEle.style.width = '100px';
+        observerEle.style.height = '100px';
+        global.dispatchEvent(new Event('resize'));
+
+        expect(onResize).toHaveBeenCalled();
+        unmount();
     });
 });

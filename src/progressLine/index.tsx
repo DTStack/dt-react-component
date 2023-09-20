@@ -1,42 +1,52 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import { Tooltip } from 'antd';
+import { TooltipProps } from 'antd/lib/tooltip';
+
 import './style.scss';
 
-interface IProps {
-    title?: string;
-    num?: number | string;
-    percent?: number | string;
+interface IProgressLineProps {
+    // 顶部左侧的内容
+    title?: ReactNode;
+    // 顶部右侧的百分比，需要带上 %
+    percent?: string;
+    // 进度条的颜色
     color?: string;
     className?: string;
-    needTitle?: boolean;
+    // 进度条 100% 时的宽度
     width?: number | string;
+    // 顶部左侧内容默认通过 tooltip hover 展示
+    tooltipProps?: TooltipProps;
 }
 
-const ProgressLine = ({
-    title = '暂无描述',
-    num = 0,
-    percent = '0%',
-    color = '#3BCEFF',
-    className = '',
-    needTitle = true,
-    width = '280px',
-}: IProps) => {
-    const slidePrefixCls = 'dtc-progress-line';
-    const label = `${title}: ${num}`;
+const ProgressLine = (props: IProgressLineProps) => {
+    const {
+        title = '',
+        percent = '0%',
+        color = '#3BCEFF',
+        className = '',
+        width = '280px',
+        tooltipProps,
+    } = props;
+    const prefixCls = 'dtc-progress-line';
+
     return (
-        <div className={`${slidePrefixCls} ${className}`}>
-            {needTitle && (
-                <div className={`${slidePrefixCls}-title`} style={{ width }}>
-                    <Tooltip title={label}>
-                        <div className={`${slidePrefixCls}-content`}>{label}</div>
-                    </Tooltip>
-                    <div className={`${slidePrefixCls}-content`}>{percent}</div>
-                </div>
-            )}
-            <div className={`${slidePrefixCls}-wrap`} style={{ width }}>
+        <div className={`${prefixCls} ${className}`}>
+            <div className={`${prefixCls}-title`} style={{ width }}>
+                {/* 顶部左侧的内容 */}
+                <Tooltip title={title} {...tooltipProps}>
+                    <div className={`${prefixCls}-content`}>{title}</div>
+                </Tooltip>
+
+                {/* 顶部右侧的百分比 */}
+                <div className={`${prefixCls}-content`}>{percent}</div>
+            </div>
+
+            {/* 进度条 */}
+            <div className={`${prefixCls}-wrap`} style={{ width }} data-testid="progress-line-wrap">
                 <div
-                    className={`${slidePrefixCls}-line`}
+                    className={`${prefixCls}-line`}
                     style={{ width: percent, backgroundColor: color }}
+                    data-testid="progress-line"
                 ></div>
             </div>
         </div>

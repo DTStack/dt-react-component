@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { CSSProperties, ReactNode } from 'react';
 import { Empty as AntdEmpty, EmptyProps } from 'antd';
+
 import './style.scss';
 
 export const IMG_MAP = {
@@ -14,16 +15,16 @@ export const IMG_MAP = {
 interface IProps {
     type?: 'default' | 'search' | 'chart' | 'project' | 'overview' | 'permission';
     height?: number;
-    image?: React.ReactNode;
-    imageStyle?: React.CSSProperties;
+    image?: ReactNode;
+    imageStyle?: CSSProperties;
 }
 
 const Empty = (props: EmptyProps & IProps) => {
     const { type = 'default', height = 80, image, imageStyle, ...restProps } = props;
-    let newImage: React.ReactNode = IMG_MAP[type] ? (
+    let newImage: ReactNode = IMG_MAP[type] ? (
         <img src={require('./emptyImg/' + IMG_MAP[type])}></img>
     ) : null;
-    if (image) newImage = image as React.ReactNode;
+    if (image) newImage = image as ReactNode;
     const newImageStyle = imageStyle ? { height, ...imageStyle } : { height };
     return (
         <div className="dtc-empty">

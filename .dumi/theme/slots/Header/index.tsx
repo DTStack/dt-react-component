@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { CloseOutlined, GithubOutlined, MenuOutlined } from '@ant-design/icons';
+import { Button, Tooltip } from 'antd';
 import { useRouteMeta } from 'dumi';
+import LangSwitch from 'dumi/theme-default/slots/LangSwitch';
 import Logo from 'dumi/theme-default/slots/Logo';
 import Navbar from 'dumi/theme-default/slots/Navbar';
-import SearchBar from 'dumi/theme-default/slots/SearchBar';
-import LangSwitch from 'dumi/theme-default/slots/LangSwitch';
 import RtlSwitch from 'dumi/theme-default/slots/RtlSwitch';
-import { Button, Tooltip } from 'antd';
-import { CloseOutlined, MenuOutlined, GithubOutlined } from '@ant-design/icons';
+import SearchBar from 'dumi/theme-default/slots/SearchBar';
+
 import { useMobile } from '../../hooks';
 import 'dumi/theme-default/slots/Header/index.less';
 import './index.scss';
@@ -39,6 +40,7 @@ export default function Header() {
                             className="dtc-github-icon"
                             href="https://github.com/DTStack/dt-react-component"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             Github
                         </a>
@@ -50,7 +52,7 @@ export default function Header() {
                                 icon={<GithubOutlined />}
                                 href="https://github.com/DTStack/dt-react-component"
                                 target="_blank"
-                            ></Button>
+                            />
                         </Tooltip>
                     )}
                 </section>

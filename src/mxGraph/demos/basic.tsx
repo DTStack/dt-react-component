@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { MxGraphContainer } from 'dt-react-component';
-import { Tooltip } from 'antd';
 import { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
+import { MxGraphContainer } from 'dt-react-component';
+
 import './index.scss';
 
 export default () => {

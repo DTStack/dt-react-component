@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Button, Input, message, Space } from 'antd';
 import { EllipsisText, Form } from 'dt-react-component';
-import { Button, Input, message } from 'antd';
+
 import getMockData from './data';
 
 export default () => {
@@ -30,8 +31,8 @@ export default () => {
     }, []);
 
     return (
-        <>
-            <Form form={form} layout="vertical" style={{ height: 400 }}>
+        <Space direction="vertical" size={8} align="center" style={{ marginBottom: 8 }}>
+            <Form form={form} layout="vertical">
                 <Form.Table
                     name="data"
                     loading={loading}
@@ -89,9 +90,9 @@ export default () => {
                     ]}
                 />
             </Form>
-            <Button type="primary" onClick={handleSubmit} style={{ marginBottom: 16 }}>
+            <Button type="primary" onClick={handleSubmit}>
                 Submit
             </Button>
-        </>
+        </Space>
     );
 };

@@ -12,53 +12,25 @@ demo:
 
 监听键盘事件
 
-## 示例
+## 代码演示
 
-```jsx
-import React from 'react';
-import { KeyEventListener } from 'dt-react-component';
-
-const { KeyCombiner } = KeyEventListener;
-
-export default () => {
-    return (
-        <KeyCombiner
-            onTrigger={(evt) => {
-                evt.preventDefault();
-                console.log('command+shift+f action');
-            }}
-            keyMap={{
-                70: true,
-                91: true,
-                16: true,
-            }}
-        >
-            <div>尝试按下 command+shift+f 看看控制台是否监听了键盘事件</div>
-        </KeyCombiner>
-    );
-};
-```
-
-```jsx
-import React from 'react';
-import { KeyEventListener } from 'dt-react-component';
-
-export default () => {
-    return (
-        <KeyEventListener
-            onKeyDown={(evt) => {
-                console.log('onkeyDown');
-            }}
-        >
-            {<div>尝试按下任意键盘，看看控制台打印结果</div>}
-        </KeyEventListener>
-    );
-};
-```
+<code src="./demos/basic.tsx" title="监听任意按键"></code>
+<code src="./demos/customKey.tsx" title="监听指定按键"></code>
 
 ## API
 
-| 参数      | 说明                                                                                       | 类型       | 默认值 |
-| --------- | ------------------------------------------------------------------------------------------ | ---------- | ------ |
-| keyMap    | 监听的一组 key map，eg: { 70: true, 91: true, 16: true } 则表示监听 command+shift+f 组合键 | `object`   | -      |
-| onTrigger | 触发事件                                                                                   | `function` | -      |
+### KeyEventListener
+
+| 参数      | 说明         | 类型              | 默认值 |
+| --------- | ------------ | ----------------- | ------ |
+| onKeyDown | 键盘按下执行 | `function`        | -      |
+| onKeyUp   | 键盘抬起执行 | `function`        | -      |
+| children  | 子组件       | `React.ReactNode` | -      |
+
+### KeyEventListener.KeyCombiner
+
+| 参数      | 说明                                                                                       | 类型              | 默认值 |
+| --------- | ------------------------------------------------------------------------------------------ | ----------------- | ------ |
+| keyMap    | 监听的一组 key map，eg: { 70: true, 91: true, 16: true } 则表示监听 command+shift+f 组合键 | `object`          | -      |
+| onTrigger | 触发事件                                                                                   | `function`        | -      |
+| children  | 子组件                                                                                     | `React.ReactNode` | -      |

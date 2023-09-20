@@ -1,51 +1,20 @@
 ---
-title: SwitchWindow 窗口切换事件监听
-group: 组件
+title: useWindowSwitchListener 监听窗口触发焦点事件
+group: Hooks
 toc: content
 demo:
     cols: 2
 ---
 
-# SwitchWindow 窗口切换事件监听
+# useWindowSwitchListener 监听窗口触发焦点事件
 
 ## 何时使用
 
-窗口切换事件监听
+监听当前窗口获取焦点时，执行某个回调时使用
 
 ## 示例
 
-```jsx
-/**
- * title: "基础使用"
- */
-import React, { useState } from 'react';
-import { SwitchWindow } from 'dt-react-component';
-
-export default () => {
-    const [msg, setMsg] = useState('hello world');
-
-    return (
-        <>
-            <SwitchWindow
-                onSwitch={() => {
-                    setMsg('window listener');
-                    console.log('window listener');
-                }}
-            >
-                <div
-                    id="box"
-                    style={{
-                        height: '100%',
-                        width: '100%',
-                    }}
-                >
-                    {msg}
-                </div>
-            </SwitchWindow>
-        </>
-    );
-};
-```
+<code src='./demos/basic.tsx' title='基础使用'></code>
 
 ## API
 

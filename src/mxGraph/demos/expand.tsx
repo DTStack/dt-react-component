@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { MxGraphContainer } from 'dt-react-component';
+
 import './index.scss';
 
 export default () => {

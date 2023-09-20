@@ -1,4 +1,5 @@
 import { Form } from 'antd';
+
 import InternalTable from './table';
 
 type OriginFormType = typeof Form;
@@ -10,5 +11,5 @@ const WrapperForm = Form;
 
 (WrapperForm as FormInterface).Table = InternalTable;
 
-export type { IFormTableProps, ColumnType } from './table';
+export type { ColumnType, IFormTableProps } from './table';
 export default WrapperForm as FormInterface;

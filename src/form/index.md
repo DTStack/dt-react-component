@@ -26,6 +26,8 @@ demo:
 
 <code src="./demos/rules.tsx" title="联动规则校验" description="只有性别为男性时，才需要填写地址" compact="true"></code>
 
+<code src="./demos/footer.tsx" title="支持设置 footer" description="下拉框联动禁用" compact="true"></code>
+
 ## FAQ
 
 ### 如何设置 title 上的必选标识？
