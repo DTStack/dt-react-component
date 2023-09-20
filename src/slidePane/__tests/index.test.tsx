@@ -19,7 +19,7 @@ describe('test SlidePane ', () => {
         expect(dom).toBe(null);
         unmount();
         render(
-            <SlidePane visible showMask>
+            <SlidePane visible mask>
                 Hello World
             </SlidePane>
         );
