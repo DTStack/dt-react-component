@@ -27,7 +27,7 @@ export default () => {
                 width={`${width}%`}
                 onClose={() => setVisible(false)}
                 title="title"
-                showMask
+                mask
             >
                 <div>hello world</div>
             </SlidePane>

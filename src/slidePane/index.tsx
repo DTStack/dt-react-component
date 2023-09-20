@@ -6,13 +6,13 @@ import RcDrawer from 'rc-drawer';
 import motionProps from './motion';
 import './style.scss';
 
-type propWithTabs = {
+type TabsSlidePane = {
     visible: boolean;
     rootClassName?: string;
     bodyClassName?: string;
     width?: number | string;
     title?: React.ReactNode;
-    showMask?: boolean;
+    mask?: boolean;
     rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
     tabs?: { key: string; title: React.ReactNode }[];
@@ -21,24 +21,24 @@ type propWithTabs = {
     onClose?: (e: MouseEvent | KeyboardEvent) => void;
 };
 
-type propWithNoTabs = {
+type NormalSlidePane = {
     visible: boolean;
     rootClassName?: string;
     bodyClassName?: string;
     width?: number | string;
     title?: React.ReactNode;
-    showMask?: boolean;
+    mask?: boolean;
     rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
     children?: React.ReactNode;
     onClose?: (e: MouseEvent | KeyboardEvent) => void;
 };
 
-function isFunction(props: any): props is propWithTabs {
+function isFunction(props: any): props is TabsSlidePane {
     return typeof props.children === 'function';
 }
 
-export type SlidePaneProps = propWithTabs | propWithNoTabs;
+export type SlidePaneProps = TabsSlidePane | NormalSlidePane;
 
 const SlidePane = (props: SlidePaneProps) => {
     const slidePrefixCls = 'dtc-slide-pane';
@@ -47,7 +47,7 @@ const SlidePane = (props: SlidePaneProps) => {
         visible,
         rootClassName,
         bodyClassName,
-        showMask = false,
+        mask = false,
         rootStyle,
         bodyStyle,
         title,
@@ -78,14 +78,14 @@ const SlidePane = (props: SlidePaneProps) => {
             open={visible}
             placement="right"
             prefixCls={slidePrefixCls}
-            mask={showMask}
+            mask={mask}
             onClose={onClose}
             rootStyle={rootStyle}
             width={width}
             rootClassName={rootClassName}
             {...motionProps}
         >
-            {!showMask && renderButton()}
+            {!mask && renderButton()}
             {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
             {isFunction(props) && (
                 <Tabs

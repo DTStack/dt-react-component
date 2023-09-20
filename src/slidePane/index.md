@@ -26,7 +26,7 @@ demo:
 | ------------- | ------------------------------ | ----------------------------------------------------- | ------ |
 | visible       | SlidePanel 是否可见            | `boolean`                                             | -      |
 | title         | 右侧面板的 title               | `React.ReactNode`                                     | -      |
-| showMask      | 是否展示遮罩层                 | `boolean`                                             | false  |
+| mask          | 是否展示遮罩层                 | `boolean`                                             | false  |
 | width         | 右侧面板的宽度                 | `number \| string`                                    | -      |
 | children      | 右侧面板展示内容               | `(key: string) => React.ReactNode \| React.ReactNode` | -      |
 | tabs          | 右侧面板的内容的 Tabs          | `{ key: string; title: React.ReactNode }[]`           | -      |
