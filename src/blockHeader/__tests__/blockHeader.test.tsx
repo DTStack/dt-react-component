@@ -2,7 +2,7 @@ import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import BlockHeader, { type SizeType } from '../index';
+import BlockHeader, { SizeType } from '../index';
 
 const props = {
     title: '标题1',

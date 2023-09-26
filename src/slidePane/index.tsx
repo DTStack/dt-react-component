@@ -1,37 +1,75 @@
-import React, { CSSProperties, KeyboardEvent, MouseEvent, PropsWithChildren } from 'react';
+import React, { CSSProperties, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
+import { Tabs } from 'antd';
 import classNames from 'classnames';
-import { assign } from 'lodash';
 import RcDrawer from 'rc-drawer';
 
+import motionProps from './motion';
 import './style.scss';
 
-export interface ISlidePaneProps {
-    visible: boolean;
-    className?: string;
-    style?: CSSProperties;
-    bodyStyle?: CSSProperties;
-    onClose?: (e: MouseEvent | KeyboardEvent) => void;
+interface Tab {
+    readonly key: string;
+    readonly title: React.ReactNode;
 }
-const SlidePane = ({
-    visible,
-    className,
-    style,
-    bodyStyle,
-    children,
-    onClose,
-}: PropsWithChildren<ISlidePaneProps>) => {
-    const slidePrefixCls = 'dtc-slide-pane';
-    let rootStyle: CSSProperties = {
-        top: 0,
-        right: 0,
-        transform: visible ? undefined : 'translate3d(150%, 0, 0)',
-    };
-    const classes = classNames(className);
 
-    if (!visible) {
-        rootStyle['pointerEvents'] = 'none';
-    }
-    if (style) rootStyle = assign(rootStyle, style);
+type readOnlyTab = readonly Tab[];
+
+type TabKey<T extends readOnlyTab> = T[number]['key'];
+
+type TabsSlidePane<T extends readOnlyTab> = {
+    visible: boolean;
+    rootClassName?: string;
+    bodyClassName?: string;
+    width?: number | string;
+    title?: React.ReactNode;
+    mask?: boolean;
+    rootStyle?: CSSProperties;
+    bodyStyle?: CSSProperties;
+    tabs?: T;
+    activeKey?: TabKey<T>;
+    children?: (key: TabKey<T>) => React.ReactNode;
+    onClose?: (e: MouseEvent | KeyboardEvent) => void;
+};
+
+type NormalSlidePane = {
+    visible: boolean;
+    rootClassName?: string;
+    bodyClassName?: string;
+    width?: number | string;
+    title?: React.ReactNode;
+    mask?: boolean;
+    rootStyle?: CSSProperties;
+    bodyStyle?: CSSProperties;
+    children?: React.ReactNode;
+    onClose?: (e: MouseEvent | KeyboardEvent) => void;
+};
+
+function isFunction(props: any): props is TabsSlidePane<Tab[]> {
+    return typeof props.children === 'function';
+}
+
+export type SlidePaneProps<T extends readOnlyTab> = TabsSlidePane<T> | NormalSlidePane;
+
+const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
+    const slidePrefixCls = 'dtc-slide-pane';
+
+    const {
+        visible,
+        rootClassName,
+        bodyClassName,
+        mask = false,
+        rootStyle,
+        bodyStyle,
+        title,
+        width,
+        children,
+        onClose,
+    } = props;
+
+    const [tabKey, setTabKey] = useState('');
+
+    useEffect(() => {
+        visible && isFunction(props) && setTabKey(props.activeKey || props.tabs?.[0]?.key || '');
+    }, [visible]);
 
     const renderButton = () => {
         return (
@@ -46,18 +84,32 @@ const SlidePane = ({
 
     return (
         <RcDrawer
-            prefixCls={slidePrefixCls}
-            rootClassName={classes}
-            width="100%"
-            onClose={onClose}
             open={visible}
-            mask={false}
-            rootStyle={rootStyle}
             placement="right"
+            prefixCls={slidePrefixCls}
+            mask={mask}
+            onClose={onClose}
+            rootStyle={rootStyle}
+            width={width}
+            rootClassName={rootClassName}
+            {...motionProps}
         >
-            {renderButton()}
-            <div className={`${slidePrefixCls}-content`} style={bodyStyle}>
-                {children}
+            {!mask && renderButton()}
+            {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
+            {isFunction(props) && (
+                <Tabs
+                    destroyInactiveTabPane
+                    activeKey={tabKey}
+                    onChange={setTabKey}
+                    className={`${slidePrefixCls}-tabs`}
+                >
+                    {props.tabs?.map((tab: { key: string; title: React.ReactNode }) => (
+                        <Tabs.TabPane tab={tab.title} key={tab.key} />
+                    ))}
+                </Tabs>
+            )}
+            <div className={classNames(`${slidePrefixCls}-body`, bodyClassName)} style={bodyStyle}>
+                {typeof children === 'function' ? children(tabKey) : children}
             </div>
         </RcDrawer>
     );
