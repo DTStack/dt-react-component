@@ -12,19 +12,21 @@ export default () => {
                 visible={visible}
                 onClose={() => setVisible(false)}
                 title={'Title'}
-                tabs={[
-                    {
-                        key: 'basicInfo',
-                        title: '基本信息',
-                    },
-                    {
-                        key: 'changelog',
-                        title: '变更记录',
-                    },
-                ]}
+                tabs={
+                    [
+                        {
+                            key: 'basicInfo',
+                            title: '基本信息',
+                        },
+                        {
+                            key: 'changelog',
+                            title: '变更记录',
+                        },
+                    ] as const
+                }
                 activeKey="changelog"
             >
-                {(key: string) => {
+                {(key) => {
                     switch (key) {
                         case 'basicInfo':
                             return <div>基本信息</div>;

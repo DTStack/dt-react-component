@@ -6,7 +6,16 @@ import RcDrawer from 'rc-drawer';
 import motionProps from './motion';
 import './style.scss';
 
-type TabsSlidePane = {
+interface Tab {
+    readonly key: string;
+    readonly title: React.ReactNode;
+}
+
+type readOnlyTab = readonly Tab[];
+
+type TabKey<T extends readOnlyTab> = T[number]['key'];
+
+type TabsSlidePane<T extends readOnlyTab> = {
     visible: boolean;
     rootClassName?: string;
     bodyClassName?: string;
@@ -15,9 +24,9 @@ type TabsSlidePane = {
     mask?: boolean;
     rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
-    tabs?: { key: string; title: React.ReactNode }[];
-    activeKey?: string;
-    children?: (key: string) => React.ReactNode;
+    tabs?: T;
+    activeKey?: TabKey<T>;
+    children?: (key: TabKey<T>) => React.ReactNode;
     onClose?: (e: MouseEvent | KeyboardEvent) => void;
 };
 
@@ -34,13 +43,13 @@ type NormalSlidePane = {
     onClose?: (e: MouseEvent | KeyboardEvent) => void;
 };
 
-function isFunction(props: any): props is TabsSlidePane {
+function isFunction(props: any): props is TabsSlidePane<Tab[]> {
     return typeof props.children === 'function';
 }
 
-export type SlidePaneProps = TabsSlidePane | NormalSlidePane;
+export type SlidePaneProps<T extends readOnlyTab> = TabsSlidePane<T> | NormalSlidePane;
 
-const SlidePane = (props: SlidePaneProps) => {
+const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
     const slidePrefixCls = 'dtc-slide-pane';
 
     const {
