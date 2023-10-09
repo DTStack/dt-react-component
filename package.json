@@ -88,7 +88,7 @@
         "cz-conventional-changelog": "^3.3.0",
         "dumi": "^2.1.13",
         "eslint": "^8.23.0",
-        "father": "^4.1.0",
+        "father": "~4.1.0",
         "fetch-jsonp": "^1.2.3",
         "gh-pages": "^4.0.0",
         "husky": "^8.0.1",
