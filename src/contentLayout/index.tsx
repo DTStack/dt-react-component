@@ -22,11 +22,11 @@ const ContentLayout = (props: IProps) => {
     const render = useCallback(() => {
         let herder;
         const content: React.ReactElement<any, string | React.JSXElementConstructor<any>>[] = [];
-        let footer;
+
         Children.forEach(children, (child) => {
             if (child?.type === Header) {
                 herder = cloneElement(child, {
-                    thisRef: headerRef,
+                    ref: headerRef,
                 });
             } else {
                 child &&
@@ -38,7 +38,7 @@ const ContentLayout = (props: IProps) => {
             }
         });
 
-        return [herder, ...content, footer];
+        return [herder, ...content];
     }, [children, contentHeight]);
 
     return (

@@ -1,19 +1,19 @@
-import React, { cloneElement } from 'react';
+import React from 'react';
 import { Table, TableProps } from 'antd';
 
 import { NAME } from '.';
 
 interface ContentLayoutChildProps {
-    thisRef?: React.Ref<HTMLDivElement>;
+    ref?: React.Ref<HTMLDivElement>;
     children?: React.ReactNode;
 }
 
 type ITableProps<T> = {
     height?: string;
 } & TableProps<T> &
-    ContentLayoutChildProps;
+    Omit<ContentLayoutChildProps, 'ref'>;
 
-export const TableLayout = ({ height, children, ...otherProps }: ITableProps<any>) => {
+export const TableLayout = ({ height, ...otherProps }: ITableProps<any>) => {
     let lineHeight = 44;
 
     if (otherProps.footer) {
@@ -22,20 +22,14 @@ export const TableLayout = ({ height, children, ...otherProps }: ITableProps<any
     const scroll: TableProps<any>['scroll'] = otherProps?.scroll ? { ...otherProps.scroll } : {};
     scroll.y = `calc(${height} - ${lineHeight}px)`;
 
-    return children ? (
-        cloneElement(children as React.ReactElement, {
-            scroll,
-        })
-    ) : (
-        <Table {...otherProps} scroll={scroll} />
-    );
+    return <Table {...otherProps} scroll={scroll} />;
 };
 
 interface HeaderProps extends ContentLayoutChildProps {}
 
-export const Header = ({ thisRef, children }: HeaderProps) => {
+export const Header = ({ ref, children }: HeaderProps) => {
     return (
-        <div className={`${NAME}__header`} ref={thisRef}>
+        <div className={`${NAME}__header`} ref={ref}>
             {children}
         </div>
     );
