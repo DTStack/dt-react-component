@@ -26,11 +26,11 @@ demo:
 
 ### ContentLayout API
 
-| 参数     | 说明                                      | 类型                  | 默值                  |
-| -------- | ----------------------------------------- | --------------------- | --------------------- | --- |
-| height   | 组件高度(内部的 Table 会根据高度自动计算) | `string`              |                       |
-| style    | 样式                                      | `React.CSSProperties` |                       |
-| children | 子元素                                    | `React.ReactElement   | React.ReactElement[]` |     |
+| 参数     | 说明                                      | 类型                                           | 默值 |
+| -------- | ----------------------------------------- | ---------------------------------------------- | ---- |
+| height   | 组件高度(内部的 Table 会根据高度自动计算) | `string`                                       |      |
+| style    | 样式                                      | `React.CSSProperties`                          |      |
+| children | 子元素                                    | `React.ReactElement   \| React.ReactElement[]` |      |
 
 ### ContentLayout.Header API
 
