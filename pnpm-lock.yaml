@@ -1,5 +1,8 @@
 lockfileVersion: 5.3
 
+overrides:
+  rc-motion: 2.6.2
+
 specifiers:
   '@ant-design/icons': ^4.7.0
   '@commitlint/cli': ^17.1.2
@@ -23,7 +26,7 @@ specifiers:
   classnames: ^2.2.6
   conventional-changelog-cli: ^2.2.2
   cz-conventional-changelog: ^3.3.0
-  dumi: ^2.1.13
+  dumi: ^2.2.12
   eslint: ^8.23.0
   father: ~4.1.0
   fetch-jsonp: ^1.2.3
@@ -2488,7 +2491,7 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.21.0
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics/3.3.2
       react: registry.npmmirror.com/react/18.1.0
       react-is: registry.npmmirror.com/react-is/16.13.1
@@ -2503,7 +2506,7 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.21.0
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics/3.3.2
       react: registry.npmmirror.com/react/18.2.0
       react-is: registry.npmmirror.com/react-is/16.13.1
@@ -2652,7 +2655,7 @@ packages:
       '@rc-component/portal': registry.npmmirror.com/@rc-component/portal/1.1.2_react-dom@18.2.0+react@18.2.0
       classnames: registry.npmmirror.com/classnames/2.3.2
       rc-align: registry.npmmirror.com/rc-align/4.0.15_react-dom@18.2.0+react@18.2.0
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-resize-observer: registry.npmmirror.com/rc-resize-observer/1.3.1_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
@@ -4190,7 +4193,7 @@ packages:
     name: '@umijs/history'
     version: 5.3.1
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.21.0
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       query-string: registry.npmmirror.com/query-string/6.14.1
     dev: true
 
@@ -4715,7 +4718,7 @@ packages:
       rc-input-number: registry.npmmirror.com/rc-input-number/7.3.11_react-dom@18.2.0+react@18.2.0
       rc-mentions: registry.npmmirror.com/rc-mentions/1.9.2_react-dom@18.2.0+react@18.2.0
       rc-menu: registry.npmmirror.com/rc-menu/9.6.4_react-dom@18.2.0+react@18.2.0
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-notification: registry.npmmirror.com/rc-notification/4.6.1_react-dom@18.2.0+react@18.2.0
       rc-pagination: registry.npmmirror.com/rc-pagination/3.1.17_react-dom@18.2.0+react@18.2.0
       rc-picker: registry.npmmirror.com/rc-picker/2.6.11_react-dom@18.2.0+react@18.2.0
@@ -7707,7 +7710,7 @@ packages:
       prism-themes: registry.npmmirror.com/prism-themes/1.9.0
       prismjs: registry.npmmirror.com/prismjs/1.29.0
       raw-loader: registry.npmmirror.com/raw-loader/4.0.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-tabs: registry.npmmirror.com/rc-tabs/12.12.1_react-dom@18.2.0+react@18.2.0
       rc-tree: registry.npmmirror.com/rc-tree/5.7.12_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
@@ -10334,7 +10337,7 @@ packages:
     name: history
     version: 5.3.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.21.0
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
     dev: true
 
   registry.npmmirror.com/hmac-drbg/1.0.1:
@@ -16324,7 +16327,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
       react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -16342,7 +16345,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
       react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -16359,7 +16362,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
       react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -16496,7 +16499,7 @@ packages:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       '@rc-component/trigger': registry.npmmirror.com/@rc-component/trigger/1.17.0_react-dom@18.2.0+react@18.2.0
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-overflow: registry.npmmirror.com/rc-overflow/1.3.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
@@ -16514,7 +16517,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-overflow: registry.npmmirror.com/rc-overflow/1.3.2_react-dom@18.2.0+react@18.2.0
       rc-trigger: registry.npmmirror.com/rc-trigger/5.3.4_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
@@ -16523,11 +16526,11 @@ packages:
       shallowequal: registry.npmmirror.com/shallowequal/1.1.0
     dev: false
 
-  registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0:
-    resolution: {integrity: sha512-XIU2+xLkdIr1/h6ohPZXyPBMvOmuyFZQ/T0xnawz+Rh+gh4FINcnZmMT5UTIj6hgI0VLDjTaPeRd+smJeSPqiQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/rc-motion/-/rc-motion-2.9.0.tgz}
-    id: registry.npmmirror.com/rc-motion/2.9.0
+  registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0:
+    resolution: {integrity: sha512-4w1FaX3dtV749P8GwfS4fYnFG4Rb9pxvCYPc/b2fw1cmlHJWNNgOFIz7ysiD+eOrzJSvnLJWlNQQncpNMXwwpg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/rc-motion/-/rc-motion-2.6.2.tgz}
+    id: registry.npmmirror.com/rc-motion/2.6.2
     name: rc-motion
-    version: 2.9.0
+    version: 2.6.2
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -16550,7 +16553,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
       react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -16669,7 +16672,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
       react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -16687,7 +16690,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-overflow: registry.npmmirror.com/rc-overflow/1.3.2_react-dom@18.2.0+react@18.2.0
       rc-trigger: registry.npmmirror.com/rc-trigger/5.3.4_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
@@ -16800,7 +16803,7 @@ packages:
       classnames: registry.npmmirror.com/classnames/2.3.2
       rc-dropdown: registry.npmmirror.com/rc-dropdown/4.1.0_react-dom@18.2.0+react@18.2.0
       rc-menu: registry.npmmirror.com/rc-menu/9.12.2_react-dom@18.2.0+react@18.2.0
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-resize-observer: registry.npmmirror.com/rc-resize-observer/1.3.1_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
@@ -16871,7 +16874,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       rc-virtual-list: registry.npmmirror.com/rc-virtual-list/3.11.2_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
@@ -16890,7 +16893,7 @@ packages:
     dependencies:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       rc-virtual-list: registry.npmmirror.com/rc-virtual-list/3.11.2_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
@@ -16910,7 +16913,7 @@ packages:
       '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       classnames: registry.npmmirror.com/classnames/2.3.2
       rc-align: registry.npmmirror.com/rc-align/4.0.15_react-dom@18.2.0+react@18.2.0
-      rc-motion: registry.npmmirror.com/rc-motion/2.9.0_react-dom@18.2.0+react@18.2.0
+      rc-motion: registry.npmmirror.com/rc-motion/2.6.2_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0
       react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -17059,7 +17062,7 @@ packages:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.21.0
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       invariant: registry.npmmirror.com/invariant/2.2.4
       prop-types: registry.npmmirror.com/prop-types/15.8.1
       react: registry.npmmirror.com/react/18.1.0
@@ -17077,7 +17080,7 @@ packages:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.6.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.21.0
+      '@babel/runtime': registry.npmmirror.com/@babel/runtime/7.23.1
       invariant: registry.npmmirror.com/invariant/2.2.4
       prop-types: registry.npmmirror.com/prop-types/15.8.1
       react: registry.npmmirror.com/react/18.2.0
