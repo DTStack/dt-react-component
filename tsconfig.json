@@ -22,5 +22,5 @@
             "dt-react-component/*": ["src/*", "*"]
         }
     },
-    "include": ["src/**/*", ".dumi/**/*", ".dumirc.ts"]
+    "include": ["src/**/*", ".dumirc.ts"]
 }
