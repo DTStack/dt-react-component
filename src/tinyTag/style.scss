@@ -1,0 +1,16 @@
+$primaryColor: #1D78FF;
+$factor: 0.83;
+
+.dtc-tinyTag {
+    border-radius: 2px;
+    border: 1px solid $primaryColor;
+    font-weight: 400;
+    color: $primaryColor;
+    line-height: calc(15px / $factor);
+    padding: 0 calc(4px / $factor);
+    font-size: 12px;
+    display: inline-block;
+    transform: scale($factor);
+    user-select: none;
+    white-space: nowrap;
+}
