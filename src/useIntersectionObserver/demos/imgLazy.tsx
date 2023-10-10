@@ -20,8 +20,11 @@ const Basic = () => {
 
     return (
         <div style={{ height: 300, overflow: 'scroll' }}>
-            <div style={{ height: 330 }}>占位</div>
-            <img data-src="./empty_chart.png" ref={imgRef} />
+            <div style={{ height: 330 }}>占位，往下滑动</div>
+            <img
+                data-src="https://dtstack.github.io/dt-react-component/static/empty_overview.43b0eedf.png"
+                ref={imgRef}
+            />
         </div>
     );
 };

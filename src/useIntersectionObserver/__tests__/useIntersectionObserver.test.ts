@@ -1,1 +1,60 @@
-describe('Test useIntersectionObserver hook', () => {});
+import { act, renderHook } from '@testing-library/react-hooks';
+
+import useIntersectionObserver from '../index';
+
+describe('useIntersectionObserver', () => {
+    let observeMock: jest.Mock;
+    let disconnectMock: jest.Mock;
+
+    beforeEach(() => {
+        observeMock = jest.fn();
+        disconnectMock = jest.fn();
+        jest.spyOn(window, 'IntersectionObserver').mockImplementation(
+            (
+                _callback: IntersectionObserverCallback,
+                _options?: IntersectionObserverInit | undefined
+            ) => ({
+                observe: observeMock,
+                disconnect: disconnectMock,
+                root: null,
+                rootMargin: '',
+                thresholds: [],
+                takeRecords: jest.fn(),
+                unobserve: jest.fn(),
+            })
+        );
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
+    it('should observe target element and disconnect on unmount', () => {
+        const targetElement = document.createElement('div');
+        const callback = jest.fn();
+        const options = { threshold: 0.5 };
+        const { unmount } = renderHook(() =>
+            useIntersectionObserver(callback, targetElement, options)
+        );
+        expect(window.IntersectionObserver).toHaveBeenCalledWith(callback, options);
+        expect(observeMock).toHaveBeenCalledWith(targetElement);
+        act(() => {
+            unmount();
+        });
+        expect(disconnectMock).toHaveBeenCalled();
+    });
+
+    it('should not observe target element if not provided', () => {
+        const callback = jest.fn();
+        const options = { threshold: 0.5 };
+        const { unmount } = renderHook(() =>
+            useIntersectionObserver(callback, null as unknown as Element, options)
+        );
+        expect(window.IntersectionObserver).toHaveBeenCalledWith(callback, options);
+        expect(observeMock).not.toHaveBeenCalled();
+        act(() => {
+            unmount();
+        });
+        expect(callback).not.toHaveBeenCalled();
+    });
+});
