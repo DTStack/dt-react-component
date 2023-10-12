@@ -1,3 +1,4 @@
+import { RefObject } from 'react';
 import { act, renderHook } from '@testing-library/react-hooks';
 
 import useIntersectionObserver from '../index';
@@ -30,14 +31,12 @@ describe('useIntersectionObserver', () => {
     });
 
     it('should observe target element and disconnect on unmount', () => {
-        const targetElement = document.createElement('div');
+        const ref = { current: document.createElement('div') };
         const callback = jest.fn();
-        const options = { threshold: 0.5 };
-        const { unmount } = renderHook(() =>
-            useIntersectionObserver(callback, targetElement, options)
-        );
-        expect(window.IntersectionObserver).toHaveBeenCalledWith(callback, options);
-        expect(observeMock).toHaveBeenCalledWith(targetElement);
+        const options = { threshold: 0, root: null, rootMargin: '0%' };
+        const { unmount } = renderHook(() => useIntersectionObserver(callback, ref, options));
+        expect(window.IntersectionObserver).toHaveBeenCalledWith(expect.any(Function), options);
+        expect(observeMock).toHaveBeenCalledWith(ref.current);
         act(() => {
             unmount();
         });
@@ -46,11 +45,11 @@ describe('useIntersectionObserver', () => {
 
     it('should not observe target element if not provided', () => {
         const callback = jest.fn();
-        const options = { threshold: 0.5 };
+        const options = { threshold: 0, root: null, rootMargin: '0%' };
         const { unmount } = renderHook(() =>
-            useIntersectionObserver(callback, null as unknown as Element, options)
+            useIntersectionObserver(callback, null as unknown as RefObject<Element>, options)
         );
-        expect(window.IntersectionObserver).toHaveBeenCalledWith(callback, options);
+        expect(window.IntersectionObserver).toHaveBeenCalledWith(expect.any(Function), options);
         expect(observeMock).not.toHaveBeenCalled();
         act(() => {
             unmount();
