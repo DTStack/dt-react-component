@@ -16,7 +16,7 @@ const Basic = () => {
         }
     };
 
-    useIntersectionObserver(handleObserverCb, imgRef.current as Element);
+    useIntersectionObserver(handleObserverCb, imgRef, {});
 
     return (
         <div style={{ height: 300, overflow: 'scroll' }}>

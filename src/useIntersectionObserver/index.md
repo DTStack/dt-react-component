@@ -19,8 +19,8 @@ toc: content
 
 ### Props
 
-| 参数          | 说明                       | 类型                           | 默认值 |
-| ------------- | -------------------------- | ------------------------------ | ------ |
-| callback      | 处理进入可视区域的回调函数 | `IntersectionObserverCallback` | -      |
-| initialParams | 初始化数据                 | `Element`                      | -      |
-| options       | 配置项                     | `IntersectionObserverInit`     | -      |
+| 参数          | 说明                                     | 类型                                                         | 默认值                         |
+| ------------- | ---------------------------------------- | ------------------------------------------------------------ | ------------------------------ |
+| callback      | 处理进入可视区域的回调函数               | `IntersectionObserverCallback`                               | -                              |
+| initialParams | 初始化数据                               | `Element`                                                    | -                              |
+| options       | 配置项，freezeOnceVisible 是否只触发一次 | `IntersectionObserverInit & { freezeOnceVisible : boolean }` | `{ freezeOnceVisible: false }` |
