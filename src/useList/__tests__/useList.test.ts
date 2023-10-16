@@ -3,7 +3,15 @@ import { renderHook } from '@testing-library/react-hooks';
 
 import useList from '..';
 
+const awaitTimers = async () => {
+    for (let i = 0; i < 10; i++) {
+        await Promise.resolve();
+    }
+};
+
 describe('Test useList hook', () => {
+    afterEach(() => jest.useRealTimers());
+
     it('Should get initial data with default params', async () => {
         const fetcher = jest.fn().mockResolvedValue({
             total: 1,
@@ -83,5 +91,46 @@ describe('Test useList hook', () => {
         renderHook(() => useList(fetcher, {}, { immediate: false }));
 
         expect(fetcher).not.toBeCalled();
+    });
+
+    it('Should hide loading after the last fetching done', async () => {
+        jest.useFakeTimers({ advanceTimers: true });
+        const fetcher = jest
+            .fn()
+            .mockReturnValueOnce(
+                new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({
+                            total: 0,
+                            data: [],
+                        });
+                    }, 100);
+                })
+            )
+            .mockReturnValueOnce(
+                new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({
+                            total: 0,
+                            data: [],
+                        });
+                    }, 200);
+                })
+            );
+
+        const { result } = renderHook(() => useList(fetcher, {}, { immediate: false }));
+
+        act(() => {
+            result.current.mutate();
+            result.current.mutate();
+        });
+
+        jest.advanceTimersByTime(100);
+        await awaitTimers();
+        expect(result.current.loading).toBe(true);
+
+        jest.advanceTimersByTime(100);
+        await awaitTimers();
+        expect(result.current.loading).toBe(false);
     });
 });
