@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test StatusTag should match snapshot 1`] = `
+<DocumentFragment>
+  <span
+    class="dtc-tinyTag dtc-test"
+  >
+    完成
+  </span>
+</DocumentFragment>
+`;
