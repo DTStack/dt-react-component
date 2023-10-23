@@ -6,6 +6,7 @@ import useIntersectionObserver from '../useIntersectionObserver';
 interface IProps {
     src: string;
     lazy?: boolean;
+    alt?: string;
     className?: string;
     style?: CSSProperties;
     width?: number;
@@ -13,7 +14,7 @@ interface IProps {
     loader?: JSX.Element | null;
 }
 
-function imgPromise(src: string) {
+function loadImage(src: string) {
     return new Promise((resolve, reject) => {
         const i = new Image();
         i.onload = () => resolve(true);
@@ -22,7 +23,7 @@ function imgPromise(src: string) {
     });
 }
 
-function useImage({ src }: { src: string }): {
+export function useImage({ src }: { src: string }): {
     src: string | undefined;
     isLoading: boolean;
 } {
@@ -30,12 +31,12 @@ function useImage({ src }: { src: string }): {
     const [value, setValue] = React.useState<string | undefined>(undefined);
 
     React.useEffect(() => {
-        imgPromise(src)
+        loadImage(src)
             .then(() => {
                 setLoading(false);
                 setValue(src);
             })
-            .catch(() => {
+            .finally(() => {
                 setLoading(false);
             });
     }, [src]);
@@ -70,6 +71,7 @@ const NormalImage = (props: IProps) => {
     const { src, isLoading } = useImage({ src: originSrc });
     if (src) return <img {...rest} src={src} />;
     if (isLoading) return loader;
+    return null;
 };
 
 export default ImageComponent;
