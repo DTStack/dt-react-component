@@ -9,6 +9,7 @@ export default function Component() {
                 height={200}
                 width={200}
                 src="https://dtstack.github.io/dt-react-component/static/empty_overview.43b0eedf.png"
+                style={{ borderColor: 'red' }}
             />
         </div>
     );
