@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { ReactNode, useState } from 'react';
+import { TreeSelectProps } from 'antd';
 import { Catalogue } from 'dt-react-component';
 
 import { initTreeSelectData } from '../data';
 
 export const NormalTreeSelect = () => {
+    const [dataSource] = useState<TreeSelectProps['treeData']>(initTreeSelectData);
+    const [selectedLabelList, setSelectedLabelList] = useState<ReactNode[]>([]);
+    const handleChange: TreeSelectProps['onChange'] = (value, labelList, _) => {
+        setSelectedLabelList(labelList);
+    };
+    console.log(selectedLabelList, '--selectedLabelList');
     return (
         <div style={{ display: 'flex' }}>
-            <Catalogue.TreeSelect treeData={initTreeSelectData} style={{ width: 200 }} showSearch />
+            <Catalogue.TreeSelect
+                treeData={dataSource}
+                style={{ width: 200 }}
+                showSearch
+                multiple
+                onChange={handleChange}
+            />
             <p
                 style={{
                     marginLeft: 12,
@@ -16,7 +29,11 @@ export const NormalTreeSelect = () => {
                     background: '#fff',
                 }}
             >
-                Content
+                <p>
+                    {selectedLabelList?.length
+                        ? `选中了 ${selectedLabelList?.join?.('、')}`
+                        : '未选中'}
+                </p>
             </p>
         </div>
     );

@@ -195,7 +195,7 @@ const DtTree = (props: IProps) => {
     const handleChangeToTabs = useCallback(() => {
         dispatch({
             type: Action.UPDATE,
-            payload: { status: Status.tabs },
+            payload: { status: Status.tabs, searchStr: undefined },
         });
     }, []);
 
