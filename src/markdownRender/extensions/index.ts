@@ -1,4 +1,4 @@
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
 import sql from 'highlight.js/lib/languages/sql';
 import showdown from 'showdown';
 
