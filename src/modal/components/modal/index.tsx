@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, AlertProps, Modal, ModalProps } from 'antd';
+import { Alert, type AlertProps, Modal, type ModalProps } from 'antd';
 import { omit } from 'lodash';
 
 import './index.scss';
@@ -16,7 +16,8 @@ const getWidthFromSize = (size: IModalProps['size']) => {
 };
 
 const isValidBanner = (banner: IModalProps['banner']): banner is AlertProps['message'] => {
-    return React.isValidElement(banner);
+    if (typeof banner === 'object') return React.isValidElement(banner);
+    return true;
 };
 
 export default function InternalModal({

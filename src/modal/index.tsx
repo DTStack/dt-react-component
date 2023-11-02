@@ -16,7 +16,8 @@ const WrapperModal: any = new Proxy(InternalModal, {
 });
 
 type ModalStaticFunctionType = Pick<OriginalInterface, keyof OriginalInterface>;
-type ModalInterface = typeof InternalModal & ModalStaticFunctionType;
+type ModalInterface = typeof InternalModal &
+    ModalStaticFunctionType & { Form: typeof InternalForm };
 
 export type { IModalProps } from './components/modal';
 
