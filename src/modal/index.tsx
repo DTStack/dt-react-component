@@ -8,6 +8,8 @@ type OriginalInterface = typeof Modal;
 const WrapperModal: any = new Proxy(InternalModal, {
     get(_, key) {
         if (key in Modal) {
+            // Skip defaultProps
+            if (key === 'defaultProps') return undefined;
             return Modal[key as keyof OriginalInterface];
         } else if (key === 'Form') {
             return InternalForm;

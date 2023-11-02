@@ -23,12 +23,12 @@ const isValidBanner = (banner: IModalProps['banner']): banner is AlertProps['mes
 export default function InternalModal({
     bodyStyle,
     banner,
-    size,
+    size = 'default',
     children,
     width,
     ...rest
 }: IModalProps) {
-    const finalWidth = size ? getWidthFromSize(size) : width;
+    const finalWidth = width ?? getWidthFromSize(size);
 
     return (
         <Modal
