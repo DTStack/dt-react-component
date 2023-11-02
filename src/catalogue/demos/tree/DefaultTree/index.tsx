@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import type { DataNode, TreeProps } from 'antd/es/tree';
 import { Catalogue } from 'dt-react-component';
-import { ISuperTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
+import { IDtTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
 
 import { initTreeData } from '../data';
 
 export const DefaultTree = () => {
     const [dataSource, setDataSource] = useState(initTreeData);
-    const [selectedItems, setSelectedItems] = useState<ISuperTreeDataItem[]>([]);
+    const [selectedItems, setSelectedItems] = useState<IDtTreeDataItem[]>([]);
     const handleDrop: TreeProps['onDrop'] = (info) => {
         console.log(info);
         const dropKey = info.node.key;
@@ -74,8 +74,8 @@ export const DefaultTree = () => {
     };
     const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
         // const selectedKey =
-        const selectedItems: ISuperTreeDataItem[] = [];
-        const loopTree = (tree: ISuperTreeDataItem[]) => {
+        const selectedItems: IDtTreeDataItem[] = [];
+        const loopTree = (tree: IDtTreeDataItem[]) => {
             tree.forEach((item) => {
                 if (selectedKeys.includes(item.key)) {
                     selectedItems.push(item);

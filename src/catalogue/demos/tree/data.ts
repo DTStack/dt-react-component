@@ -1,6 +1,6 @@
-import type { ISuperTreeDataItem } from '../../components/dtTree';
+import type { IDtTreeDataItem } from '../../components/dtTree';
 
-export const initTreeData: ISuperTreeDataItem[] = [
+export const initTreeData: IDtTreeDataItem[] = [
     {
         key: '1',
         title: '文件夹1',

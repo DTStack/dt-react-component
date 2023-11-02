@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { DeleteOutlined, FormOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import { Space, TreeProps } from 'antd';
 import { Catalogue } from 'dt-react-component';
-import { ISuperTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
+import { IDtTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
 
 import { initTreeData } from '../data';
 
 export const WithBtnSlotTree = () => {
     const [dataSource] = useState(initTreeData);
-    const [selectedItems, setSelectedItems] = useState<ISuperTreeDataItem[]>([]);
+    const [selectedItems, setSelectedItems] = useState<IDtTreeDataItem[]>([]);
     const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
         // const selectedKey =
-        const selectedItems: ISuperTreeDataItem[] = [];
-        const loopTree = (tree: ISuperTreeDataItem[]) => {
+        const selectedItems: IDtTreeDataItem[] = [];
+        const loopTree = (tree: IDtTreeDataItem[]) => {
             tree.forEach((item) => {
                 if (selectedKeys.includes(item.key)) {
                     selectedItems.push(item);

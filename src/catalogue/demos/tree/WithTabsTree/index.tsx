@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { DeleteOutlined, FormOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import { Space, TreeProps } from 'antd';
 import { Catalogue } from 'dt-react-component';
-import { ISuperTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
+import { IDtTreeDataItem, ITabsStatus } from 'dt-react-component/catalogue/components/dtTree';
 
 import { initTreeData } from '../data';
 
 export const WithTabsTree = () => {
-    const [dataSource] = useState(initTreeData);
-    const [selectedItems, setSelectedItems] = useState<ISuperTreeDataItem[]>([]);
+    const [dataSource, setDataSource] = useState(initTreeData);
+    const [selectedItems, setSelectedItems] = useState<IDtTreeDataItem[]>([]);
 
     const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
         console.log(selectedKeys, '--selectedKeys');
-        const selectedItems: ISuperTreeDataItem[] = [];
-        const loopTree = (tree: ISuperTreeDataItem[]) => {
+        const selectedItems: IDtTreeDataItem[] = [];
+        const loopTree = (tree: IDtTreeDataItem[]) => {
             tree.forEach((item) => {
                 if (selectedKeys.includes(item.key)) {
                     selectedItems.push(item);
@@ -33,12 +33,17 @@ export const WithTabsTree = () => {
                 treeData={dataSource}
                 showHeader
                 height={500}
-                style={{ width: 300 }}
+                wrapperStyle={{ width: 300 }}
                 onSelect={handleSelect}
+                defaultStatus={ITabsStatus.tabs}
                 tabsProps={{
                     items: [
                         {
-                            label: '项目1项目1项目1',
+                            label: 'All',
+                            key: 'all',
+                        },
+                        {
+                            label: '项目1',
                             key: 'project_1',
                         },
                         {
@@ -46,14 +51,26 @@ export const WithTabsTree = () => {
                             key: 'project_2',
                         },
                         {
-                            label: '禁用禁用禁用禁用',
+                            label: '禁用',
                             key: 'project_3',
                             disabled: true,
                         },
                     ],
                     onTabClick: (activeKey, e) => {
                         console.log(activeKey, e, 'onTabClick');
+                        if (activeKey === 'project_1') {
+                            setDataSource(initTreeData.slice(0, 2));
+                        } else if (activeKey === 'project_2') {
+                            setDataSource(initTreeData.slice(3));
+                        } else if (activeKey === 'all') {
+                            setDataSource(initTreeData);
+                        }
                     },
+                }}
+                onStatusChange={(status) => {
+                    if (status === ITabsStatus.search) {
+                        setDataSource(initTreeData);
+                    }
                 }}
                 btnSlot={
                     <Space style={{ marginRight: 10 }}>

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { TreeProps } from 'antd';
 import { Catalogue } from 'dt-react-component';
-import { ISuperTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
+import { IDtTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
 
 import { initTreeData } from '../data';
 
 export const WithCheckboxTree = () => {
     const [dataSource] = useState(initTreeData);
-    const [selectedItems, setSelectedItems] = useState<ISuperTreeDataItem[]>([]);
-    const [checkedItems, setCheckedItems] = useState<ISuperTreeDataItem[]>([]);
+    const [selectedItems, setSelectedItems] = useState<IDtTreeDataItem[]>([]);
+    const [checkedItems, setCheckedItems] = useState<IDtTreeDataItem[]>([]);
     const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
         console.log(selectedKeys, '--selectedKeys');
-        const selectedItems: ISuperTreeDataItem[] = [];
-        const loopTree = (tree: ISuperTreeDataItem[]) => {
+        const selectedItems: IDtTreeDataItem[] = [];
+        const loopTree = (tree: IDtTreeDataItem[]) => {
             tree.forEach((item) => {
                 if (selectedKeys.includes(item.key)) {
                     selectedItems.push(item);
@@ -28,8 +28,8 @@ export const WithCheckboxTree = () => {
     const handleCheck: TreeProps['onCheck'] = (checkedKeys, info) => {
         console.log(info, '--info');
         console.log(checkedKeys, '--checkedKeys');
-        const checkedItems: ISuperTreeDataItem[] = [];
-        const loopTree = (tree: ISuperTreeDataItem[]) => {
+        const checkedItems: IDtTreeDataItem[] = [];
+        const loopTree = (tree: IDtTreeDataItem[]) => {
             tree.forEach((item) => {
                 if (checkedKeys?.includes?.(item.key)) {
                     checkedItems.push(item);
@@ -50,7 +50,7 @@ export const WithCheckboxTree = () => {
                 treeData={dataSource}
                 showHeader
                 treeTit="自定义目录"
-                draggable={{ icon: false, nodeDraggable: () => true }}
+                // draggable={{ icon: false, nodeDraggable: () => true }}
                 height={500}
                 // wrapperStyle={{ width: 500 }}
                 onSearch={(v, e) => {
