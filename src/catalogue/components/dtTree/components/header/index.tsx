@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { MenuFoldOutlined, MenuUnfoldOutlined, ProfileFilled } from '@ant-design/icons';
 
-import { IProps as DtTreeProps } from '../../';
+import { IDtTreeProps } from '../../';
 import './style.scss';
 
 export const prefixCls = 'dtTreeHeaderWrapper';
 
 export const btnSlotProp = 'btnSlot';
 
-export interface IProps {
+export interface IDtTreeHeaderProps {
     /** 目录标题 */
     title?: React.ReactNode;
     /** 是否收起 */
@@ -17,10 +17,10 @@ export interface IProps {
     onCollapsed?: (collapsed: boolean) => void;
     /** Header 右侧按扭组插槽【建议 icon 不超过3个，超出使用更多icon，下拉显示】，showHeader 为 true 时生效 */
     btnSlot?: React.ReactElement;
-    size?: DtTreeProps['size'];
+    size?: IDtTreeProps['size'];
 }
 
-export default (props: IProps) => {
+export default (props: IDtTreeHeaderProps) => {
     const { onCollapsed, btnSlot } = props;
     const handleCollapsed = (flag: boolean) => (_: any) => {
         onCollapsed?.(flag);

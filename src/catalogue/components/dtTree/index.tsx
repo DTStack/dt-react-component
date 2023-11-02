@@ -11,7 +11,7 @@ import { Input, Spin, Tabs, Tree } from 'antd';
 import type { TabsProps } from 'antd/es/tabs';
 import type { DataNode } from 'antd/es/tree';
 
-import type { IProps as IHeaderProps } from './components/header';
+import type { IDtTreeHeaderProps } from './components/header';
 import { Header } from './components';
 import { getExpendKeysByQuery, loopTree } from './helpers';
 import './style.scss';
@@ -20,13 +20,21 @@ export const prefixCls = 'dtTreeWrapper';
 
 /** ContextMenu item props */
 type ContextItemProps = { text: React.ReactNode; key: React.Key };
-export interface ISuperTreeDataItem extends DataNode {
+
+export enum ITabsStatus {
+    /** 搜索态 */
+    search = 'search',
+    /** tab 切换态 */
+    tabs = 'tabs',
+}
+
+export interface IDtTreeDataItem extends DataNode {
     /** Item ContextMenu 配置 */
     contextMenuConfig?: {
         data: Array<ContextItemProps>;
-        onClick: (e: ContextItemProps, item: ISuperTreeDataItem) => void;
+        onClick: (e: ContextItemProps, item: IDtTreeDataItem) => void;
     };
-    children?: ISuperTreeDataItem[];
+    children?: IDtTreeDataItem[];
 }
 
 export interface ITabsItem {
@@ -39,7 +47,7 @@ export interface ITabsItem {
     // [key: string]: any;
 }
 
-export interface IProps extends TreeProps, Pick<IHeaderProps, 'btnSlot'> {
+export interface IDtTreeProps extends TreeProps, Pick<IDtTreeHeaderProps, 'btnSlot'> {
     /** 是否加载中 */
     loading?: boolean;
     /** 是否展示头部组件 */
@@ -67,40 +75,46 @@ export interface IProps extends TreeProps, Pick<IHeaderProps, 'btnSlot'> {
         items: ITabsItem[];
     };
     /** 与 TreeProps['treeData'] 类型相似，只是增加了 ContextMenu 配置 */
-    treeData?: ISuperTreeDataItem[];
+    treeData?: IDtTreeDataItem[];
+    /** 默认展示 tabs 还是 search，仅 items 有值时生效  */
+    defaultStatus?: ITabsStatus;
+    /** tabs or status 变化时的回调 */
+    onStatusChange?: (
+        status: ITabsStatus,
+        e:
+            | React.ChangeEvent<HTMLInputElement>
+            | React.MouseEvent<HTMLElement, MouseEvent>
+            | React.KeyboardEvent<HTMLInputElement>
+            | undefined
+    ) => void;
 }
 
-export enum Status {
-    search = 'search',
-    tabs = 'tabs',
-}
-
-export interface IState {
+interface IState {
     searchStr: string | undefined;
     collapsed: boolean;
     _expandedKeys: React.Key[];
     /** 搜索状态，默认 search 状态，若 tabsItems 有值则可以改动 */
-    status: Status;
+    status: ITabsStatus;
 }
 
-export const initState: IState = {
+const initState: IState = {
     searchStr: undefined,
     collapsed: false,
     _expandedKeys: [],
-    status: Status.search,
+    status: ITabsStatus.search,
 };
 
-export enum Action {
+enum Action {
     UPDATE = 'update',
     RESET = 'reset',
 }
 
-export interface IAction {
+interface IAction {
     type: Action;
     payload: Partial<IState>;
 }
 
-export const reducer = (state: IState, action: IAction) => {
+const reducer = (state: IState, action: IAction) => {
     switch (action.type) {
         case Action.RESET:
             return initState;
@@ -111,7 +125,7 @@ export const reducer = (state: IState, action: IAction) => {
     }
 };
 
-const DtTree = (props: IProps) => {
+const DtTree = (props: IDtTreeProps) => {
     const {
         showHeader,
         treeTit,
@@ -123,10 +137,13 @@ const DtTree = (props: IProps) => {
         loading,
         size,
         btnSlot,
+        defaultStatus,
+        onStatusChange,
         ...restProps
     } = props;
     const [{ searchStr, collapsed, _expandedKeys, status }, dispatch] = useReducer(reducer, {
         ...initState,
+        status: defaultStatus || initState.status,
     });
 
     useEffect(() => {
@@ -185,19 +202,27 @@ const DtTree = (props: IProps) => {
     const onExpand = useCallback((newExpandedKeys: React.Key[]) => {
         dispatch({ type: Action.UPDATE, payload: { _expandedKeys: newExpandedKeys } });
     }, []);
-    const handleChangeToSearch = useCallback(() => {
-        dispatch({
-            type: Action.UPDATE,
-            payload: { status: Status.search },
-        });
-    }, []);
+    const handleChangeToSearch = useCallback(
+        (e: any) => {
+            dispatch({
+                type: Action.UPDATE,
+                payload: { status: ITabsStatus.search },
+            });
+            onStatusChange?.(ITabsStatus.search, e);
+        },
+        [onStatusChange]
+    );
 
-    const handleChangeToTabs = useCallback(() => {
-        dispatch({
-            type: Action.UPDATE,
-            payload: { status: Status.tabs, searchStr: undefined },
-        });
-    }, []);
+    const handleChangeToTabs = useCallback(
+        (e: any) => {
+            dispatch({
+                type: Action.UPDATE,
+                payload: { status: ITabsStatus.tabs, searchStr: undefined },
+            });
+            onStatusChange?.(ITabsStatus.tabs, e);
+        },
+        [onStatusChange]
+    );
 
     const renderHeader = useCallback(() => {
         if (!showHeader) return null;
@@ -213,7 +238,7 @@ const DtTree = (props: IProps) => {
     }, [showHeader, treeTit, collapsed, size, btnSlot, toggleCollapsed]);
     const renderTabsAndSearch = useCallback(() => {
         const { items, ...restTabsProps } = tabsProps || {};
-        if (status === Status.tabs && items?.length) {
+        if (status === ITabsStatus.tabs && items?.length) {
             return (
                 <Tabs
                     tabBarExtraContent={
@@ -230,7 +255,7 @@ const DtTree = (props: IProps) => {
                     ))}
                 </Tabs>
             );
-        } else if (status === Status.search || !items?.length) {
+        } else if (status === ITabsStatus.search || !items?.length) {
             return (
                 <div className={`${prefixCls}__search`}>
                     <Input.Search
@@ -299,6 +324,7 @@ DtTree.defaultProps = {
     showIcon: true,
     showLine: { showLeafIcon: false },
     switcherIcon: <CaretDownOutlined />,
-} as IProps;
+    defaultStatus: ITabsStatus.tabs,
+} as IDtTreeProps;
 
 export default DtTree;
