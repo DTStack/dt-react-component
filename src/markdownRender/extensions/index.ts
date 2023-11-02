@@ -1,10 +1,13 @@
-import hljs from 'highlight.js/lib/core';
+import type * as Hljs from 'highlight.js';
+import hljsCore from 'highlight.js/lib/core';
 import sql from 'highlight.js/lib/languages/sql';
 import showdown from 'showdown';
 
 import 'highlight.js/styles/default.css';
 import '../theme/vs.scss';
 import '../theme/vs-dark.scss';
+
+const hljs = hljsCore as typeof Hljs;
 
 hljs.registerLanguage('sql', sql);
 
