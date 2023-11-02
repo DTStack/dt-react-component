@@ -32,6 +32,10 @@
         "lib",
         "esm"
     ],
+    "sideEffects": [
+        "lib/*",
+        "*.scss"
+    ],
     "keywords": [
         "react",
         "react-component",
