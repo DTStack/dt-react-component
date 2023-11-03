@@ -19,7 +19,7 @@ export interface IUseListOptions {
 
 export default function useList<T extends Record<string, any>, P extends Record<string, any>>(
     fetcher: Fetcher<T, P>,
-    initialParams: P,
+    initialParams: P | (() => P),
     rawOptions: IUseListOptions = { immediate: true }
 ) {
     const [error, setError] = useState<Error | undefined>(undefined);
@@ -28,7 +28,7 @@ export default function useList<T extends Record<string, any>, P extends Record<
     const [params, setParams] = useState<P>(initialParams);
     const [loading, setLoading] = useState(false);
 
-    const options = useMemo(() => merge(rawOptions, { immediate: true }), [rawOptions]);
+    const options = useMemo(() => merge({ immediate: true }, rawOptions), [rawOptions]);
 
     const performFetch = (raw = params) => {
         setLoading(true);

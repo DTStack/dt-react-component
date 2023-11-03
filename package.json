@@ -32,6 +32,10 @@
         "lib",
         "esm"
     ],
+    "sideEffects": [
+        "lib/*",
+        "*.scss"
+    ],
     "keywords": [
         "react",
         "react-component",
@@ -86,9 +90,9 @@
         "babel-types": "^6.26.0",
         "conventional-changelog-cli": "^2.2.2",
         "cz-conventional-changelog": "^3.3.0",
-        "dumi": "^2.1.13",
+        "dumi": "^2.2.12",
         "eslint": "^8.23.0",
-        "father": "^4.1.0",
+        "father": "~4.1.0",
         "fetch-jsonp": "^1.2.3",
         "gh-pages": "^4.0.0",
         "husky": "^8.0.1",
@@ -125,5 +129,8 @@
         "commitizen": {
             "path": "./node_modules/cz-conventional-changelog"
         }
+    },
+    "resolutions": {
+        "rc-motion": "2.6.2"
     }
 }

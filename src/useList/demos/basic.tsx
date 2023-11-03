@@ -19,7 +19,10 @@ const fetcher: Fetcher<MockData, { current: number; pageSize: number; search?: s
 };
 
 export default () => {
-    const { error, params, loading, data, mutate } = useList(fetcher, { current: 1, pageSize: 20 });
+    const { error, params, loading, data, mutate } = useList(fetcher, () => ({
+        current: 1,
+        pageSize: 20,
+    }));
 
     if (error) return <Result status={500} />;
 
