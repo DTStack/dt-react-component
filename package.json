@@ -83,6 +83,7 @@
         "@types/jest": "^29.2.3",
         "@types/lodash": "^4.14.191",
         "@types/react": "^18.0.0",
+        "@types/shortid": "^0.0.31",
         "@types/showdown": "^1.9.0",
         "@types/testing-library__jest-dom": "^5.14.5",
         "@umijs/lint": "^4.0.0",
@@ -123,6 +124,7 @@
         "mxgraph": "^4.2.2",
         "rc-drawer": "~5.1.0",
         "rc-virtual-list": "^3.4.13",
+        "shortid": "^2.2.16",
         "showdown": "^1.9.0",
         "standard-version": "^9.5.0",
         "use-clippy": "^1.0.9"

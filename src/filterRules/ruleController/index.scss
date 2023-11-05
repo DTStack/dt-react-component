@@ -1,0 +1,105 @@
+.ruleController {
+    &__condition {
+        position: relative;
+        .ruleController__condition--active {
+            padding-left: 32px;
+            .condition__box--line {
+                width: 33px;
+                height: 2px;
+                display: inline-block;
+                background-color: #DDEFFF;
+                position: absolute;
+                top: 50%;
+                left: -33px;
+                &.disabled {
+                    background-color: #EBECF0;
+                }
+            }
+        }
+        .condition {
+            &__box {
+                position: absolute;
+                border: 1px solid #DDEFFF;
+                &.disabled {
+                    border-color: #EBECF0;
+                }
+                &--name {
+                    cursor: pointer;
+                    position: absolute;
+                    left: -14px;
+                    top: 50%;
+                    margin-top: -13px;
+                    background: #DDEFFF;
+                    width: 27px;
+                    height: 27px;
+                    border-radius: 50%;
+                    font-size: 12px;
+                    color: #2491F7;
+                    text-align: center;
+                    line-height: 26px;
+                    z-index: 10;
+                    &.disabled {
+                        cursor: not-allowed;
+                        color: #3D446E;
+                        background: #EBECF0;
+                    }
+                }
+            }
+            &__add {
+                display: flex;
+                height: 32px;
+                &--line {
+                    display: block;
+                    width: 30px;
+                    height: 2px;
+                    background-color: #DDEFFF;
+                    margin-top: 16px;
+                }
+                &--icon {
+                    cursor: pointer;
+                    color: #3F87FF;
+                    font-size: 18px;
+                    margin-top: 7px;
+                }
+            }
+        }
+    }
+    &__item {
+        display: flex;
+        min-width: 0;
+        flex: 1;
+        align-items: center;
+        margin-bottom: 16px;
+        &--line {
+            width: 30px;
+            height: 2px;
+            background: #DDEFFF;
+            display: block;
+            &.disabled {
+                background-color: #EBECF0;
+            }
+        }
+        &--component {
+            flex: 1;
+        }
+        &--operation {
+            width: 10%;
+            margin-left: 12px;
+            margin-top: 7px;
+            .icon {
+                cursor: pointer;
+                color: #3F87FF;
+                font-size: 18px;
+                &:first-child {
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+    .ant-form-item {
+        margin-bottom: 0;
+        .ant-form-item-explain .ant-form-item-explain-error {
+            position: absolute;
+        }
+    }
+}
