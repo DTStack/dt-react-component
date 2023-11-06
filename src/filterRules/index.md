@@ -3,7 +3,7 @@ title: FilterRules 且或组件
 group: 组件
 toc: content
 demo:
-    cols: 2
+    cols: 1
 ---
 
 # FilterRules 且或组件
@@ -17,6 +17,8 @@ demo:
 ## 示例
 
 <code src="./demos/basic.tsx" >受控方式使用</code>
+<code src="./demos/basicUnController.tsx" >非受控方式使用</code>
+<code src="./demos/basicCheck.tsx" >查看数据</code>
 
 ## API
 

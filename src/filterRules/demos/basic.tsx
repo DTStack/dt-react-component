@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Input } from 'antd';
 import shortid from 'shortid';
 
-import { FilterRules } from '..';
+import FilterRules from '..';
 
 const INIT_ROW_VALUES = {
     input: '',
