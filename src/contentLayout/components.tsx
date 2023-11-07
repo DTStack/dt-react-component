@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table, TableProps } from 'antd';
+import classNames from 'classnames';
 
 import { NAME } from '.';
 
@@ -10,6 +11,8 @@ interface ContentLayoutChildProps {
 
 type ITableProps<T> = {
     height?: string;
+    style?: React.CSSProperties;
+    className?: string;
 } & TableProps<T> &
     Omit<ContentLayoutChildProps, 'ref'>;
 
@@ -25,11 +28,14 @@ export const TableLayout = ({ height, ...otherProps }: ITableProps<any>) => {
     return <Table {...otherProps} scroll={scroll} />;
 };
 
-interface HeaderProps extends ContentLayoutChildProps {}
+interface HeaderProps extends ContentLayoutChildProps {
+    style?: React.CSSProperties;
+    className?: string;
+}
 
-export const Header = ({ ref, children }: HeaderProps) => {
+export const Header = ({ ref, className, style, children }: HeaderProps) => {
     return (
-        <div className={`${NAME}__header`} ref={ref}>
+        <div className={classNames(`${NAME}__header`, className)} style={style} ref={ref}>
             {children}
         </div>
     );

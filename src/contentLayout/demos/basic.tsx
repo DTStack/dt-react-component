@@ -28,7 +28,7 @@ export default () => {
         },
     ];
     return (
-        <ContentLayout height="400px">
+        <ContentLayout height="300px">
             <ContentLayout.Header>
                 <Input.Search placeholder="请输入搜索内容" style={{ width: 256 }} />
             </ContentLayout.Header>

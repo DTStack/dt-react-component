@@ -1,4 +1,5 @@
 import React, { Children, cloneElement, useCallback, useMemo, useRef } from 'react';
+import classNames from 'classnames';
 
 import { Header, TableLayout } from './components';
 import './index.scss';
@@ -7,12 +8,13 @@ interface IProps {
     height?: string;
     children?: React.ReactElement | React.ReactElement[];
     style?: React.CSSProperties;
+    className?: string;
 }
 
 export const NAME = 'content-layout';
 
 const ContentLayout = (props: IProps) => {
-    const { height = 'calc(100vh - 96px)', style, children } = props;
+    const { height = 'calc(100vh - 96px)', style, className, children } = props;
     const headerRef: any = useRef(null);
 
     const contentHeight = useMemo(() => {
@@ -20,29 +22,32 @@ const ContentLayout = (props: IProps) => {
     }, [height, headerRef?.current]);
 
     const render = useCallback(() => {
-        let herder;
+        let header;
         const content: React.ReactElement<any, string | React.JSXElementConstructor<any>>[] = [];
 
         Children.forEach(children, (child) => {
             if (child?.type === Header) {
-                herder = cloneElement(child, {
+                header = cloneElement(child, {
                     ref: headerRef,
                 });
-            } else {
-                child &&
-                    content.push(
-                        cloneElement(child, {
-                            height: contentHeight,
-                        })
-                    );
+            }
+            if (child?.type === TableLayout) {
+                content.push(
+                    cloneElement(child, {
+                        height: contentHeight,
+                    })
+                );
             }
         });
 
-        return [herder, ...content];
+        return [header, ...content];
     }, [children, contentHeight]);
 
     return (
-        <div className={NAME} style={height ? { ...style, height } : { ...style }}>
+        <div
+            className={classNames(NAME, className)}
+            style={height ? { ...style, height } : { ...style }}
+        >
             {render()}
         </div>
     );
