@@ -1,5 +1,6 @@
 export { default as BlockHeader } from './blockHeader';
 export { default as CollapsibleActionItems } from './collapsibleActionItems';
+export { default as ContentLayout } from './contentLayout';
 export { default as ContextMenu } from './contextMenu';
 export { default as useCookieListener } from './cookies';
 export { default as Copy } from './copy';
