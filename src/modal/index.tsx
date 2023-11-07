@@ -1,12 +1,26 @@
 import { Modal } from 'antd';
 
-import InternalForm from './form';
+import InternalForm from './components/form';
+import InternalModal from './components/modal';
 
 type OriginalInterface = typeof Modal;
-interface ModalInterface extends OriginalInterface {
-    Form: typeof InternalForm;
-}
 
-const WrapperModal = Modal;
-(WrapperModal as ModalInterface).Form = InternalForm;
+const WrapperModal: any = new Proxy(InternalModal, {
+    get(_, key) {
+        if (key in Modal) {
+            // Skip defaultProps
+            if (key === 'defaultProps') return undefined;
+            return Modal[key as keyof OriginalInterface];
+        } else if (key === 'Form') {
+            return InternalForm;
+        }
+    },
+});
+
+type ModalStaticFunctionType = Pick<OriginalInterface, keyof OriginalInterface>;
+type ModalInterface = typeof InternalModal &
+    ModalStaticFunctionType & { Form: typeof InternalForm };
+
+export type { IModalProps } from './components/modal';
+
 export default WrapperModal as ModalInterface;

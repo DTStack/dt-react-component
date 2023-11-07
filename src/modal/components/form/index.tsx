@@ -1,9 +1,9 @@
 import React, { ReactElement, useMemo } from 'react';
 import { FormProps, Modal, ModalProps } from 'antd';
 
-import Form from '../form';
-import Utils from '../utils';
-import { FORM_PROPS, MODAL_PROPS } from '../utils/antdProps';
+import Form from '../../../form';
+import Utils from '../../../utils';
+import { FORM_PROPS, MODAL_PROPS } from '../../../utils/antdProps';
 
 export interface IModalFormProps<Values = any>
     extends Omit<FormProps, 'title'>,

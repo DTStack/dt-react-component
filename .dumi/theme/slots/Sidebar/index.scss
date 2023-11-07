@@ -1,6 +1,25 @@
 @import "../../style/const.scss";
 
+@media only screen and (max-width: 767px) {
+    .dt-theme-filter {
+        display: none;
+    }
+}
+
 @media only screen and (min-width: 767px) {
+    .dt-theme-filter {
+        width: calc(100% - 24px);
+        margin: 0 12px;
+        height: 40px;
+        padding: 16px;
+        color: #30363F;
+        font-size: 14px;
+        border: 1px solid #D0D5D8;
+        border-radius: 20px;
+        outline: none;
+        transition: all 0.3s;
+        background-color: transparent;
+    }
     .dumi-default-sidebar {
         height: 100vh;
         max-height: calc(100vh - 64px);
