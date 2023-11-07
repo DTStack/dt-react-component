@@ -1,5 +1,6 @@
 import React from 'react';
 import { message } from 'antd';
+import { InternalNamePath } from 'antd/lib/form/interface';
 import { clone } from 'lodash';
 import shortId from 'shortid';
 
@@ -14,24 +15,29 @@ export const ROW_PERMISSION_RELATION_TEXT = {
     [ROW_PERMISSION_RELATION.OR]: '或',
 };
 
+export interface IComponentProps<T> {
+    key: string;
+    disabled: boolean;
+    name: InternalNamePath;
+    rowValues: T;
+    onChange: (key: string, values: T) => void;
+}
+
 export interface IFilterValue<T> {
     key: string;
     level?: number;
     type?: number;
-    lineHeight?: number;
-    height?: number;
-    bottom?: number;
-    formValues?: T;
+    rowValues?: T;
     children?: IFilterValue<T>[];
 }
 
 interface IProps<T> {
     value?: IFilterValue<T>;
-    isEdit?: boolean;
+    disabled?: boolean;
     maxLevel?: number;
-    component: JSX.Element;
     initRowValues?: T;
     notEmpty?: boolean;
+    component: (props: IComponentProps<T>) => React.ReactNode;
     onChange?: (value: IFilterValue<T> | undefined) => void;
 }
 
@@ -39,7 +45,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     const {
         component,
         maxLevel = 5,
-        isEdit = true,
+        disabled = false,
         notEmpty = true,
         value,
         initRowValues,
@@ -83,7 +89,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
             return treeNode.children.push(
                 Object.assign(
                     {},
-                    { formValues: initRowValue },
+                    { rowValues: initRowValue },
                     { key: shortId(), level: treeNode.level }
                 )
             );
@@ -94,11 +100,11 @@ const FilterRules = <T,>(props: IProps<T>) => {
                 level: treeNode.level + 1,
                 type: ROW_PERMISSION_RELATION.AND,
                 children: [
-                    { formValues: treeNode.formValues, key: shortId(), level: treeNode?.level + 1 },
-                    { formValues: initRowValue, key: shortId(), level: treeNode?.level + 1 },
+                    { rowValues: treeNode.rowValues, key: shortId(), level: treeNode?.level + 1 },
+                    { rowValues: initRowValue, key: shortId(), level: treeNode?.level + 1 },
                 ],
             };
-            delete treeNode.formValues;
+            delete treeNode.rowValues;
             Object.assign(treeNode, newNode);
             return;
         }
@@ -116,7 +122,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
                         }),
                         Object.assign(
                             {},
-                            { formValues: initRowValue },
+                            { rowValues: initRowValue },
                             {
                                 key: shortId(),
                                 level: treeNode?.level + 1,
@@ -180,15 +186,15 @@ const FilterRules = <T,>(props: IProps<T>) => {
         onChange?.(cloneData);
     };
 
-    const handleChangeFormValues = (key: string, values: T) => {
+    const handleChangeRowValues = (key: string, values: T) => {
         const cloneData = clone(value);
         const changeNode = finRelationNode(
             cloneData as IFilterValue<T>,
             key,
             true
         ) as IFilterValue<T>;
-        changeNode.formValues = {
-            ...(changeNode.formValues ?? {}),
+        changeNode.rowValues = {
+            ...(changeNode.rowValues ?? {}),
             ...values,
         };
         onChange?.(cloneData);
@@ -197,13 +203,13 @@ const FilterRules = <T,>(props: IProps<T>) => {
     return (
         <RulesController<T>
             maxLevel={maxLevel}
-            isEdit={isEdit}
+            disabled={disabled}
             value={value}
             component={component}
             onAddCondition={handleAddCondition}
             onDeleteCondition={handleDeleteCondition}
             onChangeCondition={handleChangeCondition}
-            onChangeFormValues={handleChangeFormValues}
+            onChangeRowValues={handleChangeRowValues}
         />
     );
 };

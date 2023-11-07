@@ -1,91 +1,101 @@
 import React from 'react';
 import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
-import { NamePath } from 'antd/lib/form/interface';
+import { InternalNamePath } from 'antd/lib/form/interface';
 import classnames from 'classnames';
-import { cloneDeep } from 'lodash';
 
-import { IFilterValue, ROW_PERMISSION_RELATION, ROW_PERMISSION_RELATION_TEXT } from '..';
+import {
+    IComponentProps,
+    IFilterValue,
+    ROW_PERMISSION_RELATION,
+    ROW_PERMISSION_RELATION_TEXT,
+} from '..';
 import './index.scss';
 
 interface IProps<T> {
-    disabled?: boolean; // 是否禁用
     value: IFilterValue<T> | undefined;
-    isEdit?: boolean;
-    name?: NamePath;
+    disabled?: boolean;
     maxLevel: number;
-    component: JSX.Element;
+    component: (props: IComponentProps<T>) => React.ReactNode;
     onAddCondition: (value: { key: string; isOut?: boolean }) => void;
     onDeleteCondition: (key: string) => void;
     onChangeCondition: (key: string, type: ROW_PERMISSION_RELATION) => void;
-    onChangeFormValues: (key: string, values: T) => void;
+    onChangeRowValues: (key: string, values: T) => void;
 }
 
 const ITEM_HEIGHT = 32;
 const MARGIN = 16;
 
+// 存储对象节点的高度/线条高度等信息
+const weakMap = new WeakMap();
+
 export const RulesController = <T,>(props: IProps<T>) => {
     const {
         value,
-        isEdit,
+        disabled,
         maxLevel,
         component,
         onAddCondition,
         onDeleteCondition,
         onChangeCondition,
-        onChangeFormValues,
+        onChangeRowValues,
     } = props;
 
     const isCondition = (item: IFilterValue<T>) =>
         item?.type &&
         [ROW_PERMISSION_RELATION.AND, ROW_PERMISSION_RELATION.OR].includes(item?.type);
 
-    const calculateTreeItemHeight = (item: IFilterValue<T>, isEdit: boolean) => {
+    const calculateTreeItemHeight = (item: IFilterValue<T>, disabled: boolean) => {
         if (!item?.children)
-            return { ...item, height: ITEM_HEIGHT + MARGIN, lineHeight: ITEM_HEIGHT };
-        item.children = item.children.map((child) => calculateTreeItemHeight(child, isEdit));
+            return weakMap.set(item, { height: ITEM_HEIGHT + MARGIN, lineHeight: ITEM_HEIGHT });
+        item.children.map((child) => calculateTreeItemHeight(child, disabled));
         const isLastCondition = !item.children.some(isCondition);
         const firstNodeIsCondition = isCondition(item.children[0]);
-        if (isEdit) {
-            item.height = item.children.reduce(
-                (prev, curr) => prev + (curr?.height as number),
+        if (!disabled) {
+            const height = item.children.reduce(
+                (prev, curr) => prev + weakMap.get(curr).height,
                 ITEM_HEIGHT
             );
+            let lineHeight;
             // 如果当前节点是最后的判断节点
             if (isLastCondition) {
-                const firstNodeLineHeight = (item.children[0]?.height as number) - MARGIN;
+                const firstNodeLineHeight = weakMap.get(item.children[0]).height - MARGIN;
                 const lastNodeHeight = ITEM_HEIGHT;
-                item.lineHeight = item.height - firstNodeLineHeight / 2 - lastNodeHeight / 2;
+                lineHeight = height - firstNodeLineHeight / 2 - lastNodeHeight / 2;
             } else {
                 const firstNodeLineHeight = firstNodeIsCondition
-                    ? (item.children[0].lineHeight as number) / 2 + ITEM_HEIGHT / 2
+                    ? weakMap.get(item.children[0]).lineHeight / 2 + ITEM_HEIGHT / 2
                     : ITEM_HEIGHT / 2 + MARGIN;
-                item.lineHeight =
+                lineHeight =
                     firstNodeLineHeight +
                     item.children
                         ?.slice(1)
-                        .reduce((prev, curr) => prev + (curr?.height as number), ITEM_HEIGHT / 2);
+                        .reduce((prev, curr) => prev + weakMap.get(curr).height, ITEM_HEIGHT / 2);
             }
+            weakMap.set(item, { height, lineHeight });
         } else {
-            item.height = item.children.reduce((prev, curr) => prev + (curr?.height as number), 0);
+            const height = item.children.reduce((prev, curr) => prev + weakMap.get(curr).height, 0);
+            let lineHeight;
+            let bottom;
             // 如果当前节点是最后的判断节点
             if (isLastCondition) {
-                item.lineHeight = item.height - ITEM_HEIGHT - MARGIN;
+                lineHeight = height - ITEM_HEIGHT - MARGIN;
             } else {
                 const firstNode = item.children[0];
                 const lastNode = item.children[item.children.length - 1];
                 const firstNodeLineHeight =
-                    (firstNode?.height as number) - getNodeReduceHeight(item, true);
+                    weakMap.get(firstNode).height - getNodeReduceHeight(item, true);
                 const lastNodeIsCondition = isCondition(lastNode);
                 const reduceLastHeight = getNodeReduceHeight(item, false);
-                const lastNodeLineHeight = (lastNode?.height as number) - MARGIN - reduceLastHeight;
-                item.bottom = lastNodeIsCondition ? reduceLastHeight : ITEM_HEIGHT / 2;
-                item.lineHeight =
+                const lastNodeLineHeight = weakMap.get(lastNode).height - MARGIN - reduceLastHeight;
+                bottom = lastNodeIsCondition ? reduceLastHeight : ITEM_HEIGHT / 2;
+                lineHeight =
                     firstNodeLineHeight +
                     item.children
                         ?.slice(1, -1)
-                        .reduce((prev, curr) => prev + (curr.height as number), 0) +
+                        .reduce((prev, curr) => prev + weakMap.get(curr).height, 0) +
                     lastNodeLineHeight;
             }
+            weakMap.set(item, { bottom, lineHeight, height });
         }
         return item;
     };
@@ -98,19 +108,24 @@ export const RulesController = <T,>(props: IProps<T>) => {
         const currentNodeIsCondition = isCondition(currentNode);
         if (currentNodeIsCondition) {
             return (
-                (currentNode?.lineHeight as number) / 2 + getNodeReduceHeight(currentNode, isFirst)
+                weakMap.get(currentNode)?.lineHeight / 2 + getNodeReduceHeight(currentNode, isFirst)
             );
         }
         return ITEM_HEIGHT / 2;
     };
 
-    const renderCondition = (item: IFilterValue<T>, namePath: NamePath[], disabled: boolean) => {
+    const renderCondition = (
+        item: IFilterValue<T>,
+        namePath: InternalNamePath,
+        disabled: boolean
+    ) => {
         if (item?.children?.length) {
             const childrenPath = (index: number) => {
                 const newPath = [...namePath];
-                newPath.push(...['children', index, 'formValues']);
+                newPath.push(...['children', index, 'rowValues']);
                 return newPath;
             };
+            const { lineHeight, bottom } = weakMap.get(item);
             return (
                 <div
                     key={item.key}
@@ -120,13 +135,13 @@ export const RulesController = <T,>(props: IProps<T>) => {
                 >
                     <div
                         className={classnames('condition__box', {
-                            disabled: !isEdit,
+                            disabled,
                         })}
-                        style={{ height: item.lineHeight, bottom: item?.bottom ?? MARGIN }}
+                        style={{ height: lineHeight, bottom: bottom ?? MARGIN }}
                     >
                         <span
                             className={classnames('condition__box--name', {
-                                disabled: !isEdit,
+                                disabled,
                             })}
                             onClick={() =>
                                 onChangeCondition(item.key, item?.type as ROW_PERMISSION_RELATION)
@@ -137,15 +152,15 @@ export const RulesController = <T,>(props: IProps<T>) => {
                         {item.children.length > 1 && (
                             <span
                                 className={classnames('condition__box--line', {
-                                    disabled: !isEdit,
+                                    disabled,
                                 })}
                             />
                         )}
                     </div>
-                    {item.children.map((d, index) =>
+                    {item.children.map((d: IFilterValue<T>, index: number) =>
                         renderCondition(d, childrenPath(index), disabled)
                     )}
-                    {isEdit && (
+                    {!disabled && (
                         <div className="condition__add">
                             <span className="condition__add--line" />
                             <PlusCircleOutlined
@@ -163,24 +178,24 @@ export const RulesController = <T,>(props: IProps<T>) => {
             );
         }
         return (
-            <div className="ruleController__item" id={item.key}>
+            <div className="ruleController__item" key={item.key}>
                 {value?.children && (
                     <span
                         className={classnames('ruleController__item--line', {
-                            disabled: !isEdit,
+                            disabled,
                         })}
                     />
                 )}
                 <div className="ruleController__item--component">
-                    {React.cloneElement(component, {
-                        rowKey: item.key,
-                        isEdit,
-                        name: namePath,
-                        ...item.formValues,
-                        onChange: onChangeFormValues,
+                    {component({
+                        key: item.key,
+                        disabled,
+                        name: !namePath.length ? ['rowValues'] : namePath,
+                        rowValues: item.rowValues as T,
+                        onChange: onChangeRowValues,
                     })}
                 </div>
-                {isEdit && (
+                {!disabled && (
                     <div className="ruleController__item--operation">
                         {item.level === maxLevel ? null : (
                             <PlusCircleOutlined
@@ -200,6 +215,6 @@ export const RulesController = <T,>(props: IProps<T>) => {
         );
     };
     if (!value) return null;
-    const renderData = calculateTreeItemHeight(cloneDeep(value), !!isEdit);
-    return <div className="ruleController">{renderCondition(renderData, [], !isEdit)}</div>;
+    calculateTreeItemHeight(value, !!disabled);
+    return <div className="ruleController">{renderCondition(value, [], !!disabled)}</div>;
 };

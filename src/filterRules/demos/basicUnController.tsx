@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import shortid from 'shortid';
 
-import FilterRules from '..';
+import FilterRules, { IComponentProps } from '..';
 
 const INIT_ROW_VALUES = {
     input: '',
@@ -11,22 +11,18 @@ const INIT_ROW_VALUES = {
 const INIT_DATA = {
     key: shortid(),
     level: 0,
-    formValues: {
+    rowValues: {
         ...INIT_ROW_VALUES,
     },
 };
 
 type IRow = typeof INIT_ROW_VALUES;
 
-const MyInput = ({
-    input,
-    rowKey,
-    onChange,
-}: {
-    input?: string;
-    rowKey?: string;
-    onChange?: (key: string, values: Partial<IRow>) => void;
-}) => <Input value={input} onChange={(e) => onChange?.(rowKey ?? '', { input: e.target.value })} />;
+const MyInput = ({ name }: IComponentProps<IRow>) => (
+    <Form.Item name={['condition', ...name, 'input']}>
+        <Input />
+    </Form.Item>
+);
 
 export default () => {
     const [form] = Form.useForm();
@@ -40,7 +36,7 @@ export default () => {
                 添加数据
             </Button>
             <Form.Item name="condition">
-                <FilterRules<IRow> component={<MyInput />} />
+                <FilterRules<IRow> component={(props) => <MyInput {...props} />} />
             </Form.Item>
             <Button onClick={async () => console.log(await form.validateFields())}>
                 控制台查看数据

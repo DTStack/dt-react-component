@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Input } from 'antd';
 import shortid from 'shortid';
 
-import FilterRules from '..';
+import FilterRules, { IComponentProps } from '..';
 
 const INIT_ROW_VALUES = {
     input: '',
@@ -11,22 +11,16 @@ const INIT_ROW_VALUES = {
 const INIT_DATA = {
     key: shortid(),
     level: 0,
-    formValues: {
+    rowValues: {
         ...INIT_ROW_VALUES,
     },
 };
 
 type IRow = typeof INIT_ROW_VALUES;
 
-const MyInput = ({
-    input,
-    rowKey,
-    onChange,
-}: {
-    input?: string;
-    rowKey?: string;
-    onChange?: (key: string, values: Partial<IRow>) => void;
-}) => <Input value={input} onChange={(e) => onChange?.(rowKey ?? '', { input: e.target.value })} />;
+const MyInput = ({ rowValues: { input }, key, onChange }: IComponentProps<IRow>) => (
+    <Input value={input} onChange={(e) => onChange?.(key ?? '', { input: e.target.value })} />
+);
 
 export default () => {
     const [data, setData] = useState(INIT_DATA);
@@ -34,7 +28,7 @@ export default () => {
     return (
         <>
             <FilterRules<IRow>
-                component={<MyInput />}
+                component={(props) => <MyInput {...props} />}
                 value={data}
                 onChange={(value: any) => setData(value)}
             />
