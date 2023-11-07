@@ -1,0 +1,10 @@
+.content-layout {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    &__header {
+        padding: 16px;
+        border-bottom: 1px solid #EBECF0;
+        background-color: #FFF;
+    }
+}
