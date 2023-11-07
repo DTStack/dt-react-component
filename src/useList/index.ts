@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { merge } from 'lodash';
 
 export type Fetcher<T, P> = (params: P) => Promise<{ data: T[]; total: number }>;
@@ -27,10 +27,13 @@ export default function useList<T extends Record<string, any>, P extends Record<
     const [total, setTotal] = useState(0);
     const [params, setParams] = useState<P>(initialParams);
     const [loading, setLoading] = useState(false);
+    const lastRequestId = useRef<symbol | undefined>(undefined);
 
     const options = useMemo(() => merge({ immediate: true }, rawOptions), [rawOptions]);
 
     const performFetch = (raw = params) => {
+        const requestId = Symbol('id');
+        lastRequestId.current = requestId;
         setLoading(true);
         fetcher(raw)
             .then(({ data, total }) => {
@@ -39,7 +42,7 @@ export default function useList<T extends Record<string, any>, P extends Record<
             })
             .catch(setError)
             .finally(() => {
-                setLoading(false);
+                lastRequestId.current === requestId && setLoading(false);
             });
     };
 
