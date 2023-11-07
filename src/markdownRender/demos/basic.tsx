@@ -9,7 +9,10 @@ export default () => {
             method: 'get',
         })
             .then((res) => res.text())
-            .then(setValue);
+            .then(setValue)
+            .catch((err) => {
+                setValue(err.message);
+            });
     }, []);
 
     return (

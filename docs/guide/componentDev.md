@@ -19,51 +19,67 @@ group: 研发
 
 ### 目录结构
 
-```plain
-dt-react-component
-├─.dumirc.ts                    --> dumi 的配置文件
-├─.editorconfig                 --> 编辑器配置文件，可以约定项目中使用的代码风格、缩进等等规则
-├─.eslintrc.js
-├─.fatherrc.ts                  --> father-build 的配置文件
-├─.prettierignore
-├─.prettierrc.js
-├─.stylelintignore
-├─.stylelintrc
-├─CHANGELOG.md
-├─LICENSE
-├─README-zh_CN.md
-├─README.md
-├─jest.config.js                --> jest配置文件
-├─package.json
-├─pnpm-lock.yaml
-├─tsconfig.json                 --> TypeScript 的配置文件
-├─tests                         --> jest配置相关的文件
-|   ├─fileTransformer.js
-|   ├─setupTests.js
-|   └styleMock.js
-├─src                           --> 组件源码
-|  ├─index.ts                   --> 组件主入口
-|  ├─utils
-|  |   ├─antdProps.ts           --> antd的一些props
-|  |   ├─copy.tsx               --> Copy工具类
-|  |   ├─index.ts               --> 公共方法主入口
-|  |   ├─interface.ts           --> 公共的类型定义
-|  |   └__tests__
-|  ├─useList                    --> 单个组件目录
-|  |    ├─index.md              --> 组件说明文档
-|  |    ├─index.ts              --> 单个组件的源码
-|  |    ├─demos                 --> 不同场景的示例
-|  |    └__tests__              --> 单元测试
-├─docs                          --> 文档目录
-|  ├─index.md
-|  ├─guide
-|  |   ├─CONTRIBUTING.md        --> 贡献指南
-|  |   ├─componentDev.md        --> 组件开发
-|  |   ├─index.md               --> 快速上手
-|  |   └updateLog.md            --> 更新日志
-└.dumi                          --> dumi的配置文件
-
-```
+<Tree>
+  <ul>
+    <li>.dumi<small>dumi的配置文件</small></li>
+    <li>.dumirc.ts<small>dumi 的配置文件</small></li>
+    <li>.editorconfig<small>编辑器配置文件，可以约定项目中使用的代码风格、缩进等等规则</small></li>
+    <li>.eslintrc.js</li>
+    <li>.fatherrc.ts<small>father-build 的配置文件</small></li>
+    <li>.prettierignore</li>
+    <li>.prettierrc.js</li>
+    <li>.stylelintignore</li>
+    <li>.stylelintrc</li>
+    <li>CHANGELOG.md</li>
+    <li>LICENSE</li>
+    <li>README-zh_CN.md</li>
+    <li>README.md</li>
+    <li>jest.config.js<small>jest配置文件</small></li>
+    <li>package.json</li>
+    <li>pnpm-lock.yaml</li>
+    <li>tsconfig.json<small>TypeScript 的配置文件</small></li>
+    <li>
+        tests<small>jest配置相关的文件</small>
+        <ul>
+            <li>fileTransformer.js</li>
+            <li>setupTests.js</li>
+            <li>styleMock.js</li>
+        </ul>
+    </li>
+    <li>
+        src<small>组件源码</small>
+        <ul>
+            <li>index.ts<small>组件主入口</small></li>
+            <li>
+                utils
+                <ul>
+                    <li>antdProps.ts<small>antd的一些props</small></li>
+                    <li>copy.tsx<small>Copy工具类</small></li>
+                    <li>index.ts<small>公共方法主入口</small></li>
+                    <li>interface.ts<small>公共的类型定义</small></li>
+                    <li>__tests__</li>
+                </ul>
+            </li>
+            <li>
+                useList<small>单个组件目录</small>
+                <ul>
+                    <li>index.md<small>组件说明文档</small></li>
+                    <li>index.ts<small>单个组件的源码</small></li>
+                    <li>demos<small>不同场景的示例</small></li>
+                    <li>__tests__<small>单元测试</small></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        docs<small>文档目录</small>
+        <ul>
+            <li>index.md</li>
+            <li>guide</li>
+        </ul>
+    </li>
+  </ul>
+</Tree>
 
 ### 开发流程
 
