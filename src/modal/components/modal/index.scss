@@ -1,0 +1,13 @@
+$modal-height: 600px;
+$modal-header: 55px;
+$modal-footer: 53px;
+
+.dt-modal {
+    .ant-modal-body {
+        max-height: calc($modal-height - $modal-header - $modal-footer);
+        overflow-y: auto;
+    }
+    &-body {
+        padding: 16px;
+    }
+}
