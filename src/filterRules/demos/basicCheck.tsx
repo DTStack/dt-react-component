@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input } from 'antd';
+import { FilterRules } from 'dt-react-component';
+import { IComponentProps } from 'dt-react-component/filterRules';
 import shortid from 'shortid';
-
-import FilterRules, { IComponentProps } from '..';
 
 const INIT_ROW_VALUES = {
     input: '',
@@ -43,6 +43,7 @@ export default () => {
                 <FilterRules<IRow>
                     component={(props) => <MyInput {...props} />}
                     disabled={disabled}
+                    initRowValues={INIT_ROW_VALUES}
                 />
             </Form.Item>
         </Form>

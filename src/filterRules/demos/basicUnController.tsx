@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
+import { FilterRules } from 'dt-react-component';
+import { IComponentProps } from 'dt-react-component/filterRules';
 import shortid from 'shortid';
-
-import FilterRules, { IComponentProps } from '..';
 
 const INIT_ROW_VALUES = {
     input: '',
@@ -36,7 +36,11 @@ export default () => {
                 添加数据
             </Button>
             <Form.Item name="condition">
-                <FilterRules<IRow> component={(props) => <MyInput {...props} />} />
+                <FilterRules<IRow>
+                    component={(props) => <MyInput {...props} />}
+                    notEmpty={{ data: false }}
+                    initRowValues={INIT_ROW_VALUES}
+                />
             </Form.Item>
             <Button onClick={async () => console.log(await form.validateFields())}>
                 控制台查看数据

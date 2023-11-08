@@ -31,27 +31,38 @@ export interface IFilterValue<T> {
     children?: IFilterValue<T>[];
 }
 
-interface IProps<T> {
+interface INormalProps<T> {
     value?: IFilterValue<T>;
-    disabled?: boolean;
+    disabled?: false;
     maxLevel?: number;
-    initRowValues?: T;
-    notEmpty?: boolean;
+    initRowValues: T;
+    notEmpty?: { data: boolean; message?: string };
     component: (props: IComponentProps<T>) => React.ReactNode;
     onChange?: (value: IFilterValue<T> | undefined) => void;
 }
 
+interface IDisabledProps<T> {
+    value?: IFilterValue<T>;
+    disabled: true;
+    component: (props: IComponentProps<T>) => React.ReactNode;
+}
+
+function isDisabled<T>(props: IProps<T>): props is IDisabledProps<T> {
+    return props.disabled === true;
+}
+
+export type IProps<T> = IDisabledProps<T> | INormalProps<T>;
+
 const FilterRules = <T,>(props: IProps<T>) => {
+    const { component, disabled = false, value } = props;
     const {
-        component,
         maxLevel = 5,
-        disabled = false,
-        notEmpty = true,
-        value,
+        notEmpty = { data: true, message: '必须有一条数据' },
         initRowValues,
         onChange,
-    } = props;
+    } = (!isDisabled(props) && props) as INormalProps<T>;
 
+    // 查找当前操作的节点
     const finRelationNode = (
         parentData: IFilterValue<T>,
         targetKey: string,
@@ -79,6 +90,8 @@ const FilterRules = <T,>(props: IProps<T>) => {
         onChange?.(cloneData);
     };
 
+    // 增加新的数据
+    // 判断是在当前节点下新增或者新生成一个条件节点
     const addCondition = (
         treeNode: any,
         keyObj: { key: string; isOut?: boolean },
@@ -137,14 +150,16 @@ const FilterRules = <T,>(props: IProps<T>) => {
     const handleDeleteCondition = (key: string) => {
         const cloneData = clone(value);
         const deleteNode = finRelationNode(cloneData as IFilterValue<T>, key, false);
-        if (notEmpty && !deleteNode?.children) return message.info('必须有一条数据');
-        if (!notEmpty && !deleteNode?.children) {
+        if (notEmpty.data && !deleteNode?.children) return message.info(notEmpty.message);
+        if (!notEmpty.data && !deleteNode?.children) {
             return onChange?.(undefined);
         }
         deleteCondition(deleteNode as IFilterValue<T>, key);
         onChange?.(cloneData);
     };
 
+    // 删除节点
+    // 删除当前节点下的一条数据或者是删除一个条件节点
     const deleteCondition = (parentData: IFilterValue<T>, key: string) => {
         let parentDataTemp = parentData;
         parentDataTemp.children = parentDataTemp?.children?.filter((item) => item.key !== key);
@@ -161,6 +176,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
         }
     };
 
+    // 删除一个条件节点时，更新当前数据的层级
     const updateLevel = (node: IFilterValue<T>) => {
         let newChildren;
         if (node.children) newChildren = node.children.map((element) => updateLevel(element));
@@ -172,6 +188,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
         return newNode;
     };
 
+    // 更改条件节点的条件
     const handleChangeCondition = (key: string, type: ROW_PERMISSION_RELATION) => {
         const cloneData = clone(value);
         const changeNode = finRelationNode(
@@ -186,6 +203,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
         onChange?.(cloneData);
     };
 
+    // 改变节点的的数据
     const handleChangeRowValues = (key: string, values: T) => {
         const cloneData = clone(value);
         const changeNode = finRelationNode(

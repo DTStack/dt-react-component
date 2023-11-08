@@ -44,12 +44,14 @@ export const RulesController = <T,>(props: IProps<T>) => {
         item?.type &&
         [ROW_PERMISSION_RELATION.AND, ROW_PERMISSION_RELATION.OR].includes(item?.type);
 
+    // 计算每个节点的高度(height)/线条高度(lineHeight)/距离底部高度(bottom)
     const calculateTreeItemHeight = (item: IFilterValue<T>, disabled: boolean) => {
         if (!item?.children)
             return weakMap.set(item, { height: ITEM_HEIGHT + MARGIN, lineHeight: ITEM_HEIGHT });
         item.children.map((child) => calculateTreeItemHeight(child, disabled));
         const isLastCondition = !item.children.some(isCondition);
         const firstNodeIsCondition = isCondition(item.children[0]);
+        // 编辑模式下计算
         if (!disabled) {
             const height = item.children.reduce(
                 (prev, curr) => prev + weakMap.get(curr).height,
@@ -119,6 +121,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
         namePath: InternalNamePath,
         disabled: boolean
     ) => {
+        // 渲染条件节点和线条
         if (item?.children?.length) {
             const childrenPath = (index: number) => {
                 const newPath = [...namePath];
@@ -177,6 +180,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
                 </div>
             );
         }
+        // 渲染自定义的 component
         return (
             <div className="ruleController__item" key={item.key}>
                 {value?.children && (

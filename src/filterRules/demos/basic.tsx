@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Input } from 'antd';
+import { FilterRules } from 'dt-react-component';
+import { IComponentProps } from 'dt-react-component/filterRules';
 import shortid from 'shortid';
-
-import FilterRules, { IComponentProps } from '..';
 
 const INIT_ROW_VALUES = {
     input: '',
@@ -31,6 +31,7 @@ export default () => {
                 component={(props) => <MyInput {...props} />}
                 value={data}
                 onChange={(value: any) => setData(value)}
+                initRowValues={INIT_ROW_VALUES}
             />
 
             <Button onClick={() => console.log(data)}>控制台查看数据</Button>
