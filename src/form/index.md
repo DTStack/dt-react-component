@@ -16,6 +16,12 @@ demo:
 
 所用使用方式同 `Ant Design` 的 Form 组件，新增 `Form.Table` 组件
 
+<Details title="基于 Ant Design 组件的扩展方式">
+
+本仓库大量使用基于 Ant Design 组件的扩展方式。即不破坏 Ant Design 原组件的基础上，通过新增静态方法丰富组件的使用场景。例如当前 `Form.Table` 组件，或 [`Input.Match`](../input/index.md) 组件等
+
+</Details>
+
 ### Form.Table
 
 <code src="./demos/basic.tsx" title="基础使用" compact="true"></code>

@@ -1,0 +1,38 @@
+.dumi-builtins-details {
+    background: #ECF4FF;
+    padding: 16px;
+    font-size: 14px;
+    color: #3367AF;
+    border-radius: 4px;
+    margin: 12px 0;
+    &[data-open="true"] {
+        > summary::before {
+            transform: rotate(90deg);
+        }
+    }
+    > summary {
+        cursor: pointer;
+        list-style: none;
+        padding-left: 1em;
+        line-height: 1.5em;
+        position: relative;
+        &::before {
+            border-color: transparent transparent transparent #3367AF;
+            border-style: solid;
+            border-width: 0.38em;
+            content: "";
+            left: 0;
+            position: absolute;
+            top: 0.4em;
+            transform: rotate(0);
+            transform-origin: 3px 50%;
+            transition: transform 0.5s;
+        }
+    }
+    &-content {
+        transition: height 0.3s;
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+}
