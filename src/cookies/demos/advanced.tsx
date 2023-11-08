@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
+import { Cookie } from '@dtinsight/dt-utils';
 import { Button, message } from 'antd';
 import { useCookieListener } from 'dt-react-component';
-import utils from 'dt-react-component/utils';
 
 export default () => {
     useEffect(() => {
-        utils.deleteCookie('dt_token');
-        return () => utils.deleteAllCookies();
+        Cookie.deleteCookie('dt_token');
+        return () => Cookie.deleteAllCookies('', '');
     }, []);
 
     useCookieListener(
@@ -28,7 +28,7 @@ export default () => {
             <p>
                 <Button
                     onClick={() => {
-                        utils.setCookie('dt_token', `im_new_token_${Date.now()}`);
+                        Cookie.setCookie('dt_token', `im_new_token_${Date.now()}`);
                     }}
                 >
                     修改Cookie值

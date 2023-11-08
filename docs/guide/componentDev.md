@@ -45,9 +45,7 @@ dt-react-component
 |  ├─index.ts                   --> 组件主入口
 |  ├─utils
 |  |   ├─antdProps.ts           --> antd的一些props
-|  |   ├─copy.tsx               --> Copy工具类
 |  |   ├─index.ts               --> 公共方法主入口
-|  |   ├─interface.ts           --> 公共的类型定义
 |  |   └__tests__
 |  ├─useList                    --> 单个组件目录
 |  |    ├─index.md              --> 组件说明文档
