@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import type { TreeProps } from 'antd/es';
 import { Catalogue } from 'dt-react-component';
-import { IDtTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
+import { ITreeDataItem } from 'dt-react-component/catalogue/components/tree';
 
 import { initTreeData } from '../data';
 
 export const NoHeaderTree = () => {
     const [dataSource] = useState(initTreeData);
-    const [selectedItems, setSelectedItems] = useState<IDtTreeDataItem[]>([]);
+    const [selectedItems, setSelectedItems] = useState<ITreeDataItem[]>([]);
     const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
         // const selectedKey =
-        const selectedItems: IDtTreeDataItem[] = [];
-        const loopTree = (tree: IDtTreeDataItem[]) => {
+        const selectedItems: ITreeDataItem[] = [];
+        const loopTree = (tree: ITreeDataItem[]) => {
             tree.forEach((item) => {
                 if (selectedKeys.includes(item.key)) {
                     selectedItems.push(item);
@@ -27,7 +27,7 @@ export const NoHeaderTree = () => {
     };
     console.log(selectedItems, '--selectedItems');
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', background: '#eee', padding: 20 }}>
             <Catalogue.Tree
                 treeData={dataSource}
                 showHeader={false}
@@ -51,3 +51,5 @@ export const NoHeaderTree = () => {
         </div>
     );
 };
+
+export default NoHeaderTree;

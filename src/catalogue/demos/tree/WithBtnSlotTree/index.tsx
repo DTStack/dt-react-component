@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { DeleteOutlined, FormOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import { Space, TreeProps } from 'antd';
 import { Catalogue } from 'dt-react-component';
-import { IDtTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
+import { ITreeDataItem } from 'dt-react-component/catalogue/components/tree';
 
 import { initTreeData } from '../data';
 
 export const WithBtnSlotTree = () => {
     const [dataSource] = useState(initTreeData);
-    const [selectedItems, setSelectedItems] = useState<IDtTreeDataItem[]>([]);
+    const [selectedItems, setSelectedItems] = useState<ITreeDataItem[]>([]);
     const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
         // const selectedKey =
-        const selectedItems: IDtTreeDataItem[] = [];
-        const loopTree = (tree: IDtTreeDataItem[]) => {
+        const selectedItems: ITreeDataItem[] = [];
+        const loopTree = (tree: ITreeDataItem[]) => {
             tree.forEach((item) => {
                 if (selectedKeys.includes(item.key)) {
                     selectedItems.push(item);
@@ -28,7 +28,7 @@ export const WithBtnSlotTree = () => {
     };
     console.log(selectedItems, '--selectedItems');
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', background: '#eee', padding: 20 }}>
             <Catalogue.Tree
                 treeData={dataSource}
                 showHeader
@@ -58,3 +58,5 @@ export const WithBtnSlotTree = () => {
         </div>
     );
 };
+
+export default WithBtnSlotTree;

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { TreeProps } from 'antd';
 import { Catalogue } from 'dt-react-component';
-import { IDtTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
+import { ITreeDataItem } from 'dt-react-component/catalogue/components/tree';
 
 import { initTreeData } from '../data';
 
 export const WithCheckboxTree = () => {
     const [dataSource] = useState(initTreeData);
-    const [selectedItems, setSelectedItems] = useState<IDtTreeDataItem[]>([]);
-    const [checkedItems, setCheckedItems] = useState<IDtTreeDataItem[]>([]);
+    const [selectedItems, setSelectedItems] = useState<ITreeDataItem[]>([]);
+    const [checkedItems, setCheckedItems] = useState<ITreeDataItem[]>([]);
     const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
         console.log(selectedKeys, '--selectedKeys');
-        const selectedItems: IDtTreeDataItem[] = [];
-        const loopTree = (tree: IDtTreeDataItem[]) => {
+        const selectedItems: ITreeDataItem[] = [];
+        const loopTree = (tree: ITreeDataItem[]) => {
             tree.forEach((item) => {
                 if (selectedKeys.includes(item.key)) {
                     selectedItems.push(item);
@@ -28,8 +28,8 @@ export const WithCheckboxTree = () => {
     const handleCheck: TreeProps['onCheck'] = (checkedKeys, info) => {
         console.log(info, '--info');
         console.log(checkedKeys, '--checkedKeys');
-        const checkedItems: IDtTreeDataItem[] = [];
-        const loopTree = (tree: IDtTreeDataItem[]) => {
+        const checkedItems: ITreeDataItem[] = [];
+        const loopTree = (tree: ITreeDataItem[]) => {
             tree.forEach((item) => {
                 if (checkedKeys?.includes?.(item.key)) {
                     checkedItems.push(item);
@@ -45,7 +45,7 @@ export const WithCheckboxTree = () => {
     console.log(selectedItems, '--selectedItems');
     console.log(checkedItems, '--checkedItems');
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', background: '#eee', padding: 20 }}>
             <Catalogue
                 treeData={dataSource}
                 showHeader
@@ -83,3 +83,5 @@ export const WithCheckboxTree = () => {
         </div>
     );
 };
+
+export default WithCheckboxTree;

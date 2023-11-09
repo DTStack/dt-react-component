@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import type { DataNode, TreeProps } from 'antd/es/tree';
 import { Catalogue } from 'dt-react-component';
-import { IDtTreeDataItem } from 'dt-react-component/catalogue/components/dtTree';
+import { ITreeDataItem } from 'dt-react-component/catalogue/components/tree';
 
 import { initTreeData } from '../data';
 
 export const DefaultTree = () => {
     const [dataSource, setDataSource] = useState(initTreeData);
-    const [selectedItems, setSelectedItems] = useState<IDtTreeDataItem[]>([]);
+    const [selectedItems, setSelectedItems] = useState<ITreeDataItem[]>([]);
     const handleDrop: TreeProps['onDrop'] = (info) => {
         console.log(info);
         const dropKey = info.node.key;
@@ -74,8 +74,8 @@ export const DefaultTree = () => {
     };
     const handleSelect: TreeProps['onSelect'] = (selectedKeys) => {
         // const selectedKey =
-        const selectedItems: IDtTreeDataItem[] = [];
-        const loopTree = (tree: IDtTreeDataItem[]) => {
+        const selectedItems: ITreeDataItem[] = [];
+        const loopTree = (tree: ITreeDataItem[]) => {
             tree.forEach((item) => {
                 if (selectedKeys.includes(item.key)) {
                     selectedItems.push(item);
@@ -91,7 +91,7 @@ export const DefaultTree = () => {
     };
     console.log(selectedItems, '--selectedItems');
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', background: '#eee', padding: 20 }}>
             <Catalogue.Tree
                 treeData={dataSource}
                 showHeader
@@ -122,3 +122,5 @@ export const DefaultTree = () => {
         </div>
     );
 };
+
+export default DefaultTree;

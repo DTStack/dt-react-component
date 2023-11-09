@@ -12,7 +12,7 @@ export const NormalTreeSelect = () => {
     };
     console.log(selectedLabelList, '--selectedLabelList');
     return (
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', background: '#eee', padding: 20 }}>
             <Catalogue.TreeSelect
                 treeData={dataSource}
                 style={{ width: 200 }}
@@ -38,3 +38,5 @@ export const NormalTreeSelect = () => {
         </div>
     );
 };
+
+export default NormalTreeSelect;

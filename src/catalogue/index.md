@@ -16,119 +16,21 @@ demo:
 
 ### Catalogue.Tree
 
-```jsx
-import React from 'react';
-import { Divider, Row, Col } from 'antd';
+<code src="./demos/tree/DefaultTree" title="基本使用" description="DefaultTree"></code>
 
-import { DefaultTree } from './demos/tree/DefaultTree';
+<code src="./demos/tree/SmallTree" title="小尺寸" description="SmallTree"></code>
 
-export default () => {
-    return (
-        <div style={{ background: '#eee', padding: 20 }}>
-            <h1>DefaultTree</h1>
-            <DefaultTree />
-        </div>
-    );
-};
-```
+<code src="./demos/tree/NoHeaderTree" title="无 Header" description="NoHeaderTree"></code>
 
-```jsx
-import React from 'react';
-import { Divider, Row, Col } from 'antd';
+<code src="./demos/tree/WithBtnSlotTree" title="带按钮组" description="WithBtnSlotTree"></code>
 
-import { SmallTree } from './demos/tree/SmallTree';
+<code src="./demos/tree/WithTabsTree" title="带 Tabs" description="WithTabsTree"></code>
 
-export default () => {
-    return (
-        <div style={{ background: '#eee', padding: 20 }}>
-            <h1>SmallTree</h1>
-            <SmallTree />
-        </div>
-    );
-};
-```
-
-```jsx
-import React from 'react';
-import { Divider, Row, Col } from 'antd';
-
-import { NoHeaderTree } from './demos/tree/NoHeaderTree';
-
-export default () => {
-    return (
-        <div style={{ background: '#eee', padding: 20 }}>
-            <h1>NoHeaderTree - 无 Header 的 CatalogueTree 组件</h1>
-            <NoHeaderTree />
-        </div>
-    );
-};
-```
-
-```jsx
-import React from 'react';
-import { Divider, Row, Col } from 'antd';
-
-import { WithBtnSlotTree } from './demos/tree/WithBtnSlotTree';
-
-export default () => {
-    return (
-        <div style={{ background: '#eee', padding: 20 }}>
-            <h1>WithBtnSlotTree</h1>
-            <WithBtnSlotTree />
-        </div>
-    );
-};
-```
-
-```jsx
-import React from 'react';
-import { Divider, Row, Col } from 'antd';
-
-import { WithTabsTree } from './demos/tree/WithTabsTree';
-
-export default () => {
-    return (
-        <div style={{ background: '#eee', padding: 20 }}>
-            <h1>WithTabsTree</h1>
-            <WithTabsTree />
-        </div>
-    );
-};
-```
-
-```jsx
-import React from 'react';
-import { Divider, Row, Col } from 'antd';
-
-import { WithCheckboxTree } from './demos/tree/WithCheckboxTree';
-
-export default () => {
-    return (
-        <div style={{ background: '#eee', padding: 20 }}>
-            <h1>WithCheckboxTree</h1>
-            <WithCheckboxTree />
-        </div>
-    );
-};
-```
+<code src="./demos/tree/WithCheckboxTree" title="带 Checkbox" description="WithCheckboxTree"></code>
 
 ### Catalogue.TreeSelect
 
-```jsx
-import React from 'react';
-import { Divider, Row, Col } from 'antd';
-
-import { NormalTreeSelect } from './demos/treeSelect/NormalTreeSelect';
-
-export default () => {
-    return (
-        <div style={{ background: '#eee', padding: 20 }}>
-            <h1>NormalTreeSelect</h1>
-            <NormalTreeSelect />
-        </div>
-    );
-};
-```
+<code src="./demos/treeSelect/NormalTreeSelect" title="基础使用" description="NormalTreeSelect"></code>
 
 ## API
 
@@ -144,7 +46,7 @@ export default () => {
 | size             | 尺寸大小，small 每一个 item 高度是 24px，middle 每一个 item 高度是 36px，默认为 middle | `small \| middle`                     | `middle`           |
 | onSearch         | 点击搜索按钮回调                                                                       | `(value: string, e) => void`          | -                  |
 | tabsProps        | tabs 配置                                                                              | `TabsProps & { items: ITabsItem[]; }` | -                  |
-| treeData         | `数据源，与 TreeProps['treeData'] 类型相似，只是增加了 ContextMenu 配置`               | `IDtTreeDataItem[]`                   | -                  |
+| treeData         | `数据源，与 TreeProps['treeData'] 类型相似，只是增加了 ContextMenu 配置`               | `ITreeDataItem[]`                     | -                  |
 | defaultStatus    | `默认展示 tabs 还是 search，仅 items 有值时生效`                                       | `ITabsStatus`                         | `ITabsStatus.tabs` |
 | onStatusChange   | `tabs or status 变化时的回调`                                                          | `(status: ITabsStatus, e) => void`    | -                  |
 
