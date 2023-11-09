@@ -53,7 +53,7 @@ export interface ITreeProps extends TreeProps, Pick<ITreeHeaderProps, 'btnSlot'>
     /** 是否展示头部组件 */
     showHeader?: boolean;
     /** 头部文案 */
-    treeTit?: React.ReactNode;
+    treeTitle?: React.ReactNode;
     /** 容器类名 */
     wrapperClassName?: string;
     /** 容器行内样式 */
@@ -128,7 +128,7 @@ const reducer = (state: IState, action: IAction) => {
 const DtTree = (props: ITreeProps) => {
     const {
         showHeader,
-        treeTit,
+        treeTitle,
         wrapperClassName,
         wrapperStyle,
         onSearch,
@@ -228,14 +228,14 @@ const DtTree = (props: ITreeProps) => {
         if (!showHeader) return null;
         return (
             <Header
-                title={treeTit}
+                title={treeTitle}
                 collapsed={collapsed}
                 onCollapsed={toggleCollapsed}
                 size={size}
                 btnSlot={btnSlot}
             />
         );
-    }, [showHeader, treeTit, collapsed, size, btnSlot, toggleCollapsed]);
+    }, [showHeader, treeTitle, collapsed, size, btnSlot, toggleCollapsed]);
     const renderTabsAndSearch = useCallback(() => {
         const { items, ...restTabsProps } = tabsProps || {};
         if (status === ITabsStatus.tabs && items?.length) {
@@ -319,7 +319,7 @@ DtTree.defaultProps = {
     loading: false,
     size: 'middle',
     showHeader: true,
-    treeTit: '标签目录',
+    treeTitle: '标签目录',
     collapsed: true,
     showIcon: true,
     showLine: { showLeafIcon: false },

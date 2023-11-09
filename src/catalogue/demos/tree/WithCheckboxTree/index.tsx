@@ -49,7 +49,7 @@ export const WithCheckboxTree = () => {
             <Catalogue
                 treeData={dataSource}
                 showHeader
-                treeTit="自定义目录"
+                treeTitle="自定义目录"
                 // draggable={{ icon: false, nodeDraggable: () => true }}
                 height={500}
                 // wrapperStyle={{ width: 500 }}

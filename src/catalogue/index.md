@@ -40,7 +40,7 @@ demo:
 | ---------------- | -------------------------------------------------------------------------------------- | ------------------------------------- | ------------------ |
 | loading          | 是否加载中                                                                             | `boolean`                             | `false`            |
 | showHeader       | 是否展示头部组件                                                                       | `boolean`                             | `true`             |
-| treeTit          | 头部文案                                                                               | `React.ReactNode`                     | -                  |
+| treeTitle        | 头部文案                                                                               | `React.ReactNode`                     | -                  |
 | wrapperClassName | 容器类名                                                                               | `string`                              | -                  |
 | wrapperStyle     | 容器行内样式                                                                           | `React.CSSProperties`                 | -                  |
 | size             | 尺寸大小，small 每一个 item 高度是 24px，middle 每一个 item 高度是 36px，默认为 middle | `small \| middle`                     | `middle`           |

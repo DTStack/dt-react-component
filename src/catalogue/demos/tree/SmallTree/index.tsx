@@ -101,7 +101,7 @@ export const SmallTree = () => {
                 treeData={dataSource}
                 showHeader
                 size="small"
-                treeTit="自定义目录"
+                treeTitle="自定义目录"
                 draggable={{ icon: false, nodeDraggable: () => true }}
                 height={500}
                 loadData={handleLoadData}
