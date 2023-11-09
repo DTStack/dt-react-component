@@ -4,7 +4,7 @@ import type { TreeProps } from 'antd';
 import type { DataNode } from 'antd/es/tree';
 import { ContextMenu } from 'dt-react-component';
 
-import type { IDtTreeDataItem } from '..';
+import type { ITreeDataItem } from '..';
 
 /**
  * @description 根据 query 计算应该展开的 expendKeys
@@ -49,10 +49,10 @@ export const getIcon: DataNode['icon'] = ({ expanded, data }) => {
  * @description 轮询 Tree 数据，赋值 搜索标识和leafIcon
  */
 export const loopTree = (
-    data: IDtTreeDataItem[] | undefined,
+    data: ITreeDataItem[] | undefined,
     searchValue: string
 ): TreeProps['treeData'] => {
-    return data?.map((item: IDtTreeDataItem) => {
+    return data?.map((item: ITreeDataItem) => {
         const strTitle = item?.title as string;
         const index = strTitle?.indexOf?.(searchValue);
         const beforeStr = strTitle?.substring?.(0, index);

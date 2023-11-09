@@ -1,17 +1,17 @@
 import React from 'react';
 
-import type { IDtTreeProps } from './components/dtTree';
-import { DtTree, DtTreeSelect } from './components';
+import type { ITreeProps } from './components/tree';
+import { Tree, TreeSelect } from './components';
 
-export type { IDtTreeDataItem, IDtTreeProps } from './components/dtTree';
-export type { IDtTreeHeaderProps } from './components/dtTree/components/header';
-export { getExpendKeysByQuery, getIcon, loopTree } from './components/dtTree/helpers';
+export type { ITreeDataItem, ITreeProps } from './components/tree';
+export type { ITreeHeaderProps } from './components/tree/components/header';
+export { getExpendKeysByQuery, getIcon, loopTree } from './components/tree/helpers';
 
-function Catalogue(props: IDtTreeProps) {
-    return <DtTree {...props} />;
+function Catalogue(props: ITreeProps) {
+    return <Tree {...props} />;
 }
 
-Catalogue.Tree = DtTree;
-Catalogue.TreeSelect = DtTreeSelect;
+Catalogue.Tree = Tree;
+Catalogue.TreeSelect = TreeSelect;
 
 export default Catalogue;

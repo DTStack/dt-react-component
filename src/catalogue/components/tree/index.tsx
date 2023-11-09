@@ -11,7 +11,7 @@ import { Input, Spin, Tabs, Tree } from 'antd';
 import type { TabsProps } from 'antd/es/tabs';
 import type { DataNode } from 'antd/es/tree';
 
-import type { IDtTreeHeaderProps } from './components/header';
+import type { ITreeHeaderProps } from './components/header';
 import { Header } from './components';
 import { getExpendKeysByQuery, loopTree } from './helpers';
 import './style.scss';
@@ -28,13 +28,13 @@ export enum ITabsStatus {
     tabs = 'tabs',
 }
 
-export interface IDtTreeDataItem extends DataNode {
+export interface ITreeDataItem extends DataNode {
     /** Item ContextMenu 配置 */
     contextMenuConfig?: {
         data: Array<ContextItemProps>;
-        onClick: (e: ContextItemProps, item: IDtTreeDataItem) => void;
+        onClick: (e: ContextItemProps, item: ITreeDataItem) => void;
     };
-    children?: IDtTreeDataItem[];
+    children?: ITreeDataItem[];
 }
 
 export interface ITabsItem {
@@ -47,7 +47,7 @@ export interface ITabsItem {
     // [key: string]: any;
 }
 
-export interface IDtTreeProps extends TreeProps, Pick<IDtTreeHeaderProps, 'btnSlot'> {
+export interface ITreeProps extends TreeProps, Pick<ITreeHeaderProps, 'btnSlot'> {
     /** 是否加载中 */
     loading?: boolean;
     /** 是否展示头部组件 */
@@ -75,7 +75,7 @@ export interface IDtTreeProps extends TreeProps, Pick<IDtTreeHeaderProps, 'btnSl
         items: ITabsItem[];
     };
     /** 与 TreeProps['treeData'] 类型相似，只是增加了 ContextMenu 配置 */
-    treeData?: IDtTreeDataItem[];
+    treeData?: ITreeDataItem[];
     /** 默认展示 tabs 还是 search，仅 items 有值时生效  */
     defaultStatus?: ITabsStatus;
     /** tabs or status 变化时的回调 */
@@ -125,7 +125,7 @@ const reducer = (state: IState, action: IAction) => {
     }
 };
 
-const DtTree = (props: IDtTreeProps) => {
+const DtTree = (props: ITreeProps) => {
     const {
         showHeader,
         treeTit,
@@ -325,6 +325,6 @@ DtTree.defaultProps = {
     showLine: { showLeafIcon: false },
     switcherIcon: <CaretDownOutlined />,
     defaultStatus: ITabsStatus.tabs,
-} as IDtTreeProps;
+} as ITreeProps;
 
 export default DtTree;

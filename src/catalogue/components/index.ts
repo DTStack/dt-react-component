@@ -1,3 +1,3 @@
-export { default as DtTree } from './dtTree';
-export { type IDtTreeDataItem, type ITabsStatus } from './dtTree';
-export { default as DtTreeSelect } from './dtTreeSelect';
+export { default as Tree } from './tree';
+export { type ITabsStatus, type ITreeDataItem } from './tree';
+export { default as TreeSelect } from './treeSelect';
