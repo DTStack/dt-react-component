@@ -1,0 +1,27 @@
+.dtTreeHeaderWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 12px 0;
+    margin-bottom: 8px;
+    &-left {
+        display: flex;
+        align-items: center;
+        &__catalogueIcon {
+            font-size: 20px;
+            margin-right: 4px;
+            color: #1D78FF;
+        }
+        &__title {
+            font-size: 14px;
+        }
+    }
+    &-right {
+        display: flex;
+        align-items: center;
+    }
+    &-menuFold {
+        font-size: 20px;
+        color: #AAA;
+    }
+}

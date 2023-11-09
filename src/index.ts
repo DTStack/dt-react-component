@@ -1,4 +1,5 @@
 export { default as BlockHeader } from './blockHeader';
+export { default as Catalogue } from './catalogue';
 export { default as CollapsibleActionItems } from './collapsibleActionItems';
 export { default as ContentLayout } from './contentLayout';
 export { default as ContextMenu } from './contextMenu';
