@@ -16,7 +16,7 @@ export const ROW_PERMISSION_RELATION_TEXT = {
 };
 
 export interface IComponentProps<T> {
-    key: string;
+    rowKey: string;
     disabled: boolean;
     name: InternalNamePath;
     rowValues: T;
@@ -35,7 +35,7 @@ interface INormalProps<T> {
     value?: IFilterValue<T>;
     disabled?: false;
     maxLevel?: number;
-    initRowValues: T;
+    initValues: T;
     notEmpty?: { data: boolean; message?: string };
     component: (props: IComponentProps<T>) => React.ReactNode;
     onChange?: (value: IFilterValue<T> | undefined) => void;
@@ -58,7 +58,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     const {
         maxLevel = 5,
         notEmpty = { data: true, message: '必须有一条数据' },
-        initRowValues,
+        initValues,
         onChange,
     } = (!isDisabled(props) && props) as INormalProps<T>;
 
@@ -86,7 +86,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     const handleAddCondition = (keyObj: { key: string; isOut?: boolean }) => {
         const cloneData = clone(value);
         const appendNode = finRelationNode(cloneData as IFilterValue<T>, keyObj.key, keyObj.isOut);
-        addCondition(appendNode, keyObj, initRowValues as T);
+        addCondition(appendNode, keyObj, initValues as T);
         onChange?.(cloneData);
     };
 
@@ -133,14 +133,11 @@ const FilterRules = <T,>(props: IProps<T>) => {
                             key: shortId(),
                             level: treeNode?.level + 1,
                         }),
-                        Object.assign(
-                            {},
-                            { rowValues: initRowValue },
-                            {
-                                key: shortId(),
-                                level: treeNode?.level + 1,
-                            }
-                        ),
+                        Object.assign({
+                            key: shortId(),
+                            rowValues: initRowValue,
+                            level: treeNode?.level + 1,
+                        }),
                     ],
                 };
             }
@@ -217,7 +214,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
         };
         onChange?.(cloneData);
     };
-
+    console.log(value);
     return (
         <RulesController<T>
             maxLevel={maxLevel}

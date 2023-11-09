@@ -18,8 +18,8 @@ const INIT_DATA = {
 
 type IRow = typeof INIT_ROW_VALUES;
 
-const MyInput = ({ rowValues: { input }, key, onChange }: IComponentProps<IRow>) => (
-    <Input value={input} onChange={(e) => onChange?.(key ?? '', { input: e.target.value })} />
+const MyInput = ({ rowValues: { input }, rowKey, onChange }: IComponentProps<IRow>) => (
+    <Input value={input} onChange={(e) => onChange?.(rowKey, { input: e.target.value })} />
 );
 
 export default () => {
@@ -31,7 +31,7 @@ export default () => {
                 component={(props) => <MyInput {...props} />}
                 value={data}
                 onChange={(value: any) => setData(value)}
-                initRowValues={INIT_ROW_VALUES}
+                initValues={INIT_ROW_VALUES}
             />
 
             <Button onClick={() => console.log(data)}>控制台查看数据</Button>

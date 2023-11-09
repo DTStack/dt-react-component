@@ -125,7 +125,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
         if (item?.children?.length) {
             const childrenPath = (index: number) => {
                 const newPath = [...namePath];
-                newPath.push(...['children', index, 'rowValues']);
+                newPath.push(...['children', index]);
                 return newPath;
             };
             const { lineHeight, bottom } = weakMap.get(item);
@@ -192,9 +192,9 @@ export const RulesController = <T,>(props: IProps<T>) => {
                 )}
                 <div className="ruleController__item--component">
                     {component({
-                        key: item.key,
+                        rowKey: item.key,
                         disabled,
-                        name: !namePath.length ? ['rowValues'] : namePath,
+                        name: [...namePath, 'rowValues'],
                         rowValues: item.rowValues as T,
                         onChange: onChangeRowValues,
                     })}

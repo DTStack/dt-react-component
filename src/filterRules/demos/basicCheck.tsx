@@ -18,10 +18,10 @@ const INIT_DATA = {
 
 type IRow = typeof INIT_ROW_VALUES;
 
-const MyInput = ({ rowValues: { input }, key, disabled, onChange }: IComponentProps<IRow>) => (
+const MyInput = ({ rowValues: { input }, rowKey, disabled, onChange }: IComponentProps<IRow>) => (
     <Input
         value={input}
-        onChange={(e) => onChange?.(key ?? '', { input: e.target.value })}
+        onChange={(e) => onChange?.(rowKey, { input: e.target.value })}
         disabled={disabled}
     />
 );
@@ -43,7 +43,7 @@ export default () => {
                 <FilterRules<IRow>
                     component={(props) => <MyInput {...props} />}
                     disabled={disabled}
-                    initRowValues={INIT_ROW_VALUES}
+                    initValues={INIT_ROW_VALUES}
                 />
             </Form.Item>
         </Form>

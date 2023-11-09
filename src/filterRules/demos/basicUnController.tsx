@@ -39,7 +39,7 @@ export default () => {
                 <FilterRules<IRow>
                     component={(props) => <MyInput {...props} />}
                     notEmpty={{ data: false }}
-                    initRowValues={INIT_ROW_VALUES}
+                    initValues={INIT_ROW_VALUES}
                 />
             </Form.Item>
             <Button onClick={async () => console.log(await form.validateFields())}>
