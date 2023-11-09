@@ -16,35 +16,35 @@ export const ROW_PERMISSION_RELATION_TEXT = {
 };
 
 export interface IComponentProps<T> {
-    rowKey: string;
-    disabled: boolean;
-    name: InternalNamePath;
-    rowValues: T;
-    onChange: (key: string, values: T) => void;
+    rowKey: string; // 当前节点的唯一标识
+    disabled: boolean; // 编辑/查看状态
+    name: InternalNamePath; // 使用 Form.Item 时，中间的 NamePath
+    rowValues: T; // 自定义钻的数据
+    onChange: (key: string, values: T) => void; // 改变数据的方法
 }
 
 export interface IFilterValue<T> {
     key: string;
-    level?: number;
-    type?: number;
-    rowValues?: T;
-    children?: IFilterValue<T>[];
+    level?: number; // 当前节点的层级，用于判断一些按钮的展示
+    type?: number; // 当前节点的条件关系，1 | 2
+    rowValues?: T; // Form 节点的相关的信息(子节点无条件节点时才有)
+    children?: IFilterValue<T>[]; // 子节点的信息(子节点存在条件节点时才有)
 }
 
 interface INormalProps<T> {
-    value?: IFilterValue<T>;
-    disabled?: false;
-    maxLevel?: number;
-    initValues: T;
-    notEmpty?: { data: boolean; message?: string };
-    component: (props: IComponentProps<T>) => React.ReactNode;
-    onChange?: (value: IFilterValue<T> | undefined) => void;
+    value?: IFilterValue<T>; // 组件的值
+    disabled?: false; // 编辑状态
+    maxLevel?: number; // 节点层级
+    initValues: T; // 自定义组件的初始值
+    notEmpty?: { data: boolean; message?: string }; // 是否保留最后一条数据
+    component: (props: IComponentProps<T>) => React.ReactNode; // 自定义展示组件
+    onChange?: (value: IFilterValue<T> | undefined) => void; // 改变数据的方法
 }
 
 interface IDisabledProps<T> {
-    value?: IFilterValue<T>;
-    disabled: true;
-    component: (props: IComponentProps<T>) => React.ReactNode;
+    value?: IFilterValue<T>; // 组件的值
+    disabled: true; // 查看状态
+    component: (props: IComponentProps<T>) => React.ReactNode; // 自定义展示组件
 }
 
 function isDisabled<T>(props: IProps<T>): props is IDisabledProps<T> {
@@ -214,7 +214,6 @@ const FilterRules = <T,>(props: IProps<T>) => {
         };
         onChange?.(cloneData);
     };
-    console.log(value);
     return (
         <RulesController<T>
             maxLevel={maxLevel}

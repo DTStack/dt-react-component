@@ -2,21 +2,8 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { FilterRules } from 'dt-react-component';
 import { IComponentProps } from 'dt-react-component/filterRules';
-import shortid from 'shortid';
 
-const INIT_ROW_VALUES = {
-    input: '',
-};
-
-const INIT_DATA = {
-    key: shortid(),
-    level: 0,
-    rowValues: {
-        ...INIT_ROW_VALUES,
-    },
-};
-
-type IRow = typeof INIT_ROW_VALUES;
+import { INIT_DATA, INIT_ROW_VALUES, IRow } from './basic';
 
 const MyInput = ({ name }: IComponentProps<IRow>) => (
     <Form.Item name={['condition', ...name, 'input']}>

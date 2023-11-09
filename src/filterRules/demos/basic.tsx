@@ -4,11 +4,11 @@ import { FilterRules } from 'dt-react-component';
 import { IComponentProps } from 'dt-react-component/filterRules';
 import shortid from 'shortid';
 
-const INIT_ROW_VALUES = {
+export const INIT_ROW_VALUES = {
     input: '',
 };
 
-const INIT_DATA = {
+export const INIT_DATA = {
     key: shortid(),
     level: 0,
     rowValues: {
@@ -16,7 +16,7 @@ const INIT_DATA = {
     },
 };
 
-type IRow = typeof INIT_ROW_VALUES;
+export type IRow = typeof INIT_ROW_VALUES;
 
 const MyInput = ({ rowValues: { input }, rowKey, onChange }: IComponentProps<IRow>) => (
     <Input value={input} onChange={(e) => onChange?.(rowKey, { input: e.target.value })} />

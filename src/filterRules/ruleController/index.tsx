@@ -12,14 +12,14 @@ import {
 import './index.scss';
 
 interface IProps<T> {
-    value: IFilterValue<T> | undefined;
-    disabled?: boolean;
-    maxLevel: number;
-    component: (props: IComponentProps<T>) => React.ReactNode;
-    onAddCondition: (value: { key: string; isOut?: boolean }) => void;
-    onDeleteCondition: (key: string) => void;
-    onChangeCondition: (key: string, type: ROW_PERMISSION_RELATION) => void;
-    onChangeRowValues: (key: string, values: T) => void;
+    value: IFilterValue<T> | undefined; // 组件的值
+    disabled?: boolean; // 编辑/查看状态
+    maxLevel: number; // 节点层级
+    component: (props: IComponentProps<T>) => React.ReactNode; // 自定义展示组件
+    onAddCondition: (value: { key: string; isOut?: boolean }) => void; // 新增节点
+    onDeleteCondition: (key: string) => void; // 删除节点
+    onChangeCondition: (key: string, type: ROW_PERMISSION_RELATION) => void; // 改变条件节点的值
+    onChangeRowValues: (key: string, values: T) => void; // 改变自定义组件的数据
 }
 
 const ITEM_HEIGHT = 32;
