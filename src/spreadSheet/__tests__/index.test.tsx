@@ -4,14 +4,6 @@ import '@testing-library/jest-dom/extend-expect';
 
 import SpreadSheet from '../index';
 
-// mock the CopyUtils
-jest.mock('../../utils/copy', () => {
-    class CopyUtilsMock {
-        copy = jest.fn();
-    }
-    return CopyUtilsMock;
-});
-
 describe('test spreadSheet ', () => {
     const columns = ['name', 'gender', 'age', 'address'];
     const data = [
