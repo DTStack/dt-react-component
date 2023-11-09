@@ -1,10 +1,10 @@
 import React, { ReactNode, useMemo } from 'react';
+import { Utils } from '@dtinsight/dt-utils';
 import { Form, type FormListFieldData, Table, type TableProps } from 'antd';
 import type { FormItemProps, FormListProps, Rule, RuleObject, RuleRender } from 'antd/lib/form';
 import type { ColumnsType, ColumnType as TableColumnType } from 'antd/lib/table';
 import classnames from 'classnames';
 
-import utils from '../utils';
 import './index.scss';
 
 type NotNullRowSelection = NonNullable<TableProps<any>['rowSelection']>;
@@ -167,7 +167,7 @@ export default function InternalTable({
                     ),
                     render(_, record) {
                         const currentNamePath = [record.name, cols.dataIndex]
-                            .filter(utils.checkExist)
+                            .filter(Utils.checkExist)
                             .flat() as OverrideParameters;
 
                         const rules: Rule[] | undefined = rawRules?.map((rule) =>

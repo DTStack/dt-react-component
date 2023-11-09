@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
-
-import utils from '../utils';
+import { Cookie } from '@dtinsight/dt-utils';
 
 export interface Fields {
     key: string;
@@ -45,8 +44,8 @@ const useCookieListener = (
         const changedFields: Fields[] = [];
         for (let i = 0; i < watchFields.length; i++) {
             const key = watchFields[i];
-            const originValue = utils.getCookie(key, prevCookies);
-            const newValue = utils.getCookie(key, nextCookies);
+            const originValue = Cookie.getCookie(key, prevCookies);
+            const newValue = Cookie.getCookie(key, nextCookies);
             if (
                 (originValue !== null || (originValue === null && immediately)) &&
                 originValue !== newValue

@@ -1,10 +1,10 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { CopyUtils } from '@dtinsight/dt-utils';
 import type { HotTableProps } from '@handsontable/react';
 import { HotTable } from '@handsontable/react';
 import classNames from 'classnames';
 import 'handsontable/languages/zh-CN.js';
 
-import CopyUtils from '../utils/copy';
 import 'handsontable/dist/handsontable.full.css';
 import './style.scss';
 
