@@ -3,7 +3,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { Input } from 'antd';
 import '@testing-library/jest-dom/extend-expect';
 
-import { INIT_DATA, INIT_ROW_VALUES, IRow } from '../demos/basic';
+import { INIT_DATA, INIT_ROW_VALUES, IRow } from '../demos/constants';
 import FilterRules, { IComponentProps } from '..';
 
 const MyInput = ({ rowValues: { input }, rowKey, onChange }: IComponentProps<IRow>) => (
