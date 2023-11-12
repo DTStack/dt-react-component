@@ -7,7 +7,7 @@
                 width: 33px;
                 height: 2px;
                 display: inline-block;
-                background-color: #DDEFFF;
+                background-color: #E8F1FF;
                 position: absolute;
                 top: 50%;
                 left: -33px;
@@ -19,7 +19,7 @@
         .condition {
             &__box {
                 position: absolute;
-                border: 1px solid #DDEFFF;
+                border: 1px solid #E8F1FF;
                 &.disabled {
                     border-color: #EBECF0;
                 }
@@ -29,12 +29,12 @@
                     left: -14px;
                     top: 50%;
                     margin-top: -13px;
-                    background: #DDEFFF;
+                    background: #DDEBFF;
                     width: 27px;
                     height: 27px;
                     border-radius: 50%;
                     font-size: 12px;
-                    color: #2491F7;
+                    color: #1D78FF;
                     text-align: center;
                     line-height: 26px;
                     z-index: 10;
@@ -52,14 +52,14 @@
                     display: block;
                     width: 30px;
                     height: 2px;
-                    background-color: #DDEFFF;
+                    background-color: #E8F1FF;
                     margin-top: 16px;
                 }
                 &--icon {
                     cursor: pointer;
-                    color: #3F87FF;
+                    color: #1D78FF;
                     font-size: 18px;
-                    margin-top: 7px;
+                    margin: 7px 0 0 12px;
                 }
             }
         }
@@ -73,7 +73,7 @@
         &--line {
             width: 30px;
             height: 2px;
-            background: #DDEFFF;
+            background: #E8F1FF;
             display: block;
             &.disabled {
                 background-color: #EBECF0;
@@ -88,7 +88,7 @@
             margin-top: 7px;
             .icon {
                 cursor: pointer;
-                color: #3F87FF;
+                color: #1D78FF;
                 font-size: 18px;
                 &:first-child {
                     margin-right: 8px;

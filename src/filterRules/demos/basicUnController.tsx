@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'antd';
 import { FilterRules } from 'dt-react-component';
 import { IComponentProps } from 'dt-react-component/filterRules';
 
-import { INIT_DATA, INIT_ROW_VALUES, IRow } from './basic';
+import { INIT_DATA, INIT_ROW_VALUES, IRow } from './constants';
 
 const MyInput = ({ name }: IComponentProps<IRow>) => (
     <Form.Item name={['condition', ...name, 'input']}>
