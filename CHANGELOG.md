@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.1](https://github.com/DTStack/dt-react-component/compare/v4.3.0...v4.3.1) (2023-11-14)
+
+### Features
+
+-   add search component on sidebar ([#405](https://github.com/DTStack/dt-react-component/issues/405)) ([2723267](https://github.com/DTStack/dt-react-component/commit/272326794683ecd3ed1846ad38fd4258b23dc0f7))
+-   add sideEffects field to improve treeShaking ([#403](https://github.com/DTStack/dt-react-component/issues/403)) ([1faa376](https://github.com/DTStack/dt-react-component/commit/1faa376a58da72e2acfacbc03531e664b85dd763))
+-   import highlight core only ([#402](https://github.com/DTStack/dt-react-component/issues/402)) ([b283772](https://github.com/DTStack/dt-react-component/commit/b283772f384def25aeaba9e8eb5b938603d43584))
+
+### Bug Fixes
+
+-   upgrade SpreadSheet component for can be binded ref ([#404](https://github.com/DTStack/dt-react-component/issues/404)) ([361486c](https://github.com/DTStack/dt-react-component/commit/361486cf12e3ac43bd6f7428bf8cd6a61848354e))
+-   **useList:** fix setLoading when request multiple times ([#391](https://github.com/DTStack/dt-react-component/issues/391)) ([#397](https://github.com/DTStack/dt-react-component/issues/397)) ([bfc53ae](https://github.com/DTStack/dt-react-component/commit/bfc53ae1aa32dc4a8ec6299707553bb941603831))
+-   **useList:** initialParams suppport function type ([#393](https://github.com/DTStack/dt-react-component/issues/393)) ([d02017d](https://github.com/DTStack/dt-react-component/commit/d02017d65f5a7b5ce7822bc479b8fb436253e273))
+
+### [4.2.1](https://github.com/DTStack/dt-react-component/compare/v4.2.0...v4.2.1) (2023-09-13)
+
+### Features
+
+-   add spreadSheet columnSort and columnTypes ([#373](https://github.com/DTStack/dt-react-component/issues/373)) ([f6a14f3](https://github.com/DTStack/dt-react-component/commit/f6a14f317376678d86e021846c5fc5d1b0e703cb))
+
+### Bug Fixes
+
+-   fix immediate option in userList ([#378](https://github.com/DTStack/dt-react-component/issues/378)) ([b8992f3](https://github.com/DTStack/dt-react-component/commit/b8992f38f918dde10cb6349e39aca2c524e70853))
+
 ## [4.3.0](https://github.com/DTStack/dt-react-component/compare/v4.2.0...v4.3.0) (2023-11-03)
 
 ### [4.2.1](https://github.com/DTStack/dt-react-component/compare/v4.2.0...v4.2.1) (2023-09-13)
