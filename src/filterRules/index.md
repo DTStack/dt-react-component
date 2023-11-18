@@ -17,6 +17,7 @@ demo:
 ## 示例
 
 <code src="./demos/basic.tsx" >受控方式使用</code>
+<code src="./demos/basicMore.tsx" >多条数据的使用</code>
 <code src="./demos/basicUnController.tsx" >非受控方式使用</code>
 <code src="./demos/basicCheck.tsx" >查看数据</code>
 
