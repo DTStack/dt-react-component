@@ -66,7 +66,6 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
             <QuestionCircleOutlined style={{ fontSize: '16px' }} />
         </Tooltip>
     );
-
     const newAfterTitle = afterTitle || questionTooltip;
     let bottomStyle;
     if (hasBottom) bottomStyle = { marginBottom: 16 };
