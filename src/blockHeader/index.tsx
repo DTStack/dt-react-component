@@ -63,7 +63,9 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const questionTooltip = tooltip && (
         <Tooltip title={tooltip}>
-            <QuestionCircleOutlined style={{ fontSize: '16px' }} />
+            <QuestionCircleOutlined
+                style={{ fontSize: '16px', color: '#B1B4C5', verticalAlign: 'text-top' }}
+            />
         </Tooltip>
     );
     const newAfterTitle = afterTitle || questionTooltip;
