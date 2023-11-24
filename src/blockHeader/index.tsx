@@ -64,7 +64,10 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const questionTooltip = tooltip && (
         <Tooltip title={tooltip}>
             <QuestionCircleOutlined
-                style={{ fontSize: '16px', color: '#B1B4C5', verticalAlign: 'text-top' }}
+                style={{
+                    fontSize: '16px',
+                    color: '#B1B4C5',
+                }}
             />
         </Tooltip>
     );
