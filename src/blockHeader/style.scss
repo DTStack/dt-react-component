@@ -6,42 +6,34 @@ $card_prefix: "dtc-block-header";
         display: flex;
         align-items: center;
         justify-content: space-between;
-
         &-middle {
             .#{$card_prefix}-title-box {
                 line-height: 22px;
-
                 .#{$card_prefix}-title {
                     font-size: 14px;
                 }
             }
         }
-
         &-small {
             .#{$card_prefix}-title-box {
                 line-height: 20px;
-
                 .#{$card_prefix}-title {
                     font-size: 12px;
                 }
             }
         }
-
         &-background {
             padding: 0 12px;
             background-color: #F9F9FA;
-
             &.#{$card_prefix}-title-row {
                 &-middle {
                     height: 40px;
                 }
-
                 &-small {
                     height: 32px;
                 }
             }
         }
-
         &-pointer {
             cursor: pointer;
         }
@@ -50,28 +42,23 @@ $card_prefix: "dtc-block-header";
             flex: 1;
             display: flex;
             align-items: center;
-
             .#{$card_prefix}-before-title {
                 margin-right: 8px;
             }
-
             .#{$card_prefix}-title {
                 color: #3D446E;
                 font-weight: 500;
                 margin-right: 4px;
             }
-
             .#{$card_prefix}-after-title {
                 display: flex;
                 align-items: center;
                 color: #8B8FA8;
                 font-size: 12px;
-
                 &-icon {
                     font-size: 16px;
                     color: #B1B4C5;
                 }
-
             }
         }
 
@@ -81,40 +68,33 @@ $card_prefix: "dtc-block-header";
             align-items: center;
             cursor: pointer;
             user-select: none;
-
             .text {
                 font-size: 12px;
                 margin: 0 4px;
             }
-
             .icon {
                 font-size: 16px;
                 transition: transform 0.4s;
-
                 &.down {
                     transform: rotate(-180deg);
                 }
-
                 &.up {
                     transform: rotate(0deg);
                 }
             }
         }
     }
-
     &-content {
         &.hide {
             display: none;
         }
     }
-
     &__beforeTitle {
         &-middle {
             width: 4px;
             height: 16px;
             background-color: #1D78FF;
         }
-
         &-small {
             @extend .#{$card_prefix}__beforeTitle-middle;
         }
