@@ -63,10 +63,9 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const questionTooltip = tooltip && (
         <Tooltip title={tooltip}>
-            <QuestionCircleOutlined />
+            <QuestionCircleOutlined className={`${prefixCls}-after-title-icon`} />
         </Tooltip>
     );
-
     const newAfterTitle = afterTitle || questionTooltip;
     let bottomStyle;
     if (hasBottom) bottomStyle = { marginBottom: 16 };
