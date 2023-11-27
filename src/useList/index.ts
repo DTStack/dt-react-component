@@ -9,7 +9,7 @@ export interface IMutateOptions {
      */
     revalidate?: boolean;
     /**
-     * 在mutate发起请求前是否清空data 
+     * 在mutate发起请求前是否清空data(包括data total error)
      */
     clearData?:boolean;
 }
