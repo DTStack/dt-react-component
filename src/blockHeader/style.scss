@@ -37,6 +37,7 @@ $card_prefix: "dtc-block-header";
         &-pointer {
             cursor: pointer;
         }
+
         .#{$card_prefix}-title-box {
             flex: 1;
             display: flex;
@@ -50,8 +51,14 @@ $card_prefix: "dtc-block-header";
                 margin-right: 4px;
             }
             .#{$card_prefix}-after-title {
+                display: flex;
+                align-items: center;
                 color: #8B8FA8;
                 font-size: 12px;
+                &-icon {
+                    font-size: 16px;
+                    color: #B1B4C5;
+                }
             }
         }
 
