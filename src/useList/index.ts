@@ -65,6 +65,7 @@ export default function useList<T extends Record<string, any>, P extends Record<
             {
                 setData([]);
                 setTotal(0);
+                setError(undefined);
             }
             performFetch(tmp);
         }
