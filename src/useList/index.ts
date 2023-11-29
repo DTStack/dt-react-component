@@ -11,7 +11,7 @@ export interface IMutateOptions {
     /**
      * 在mutate发起请求前是否清空data(包括data total error)
      */
-    clearData?:boolean;
+    clearData?: boolean;
 }
 
 export interface IUseListOptions {
@@ -53,7 +53,7 @@ export default function useList<T extends Record<string, any>, P extends Record<
     const mutate = (next: Partial<P> | ((prev: P) => P) = params, options: IMutateOptions = {}) => {
         const defaultOptions: IMutateOptions = {
             revalidate: true,
-            clearData:true,
+            clearData: true,
         };
         const nextOptions = merge(defaultOptions, options);
 
@@ -61,8 +61,7 @@ export default function useList<T extends Record<string, any>, P extends Record<
         setParams(tmp);
 
         if (nextOptions.revalidate) {
-            if(nextOptions.clearData)
-            {
+            if (nextOptions.clearData) {
                 setData([]);
                 setTotal(0);
                 setError(undefined);
