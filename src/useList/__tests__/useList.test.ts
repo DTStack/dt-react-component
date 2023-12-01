@@ -133,4 +133,25 @@ describe('Test useList hook', () => {
         await awaitTimers();
         expect(result.current.loading).toBe(false);
     });
+
+    it('Should support clear data before mutate', async () => {
+        const fetcher = jest.fn().mockResolvedValue({
+            total: 1,
+            data: [{ uuid: 1 }],
+            error: new Error('testError'),
+        });
+        const { result } = renderHook(() =>
+            useList(fetcher, { current: 1, pageSize: 20, search: '' })
+        );
+        expect(fetcher).toBeCalledTimes(1);
+        await waitFor(() => {
+            expect(result.current.data.length).toBe(1);
+        });
+        act(() => {
+            result.current.mutate({ search: 'test' }, { clearData: true });
+        });
+        expect(result.current.data).toStrictEqual([]);
+        expect(result.current.params.total).toBe(0);
+        expect(result.current.error).toBe(undefined);
+    });
 });
