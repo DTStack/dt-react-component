@@ -16,6 +16,7 @@ toc: content
 <code src="./demos/sort.tsx" title="筛选和过滤"></code>
 <code src="./demos/options.tsx" title="相关配置" description="设置 immediate 值防止初始化的时候进行请求"></code>
 <code src="./demos/mutate.tsx" title="相关配置" description="用 undefined 覆盖 prevPrams 时，需采用 functional 的写法 "></code>
+<code src="./demos/mutateOptions" title="mutate相关配置" description="revalidate 修改后请求数据，clearData 请求前清除数据"></code>
 
 ## API
 
@@ -49,3 +50,4 @@ toc: content
 | 参数       | 说明                   | 类型      | 默认值 |
 | ---------- | ---------------------- | --------- | ------ |
 | revalidate | 修改后是否重新请求数据 | `boolean` | `true` |
+| clearData  | 请求数据前是否清除数据 | `boolean` | `true` |
