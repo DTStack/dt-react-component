@@ -14,7 +14,8 @@ import './index.scss';
 interface IProps<T> {
     value: IFilterValue<T> | undefined; // 组件的值
     disabled?: boolean; // 编辑/查看状态
-    maxLevel: number; // 节点层级
+    maxLevel: number; // 节点最深层级数
+    maxSize: number; // 节点最大子节点数量
     component: (props: IComponentProps<T>) => React.ReactNode; // 自定义展示组件
     onAddCondition: (value: { key: string; isOut?: boolean }) => void; // 新增节点
     onDeleteCondition: (key: string) => void; // 删除节点
@@ -33,6 +34,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
         value,
         disabled,
         maxLevel,
+        maxSize,
         component,
         onAddCondition,
         onDeleteCondition,
@@ -167,13 +169,18 @@ export const RulesController = <T,>(props: IProps<T>) => {
                         <div className="condition__add">
                             <span className="condition__add--line" />
                             <PlusCircleOutlined
-                                className="condition__add--icon"
-                                onClick={() =>
+                                className={classnames(
+                                    'condition__add--icon',
+                                    item?.children?.length >= maxSize &&
+                                        'condition__add--icon--disabled'
+                                )}
+                                onClick={() => {
+                                    if (item?.children && item.children.length >= maxSize) return;
                                     onAddCondition({
                                         key: item.key,
                                         isOut: true,
-                                    })
-                                }
+                                    });
+                                }}
                             />
                         </div>
                     )}

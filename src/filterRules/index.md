@@ -20,6 +20,7 @@ demo:
 <code src="./demos/basicMore.tsx" >多条数据的使用</code>
 <code src="./demos/basicUnController.tsx" >非受控方式使用</code>
 <code src="./demos/basicCheck.tsx" >查看数据</code>
+<code src="./demos/basicMaxSize.tsx" >最大子节点示例</code>
 
 ## API
 
@@ -30,6 +31,7 @@ demo:
 | value      | 数据                       | `IFilterValue<T>`                                | -                                      |
 | disabled   | 编辑/查看状态              | `boolean`                                        | `false`                                |
 | maxLevel   | 条件节点层级               | `number`                                         | 5                                      |
+| maxSize    | 子节点最大个数             | `number`                                         | 100                                    |
 | component  | 条件节点后展示的组件       | `(props: IComponentProps<T>) => React.ReactNode` | -                                      |
 | initValues | 新增的数据默认值           | `T`                                              | -                                      |
 | notEmpty   | 删除时是否保留最后一行数据 | `{data:boolean;message?:string}`                 | `{data:true;message:"必须有一条数据"}` |
