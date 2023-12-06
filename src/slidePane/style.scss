@@ -64,6 +64,7 @@ $prefix: "dtc-slide-pane";
         flex: 1;
         min-height: 0;
         padding: 16px;
+        overflow-y: scroll;
     }
     &-icon {
         width: 12px;
