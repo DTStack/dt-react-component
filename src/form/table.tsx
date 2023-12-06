@@ -4,6 +4,7 @@ import { Form, type FormListFieldData, Table, type TableProps } from 'antd';
 import type { FormItemProps, FormListProps, Rule, RuleObject, RuleRender } from 'antd/lib/form';
 import type { ColumnsType, ColumnType as TableColumnType } from 'antd/lib/table';
 import classnames from 'classnames';
+import { VList } from 'virtuallist-antd';
 
 import './index.scss';
 
@@ -45,7 +46,6 @@ export interface IFormTableProps
             | 'rowSelection'
             | 'pagination'
             | 'className'
-            | 'rowKey'
             | 'dataSource'
             | 'footer'
             | 'title'
@@ -67,6 +67,7 @@ export interface IFormTableProps
             field: FormListFieldData
         ) => ReturnType<NonNullable<NotNullRowSelection['getCheckboxProps']>>;
     };
+    virtual?: boolean;
     title?: PanelRenderFunc;
     footer?: PanelRenderFunc;
     summary?: PanelRenderFunc;
@@ -107,6 +108,8 @@ const className = 'dtc-form__table';
 export default function InternalTable({
     name,
     rules,
+    virtual,
+    rowKey,
     initialValue,
     ...tableProps
 }: IFormTableProps) {
@@ -215,12 +218,25 @@ export default function InternalTable({
         return convertRawToTableCol(rawColumns);
     }, [rawColumns]);
 
+    const virtualComponents = useMemo(() => {
+        if (!restProps.scroll?.y) {
+            console.warn(
+                `You Should specify a clear value of scroll.y for virtual table. but got ${restProps.scroll?.y}`
+            );
+            return undefined;
+        }
+        return VList({
+            height: restProps.scroll.y,
+            resetTopWhenDataChange: false,
+        });
+    }, []);
+
     return (
         <Form.List name={name} rules={rules} initialValue={initialValue}>
             {(fields, ope, meta) => (
                 <Table<FormListFieldData>
                     className={classnames(className, tableClassName)}
-                    rowKey="key"
+                    rowKey={rowKey || 'key'}
                     dataSource={fields}
                     pagination={false}
                     columns={
@@ -228,6 +244,7 @@ export default function InternalTable({
                             ? convertRawToTableCol(columns(fields, ope, meta))
                             : columns
                     }
+                    components={virtual ? virtualComponents : undefined}
                     footer={footer ? () => footer(fields, ope, meta) : undefined}
                     title={title ? () => title(fields, ope, meta) : undefined}
                     summary={summary ? () => summary(fields, ope, meta) : undefined}

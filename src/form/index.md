@@ -34,6 +34,8 @@ demo:
 
 <code src="./demos/footer.tsx" title="支持设置 footer" description="下拉框联动禁用" compact="true"></code>
 
+<code src="./demos/performance.tsx" title="性能优化" description="设置了 virtual 属性，支持虚拟滚动，目前该虚拟滚动基于 [virtuallist-antd](https://github.com/crawler-django/virtuallist-antd) 实现" compact="true"></code>
+
 ## FAQ
 
 ### 如何设置 title 上的必选标识？

@@ -29,3 +29,24 @@ export default async function getMockData() {
         }, 150);
     });
 }
+
+export function getMockPerformanceData() {
+    return new Promise<MockData[]>((resolve) => {
+        setTimeout(() => {
+            const data = Array.from({ length: 10000 }).map(() => {
+                return {
+                    uuid: faker.datatype.uuid(),
+                    name: faker.internet.userName(),
+                    address: faker.address.cityName(),
+                    company: faker.company.bs(),
+                    gender: faker.name.sex(),
+                    weight: faker.datatype.number({
+                        max: 200,
+                        min: 80,
+                    }),
+                };
+            });
+            resolve(data);
+        }, 150);
+    });
+}
