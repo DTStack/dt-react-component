@@ -60,6 +60,10 @@
                     color: #1D78FF;
                     font-size: 18px;
                     margin: 7px 0 0 12px;
+                    &--disabled {
+                        cursor: not-allowed;
+                        color: #B1B4C5;
+                    }
                 }
             }
         }

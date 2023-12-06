@@ -35,6 +35,7 @@ interface INormalProps<T> {
     value?: IFilterValue<T>; // 组件的值
     disabled?: false; // 编辑状态
     maxLevel?: number; // 节点层级
+    maxSize?: number;
     initValues: T; // 自定义组件的初始值
     notEmpty?: { data: boolean; message?: string }; // 是否保留最后一条数据
     component: (props: IComponentProps<T>) => React.ReactNode; // 自定义展示组件
@@ -57,6 +58,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     const { component, disabled = false, value } = props;
     const {
         maxLevel = 5,
+        maxSize = 100,
         notEmpty = { data: true, message: '必须有一条数据' },
         initValues,
         onChange,
@@ -217,6 +219,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     return (
         <RulesController<T>
             maxLevel={maxLevel}
+            maxSize={maxSize}
             disabled={disabled}
             value={value}
             component={component}
