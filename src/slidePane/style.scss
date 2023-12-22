@@ -75,6 +75,9 @@ $prefix: "dtc-slide-pane";
         z-index: 999;
         cursor: pointer;
     }
+    &-nested-loading {
+        height: 100%;
+    }
 }
 
 $duration: 0.3s;

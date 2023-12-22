@@ -13,6 +13,19 @@ describe('test SlidePane ', () => {
         const { container } = render(<SlidePane visible={false}>Hello World</SlidePane>);
         expect(container).not.toHaveClass();
     });
+    test('should render loading correct ', () => {
+        const { unmount } = render(<SlidePane visible>Hello World</SlidePane>);
+        const dom = document.querySelector('.ant-spin-spinning');
+        expect(dom).toBe(null);
+        unmount();
+        render(
+            <SlidePane visible loading>
+                Hello World
+            </SlidePane>
+        );
+        const domLoading = document.querySelector('.ant-spin-spinning');
+        expect(domLoading).not.toBe(null);
+    });
     test('should render mask correct ', () => {
         const { unmount } = render(<SlidePane visible>Hello World</SlidePane>);
         const dom = document.querySelector('.dtc-slide-pane-mask');
