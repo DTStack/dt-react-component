@@ -1,5 +1,5 @@
 import React, { CSSProperties, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
-import { Tabs } from 'antd';
+import { Spin, Tabs } from 'antd';
 import classNames from 'classnames';
 import RcDrawer from 'rc-drawer';
 
@@ -17,6 +17,7 @@ type TabKey<T extends readOnlyTab> = T[number]['key'];
 
 type TabsSlidePane<T extends readOnlyTab> = {
     visible: boolean;
+    loading?: boolean;
     rootClassName?: string;
     bodyClassName?: string;
     width?: number | string;
@@ -32,6 +33,7 @@ type TabsSlidePane<T extends readOnlyTab> = {
 
 type NormalSlidePane = {
     visible: boolean;
+    loading?: boolean;
     rootClassName?: string;
     bodyClassName?: string;
     width?: number | string;
@@ -54,6 +56,7 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
 
     const {
         visible,
+        loading = false,
         rootClassName,
         bodyClassName,
         mask = false,
@@ -94,23 +97,28 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
             rootClassName={rootClassName}
             {...motionProps}
         >
-            {!mask && renderButton()}
-            {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
-            {isFunction(props) && (
-                <Tabs
-                    destroyInactiveTabPane
-                    activeKey={tabKey}
-                    onChange={setTabKey}
-                    className={`${slidePrefixCls}-tabs`}
+            <Spin wrapperClassName={`${slidePrefixCls}-nested-loading`} spinning={loading}>
+                {!mask && renderButton()}
+                {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
+                {isFunction(props) && (
+                    <Tabs
+                        destroyInactiveTabPane
+                        activeKey={tabKey}
+                        onChange={setTabKey}
+                        className={`${slidePrefixCls}-tabs`}
+                    >
+                        {props.tabs?.map((tab: { key: string; title: React.ReactNode }) => (
+                            <Tabs.TabPane tab={tab.title} key={tab.key} />
+                        ))}
+                    </Tabs>
+                )}
+                <div
+                    className={classNames(`${slidePrefixCls}-body`, bodyClassName)}
+                    style={bodyStyle}
                 >
-                    {props.tabs?.map((tab: { key: string; title: React.ReactNode }) => (
-                        <Tabs.TabPane tab={tab.title} key={tab.key} />
-                    ))}
-                </Tabs>
-            )}
-            <div className={classNames(`${slidePrefixCls}-body`, bodyClassName)} style={bodyStyle}>
-                {typeof children === 'function' ? children(tabKey) : children}
-            </div>
+                    {typeof children === 'function' ? children(tabKey) : children}
+                </div>
+            </Spin>
         </RcDrawer>
     );
 };
