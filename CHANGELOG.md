@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/DTStack/dt-react-component/compare/v4.3.1...v5.1.0) (2023-12-26)
+
+### Features
+
+-   **filterrules:** support maxSize for filterRules ([#424](https://github.com/DTStack/dt-react-component/issues/424)) ([11e893f](https://github.com/DTStack/dt-react-component/commit/11e893f49efa2a31a068694463fb75e8b3e70a01))
+-   new component Catalogue in v5 ([#389](https://github.com/DTStack/dt-react-component/issues/389)) ([2e5d6f9](https://github.com/DTStack/dt-react-component/commit/2e5d6f9348c12c6e61707ce56627de8486e17b4f))
+-   new component contentLayout in v5 ([#384](https://github.com/DTStack/dt-react-component/issues/384)) ([ba85cd5](https://github.com/DTStack/dt-react-component/commit/ba85cd5933bde963e3512fc5ae44dcf548121825))
+-   new component FilterRules in v5 ([#407](https://github.com/DTStack/dt-react-component/issues/407)) ([5584bc4](https://github.com/DTStack/dt-react-component/commit/5584bc42a12f414af05a6f86a2341bf3b6219895))
+-   new component Image with built-in lazy loading option ([#395](https://github.com/DTStack/dt-react-component/issues/395)) ([9be7898](https://github.com/DTStack/dt-react-component/commit/9be78987c112ba68f9d8f26a1bffe1ee3ba18acc))
+-   new component tinyTag in v5 ([#396](https://github.com/DTStack/dt-react-component/issues/396)) ([1791dd2](https://github.com/DTStack/dt-react-component/commit/1791dd2d5259a9cd23cbcae5b65a9e8f1cff57d9))
+-   remove the internal toolkit and import from dt-utils ([#409](https://github.com/DTStack/dt-react-component/issues/409)) ([172681d](https://github.com/DTStack/dt-react-component/commit/172681dca22ab415eba629f28ce2c85d240580d2)), closes [#399](https://github.com/DTStack/dt-react-component/issues/399)
+-   **SlidePane:** support loading attribute in slide pane ([#428](https://github.com/DTStack/dt-react-component/issues/428)) ([7e9b01e](https://github.com/DTStack/dt-react-component/commit/7e9b01edc148ef051055f727a156d06931caf5d2))
+-   support additional features for slidePane ([#385](https://github.com/DTStack/dt-react-component/issues/385)) ([9fd9eaf](https://github.com/DTStack/dt-react-component/commit/9fd9eafbe765a72052573fda3f66f2acb4487014))
+-   support banner props for modal ([#401](https://github.com/DTStack/dt-react-component/issues/401)) ([7afd503](https://github.com/DTStack/dt-react-component/commit/7afd50358db2e01d2ac2bf94d50055af1517419a)), closes [#393](https://github.com/DTStack/dt-react-component/issues/393) [#399](https://github.com/DTStack/dt-react-component/issues/399)
+
+### Bug Fixes
+
+-   add export Image and useIntersectionObserver in index ([#426](https://github.com/DTStack/dt-react-component/issues/426)) ([7a03ffd](https://github.com/DTStack/dt-react-component/commit/7a03ffd664f88f9114d4bd437a74810936083feb))
+-   **slidepane:** scroll slidepane content without header ([#423](https://github.com/DTStack/dt-react-component/issues/423)) ([7fab9ed](https://github.com/DTStack/dt-react-component/commit/7fab9ed54b5eaece08abd92711ac05974acf13cb))
+
 ## [5.0.0](https://github.com/DTStack/dt-react-component/compare/v4.3.1...v5.0.0) (2023-11-15)
 
 ### Features
