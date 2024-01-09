@@ -9,7 +9,7 @@ export declare type SizeType = 'small' | 'middle' | undefined;
 
 export interface IBlockHeaderProps {
     // 标题
-    title: string;
+    title: ReactNode;
     // 标题前的图标，默认是一个色块
     beforeTitle?: ReactNode;
     // 标题后的提示图标或文案
