@@ -4,7 +4,7 @@ import { Tooltip } from 'antd';
 
 export interface BlockHeaderProps {
     // 标题
-    title: string;
+    title: React.ReactNode;
     // 标题前的图标，默认是一个色块
     beforeTitle?: React.ReactNode;
     // 标题后的提示图标或文案

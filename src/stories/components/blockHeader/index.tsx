@@ -1,6 +1,7 @@
 import React from 'react';
 import { PieChartOutlined } from '@ant-design/icons';
 import BlockHeader from '../../../components/blockHeader';
+import EllipsisText from '../../../components/ellipsisText';
 
 export default function BlockHeaderRender() {
     const style = {
@@ -28,6 +29,10 @@ export default function BlockHeaderRender() {
             <BlockHeader title="分类标题" onChange={(expand) => console.log(expand)}>
                 Hello World!
             </BlockHeader>
+            <p style={style}>7、标题超长</p>
+            <BlockHeader title={<EllipsisText maxWidth={400} value="标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长" />} />
+            <br />
+
             <h3>大标题 + 无背景</h3>
             <p style={style}>1、默认</p>
             <BlockHeader title="分类标题" showBackground={false} />
@@ -51,6 +56,7 @@ export default function BlockHeaderRender() {
             >
                 Hello World!
             </BlockHeader>
+
             <h2>小标题</h2>
             <h3>小标题 + 有背景</h3>
             <p style={style}>1、默认</p>
@@ -71,6 +77,8 @@ export default function BlockHeaderRender() {
             <BlockHeader title="分类标题" isSmall onChange={(expand) => console.log(expand)}>
                 Hello World!
             </BlockHeader>
+            <br />
+
             <h3>小标题 + 无背景</h3>
             <p style={style}>1、默认</p>
             <BlockHeader title="分类标题" showBackground={false} isSmall />
