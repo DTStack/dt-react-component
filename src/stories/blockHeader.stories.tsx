@@ -10,7 +10,7 @@ stories.addDecorator(withKnobs);
 const propDefinitions = [
     {
         property: 'title',
-        propType: 'string',
+        propType: 'React.ReactNode',
         required: true,
         description: '标题',
         defaultValue: '-',
@@ -136,6 +136,10 @@ stories.add(
             <BlockHeader title="分类标题" onChange={(expand) => console.log(expand)}>
                 Hello World!
             </BlockHeader>
+            <p style={style}>7、标题超长</p>
+            <BlockHeader title={<EllipsisText maxWidth={400} value="标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长" />} />
+            <br />
+
             <h3>大标题 + 无背景</h3>
             <p style={style}>1、默认</p>
             <BlockHeader title="分类标题" showBackground={false} />
@@ -159,6 +163,7 @@ stories.add(
             >
                 Hello World!
             </BlockHeader>
+
             <h2>小标题</h2>
             <h3>小标题 + 有背景</h3>
             <p style={style}>1、默认</p>
@@ -183,6 +188,8 @@ stories.add(
             >
                 Hello World!
             </BlockHeader>
+            <br />
+
             <h3>小标题 + 无背景</h3>
             <p style={style}>1、默认</p>
             <BlockHeader title="分类标题" showBackground={false} isSmall />

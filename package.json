@@ -133,7 +133,7 @@
         "increase-memory-limit": "^1.0.7",
         "jest": "^24.9.0",
         "jest-environment-jsdom-sixteen": "^2.0.0",
-        "ko-lint-config": "^2.2.18",
+        "ko-lint-config": "2.2.19",
         "less": "^3.9.0",
         "less-loader": "^5.0.0",
         "lint-md": "^0.1.1",
