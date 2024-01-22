@@ -77,6 +77,9 @@ $prefix: "dtc-slide-pane";
     }
     &-nested-loading {
         height: 100%;
+        .ant-spin-container {
+            height: 100%;
+        }
     }
 }
 
