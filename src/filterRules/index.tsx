@@ -27,6 +27,7 @@ export interface IFilterValue<T> {
     key: string;
     level?: number; // 当前节点的层级，用于判断一些按钮的展示
     type?: number; // 当前节点的条件关系，1 | 2
+    disabled?: boolean; // 当前节点禁用
     rowValues?: T; // Form 节点的相关的信息(子节点无条件节点时才有)
     children?: IFilterValue<T>[]; // 子节点的信息(子节点存在条件节点时才有)
 }
@@ -65,7 +66,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     } = (!isDisabled(props) && props) as INormalProps<T>;
 
     // 查找当前操作的节点
-    const finRelationNode = (
+    const findRelationNode = (
         parentData: IFilterValue<T>,
         targetKey: string,
         needCurrent?: boolean
@@ -76,7 +77,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
         for (let i = 0; i < parentDataTemp.children.length; i++) {
             const current = parentDataTemp.children[i];
             if (current.key === targetKey) return needCurrent ? current : parentDataTemp;
-            const node: IFilterValue<T> | null | undefined = finRelationNode(
+            const node: IFilterValue<T> | null | undefined = findRelationNode(
                 current,
                 targetKey,
                 needCurrent
@@ -87,7 +88,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
 
     const handleAddCondition = (keyObj: { key: string; isOut?: boolean }) => {
         const cloneData = clone(value);
-        const appendNode = finRelationNode(cloneData as IFilterValue<T>, keyObj.key, keyObj.isOut);
+        const appendNode = findRelationNode(cloneData as IFilterValue<T>, keyObj.key, keyObj.isOut);
         addCondition(appendNode, keyObj, initValues as T);
         onChange?.(cloneData);
     };
@@ -148,7 +149,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
 
     const handleDeleteCondition = (key: string) => {
         const cloneData = clone(value);
-        const deleteNode = finRelationNode(cloneData as IFilterValue<T>, key, false);
+        const deleteNode = findRelationNode(cloneData as IFilterValue<T>, key, false);
         if (notEmpty.data && !deleteNode?.children) return message.info(notEmpty.message);
         if (!notEmpty.data && !deleteNode?.children) {
             return onChange?.(undefined);
@@ -190,7 +191,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     // 更改条件节点的条件
     const handleChangeCondition = (key: string, type: ROW_PERMISSION_RELATION) => {
         const cloneData = clone(value);
-        const changeNode = finRelationNode(
+        const changeNode = findRelationNode(
             cloneData as IFilterValue<T>,
             key,
             true
@@ -205,7 +206,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     // 改变节点的的数据
     const handleChangeRowValues = (key: string, values: T) => {
         const cloneData = clone(value);
-        const changeNode = finRelationNode(
+        const changeNode = findRelationNode(
             cloneData as IFilterValue<T>,
             key,
             true

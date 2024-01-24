@@ -21,6 +21,7 @@ demo:
 <code src="./demos/basicUnController.tsx" >非受控方式使用</code>
 <code src="./demos/basicCheck.tsx" >查看数据</code>
 <code src="./demos/basicMaxSize.tsx" >最大子节点示例</code>
+<code src="./demos/editCheck.tsx" >查看编辑示例</code>
 
 ## API
 
@@ -39,13 +40,14 @@ demo:
 
 ### IFilterValue
 
-| 参数      | 说明                       | 类型                | 默认值 |
-| --------- | -------------------------- | ------------------- | ------ |
-| key       | 唯一标识                   | `string`            | -      |
-| level     | 节点层级                   | `boolean`           | -      |
-| type      | 条件节点类型               | `1｜2`              | -      |
-| rowValues | 节点数据                   | `T`                 | -      |
-| children  | 子节点(存在条件节点时存在) | `IFilterValue<T>[]` | -      |
+| 参数      | 说明                       | 类型                 | 默认值 |
+| --------- | -------------------------- | -------------------- | ------ |
+| key       | 唯一标识                   | `string`             | -      |
+| level     | 节点层级                   | `number`             | -      |
+| type      | 条件节点类型               | `1｜2(1: 且, 2: 或)` |        |
+| disabled  | 当前编辑/查看状态          | `boolean`            |        |
+| rowValues | 节点数据                   | `T`                  | -      |
+| children  | 子节点(存在条件节点时存在) | `IFilterValue<T>[]`  | -      |
 
 ### IComponentProps
 
