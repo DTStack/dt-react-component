@@ -122,10 +122,9 @@ export const RulesController = <T,>(props: IProps<T>) => {
     const renderCondition = (
         item: IFilterValue<T>,
         namePath: InternalNamePath,
-        disabled: boolean,
-        parentDisabled: boolean
+        disabled: boolean
     ) => {
-        const composeDisabled = disabled || item.disabled || parentDisabled;
+        const composeDisabled = disabled || !!item.disabled;
 
         // 渲染条件节点和线条
         if (item?.children?.length) {
@@ -144,14 +143,13 @@ export const RulesController = <T,>(props: IProps<T>) => {
                 >
                     <div
                         className={classnames('condition__box', {
-                            disabled,
+                            disabled: composeDisabled,
                         })}
                         style={{ height: lineHeight, bottom: bottom ?? MARGIN }}
                     >
                         <span
                             className={classnames('condition__box--name', {
                                 disabled: composeDisabled,
-                                'disabled--bg': disabled,
                             })}
                             onClick={() =>
                                 !composeDisabled &&
@@ -169,7 +167,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
                         )}
                     </div>
                     {item.children.map((d: IFilterValue<T>, index: number) =>
-                        renderCondition(d, childrenPath(index), disabled, !!item.disabled)
+                        renderCondition(d, childrenPath(index), composeDisabled)
                     )}
                     {!composeDisabled && (
                         <div className="condition__add">
@@ -236,7 +234,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
 
     return (
         <div className="ruleController">
-            {renderCondition(value, [], !!disabled, !!value.disabled)}
+            {renderCondition(value, [], !!disabled || !!value.disabled)}
         </div>
     );
 };

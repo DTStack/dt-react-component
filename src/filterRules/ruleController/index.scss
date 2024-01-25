@@ -37,11 +37,9 @@
                     color: #1D78FF;
                     text-align: center;
                     line-height: 26px;
-                    z-index: 10;
+                    z-index: 1;
                     &.disabled {
                         cursor: not-allowed;
-                    }
-                    &.disabled--bg {
                         color: #3D446E;
                         background: #EBECF0;
                     }
