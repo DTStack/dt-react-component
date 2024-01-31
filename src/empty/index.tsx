@@ -1,5 +1,5 @@
-import React, { CSSProperties, ReactNode } from 'react';
-import { Empty as AntdEmpty, EmptyProps } from 'antd';
+import React, { ReactNode } from 'react';
+import { Empty as AntdEmpty, EmptyProps as AntdEmptyProps } from 'antd';
 
 import './style.scss';
 
@@ -12,23 +12,24 @@ export const IMG_MAP = {
     permission: 'empty_permission.png',
 };
 
-interface IProps {
+interface IProps extends AntdEmptyProps {
     type?: 'default' | 'search' | 'chart' | 'project' | 'overview' | 'permission';
-    height?: number;
-    image?: ReactNode;
-    imageStyle?: CSSProperties;
+    size?: 'default' | 'large';
 }
 
-const Empty = (props: EmptyProps & IProps) => {
-    const { type = 'default', height = 80, image, imageStyle, ...restProps } = props;
+const Empty = (props: IProps) => {
+    const { type = 'default', size = 'default', image, imageStyle, ...restProps } = props;
+
     let newImage: ReactNode = IMG_MAP[type] ? (
         <img src={require('./emptyImg/' + IMG_MAP[type])}></img>
     ) : null;
     if (image) newImage = image as ReactNode;
-    const newImageStyle = imageStyle ? { height, ...imageStyle } : { height };
+
+    const height = size === 'default' ? 80 : 100;
+
     return (
         <div className="dtc-empty">
-            <AntdEmpty {...restProps} image={newImage} imageStyle={newImageStyle} />
+            <AntdEmpty {...restProps} image={newImage} imageStyle={{ height, ...imageStyle }} />
         </div>
     );
 };

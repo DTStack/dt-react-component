@@ -10,9 +10,9 @@ describe('Empty', () => {
         expect(wrapper).toMatchSnapshot();
     });
     it('should support empty image default size', () => {
-        const { container } = render(<Empty />);
+        const { container } = render(<Empty size="large" />);
         expect(container.querySelector<HTMLDivElement>('.ant-empty-image')?.style.height).toBe(
-            '80px'
+            '100px'
         );
     });
     it('should support empty image size should change', () => {
@@ -23,7 +23,7 @@ describe('Empty', () => {
     });
 
     it('should support empty image size from iamgeStyle', () => {
-        const { container } = render(<Empty imageStyle={{ height: 40 }} height={100} />);
+        const { container } = render(<Empty imageStyle={{ height: 40 }} size="large" />);
         expect(container.querySelector<HTMLDivElement>('.ant-empty-image')?.style.height).toBe(
             '40px'
         );

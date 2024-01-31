@@ -87,7 +87,7 @@ export default () => {
 
 ```jsx
 /**
- * title: "更多配置"
+ * title: "控制图片大小"
  */
 import React from 'react';
 import { Empty } from 'dt-react-component';
@@ -96,11 +96,11 @@ import { Divider } from 'antd';
 export default () => {
     return (
         <>
-            <Empty description="使用 height 定义图片大小" height={60} />
+            <Empty description="使用 size: default, 默认大小为 80" />
+            <Empty size="large" description="使用 size: large, 默认大小为 100" />
             <Empty
-                height={60}
-                imageStyle={{ height: 120 }}
-                description="使用继承自antd的属性imageStyle"
+                imageStyle={{ height: 160 }}
+                description="使用 imageStyle, 设置其他高度以及属性"
             />
         </>
     );
@@ -109,12 +109,10 @@ export default () => {
 
 ## API
 
-| 参数       | 说明                                       | 类型                                                                        | 默认值    |
-| ---------- | ------------------------------------------ | --------------------------------------------------------------------------- | --------- |
-| type       | 默认展示图片的类型                         | `default` \| `project` \| `chart` \| `search` \| `permission` \| `overview` | `default` |
-| height     | 图片高度                                   | `number`                                                                    | 80        |
-| image      | 自定义图片(设置该参数时，默认的图片不生效) | `React.ReactNode`                                                           | -         |
-| imageStyle | 自定义图片样式                             | `React.CSSProperties`                                                       | -         |
+| 参数 | 说明               | 类型                                                                        | 默认值    |
+| ---- | ------------------ | --------------------------------------------------------------------------- | --------- |
+| type | 默认展示图片的类型 | `default` \| `project` \| `chart` \| `search` \| `permission` \| `overview` | `default` |
+| size | 图片大小           | `default` \| `large`                                                        | `default` |
 
 :::info
 其余属性[继承 antd4.x 的 Empty](https://ant.design/components/empty-cn/#API)
