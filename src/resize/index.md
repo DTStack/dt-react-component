@@ -1,12 +1,12 @@
 ---
-title: Resize Resize 事件监听
+title: Resize 事件监听
 group: 组件
 toc: content
 demo:
     cols: 2
 ---
 
-# Resize Resize 事件监听
+# Resize 事件监听
 
 用于监听 window 或者是其他元素的尺寸变化
 

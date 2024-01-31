@@ -19,7 +19,7 @@ export default () => {
                 click me
             </Button>
             <SlidePane
-                visible={visible}
+                open={visible}
                 rootStyle={{
                     minHeight: '600px',
                     height: '100%',

@@ -1,7 +1,7 @@
-import React, { CSSProperties, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import { Spin, Tabs } from 'antd';
 import classNames from 'classnames';
-import RcDrawer from 'rc-drawer';
+import RcDrawer, { DrawerProps } from 'rc-drawer';
 
 import motionProps from './motion';
 import './style.scss';
@@ -15,35 +15,21 @@ type readOnlyTab = readonly Tab[];
 
 type TabKey<T extends readOnlyTab> = T[number]['key'];
 
-type TabsSlidePane<T extends readOnlyTab> = {
-    visible: boolean;
+interface NormalSlidePane extends Omit<DrawerProps, 'placement'> {
+    /** @deprecated */
+    visible?: boolean;
     loading?: boolean;
-    rootClassName?: string;
     bodyClassName?: string;
-    width?: number | string;
     title?: React.ReactNode;
-    mask?: boolean;
-    rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
+    footer?: React.ReactNode;
+}
+
+interface TabsSlidePane<T extends readOnlyTab> extends Omit<NormalSlidePane, 'children'> {
     tabs?: T;
     activeKey?: TabKey<T>;
     children?: (key: TabKey<T>) => React.ReactNode;
-    onClose?: (e: MouseEvent | KeyboardEvent) => void;
-};
-
-type NormalSlidePane = {
-    visible: boolean;
-    loading?: boolean;
-    rootClassName?: string;
-    bodyClassName?: string;
-    width?: number | string;
-    title?: React.ReactNode;
-    mask?: boolean;
-    rootStyle?: CSSProperties;
-    bodyStyle?: CSSProperties;
-    children?: React.ReactNode;
-    onClose?: (e: MouseEvent | KeyboardEvent) => void;
-};
+}
 
 function isFunction(props: any): props is TabsSlidePane<Tab[]> {
     return typeof props.children === 'function';
@@ -56,23 +42,27 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
 
     const {
         visible,
+        open,
         loading = false,
-        rootClassName,
         bodyClassName,
         mask = false,
-        rootStyle,
         bodyStyle,
         title,
-        width,
         children,
+        footer,
         onClose,
+        ...rest
     } = props;
+
+    const composeOpen = open || visible;
 
     const [tabKey, setTabKey] = useState('');
 
     useEffect(() => {
-        visible && isFunction(props) && setTabKey(props.activeKey || props.tabs?.[0]?.key || '');
-    }, [visible]);
+        composeOpen &&
+            isFunction(props) &&
+            setTabKey(props.activeKey || props.tabs?.[0]?.key || '');
+    }, [open, visible]);
 
     const renderButton = () => {
         return (
@@ -87,14 +77,12 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
 
     return (
         <RcDrawer
-            open={visible}
+            open={composeOpen}
             placement="right"
-            prefixCls={slidePrefixCls}
             mask={mask}
+            prefixCls={slidePrefixCls}
             onClose={onClose}
-            rootStyle={rootStyle}
-            width={width}
-            rootClassName={rootClassName}
+            {...rest}
             {...motionProps}
         >
             <Spin wrapperClassName={`${slidePrefixCls}-nested-loading`} spinning={loading}>
@@ -118,6 +106,11 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
                 >
                     {typeof children === 'function' ? children(tabKey) : children}
                 </div>
+                {footer ? (
+                    <div className={classNames(`${slidePrefixCls}-footer`, bodyClassName)}>
+                        {footer}
+                    </div>
+                ) : null}
             </Spin>
         </RcDrawer>
     );
