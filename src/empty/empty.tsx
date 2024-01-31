@@ -12,12 +12,12 @@ export const IMG_MAP = {
     permission: 'empty_permission.png',
 };
 
-interface IProps extends AntdEmptyProps {
+export interface EmptyProps extends AntdEmptyProps {
     type?: 'default' | 'search' | 'chart' | 'project' | 'overview' | 'permission';
     size?: 'default' | 'large';
 }
 
-const Empty = (props: IProps) => {
+const Empty = (props: EmptyProps) => {
     const { type = 'default', size = 'default', image, imageStyle, ...restProps } = props;
 
     let newImage: ReactNode = IMG_MAP[type] ? (
