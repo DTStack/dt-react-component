@@ -80,7 +80,7 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
         composeOpen &&
             isFunction(props) &&
             setTabKey(props.activeKey || props.tabs?.[0]?.key || '');
-    }, [open, visible]);
+    }, [composeOpen]);
 
     const renderButton = () => {
         return (
