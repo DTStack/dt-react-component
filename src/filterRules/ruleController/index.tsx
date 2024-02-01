@@ -48,13 +48,14 @@ export const RulesController = <T,>(props: IProps<T>) => {
 
     // 计算每个节点的高度(height)/线条高度(lineHeight)/距离底部高度(bottom)
     const calculateTreeItemHeight = (item: IFilterValue<T>, disabled: boolean) => {
+        const composeDisabled = disabled || !!item.disabled;
         if (!item?.children)
             return weakMap.set(item, { height: ITEM_HEIGHT + MARGIN, lineHeight: ITEM_HEIGHT });
-        item.children.map((child) => calculateTreeItemHeight(child, disabled));
+        item.children.map((child) => calculateTreeItemHeight(child, composeDisabled));
         const isLastCondition = !item.children.some(isCondition);
         const firstNodeIsCondition = isCondition(item.children[0]);
         // 编辑模式下计算
-        if (!disabled) {
+        if (!composeDisabled) {
             const height = item.children.reduce(
                 (prev, curr) => prev + weakMap.get(curr).height,
                 ITEM_HEIGHT
@@ -123,6 +124,8 @@ export const RulesController = <T,>(props: IProps<T>) => {
         namePath: InternalNamePath,
         disabled: boolean
     ) => {
+        const composeDisabled = disabled || !!item.disabled;
+
         // 渲染条件节点和线条
         if (item?.children?.length) {
             const childrenPath = (index: number) => {
@@ -140,15 +143,16 @@ export const RulesController = <T,>(props: IProps<T>) => {
                 >
                     <div
                         className={classnames('condition__box', {
-                            disabled,
+                            disabled: composeDisabled,
                         })}
                         style={{ height: lineHeight, bottom: bottom ?? MARGIN }}
                     >
                         <span
                             className={classnames('condition__box--name', {
-                                disabled,
+                                disabled: composeDisabled,
                             })}
                             onClick={() =>
+                                !composeDisabled &&
                                 onChangeCondition(item.key, item?.type as ROW_PERMISSION_RELATION)
                             }
                         >
@@ -163,9 +167,9 @@ export const RulesController = <T,>(props: IProps<T>) => {
                         )}
                     </div>
                     {item.children.map((d: IFilterValue<T>, index: number) =>
-                        renderCondition(d, childrenPath(index), disabled)
+                        renderCondition(d, childrenPath(index), composeDisabled)
                     )}
-                    {!disabled && (
+                    {!composeDisabled && (
                         <div className="condition__add">
                             <span className="condition__add--line" />
                             <PlusCircleOutlined
@@ -200,20 +204,18 @@ export const RulesController = <T,>(props: IProps<T>) => {
                 <div className="ruleController__item--component">
                     {component({
                         rowKey: item.key,
-                        disabled,
+                        disabled: composeDisabled,
                         name: [...namePath, 'rowValues'],
                         rowValues: item.rowValues as T,
                         onChange: onChangeRowValues,
                     })}
                 </div>
-                {!disabled && (
+                {!composeDisabled && (
                     <div className="ruleController__item--operation">
                         {item.level === maxLevel ? null : (
                             <PlusCircleOutlined
                                 className="icon"
-                                onClick={() => {
-                                    onAddCondition({ key: item.key });
-                                }}
+                                onClick={() => onAddCondition({ key: item.key })}
                             />
                         )}
                         <MinusCircleOutlined
@@ -225,7 +227,14 @@ export const RulesController = <T,>(props: IProps<T>) => {
             </div>
         );
     };
+
     if (!value) return null;
+
     calculateTreeItemHeight(value, !!disabled);
-    return <div className="ruleController">{renderCondition(value, [], !!disabled)}</div>;
+
+    return (
+        <div className="ruleController">
+            {renderCondition(value, [], !!disabled || !!value.disabled)}
+        </div>
+    );
 };

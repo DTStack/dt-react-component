@@ -37,7 +37,7 @@
                     color: #1D78FF;
                     text-align: center;
                     line-height: 26px;
-                    z-index: 10;
+                    z-index: 1;
                     &.disabled {
                         cursor: not-allowed;
                         color: #3D446E;
@@ -90,6 +90,7 @@
             width: 10%;
             margin-left: 12px;
             margin-top: 7px;
+            min-width: 55px;
             .icon {
                 cursor: pointer;
                 color: #1D78FF;
