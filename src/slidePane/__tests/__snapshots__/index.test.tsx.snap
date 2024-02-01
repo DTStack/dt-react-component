@@ -18,7 +18,7 @@ exports[`test SlidePane  snapshot match 1`] = `
         />
         <div
           class="dtc-slide-pane-content-wrapper"
-          style="width: 378px;"
+          style="width: 1000px;"
         >
           <div
             aria-modal="true"

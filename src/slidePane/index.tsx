@@ -1,6 +1,7 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import { Spin, Tabs } from 'antd';
+import { Alert, AlertProps, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
+import { omit } from 'lodash';
 import RcDrawer, { DrawerProps } from 'rc-drawer';
 
 import motionProps from './motion';
@@ -18,11 +19,13 @@ type TabKey<T extends readOnlyTab> = T[number]['key'];
 interface NormalSlidePane extends Omit<DrawerProps, 'placement'> {
     /** @deprecated */
     visible?: boolean;
+    size?: 'small' | 'default' | 'large';
     loading?: boolean;
     bodyClassName?: string;
     title?: React.ReactNode;
     bodyStyle?: CSSProperties;
     footer?: React.ReactNode;
+    banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
 }
 
 interface TabsSlidePane<T extends readOnlyTab> extends Omit<NormalSlidePane, 'children'> {
@@ -37,6 +40,17 @@ function isFunction(props: any): props is TabsSlidePane<Tab[]> {
 
 export type SlidePaneProps<T extends readOnlyTab> = TabsSlidePane<T> | NormalSlidePane;
 
+const getWidthFromSize = (size: NormalSlidePane['size']) => {
+    if (size === 'small') return 720;
+    if (size === 'large') return 1256;
+    return 1000;
+};
+
+const isValidBanner = (banner: NormalSlidePane['banner']): banner is AlertProps['message'] => {
+    if (typeof banner === 'object') return React.isValidElement(banner);
+    return true;
+};
+
 const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
     const slidePrefixCls = 'dtc-slide-pane';
 
@@ -48,13 +62,17 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
         mask = false,
         bodyStyle,
         title,
+        width,
+        size = 'default',
         children,
         footer,
+        banner,
         onClose,
         ...rest
     } = props;
 
     const composeOpen = open || visible;
+    const finalWidth = width ?? getWidthFromSize(size);
 
     const [tabKey, setTabKey] = useState('');
 
@@ -80,6 +98,7 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
             open={composeOpen}
             placement="right"
             mask={mask}
+            width={finalWidth}
             prefixCls={slidePrefixCls}
             onClose={onClose}
             {...rest}
@@ -88,6 +107,13 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
             <Spin wrapperClassName={`${slidePrefixCls}-nested-loading`} spinning={loading}>
                 {!mask && renderButton()}
                 {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
+                {banner && (
+                    <Alert
+                        message={isValidBanner(banner) ? banner : banner.message}
+                        banner
+                        {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
+                    />
+                )}
                 {isFunction(props) && (
                     <Tabs
                         destroyInactiveTabPane
