@@ -13,7 +13,12 @@ describe('Test useModal hook', () => {
     });
 
     it('Should support open/close modal', async () => {
-        const record = { id: 1, data: [] };
+        const record = {
+            id: '1',
+            name: 'John Brown',
+            age: 32,
+            address: 'New York No. 1 Lake Park',
+        };
         const { result } = renderHook(() => useModal());
         act(() => {
             result.current.open(record);

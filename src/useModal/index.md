@@ -1,5 +1,5 @@
 ---
-title: useModal 请求表格数据
+title: useModal 保存当前数据并打开弹框
 group: Hooks
 toc: content
 ---
@@ -8,7 +8,7 @@ toc: content
 
 ## 何时使用
 
-控制弹出框、slidePane 等等
+保存当前数据并打开弹框
 
 ## 示例
 
