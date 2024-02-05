@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import Empty, { IMG_MAP } from '../empty';
+import Empty, { IMG_MAP } from '..';
 
 describe('Empty', () => {
     test('should support empty success render', () => {
@@ -44,5 +44,30 @@ describe('Empty', () => {
         const { container } = render(<Empty type="project" />);
         const srcValue = container.querySelector('img')!.getAttribute('src');
         expect(srcValue).toEqual(IMG_MAP['project']);
+    });
+
+    it('should show correct content', () => {
+        const { container } = render(
+            <Empty type="project" show>
+                show data
+            </Empty>
+        );
+        const value = container.querySelector('.dtc-empty')?.innerHTML;
+        expect(value).toEqual('show data');
+    });
+
+    it('should not show content', () => {
+        const { container } = render(
+            <Empty type="project" show={false}>
+                show data
+            </Empty>
+        );
+        expect(container.querySelector('.dtc-empty')?.children[0].classList).toContain('ant-empty');
+    });
+
+    it('should show correct antd empty children', () => {
+        const { container } = render(<Empty type="project" render={() => 'antd empty children'} />);
+        expect(container.querySelector('.ant-empty-footer')).not.toBeNull();
+        expect(container.querySelector('.ant-empty-footer')?.innerHTML).toBe('antd empty children');
     });
 });
