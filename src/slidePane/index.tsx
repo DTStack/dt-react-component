@@ -133,9 +133,7 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
                     {typeof children === 'function' ? children(tabKey) : children}
                 </div>
                 {footer ? (
-                    <div className={classNames(`${slidePrefixCls}-footer`, bodyClassName)}>
-                        {footer}
-                    </div>
+                    <div className={classNames(`${slidePrefixCls}-footer`)}>{footer}</div>
                 ) : null}
             </Spin>
         </RcDrawer>
