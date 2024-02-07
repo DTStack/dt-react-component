@@ -1,7 +1,8 @@
-import React, { CSSProperties, KeyboardEvent, MouseEvent, useEffect, useState } from 'react';
-import { Spin, Tabs } from 'antd';
+import React, { CSSProperties, useEffect, useState } from 'react';
+import { Alert, AlertProps, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
-import RcDrawer from 'rc-drawer';
+import { omit } from 'lodash';
+import RcDrawer, { DrawerProps } from 'rc-drawer';
 
 import motionProps from './motion';
 import './style.scss';
@@ -15,35 +16,23 @@ type readOnlyTab = readonly Tab[];
 
 type TabKey<T extends readOnlyTab> = T[number]['key'];
 
-type TabsSlidePane<T extends readOnlyTab> = {
-    visible: boolean;
+interface NormalSlidePane extends Omit<DrawerProps, 'placement'> {
+    /** @deprecated */
+    visible?: boolean;
+    size?: 'small' | 'default' | 'large';
     loading?: boolean;
-    rootClassName?: string;
     bodyClassName?: string;
-    width?: number | string;
     title?: React.ReactNode;
-    mask?: boolean;
-    rootStyle?: CSSProperties;
     bodyStyle?: CSSProperties;
+    footer?: React.ReactNode;
+    banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
+}
+
+interface TabsSlidePane<T extends readOnlyTab> extends Omit<NormalSlidePane, 'children'> {
     tabs?: T;
     activeKey?: TabKey<T>;
     children?: (key: TabKey<T>) => React.ReactNode;
-    onClose?: (e: MouseEvent | KeyboardEvent) => void;
-};
-
-type NormalSlidePane = {
-    visible: boolean;
-    loading?: boolean;
-    rootClassName?: string;
-    bodyClassName?: string;
-    width?: number | string;
-    title?: React.ReactNode;
-    mask?: boolean;
-    rootStyle?: CSSProperties;
-    bodyStyle?: CSSProperties;
-    children?: React.ReactNode;
-    onClose?: (e: MouseEvent | KeyboardEvent) => void;
-};
+}
 
 function isFunction(props: any): props is TabsSlidePane<Tab[]> {
     return typeof props.children === 'function';
@@ -51,28 +40,47 @@ function isFunction(props: any): props is TabsSlidePane<Tab[]> {
 
 export type SlidePaneProps<T extends readOnlyTab> = TabsSlidePane<T> | NormalSlidePane;
 
+const getWidthFromSize = (size: NormalSlidePane['size']) => {
+    if (size === 'small') return 720;
+    if (size === 'large') return 1256;
+    return 1000;
+};
+
+const isValidBanner = (banner: NormalSlidePane['banner']): banner is AlertProps['message'] => {
+    if (typeof banner === 'object') return React.isValidElement(banner);
+    return true;
+};
+
 const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
     const slidePrefixCls = 'dtc-slide-pane';
 
     const {
         visible,
+        open,
         loading = false,
-        rootClassName,
         bodyClassName,
         mask = false,
-        rootStyle,
         bodyStyle,
         title,
         width,
+        size = 'default',
         children,
+        footer,
+        banner,
         onClose,
+        ...rest
     } = props;
+
+    const composeOpen = open || visible;
+    const finalWidth = width ?? getWidthFromSize(size);
 
     const [tabKey, setTabKey] = useState('');
 
     useEffect(() => {
-        visible && isFunction(props) && setTabKey(props.activeKey || props.tabs?.[0]?.key || '');
-    }, [visible]);
+        composeOpen &&
+            isFunction(props) &&
+            setTabKey(props.activeKey || props.tabs?.[0]?.key || '');
+    }, [composeOpen]);
 
     const renderButton = () => {
         return (
@@ -87,19 +95,25 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
 
     return (
         <RcDrawer
-            open={visible}
+            open={composeOpen}
             placement="right"
-            prefixCls={slidePrefixCls}
             mask={mask}
+            width={finalWidth}
+            prefixCls={slidePrefixCls}
             onClose={onClose}
-            rootStyle={rootStyle}
-            width={width}
-            rootClassName={rootClassName}
+            {...rest}
             {...motionProps}
         >
             <Spin wrapperClassName={`${slidePrefixCls}-nested-loading`} spinning={loading}>
                 {!mask && renderButton()}
                 {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
+                {banner && (
+                    <Alert
+                        message={isValidBanner(banner) ? banner : banner.message}
+                        banner
+                        {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
+                    />
+                )}
                 {isFunction(props) && (
                     <Tabs
                         destroyInactiveTabPane
@@ -118,6 +132,9 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
                 >
                     {typeof children === 'function' ? children(tabKey) : children}
                 </div>
+                {footer ? (
+                    <div className={classNames(`${slidePrefixCls}-footer`)}>{footer}</div>
+                ) : null}
             </Spin>
         </RcDrawer>
     );

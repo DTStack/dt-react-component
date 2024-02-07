@@ -9,7 +9,7 @@ export default () => {
         <>
             <Button onClick={() => setVisible(true)}>打开</Button>
             <SlidePane
-                visible={visible}
+                open={visible}
                 onClose={() => setVisible(false)}
                 title={'Title'}
                 tabs={
