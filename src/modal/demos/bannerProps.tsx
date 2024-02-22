@@ -8,7 +8,7 @@ export default function BannerProps() {
     return (
         <>
             <Modal
-                title="dt-react-component"
+                title="支持传 banner 的 Props 属性"
                 visible={visible}
                 banner={{
                     message: '模态框可以支持 banner 属性',
