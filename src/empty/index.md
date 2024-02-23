@@ -117,16 +117,16 @@ import { Space, Switch } from 'antd';
 import { Empty } from 'dt-react-component';
 
 export default () => {
-    const [show, setShow] = useState(false);
+    const [isEmpty, setIsEmpty] = useState(false);
 
     return (
         <Space direction="vertical" style={{ width: '100%' }} size={16}>
             <Switch
-                onChange={(checked) => setShow(checked)}
+                onChange={(checked) => setIsEmpty(checked)}
                 checkedChildren="展示占位符"
                 unCheckedChildren="展示内容"
             />
-            <Empty show={show}>More Data</Empty>
+            <Empty isEmpty={isEmpty}>More Data</Empty>
         </Space>
     );
 };
@@ -141,16 +141,16 @@ import { Button, Space, Switch } from 'antd';
 import { Empty } from 'dt-react-component';
 
 export default () => {
-    const [show, setShow] = useState(false);
+    const [isEmpty, setIsEmpty] = useState(false);
 
     return (
         <Space direction="vertical" style={{ width: '100%' }} size={16}>
             <Switch
-                onChange={(checked) => setShow(checked)}
+                onChange={(checked) => setIsEmpty(checked)}
                 checkedChildren="展示占位符"
                 unCheckedChildren="展示内容"
             />
-            <Empty show={show} render={() => <Button>添加</Button>}>
+            <Empty isEmpty={isEmpty} extra={() => <Button>添加</Button>}>
                 More Data
             </Empty>
         </Space>

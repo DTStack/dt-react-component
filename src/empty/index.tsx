@@ -15,19 +15,19 @@ export const IMG_MAP = {
 export interface EmptyProps extends AntdEmptyProps {
     type?: 'default' | 'search' | 'chart' | 'project' | 'overview' | 'permission';
     size?: 'default' | 'large';
-    show?: boolean;
-    render?: () => ReactNode;
+    isEmpty?: boolean;
+    extra?: () => ReactNode;
 }
 
 const Empty = (props: EmptyProps) => {
     const {
         type = 'default',
         size = 'default',
-        show,
+        isEmpty = true,
         children,
         image,
         imageStyle,
-        render,
+        extra,
         ...restProps
     } = props;
 
@@ -38,16 +38,14 @@ const Empty = (props: EmptyProps) => {
 
     const height = size === 'default' ? 80 : 100;
 
-    return (
+    return isEmpty ? (
         <div className="dtc-empty">
-            {show ? (
-                children
-            ) : (
-                <AntdEmpty {...restProps} image={newImage} imageStyle={{ height, ...imageStyle }}>
-                    {render?.()}
-                </AntdEmpty>
-            )}
+            <AntdEmpty {...restProps} image={newImage} imageStyle={{ height, ...imageStyle }}>
+                {extra?.()}
+            </AntdEmpty>
         </div>
+    ) : (
+        <>{children}</>
     );
 };
 

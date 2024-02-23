@@ -46,27 +46,27 @@ describe('Empty', () => {
         expect(srcValue).toEqual(IMG_MAP['project']);
     });
 
-    it('should show correct content', () => {
+    it('should show correct content when not empty', () => {
         const { container } = render(
-            <Empty type="project" show>
-                show data
+            <Empty type="project" isEmpty={false}>
+                <div className="data">show data</div>
             </Empty>
         );
-        const value = container.querySelector('.dtc-empty')?.innerHTML;
-        expect(value).toEqual('show data');
+        expect(container.querySelector('.data')).not.toBeNull();
+        expect(container.querySelector('.data')?.innerHTML).toEqual('show data');
     });
 
-    it('should not show content', () => {
+    it('should not show content when empty', () => {
         const { container } = render(
-            <Empty type="project" show={false}>
-                show data
+            <Empty type="project">
+                <div className="data">show data</div>
             </Empty>
         );
         expect(container.querySelector('.dtc-empty')?.children[0].classList).toContain('ant-empty');
     });
 
     it('should show correct antd empty children', () => {
-        const { container } = render(<Empty type="project" render={() => 'antd empty children'} />);
+        const { container } = render(<Empty type="project" extra={() => 'antd empty children'} />);
         expect(container.querySelector('.ant-empty-footer')).not.toBeNull();
         expect(container.querySelector('.ant-empty-footer')?.innerHTML).toBe('antd empty children');
     });
