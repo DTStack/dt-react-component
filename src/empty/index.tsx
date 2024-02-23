@@ -16,7 +16,7 @@ export interface EmptyProps extends AntdEmptyProps {
     type?: 'default' | 'search' | 'chart' | 'project' | 'overview' | 'permission';
     size?: 'default' | 'large';
     isEmpty?: boolean;
-    extra?: () => ReactNode;
+    extra?: ReactNode;
 }
 
 const Empty = (props: EmptyProps) => {
@@ -41,7 +41,7 @@ const Empty = (props: EmptyProps) => {
     return isEmpty ? (
         <div className="dtc-empty">
             <AntdEmpty {...restProps} image={newImage} imageStyle={{ height, ...imageStyle }}>
-                {extra?.()}
+                {extra}
             </AntdEmpty>
         </div>
     ) : (

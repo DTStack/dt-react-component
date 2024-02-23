@@ -150,7 +150,7 @@ export default () => {
                 checkedChildren="展示占位符"
                 unCheckedChildren="展示内容"
             />
-            <Empty isEmpty={isEmpty} extra={() => <Button>添加</Button>}>
+            <Empty isEmpty={isEmpty} extra={<Button>添加</Button>}>
                 More Data
             </Empty>
         </Space>
@@ -164,9 +164,9 @@ export default () => {
 | -------- | --------------------------- | --------------------------------------------------------------------------- | --------- |
 | type     | 默认展示图片的类型          | `default` \| `project` \| `chart` \| `search` \| `permission` \| `overview` | `default` |
 | size     | 图片大小                    | `default` \| `large`                                                        | `default` |
-| show     | 是否展示内容                | `boolean`                                                                   | `true`    |
+| isEmpty  | 是否展示 Empty 组件         | `boolean`                                                                   | `true`    |
 | children | 展示内容                    | `React.ReactNode`                                                           | -         |
-| render   | 替换 antd Empty 的 children | `() => React.ReactNode`                                                     | -         |
+| extra    | 替换 antd Empty 的 children | ` React.ReactNode`                                                          | -         |
 
 :::info
 其余属性[继承 antd4.x 的 Empty](https://ant.design/components/empty-cn/#API)

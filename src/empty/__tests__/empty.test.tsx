@@ -66,7 +66,7 @@ describe('Empty', () => {
     });
 
     it('should show correct antd empty children', () => {
-        const { container } = render(<Empty type="project" extra={() => 'antd empty children'} />);
+        const { container } = render(<Empty type="project" extra={'antd empty children'} />);
         expect(container.querySelector('.ant-empty-footer')).not.toBeNull();
         expect(container.querySelector('.ant-empty-footer')?.innerHTML).toBe('antd empty children');
     });
