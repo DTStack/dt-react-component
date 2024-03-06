@@ -61,7 +61,7 @@ describe('test BlockHeader render', () => {
     test('should render BlockHeader test click event', () => {
         const onChange = jest.fn();
         const { getByText } = render(
-            <BlockHeader onChange={onChange} title="测试">
+            <BlockHeader onExpand={onChange} title="测试">
                 <div>1111</div>
             </BlockHeader>
         );

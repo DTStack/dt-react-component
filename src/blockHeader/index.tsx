@@ -7,16 +7,20 @@ import './style.scss';
 
 export declare type SizeType = 'small' | 'middle' | undefined;
 
+function isControlled(props: IBlockHeaderProps) {
+    return props.expand !== undefined;
+}
+
 export interface IBlockHeaderProps {
-    // 标题
+    /** 标题 */
     title: string;
-    // 标题前的图标，默认是一个色块
+    /** 标题前的图标，默认是一个色块 */
     beforeTitle?: ReactNode;
-    // 标题后的提示图标或文案
+    /** 标题后的提示图标或文案 */
     afterTitle?: ReactNode;
-    // 默认展示为问号的tooltip
+    /** 默认展示为问号的tooltip */
     tooltip?: ReactNode;
-    // 后缀自定义内容块
+    /** 后缀自定义内容块 */
     addonAfter?: ReactNode;
     /**
      * 小标题 font-size: 12px; line-height: 32px
@@ -24,19 +28,24 @@ export interface IBlockHeaderProps {
      * 默认 中标题
      */
     size?: SizeType;
+    /** 是否展示 Bottom，默认 false，Bottom 值 16px */
     hasBottom?: boolean;
+    /** 自定义 Bottom 值 */
     spaceBottom?: number;
-    // 标题一行的样式类名
+    /** 标题一行的样式类名 */
     titleRowClassName?: string;
-    // 标题的样式类名
+    /** 标题的样式类名 */
     titleClassName?: string;
-    // 是否显示背景, 默认 true
+    /** 是否显示背景, 默认 true */
     showBackground?: boolean;
-    // 是否默认展开内容, 默认 true
+    /** 当前展开状态 */
+    expand?: boolean;
+    /** 是否默认展开内容, 默认 true */
     defaultExpand?: boolean;
-    // 展开/收起时的回调
-    onChange?: (expand: boolean) => void;
+    /** 展开/收起的内容 */
     children?: ReactNode;
+    /** 展开/收起时的回调 */
+    onExpand?: (expand: boolean) => void;
 }
 const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const prefixCls = 'dtc-block-header';
@@ -52,12 +61,15 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
         showBackground = true,
         defaultExpand = true,
         addonAfter,
+        expand,
         children = '',
         beforeTitle = <div className={`${prefixCls}__beforeTitle-${size}`}></div>,
-        onChange,
+        onExpand,
     } = props;
 
-    const [expand, setExpand] = useState(defaultExpand);
+    const [internalExpand, setInternalExpand] = useState(defaultExpand);
+
+    const currentExpand = isControlled(props) ? expand : internalExpand;
 
     const preTitleRowCls = `${prefixCls}-title-row`;
 
@@ -73,8 +85,8 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const handleExpand = (expand: boolean) => {
         if (!children) return;
-        setExpand(expand);
-        onChange?.(expand);
+        !isControlled(props) && setInternalExpand(expand);
+        onExpand?.(expand);
     };
 
     return (
@@ -89,7 +101,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                         [`${preTitleRowCls}-pointer`]: children,
                     }
                 )}
-                onClick={() => handleExpand(!expand)}
+                onClick={() => handleExpand(!currentExpand)}
             >
                 <div className={`${prefixCls}-title-box`}>
                     {beforeTitle ? (
@@ -103,13 +115,13 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                 {addonAfter && <div className={`${prefixCls}-addonAfter-box`}>{addonAfter}</div>}
                 {children && (
                     <div className={`${prefixCls}-collapse-box`}>
-                        <div className="text">{expand ? '收起' : '展开'}</div>
-                        <UpOutlined className={`icon ${expand ? 'up' : 'down'}`} />
+                        <div className="text">{currentExpand ? '收起' : '展开'}</div>
+                        <UpOutlined className={`icon ${currentExpand ? 'up' : 'down'}`} />
                     </div>
                 )}
             </div>
 
-            <div className={`${prefixCls}-content ${expand ? '' : 'hide'}`}>{children}</div>
+            <div className={`${prefixCls}-content ${currentExpand ? '' : 'hide'}`}>{children}</div>
         </div>
     );
 };
