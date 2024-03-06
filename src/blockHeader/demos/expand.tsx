@@ -9,6 +9,7 @@ export default () => {
             <BlockHeader
                 title="非受控标题"
                 defaultExpand={false}
+                hasBottom
                 onExpand={(expand) => console.log(expand)}
             >
                 Hello World!
