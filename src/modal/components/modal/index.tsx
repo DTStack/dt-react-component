@@ -5,14 +5,15 @@ import { omit } from 'lodash';
 import './index.scss';
 
 export interface IModalProps extends ModalProps {
-    size?: 'small' | 'default' | 'large';
+    size?: 'small' | 'default' | 'middle' | 'large';
     banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
 }
 
 const getWidthFromSize = (size: IModalProps['size']) => {
     if (size === 'small') return 400;
+    if (size === 'middle') return 640;
     if (size === 'large') return 900;
-    return 640;
+    return 520;
 };
 
 const isValidBanner = (banner: IModalProps['banner']): banner is AlertProps['message'] => {
