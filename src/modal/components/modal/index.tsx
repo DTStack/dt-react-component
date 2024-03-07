@@ -1,5 +1,6 @@
 import React from 'react';
 import { Alert, type AlertProps, Modal, type ModalProps } from 'antd';
+import classNames from 'classnames';
 import { omit } from 'lodash';
 
 import './index.scss';
@@ -27,13 +28,14 @@ export default function InternalModal({
     size = 'default',
     children,
     width,
+    className,
     ...rest
 }: IModalProps) {
     const finalWidth = width ?? getWidthFromSize(size);
 
     return (
         <Modal
-            className="dt-modal"
+            className={classNames('dt-modal', className)}
             bodyStyle={{ padding: 0, ...bodyStyle }}
             width={finalWidth}
             {...rest}
