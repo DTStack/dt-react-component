@@ -30,5 +30,6 @@ export { default as StatusTag } from './statusTag';
 export { default as useWindowSwitchListener } from './switchWindow';
 export { default as Table } from './table';
 export { default as TinyTag } from './tinyTag';
+export { default as useDebounce } from './useDebounce';
 export { default as useIntersectionObserver } from './useIntersectionObserver';
 export { default as useList } from './useList';
