@@ -26,7 +26,16 @@ export default function Size() {
                         setSize('default');
                     }}
                 >
-                    正常尺寸
+                    默认尺寸
+                </Button>
+                <Button
+                    type="primary"
+                    onClick={() => {
+                        setVisible(true);
+                        setSize('middle');
+                    }}
+                >
+                    中等尺寸
                 </Button>
                 <Button
                     type="primary"

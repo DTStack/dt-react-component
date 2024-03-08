@@ -26,7 +26,7 @@ describe('Test Modal Component', () => {
                 test
             </Modal>
         );
-        expect(modal.query(container)?.style.width).toBe('640px');
+        expect(modal.query(container)?.style.width).toBe('520px');
 
         // small size
         rerender(
@@ -35,6 +35,14 @@ describe('Test Modal Component', () => {
             </Modal>
         );
         expect(modal.query(container)?.style.width).toBe('400px');
+
+        // middle size
+        rerender(
+            <Modal visible title="title" getContainer={false} size="middle">
+                test
+            </Modal>
+        );
+        expect(modal.query(container)?.style.width).toBe('640px');
 
         // large size
         rerender(

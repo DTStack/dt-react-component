@@ -1,18 +1,20 @@
 import React from 'react';
 import { Alert, type AlertProps, Modal, type ModalProps } from 'antd';
+import classNames from 'classnames';
 import { omit } from 'lodash';
 
 import './index.scss';
 
 export interface IModalProps extends ModalProps {
-    size?: 'small' | 'default' | 'large';
+    size?: 'small' | 'default' | 'middle' | 'large';
     banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
 }
 
 const getWidthFromSize = (size: IModalProps['size']) => {
     if (size === 'small') return 400;
+    if (size === 'middle') return 640;
     if (size === 'large') return 900;
-    return 640;
+    return 520;
 };
 
 const isValidBanner = (banner: IModalProps['banner']): banner is AlertProps['message'] => {
@@ -26,13 +28,14 @@ export default function InternalModal({
     size = 'default',
     children,
     width,
+    className,
     ...rest
 }: IModalProps) {
     const finalWidth = width ?? getWidthFromSize(size);
 
     return (
         <Modal
-            className="dt-modal"
+            className={classNames('dt-modal', className)}
             bodyStyle={{ padding: 0, ...bodyStyle }}
             width={finalWidth}
             {...rest}
