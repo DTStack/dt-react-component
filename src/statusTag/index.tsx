@@ -20,7 +20,7 @@ const calculateTransparentColor = (color: string) => {
 const PresetColorTypes = ['warning', 'error', 'success', 'run', 'stopped', 'frozen'] as const;
 const StatusTagTypes = ['default', 'outline', 'fill'] as const;
 
-export type PresetColorType = (typeof PresetColorTypes)[number] | string;
+export type PresetColorType = (typeof PresetColorTypes)[number] | (string & {});
 
 export type StatusTagType = (typeof StatusTagTypes)[number];
 
