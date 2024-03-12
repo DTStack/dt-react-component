@@ -1,7 +1,7 @@
 import React from 'react';
 
 import showdown from 'showdown';
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
 import sql from 'highlight.js/lib/languages/sql';
 import classNames from 'classnames';
 
