@@ -22,8 +22,10 @@ export const TableLayout = ({ height, ...otherProps }: ITableProps<any>) => {
     if (otherProps.footer) {
         lineHeight = lineHeight * 2;
     }
-    const scroll: TableProps<any>['scroll'] = otherProps?.scroll ? { ...otherProps.scroll } : {};
-    scroll.y = `calc(${height} - ${lineHeight}px)`;
+
+    const scroll: TableProps<any>['scroll'] = otherProps?.scroll
+        ? { ...otherProps.scroll }
+        : { y: `calc(${height} - ${lineHeight}px)` };
 
     return <Table {...otherProps} scroll={scroll} />;
 };
