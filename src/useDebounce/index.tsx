@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import type { DebounceSettings } from 'lodash';
 import { debounce } from 'lodash';
 
@@ -7,11 +7,17 @@ const useDebounce = <T extends (...args: any) => any>(
     wait = 500,
     options?: DebounceSettings
 ) => {
-    const debouncedFuncRef = useRef(debounce(func, wait, options));
-    const debounceFnnc = debouncedFuncRef.current;
-    useEffect(() => () => debounceFnnc.cancel(), []);
+    const funcRef = useRef(func);
+    funcRef.current = func;
 
-    return debounceFnnc;
+    const debouncedFunc = useCallback(
+        debounce((...args) => funcRef.current(...args), wait, options),
+        []
+    );
+
+    useEffect(() => () => debouncedFunc.cancel(), []);
+
+    return debouncedFunc;
 };
 
 export default useDebounce;
