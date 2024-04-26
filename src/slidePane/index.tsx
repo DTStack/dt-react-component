@@ -41,7 +41,7 @@ function isFunction(props: any): props is TabsSlidePane<Tab[]> {
 }
 
 function isTabMode(props: any): props is TabsSlidePane<Tab[]> {
-    return props.tabs !== 'undefined';
+    return typeof props.tabs !== 'undefined';
 }
 
 function isControlled(props: any): props is TabsSlidePane<Tab[]> {
