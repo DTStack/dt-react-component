@@ -24,6 +24,7 @@ export interface SpreadSheetProps {
         /** 字段类型 */
         type: string;
     }>;
+    hotTableInstanceRef?: (instance: any) => void;
 }
 
 class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
@@ -31,12 +32,15 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
     copyUtils = new CopyUtils();
     _renderTimer: any;
 
+    componentDidMount() {
+        this.props.hotTableInstanceRef?.(this.tableRef.current);
+    }
+
     componentDidUpdate(prevProps: any, _prevState: any) {
         if (prevProps != this.props) {
             if (this.tableRef) {
                 this.removeRenderClock();
                 this._renderTimer = setTimeout(() => {
-                    console.log('render sheet');
                     this.tableRef.current.hotInstance.render();
                 }, 100);
             }
