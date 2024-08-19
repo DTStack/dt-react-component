@@ -1,0 +1,30 @@
+name: Feature Request
+description: Suggest an idea for this project
+title: '[Feature Request]: '
+labels: []
+body:
+    - type: markdown
+      attributes:
+          value: |
+              为了有效地审核功能请求，请填写此表格。
+
+    - type: dropdown
+      id: feature
+      attributes:
+          label: 功能
+          options:
+              - 添加新的组件
+              - 增强现有功能
+              - 修改文档
+              - 补全单测
+              - 其他
+      validations:
+          required: true
+
+    - type: textarea
+      id: description
+      attributes:
+          label: 详细描述
+          description: 请描述您的功能请求
+      validations:
+          required: true

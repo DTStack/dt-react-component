@@ -1,0 +1,44 @@
+name: Bug Report
+description: File a bug report
+title: '[Bug]: '
+labels: []
+body:
+    - type: markdown
+      attributes:
+          value: |
+              请填写该错误报告。
+
+    - type: input
+      id: component
+      attributes:
+          label: 组件
+          description: 哪个组件有问题？
+          placeholder: 请输入组件名字
+      validations:
+          required: true
+
+    - type: dropdown
+      id: version
+      attributes:
+          label: 版本
+          description: 该问题存在于什么版本？
+          multiple: true
+          options:
+              - 3.x
+              - 4.x
+              - 5.x
+      validations:
+          required: true
+
+    - type: textarea
+      id: expect
+      attributes:
+          label: 期望的结果
+          description: 期望的结果是什么？
+
+    - type: textarea
+      id: current
+      attributes:
+          label: 实际的结果
+          description: 实际的结果是什么？
+
