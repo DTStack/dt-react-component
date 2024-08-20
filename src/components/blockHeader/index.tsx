@@ -53,7 +53,7 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
     const { beforeTitle = <div className={`default ${isSmall ? 'small' : ''}`}></div> } = props;
     const questionTooltip = tooltip && (
         <Tooltip title={tooltip}>
-            <QuestionCircleOutlined />
+            <QuestionCircleOutlined className={`${prefixCls}-after-title-icon`} />
         </Tooltip>
     );
     const newAfterTitle = afterTitle || questionTooltip;
