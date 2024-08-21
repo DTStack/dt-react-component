@@ -90,13 +90,13 @@ describe('test BlockHeader render', () => {
         expect(getByText('说明文字')).toHaveClass(`${prefixCls}-after-title`);
         expect(getByText('Icon')).toBeTruthy();
     });
-    test('should render BlockHeader className when isSmall is small', () => {
+    test('should render BlockHeader props without background', () => {
         const props = { title: '测试1', showBackground: false };
         const { container } = render(<BlockHeader {...props} />);
         const wrap = container.firstChild;
         expect(wrap!.firstChild).not.toHaveClass(`background`);
     });
-    test('should render BlockHeader className when isSmall is small', () => {
+    test('should render BlockHeader className when size is small', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild!;
         expect(wrap).toHaveClass(`${prefixCls}`);

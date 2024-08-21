@@ -27,18 +27,18 @@ demo:
 
 ### BlockHeader
 
-| 参数              | 说明                                      | 类型                        | 默认值  |
-| ----------------- | ----------------------------------------- | --------------------------- | ------- |
-| title             | 标题                                      | `React.ReactNode`           | -       |
-| beforeTitle       | 标题前的图标，默认是一个色块              | `React.ReactNode`           | -       |
-| afterTitle        | 标题后的提示图标或文案                    | `React.ReactNode`           | -       |
-| tooltip           | 默认展示问号提示(优先级低于 `afterTitle`) | `React.ReactNode`           | -       |
-| isSmall           | 大标题、小标题，默认为大标题              | `boolean`                   | `false` |
-| titleRowClassName | 标题一行的样式类名                        | `string`                    | -       |
-| titleClassName    | 标题的样式类名                            | `string`                    | -       |
-| showBackground    | 是否显示背景                              | `boolean`                   | `true`  |
-| defaultExpand     | 是否默认展开内容                          | `boolean`                   | `true`  |
-| hasBottom         | 是否有默认下边距 16px                     | `boolean`                   | `false` |
-| spaceBottom       | 自定义下边距，优先级高于 hasBottom        | `number`                    | `0`     |
-| children          | 展开/收起的内容                           | `React.ReactNode`           | -       |
-| onChange          | 展开/收起时的回调                         | `(expand: boolean) => void` | -       |
+| 参数              | 说明                                      | 类型                        | 默认值   |
+| ----------------- | ----------------------------------------- | --------------------------- | -------- | -------- |
+| title             | 标题                                      | `React.ReactNode`           | -        |
+| beforeTitle       | 标题前的图标，默认是一个色块              | `React.ReactNode`           | -        |
+| afterTitle        | 标题后的提示图标或文案                    | `React.ReactNode`           | -        |
+| tooltip           | 默认展示问号提示(优先级低于 `afterTitle`) | `React.ReactNode`           | -        |
+| size              | 小标题(small)、中标题(middle)             | `small` | `middle`         | `middle` |
+| titleRowClassName | 标题一行的样式类名                        | `string`                    | -        |
+| titleClassName    | 标题的样式类名                            | `string`                    | -        |
+| showBackground    | 是否显示背景                              | `boolean`                   | `true`   |
+| defaultExpand     | 是否默认展开内容                          | `boolean`                   | `true`   |
+| hasBottom         | 是否有默认下边距 16px                     | `boolean`                   | `false`  |
+| spaceBottom       | 自定义下边距，优先级高于 hasBottom        | `number`                    | `0`      |
+| children          | 展开/收起的内容                           | `React.ReactNode`           | -        |
+| onChange          | 展开/收起时的回调                         | `(expand: boolean) => void` | -        |
