@@ -1,11 +1,19 @@
 .dtc-handsontable-no-border {
     .handsontable {
+        tbody {
+            th.ht__highlight {
+                background-color: #E8F1FF;
+            }
+            th.ht__active__highlight {
+                background-color: #E8F1FF;
+            }
+        }
         thead tr:first-child th {
             background: #F9F9FA;
             border-top: 0;
         }
         th {
-            background: #F9F9FA;
+            background: #FFF;
             border-right: solid 1px #EBECF0;
             color: #3D446E;
 
@@ -51,6 +59,11 @@
             font-weight: 400;
             &:first-of-type {
                 border-left: solid 1px #EBECF0;
+            }
+        }
+        td.area {
+            &::before {
+                background: #1D78FF;
             }
         }
     }
