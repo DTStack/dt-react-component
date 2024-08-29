@@ -36,16 +36,16 @@ interface TabsSlidePane<T extends readOnlyTab> extends Omit<NormalSlidePane, 'ch
     onChange?: (key: TabKey<T>) => void;
 }
 
-function isFunction(props: any): props is TabsSlidePane<Tab[]> {
+function isFunction<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
     return typeof props.children === 'function';
 }
 
-function isTabMode(props: any): props is TabsSlidePane<Tab[]> {
-    return typeof props.tabs !== 'undefined';
+function isTabMode<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
+    return 'tabs' in props;
 }
 
-function isControlled(props: any): props is TabsSlidePane<Tab[]> {
-    return props.activeKey !== undefined;
+function isControlled<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
+    return 'activeKey' in props;
 }
 
 export type SlidePaneProps<T extends readOnlyTab> = TabsSlidePane<T> | NormalSlidePane;
@@ -74,7 +74,6 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
         title,
         width,
         size = 'default',
-        children,
         footer,
         banner,
         onClose,
@@ -131,7 +130,7 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
                         {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
                     />
                 )}
-                {isFunction(props) && (
+                {isTabMode(props) && (
                     <Tabs
                         destroyInactiveTabPane
                         activeKey={currentKey}
@@ -147,7 +146,7 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
                     className={classNames(`${slidePrefixCls}-body`, bodyClassName)}
                     style={bodyStyle}
                 >
-                    {typeof children === 'function' ? children(currentKey ?? '') : children}
+                    {isFunction(props) ? props.children?.(currentKey ?? '') : props.children}
                 </div>
                 {footer ? (
                     <div className={classNames(`${slidePrefixCls}-footer`)}>{footer}</div>
