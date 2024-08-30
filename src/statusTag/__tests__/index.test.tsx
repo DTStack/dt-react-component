@@ -19,19 +19,21 @@ describe('test StatusTag suite', () => {
         expect(container.firstChild).toHaveClass(...[`${prefixCls}`, `${prefixCls}--fill`]);
     });
     test('should render StatusTag render correct inner color', () => {
-        const { container, rerender } = render(<StatusTag color="run">完成</StatusTag>);
-        expect(container.querySelector(`.${prefixCls}__run--iconBg`)).toBeInTheDocument();
+        const { container, rerender } = render(<StatusTag color="green">完成</StatusTag>);
+        expect(container.querySelector(`.${prefixCls}__green--iconBg`)).toBeInTheDocument();
         rerender(
-            <StatusTag color="stopped" type="fill">
+            <StatusTag color="purple" type="fill">
                 完成
             </StatusTag>
         );
-        expect(container.querySelector(`.${prefixCls}__stopped--fill`)).toBeInTheDocument();
+        expect(container.querySelector(`.${prefixCls}__purple--fill`)).toBeInTheDocument();
     });
     test('should render StatusTag render correct custom color', () => {
         const { container, rerender } = render(<StatusTag color="#2177b8">完成</StatusTag>);
         let wrapper = container.querySelector(`.${prefixCls}__icon--default`);
-        expect(wrapper).toHaveStyle({ background: '#2177b8' });
+        expect(wrapper).toHaveStyle({
+            background: 'rgb(33, 119, 184)',
+        });
         rerender(
             <StatusTag color="#2177b8" type="fill">
                 完成
@@ -40,17 +42,17 @@ describe('test StatusTag suite', () => {
         wrapper = container.querySelector(`.${prefixCls}--fill`);
         expect(wrapper).toHaveStyle({
             color: 'rgb(33, 119, 184)',
-            background: 'rgba(33, 119, 184, 0.3)',
+            background: 'rgba(33, 119, 184, 0.15)',
         });
     });
     test('should render StatusTag render correct text', () => {
         const { container } = render(<StatusTag>自定义文案</StatusTag>);
-        const textWapper = container.querySelector(`.${prefixCls}__text`)!;
-        expect(textWapper.innerHTML).toEqual('自定义文案');
+        const textWarper = container.querySelector(`.${prefixCls}__text`)!;
+        expect(textWarper.innerHTML).toEqual('自定义文案');
     });
     test('should render StatusTag loading', () => {
         const { container } = render(<StatusTag loading>自定义文案</StatusTag>);
-        const loadingWapper = container.querySelector(`.ant-spin-spinning`)!;
-        expect(loadingWapper).toBeInTheDocument();
+        const loadingWarper = container.querySelector(`.ant-spin-spinning`)!;
+        expect(loadingWarper).toBeInTheDocument();
     });
 });

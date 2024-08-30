@@ -25,10 +25,10 @@ StatusTag 组件作用于任务运行状态效果展示
 
 ### StatusTag
 
-| 参数    | 说明                                                        | 类型                                                                  | 默认值    |
-| ------- | ----------------------------------------------------------- | --------------------------------------------------------------------- | --------- | --- |
-| color   | 内置了六种颜色，不满足时可自定义(仅支持 RGB 和十六进制颜色) | `warning \| error \| success \| run \| stopped \| frozen` \| `string` | `success` | -   |
-| icon    | 自定义图标                                                  | `React.ReactNode`                                                     | -         |
-| loading | 设置状态标签载入状态                                        | `boolean`                                                             | `false`   |
-| type    | 设置状态类型                                                | `default \| outline \| fill`                                          | `default` |
-| onClick | 点击事件                                                    | `() => void`                                                          | -         |
+| 参数       | 说明                                                                | 类型                                                                           | 默认值    |
+| ---------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------ | --------- | --- |
+| color      | 状态色，内置了六种颜色，不满足时可自定义(仅支持 RGB 和十六进制颜色) | `blue \| yellow \| green \| gray \| red \| purple \| cyan \| pink` \| `string` | `success` | -   |
+| icon       | 自定义图标                                                          | `React.ReactNode`                                                              | -         |
+| loading    | 状态标签载入状态                                                    | `boolean`                                                                      | `false`   |
+| type       | 状态类型                                                            | `default \| outline \| fill`                                                   | `default` |
+| background | 背景颜色，仅在自定义颜色且为 fill 的情况下生效                      | `string`                                                                       | `--`      |

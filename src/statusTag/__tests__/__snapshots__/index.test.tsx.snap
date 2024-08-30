@@ -12,7 +12,7 @@ exports[`test StatusTag suite should support StatusTag success render 1`] = `
           class="dtc-statusTag__icon"
         >
           <span
-            class="dtc-statusTag__icon--default dtc-statusTag__success--iconBg"
+            class="dtc-statusTag__icon--default dtc-statusTag__green--iconBg"
           />
         </div>
         <span
@@ -31,7 +31,7 @@ exports[`test StatusTag suite should support StatusTag success render 1`] = `
         class="dtc-statusTag__icon"
       >
         <span
-          class="dtc-statusTag__icon--default dtc-statusTag__success--iconBg"
+          class="dtc-statusTag__icon--default dtc-statusTag__green--iconBg"
         />
       </div>
       <span

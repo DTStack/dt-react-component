@@ -4,11 +4,11 @@ import { StatusTag } from 'dt-react-component';
 
 export default () => {
     return (
-        <Space direction="vertical">
-            <StatusTag color="run" />
-            <StatusTag color="success" />
-            <StatusTag color="stopped" />
-            <StatusTag color="warning" />
+        <Space direction="horizontal">
+            <StatusTag color="blue" />
+            <StatusTag color="green" />
+            <StatusTag color="purple" />
+            <StatusTag color="yellow" />
         </Space>
     );
 };

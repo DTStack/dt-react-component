@@ -6,13 +6,13 @@ import { StatusTag } from 'dt-react-component';
 export default () => {
     return (
         <Space direction="vertical">
-            <StatusTag color="success" type="outline" icon={<SketchOutlined />}>
+            <StatusTag color="green" type="outline" icon={<SketchOutlined />}>
                 成功
             </StatusTag>
-            <StatusTag color="run" icon={<SketchOutlined />}>
+            <StatusTag color="blue" icon={<SketchOutlined />}>
                 运行中
             </StatusTag>
-            <StatusTag color="warning" type="fill" icon={<SketchOutlined />}>
+            <StatusTag color="yellow" type="fill" icon={<SketchOutlined />}>
                 运行中
             </StatusTag>
             <StatusTag color="#2f10fb" type="fill" icon={<SketchOutlined />}>

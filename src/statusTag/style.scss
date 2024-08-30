@@ -1,28 +1,36 @@
 $card_prefix: "dtc-statusTag";
 $colors: (
-    "warning": (
+    "yellow": (
         color: #FBB310,
         bg: #FFF4D9,
     ),
-    "run": (
+    "blue": (
         color: #1D78FF,
         bg: #E8F1FF,
     ),
-    "success": (
+    "green": (
         color: #11D782,
         bg: #E7FBF7,
     ),
-    "frozen": (
+    "gray": (
         color:  #B1B4C5,
         bg: #F5F5F8,
     ),
-    "error": (
+    "red": (
         color: #F96C5B,
         bg: #FDE9E7,
     ),
-    "stopped": (
+    "purple": (
         color: #AC9DFF,
         bg: #EAE6FF,
+    ),
+    "cyan": (
+        color: #2CCCDF,
+        bg: #E7F8FA,
+    ),
+    "pink": (
+        color: #FF82AE,
+        bg: #FFE6EF,
     ),
 );
 

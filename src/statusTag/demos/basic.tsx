@@ -4,7 +4,7 @@ import { StatusTag } from 'dt-react-component';
 import { StatusTagType } from 'dt-react-component/statusTag';
 
 export default () => {
-    const presets = ['warning', 'error', 'success', 'run', 'stopped', 'frozen'];
+    const presets = ['blue', 'yellow', 'green', 'gray', 'red', 'purple', 'cyan', 'pink'];
 
     const [type, setType] = useState<StatusTagType>('default');
 
@@ -36,6 +36,9 @@ export default () => {
                 </StatusTag>
                 <StatusTag type={type} color="#0fd5e8">
                     #0fd5e8
+                </StatusTag>
+                <StatusTag type={type} color="#3D446E" background="#EBECF0">
+                    #3D446E
                 </StatusTag>
             </Space>
         </>
