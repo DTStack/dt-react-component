@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-export declare type SizeType = 'small' | 'middle' | undefined;
+export declare type SizeType = 'small' | 'middle' | 'large';
 
 function isControlled(props: IBlockHeaderProps) {
     return props.expand !== undefined;
@@ -15,9 +15,9 @@ export interface IBlockHeaderProps {
     /** 标题 */
     title: string;
     /** 标题前的图标，默认是一个色块 */
-    beforeTitle?: ReactNode;
-    /** 标题后的提示图标或文案 */
-    afterTitle?: ReactNode;
+    addonBefore?: ReactNode;
+    /** 标题后的提示说明文字 */
+    description?: ReactNode;
     /** 默认展示为问号的tooltip */
     tooltip?: ReactNode;
     /** 后缀自定义内容块 */
@@ -25,6 +25,7 @@ export interface IBlockHeaderProps {
     /**
      * 小标题 font-size: 12px; line-height: 32px
      * 中标题 font-size: 14px; line-height: 40px
+     * 大标题 font-size: 16px; line-height: 40px
      * 默认 中标题
      */
     size?: SizeType;
@@ -37,7 +38,7 @@ export interface IBlockHeaderProps {
     /** 标题的样式类名 */
     titleClassName?: string;
     /** 是否显示背景, 默认 true */
-    showBackground?: boolean;
+    background?: boolean;
     /** 当前展开状态 */
     expand?: boolean;
     /** 是否默认展开内容, 默认 true */
@@ -51,19 +52,19 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const prefixCls = 'dtc-block-header';
     const {
         title,
-        afterTitle = '',
+        description = '',
         tooltip = '',
         size = 'middle',
         hasBottom = false,
         spaceBottom = 0,
         titleRowClassName = '',
         titleClassName = '',
-        showBackground = true,
+        background = true,
         defaultExpand = true,
         addonAfter,
         expand,
         children = '',
-        beforeTitle = <div className={`${prefixCls}__beforeTitle-${size}`}></div>,
+        addonBefore = <div className={`${prefixCls}-addon-before--${size}`} />,
         onExpand,
     } = props;
 
@@ -75,10 +76,9 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const questionTooltip = tooltip && (
         <Tooltip title={tooltip}>
-            <QuestionCircleOutlined className={`${prefixCls}-after-title-icon`} />
+            <QuestionCircleOutlined />
         </Tooltip>
     );
-    const newAfterTitle = afterTitle || questionTooltip;
     let bottomStyle;
     if (hasBottom) bottomStyle = { marginBottom: 16 };
     if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
@@ -94,22 +94,25 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
             <div
                 className={classNames(
                     preTitleRowCls,
-                    `${preTitleRowCls}-${size}`,
+                    `${preTitleRowCls}--${size}`,
                     titleRowClassName,
                     {
-                        [`${preTitleRowCls}-background`]: showBackground,
+                        [`${preTitleRowCls}-background`]: background,
                         [`${preTitleRowCls}-pointer`]: children,
                     }
                 )}
                 onClick={() => handleExpand(!currentExpand)}
             >
                 <div className={`${prefixCls}-title-box`}>
-                    {beforeTitle ? (
-                        <div className={`${prefixCls}-before-title`}>{beforeTitle}</div>
+                    {addonBefore ? (
+                        <div className={`${prefixCls}-addon-before`}>{addonBefore}</div>
                     ) : null}
                     <div className={`${prefixCls}-title ${titleClassName}`}>{title}</div>
-                    {newAfterTitle ? (
-                        <div className={`${prefixCls}-after-title`}>{newAfterTitle}</div>
+                    {questionTooltip ? (
+                        <div className={`${prefixCls}-tooltip`}>{questionTooltip}</div>
+                    ) : null}
+                    {description ? (
+                        <div className={`${prefixCls}-description`}>{description}</div>
                     ) : null}
                 </div>
                 {addonAfter && <div className={`${prefixCls}-addonAfter-box`}>{addonAfter}</div>}
@@ -120,8 +123,11 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                     </div>
                 )}
             </div>
-
-            <div className={`${prefixCls}-content ${currentExpand ? '' : 'hide'}`}>{children}</div>
+            {children && (
+                <div className={`${prefixCls}-content ${currentExpand ? '' : 'hide'}`}>
+                    {children}
+                </div>
+            )}
         </div>
     );
 };

@@ -2,28 +2,28 @@ import React from 'react';
 import { cleanup, fireEvent, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
-import BlockHeader, { SizeType } from '../index';
+import BlockHeader, { IBlockHeaderProps, SizeType } from '../index';
 
-const props = {
+const props: IBlockHeaderProps = {
     title: '标题1',
 };
-const props2 = {
+const props2: IBlockHeaderProps = {
     title: '标题2',
-    beforeTitle: <span>Icon</span>,
-    afterTitle: '说明文字',
+    addonBefore: <span>Icon</span>,
+    description: '说明文字',
     addonAfter: <div className="test-button-after">新增按钮</div>,
     size: 'small' as SizeType,
     titleRowClassName: 'test-row-className',
     titleClassName: 'test-title-className',
 };
-const props3 = {
+const props3: IBlockHeaderProps = {
     title: 'hover',
     tooltip: 'hover 展示',
 };
-const props4 = {
+const props4: IBlockHeaderProps = {
     title: 'hover',
     tooltip: 'hover 展示',
-    afterTitle: '我的优先级更高',
+    description: '说明文字',
 };
 const prefixCls = 'dtc-block-header';
 
@@ -42,19 +42,18 @@ describe('test BlockHeader render', () => {
         expect(getByText('标题2')).toBeTruthy();
     });
     test('should render BlockHeader props default in BlockHeader', () => {
-        const { container } = render(<BlockHeader title="测试" showBackground />);
+        const { container } = render(<BlockHeader title="测试" background />);
         const wrap = container.firstChild;
-        expect(wrap!.firstChild!.firstChild!.firstChild).toHaveClass(`${prefixCls}-before-title`);
+        expect(wrap!.firstChild!.firstChild!.firstChild).toHaveClass(`${prefixCls}-addon-before`);
         fireEvent.click(document.getElementsByClassName(`${prefixCls}-title-row`)[0]);
     });
     test('should render BlockHeader with different props', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild;
         expect(wrap).toHaveClass(`${prefixCls}`);
-        expect(wrap!.lastChild).toHaveClass(`${prefixCls}-content`);
         expect(wrap!.firstChild).toHaveClass(`test-row-className`);
         expect(getByText('标题2')).toHaveClass('test-title-className');
-        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-after-title`);
+        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-description`);
         expect(getByText('新增按钮')).toHaveClass(`test-button-after`);
         expect(getByText('Icon')).toBeTruthy();
     });
@@ -84,14 +83,13 @@ describe('test BlockHeader render', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild;
         expect(wrap).toHaveClass(`${prefixCls}`);
-        expect(wrap!.lastChild).toHaveClass(`${prefixCls}-content`);
         expect(wrap!.firstChild).toHaveClass(`test-row-className`);
         expect(getByText('标题2')).toHaveClass('test-title-className');
-        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-after-title`);
+        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-description`);
         expect(getByText('Icon')).toBeTruthy();
     });
-    test('should render BlockHeader className when isSmall is small', () => {
-        const props = { title: '测试1', showBackground: false };
+    test('should render BlockHeader background success', () => {
+        const props = { title: '测试1', background: false };
         const { container } = render(<BlockHeader {...props} />);
         const wrap = container.firstChild;
         expect(wrap!.firstChild).not.toHaveClass(`background`);
@@ -100,10 +98,9 @@ describe('test BlockHeader render', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild!;
         expect(wrap).toHaveClass(`${prefixCls}`);
-        expect(wrap.lastChild).toHaveClass(`${prefixCls}-content`);
         expect(wrap.firstChild).toHaveClass(`test-row-className`);
         expect(getByText('标题2')).toHaveClass('test-title-className');
-        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-after-title`);
+        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-description`);
         expect(getByText('Icon')).toBeTruthy();
     });
 
@@ -114,32 +111,32 @@ describe('test BlockHeader render', () => {
         expect(afterTitleWrap!.firstChild).toHaveClass('anticon-question-circle');
     });
 
-    test('should render BlockHeader tooltip and afterTitle success', () => {
+    test('should render BlockHeader tooltip and desc success', () => {
         const { container } = render(<BlockHeader {...props4} />);
         const wrap = container.firstChild!;
         const afterTitleWrap = wrap.firstChild!.firstChild!.lastChild;
-        expect(afterTitleWrap).toHaveTextContent('我的优先级更高');
+        expect(afterTitleWrap).toHaveTextContent('说明文字');
     });
     test('should render BlockHeader correct dom length', () => {
-        const { container } = render(<BlockHeader title="分类级别" beforeTitle="" />);
+        const { container } = render(<BlockHeader title="分类级别" addonBefore="" />);
         const titleBoxWrap = container.firstChild!.firstChild!.firstChild;
         expect(titleBoxWrap!.childNodes.length).toEqual(1);
 
         const { container: container1 } = render(
-            <BlockHeader title="分类级别" afterTitle="测试" />
+            <BlockHeader title="分类级别" description="测试" />
         );
         const titleBoxWrap1 = container1.firstChild!.firstChild!.firstChild;
         expect(titleBoxWrap1!.childNodes.length).toEqual(3);
     });
     test('should render BlockHeader correct margin-bottom', () => {
-        const { container: noStyle } = render(<BlockHeader title="分类级别" beforeTitle="" />);
+        const { container: noStyle } = render(<BlockHeader title="分类级别" addonBefore="" />);
         expect(noStyle.querySelector('.dtc-block-header')).not.toHaveAttribute('style');
         const { container: defaultBottom } = render(
-            <BlockHeader title="分类级别" beforeTitle="" />
+            <BlockHeader title="分类级别" addonBefore="" />
         );
         expect(defaultBottom.querySelector('.dtc-block-header')).toHaveStyle({ marginBottom: 16 });
         const { container: customizeBottom } = render(
-            <BlockHeader title="分类级别" beforeTitle="" hasBottom spaceBottom={10} />
+            <BlockHeader title="分类级别" addonBefore="" hasBottom spaceBottom={10} />
         );
         expect(customizeBottom.querySelector('.dtc-block-header')).toHaveStyle({
             marginBottom: 10,

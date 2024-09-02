@@ -9,16 +9,16 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
         class="dtc-block-header"
       >
         <div
-          class="dtc-block-header-title-row dtc-block-header-title-row-middle dtc-block-header-title-row-background"
+          class="dtc-block-header-title-row dtc-block-header-title-row--middle dtc-block-header-title-row-background"
         >
           <div
             class="dtc-block-header-title-box"
           >
             <div
-              class="dtc-block-header-before-title"
+              class="dtc-block-header-addon-before"
             >
               <div
-                class="dtc-block-header__beforeTitle-middle"
+                class="dtc-block-header-addon-before--middle"
               />
             </div>
             <div
@@ -28,9 +28,6 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
             </div>
           </div>
         </div>
-        <div
-          class="dtc-block-header-content "
-        />
       </div>
     </div>
   </body>,
@@ -39,16 +36,16 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
       class="dtc-block-header"
     >
       <div
-        class="dtc-block-header-title-row dtc-block-header-title-row-middle dtc-block-header-title-row-background"
+        class="dtc-block-header-title-row dtc-block-header-title-row--middle dtc-block-header-title-row-background"
       >
         <div
           class="dtc-block-header-title-box"
         >
           <div
-            class="dtc-block-header-before-title"
+            class="dtc-block-header-addon-before"
           >
             <div
-              class="dtc-block-header__beforeTitle-middle"
+              class="dtc-block-header-addon-before--middle"
             />
           </div>
           <div
@@ -58,9 +55,6 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
           </div>
         </div>
       </div>
-      <div
-        class="dtc-block-header-content "
-      />
     </div>
   </div>,
   "debug": [Function],

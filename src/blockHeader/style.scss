@@ -6,7 +6,15 @@ $card_prefix: "dtc-block-header";
         display: flex;
         align-items: center;
         justify-content: space-between;
-        &-middle {
+        &--large {
+            .#{$card_prefix}-title-box {
+                line-height: 24px;
+                .#{$card_prefix}-title {
+                    font-size: 16px;
+                }
+            }
+        }
+        &--middle {
             .#{$card_prefix}-title-box {
                 line-height: 22px;
                 .#{$card_prefix}-title {
@@ -14,7 +22,7 @@ $card_prefix: "dtc-block-header";
                 }
             }
         }
-        &-small {
+        &--small {
             .#{$card_prefix}-title-box {
                 line-height: 20px;
                 .#{$card_prefix}-title {
@@ -26,10 +34,11 @@ $card_prefix: "dtc-block-header";
             padding: 0 12px;
             background-color: #F9F9FA;
             &.#{$card_prefix}-title-row {
-                &-middle {
+                &--middle,
+                &--large {
                     height: 40px;
                 }
-                &-small {
+                &--small {
                     height: 32px;
                 }
             }
@@ -42,24 +51,41 @@ $card_prefix: "dtc-block-header";
             flex: 1;
             display: flex;
             align-items: center;
-            .#{$card_prefix}-before-title {
+            .#{$card_prefix}-addon-before {
                 margin-right: 8px;
+                color: #1D78FF;
+                &--middle,
+                &--small {
+                    width: 4px;
+                    height: 16px;
+                    background-color: #1D78FF;
+                }
+                &--large {
+                    width: 4px;
+                    height: 20px;
+                    background-color: #1D78FF;
+                }
+            }
+            .#{$card_prefix}-tooltip {
+                display: flex;
+                margin-right: 4px;
+                font-size: 16px;
+                color: #B1B4C5;
             }
             .#{$card_prefix}-title {
                 color: #3D446E;
                 font-weight: 500;
                 margin-right: 4px;
             }
-            .#{$card_prefix}-after-title {
+            .#{$card_prefix}-description {
                 display: flex;
                 align-items: center;
                 color: #8B8FA8;
                 font-size: 12px;
-                &-icon {
-                    font-size: 16px;
-                    color: #B1B4C5;
-                }
             }
+        }
+        .#{$card_prefix}-addonAfter-box {
+            color: #8B8FA8;
         }
 
         .#{$card_prefix}-collapse-box {
@@ -87,16 +113,6 @@ $card_prefix: "dtc-block-header";
     &-content {
         &.hide {
             display: none;
-        }
-    }
-    &__beforeTitle {
-        &-middle {
-            width: 4px;
-            height: 16px;
-            background-color: #1D78FF;
-        }
-        &-small {
-            @extend .#{$card_prefix}__beforeTitle-middle;
         }
     }
 }
