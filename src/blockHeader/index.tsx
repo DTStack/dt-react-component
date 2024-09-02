@@ -21,7 +21,7 @@ export interface IBlockHeaderProps {
     description?: ReactNode;
     /** 默认展示为问号的tooltip */
     tooltip?: LabelTooltipType;
-    /**  后缀自定义内容块 */
+    /** 后缀自定义内容块 */
     addonAfter?: ReactNode;
     /**
      * 小标题 font-size: 12px; line-height: 32px
