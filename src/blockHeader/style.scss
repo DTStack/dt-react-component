@@ -111,8 +111,14 @@ $card_prefix: "dtc-block-header";
         }
     }
     &-content {
-        &.hide {
-            display: none;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease, height 0.5s ease;
+        &.active {
+            opacity: 1;
+            padding: 16px 24px;
+            height: auto;
         }
     }
 }

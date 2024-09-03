@@ -124,9 +124,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                 )}
             </div>
             {children && (
-                <div className={`${prefixCls}-content ${currentExpand ? '' : 'hide'}`}>
-                    {children}
-                </div>
+                <div className={`${prefixCls}-content ${currentExpand ? 'active' : ''}`}>{children}</div>
             )}
         </div>
     );
