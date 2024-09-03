@@ -8,7 +8,7 @@ export default function Basic() {
     return (
         <>
             <Modal
-                title="最大高度限制 600px"
+                title="最大高度限制"
                 visible={visible}
                 onCancel={() => setVisible(false)}
                 onOk={() => setVisible(false)}
@@ -22,7 +22,7 @@ export default function Basic() {
                 </ul>
             </Modal>
             <Button type="primary" onClick={() => setVisible(true)}>
-                最大高度限制 600px
+                最大高度限制
             </Button>
         </>
     );

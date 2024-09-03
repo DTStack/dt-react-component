@@ -10,7 +10,7 @@ toc: content
 
 ## 示例
 
-<code src="./demos/basic/basic.tsx" title="高度限制 600px"></code>
+<code src="./demos/basic/basic.tsx" title="最大高度限制"></code>
 <code src="./demos/basic/size.tsx" title="尺寸"></code>
 <code src="./demos/basic/banner.tsx" title="支持 banner"></code>
 <code src="./demos/basic/bannerProps.tsx" title="支持传 banner 的 Props 属性"></code>
