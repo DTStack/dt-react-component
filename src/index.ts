@@ -32,3 +32,4 @@ export { default as Table } from './table';
 export { default as TinyTag } from './tinyTag';
 export { default as useIntersectionObserver } from './useIntersectionObserver';
 export { default as useList } from './useList';
+export { default as useModal } from './useModal';
