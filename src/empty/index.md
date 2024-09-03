@@ -117,16 +117,16 @@ import { Space, Switch } from 'antd';
 import { Empty } from 'dt-react-component';
 
 export default () => {
-    const [isEmpty, setIsEmpty] = useState(false);
+    const [empty, setEmpty] = useState(false);
 
     return (
         <Space direction="vertical" style={{ width: '100%' }} size={16}>
             <Switch
-                onChange={(checked) => setIsEmpty(checked)}
+                onChange={(checked) => setEmpty(checked)}
                 checkedChildren="展示占位符"
                 unCheckedChildren="展示内容"
             />
-            <Empty isEmpty={isEmpty}>More Data</Empty>
+            <Empty empty={empty}>More Data</Empty>
         </Space>
     );
 };
@@ -141,16 +141,16 @@ import { Button, Space, Switch } from 'antd';
 import { Empty } from 'dt-react-component';
 
 export default () => {
-    const [isEmpty, setIsEmpty] = useState(false);
+    const [empty, setEmpty] = useState(false);
 
     return (
         <Space direction="vertical" style={{ width: '100%' }} size={16}>
             <Switch
-                onChange={(checked) => setIsEmpty(checked)}
+                onChange={(checked) => setEmpty(checked)}
                 checkedChildren="展示占位符"
                 unCheckedChildren="展示内容"
             />
-            <Empty isEmpty={isEmpty} extra={<Button>添加</Button>}>
+            <Empty empty={empty} extra={<Button>添加</Button>}>
                 More Data
             </Empty>
         </Space>
@@ -164,7 +164,7 @@ export default () => {
 | -------- | --------------------------- | --------------------------------------------------------------------------- | --------- |
 | type     | 默认展示图片的类型          | `default` \| `project` \| `chart` \| `search` \| `permission` \| `overview` | `default` |
 | size     | 图片大小                    | `default` \| `large`                                                        | `default` |
-| isEmpty  | 是否展示 Empty 组件         | `boolean`                                                                   | `true`    |
+| empty    | 是否展示 Empty 组件         | `boolean`                                                                   | `true`    |
 | children | 展示内容                    | `React.ReactNode`                                                           | -         |
 | extra    | 替换 antd Empty 的 children | ` React.ReactNode`                                                          | -         |
 
