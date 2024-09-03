@@ -17,7 +17,7 @@ exports[`Test Modal Component Should Match snapshot 1`] = `
         aria-modal="true"
         class="ant-modal dt-modal"
         role="dialog"
-        style="width: 640px;"
+        style="width: 520px;"
       >
         <div
           aria-hidden="true"

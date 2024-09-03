@@ -1,13 +1,25 @@
-$modal-height: 600px;
-$modal-header: 55px;
-$modal-footer: 53px;
+$modal-max-height: 80vh;
 
 .dt-modal {
-    .ant-modal-body {
-        max-height: calc($modal-height - $modal-header - $modal-footer);
-        overflow-y: auto;
-    }
-    &-body {
-        padding: 16px;
+    .ant-modal-content {
+        max-height: $modal-max-height;
+        display: flex;
+        flex-direction: column;
+        .ant-modal-body {
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            .dt-modal-body {
+                flex: 1;
+                padding: 16px 24px;
+                overflow-y: auto;
+                min-height: 0;
+            }
+        }
+        .ant-modal-header,
+        .ant-modal-footer {
+            flex: 0 1 auto;
+        }
     }
 }
