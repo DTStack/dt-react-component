@@ -33,8 +33,8 @@ demo:
 | tooltip           | 默认展示问号提示                   | `TooltipProps \| TooltipProps['title']` | -        |
 | addonAfter        | 标题后的内容                       | `React.ReactNode`           | -        |
 | size              | 小标题、中标题，默认为中标题       | `small \| middle \| large`  | `middle` |
-| className     | 标题一行的样式类名                 | `string`                                | -        |
-| style         | 标题的样式                         | `React.CSSProperties`                   | -        |
+| className         | 标题一行的样式类名                 | `string`                                | -        |
+| style             | 标题的样式                         | `React.CSSProperties`                   | -        |
 | background        | 是否显示背景                       | `boolean`                   | `true`   |
 | expand            | 当前展开状态                              | `boolean`                   |         |
 | defaultExpand     | 是否默认展开内容                   | `boolean`                   | `true`   |
