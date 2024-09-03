@@ -25,19 +25,19 @@ demo:
 
 ### BlockHeader
 
-| 参数          | 说明                               | 类型                                    | 默认值   |
-| ------------- | ---------------------------------- | --------------------------------------- | -------- |
-| title         | 标题                               | `string`                                | -        |
-| addonBefore   | 标题前的图标，默认是一个色块       | `React.ReactNode`                       | -        |
-| description   | 标题提示文案                       | `React.ReactNode`                       | -        |
-| tooltip       | 默认展示问号提示                   | `TooltipProps \| TooltipProps['title']` | -        |
-| addonAfter    | 标题后的内容                       | `React.ReactNode`                       | -        |
-| size          | 小标题、中标题，默认为中标题       | `small \| middle \| large`              | `middle` |
-| className     | 标题一行的样式类名                 | `string`                                | -        |
-| style         | 标题的样式                         | `React.CSSProperties`                   | -        |
-| background    | 是否显示背景                       | `boolean`                               | `true`   |
-| expand        | 当前展开状态                       | `boolean`                               |          |
-| defaultExpand | 是否默认展开内容                   | `boolean`                               | `true`   |
-| spaceBottom   | 自定义下边距，优先级高于 hasBottom | `number`                                | `16`     |
-| children      | 展开/收起的内容                    | `React.ReactNode`                       | -        |
-| onExpand      | 展开/收起时的回调                  | `(expand: boolean) => void`             | -        |
+| 参数              | 说明                               | 类型                        | 默认值   |
+| ----------------- | ---------------------------------- | --------------------------- | -------- |
+| title             | 标题                               | `string`                    | -        |
+| addonBefore       | 标题前的图标，默认是一个色块       | `React.ReactNode`           | -        |
+| description       | 标题提示文案                       | `React.ReactNode`           | -        |
+| tooltip           | 默认展示问号提示                   | `TooltipProps \| TooltipProps['title']` | -        |
+| addonAfter        | 标题后的内容                       | `React.ReactNode`           | -        |
+| size              | 小标题、中标题，默认为中标题       | `small \| middle \| large`  | `middle` |
+| className         | 标题一行的样式类名                 | `string`                                | -        |
+| style             | 标题的样式                         | `React.CSSProperties`                   | -        |
+| background        | 是否显示背景                       | `boolean`                   | `true`   |
+| expand            | 当前展开状态                              | `boolean`                   |         |
+| defaultExpand     | 是否默认展开内容                   | `boolean`                   | `true`   |
+| spaceBottom       | 自定义下边距，优先级高于 hasBottom | `number`                    | `16`      |
+| children          | 展开/收起的内容                    | `React.ReactNode`           | -        |
+| onExpand          | 展开/收起时的回调                         | `(expand: boolean) => void` | -       |
