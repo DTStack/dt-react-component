@@ -19,10 +19,11 @@ demo:
 
 ### API
 
-| 参数        | 说明                  | 类型                     | 默认值                              |
-| ----------- | --------------------- | ------------------------ | ----------------------------------- |
-| text        | 需要复制的文本        | `string`                 | -                                   |
-| title       | 在 Tooltip 展示的文本 | `string`                 | `复制`                              |
-| hideTooltip | 是否隐藏 Tooltip      | `boolean`                | `false`                             |
-| button      | 自定义按钮            | `React.ReactNode`        | `<CopyOutlined />`                  |
-| onCopy      | 复制后的回调函数      | `(text: string) => void` | `() => message.success('复制成功')` |
+| 参数      | 说明             | 类型                              | 默认值                              |
+| --------- | ---------------- | --------------------------------- | ----------------------------------- |
+| text      | 需要复制的文本   | `string`                          | -                                   |
+| tooltip   | 配置提示信息     | `React.ReactNode \| TooltipProps` | --                                  |
+| button    | 自定义按钮       | `React.ReactNode`                 | `<CopyOutlined />`                  |
+| style     | 样式             | `React.CSSProperties`             | --                                  |
+| className | 样式             | `string`                          | --                                  |
+| onCopy    | 复制后的回调函数 | `(text: string) => void`          | `() => message.success('复制成功')` |

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Space } from 'antd';
 import { Copy } from 'dt-react-component';
 
 const text =
@@ -6,9 +7,17 @@ const text =
 
 export default () => {
     return (
-        <div>
-            <Copy text={text} title="复制该文本" />
-            <p>{text}</p>
-        </div>
+        <Space direction="vertical">
+            <div>
+                <p>使用 tooltip 对象</p>
+                <Copy text={text} tooltip={{ title: '复制该文本' }} />
+                <p>{text}</p>
+            </div>
+            <div>
+                <p>使用 React.ReactNode</p>
+                <Copy text={text} tooltip="复制该文本" />
+                <p>{text}</p>
+            </div>
+        </Space>
     );
 };
