@@ -30,7 +30,7 @@ demo:
 | title             | 标题                               | `string`                    | -        |
 | addonBefore       | 标题前的图标，默认是一个色块       | `React.ReactNode`           | -        |
 | description       | 标题提示文案                       | `React.ReactNode`           | -        |
-| tooltip           | 默认展示问号提示                   | `React.ReactNode`           | -        |
+| tooltip           | 默认展示问号提示                   | `TooltipProps \| React.ReactNode` | -        |
 | addonAfter        | 标题后的内容                       | `React.ReactNode`           | -        |
 | size              | 小标题、中标题，默认为中标题       | `small \| middle \| large`  | `middle` |
 | titleRowClassName | 标题一行的样式类名                 | `string`                    | -        |

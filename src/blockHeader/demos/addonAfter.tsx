@@ -9,6 +9,7 @@ export default () => (
             background={false}
             title="分类标题"
             addonAfter={<Input placeholder="请输入" />}
+            tooltip={{ title: '这里展示问号提示' }}
         />
     </Space>
 );

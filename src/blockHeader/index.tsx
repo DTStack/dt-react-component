@@ -1,9 +1,23 @@
 import React, { ReactNode, useState } from 'react';
 import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
-import { Tooltip } from 'antd';
+import { Tooltip, TooltipProps } from 'antd';
 import classNames from 'classnames';
 
 import './style.scss';
+
+function toTooltipProps(tooltip: LabelTooltipType): TooltipProps | null {
+    if (!tooltip) {
+        return null;
+    }
+    if (typeof tooltip === 'object' && !React.isValidElement(tooltip)) {
+        return tooltip as TooltipProps;
+    }
+    return {
+        title: tooltip,
+    };
+}
+
+export type LabelTooltipType = TooltipProps | React.ReactNode;
 
 export declare type SizeType = 'small' | 'middle' | 'large';
 
@@ -19,8 +33,8 @@ export interface IBlockHeaderProps {
     /** 标题后的提示说明文字 */
     description?: ReactNode;
     /** 默认展示为问号的tooltip */
-    tooltip?: ReactNode;
-    /** 后缀自定义内容块 */
+    tooltip?: LabelTooltipType;
+    // 后缀自定义内容块
     addonAfter?: ReactNode;
     /**
      * 小标题 font-size: 12px; line-height: 32px
@@ -74,8 +88,10 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const preTitleRowCls = `${prefixCls}-title-row`;
 
-    const questionTooltip = tooltip && (
-        <Tooltip title={tooltip}>
+    const tooltipProps = toTooltipProps(tooltip);
+
+    const questionTooltip = tooltipProps && (
+        <Tooltip {...tooltipProps}>
             <QuestionCircleOutlined />
         </Tooltip>
     );
