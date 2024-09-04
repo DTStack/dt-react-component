@@ -6,11 +6,15 @@ exports[`test StatusTag suite should support StatusTag success render 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="dtc-statusTag dtc-statusTag__border"
+        class="dtc-statusTag"
       >
         <div
-          class="dtc-statusTag__default dtc-statusTag__success"
-        />
+          class="dtc-statusTag__icon"
+        >
+          <span
+            class="dtc-statusTag__icon--default dtc-statusTag__green--iconBg"
+          />
+        </div>
         <span
           class="dtc-statusTag__text"
         >
@@ -21,11 +25,15 @@ exports[`test StatusTag suite should support StatusTag success render 1`] = `
   </body>,
   "container": <div>
     <div
-      class="dtc-statusTag dtc-statusTag__border"
+      class="dtc-statusTag"
     >
       <div
-        class="dtc-statusTag__default dtc-statusTag__success"
-      />
+        class="dtc-statusTag__icon"
+      >
+        <span
+          class="dtc-statusTag__icon--default dtc-statusTag__green--iconBg"
+        />
+      </div>
       <span
         class="dtc-statusTag__text"
       >

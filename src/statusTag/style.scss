@@ -1,46 +1,83 @@
 $card_prefix: "dtc-statusTag";
-$warning_color: #FBB310;
-$run_color: #1D78FF;
-$success_color: #11D782;
-$frozen_color: #EBECF0;
-$error_color: #F96C5B;
-$stopped_color: #AC9DFF;
+$colors: (
+    "yellow": (
+        color: #FBB310,
+        bg: #FFF4D9,
+    ),
+    "blue": (
+        color: #1D78FF,
+        bg: #E8F1FF,
+    ),
+    "green": (
+        color: #11D782,
+        bg: #E7FBF7,
+    ),
+    "gray": (
+        color:  #B1B4C5,
+        bg: #F5F5F8,
+    ),
+    "red": (
+        color: #F96C5B,
+        bg: #FDE9E7,
+    ),
+    "purple": (
+        color: #AC9DFF,
+        bg: #EAE6FF,
+    ),
+    "cyan": (
+        color: #2CCCDF,
+        bg: #E7F8FA,
+    ),
+    "pink": (
+        color: #FF82AE,
+        bg: #FFE6EF,
+    ),
+);
 
 .#{$card_prefix} {
     display: flex;
     align-items: center;
     width: fit-content;
     height: 24px;
+    font-size: 12px;
     color: #3D446E;
-    &__border {
+    &--border {
         padding: 2px 12px;
-        border: 1px solid #EBECF0;
+        border: 1px solid #D8DAE2;
         border-radius: 14px;
+    }
+    &--fill {
+        padding: 2px 12px;
+        border-radius: 14px;
+    }
+    &__icon {
+        display: flex;
+        align-items: center;
+        &--default {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
     }
     &__text {
         margin-left: 8px;
         line-height: 22px;
         white-space: nowrap;
     }
-    &__default {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-    }
-    &__warning {
-        background: $warning_color;
-    }
-    &__error {
-        background: $error_color;
-    }
-    &__success {
-        background: $success_color;
-    }
-    &__run {
-        background: $run_color;
-    }
-    &__stopped {
-        background: $stopped_color;
+
+    @each $type, $values in $colors {
+        &__#{$type} {
+            &--icon {
+                color: map-get($values, color);
+            }
+            &--fill {
+                color: map-get($values, color);
+                background-color: map-get($values, bg);
+            }
+            &--iconBg {
+                background: map-get($values, color);
+            }
+        }
     }
 }

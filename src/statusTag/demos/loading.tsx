@@ -5,10 +5,10 @@ import { StatusTag } from 'dt-react-component';
 export default () => {
     return (
         <Space direction="vertical">
-            <StatusTag type="success" showBorder={false} loading>
+            <StatusTag color="green" type="outline" loading>
                 成功
             </StatusTag>
-            <StatusTag type="run" loading>
+            <StatusTag color="blue" type="outline" loading>
                 运行中
             </StatusTag>
         </Space>
