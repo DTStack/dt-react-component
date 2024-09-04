@@ -126,7 +126,7 @@ export default () => {
                 checkedChildren="展示占位符"
                 unCheckedChildren="展示内容"
             />
-            <Empty empty={empty}>More Data</Empty>
+            <Empty showEmpty={empty}>More Data</Empty>
         </Space>
     );
 };
@@ -150,7 +150,7 @@ export default () => {
                 checkedChildren="展示占位符"
                 unCheckedChildren="展示内容"
             />
-            <Empty empty={empty} extra={<Button>添加</Button>}>
+            <Empty showEmpty={empty} extra={<Button>添加</Button>}>
                 More Data
             </Empty>
         </Space>
@@ -160,13 +160,13 @@ export default () => {
 
 ## API
 
-| 参数     | 说明                        | 类型                                                                        | 默认值    |
-| -------- | --------------------------- | --------------------------------------------------------------------------- | --------- |
-| type     | 默认展示图片的类型          | `default` \| `project` \| `chart` \| `search` \| `permission` \| `overview` | `default` |
-| size     | 图片大小                    | `default` \| `large`                                                        | `default` |
-| empty    | 是否展示 Empty 组件         | `boolean`                                                                   | `true`    |
-| children | 展示内容                    | `React.ReactNode`                                                           | -         |
-| extra    | 替换 antd Empty 的 children | ` React.ReactNode`                                                          | -         |
+| 参数      | 说明                        | 类型                                                                        | 默认值    |
+| --------- | --------------------------- | --------------------------------------------------------------------------- | --------- |
+| type      | 默认展示图片的类型          | `default` \| `project` \| `chart` \| `search` \| `permission` \| `overview` | `default` |
+| size      | 图片大小                    | `default` \| `large`                                                        | `default` |
+| showEmpty | 是否展示 Empty 组件         | `boolean`                                                                   | `true`    |
+| children  | 展示内容                    | `React.ReactNode`                                                           | -         |
+| extra     | 替换 antd Empty 的 children | ` React.ReactNode`                                                          | -         |
 
 :::info
 其余属性[继承 antd4.x 的 Empty](https://ant.design/components/empty-cn/#API)

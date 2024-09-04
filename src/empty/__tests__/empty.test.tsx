@@ -48,7 +48,7 @@ describe('Empty', () => {
 
     it('should show correct content when not empty', () => {
         const { container } = render(
-            <Empty type="project" empty={false}>
+            <Empty type="project" showEmpty={false}>
                 <div className="data">show data</div>
             </Empty>
         );
