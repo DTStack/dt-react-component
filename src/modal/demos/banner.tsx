@@ -8,7 +8,7 @@ export default function Banner() {
     return (
         <>
             <Modal
-                title="dt-react-component"
+                title="支持 banner 属性"
                 visible={visible}
                 banner="模态框可以支持 banner 属性"
                 onCancel={() => setVisible(false)}

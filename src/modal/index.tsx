@@ -1,26 +1,53 @@
-import { Modal } from 'antd';
+import React from 'react';
+import { Alert, type AlertProps, Modal, type ModalProps } from 'antd';
+import classNames from 'classnames';
+import { omit } from 'lodash';
 
-import InternalForm from './components/form';
-import InternalModal from './components/modal';
+import './index.scss';
 
-type OriginalInterface = typeof Modal;
+export interface IModalProps extends ModalProps {
+    size?: 'small' | 'default' | 'middle' | 'large';
+    banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
+}
 
-const WrapperModal: any = new Proxy(InternalModal, {
-    get(_, key) {
-        if (key in Modal) {
-            // Skip defaultProps
-            if (key === 'defaultProps') return undefined;
-            return Modal[key as keyof OriginalInterface];
-        } else if (key === 'Form') {
-            return InternalForm;
-        }
-    },
-});
+const getWidthFromSize = (size: IModalProps['size']) => {
+    if (size === 'small') return 400;
+    if (size === 'middle') return 640;
+    if (size === 'large') return 900;
+    return 520;
+};
 
-type ModalStaticFunctionType = Pick<OriginalInterface, keyof OriginalInterface>;
-type ModalInterface = typeof InternalModal &
-    ModalStaticFunctionType & { Form: typeof InternalForm };
+const isValidBanner = (banner: IModalProps['banner']): banner is AlertProps['message'] => {
+    if (typeof banner === 'object') return React.isValidElement(banner);
+    return true;
+};
 
-export type { IModalProps } from './components/modal';
+export default function InternalModal({
+    bodyStyle,
+    banner,
+    size = 'default',
+    children,
+    width,
+    className,
+    ...rest
+}: IModalProps) {
+    const finalWidth = width ?? getWidthFromSize(size);
 
-export default WrapperModal as ModalInterface;
+    return (
+        <Modal
+            className={classNames('dt-modal', className)}
+            bodyStyle={{ padding: 0, ...bodyStyle }}
+            width={finalWidth}
+            {...rest}
+        >
+            {banner && (
+                <Alert
+                    message={isValidBanner(banner) ? banner : banner.message}
+                    banner
+                    {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
+                />
+            )}
+            <section className="dt-modal-body">{children}</section>
+        </Modal>
+    );
+}

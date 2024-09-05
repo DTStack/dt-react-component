@@ -8,12 +8,16 @@ toc: content
 
 ## 何时使用
 
+-   使用模态框时，使用该组件替换 antd 的 Modal
+-   支持 size 属性来快速设置宽度；限制 Modal 的高度为 600px，超出内部滚动
+-   支持 banner 属性来快速实现 Modal 内部提示
+
 ## 示例
 
-<code src="./demos/basic/basic.tsx" title="最大高度限制"></code>
-<code src="./demos/basic/size.tsx" title="尺寸"></code>
-<code src="./demos/basic/banner.tsx" title="支持 banner"></code>
-<code src="./demos/basic/bannerProps.tsx" title="支持传 banner 的 Props 属性"></code>
+<code src="./demos/basic.tsx" title="最大高度限制"></code>
+<code src="./demos/size.tsx" title="尺寸"></code>
+<code src="./demos/banner.tsx" title="支持 banner"></code>
+<code src="./demos/bannerProps.tsx" title="支持传 banner 的 Props 属性"></code>
 
 ## API
 

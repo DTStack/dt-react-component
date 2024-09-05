@@ -48,7 +48,7 @@ export default function Size() {
                 </Button>
             </Space>
             <Modal
-                title="最大高度限制 600px"
+                title={`${size} 尺寸的 Modal`}
                 visible={visible}
                 onCancel={() => setVisible(false)}
                 onOk={() => setVisible(false)}
