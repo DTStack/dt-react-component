@@ -1,24 +1,11 @@
 import React, { CSSProperties, ReactNode } from 'react';
 import { CopyOutlined } from '@ant-design/icons';
-import { message, Tooltip, TooltipProps } from 'antd';
+import { message, Tooltip } from 'antd';
 import classNames from 'classnames';
 import useClippy from 'use-clippy';
 
+import { LabelTooltipType, toTooltipProps } from '../utils';
 import './style.scss';
-
-function toTooltipProps(tooltip: LabelTooltipType): TooltipProps | null {
-    if (!tooltip) {
-        return null;
-    }
-    if (typeof tooltip === 'object' && !React.isValidElement(tooltip)) {
-        return tooltip as TooltipProps;
-    }
-    return {
-        title: tooltip,
-    };
-}
-
-export type LabelTooltipType = TooltipProps | React.ReactNode;
 
 export interface ICopyProps {
     text: string;
@@ -57,11 +44,7 @@ const Copy: React.FC<ICopyProps> = (props) => {
 
     const tooltipProps = toTooltipProps(tooltip);
 
-    return tooltipProps ? (
-        <Tooltip {...tooltipProps}>{renderCopyButton()}</Tooltip>
-    ) : (
-        renderCopyButton()
-    );
+    return <Tooltip {...tooltipProps}>{renderCopyButton()}</Tooltip>;
 };
 
 export default Copy;
