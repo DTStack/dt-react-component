@@ -78,7 +78,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
         addonAfter,
         expand,
         children = '',
-        addonBefore = <div className={`${prefixCls}-addon-before--${size}`} />,
+        addonBefore = <div className={`title__addon-before--${size}`} />,
         onExpand,
     } = props;
 
@@ -86,7 +86,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const currentExpand = isControlled(props) ? expand : internalExpand;
 
-    const preTitleRowCls = `${prefixCls}-title-row`;
+    const preTitleRowCls = `${prefixCls}__title`;
 
     const tooltipProps = toTooltipProps(tooltip);
 
@@ -113,34 +113,32 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                     `${preTitleRowCls}--${size}`,
                     titleRowClassName,
                     {
-                        [`${preTitleRowCls}-background`]: background,
-                        [`${preTitleRowCls}-pointer`]: children,
+                        [`${preTitleRowCls}--background`]: background,
+                        [`${preTitleRowCls}--pointer`]: children,
                     }
                 )}
                 onClick={() => handleExpand(!currentExpand)}
             >
-                <div className={`${prefixCls}-title-box`}>
-                    {addonBefore ? (
-                        <div className={`${prefixCls}-addon-before`}>{addonBefore}</div>
-                    ) : null}
-                    <div className={`${prefixCls}-title ${titleClassName}`}>{title}</div>
+                <div className="title__box">
+                    {addonBefore ? <div className="title__addon-before">{addonBefore}</div> : null}
+                    <div className={`title__text ${titleClassName}`}>{title}</div>
                     {questionTooltip ? (
-                        <div className={`${prefixCls}-tooltip`}>{questionTooltip}</div>
+                        <div className={`title__tooltip`}>{questionTooltip}</div>
                     ) : null}
-                    {description ? (
-                        <div className={`${prefixCls}-description`}>{description}</div>
-                    ) : null}
+                    {description ? <div className={`title__description`}>{description}</div> : null}
                 </div>
-                {addonAfter && <div className={`${prefixCls}-addonAfter-box`}>{addonAfter}</div>}
+                {addonAfter && <div className={`title__addon-after`}>{addonAfter}</div>}
                 {children && (
-                    <div className={`${prefixCls}-collapse-box`}>
-                        <div className="text">{currentExpand ? '收起' : '展开'}</div>
-                        <UpOutlined className={`icon ${currentExpand ? 'up' : 'down'}`} />
+                    <div className={`title__collapse`}>
+                        <div className="text">{expand ? '收起' : '展开'}</div>
+                        <UpOutlined className={`icon ${expand ? 'up' : 'down'}`} />
                     </div>
                 )}
             </div>
             {children && (
-                <div className={`${prefixCls}-content ${currentExpand ? 'active' : ''}`}>{children}</div>
+                <div className={`${prefixCls}__content ${currentExpand ? 'active' : ''}`}>
+                    {children}
+                </div>
             )}
         </div>
     );

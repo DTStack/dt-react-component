@@ -1,7 +1,7 @@
 $card_prefix: "dtc-block-header";
 
 .#{$card_prefix} {
-    &-title-row {
+    &__title {
         border-radius: 4px;
         display: flex;
         align-items: center;
@@ -30,10 +30,10 @@ $card_prefix: "dtc-block-header";
                 }
             }
         }
-        &-background {
+        &--background {
             padding: 0 12px;
             background-color: #F9F9FA;
-            &.#{$card_prefix}-title-row {
+            &.#{$card_prefix}__title {
                 &--middle,
                 &--large {
                     height: 40px;
@@ -43,15 +43,16 @@ $card_prefix: "dtc-block-header";
                 }
             }
         }
-        &-pointer {
+        &--pointer {
             cursor: pointer;
         }
-
-        .#{$card_prefix}-title-box {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            .#{$card_prefix}-addon-before {
+        .title {
+            &__box {
+                flex: 1;
+                display: flex;
+                align-items: center;
+            }
+            &__addon-before {
                 margin-right: 8px;
                 color: #1D78FF;
                 &--middle,
@@ -66,51 +67,50 @@ $card_prefix: "dtc-block-header";
                     background-color: #1D78FF;
                 }
             }
-            .#{$card_prefix}-tooltip {
+            &__tooltip {
                 display: flex;
                 margin-right: 4px;
                 font-size: 16px;
                 color: #B1B4C5;
             }
-            .#{$card_prefix}-title {
+            &__text {
                 color: #3D446E;
                 font-weight: 500;
                 margin-right: 4px;
             }
-            .#{$card_prefix}-description {
+            &__description {
                 display: flex;
                 align-items: center;
                 color: #8B8FA8;
                 font-size: 12px;
             }
-        }
-        .#{$card_prefix}-addonAfter-box {
-            color: #8B8FA8;
-        }
-
-        .#{$card_prefix}-collapse-box {
-            color: #8B8FA8;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            .text {
-                font-size: 12px;
-                margin: 0 4px;
+            &__addon-after {
+                color: #8B8FA8;
             }
-            .icon {
-                font-size: 16px;
-                transition: transform 0.4s;
-                &.down {
-                    transform: rotate(-180deg);
+            &__collapse {
+                color: #8B8FA8;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                user-select: none;
+                .text {
+                    font-size: 12px;
+                    margin: 0 4px;
                 }
-                &.up {
-                    transform: rotate(0deg);
+                .icon {
+                    font-size: 16px;
+                    transition: transform 0.4s;
+                    &.down {
+                        transform: rotate(-180deg);
+                    }
+                    &.up {
+                        transform: rotate(0deg);
+                    }
                 }
             }
         }
     }
-    &-content {
+    &__content {
         opacity: 0;
         height: 0;
         overflow: hidden;
