@@ -9,20 +9,20 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
         class="dtc-block-header"
       >
         <div
-          class="dtc-block-header-title-row dtc-block-header-title-row--middle dtc-block-header-title-row-background"
+          class="dtc-block-header__title dtc-block-header__title--middle dtc-block-header__title--background"
         >
           <div
-            class="dtc-block-header-title-box"
+            class="title__box"
           >
             <div
-              class="dtc-block-header-addon-before"
+              class="title__addon-before"
             >
               <div
-                class="dtc-block-header-addon-before--middle"
+                class="title__addon-before--middle"
               />
             </div>
             <div
-              class="dtc-block-header-title "
+              class="title__text"
             >
               标题1
             </div>
@@ -36,20 +36,20 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
       class="dtc-block-header"
     >
       <div
-        class="dtc-block-header-title-row dtc-block-header-title-row--middle dtc-block-header-title-row-background"
+        class="dtc-block-header__title dtc-block-header__title--middle dtc-block-header__title--background"
       >
         <div
-          class="dtc-block-header-title-box"
+          class="title__box"
         >
           <div
-            class="dtc-block-header-addon-before"
+            class="title__addon-before"
           >
             <div
-              class="dtc-block-header-addon-before--middle"
+              class="title__addon-before--middle"
             />
           </div>
           <div
-            class="dtc-block-header-title "
+            class="title__text"
           >
             标题1
           </div>

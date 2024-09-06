@@ -48,9 +48,9 @@ export interface IBlockHeaderProps {
     /** 自定义 Bottom 值 */
     spaceBottom?: number;
     /** 标题一行的样式类名 */
-    titleRowClassName?: string;
+    className?: string;
     /** 标题的样式类名 */
-    titleClassName?: string;
+    style?: React.CSSProperties;
     /** 是否显示背景, 默认 true */
     background?: boolean;
     /** 当前展开状态 */
@@ -71,8 +71,8 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
         size = 'middle',
         hasBottom = false,
         spaceBottom = 0,
-        titleRowClassName = '',
-        titleClassName = '',
+        className = '',
+        style = {},
         background = true,
         defaultExpand = true,
         addonAfter,
@@ -95,6 +95,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
             <QuestionCircleOutlined />
         </Tooltip>
     );
+
     let bottomStyle;
     if (hasBottom) bottomStyle = { marginBottom: 16 };
     if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
@@ -106,22 +107,17 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     };
 
     return (
-        <div className={`${prefixCls}`} style={bottomStyle}>
+        <div className={classNames(`${prefixCls}`, className)} style={{ ...bottomStyle, ...style }}>
             <div
-                className={classNames(
-                    preTitleRowCls,
-                    `${preTitleRowCls}--${size}`,
-                    titleRowClassName,
-                    {
-                        [`${preTitleRowCls}--background`]: background,
-                        [`${preTitleRowCls}--pointer`]: children,
-                    }
-                )}
-                onClick={() => handleExpand(!currentExpand)}
+                className={classNames(preTitleRowCls, `${preTitleRowCls}--${size}`, {
+                    [`${preTitleRowCls}--background`]: background,
+                    [`${preTitleRowCls}--pointer`]: children,
+                })}
+                onClick={() => handleExpand(!expand)}
             >
                 <div className="title__box">
                     {addonBefore ? <div className="title__addon-before">{addonBefore}</div> : null}
-                    <div className={`title__text ${titleClassName}`}>{title}</div>
+                    <div className="title__text">{title}</div>
                     {questionTooltip ? (
                         <div className={`title__tooltip`}>{questionTooltip}</div>
                     ) : null}

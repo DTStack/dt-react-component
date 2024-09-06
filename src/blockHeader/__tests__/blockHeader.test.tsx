@@ -13,8 +13,9 @@ const props2: IBlockHeaderProps = {
     description: '说明文字',
     addonAfter: <div className="test-button-after">新增按钮</div>,
     size: 'small' as SizeType,
-    titleRowClassName: 'test-row-className',
-    titleClassName: 'test-title-className',
+    className: 'test__className',
+    style: { height: '100px' },
+    hasBottom: true,
 };
 const props3: IBlockHeaderProps = {
     title: 'hover',
@@ -44,18 +45,8 @@ describe('test BlockHeader render', () => {
     test('should render BlockHeader props default in BlockHeader', () => {
         const { container } = render(<BlockHeader title="测试" background />);
         const wrap = container.firstChild;
-        expect(wrap!.firstChild!.firstChild!.firstChild).toHaveClass(`${prefixCls}-addon-before`);
-        fireEvent.click(document.getElementsByClassName(`${prefixCls}-title-row`)[0]);
-    });
-    test('should render BlockHeader with different props', () => {
-        const { container, getByText } = render(<BlockHeader {...props2} />);
-        const wrap = container.firstChild;
-        expect(wrap).toHaveClass(`${prefixCls}`);
-        expect(wrap!.firstChild).toHaveClass(`test-row-className`);
-        expect(getByText('标题2')).toHaveClass('test-title-className');
-        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-description`);
-        expect(getByText('新增按钮')).toHaveClass(`test-button-after`);
-        expect(getByText('Icon')).toBeTruthy();
+        expect(wrap!.firstChild!.firstChild!.firstChild).toHaveClass('title__addon-before');
+        fireEvent.click(document.getElementsByClassName(`${prefixCls}__title`)[0]);
     });
     test('should render BlockHeader test click event', () => {
         const onChange = jest.fn();
@@ -65,7 +56,7 @@ describe('test BlockHeader render', () => {
             </BlockHeader>
         );
         expect(getByText('收起')).toBeTruthy();
-        fireEvent.click(document.getElementsByClassName(`${prefixCls}-title-row`)[0]);
+        fireEvent.click(document.getElementsByClassName(`${prefixCls}__title`)[0]);
         expect(getByText('展开')).toBeTruthy();
         expect(onChange).toHaveBeenCalledTimes(1);
     });
@@ -76,16 +67,16 @@ describe('test BlockHeader render', () => {
             </BlockHeader>
         );
         expect(getByText('收起')).toBeTruthy();
-        fireEvent.click(document.getElementsByClassName(`${prefixCls}-title-row`)[0]);
+        fireEvent.click(document.getElementsByClassName(`${prefixCls}__title`)[0]);
         expect(getByText('展开')).toBeTruthy();
     });
     test('should render BlockHeader with different props', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild;
-        expect(wrap).toHaveClass(`${prefixCls}`);
-        expect(wrap!.firstChild).toHaveClass(`test-row-className`);
-        expect(getByText('标题2')).toHaveClass('test-title-className');
-        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-description`);
+        expect(wrap).toHaveClass(`${prefixCls} test__className`);
+        expect(wrap).toHaveStyle({ height: '100px', marginBottom: '16px' });
+        expect(getByText('标题2')).toHaveClass('title__text');
+        expect(getByText('说明文字')).toHaveClass('title__description');
         expect(getByText('Icon')).toBeTruthy();
     });
     test('should render BlockHeader background success', () => {
@@ -97,10 +88,9 @@ describe('test BlockHeader render', () => {
     test('should render BlockHeader className when isSmall is small', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild!;
-        expect(wrap).toHaveClass(`${prefixCls}`);
-        expect(wrap.firstChild).toHaveClass(`test-row-className`);
-        expect(getByText('标题2')).toHaveClass('test-title-className');
-        expect(getByText('说明文字')).toHaveClass(`${prefixCls}-description`);
+        expect(wrap).toHaveClass(`${prefixCls} test__className`);
+        expect(getByText('标题2')).toHaveClass('title__text');
+        expect(getByText('说明文字')).toHaveClass('title__description');
         expect(getByText('Icon')).toBeTruthy();
     });
 
