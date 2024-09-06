@@ -17,7 +17,7 @@ function toTooltipProps(tooltip: LabelTooltipType): TooltipProps | null {
     };
 }
 
-export type LabelTooltipType = TooltipProps | React.ReactNode;
+export type LabelTooltipType = TooltipProps | TooltipProps['title'];
 
 export declare type SizeType = 'small' | 'middle' | 'large';
 
