@@ -79,16 +79,19 @@ describe('test BlockHeader render', () => {
         expect(getByText('说明文字')).toHaveClass('title__description');
         expect(getByText('Icon')).toBeTruthy();
     });
-    test('should render BlockHeader background success', () => {
+    test('should render BlockHeader background false success', () => {
         const props = { title: '测试1', background: false };
         const { container } = render(<BlockHeader {...props} />);
         const wrap = container.firstChild;
-        expect(wrap!.firstChild).not.toHaveClass(`background`);
+        expect(wrap!.firstChild).not.toHaveClass(`dtc-block-header__title--background`);
     });
-    test('should render BlockHeader className when isSmall is small', () => {
+    test('should render BlockHeader className when size is small', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild!;
         expect(wrap).toHaveClass(`${prefixCls} test__className`);
+        expect(wrap.firstChild).toHaveClass(
+            `dtc-block-header__title dtc-block-header__title--small dtc-block-header__title--background`
+        );
         expect(getByText('标题2')).toHaveClass('title__text');
         expect(getByText('说明文字')).toHaveClass('title__description');
         expect(getByText('Icon')).toBeTruthy();
@@ -97,16 +100,17 @@ describe('test BlockHeader render', () => {
     test('should render BlockHeader tooltip success', () => {
         const { container } = render(<BlockHeader {...props3} />);
         const wrap = container.firstChild!;
-        const afterTitleWrap = wrap.firstChild!.firstChild!.lastChild;
-        expect(afterTitleWrap!.firstChild).toHaveClass('anticon-question-circle');
+        const tooltipWrap = wrap.firstChild!.firstChild!.lastChild;
+        expect(tooltipWrap!.firstChild).toHaveClass('anticon-question-circle');
     });
 
-    test('should render BlockHeader tooltip and desc success', () => {
+    test('should render BlockHeader description success', () => {
         const { container } = render(<BlockHeader {...props4} />);
         const wrap = container.firstChild!;
-        const afterTitleWrap = wrap.firstChild!.firstChild!.lastChild;
-        expect(afterTitleWrap).toHaveTextContent('说明文字');
+        const description = wrap.firstChild!.firstChild!.lastChild;
+        expect(description).toHaveTextContent('说明文字');
     });
+
     test('should render BlockHeader correct dom length', () => {
         const { container } = render(<BlockHeader title="分类级别" addonBefore="" />);
         const titleBoxWrap = container.firstChild!.firstChild!.firstChild;
@@ -118,6 +122,7 @@ describe('test BlockHeader render', () => {
         const titleBoxWrap1 = container1.firstChild!.firstChild!.firstChild;
         expect(titleBoxWrap1!.childNodes.length).toEqual(3);
     });
+
     test('should render BlockHeader correct margin-bottom', () => {
         const { container: noStyle } = render(<BlockHeader title="分类级别" addonBefore="" />);
         expect(noStyle.querySelector('.dtc-block-header')).not.toHaveAttribute('style');

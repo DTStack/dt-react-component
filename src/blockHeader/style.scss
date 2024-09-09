@@ -7,25 +7,25 @@ $card_prefix: "dtc-block-header";
         align-items: center;
         justify-content: space-between;
         &--large {
-            .#{$card_prefix}-title-box {
+            .title__box {
                 line-height: 24px;
-                .#{$card_prefix}-title {
+                .title__text {
                     font-size: 16px;
                 }
             }
         }
         &--middle {
-            .#{$card_prefix}-title-box {
+            .title__box {
                 line-height: 22px;
-                .#{$card_prefix}-title {
+                .title__text {
                     font-size: 14px;
                 }
             }
         }
         &--small {
-            .#{$card_prefix}-title-box {
+            .title__box {
                 line-height: 20px;
-                .#{$card_prefix}-title {
+                .title__text {
                     font-size: 12px;
                 }
             }
