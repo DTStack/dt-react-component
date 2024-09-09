@@ -6,9 +6,15 @@ const text =
 
 export default () => {
     return (
-        <div>
-            <Copy text={text} button={<a>复制文本</a>} />
-            <p>{text}</p>
-        </div>
+        <>
+            <div>
+                <Copy text={text} button={<a>复制文本</a>} />
+                <p>{text}</p>
+            </div>
+            <div>
+                <Copy text={text} button={<a>复制文本</a>} tooltip={false} />
+                <p>{text}</p>
+            </div>
+        </>
     );
 };

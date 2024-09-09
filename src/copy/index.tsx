@@ -20,7 +20,7 @@ const Copy: React.FC<ICopyProps> = (props) => {
     const {
         button = <CopyOutlined className="dtc-copy__default-icon" />,
         text,
-        tooltip,
+        tooltip = '复制',
         style,
         className,
         onCopy = () => message.success('复制成功'),
