@@ -44,8 +44,8 @@ export default () => {
                 size={size}
                 title="分类标题"
                 background={showBackground}
-                tooltip={tooltip && '这里展示问号提示'}
-                description={description && '提示说明文字'}
+                tooltip={tooltip ? '这里展示问号提示' : ''}
+                description={description ? '提示说明文字' : ''}
             />
         </div>
     );

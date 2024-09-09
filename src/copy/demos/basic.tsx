@@ -19,8 +19,8 @@ export default () => {
                 <p>{text}</p>
             </div>
             <div>
-                <BlockHeader title={`使用 ()=>React.ReactNode`} background={false} size="small" />
-                <Copy text={text} tooltip={() => `使用 ()=>React.ReactNode，复制该文本`} />
+                <BlockHeader title={`使用 () => React.ReactNode`} background={false} size="small" />
+                <Copy text={text} tooltip={() => `使用 () => React.ReactNode，复制该文本`} />
                 <p>{text}</p>
             </div>
         </Space>
