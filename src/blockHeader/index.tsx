@@ -1,23 +1,10 @@
 import React, { ReactNode, useState } from 'react';
 import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
-import { Tooltip, TooltipProps } from 'antd';
+import { Tooltip } from 'antd';
 import classNames from 'classnames';
 
+import { LabelTooltipType, toTooltipProps } from '../utils';
 import './style.scss';
-
-function toTooltipProps(tooltip: LabelTooltipType): TooltipProps | null {
-    if (!tooltip) {
-        return null;
-    }
-    if (typeof tooltip === 'object' && !React.isValidElement(tooltip)) {
-        return tooltip as TooltipProps;
-    }
-    return {
-        title: tooltip,
-    };
-}
-
-export type LabelTooltipType = TooltipProps | TooltipProps['title'];
 
 export declare type SizeType = 'small' | 'middle' | 'large';
 
@@ -34,7 +21,7 @@ export interface IBlockHeaderProps {
     description?: ReactNode;
     /** 默认展示为问号的tooltip */
     tooltip?: LabelTooltipType;
-    // 后缀自定义内容块
+    /**  后缀自定义内容块 */
     addonAfter?: ReactNode;
     /**
      * 小标题 font-size: 12px; line-height: 32px
@@ -62,12 +49,15 @@ export interface IBlockHeaderProps {
     /** 展开/收起时的回调 */
     onExpand?: (expand: boolean) => void;
 }
+
+const prefixCls = 'dtc-block-header';
+const preTitleRowCls = `${prefixCls}__title`;
+
 const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
-    const prefixCls = 'dtc-block-header';
     const {
         title,
         description = '',
-        tooltip = '',
+        tooltip,
         size = 'middle',
         hasBottom = false,
         spaceBottom = 0,
@@ -86,15 +76,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const currentExpand = isControlled(props) ? expand : internalExpand;
 
-    const preTitleRowCls = `${prefixCls}__title`;
-
     const tooltipProps = toTooltipProps(tooltip);
-
-    const questionTooltip = tooltipProps && (
-        <Tooltip {...tooltipProps}>
-            <QuestionCircleOutlined />
-        </Tooltip>
-    );
 
     let bottomStyle;
     if (hasBottom) bottomStyle = { marginBottom: 16 };
@@ -113,26 +95,39 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                     [`${preTitleRowCls}--background`]: background,
                     [`${preTitleRowCls}--pointer`]: children,
                 })}
-                onClick={() => handleExpand(!expand)}
+                onClick={() => handleExpand(!currentExpand)}
             >
                 <div className="title__box">
                     {addonBefore ? <div className="title__addon-before">{addonBefore}</div> : null}
                     <div className="title__text">{title}</div>
-                    {questionTooltip ? (
-                        <div className={`title__tooltip`}>{questionTooltip}</div>
+                    {tooltipProps?.title ? (
+                        <div className={`title__tooltip`}>
+                            <Tooltip {...tooltipProps}>
+                                <QuestionCircleOutlined />
+                            </Tooltip>
+                        </div>
                     ) : null}
                     {description ? <div className={`title__description`}>{description}</div> : null}
                 </div>
                 {addonAfter && <div className={`title__addon-after`}>{addonAfter}</div>}
                 {children && (
                     <div className={`title__collapse`}>
-                        <div className="text">{expand ? '收起' : '展开'}</div>
-                        <UpOutlined className={`icon ${expand ? 'up' : 'down'}`} />
+                        <div className="collapse__text">{currentExpand ? '收起' : '展开'}</div>
+                        <UpOutlined
+                            className={classNames('collapse__icon', {
+                                'collapse__icon--up': currentExpand,
+                                'collapse__icon--down': !currentExpand,
+                            })}
+                        />
                     </div>
                 )}
             </div>
             {children && (
-                <div className={`${prefixCls}__content ${currentExpand ? 'active' : ''}`}>
+                <div
+                    className={classNames(`${prefixCls}__content`, {
+                        [`${prefixCls}__content--active`]: currentExpand,
+                    })}
+                >
                     {children}
                 </div>
             )}

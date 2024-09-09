@@ -72,6 +72,7 @@ $card_prefix: "dtc-block-header";
                 margin-right: 4px;
                 font-size: 16px;
                 color: #B1B4C5;
+                cursor: pointer;
             }
             &__text {
                 color: #3D446E;
@@ -93,18 +94,20 @@ $card_prefix: "dtc-block-header";
                 align-items: center;
                 cursor: pointer;
                 user-select: none;
-                .text {
-                    font-size: 12px;
-                    margin: 0 4px;
-                }
-                .icon {
-                    font-size: 16px;
-                    transition: transform 0.4s;
-                    &.down {
-                        transform: rotate(-180deg);
+                .collapse {
+                    &__text {
+                        font-size: 12px;
+                        margin: 0 4px;
                     }
-                    &.up {
-                        transform: rotate(0deg);
+                    &__icon {
+                        font-size: 16px;
+                        transition: transform 0.4s;
+                        &--down {
+                            transform: rotate(-180deg);
+                        }
+                        &--up {
+                            transform: rotate(0deg);
+                        }
                     }
                 }
             }
@@ -115,7 +118,7 @@ $card_prefix: "dtc-block-header";
         height: 0;
         overflow: hidden;
         transition: opacity 0.5s ease, height 0.5s ease;
-        &.active {
+        &--active {
             opacity: 1;
             padding: 16px 24px;
             height: auto;
