@@ -30,7 +30,7 @@ describe('test Copy', () => {
     it('should render with custom button', () => {
         const user = userEvent.setup({ writeToClipboard: true });
         const { getByText } = render(
-            <Copy text={mockText} button={<button>测试复制文本</button>} hideTooltip />
+            <Copy text={mockText} button={<button>测试复制文本</button>} />
         );
         const customButton = getByText('测试复制文本');
 
@@ -45,5 +45,29 @@ describe('test Copy', () => {
         user.paste().then((value) => {
             expect(value).toEqual(mockText);
         });
+    });
+
+    it('should render with tooltip title', () => {
+        const mockCopy = jest.fn();
+        render(<Copy text={mockText} onCopy={(text) => mockCopy(text)} tooltip="复制文本" />);
+        setTimeout(() => {
+            expect(document.body.querySelector('.ant-tooltip')).toBeInTheDocument();
+            expect(document.body.querySelector('.ant-tooltip-inner')?.innerHTML).toBe('复制文本');
+        }, 0);
+    });
+
+    it('should render with tooltip object', () => {
+        const mockCopy = jest.fn();
+        render(
+            <Copy
+                text={mockText}
+                onCopy={(text) => mockCopy(text)}
+                tooltip={{ title: '复制文本' }}
+            />
+        );
+        setTimeout(() => {
+            expect(document.body.querySelector('.ant-tooltip')).toBeInTheDocument();
+            expect(document.body.querySelector('.ant-tooltip-inner')?.innerHTML).toBe('复制文本');
+        }, 0);
     });
 });

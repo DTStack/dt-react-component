@@ -4,15 +4,15 @@ import { message, Tooltip } from 'antd';
 import classNames from 'classnames';
 import useClippy from 'use-clippy';
 
+import { LabelTooltipType, toTooltipProps } from '../utils';
 import './style.scss';
 
 export interface ICopyProps {
     text: string;
-    title?: ReactNode;
     button?: ReactNode;
-    hideTooltip?: boolean;
     style?: CSSProperties;
     className?: string;
+    tooltip?: LabelTooltipType;
     onCopy?: (text: string) => void;
 }
 
@@ -20,8 +20,7 @@ const Copy: React.FC<ICopyProps> = (props) => {
     const {
         button = <CopyOutlined className="dtc-copy__default-icon" />,
         text,
-        title = '复制',
-        hideTooltip,
+        tooltip = '复制',
         style,
         className,
         onCopy = () => message.success('复制成功'),
@@ -43,13 +42,9 @@ const Copy: React.FC<ICopyProps> = (props) => {
         </span>
     );
 
-    return !hideTooltip ? (
-        <Tooltip placement="right" title={title}>
-            {renderCopyButton()}
-        </Tooltip>
-    ) : (
-        renderCopyButton()
-    );
+    const tooltipProps = toTooltipProps(tooltip);
+
+    return <Tooltip {...tooltipProps}>{renderCopyButton()}</Tooltip>;
 };
 
 export default Copy;
