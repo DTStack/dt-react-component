@@ -9,21 +9,17 @@ export default () => {
     return (
         <Space direction="vertical">
             <div>
-                <BlockHeader title="使用 tooltip 对象" showBackground={false} size="small" />
+                <BlockHeader title="使用 tooltip 对象" background={false} size="small" />
                 <Copy text={text} tooltip={{ title: '使用 tooltip 对象，复制该文本' }} />
                 <p>{text}</p>
             </div>
             <div>
-                <BlockHeader title="使用 React.ReactNode" showBackground={false} size="small" />
+                <BlockHeader title="使用 React.ReactNode" background={false} size="small" />
                 <Copy text={text} tooltip="使用 React.ReactNode，复制该文本" />
                 <p>{text}</p>
             </div>
             <div>
-                <BlockHeader
-                    title={`使用 ()=>React.ReactNode`}
-                    showBackground={false}
-                    size="small"
-                />
+                <BlockHeader title={`使用 ()=>React.ReactNode`} background={false} size="small" />
                 <Copy text={text} tooltip={() => `使用 ()=>React.ReactNode，复制该文本`} />
                 <p>{text}</p>
             </div>

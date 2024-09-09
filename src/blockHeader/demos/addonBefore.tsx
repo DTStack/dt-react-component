@@ -9,12 +9,12 @@ export default () => {
             <br />
             <BlockHeader
                 title="分类标题"
-                beforeTitle={<PieChartOutlined style={{ fontSize: '14px' }} />}
+                addonBefore={<PieChartOutlined style={{ fontSize: '14px' }} />}
             />
             <br />
             <BlockHeader
                 title="分类标题"
-                beforeTitle={<PauseCircleOutlined style={{ fontSize: '14px' }} />}
+                addonBefore={<PauseCircleOutlined style={{ fontSize: '14px' }} />}
             />
         </>
     );
