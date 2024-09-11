@@ -30,12 +30,22 @@ interface NormalSlidePane extends Omit<DrawerProps, 'placement'> {
 
 interface TabsSlidePane<T extends readOnlyTab> extends Omit<NormalSlidePane, 'children'> {
     tabs?: T;
+    defaultKey?: TabKey<T>;
     activeKey?: TabKey<T>;
     children?: (key: TabKey<T>) => React.ReactNode;
+    onChange?: (key: TabKey<T>) => void;
 }
 
-function isFunction(props: any): props is TabsSlidePane<Tab[]> {
+function isFunction<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
     return typeof props.children === 'function';
+}
+
+function isTabMode<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
+    return 'tabs' in props;
+}
+
+function isControlled<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
+    return 'activeKey' in props;
 }
 
 export type SlidePaneProps<T extends readOnlyTab> = TabsSlidePane<T> | NormalSlidePane;
@@ -64,7 +74,6 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
         title,
         width,
         size = 'default',
-        children,
         footer,
         banner,
         onClose,
@@ -74,13 +83,15 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
     const composeOpen = open || visible;
     const finalWidth = width ?? getWidthFromSize(size);
 
-    const [tabKey, setTabKey] = useState('');
+    const [internalTabKey, setInternalTabKey] = useState('');
 
     useEffect(() => {
         composeOpen &&
-            isFunction(props) &&
-            setTabKey(props.activeKey || props.tabs?.[0]?.key || '');
+            isTabMode(props) &&
+            setInternalTabKey(props.defaultKey ?? props.tabs?.[0]?.key ?? '');
     }, [composeOpen]);
+
+    const currentKey = isControlled(props) ? props.activeKey : internalTabKey;
 
     const renderButton = () => {
         return (
@@ -91,6 +102,11 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
                 alt="closeBtn"
             />
         );
+    };
+
+    const handleChangeKey = (key: TabKey<T>) => {
+        !isControlled(props) && setInternalTabKey(key);
+        isTabMode(props) && props.onChange?.(key);
     };
 
     return (
@@ -114,11 +130,11 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
                         {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
                     />
                 )}
-                {isFunction(props) && (
+                {isTabMode(props) && (
                     <Tabs
                         destroyInactiveTabPane
-                        activeKey={tabKey}
-                        onChange={setTabKey}
+                        activeKey={currentKey}
+                        onChange={handleChangeKey}
                         className={`${slidePrefixCls}-tabs`}
                     >
                         {props.tabs?.map((tab: { key: string; title: React.ReactNode }) => (
@@ -130,7 +146,7 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
                     className={classNames(`${slidePrefixCls}-body`, bodyClassName)}
                     style={bodyStyle}
                 >
-                    {typeof children === 'function' ? children(tabKey) : children}
+                    {isFunction(props) ? props.children?.(currentKey ?? '') : props.children}
                 </div>
                 {footer ? (
                     <div className={classNames(`${slidePrefixCls}-footer`)}>{footer}</div>

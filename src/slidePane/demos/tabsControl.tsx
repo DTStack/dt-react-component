@@ -4,6 +4,7 @@ import { SlidePane } from 'dt-react-component';
 
 export default () => {
     const [visible, setVisible] = useState(false);
+    const [activeKey, setActiveKey] = useState<'basicInfo' | 'changelog'>('changelog');
 
     return (
         <>
@@ -24,8 +25,8 @@ export default () => {
                         },
                     ] as const
                 }
-                defaultKey="changelog"
-                onChange={(key) => console.log('currentKey', key)}
+                activeKey={activeKey}
+                onChange={(key) => setActiveKey(key)}
             >
                 {(key) => {
                     switch (key) {
