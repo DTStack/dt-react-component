@@ -1,7 +1,11 @@
 import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Button, Checkbox, Col, Dropdown, type DropDownProps, Row, Space } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/lib/checkbox';
-import type { CheckboxGroupProps, CheckboxValueType } from 'antd/lib/checkbox/Group';
+import type {
+    CheckboxGroupProps,
+    CheckboxOptionType,
+    CheckboxValueType,
+} from 'antd/lib/checkbox/Group';
 import classNames from 'classnames';
 import { isEqual } from 'lodash';
 import List from 'rc-virtual-list';
@@ -29,7 +33,7 @@ export default function Select({
     onChange,
 }: IDropdownSelectProps) {
     const [visible, setVisible] = useState(false);
-    const [selected, setSelected] = useState<CheckboxValueType[]>(defaultValue || []);
+    const [selected, setSelected] = useState<CheckboxValueType[]>(value || defaultValue || []);
 
     const handleCheckedAll = (e: CheckboxChangeEvent) => {
         if (e.target.checked) {
@@ -77,13 +81,13 @@ export default function Select({
     };
 
     useEffect(() => {
-        if (value && value !== selected) {
+        if (value !== undefined && value !== selected) {
             setSelected(value || []);
         }
     }, [value]);
 
     // Always turn string and number options into complex options
-    const options = useMemo(() => {
+    const options = useMemo<CheckboxOptionType[]>(() => {
         return (
             rawOptions?.map((i) => {
                 if (typeof i === 'string' || typeof i === 'number') {
@@ -98,7 +102,7 @@ export default function Select({
         );
     }, [rawOptions]);
 
-    const disabledValue = useMemo(() => {
+    const disabledValue = useMemo<CheckboxValueType[]>(() => {
         return options?.filter((i) => i.disabled).map((i) => i.value) || [];
     }, [options]);
 
