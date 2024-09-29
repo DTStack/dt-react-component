@@ -28,9 +28,11 @@ const useCookieListener = (
     options: ICookieOptions = defaultOptions
 ) => {
     const { timeout, immediately } = options;
+    const isWatchAll = !watchFields.length;
     const timerRef = useRef<number>();
     const currentCookiesRef = useRef<string>(document.cookie);
-    const isWatchAll = !watchFields.length;
+    const handlerRef = useRef<CompareCookieHandler>();
+    handlerRef.current = handler;
 
     useEffect(() => {
         timerRef.current = window.setInterval(() => {
@@ -54,7 +56,7 @@ const useCookieListener = (
                 changedFields.push({ key, value: newValue });
             }
         }
-        changedFields.length && handler({ changedFields, prevCookies, nextCookies });
+        changedFields.length && handlerRef.current?.({ changedFields, prevCookies, nextCookies });
     };
 
     const compareValue = () => {
@@ -62,7 +64,7 @@ const useCookieListener = (
         const nextCookies = document.cookie;
         if (prevCookies !== nextCookies) {
             isWatchAll
-                ? handler({ prevCookies, nextCookies })
+                ? handlerRef.current?.({ prevCookies, nextCookies })
                 : handleFieldsChange(prevCookies, nextCookies);
             currentCookiesRef.current = nextCookies;
         }
