@@ -28,12 +28,14 @@ const ContentLayout = (props: IProps) => {
         Children.forEach(children, (child) => {
             if (child?.type === Header) {
                 header = cloneElement(child, {
+                    key: 'header',
                     ref: headerRef,
                 });
             }
             if (child?.type === TableLayout) {
                 content.push(
                     cloneElement(child, {
+                        key: 'table',
                         height: contentHeight,
                     })
                 );
