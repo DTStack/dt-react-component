@@ -37,7 +37,7 @@ describe('test CollapsibleActionItems', () => {
                 }}
             />
         );
-        const btns = container.querySelectorAll('.dtc-action-btn-wrapper');
+        const btns = container.querySelectorAll('.dtc-collapsibleActionItems__btn');
         expect(btns).toHaveLength(3);
         btns.forEach(testClick);
     });
@@ -53,7 +53,7 @@ describe('test CollapsibleActionItems', () => {
                 dropdownProps={{ trigger: ['click'] }}
             />
         );
-        const btns = container.querySelectorAll('.dtc-action-btn-wrapper');
+        const btns = container.querySelectorAll('.dtc-collapsibleActionItems__btn');
         const dropdownEl = getByTestId('action-dropdown-link');
         expect(btns).toHaveLength(1);
         expect(dropdownEl).toBeInTheDocument();

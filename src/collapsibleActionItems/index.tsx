@@ -1,13 +1,15 @@
 import React, { ReactNode } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { Button, ButtonProps, Divider, Dropdown, DropDownProps, Menu } from 'antd';
+import classNames from 'classnames';
+
+import './style.scss';
 
 type ActionItem = {
     key: React.Key;
     name: ReactNode;
     disabled?: boolean;
     render?: () => ReactNode;
-    [propName: string]: any;
 };
 
 interface ICollapsibleActionItems {
@@ -18,6 +20,7 @@ interface ICollapsibleActionItems {
     collapseIcon?: ReactNode; // 折叠菜单图标
     dropdownProps?: Partial<DropDownProps>;
     buttonProps?: Partial<ButtonProps>;
+    style?: React.CSSProperties;
     onItemClick?(key: React.Key): void;
 }
 
@@ -30,6 +33,7 @@ const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
         collapseIcon = <EllipsisOutlined />,
         dropdownProps,
         buttonProps,
+        style,
         onItemClick,
     } = props;
     const isOverMaxCount = actionItems.length > maxCount;
@@ -38,7 +42,7 @@ const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
         if (!isCollapse)
             return (
                 <span
-                    className="dtc-action-btn-wrapper"
+                    className="dtc-collapsibleActionItems__btn"
                     key={item.key}
                     onClick={() => !item.disabled && onItemClick?.(item.key)}
                 >
@@ -70,7 +74,7 @@ const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
     ) : null;
 
     return (
-        <div className={className}>
+        <div className={classNames('dtc-collapsibleActionItems', className)} style={style}>
             {displayAction.map((actionItem, index) => {
                 const showDivider = index < actionItems.length - 1;
                 return (
@@ -86,7 +90,12 @@ const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
                     getPopupContainer={(triggerNode) => triggerNode.parentElement ?? document.body}
                     {...dropdownProps}
                 >
-                    <a data-testid="action-dropdown-link">{collapseIcon}</a>
+                    <a
+                        data-testid="action-dropdown-link"
+                        className="dtc-collapsibleActionItems__icon"
+                    >
+                        {collapseIcon}
+                    </a>
                 </Dropdown>
             )}
         </div>
