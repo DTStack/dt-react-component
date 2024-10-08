@@ -66,6 +66,17 @@ $card_prefix: "dtc-block-header";
                     height: 20px;
                     background-color: #1D78FF;
                 }
+                .icon {
+                    &--small {
+                        font-size: 16px;
+                    }
+                    &--middle {
+                        font-size: 20px;
+                    }
+                    &--large {
+                        font-size: 25px;
+                    }
+                }
             }
             &__tooltip {
                 display: flex;

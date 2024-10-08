@@ -82,6 +82,14 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     if (hasBottom) bottomStyle = { marginBottom: 16 };
     if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
 
+    const hasAddonBefore = addonBefore || addonBefore === undefined;
+    const addonBeforeIcon =
+        addonBefore === undefined ? (
+            <div className={`title__addon-before--${size}`} />
+        ) : (
+            <div className={`icon--${size}`}>{addonBefore}</div>
+        );
+
     const handleExpand = (expand: boolean) => {
         if (!children) return;
         !isControlled(props) && setInternalExpand(expand);
@@ -98,7 +106,9 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                 onClick={() => handleExpand(!currentExpand)}
             >
                 <div className="title__box">
-                    {addonBefore ? <div className="title__addon-before">{addonBefore}</div> : null}
+                    {hasAddonBefore ? (
+                        <div className="title__addon-before">{addonBeforeIcon}</div>
+                    ) : null}
                     <div className="title__text">{title}</div>
                     {tooltipProps?.title ? (
                         <div className={`title__tooltip`}>
