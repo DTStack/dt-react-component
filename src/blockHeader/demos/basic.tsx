@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PieChartOutlined } from '@ant-design/icons';
 import { Radio, Space, Switch } from 'antd';
 import { BlockHeader } from 'dt-react-component';
 import { SizeType } from 'dt-react-component/blockHeader';
@@ -40,6 +41,15 @@ export default () => {
             </Space>
             <br />
             <br />
+            <BlockHeader
+                size={size}
+                title="分类标题"
+                hasBottom
+                addonBefore={<PieChartOutlined />}
+                background={showBackground}
+                tooltip={tooltip ? '这里展示问号提示' : ''}
+                description={description ? '提示说明文字' : ''}
+            />
             <BlockHeader
                 size={size}
                 title="分类标题"
