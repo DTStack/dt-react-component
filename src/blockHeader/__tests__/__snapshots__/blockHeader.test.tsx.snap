@@ -18,12 +18,8 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
               class="title__addon-before"
             >
               <div
-                class="icon--middle"
-              >
-                <div
-                  class="title__addon-before--middle"
-                />
-              </div>
+                class="title__addon-before--middle"
+              />
             </div>
             <div
               class="title__text"
@@ -49,12 +45,8 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
             class="title__addon-before"
           >
             <div
-              class="icon--middle"
-            >
-              <div
-                class="title__addon-before--middle"
-              />
-            </div>
+              class="title__addon-before--middle"
+            />
           </div>
           <div
             class="title__text"

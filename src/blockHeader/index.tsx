@@ -68,7 +68,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
         addonAfter,
         expand,
         children = '',
-        addonBefore = <div className={`title__addon-before--${size}`} />,
+        addonBefore,
         onExpand,
     } = props;
 

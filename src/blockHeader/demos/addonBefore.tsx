@@ -9,15 +9,9 @@ export default () => {
             <br />
             <BlockHeader title="分类标题" addonBefore={''} />
             <br />
-            <BlockHeader
-                title="分类标题"
-                addonBefore={<PieChartOutlined style={{ fontSize: '14px' }} />}
-            />
+            <BlockHeader title="分类标题" addonBefore={<PieChartOutlined />} />
             <br />
-            <BlockHeader
-                title="分类标题"
-                addonBefore={<PauseCircleOutlined style={{ fontSize: '14px' }} />}
-            />
+            <BlockHeader title="分类标题" addonBefore={<PauseCircleOutlined />} />
         </>
     );
 };
