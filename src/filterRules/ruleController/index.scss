@@ -85,6 +85,9 @@
         }
         &--component {
             flex: 1;
+            .ant-input-disabled {
+                color: #3D446E;
+            }
         }
         &--operation {
             width: 10%;
