@@ -34,6 +34,25 @@ describe('Test Dropdown.Select Component', () => {
         expect(asFragment()).toMatchSnapshot();
     });
 
+    it('Should support defaultValue', () => {
+        const fn = jest.fn();
+        const { getByTestId } = render(
+            <Dropdown.Select
+                defaultValue={[2, 3]}
+                options={new Array(10).fill('').map((_, idx) => idx)}
+                onChange={fn}
+                getPopupContainer={(node) => node}
+            >
+                <Button type="link" data-testid="trigger">
+                    打开下拉
+                </Button>
+            </Dropdown.Select>
+        );
+        fireEvent.click(getByTestId('trigger'));
+        fireEvent.click(getByTestId('trigger'));
+        expect(fn).toBeCalledWith([2, 3]);
+    });
+
     it('Should enable virtual list', () => {
         const { container, getByTestId } = render(
             <Dropdown.Select
@@ -140,6 +159,7 @@ describe('Test Dropdown.Select Component', () => {
         });
         // 全选
         fireEvent.click(getByText('全选'));
+        fireEvent.click(getByText('确 定'));
         expect(fn).toBeCalledWith([1, 2]);
 
         rerender(
@@ -163,6 +183,7 @@ describe('Test Dropdown.Select Component', () => {
             jest.runAllTimers();
         });
         fireEvent.click(getByText('全选'));
+        fireEvent.click(getByText('确 定'));
         // 取消全选不会取消禁用项的选择
         expect(fn).lastCalledWith([2]);
 
@@ -185,6 +206,7 @@ describe('Test Dropdown.Select Component', () => {
         });
         // 选中全部
         fireEvent.click(getByText('全选'));
+        fireEvent.click(getByText('确 定'));
         expect(fn).lastCalledWith(['Bob', 'Jack']);
     });
 
@@ -228,7 +250,7 @@ describe('Test Dropdown.Select Component', () => {
         expect(shadow?.className).not.toContain('active');
     });
 
-    it('Should call submit when hide', () => {
+    it('Should call change when hide', () => {
         const fn = jest.fn();
         const { getByTestId, getByText } = render(
             <Dropdown.Select
@@ -237,8 +259,7 @@ describe('Test Dropdown.Select Component', () => {
                     { label: '选项一', value: 1 },
                     { label: '选项二', value: 2, disabled: true },
                 ]}
-                onChange={jest.fn()}
-                onSubmit={fn}
+                onChange={fn}
                 getPopupContainer={(node) => node}
             >
                 <Button type="link" data-testid="trigger">
@@ -252,7 +273,7 @@ describe('Test Dropdown.Select Component', () => {
             jest.runAllTimers();
         });
 
-        fireEvent.click(getByText('确 定').parentElement!);
+        fireEvent.click(getByText('确 定')!);
         expect(fn).toBeCalledWith([2]);
         expect(fn).toBeCalledTimes(1);
 
@@ -376,9 +397,11 @@ describe('Test Dropdown.Select Component', () => {
         });
 
         fireEvent.click(getByText('1'));
-        expect(fn).toBeCalledWith([1000, 2, 2000, 1]);
+        fireEvent.click(getByText('确 定'));
+        expect(fn).toBeCalledWith([2, 1000, 2000, 1]);
 
         fireEvent.click(getByText('2'));
-        expect(fn).toBeCalledWith([1000, 2000]);
+        fireEvent.click(getByText('确 定'));
+        expect(fn).toBeCalledWith([1000, 2000, 1]);
     });
 });

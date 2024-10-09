@@ -13,9 +13,6 @@ export default () => {
                 console.log(val);
                 setSelected(val as number[]);
             }}
-            onSubmit={() => {
-                console.log('submit');
-            }}
         >
             <Button type="link">10000 条数据</Button>
         </Dropdown.Select>
