@@ -3,7 +3,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { alert } from 'ant-design-testing';
 import '@testing-library/jest-dom/extend-expect';
 
-import Drawer from '../index';
+import Drawer, { DrawerType } from '../index';
 
 describe('test Drawer ', () => {
     test('snapshot match', () => {
@@ -27,18 +27,23 @@ describe('test Drawer ', () => {
         const domLoading = document.querySelector('.ant-spin-spinning');
         expect(domLoading).not.toBe(null);
     });
-    test('should render mask correct ', () => {
+    test('should render mask/maskClosable correct', () => {
         const { unmount } = render(<Drawer open>Hello World</Drawer>);
         const dom = document.querySelector('.dtc-drawer-mask');
         expect(dom).toBe(null);
         unmount();
+        const fn = jest.fn();
         render(
-            <Drawer open mask>
+            <Drawer open mask maskClosable onClose={fn}>
                 Hello World
             </Drawer>
         );
         const domMask = document.querySelector('.dtc-drawer-mask');
+        const domIcon = document.querySelector('.dtc-drawer-header--icon');
         expect(domMask).not.toBe(null);
+        expect(domIcon).toBe(null);
+        fireEvent.click(domMask as Element);
+        expect(fn).toHaveBeenCalledTimes(1);
     });
     test('should render width correct', () => {
         render(
@@ -170,5 +175,20 @@ describe('test Drawer ', () => {
         const oImg = getByRole('img');
         fireEvent.click(oImg);
         expect(fn).toHaveBeenCalledTimes(1);
+    });
+
+    test('should render from type', () => {
+        const fn = jest.fn();
+        render(
+            <Drawer open type={DrawerType.Form} title="title" onClose={fn}>
+                Hello World
+            </Drawer>
+        );
+        const mask = document.querySelector('.dtc-drawer-mask');
+        expect(mask).not.toBe(null);
+        const domIcon = document.querySelector('.dtc-drawer-header--icon');
+        expect(domIcon).not.toBe(null);
+        fireEvent.click(mask as Element);
+        expect(fn).toHaveBeenCalledTimes(0);
     });
 });
