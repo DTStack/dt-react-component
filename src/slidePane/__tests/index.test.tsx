@@ -3,7 +3,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { alert } from 'ant-design-testing';
 import '@testing-library/jest-dom/extend-expect';
 
-import SlidePane from '../index';
+import SlidePane, { SlidePaneType } from '../index';
 
 describe('test SlidePane ', () => {
     test('snapshot match', () => {
@@ -27,18 +27,27 @@ describe('test SlidePane ', () => {
         const domLoading = document.querySelector('.ant-spin-spinning');
         expect(domLoading).not.toBe(null);
     });
-    test('should render mask correct ', () => {
-        const { unmount } = render(<SlidePane open>Hello World</SlidePane>);
+    test('should render mask/maskClosable correct', () => {
+        const { unmount } = render(
+            <SlidePane open title="title">
+                Hello World
+            </SlidePane>
+        );
         const dom = document.querySelector('.dtc-slide-pane-mask');
         expect(dom).toBe(null);
         unmount();
+        const fn = jest.fn();
         render(
-            <SlidePane open mask>
+            <SlidePane open mask maskClosable onClose={fn}>
                 Hello World
             </SlidePane>
         );
         const domMask = document.querySelector('.dtc-slide-pane-mask');
+        const domIcon = document.querySelector('.dtc-slide-pane-header--icon');
         expect(domMask).not.toBe(null);
+        expect(domIcon).toBe(null);
+        fireEvent.click(domMask as Element);
+        expect(fn).toHaveBeenCalledTimes(1);
     });
     test('should render width correct', () => {
         render(
@@ -170,5 +179,20 @@ describe('test SlidePane ', () => {
         const oImg = getByRole('img');
         fireEvent.click(oImg);
         expect(fn).toHaveBeenCalledTimes(1);
+    });
+
+    test('should render from type', () => {
+        const fn = jest.fn();
+        render(
+            <SlidePane open type={SlidePaneType.Form} title="title" onClose={fn}>
+                Hello World
+            </SlidePane>
+        );
+        const mask = document.querySelector('.dtc-slide-pane-mask');
+        expect(mask).not.toBe(null);
+        const domIcon = document.querySelector('.dtc-slide-pane-header--icon');
+        expect(domIcon).not.toBe(null);
+        fireEvent.click(mask as Element);
+        expect(fn).toHaveBeenCalledTimes(0);
     });
 });
