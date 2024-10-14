@@ -1,4 +1,5 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
+import { CloseOutlined } from '@ant-design/icons';
 import { Alert, AlertProps, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
 import { omit } from 'lodash';
@@ -16,9 +17,12 @@ type readOnlyTab = readonly Tab[];
 
 type TabKey<T extends readOnlyTab> = T[number]['key'];
 
+export enum SlidePaneType {
+    Form = 'form',
+    Normal = 'normal',
+}
+
 interface NormalSlidePane extends Omit<DrawerProps, 'placement'> {
-    /** @deprecated */
-    visible?: boolean;
     size?: 'small' | 'default' | 'large';
     loading?: boolean;
     bodyClassName?: string;
@@ -26,6 +30,7 @@ interface NormalSlidePane extends Omit<DrawerProps, 'placement'> {
     bodyStyle?: CSSProperties;
     footer?: React.ReactNode;
     banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
+    type?: SlidePaneType;
 }
 
 interface TabsSlidePane<T extends readOnlyTab> extends Omit<NormalSlidePane, 'children'> {
@@ -65,14 +70,15 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
     const slidePrefixCls = 'dtc-slide-pane';
 
     const {
-        visible,
         open,
         loading = false,
         bodyClassName,
         mask = false,
+        maskClosable = true,
         bodyStyle,
         title,
         width,
+        type = SlidePaneType.Normal,
         size = 'default',
         footer,
         banner,
@@ -80,16 +86,16 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
         ...rest
     } = props;
 
-    const composeOpen = open || visible;
     const finalWidth = width ?? getWidthFromSize(size);
+    const isFormType = type === SlidePaneType.Form;
 
     const [internalTabKey, setInternalTabKey] = useState('');
 
     useEffect(() => {
-        composeOpen &&
+        open &&
             isTabMode(props) &&
             setInternalTabKey(props.defaultKey ?? props.tabs?.[0]?.key ?? '');
-    }, [composeOpen]);
+    }, [open]);
 
     const currentKey = isControlled(props) ? props.activeKey : internalTabKey;
 
@@ -111,9 +117,10 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
 
     return (
         <RcDrawer
-            open={composeOpen}
+            open={open}
             placement="right"
-            mask={mask}
+            mask={isFormType ? true : mask}
+            maskClosable={isFormType ? false : maskClosable}
             width={finalWidth}
             prefixCls={slidePrefixCls}
             onClose={onClose}
@@ -121,11 +128,21 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
             {...motionProps}
         >
             <Spin wrapperClassName={`${slidePrefixCls}-nested-loading`} spinning={loading}>
-                {!mask && renderButton()}
-                {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
+                {!isFormType && renderButton()}
+                {title && (
+                    <div className={`${slidePrefixCls}-header`}>
+                        {title}
+                        {isFormType && (
+                            <CloseOutlined
+                                className={`${slidePrefixCls}-header--icon`}
+                                onClick={onClose}
+                            />
+                        )}
+                    </div>
+                )}
                 {banner && (
                     <Alert
-                        message={isValidBanner(banner) ? banner : banner.message}
+                        message={isValidBanner(banner) ? banner : (banner as any).message}
                         banner
                         {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
                     />
