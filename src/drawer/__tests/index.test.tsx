@@ -29,7 +29,7 @@ describe('test SlidePane ', () => {
     });
     test('should render mask correct ', () => {
         const { unmount } = render(<SlidePane open>Hello World</SlidePane>);
-        const dom = document.querySelector('.dtc-slide-pane-mask');
+        const dom = document.querySelector('.dtc-drawer-mask');
         expect(dom).toBe(null);
         unmount();
         render(
@@ -37,7 +37,7 @@ describe('test SlidePane ', () => {
                 Hello World
             </SlidePane>
         );
-        const domMask = document.querySelector('.dtc-slide-pane-mask');
+        const domMask = document.querySelector('.dtc-drawer-mask');
         expect(domMask).not.toBe(null);
     });
     test('should render width correct', () => {
@@ -46,7 +46,7 @@ describe('test SlidePane ', () => {
                 Hello World
             </SlidePane>
         );
-        expect(document.querySelector('.dtc-slide-pane-content-wrapper')).toHaveStyle({
+        expect(document.querySelector('.dtc-drawer-content-wrapper')).toHaveStyle({
             width: '640px',
         });
     });
@@ -56,7 +56,7 @@ describe('test SlidePane ', () => {
                 Hello World
             </SlidePane>
         );
-        expect(document.querySelector('.dtc-slide-pane-content-wrapper')).toHaveStyle({
+        expect(document.querySelector('.dtc-drawer-content-wrapper')).toHaveStyle({
             width: '1256px',
         });
     });
@@ -72,10 +72,10 @@ describe('test SlidePane ', () => {
                 Hello World
             </SlidePane>
         );
-        expect(document.querySelector('.dtc-slide-pane')).toHaveClass('root-className');
-        expect(document.querySelector('.dtc-slide-pane-body')).toHaveClass('body-className');
-        expect(document.querySelector('.dtc-slide-pane')).toHaveStyle({ color: 'red' });
-        expect(document.querySelector('.dtc-slide-pane-body')).toHaveStyle({
+        expect(document.querySelector('.dtc-drawer')).toHaveClass('root-className');
+        expect(document.querySelector('.dtc-drawer-body')).toHaveClass('body-className');
+        expect(document.querySelector('.dtc-drawer')).toHaveStyle({ color: 'red' });
+        expect(document.querySelector('.dtc-drawer-body')).toHaveStyle({
             backgroundColor: 'forestgreen',
         });
         unmount();
@@ -102,7 +102,7 @@ describe('test SlidePane ', () => {
                 }}
             </SlidePane>
         );
-        expect(document.querySelector('.dtc-slide-pane-tabs')).not.toBe(null);
+        expect(document.querySelector('.dtc-drawer-tabs')).not.toBe(null);
         expect(getByText('tab1')).toBeTruthy();
         expect(getByText('基本信息')).toBeTruthy();
         unmount();
