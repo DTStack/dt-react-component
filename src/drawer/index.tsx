@@ -2,7 +2,7 @@ import React, { CSSProperties, useEffect, useState } from 'react';
 import { Alert, AlertProps, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
 import { omit } from 'lodash';
-import RcDrawer, { DrawerProps } from 'rc-drawer';
+import RcDrawer, { DrawerProps as AntdDrawerProps } from 'rc-drawer';
 
 import motionProps from './motion';
 import './style.scss';
@@ -16,7 +16,7 @@ type readOnlyTab = readonly Tab[];
 
 type TabKey<T extends readOnlyTab> = T[number]['key'];
 
-interface NormalSlidePane extends Omit<DrawerProps, 'placement'> {
+interface NormalDrawerProps extends Omit<AntdDrawerProps, 'placement'> {
     /** @deprecated */
     visible?: boolean;
     size?: 'small' | 'default' | 'large';
@@ -28,7 +28,7 @@ interface NormalSlidePane extends Omit<DrawerProps, 'placement'> {
     banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
 }
 
-interface TabsSlidePane<T extends readOnlyTab> extends Omit<NormalSlidePane, 'children'> {
+interface TabsDrawerProps<T extends readOnlyTab> extends Omit<NormalDrawerProps, 'children'> {
     tabs?: T;
     defaultKey?: TabKey<T>;
     activeKey?: TabKey<T>;
@@ -36,33 +36,33 @@ interface TabsSlidePane<T extends readOnlyTab> extends Omit<NormalSlidePane, 'ch
     onChange?: (key: TabKey<T>) => void;
 }
 
-function isFunction<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
+function isFunction<T extends readOnlyTab>(props: DrawerProps<T>): props is TabsDrawerProps<T> {
     return typeof props.children === 'function';
 }
 
-function isTabMode<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
+function isTabMode<T extends readOnlyTab>(props: DrawerProps<T>): props is TabsDrawerProps<T> {
     return 'tabs' in props;
 }
 
-function isControlled<T extends readOnlyTab>(props: SlidePaneProps<T>): props is TabsSlidePane<T> {
+function isControlled<T extends readOnlyTab>(props: DrawerProps<T>): props is TabsDrawerProps<T> {
     return 'activeKey' in props;
 }
 
-export type SlidePaneProps<T extends readOnlyTab> = TabsSlidePane<T> | NormalSlidePane;
+export type DrawerProps<T extends readOnlyTab> = TabsDrawerProps<T> | NormalDrawerProps;
 
-const getWidthFromSize = (size: NormalSlidePane['size']) => {
+const getWidthFromSize = (size: NormalDrawerProps['size']) => {
     if (size === 'small') return 720;
     if (size === 'large') return 1256;
     return 1000;
 };
 
-const isValidBanner = (banner: NormalSlidePane['banner']): banner is AlertProps['message'] => {
+const isValidBanner = (banner: NormalDrawerProps['banner']): banner is AlertProps['message'] => {
     if (typeof banner === 'object') return React.isValidElement(banner);
     return true;
 };
 
-const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
-    const slidePrefixCls = 'dtc-slide-pane';
+const Drawer = <T extends readOnlyTab>(props: DrawerProps<T>) => {
+    const slidePrefixCls = 'dtc-drawer';
 
     const {
         visible,
@@ -156,4 +156,4 @@ const SlidePane = <T extends readOnlyTab>(props: SlidePaneProps<T>) => {
     );
 };
 
-export default SlidePane;
+export default Drawer;
