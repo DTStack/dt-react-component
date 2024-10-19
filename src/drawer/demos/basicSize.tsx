@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Space } from 'antd';
 import { SlidePane } from 'dt-react-component';
-import { SlidePaneProps } from 'dt-react-component/slidePane';
+import { SlidePaneProps } from 'dt-react-component/drawer';
 
 export default () => {
     const [visible, setVisible] = useState(false);
