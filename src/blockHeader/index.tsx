@@ -82,7 +82,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     if (hasBottom) bottomStyle = { marginBottom: 16 };
     if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
 
-    const hasAddonBefore = addonBefore || addonBefore === undefined;
+    const hasAddonBefore = !!addonBefore || addonBefore === undefined;
     const addonBeforeIcon =
         addonBefore === undefined ? (
             <div className={`title__addon-before--${size}`} />
