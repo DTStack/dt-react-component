@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test SlidePane  snapshot match 1`] = `
+exports[`test Drawer  snapshot match 1`] = `
 {
   "asFragment": [Function],
   "baseElement": <body>

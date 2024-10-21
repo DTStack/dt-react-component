@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Button } from 'antd';
-import { SlidePane } from 'dt-react-component';
+import { Drawer } from 'dt-react-component';
 
 export default () => {
     const [visible, setVisible] = useState(false);
@@ -16,14 +16,14 @@ export default () => {
             >
                 click me
             </Button>
-            <SlidePane
+            <Drawer
                 open={visible}
                 onClose={() => setVisible(false)}
                 title="title"
                 rootStyle={{ top: 64 }}
             >
                 <div>hello world</div>
-            </SlidePane>
+            </Drawer>
         </>
     );
 };

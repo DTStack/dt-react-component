@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { SlidePane } from 'dt-react-component';
+import { Drawer } from 'dt-react-component';
 
 export default () => {
     const [visible, setVisible] = useState(false);
@@ -10,10 +10,10 @@ export default () => {
             <Button style={{ margin: '10px' }} onClick={() => setVisible((v) => !v)}>
                 click me
             </Button>
-            <SlidePane
+            <Drawer
                 open={visible}
                 banner={{
-                    message: 'SlidePane 可以支持 banner 属性',
+                    message: 'Drawer 可以支持 banner 属性',
                     type: 'error',
                     showIcon: true,
                 }}
@@ -21,7 +21,7 @@ export default () => {
                 title="title"
             >
                 <div>hello world</div>
-            </SlidePane>
+            </Drawer>
         </>
     );
 };

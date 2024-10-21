@@ -3,48 +3,48 @@ import { fireEvent, render } from '@testing-library/react';
 import { alert } from 'ant-design-testing';
 import '@testing-library/jest-dom/extend-expect';
 
-import SlidePane from '../index';
+import Drawer from '../index';
 
-describe('test SlidePane ', () => {
+describe('test Drawer ', () => {
     test('snapshot match', () => {
-        const wrapper = render(<SlidePane open>Hello World</SlidePane>);
+        const wrapper = render(<Drawer open>Hello World</Drawer>);
         expect(wrapper).toMatchSnapshot();
     });
     test('should be not open', () => {
-        const { container } = render(<SlidePane open={false}>Hello World</SlidePane>);
+        const { container } = render(<Drawer open={false}>Hello World</Drawer>);
         expect(container).not.toHaveClass();
     });
     test('should render loading correct ', () => {
-        const { unmount } = render(<SlidePane open>Hello World</SlidePane>);
+        const { unmount } = render(<Drawer open>Hello World</Drawer>);
         const dom = document.querySelector('.ant-spin-spinning');
         expect(dom).toBe(null);
         unmount();
         render(
-            <SlidePane open loading>
+            <Drawer open loading>
                 Hello World
-            </SlidePane>
+            </Drawer>
         );
         const domLoading = document.querySelector('.ant-spin-spinning');
         expect(domLoading).not.toBe(null);
     });
     test('should render mask correct ', () => {
-        const { unmount } = render(<SlidePane open>Hello World</SlidePane>);
+        const { unmount } = render(<Drawer open>Hello World</Drawer>);
         const dom = document.querySelector('.dtc-drawer-mask');
         expect(dom).toBe(null);
         unmount();
         render(
-            <SlidePane open mask>
+            <Drawer open mask>
                 Hello World
-            </SlidePane>
+            </Drawer>
         );
         const domMask = document.querySelector('.dtc-drawer-mask');
         expect(domMask).not.toBe(null);
     });
     test('should render width correct', () => {
         render(
-            <SlidePane open width={640}>
+            <Drawer open width={640}>
                 Hello World
-            </SlidePane>
+            </Drawer>
         );
         expect(document.querySelector('.dtc-drawer-content-wrapper')).toHaveStyle({
             width: '640px',
@@ -52,9 +52,9 @@ describe('test SlidePane ', () => {
     });
     test('should render size width correct', () => {
         render(
-            <SlidePane open size="large">
+            <Drawer open size="large">
                 Hello World
-            </SlidePane>
+            </Drawer>
         );
         expect(document.querySelector('.dtc-drawer-content-wrapper')).toHaveStyle({
             width: '1256px',
@@ -62,7 +62,7 @@ describe('test SlidePane ', () => {
     });
     test('should render className/style correct', () => {
         const { unmount } = render(
-            <SlidePane
+            <Drawer
                 open
                 rootClassName="root-className"
                 bodyClassName="body-className"
@@ -70,7 +70,7 @@ describe('test SlidePane ', () => {
                 bodyStyle={{ backgroundColor: 'forestgreen' }}
             >
                 Hello World
-            </SlidePane>
+            </Drawer>
         );
         expect(document.querySelector('.dtc-drawer')).toHaveClass('root-className');
         expect(document.querySelector('.dtc-drawer-body')).toHaveClass('body-className');
@@ -82,7 +82,7 @@ describe('test SlidePane ', () => {
     });
     test('should render tab correct', () => {
         const { getByText, unmount } = render(
-            <SlidePane
+            <Drawer
                 open
                 width={640}
                 tabs={[
@@ -100,7 +100,7 @@ describe('test SlidePane ', () => {
                             break;
                     }
                 }}
-            </SlidePane>
+            </Drawer>
         );
         expect(document.querySelector('.dtc-drawer-tabs')).not.toBe(null);
         expect(getByText('tab1')).toBeTruthy();
@@ -108,7 +108,7 @@ describe('test SlidePane ', () => {
         unmount();
 
         const { getByText: getByText1 } = render(
-            <SlidePane
+            <Drawer
                 open
                 width={640}
                 tabs={[
@@ -127,34 +127,34 @@ describe('test SlidePane ', () => {
                             break;
                     }
                 }}
-            </SlidePane>
+            </Drawer>
         );
         expect(getByText1('变更记录')).toBeTruthy();
         expect(getByText1('tab2').parentNode).toHaveClass('ant-tabs-tab-active');
     });
     test('Should support string banner', async () => {
         const { getByText } = render(
-            <SlidePane open banner="banner">
+            <Drawer open banner="banner">
                 Hello World
-            </SlidePane>
+            </Drawer>
         );
 
         expect(getByText('banner')).toBeInTheDocument();
     });
     test('Should support ReactNode', async () => {
         const { getByTestId } = render(
-            <SlidePane open banner={<div data-testid="banner">xxxx</div>}>
+            <Drawer open banner={<div data-testid="banner">xxxx</div>}>
                 test
-            </SlidePane>
+            </Drawer>
         );
 
         expect(getByTestId('banner')).toBeInTheDocument();
     });
     it('Should support AlertProps', async () => {
         const { getByText } = render(
-            <SlidePane open banner={{ message: 'banner', type: 'error' }}>
+            <Drawer open banner={{ message: 'banner', type: 'error' }}>
                 test
-            </SlidePane>
+            </Drawer>
         );
 
         expect(getByText('banner')).toBeInTheDocument();
@@ -163,9 +163,9 @@ describe('test SlidePane ', () => {
     test('should callback to be called', () => {
         const fn = jest.fn();
         const { getByRole } = render(
-            <SlidePane open onClose={fn}>
+            <Drawer open onClose={fn}>
                 Hello World
-            </SlidePane>
+            </Drawer>
         );
         const oImg = getByRole('img');
         fireEvent.click(oImg);
