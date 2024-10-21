@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Space } from 'antd';
-import { SlidePane } from 'dt-react-component';
+import { Drawer } from 'dt-react-component';
 
 export default () => {
     const [visible, setVisible] = useState(false);
@@ -8,7 +8,7 @@ export default () => {
     return (
         <>
             <Button onClick={() => setVisible(true)}>打开</Button>
-            <SlidePane
+            <Drawer
                 open={visible}
                 onClose={() => setVisible(false)}
                 title="Title"
@@ -20,7 +20,7 @@ export default () => {
                 }
             >
                 <div style={{ height: '110vh' }}>超长可滚动</div>
-            </SlidePane>
+            </Drawer>
         </>
     );
 };

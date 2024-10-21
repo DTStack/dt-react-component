@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { SlidePane } from 'dt-react-component';
+import { Drawer } from 'dt-react-component';
 
 export default () => {
     const [visible, setVisible] = useState(false);
@@ -8,7 +8,7 @@ export default () => {
     return (
         <>
             <Button onClick={() => setVisible(true)}>打开</Button>
-            <SlidePane
+            <Drawer
                 open={visible}
                 rootStyle={{
                     minHeight: '600px',
@@ -26,7 +26,7 @@ export default () => {
                 }
             >
                 <div>hello world</div>
-            </SlidePane>
+            </Drawer>
         </>
     );
 };

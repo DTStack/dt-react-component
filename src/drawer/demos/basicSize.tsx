@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Space } from 'antd';
-import { SlidePane } from 'dt-react-component';
-import { SlidePaneProps } from 'dt-react-component/drawer';
+import { Drawer } from 'dt-react-component';
+import { DrawerProps } from 'dt-react-component/drawer';
 
 export default () => {
     const [visible, setVisible] = useState(false);
-    const [size, setSize] = useState<SlidePaneProps<[]>['size']>('default');
+    const [size, setSize] = useState<DrawerProps<[]>['size']>('default');
 
     return (
         <>
@@ -38,9 +38,9 @@ export default () => {
                     大尺寸
                 </Button>
             </Space>
-            <SlidePane open={visible} size={size} onClose={() => setVisible(false)} title="title">
+            <Drawer open={visible} size={size} onClose={() => setVisible(false)} title="title">
                 <div>hello world</div>
-            </SlidePane>
+            </Drawer>
         </>
     );
 };

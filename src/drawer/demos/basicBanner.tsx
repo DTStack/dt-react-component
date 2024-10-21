@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
-import { SlidePane } from 'dt-react-component';
+import { Drawer } from 'dt-react-component';
 
 export default () => {
     const [visible, setVisible] = useState(false);
@@ -10,14 +10,14 @@ export default () => {
             <Button style={{ margin: '10px' }} onClick={() => setVisible((v) => !v)}>
                 click me
             </Button>
-            <SlidePane
+            <Drawer
                 open={visible}
-                banner="这是 SlidePane 的 banner"
+                banner="这是 Drawer 的 banner"
                 onClose={() => setVisible(false)}
                 title="title"
             >
                 <div>hello world</div>
-            </SlidePane>
+            </Drawer>
         </>
     );
 };
