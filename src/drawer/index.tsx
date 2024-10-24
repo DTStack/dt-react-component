@@ -120,8 +120,8 @@ const Drawer = <T extends readOnlyTab>(props: DrawerProps<T>) => {
             {...rest}
             {...motionProps}
         >
+            {!mask && renderButton()}
             <Spin wrapperClassName={`${slidePrefixCls}-nested-loading`} spinning={loading}>
-                {!mask && renderButton()}
                 {title && <div className={`${slidePrefixCls}-header`}>{title}</div>}
                 {banner && (
                     <Alert
