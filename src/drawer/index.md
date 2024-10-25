@@ -16,7 +16,7 @@ demo:
 ## 示例
 
 <code src="./demos/basic.tsx" title="基础使用"></code>
-<code src="./demos/basic_type.tsx" title="两种类型的 SlidePane" description="表单类型默认展示`mask`切不可点击关闭，且不可配置；正常类型默认不展示`mask`，`mask | maskClosable`可以配置"></code>
+<code src="./demos/basic_type.tsx" title="两种类型的 SlidePane" description="表单类型默认展示`mask`且不可点击关闭，且不可配置；正常类型默认不展示`mask`，`mask | maskClosable`可以配置"></code>
 <code src="./demos/basicSize.tsx" title="尺寸"></code>
 <code src="./demos/basic_top.tsx" title="抽屉距顶部高度"></code>
 <code src="./demos/customTitle.tsx" title="自定义 Title"></code>
