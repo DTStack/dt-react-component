@@ -41,10 +41,14 @@ $colors: (
     height: 24px;
     font-size: 12px;
     color: #3D446E;
+    .ant-spin {
+        font-size: 14px; // 因为 theme 修改了默认字体为 12px，导致居中错乱，因此覆盖一下
+    }
     &--border {
         padding: 2px 12px;
         border: 1px solid #D8DAE2;
         border-radius: 14px;
+        background-color: #FFF;
     }
     &--fill {
         padding: 2px 12px;
