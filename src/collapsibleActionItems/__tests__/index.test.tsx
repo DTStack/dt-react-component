@@ -43,7 +43,7 @@ describe('test CollapsibleActionItems', () => {
     });
 
     test('should render link button when item count more than maxCount', () => {
-        const { container, getByTestId } = render(
+        const { container } = render(
             <CollapsibleActionItems
                 actionItems={items}
                 maxCount={2}
@@ -54,12 +54,12 @@ describe('test CollapsibleActionItems', () => {
             />
         );
         const btns = container.querySelectorAll('.dtc-collapsibleActionItems__btn');
-        const dropdownEl = getByTestId('action-dropdown-link');
+        const icon = container.querySelectorAll('.dtc-collapsibleActionItems__icon')[0];
         expect(btns).toHaveLength(1);
-        expect(dropdownEl).toBeInTheDocument();
+        expect(icon).toBeInTheDocument();
 
         act(() => {
-            fireEvent.click(dropdownEl);
+            fireEvent.click(icon);
         });
 
         const dropdownMenuItems = container.querySelectorAll(

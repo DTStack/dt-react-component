@@ -90,12 +90,7 @@ const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
                     getPopupContainer={(triggerNode) => triggerNode.parentElement ?? document.body}
                     {...dropdownProps}
                 >
-                    <a
-                        data-testid="action-dropdown-link"
-                        className="dtc-collapsibleActionItems__icon"
-                    >
-                        {collapseIcon}
-                    </a>
+                    <a className="dtc-collapsibleActionItems__icon">{collapseIcon}</a>
                 </Dropdown>
             )}
         </div>
