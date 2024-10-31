@@ -15,10 +15,10 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
             class="title__box"
           >
             <div
-              class="title__addon-before"
+              class="title__addon-before title__addon-before--middle"
             >
               <div
-                class="title__addon-before--middle"
+                class="addon-before--default"
               />
             </div>
             <div
@@ -42,10 +42,10 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
           class="title__box"
         >
           <div
-            class="title__addon-before"
+            class="title__addon-before title__addon-before--middle"
           >
             <div
-              class="title__addon-before--middle"
+              class="addon-before--default"
             />
           </div>
           <div

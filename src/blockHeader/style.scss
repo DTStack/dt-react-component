@@ -55,16 +55,29 @@ $card_prefix: "dtc-block-header";
             &__addon-before {
                 margin-right: 8px;
                 color: #1D78FF;
-                &--middle,
+                &--middle {
+                    .addon-before--default {
+                        width: 4px;
+                        height: 16px;
+                        background-color: #1D78FF;
+                    }
+                    font-size: 20px;
+                }
                 &--small {
-                    width: 4px;
-                    height: 16px;
-                    background-color: #1D78FF;
+                    .addon-before--default {
+                        width: 4px;
+                        height: 16px;
+                        background-color: #1D78FF;
+                    }
+                    font-size: 16px;
                 }
                 &--large {
-                    width: 4px;
-                    height: 20px;
-                    background-color: #1D78FF;
+                    .addon-before--default {
+                        width: 4px;
+                        height: 20px;
+                        background-color: #1D78FF;
+                    }
+                    font-size: 24px;
                 }
             }
             &__tooltip {

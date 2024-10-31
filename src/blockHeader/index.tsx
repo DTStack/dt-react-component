@@ -68,7 +68,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
         addonAfter,
         expand,
         children = '',
-        addonBefore = <div className={`title__addon-before--${size}`} />,
+        addonBefore = <div className="addon-before--default" />,
         onExpand,
     } = props;
 
@@ -98,7 +98,11 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                 onClick={() => handleExpand(!currentExpand)}
             >
                 <div className="title__box">
-                    {addonBefore ? <div className="title__addon-before">{addonBefore}</div> : null}
+                    {addonBefore ? (
+                        <div className={`title__addon-before title__addon-before--${size}`}>
+                            {addonBefore}
+                        </div>
+                    ) : null}
                     <div className="title__text">{title}</div>
                     {tooltipProps?.title ? (
                         <div className={`title__tooltip`}>
