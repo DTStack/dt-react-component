@@ -40,12 +40,19 @@ $prefix: "dtc-drawer";
         pointer-events: auto;
     }
     &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         padding: 16px;
         background-color: #F9F9FA;
         color: #3D446E;
         font-weight: 500;
         font-size: 14px;
         line-height: 22px;
+        &--icon {
+            color: #64698B;
+            font-size: 16px;
+        }
     }
     &-tabs {
         &.ant-tabs {
