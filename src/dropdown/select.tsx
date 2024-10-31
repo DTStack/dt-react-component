@@ -1,7 +1,11 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useMemo, useState } from 'react';
 import { Button, Checkbox, Col, Dropdown, type DropDownProps, Row, Space } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/lib/checkbox';
-import type { CheckboxGroupProps, CheckboxValueType } from 'antd/lib/checkbox/Group';
+import type {
+    CheckboxGroupProps,
+    CheckboxOptionType,
+    CheckboxValueType,
+} from 'antd/lib/checkbox/Group';
 import classNames from 'classnames';
 import { isEqual } from 'lodash';
 import List from 'rc-virtual-list';
@@ -10,10 +14,9 @@ import './style.scss';
 
 interface IDropdownSelectProps
     extends Pick<DropDownProps, 'getPopupContainer'>,
-        Required<Pick<CheckboxGroupProps, 'value' | 'options' | 'onChange'>> {
+        Pick<CheckboxGroupProps, 'value' | 'defaultValue' | 'options' | 'onChange'> {
     children: ReactNode;
     className?: string;
-    onSubmit?: (value: CheckboxValueType[]) => void;
 }
 
 const prefix = 'dtc-dropdown-select';
@@ -23,37 +26,37 @@ const MAX_HEIGHT = 264;
 export default function Select({
     className,
     value,
+    defaultValue,
     options: rawOptions,
     children,
     getPopupContainer,
     onChange,
-    onSubmit,
 }: IDropdownSelectProps) {
     const [visible, setVisible] = useState(false);
+    const [selected, setSelected] = useState<CheckboxValueType[]>(value || defaultValue || []);
 
     const handleCheckedAll = (e: CheckboxChangeEvent) => {
         if (e.target.checked) {
-            onChange?.(options?.map((i) => i.value) || []);
+            setSelected(options?.map((i) => i.value) || []);
         } else {
             handleReset();
         }
     };
 
     const handleSubmit = () => {
-        onSubmit?.(value);
+        onChange?.(selected);
         setVisible(false);
     };
 
     const handleReset = () => {
         // Clear checked but disabled item
-        onChange?.(options?.filter((i) => i.disabled).map((i) => i.value) || []);
+        setSelected(disabledValue);
     };
 
     const handleChange = (e: CheckboxChangeEvent) => {
-        const next = e.target.checked
-            ? [...(value || []), e.target.value]
-            : value?.filter((i) => i !== e.target.value);
-        onChange?.(next);
+        const { checked, value } = e.target;
+        const next = checked ? [...selected, value] : selected?.filter((i) => i !== value);
+        setSelected(next);
     };
 
     const handleShadow = (target: HTMLDivElement) => {
@@ -64,51 +67,59 @@ export default function Select({
                 target.insertBefore(shadow, target.firstChild);
             }
 
-            if (
-                Number(
-                    target
-                        .querySelector<HTMLDivElement>('.rc-virtual-list-scrollbar-thumb')
-                        ?.style.top.replace('px', '')
-                ) > 0
-            ) {
-                target.querySelector<HTMLDivElement>(`.${prefix}__shadow`)?.classList.add('active');
+            const scrollbar_thumb = target.querySelector<HTMLDivElement>(
+                '.rc-virtual-list-scrollbar-thumb'
+            );
+            const shadow = target.querySelector<HTMLDivElement>(`.${prefix}__shadow`);
+
+            if (parseFloat(scrollbar_thumb?.style.top as string) > 0) {
+                shadow?.classList.add('active');
             } else {
-                target
-                    .querySelector<HTMLDivElement>(`.${prefix}__shadow`)
-                    ?.classList.remove('active');
+                shadow?.classList.remove('active');
             }
         }
     };
 
-    // Always turn string and number options into complex options
-    const options = rawOptions.map((i) => {
-        if (typeof i === 'string' || typeof i === 'number') {
-            return {
-                label: i,
-                value: i,
-            };
+    useEffect(() => {
+        if (value !== undefined && value !== selected) {
+            setSelected(value || []);
         }
+    }, [value]);
 
-        return i;
-    });
+    // Always turn string and number options into complex options
+    const options = useMemo<CheckboxOptionType[]>(() => {
+        return (
+            rawOptions?.map((i) => {
+                if (typeof i === 'string' || typeof i === 'number') {
+                    return {
+                        label: i,
+                        value: i,
+                    };
+                }
 
-    const resetDisabled = value.every((i) =>
-        options
-            ?.filter((i) => i.disabled)
-            .map((i) => i.value)
-            ?.includes(i)
-    );
+                return i;
+            }) || []
+        );
+    }, [rawOptions]);
+
+    const disabledValue = useMemo<CheckboxValueType[]>(() => {
+        return options?.filter((i) => i.disabled).map((i) => i.value) || [];
+    }, [options]);
+
+    const resetDisabled = selected.every((i) => disabledValue?.includes(i));
 
     // If options' number is larger then the maxHeight, then enable virtual list
     const virtual = options.length > Math.floor(MAX_HEIGHT / ITEM_HEIGHT);
 
     // ONLY the options are all be pushed into value array means select all
-    const checkAll = !!value?.length && isEqual(options.map((i) => i.value).sort(), value.sort());
+    const checkAll =
+        !!selected?.length && isEqual(options.map((i) => i.value).sort(), [...selected].sort());
+
     // At least one option's value is included in value array but not all options means indeterminate select
     const indeterminate =
-        !!value?.length &&
-        !isEqual(options.map((i) => i.value).sort(), value.sort()) &&
-        options.some((o) => value.includes(o.value));
+        !!selected?.length &&
+        !isEqual(options.map((i) => i.value).sort(), [...selected].sort()) &&
+        options.some((o) => selected.includes(o.value));
 
     const overlay = (
         <>
@@ -123,7 +134,7 @@ export default function Select({
                     </Checkbox>
                 </Col>
                 <Col span={24} className={`${prefix}__menu`}>
-                    <Checkbox.Group value={value}>
+                    <Checkbox.Group value={selected}>
                         <List
                             data={options}
                             itemKey="value"

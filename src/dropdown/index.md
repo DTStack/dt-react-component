@@ -23,8 +23,8 @@ demo:
 | 参数              | 说明                               | 类型                                        | 默认值 |
 | ----------------- | ---------------------------------- | ------------------------------------------- | ------ |
 | value             | 当前选中的值                       | `(string \| number)[]`                      | -      |
+| defaultValue      | 初始值                             | `(string \| number)[]`                      | -      |
 | className         | -                                  | `string`                                    | -      |
 | options           | Checkbox 指定可选项                | `(string \| number  \| Option)[]`           | `[]`   |
 | getPopupContainer | 同 Dropdown 的 `getPopupContainer` | `(triggerNode: HTMLElement) => HTMLElement` | -      |
 | onChange          | 变化时的回调函数                   | `(checkedValue) => void`                    | -      |
-| onSubmit          | 提交时的回调函数                   | `(checkedValue) => void`                    | -      |

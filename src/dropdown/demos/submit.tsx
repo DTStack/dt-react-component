@@ -21,8 +21,10 @@ export default () => {
                     { label: '选项一', value: 1 },
                     { label: '选项二', value: 2, disabled: true },
                 ]}
-                onChange={(checked) => setSelected(checked as number[])}
-                onSubmit={fetchData}
+                onChange={(checked) => {
+                    setSelected(checked as number[]);
+                    fetchData();
+                }}
             >
                 <Button type="link">打开下拉</Button>
             </Dropdown.Select>
