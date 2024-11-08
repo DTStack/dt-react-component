@@ -1,10 +1,11 @@
-import { RefObject, useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
-const useIntersectionObserver = (
+const useIntersectionObserver = <T extends Element>(
     callback: IntersectionObserverCallback,
-    target: RefObject<Element>,
     options: IntersectionObserverInit & { freezeOnceVisible?: boolean } = {}
 ) => {
+    const ref = useRef<T | null>(null);
+
     const { threshold = 0, root = null, rootMargin = '0%', freezeOnceVisible = false } = options;
     const [entry, setEntry] = useState<IntersectionObserverEntry>();
     const frozen = entry?.isIntersecting && freezeOnceVisible;
@@ -18,17 +19,17 @@ const useIntersectionObserver = (
     };
 
     useEffect(() => {
-        const node = target?.current; // DOM Ref
+        const node = ref.current;
         const hasIOSupport = !!window.IntersectionObserver;
 
         if (frozen || !node) return;
         if (!hasIOSupport) {
             // 如果不支持 IntersectionObserver 执行一个默认行为
             const callbackEntry = {
-                boundingClientRect: node?.getBoundingClientRect() ?? null,
-                intersectionRatio: node ? 1 : 0,
-                intersectionRect: node?.getBoundingClientRect() ?? null,
-                isIntersecting: !!node,
+                boundingClientRect: node.getBoundingClientRect() ?? null,
+                intersectionRatio: 1,
+                intersectionRect: node.getBoundingClientRect() ?? null,
+                isIntersecting: true,
                 rootBounds: null,
                 target: node,
                 time: Date.now(),
@@ -40,7 +41,9 @@ const useIntersectionObserver = (
 
         observer.observe(node);
         return () => observer.disconnect();
-    }, [target?.current, JSON.stringify(threshold), root, rootMargin, frozen]);
+    }, [JSON.stringify(threshold), root, rootMargin, frozen]);
+
+    return [ref as MutableRefObject<T | null>];
 };
 
 export default useIntersectionObserver;
