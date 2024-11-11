@@ -14,15 +14,14 @@ exports[`test StatusTag should match snapshot 1`] = `
       <rect
         height="14"
         rx="1.5"
-        stroke="#1D78FF"
+        stroke="currentColor"
         stroke-linejoin="bevel"
         width="8"
         x="0.5"
         y="1"
       />
       <text
-        fill="#1D78FF"
-        font-family="PingFang SC"
+        fill="currentColor"
         font-size="10"
         letter-spacing="0px"
         xml:space="preserve"

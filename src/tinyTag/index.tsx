@@ -4,18 +4,10 @@ import classNames from 'classnames';
 import './style.scss';
 
 interface ITinyTag extends React.HTMLAttributes<HTMLSpanElement> {
-    value?: string;
-    color?: string;
+    value: string;
 }
 
-const DEFAULT_COLOR = '#1D78FF';
-
-export default function TinyTag({
-    color = DEFAULT_COLOR,
-    value,
-    className,
-    ...restProps
-}: ITinyTag) {
+export default function TinyTag({ value, className, ...restProps }: ITinyTag) {
     const domRef = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState(0);
 
@@ -43,16 +35,10 @@ export default function TinyTag({
                     width={width - 1}
                     height="14"
                     rx="1.5"
-                    stroke={color}
+                    stroke="currentColor"
                     strokeLinejoin="bevel"
                 />
-                <text
-                    fill={color}
-                    xmlSpace="preserve"
-                    fontFamily="PingFang SC"
-                    fontSize="10"
-                    letterSpacing="0px"
-                >
+                <text fill="currentColor" xmlSpace="preserve" fontSize="10" letterSpacing="0px">
                     <tspan x="4" y="11.6">
                         {value}
                     </tspan>
