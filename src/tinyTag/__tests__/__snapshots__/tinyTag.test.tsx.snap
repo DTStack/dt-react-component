@@ -5,7 +5,36 @@ exports[`test StatusTag should match snapshot 1`] = `
   <span
     class="dtc-tinyTag dtc-test"
   >
-    完成
+    <svg
+      fill="none"
+      height="16"
+      viewBox="0 0 9 16"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        height="14"
+        rx="1.5"
+        stroke="#1D78FF"
+        stroke-linejoin="bevel"
+        width="8"
+        x="0.5"
+        y="1"
+      />
+      <text
+        fill="#1D78FF"
+        font-family="PingFang SC"
+        font-size="10"
+        letter-spacing="0px"
+        xml:space="preserve"
+      >
+        <tspan
+          x="4"
+          y="11.6"
+        >
+          完成
+        </tspan>
+      </text>
+    </svg>
   </span>
 </DocumentFragment>
 `;
