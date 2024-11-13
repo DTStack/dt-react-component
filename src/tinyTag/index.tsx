@@ -7,21 +7,28 @@ interface ITinyTag extends React.HTMLAttributes<HTMLSpanElement> {
     value: string;
 }
 
-export default function TinyTag({ value, className, ...restProps }: ITinyTag) {
-    const domRef = useRef<HTMLDivElement>(null);
+const useSvgWidth = (domRef: React.RefObject<HTMLDivElement>) => {
     const [width, setWidth] = useState(0);
 
     const getTextWidth = () => {
         const text = domRef?.current?.getElementsByTagName('text')?.[0];
-        const paddingWidth = 8;
         if (!text) return;
+        const paddingWidth = 8;
         const textWidth = Math.round(text.getBoundingClientRect()?.width);
         const widthSvg = textWidth + paddingWidth;
         setWidth(widthSvg);
     };
+
     useEffect(() => {
         getTextWidth();
     }, []);
+
+    return { width };
+};
+
+export default function TinyTag({ value, className, ...restProps }: ITinyTag) {
+    const domRef = useRef<HTMLDivElement>(null);
+    const { width } = useSvgWidth(domRef);
     return (
         <span ref={domRef} className={classNames('dtc-tinyTag', className)} {...restProps}>
             <svg
