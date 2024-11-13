@@ -13,9 +13,10 @@ export default function TinyTag({ value, className, ...restProps }: ITinyTag) {
 
     const getTextWidth = () => {
         const text = domRef?.current?.getElementsByTagName('text')?.[0];
-        const paddingWidth = 9;
+        const paddingWidth = 8;
         if (!text) return;
-        const widthSvg = text.getBoundingClientRect()?.width + paddingWidth;
+        const textWidth = Math.round(text.getBoundingClientRect()?.width);
+        const widthSvg = textWidth + paddingWidth;
         setWidth(widthSvg);
     };
     useEffect(() => {
@@ -24,14 +25,15 @@ export default function TinyTag({ value, className, ...restProps }: ITinyTag) {
     return (
         <span ref={domRef} className={classNames('dtc-tinyTag', className)} {...restProps}>
             <svg
-                height="16"
-                viewBox={`0 0 ${width} 16`}
+                width={width}
+                height="15"
+                viewBox={`0 0 ${width} 15`}
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <rect
                     x="0.5"
-                    y="1"
+                    y="0.5"
                     width={width - 1}
                     height="14"
                     rx="1.5"
@@ -39,7 +41,7 @@ export default function TinyTag({ value, className, ...restProps }: ITinyTag) {
                     strokeLinejoin="bevel"
                 />
                 <text fill="currentColor" xmlSpace="preserve" fontSize="10" letterSpacing="0px">
-                    <tspan x="4" y="11.6">
+                    <tspan x="4" y="11.1">
                         {value}
                     </tspan>
                 </text>

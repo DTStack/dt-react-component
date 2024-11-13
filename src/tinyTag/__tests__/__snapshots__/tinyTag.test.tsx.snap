@@ -7,8 +7,9 @@ exports[`test StatusTag should match snapshot 1`] = `
   >
     <svg
       fill="none"
-      height="16"
-      viewBox="0 0 9 16"
+      height="15"
+      viewBox="0 0 8 15"
+      width="8"
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect
@@ -16,9 +17,9 @@ exports[`test StatusTag should match snapshot 1`] = `
         rx="1.5"
         stroke="currentColor"
         stroke-linejoin="bevel"
-        width="8"
+        width="7"
         x="0.5"
-        y="1"
+        y="0.5"
       />
       <text
         fill="currentColor"
@@ -28,7 +29,7 @@ exports[`test StatusTag should match snapshot 1`] = `
       >
         <tspan
           x="4"
-          y="11.6"
+          y="11.1"
         >
           完成
         </tspan>
