@@ -46,7 +46,7 @@ specifiers:
   react: ^18.0.0
   react-dom: ^18.0.0
   react-markdown: ~8.0.6
-  react-syntax-highlighter: ~15.4.3
+  react-syntax-highlighter: ~15.5.0
   react-test-renderer: ^18.2.0
   remark-gfm: ~3.0.1
   shortid: ^2.2.16
@@ -70,7 +70,7 @@ dependencies:
   rc-drawer: 5.1.0_react-dom@18.2.0+react@18.2.0
   rc-virtual-list: 3.11.2_react-dom@18.2.0+react@18.2.0
   react-markdown: 8.0.7_d51bdd6a322172e118eec6adc1172a28
-  react-syntax-highlighter: 15.4.5_react@18.2.0
+  react-syntax-highlighter: 15.5.0_react@18.2.0
   remark-gfm: 3.0.1
   shortid: 2.2.16
   showdown: 1.9.1
@@ -13820,8 +13820,8 @@ packages:
       react-is: 18.2.0
     dev: true
 
-  /react-syntax-highlighter/15.4.5_react@18.2.0:
-    resolution: {integrity: sha512-RC90KQTxZ/b7+9iE6s9nmiFLFjWswUcfULi4GwVzdFVKVMQySkJWBuOmJFfjwjMVCo0IUUuJrWebNKyviKpwLQ==}
+  /react-syntax-highlighter/15.5.0_react@18.2.0:
+    resolution: {integrity: sha512-+zq2myprEnQmH5yw6Gqc8lD55QHnpKaU8TOcFeC/Lg/MQSs8UknEA0JC4nTZGFAXC2J2Hyj/ijJ7NlabyPi2gg==}
     peerDependencies:
       react: '>= 0.14.0'
     dependencies:
