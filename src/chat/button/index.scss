@@ -1,0 +1,44 @@
+.ant-btn.dtc__aigc__button {
+    padding: 0;
+    border: none;
+    &--primary {
+        &:not(.ant-btn[disabled]) {
+            background: linear-gradient(110deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+            color: #FFF;
+        }
+        &:hover {
+            &:not(.ant-btn[disabled]) {
+                background: linear-gradient(110deg, #08C4FF 0%, #4892FF 50%, #8A61FF 100%);
+                color: #FFF;
+            }
+        }
+    }
+    &--secondary.ant-btn-default {
+        position: relative;
+        background: linear-gradient(90deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+        > * {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(90deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+            background-clip: text;
+            color: transparent;
+        }
+        svg,
+        path {
+            fill: url(#LINE_GRADIENT_ID);
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: #FFF;
+            margin: 1px;
+            border-radius: inherit;
+        }
+    }
+}
