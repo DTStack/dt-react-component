@@ -1,0 +1,19 @@
+.dtc__icon {
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    font-style: normal;
+    line-height: 0;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    > * {
+        line-height: 1;
+    }
+    svg {
+        display: inline-block;
+    }
+}

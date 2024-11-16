@@ -1,0 +1,31 @@
+.dtc-aigc-pagination {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    & > section {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        & > span {
+            color: #3D446E;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+    .anticon {
+        height: 12px;
+        color: #B1B4C5;
+        cursor: pointer;
+    }
+    .anticon:hover {
+        color: #1D78FF;
+    }
+    .anticon.arrow-disabled {
+        cursor: not-allowed;
+    }
+    .anticon.arrow-disabled:hover {
+        color: #B1B4C5;
+    }
+}

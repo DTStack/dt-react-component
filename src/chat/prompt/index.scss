@@ -1,0 +1,15 @@
+.dtc__prompt {
+    &__container {
+        align-self: end;
+        max-width: calc(100% - 120px);
+    }
+    &__wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+    &__content {
+        border-radius: 8px;
+        padding: 8px;
+        background: #E8F1FF;
+    }
+}
