@@ -1,0 +1,143 @@
+.dt-catalogue {
+    position: relative;
+    height: 100%;
+    width: 320px;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    &--show {
+        opacity: 1;
+        transition: 0.2s all ease-in;
+    }
+    &--hide {
+        opacity: 0;
+        width: 0;
+        transition: 0.2s all ease-in;
+    }
+    &__header {
+        padding: 0 12px;
+    }
+    &__tree {
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+        padding-bottom: 24px;
+        overflow-y: auto;
+        .ant-spin-nested-loading,
+        .ant-spin-container {
+            height: 100%;
+        }
+        .ant-tree-treenode {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            &:hover {
+                background-color: #F5F5F8;
+                .tree__title--operation {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    color: #B1B4C5;
+                }
+            }
+            .ant-tree-node-content-wrapper {
+                display: flex;
+                align-items: center;
+                flex: 1;
+                min-width: 0;
+                &:hover {
+                    background: none;
+                }
+                .ant-tree-iconEle {
+                    display: flex;
+                    align-items: center;
+                    width: 20px;
+                    &:empty {
+                        display: none;
+                    }
+                }
+                .ant-tree-title {
+                    flex: 1;
+                    min-width: 0;
+                }
+            }
+            &.ant-tree-treenode-selected {
+                background-color: #E8F1FF;
+                position: relative;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    height: 100%;
+                    width: 4px;
+                    background-color: #1D78FF;
+                }
+            }
+            .ant-tree-switcher {
+                background: none;
+            }
+            .ant-tree-checkbox {
+                margin: 0;
+            }
+            .ant-tree-indent-unit::before {
+                height: 32px;
+                border-right: 1px solid #D8DAE2;
+            }
+            .ant-tree-switcher-leaf-line {
+                &::before {
+                    height: 32px;
+                }
+                &::after {
+                    height: 16px;
+                }
+            }
+        }
+        .ant-tree {
+            height: 100%;
+            .ant-tree-treenode-leaf-last .ant-tree-switcher-leaf-line::before {
+                height: 16px !important;
+            }
+        }
+        .tree {
+            &__title {
+                display: flex;
+                align-items: center;
+                &--text {
+                    flex: 1;
+                    min-width: 0;
+                }
+                &--operation {
+                    display: none;
+                    .ant-dropdown-menu-title-content {
+                        display: flex;
+                        gap: 8px;
+                        align-items: center;
+                        .dt-catalogue__icon {
+                            color: #B1B4C5;
+                        }
+                    }
+                }
+                &--input {
+                    margin-right: 12px;
+                    .ant-form-item {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        color: inherit;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 0;
+        text-align: center;
+        text-transform: none;
+        vertical-align: -0.125em;
+        text-rendering: optimizelegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
