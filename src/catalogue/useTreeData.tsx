@@ -16,7 +16,15 @@ export enum InputStatus {
     Append = 'append',
 }
 
-export const useTreeData = () => {
+export const useTreeData = (): {
+    data: ITreeNode[];
+    loading: boolean;
+    expandedKeys: TreeProps['expandedKeys'];
+    initData: (treeData: ITreeNode[]) => void;
+    onChange: (node?: ITreeNode, type?: InputStatus) => void;
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    setExpandedKeys: React.Dispatch<React.SetStateAction<TreeProps['expandedKeys']>>;
+} => {
     const [data, setData] = useState<ITreeNode[]>([]);
     const [loading, setLoading] = useState(false);
     const [expandedKeys, setExpandedKeys] = useState<TreeProps['expandedKeys']>([]);
