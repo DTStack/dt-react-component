@@ -41,7 +41,6 @@ Chat.Loading = Loading;
 Chat.Button = Button;
 Chat.CodeBlock = CodeBlock;
 Chat.Input = Input;
-Chat.Loading = Loading;
 Chat.Markdown = Markdown;
 Chat.Pagination = Pagination;
 Chat.Message = Message;

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'antd';
+import { Button, Space } from 'antd';
 import { Chat } from 'dt-react-component';
 
-import { mockSSE } from './mockSSE';
+import { mockSSE } from '../mockSSE';
+import { connect, dispatch, Store } from './redux';
 
-export default function () {
+const ChatComponent = connect(function ({ data }: Store) {
     const chat = Chat.useChat();
     const [value, setValue] = useState('');
 
@@ -31,7 +32,15 @@ export default function () {
     };
 
     useEffect(() => {
-        chat.conversation.create({ id: new Date().valueOf().toString() });
+        if (!data) {
+            chat.conversation.create({ id: new Date().valueOf().toString() });
+        } else {
+            chat.restoreViewState(data);
+        }
+
+        return () => {
+            dispatch('update', { data: chat.saveViewState() });
+        };
     }, []);
 
     return (
@@ -66,5 +75,22 @@ export default function () {
                 </div>
             </Chat>
         </div>
+    );
+});
+
+export default function () {
+    const [current, setCurrent] = useState('link1');
+    return (
+        <>
+            <Space>
+                <Button type="link" onClick={() => setCurrent('link1')}>
+                    link1
+                </Button>
+                <Button type="link" onClick={() => setCurrent('link2')}>
+                    link2
+                </Button>
+            </Space>
+            {current === 'link1' && <ChatComponent />}
+        </>
     );
 }
