@@ -1,4 +1,5 @@
 type SSEProps = {
+    message: string;
     onopen?: () => void;
     onmessage?: (str: string) => void;
     onstop?: () => void;
@@ -36,22 +37,27 @@ function getRandomLength() {
     return Math.floor(Math.random() * 10);
 }
 
-export function mockSSE({ onopen, onmessage, onstop }: SSEProps) {
+export function mockSSE({ message, onopen, onmessage, onstop }: SSEProps) {
     onopen?.();
 
-    const text = str[0];
-    let point = 0;
-    const interval = window.setInterval(() => {
-        const length = getRandomLength();
-        let end = point + length;
-        if (end >= text.length) {
-            end = text.length;
-            window.clearInterval(interval);
+    if (message.includes('诗')) {
+        const text = str[0];
+        let point = 0;
+        const interval = window.setInterval(() => {
+            const length = getRandomLength();
+            let end = point + length;
+            if (end >= text.length) {
+                end = text.length;
+                window.clearInterval(interval);
+                onmessage?.(text.slice(point, point + length));
+                onstop?.();
+                return;
+            }
             onmessage?.(text.slice(point, point + length));
-            onstop?.();
-            return;
-        }
-        onmessage?.(text.slice(point, point + length));
-        point += length;
-    }, 100);
+            point += length;
+        }, 100);
+    } else {
+        onmessage?.('根据你的描述暂未检索相关诗词。');
+        onstop?.();
+    }
 }

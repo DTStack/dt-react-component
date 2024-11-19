@@ -205,6 +205,15 @@ export default function useChat<
         return last.status === MessageStatus.PENDING || last.status === MessageStatus.GENERATING;
     }
 
+    function _saveViewState() {
+        return _getConversation();
+    }
+
+    function _restoreViewState(raw: Conversation) {
+        state.current = raw;
+        update();
+    }
+
     return {
         conversation: {
             create: _createConversation,
@@ -230,5 +239,7 @@ export default function useChat<
         close: _close,
         stop: typing.stop,
         isTyping: typing.isTyping,
+        saveViewState: _saveViewState,
+        restoreViewState: _restoreViewState,
     };
 }

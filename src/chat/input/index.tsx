@@ -30,8 +30,9 @@ export default function Input({
                 if (e.shiftKey) {
                     onChange?.(rest.value + '\n');
                     onPressShiftEnter?.(e);
+                } else {
+                    onPressEnter?.(e);
                 }
-                onPressEnter?.(e);
             }}
             autoSize={{
                 minRows: 1,

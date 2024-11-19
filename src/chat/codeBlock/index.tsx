@@ -28,7 +28,7 @@ export default function CodeBlock({
     const copy = useMemo<{ disabled: boolean; options: Partial<ICopyProps> }>(() => {
         if (typeof rawCopy === 'boolean') {
             return {
-                disabled: rawCopy,
+                disabled: !rawCopy,
                 options: {},
             };
         }
