@@ -1,6 +1,11 @@
 .ant-btn.dtc__aigc__button {
     padding: 0;
     border: none;
+    &[disabled] {
+        color: #B1B4C5;
+        background-color: #EBECF0;
+        border-color: #EBECF0;
+    }
     &--primary {
         &:not(.ant-btn[disabled]) {
             background: linear-gradient(110deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
@@ -14,31 +19,33 @@
         }
     }
     &--secondary.ant-btn-default {
-        position: relative;
-        background: linear-gradient(90deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
-        > * {
+        &:not(.ant-btn[disabled]) {
             position: relative;
-            z-index: 2;
             background: linear-gradient(90deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
-            background-clip: text;
-            color: transparent;
-        }
-        svg,
-        path {
-            fill: url(#LINE_GRADIENT_ID);
-        }
-        &::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            pointer-events: none;
-            background: #FFF;
-            margin: 1px;
-            border-radius: inherit;
+            > * {
+                position: relative;
+                z-index: 2;
+                background: linear-gradient(90deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+                background-clip: text;
+                color: transparent;
+            }
+            svg,
+            path {
+                fill: url(#LINE_GRADIENT_ID);
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 1;
+                pointer-events: none;
+                background: #FFF;
+                margin: 1px;
+                border-radius: inherit;
+            }
         }
     }
 }

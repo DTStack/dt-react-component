@@ -25,18 +25,36 @@ type IMessageProps = {
     copy?: boolean | CopyOptions;
     onRegenerate?: (data: MessageEntity) => void;
     onStop?: (data: MessageEntity) => void;
+    onLazyRendered?: (cb: () => Promise<void>) => void;
 };
 
-export default function Message({ data, regenerate, copy, onRegenerate, onStop }: IMessageProps) {
+export default function Message({
+    data,
+    regenerate,
+    copy,
+    onRegenerate,
+    onStop,
+    onLazyRendered,
+}: IMessageProps) {
     const divRef = useRef<HTMLDivElement>(null);
     const { components = {} } = useContext();
 
     // 当前 Message 的懒加载，是否已经加载过
     const [lazyRendered, setLazyRendered] = useState(false);
+    const mountCallback = useRef(() => {});
 
     const handleObserverCb = ([entry]: IntersectionObserverEntry[]) => {
         if (entry.isIntersecting) {
-            setLazyRendered(true);
+            setLazyRendered((p) => {
+                if (!p) {
+                    const cb = () =>
+                        new Promise<void>((resolve) => {
+                            mountCallback.current = resolve;
+                        });
+                    onLazyRendered?.(cb);
+                }
+                return true;
+            });
         }
     };
 
@@ -118,7 +136,13 @@ export default function Message({ data, regenerate, copy, onRegenerate, onStop }
                 >
                     <Loading loading={loading}>
                         {lazyRendered && (
-                            <Markdown typing={typing} components={composedComponents}>
+                            <Markdown
+                                typing={typing}
+                                components={composedComponents}
+                                onMount={() => {
+                                    mountCallback.current();
+                                }}
+                            >
                                 {record?.content}
                             </Markdown>
                         )}
