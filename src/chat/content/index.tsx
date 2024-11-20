@@ -30,11 +30,12 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
     const containerRef = useRef<HTMLDivElement>(null);
 
     const [isStickyAtBottom, setIsStickyAtBottom] = useState<boolean>(true);
+    const raf = useRef(0);
 
     useImperativeHandle(forwardedRef, () => ({
         nativeElement: containerRef.current,
         scrollToBottom: () => {
-            window.requestAnimationFrame(() => {
+            raf.current = window.requestAnimationFrame(() => {
                 containerRef.current?.scrollTo({
                     top: containerRef.current?.scrollHeight,
                     left: 0,
@@ -64,11 +65,12 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
         containerRef.current?.addEventListener('scroll', handleScroll);
         return () => {
             containerRef.current?.removeEventListener('scroll', handleScroll);
+            window.cancelAnimationFrame(raf.current);
         };
     }, []);
 
     useLayoutEffect(() => {
-        window.requestAnimationFrame(() => {
+        raf.current = window.requestAnimationFrame(() => {
             if (!containerRef.current) {
                 return;
             }
@@ -81,7 +83,7 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
     }, [lastMessage?.id]);
 
     useLayoutEffect(() => {
-        window.requestAnimationFrame(() => {
+        raf.current = window.requestAnimationFrame(() => {
             if (!containerRef.current) {
                 return;
             }
