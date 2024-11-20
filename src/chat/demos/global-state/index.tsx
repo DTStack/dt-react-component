@@ -1,60 +1,141 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Space } from 'antd';
+import React, { useMemo, useState } from 'react';
+import { Button, Tabs } from 'antd';
 import { Chat } from 'dt-react-component';
+import { Conversation, Message, MessageStatus, Prompt } from 'dt-react-component/chat/entity';
+import { produce } from 'immer';
 
 import { mockSSE } from '../mockSSE';
-import { connect, dispatch, Store } from './redux';
 
-const ChatComponent = connect(function ({ data }: Store) {
-    const chat = Chat.useChat();
-    const [value, setValue] = useState('');
+export default function () {
+    const [tabs, setTabs] = useState([{ label: 'Tab 1', children: 'Content of Tab 1', key: '1' }]);
+    const [activeKey, setActiveKey] = useState('1');
 
-    const handleSubmit = (raw: string = value) => {
-        const val = raw.trim();
-        if (chat.loading() || !val) return;
-        setValue('');
-        const promptId = new Date().valueOf().toString();
-        const messageId = (new Date().valueOf() + 1).toString();
-        chat.prompt.create({ id: promptId, title: val });
-        chat.message.create(promptId, { id: messageId, content: '' });
-        mockSSE({
-            message: val,
-            onopen() {
-                chat.start(promptId, messageId);
-            },
-            onmessage(str) {
-                chat.push(promptId, messageId, str);
-            },
-            onstop() {
-                chat.close(promptId, messageId);
-            },
-        });
+    const [conversations, setConversations] = useState<Record<string, Conversation>>({});
+
+    const add = () => {
+        const newActiveKey = new Date().valueOf().toString();
+        const newPanes = [...tabs];
+        newPanes.push({ label: 'New Tab', children: 'Content of new Tab', key: newActiveKey });
+        setTabs(newPanes);
+        setActiveKey(newActiveKey);
     };
 
-    useEffect(() => {
-        if (!data) {
-            chat.conversation.create({ id: new Date().valueOf().toString() });
-        } else {
-            chat.restoreViewState(data);
+    const remove = (targetKey: string) => {
+        let newActiveKey = activeKey;
+        let lastIndex = -1;
+        tabs.forEach((item, i) => {
+            if (item.key === targetKey) {
+                lastIndex = i - 1;
+            }
+        });
+        const newPanes = tabs.filter((item) => item.key !== targetKey);
+        if (newPanes.length && newActiveKey === targetKey) {
+            if (lastIndex >= 0) {
+                newActiveKey = newPanes[lastIndex].key;
+            } else {
+                newActiveKey = newPanes[0].key;
+            }
         }
+        setTabs(newPanes);
+        setActiveKey(newActiveKey);
+    };
 
-        return () => {
-            dispatch('update', { data: chat.saveViewState() });
-        };
-    }, []);
+    const data = useMemo(() => {
+        return conversations[activeKey];
+    }, [activeKey, conversations]);
+
+    const handleSubmit = (val: string) => {
+        if (!data) {
+            const promptId = new Date().valueOf().toString();
+            const messageId = (new Date().valueOf() + 1).toString();
+            const conversationId = (new Date().valueOf() + 2).toString();
+            const message = new (class extends Message {})({ id: messageId });
+            const prompt = new (class extends Prompt {})({
+                id: promptId,
+                title: val,
+                messages: [message],
+            });
+            const conversation = new (class extends Conversation {})({
+                id: conversationId,
+                prompts: [prompt],
+            });
+            setConversations((prev) => ({ ...prev, [activeKey]: conversation }));
+            mockSSE({
+                message: val,
+                onopen() {
+                    setConversations((prev) => ({
+                        ...prev,
+                        [activeKey]: produce(prev[activeKey], (draft) => {
+                            const prompt = draft.prompts.find((i) => i.id === promptId);
+                            const message = prompt?.messages.find((i) => i.id === messageId);
+                            if (!message) return;
+                            message.status = MessageStatus.GENERATING;
+                        }),
+                    }));
+                },
+                onmessage(str) {
+                    setConversations((prev) => ({
+                        ...prev,
+                        [activeKey]: produce(prev[activeKey], (draft) => {
+                            const prompt = draft.prompts.find((i) => i.id === promptId);
+                            const message = prompt?.messages.find((i) => i.id === messageId);
+                            if (!message) return;
+                            message.content += str;
+                        }),
+                    }));
+                },
+                onstop() {
+                    setConversations((prev) => ({
+                        ...prev,
+                        [activeKey]: produce(prev[activeKey], (draft) => {
+                            const prompt = draft.prompts.find((i) => i.id === promptId);
+                            const message = prompt?.messages.find((i) => i.id === messageId);
+                            if (!message) return;
+                            message.status = MessageStatus.DONE;
+                        }),
+                    }));
+                },
+            });
+        }
+    };
+
+    return (
+        <>
+            <Tabs
+                type="editable-card"
+                onChange={setActiveKey}
+                activeKey={activeKey}
+                onEdit={(targetKey, action) => {
+                    if (action === 'add') {
+                        add();
+                    } else {
+                        remove(targetKey as string);
+                    }
+                }}
+            >
+                {tabs.map((i) => (
+                    <Tabs.TabPane tab={i.label} key={i.key} closable={tabs.length !== 1} />
+                ))}
+            </Tabs>
+            <AI data={data} onSubmit={handleSubmit} />
+        </>
+    );
+}
+
+function AI({ data, onSubmit }: { data?: Conversation; onSubmit?: (str: string) => void }) {
+    const chat = Chat.useChat();
+    const [value, setValue] = useState('');
 
     return (
         <div style={{ width: '100%', height: 400 }}>
             <Chat chat={chat}>
                 <Chat.Content
-                    data={chat.conversation.get()?.prompts || []}
+                    data={data?.prompts || []}
                     placeholder={
                         <h1>
                             有什么可以帮忙的？
                             <br />
-                            <Button onClick={() => handleSubmit('请告诉我一首诗')}>
-                                返回一首诗
-                            </Button>
+                            <Button onClick={() => onSubmit?.('请告诉我一首诗')}>返回一首诗</Button>
                         </h1>
                     }
                 />
@@ -62,12 +143,12 @@ const ChatComponent = connect(function ({ data }: Store) {
                     <Chat.Input
                         value={value}
                         onChange={setValue}
-                        onPressEnter={() => handleSubmit()}
+                        onPressEnter={() => onSubmit?.(value)}
                         placeholder="请输入想咨询的内容…"
                     />
                     <Chat.Button
                         type="primary"
-                        onClick={() => handleSubmit()}
+                        onClick={() => onSubmit?.(value)}
                         disabled={chat.loading() || !value}
                     >
                         <Chat.Icon.SendIcon style={{ fontSize: 16, padding: '8px 16px' }} />
@@ -75,22 +156,5 @@ const ChatComponent = connect(function ({ data }: Store) {
                 </div>
             </Chat>
         </div>
-    );
-});
-
-export default function () {
-    const [current, setCurrent] = useState('link1');
-    return (
-        <>
-            <Space>
-                <Button type="link" onClick={() => setCurrent('link1')}>
-                    link1
-                </Button>
-                <Button type="link" onClick={() => setCurrent('link2')}>
-                    link2
-                </Button>
-            </Space>
-            {current === 'link1' && <ChatComponent />}
-        </>
     );
 }
