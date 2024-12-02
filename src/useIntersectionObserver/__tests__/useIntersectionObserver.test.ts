@@ -37,7 +37,7 @@ describe('useIntersectionObserver', () => {
         document.body.appendChild(divElement);
 
         const { unmount } = renderHook(() => {
-            const [ref] = useIntersectionObserver(callback, options);
+            const ref = useIntersectionObserver(callback, options);
             ref.current = divElement;
             return ref;
         });
@@ -54,7 +54,7 @@ describe('useIntersectionObserver', () => {
         const options = { threshold: 0, root: null, rootMargin: '0%' };
 
         const { unmount } = renderHook(() => {
-            const [ref] = useIntersectionObserver(callback, options);
+            const ref = useIntersectionObserver(callback, options);
             ref.current = null;
             return ref;
         });

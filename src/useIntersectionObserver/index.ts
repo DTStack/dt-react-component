@@ -43,7 +43,7 @@ const useIntersectionObserver = <T extends Element>(
         return () => observer.disconnect();
     }, [JSON.stringify(threshold), root, rootMargin, frozen]);
 
-    return [ref as MutableRefObject<T | null>];
+    return ref as MutableRefObject<T | null>;
 };
 
 export default useIntersectionObserver;

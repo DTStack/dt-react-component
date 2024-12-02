@@ -52,7 +52,7 @@ const ImageComponent = (props: IProps) => {
 
 const LazyImage = (props: IProps) => {
     const { src, ...rest } = props;
-    const [imgRef] = useIntersectionObserver<HTMLImageElement>(([entry]) => {
+    const imgRef = useIntersectionObserver<HTMLImageElement>(([entry]) => {
         const { target, isIntersecting } = entry;
         if (isIntersecting) {
             const _target = target as HTMLImageElement;

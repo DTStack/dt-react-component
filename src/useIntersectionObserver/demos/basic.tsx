@@ -7,7 +7,7 @@ const Basic = () => {
         if (entry.isIntersecting) alert('hi, 我展示了');
     };
 
-    const [ref] = useIntersectionObserver<HTMLDivElement>(handleObserverCb);
+    const ref = useIntersectionObserver<HTMLDivElement>(handleObserverCb);
 
     return (
         <div style={{ height: 300, overflow: 'scroll' }}>
