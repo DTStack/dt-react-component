@@ -1,10 +1,8 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import useIntersectionObserver from '..';
 
 const Basic = () => {
-    const imgRef = useRef<HTMLImageElement>(null);
-
     const handleObserverCb = ([entry]: IntersectionObserverEntry[]) => {
         const { target, isIntersecting } = entry;
         if (isIntersecting) {
@@ -16,7 +14,7 @@ const Basic = () => {
         }
     };
 
-    useIntersectionObserver(handleObserverCb, imgRef, {});
+    const imgRef = useIntersectionObserver<HTMLImageElement>(handleObserverCb);
 
     return (
         <div style={{ height: 300, overflow: 'scroll' }}>
