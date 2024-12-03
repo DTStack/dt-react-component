@@ -33,6 +33,7 @@ export { default as useCookieListener } from './useCookieListener';
 export { default as useDebounce } from './useDebounce';
 export { default as useIntersectionObserver } from './useIntersectionObserver';
 export { default as useList } from './useList';
+export { default as useMeasure } from './useMeasure';
 export { default as useModal } from './useModal';
 export { default as useTyping } from './useTyping';
 export { default as useWindowSwitchListener } from './useWindowSwitchListener';
