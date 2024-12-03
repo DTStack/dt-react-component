@@ -6,7 +6,7 @@ demo:
     cols: 2
 ---
 
-# Loading
+# Input
 
 ## 何时使用
 
