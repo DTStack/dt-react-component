@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
 import { Empty as AntdEmpty, EmptyProps as AntdEmptyProps } from 'antd';
+import { DeleteIcon, ReloadIcon } from 'dt-react-component/components/icon';
 
 import './style.scss';
 
 export const IMG_MAP = {
     default: 'empty_default.png',
     project: 'empty_project.png',
-    search: 'empty_search.png',
     chart: 'empty_chart.png',
     overview: 'empty_overview.png',
     permission: 'empty_permission.png',
@@ -30,10 +30,22 @@ const Empty = (props: EmptyProps) => {
         extra,
         ...restProps
     } = props;
+    const img = () => {
+        if (type === 'search') {
+            return (
+                <div className="dtc-empty-search-container">
+                    <DeleteIcon className="dtc-empty-search" />
+                    <ReloadIcon className="dtc-empty-loupe" />
+                </div>
+            );
+        } else if (IMG_MAP[type]) {
+            return <img src={require(`./emptyImg/${IMG_MAP[type]}`)} />;
+        }
 
-    let newImage: ReactNode = IMG_MAP[type] ? (
-        <img src={require('./emptyImg/' + IMG_MAP[type])}></img>
-    ) : null;
+        return null;
+    };
+
+    let newImage: ReactNode = img() || null;
     if (image) newImage = image as ReactNode;
 
     const height = size === 'default' ? 80 : 100;
