@@ -9,23 +9,21 @@ import { CatalogIcon, DeleteIcon, DragIcon, EditIcon, EllipsisIcon, PlusCircleIc
 import CatalogueTree, { ICatalogueTree } from './tree';
 
 interface ICatalogue
-    extends Pick<IBlockHeaderProps, 'tooltip' | 'addonAfter'>,
-        Partial<Pick<ReturnType<typeof useTreeData>, 'onChange'>>,
+    extends Pick<IBlockHeaderProps, 'tooltip' | 'addonAfter' | 'addonBefore' | 'title'>,
+        Pick<ReturnType<typeof useTreeData>, 'onChange'>,
         ICatalogueTree {
-    icon?: React.ReactNode;
-    title?: string;
     showSearch?: boolean;
     edit?: boolean;
     placeholder?: string;
     loading?: boolean;
     onSearch?: (value: string) => void;
-    onSave?: (data: ITreeNode, value: string) => Promise<void>;
-    onDelete?: (data: ITreeNode) => Promise<void>;
+    onSave?: (data: ITreeNode, value: string) => void;
+    onDelete?: (data: ITreeNode) => void;
 }
 
 const Catalogue = ({
     title,
-    icon = <CatalogIcon style={{ fontSize: 20 }} />,
+    addonBefore = <CatalogIcon style={{ fontSize: 20 }} />,
     tooltip = false,
     showSearch = false,
     placeholder = '搜索目录名称',
@@ -43,18 +41,24 @@ const Catalogue = ({
 }: ICatalogue) => {
     const [form] = Form.useForm();
 
-    const loopTree = (data: DataNode[]): DataNode[] => {
+    const loopTree = (data: ITreeNode[]): ITreeNode[] => {
         return data?.map((item) => {
+            const reset: ITreeNode = {
+                ...item,
+                editable: item?.editable === undefined ? true : item?.editable,
+                addable: item?.addable === undefined ? true : item?.addable,
+                deletable: item?.deletable === undefined ? true : item?.deletable,
+            };
             if (item.children) {
                 return {
-                    ...item,
-                    title: renderTitle(item),
+                    ...reset,
+                    title: renderTitle(reset),
                     children: loopTree(item.children),
                 };
             }
             return {
-                ...item,
-                title: renderTitle(item),
+                ...reset,
+                title: renderTitle(reset),
                 children: undefined,
             };
         });
@@ -67,7 +71,7 @@ const Catalogue = ({
                 title={title}
                 tooltip={tooltip}
                 background={false}
-                addonBefore={icon}
+                addonBefore={addonBefore}
                 addonAfter={addonAfter}
                 spaceBottom={12}
             />
@@ -165,7 +169,7 @@ const Catalogue = ({
         );
     };
 
-    const renderNodeHover = (item: DataNode) => {
+    const renderNodeHover = (item: ITreeNode) => {
         const menu = (
             <Menu
                 className="tree__title--menu"
@@ -176,7 +180,8 @@ const Catalogue = ({
                 <Menu.Item
                     key="add"
                     className="title__menu--item"
-                    onClick={() => onChange?.(item, InputStatus.Append)}
+                    disabled={!item.addable}
+                    onClick={() => item.addable && onChange?.(item, InputStatus.Append)}
                 >
                     <PlusCircleIcon />
                     <span>新建目录</span>
@@ -184,7 +189,8 @@ const Catalogue = ({
                 <Menu.Item
                     key="edit"
                     className="title__menu--item"
-                    onClick={() => onChange?.(item, InputStatus.Edit)}
+                    disabled={!item.editable}
+                    onClick={() => item.editable && onChange?.(item, InputStatus.Edit)}
                 >
                     <EditIcon />
                     <span>编辑</span>
@@ -192,7 +198,8 @@ const Catalogue = ({
                 <Menu.Item
                     key="delete"
                     className="title__menu--item"
-                    onClick={() => onDelete?.(item)}
+                    disabled={!item.deletable}
+                    onClick={() => item.deletable && onDelete?.(item)}
                 >
                     <DeleteIcon />
                     <span>删除</span>
@@ -204,7 +211,6 @@ const Catalogue = ({
                 className="tree__title--operation"
                 onMouseDown={(e) => {
                     e.stopPropagation();
-                    // this.setState({ isSelected: false, draggable: false });
                 }}
             >
                 <Dropdown
@@ -212,11 +218,12 @@ const Catalogue = ({
                     trigger={['click']}
                     placement="bottomRight"
                     arrow
-                    getPopupContainer={(triggerNode) => triggerNode.parentElement}
+                    destroyPopupOnHide
+                    getPopupContainer={(triggerNode) => triggerNode.parentElement as HTMLElement}
                 >
                     <EllipsisIcon onClick={(e) => e.stopPropagation()} />
                 </Dropdown>
-                <DragIcon />
+                {draggable && <DragIcon />}
             </div>
         );
     };

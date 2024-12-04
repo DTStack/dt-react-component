@@ -4,7 +4,7 @@ import classNames from 'classnames';
 interface IIcon {
     className?: string;
     style?: React.CSSProperties;
-    onClick?: (e) => void;
+    onClick?: React.MouseEventHandler<HTMLSpanElement>;
 }
 
 const FolderIcon = function ({ className, ...rest }: IIcon) {

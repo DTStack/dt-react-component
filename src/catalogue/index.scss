@@ -1,7 +1,7 @@
 .dt-catalogue {
     position: relative;
     height: 100%;
-    width: 320px;
+    width: 100%;
     padding-top: 12px;
     display: flex;
     flex-direction: column;
@@ -96,6 +96,9 @@
             height: 100%;
             .ant-tree-treenode-leaf-last .ant-tree-switcher-leaf-line::before {
                 height: 16px !important;
+            }
+            .ant-tree-node-content-wrapper.ant-tree-node-selected {
+                background: none;
             }
         }
         .tree {

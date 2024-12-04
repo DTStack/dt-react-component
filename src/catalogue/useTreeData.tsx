@@ -4,8 +4,11 @@ import { cloneDeep } from 'lodash';
 
 export interface ITreeNode extends Omit<DataNode, 'children'> {
     type?: InputStatus;
+    /** 是否可编辑 */
     editable?: boolean;
+    /** 是否可删除 */
     deletable?: boolean;
+    /** 是否可增加 */
     addable?: boolean;
     children?: ITreeNode[];
 }

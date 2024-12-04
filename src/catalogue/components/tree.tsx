@@ -1,4 +1,4 @@
-import React, { Key, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Tree, TreeProps } from 'antd';
 
 import { ITreeNode } from '../useTreeData';
@@ -10,10 +10,10 @@ export interface ICatalogueTree
     treeData: ITreeNode[];
 }
 
-const CatalogueTree = ({ treeData, onExpand, ...rest }: ICatalogueTree) => {
+const CatalogueTree = ({ treeData = [], onExpand, ...rest }: ICatalogueTree) => {
     const renderTreeData = useMemo(() => loopTree(treeData), [treeData]);
 
-    const handleExpand = (expandedKeys: Key[], info) => {
+    const handleExpand: TreeProps['onExpand'] = (expandedKeys, info) => {
         onExpand?.(expandedKeys, info);
     };
 
