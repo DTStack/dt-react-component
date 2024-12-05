@@ -37,7 +37,7 @@ export default function Message({
     onLazyRendered,
 }: IMessageProps) {
     const divRef = useRef<HTMLDivElement>(null);
-    const { components = {} } = useContext();
+    const { components = {}, messageIcons } = useContext();
 
     // 当前 Message 的懒加载，是否已经加载过
     const [lazyRendered, setLazyRendered] = useState(false);
@@ -187,6 +187,7 @@ export default function Message({
                             </span>
                         </Tooltip>
                     )}
+                    {typeof messageIcons === 'function' ? messageIcons(record) : messageIcons}
                 </Space>
             )}
         </section>
