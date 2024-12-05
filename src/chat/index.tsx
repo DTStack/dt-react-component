@@ -25,10 +25,11 @@ function Chat({
     components,
     maxRegenerateCount = DEFAULT_MAX_REGENERATE_COUNT,
     copy,
+    messageIcons,
     children,
 }: PropsWithChildren<ChatProviderConfig>) {
     return (
-        <context.Provider value={{ chat, components, maxRegenerateCount, copy }}>
+        <context.Provider value={{ chat, components, maxRegenerateCount, copy, messageIcons }}>
             {children}
         </context.Provider>
     );

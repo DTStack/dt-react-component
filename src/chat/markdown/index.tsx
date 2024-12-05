@@ -38,11 +38,7 @@ export default memo(
                         return <code className="dtc__aigc__markdown__inlineCode">{children}</code>;
                     },
                     pre({ children }) {
-                        const child = children[0] as React.ReactElement;
-                        const match = /language-(\w+)/.exec(child.props.className || '');
-                        const language = match ? match[1] : 'SQL';
-                        const value = String(child.props.children).replace(/\n$/, '');
-                        return <CodeBlock value={value} language={language} />;
+                        return <CodeBlock>{children}</CodeBlock>;
                     },
                     ...components,
                 }}

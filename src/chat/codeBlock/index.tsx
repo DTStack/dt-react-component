@@ -7,24 +7,32 @@ import Copy, { type ICopyProps } from '../../copy';
 import './index.scss';
 
 interface ICodeBlockProps {
-    language: string;
     copy?: boolean | ICopyProps;
-    value?: string;
     className?: string;
     style?: React.CSSProperties;
     convert?: boolean;
+    toolbars?: React.ReactNode;
     options?: Partial<SyntaxHighlighterProps>;
+    children: React.ReactNode & React.ReactNode[];
 }
 
 export default function CodeBlock({
     className,
     style,
-    language,
+    toolbars,
     copy: rawCopy,
-    value,
     convert,
+    children,
     options: { lineNumberStyle = {}, ...rest } = {},
 }: ICodeBlockProps) {
+    const { value, language } = useMemo(() => {
+        const child = children[0] as React.ReactElement;
+        const match = /language-(\w+)/.exec(child.props.className || '');
+        const language = match ? match[1] : 'SQL';
+        const value = String(child.props.children).replace(/\n$/, '');
+        return { value, language };
+    }, [children]);
+
     const copy = useMemo<{ disabled: boolean; options: Partial<ICopyProps> }>(() => {
         if (typeof rawCopy === 'boolean') {
             return {
@@ -54,6 +62,7 @@ export default function CodeBlock({
                     {language.toLocaleLowerCase()}
                 </span>
                 <div className="dtc__aigc__codeblock__tool">
+                    {toolbars}
                     {/* FIXME：Copy 组件后续可以支持一下 disabled 属性 */}
                     {!copy.disabled && <Copy text={text} {...copy.options} />}
                 </div>
