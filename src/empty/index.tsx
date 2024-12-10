@@ -1,12 +1,13 @@
 import React, { ReactNode } from 'react';
 import { Empty as AntdEmpty, EmptyProps as AntdEmptyProps } from 'antd';
-import { DeleteIcon, ReloadIcon } from 'dt-react-component/components/icon';
+import { LoupeIcon, SearchIcon } from 'dt-react-component/components/icon';
 
 import './style.scss';
 
 export const IMG_MAP = {
     default: 'empty_default.png',
     project: 'empty_project.png',
+    search: 'empty_search.png',
     chart: 'empty_chart.png',
     overview: 'empty_overview.png',
     permission: 'empty_permission.png',
@@ -17,6 +18,7 @@ export interface EmptyProps extends AntdEmptyProps {
     size?: 'default' | 'large';
     showEmpty?: boolean;
     extra?: ReactNode;
+    active?: boolean;
 }
 
 const Empty = (props: EmptyProps) => {
@@ -24,6 +26,7 @@ const Empty = (props: EmptyProps) => {
         type = 'default',
         size = 'default',
         showEmpty = true,
+        active = false,
         children,
         image,
         imageStyle,
@@ -31,11 +34,11 @@ const Empty = (props: EmptyProps) => {
         ...restProps
     } = props;
     const img = () => {
-        if (type === 'search') {
+        if (type === 'search' && active) {
             return (
                 <div className="dtc-empty-search-container">
-                    <DeleteIcon className="dtc-empty-search" />
-                    <ReloadIcon className="dtc-empty-loupe" />
+                    <SearchIcon className="dtc-empty-search" />
+                    <LoupeIcon className="dtc-empty-loupe" />
                 </div>
             );
         } else if (IMG_MAP[type]) {

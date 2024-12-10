@@ -7,7 +7,7 @@ interface IIconProps extends React.HTMLAttributes<HTMLSpanElement> {
     onClick?: () => void;
 }
 
-export function DeleteIcon({ title, style, className }: IIconProps) {
+export function SearchIcon({ title, style, className }: IIconProps) {
     return (
         <span title={title || ''} className={className} style={style}>
             <svg
@@ -67,7 +67,7 @@ export function DeleteIcon({ title, style, className }: IIconProps) {
         </span>
     );
 }
-export function ReloadIcon({ title, style, className }: IIconProps) {
+export function LoupeIcon({ title, style, className }: IIconProps) {
     return (
         <span title={title || ''} className={className} style={style}>
             <svg
