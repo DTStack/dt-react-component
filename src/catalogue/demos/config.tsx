@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
+import { Menu } from 'antd';
 import { TreeProps } from 'antd/lib/tree';
+import { Catalogue } from 'dt-react-component';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
 
-import { PlusSquareIcon } from '../components/icon';
+import { DeleteIcon, EditIcon, PlusCircleIcon, PlusSquareIcon } from '../components/icon';
 import { InputStatus, ITreeNode, useTreeData } from '../useTreeData';
-import Catalogue from '..';
 
 const DEFAULT_DATA: ITreeNode[] = [
     {
@@ -70,7 +71,7 @@ export default () => {
         return null;
     };
 
-    const handleSave = (data: ITreeNode, value: string) => {
+    const handleSave = async (data: ITreeNode, value: string) => {
         const newData = cloneDeep(treeData.data);
         if (data.type === InputStatus.Add) {
             newData.push({
@@ -201,13 +202,50 @@ export default () => {
                 title="标签目录"
                 showSearch
                 draggable
+                overlay={(item) => (
+                    <Menu
+                        onClick={({ domEvent }) => {
+                            domEvent.stopPropagation();
+                        }}
+                    >
+                        <Menu.Item
+                            key="add"
+                            disabled={!item.addable}
+                            onClick={() =>
+                                item.addable && treeData.onChange(item, InputStatus.Append)
+                            }
+                        >
+                            <PlusCircleIcon />
+                            <span>新建目录</span>
+                        </Menu.Item>
+                        <Menu.Item
+                            key="edit"
+                            className="title__menu--item"
+                            disabled={!item.editable}
+                            onClick={() =>
+                                item.editable && treeData.onChange(item, InputStatus.Edit)
+                            }
+                        >
+                            <EditIcon />
+                            <span>编辑</span>
+                        </Menu.Item>
+                        <Menu.Item
+                            key="delete"
+                            className="title__menu--item"
+                            disabled={!item.deletable}
+                            onClick={() => item.deletable && handleDelete(item)}
+                        >
+                            <DeleteIcon />
+                            <span>删除</span>
+                        </Menu.Item>
+                    </Menu>
+                )}
                 treeData={treeData.data}
                 expandedKeys={treeData.expandedKeys}
                 onExpand={treeData.setExpandedKeys}
                 onDragEnter={({ expandedKeys }) => treeData.setExpandedKeys(expandedKeys)}
                 onChange={treeData.onChange}
                 onSave={handleSave}
-                onDelete={handleDelete}
                 onDrop={handleDrop}
             />
         </div>

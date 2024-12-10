@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
+import { Catalogue } from 'dt-react-component';
 
 import { useTreeData } from '../useTreeData';
-import Catalogue from '..';
 
 const DEFAULT_DATA = [
     {

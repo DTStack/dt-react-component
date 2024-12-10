@@ -25,17 +25,17 @@ demo:
 
 ### Catalogue
 
-| 参数        | 说明                           | 类型                                             | 默认值         |
-| ----------- | ------------------------------ | ------------------------------------------------ | -------------- |
-| loading     | 目录树是否加载中               | `boolean`                                        | `false`        |
-| treeData    | 目录树是否加载中               | `ITreeNode[]`                                    | `[]`           |
-| showSearch  | 是否展示搜索框                 | `boolean`                                        | `false`        |
-| edit        | 目录是否可以操作               | `boolean`                                        | `true`         |
-| placeholder | 搜索框的默认展示内容           | `string`                                         | `搜索目录名称` |
-| onSearch    | 点击搜索图标、清除图标时的回调 | `(value: string) => void`                        | -              |
-| onSave      | 新增/编辑时的回调              | `(data: ITreeNode, value: string) => void`       | -              |
-| onDelete    | 删除时的回调                   | `(data: ITreeNode) => void`                      | -              |
-| onChange    | 触发新增/编辑的回调            | `(node?: ITreeNode, type?: InputStatus) => void` | -              |
+| 参数        | 说明                           | 类型                                                          | 默认值         |
+| ----------- | ------------------------------ | ------------------------------------------------------------- | -------------- |
+| loading     | 目录树是否加载中               | `boolean`                                                     | `false`        |
+| overlay     | 目录树的操作配置               | `(item: ITreeNode) => DropdownProps['overlay']`               | -              |
+| treeData    | 目录树是否加载中               | `ITreeNode[]`                                                 | `[]`           |
+| showSearch  | 是否展示搜索框                 | `boolean`                                                     | `false`        |
+| edit        | 目录是否可以操作               | `boolean`                                                     | `true`         |
+| placeholder | 搜索框的默认展示内容           | `string`                                                      | `搜索目录名称` |
+| onSearch    | 点击搜索图标、清除图标时的回调 | `(value: string) => void`                                     | -              |
+| onSave      | 新增/编辑时的回调              | `(data: ITreeNode, value: string) => Promise<string \| void>` | -              |
+| onChange    | 触发新增/编辑的回调            | `(node?: ITreeNode, type?: InputStatus) => void`              | -              |
 
 :::info
 其余参数继承 antd4.x 的 `Omit<TreeProps, 'showLine' | 'switcherIcon' | 'showIcon' | 'treeData'>`<br/>

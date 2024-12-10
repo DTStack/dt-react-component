@@ -1,24 +1,24 @@
-import React, { useMemo } from 'react';
-import { Dropdown, Form, Input, Menu, Spin } from 'antd';
+import React from 'react';
+import { Dropdown, DropdownProps, Form, Input, Spin } from 'antd';
 import { DataNode } from 'antd/lib/tree';
-import { EllipsisText, Empty } from 'dt-react-component';
-import BlockHeader, { IBlockHeaderProps } from 'dt-react-component/blockHeader';
+import { BlockHeader, EllipsisText, Empty } from 'dt-react-component';
+import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
 
 import { InputStatus, ITreeNode, useTreeData } from '../useTreeData';
-import { CatalogIcon, DeleteIcon, DragIcon, EditIcon, EllipsisIcon, PlusCircleIcon } from './icon';
+import { CatalogIcon, DragIcon, EllipsisIcon } from './icon';
 import CatalogueTree, { ICatalogueTree } from './tree';
 
-interface ICatalogue
+export interface ICatalogue
     extends Pick<IBlockHeaderProps, 'tooltip' | 'addonAfter' | 'addonBefore' | 'title'>,
-        Pick<ReturnType<typeof useTreeData>, 'onChange'>,
         ICatalogueTree {
     showSearch?: boolean;
     edit?: boolean;
     placeholder?: string;
     loading?: boolean;
+    onChange?: ReturnType<typeof useTreeData>['onChange'];
+    overlay?: (item: ITreeNode) => DropdownProps['overlay'];
     onSearch?: (value: string) => void;
-    onSave?: (data: ITreeNode, value: string) => void;
-    onDelete?: (data: ITreeNode) => void;
+    onSave?: (data: ITreeNode, value: string) => Promise<string | void>;
 }
 
 const Catalogue = ({
@@ -32,11 +32,11 @@ const Catalogue = ({
     loading = false,
     treeData,
     draggable,
+    overlay,
     onChange,
     onSearch,
     onExpand,
     onSave,
-    onDelete,
     ...rest
 }: ICatalogue) => {
     const [form] = Form.useForm();
@@ -90,12 +90,13 @@ const Catalogue = ({
     };
 
     const renderTree = () => {
+        const treeDataWithTitle = loopTree(treeData);
         if (!treeDataWithTitle.length) return <Empty style={{ marginTop: 130 }} />;
         return (
             <div className="dt-catalogue__tree">
                 <Spin spinning={loading}>
                     <CatalogueTree
-                        treeData={treeDataWithTitle}
+                        treeData={loopTree(treeData)}
                         draggable={draggable ? { icon: false } : false}
                         onExpand={onExpand}
                         {...rest}
@@ -125,22 +126,30 @@ const Catalogue = ({
                 return result;
             };
             const parentItem = findAppendParents(treeData, item);
-            return parentItem && onSave?.({ ...parentItem, type: InputStatus.Append }, value);
+            return (
+                parentItem &&
+                onSave?.({ ...parentItem, type: InputStatus.Append }, value).then((msg) => {
+                    form.setFields([{ name: 'catalog_input', errors: msg ? [msg] : [] }]);
+                })
+            );
         }
-        onSave?.(item, value);
+        onSave?.(item, value).then((msg) => {
+            form.setFields([{ name: 'catalog_input', errors: msg ? [msg] : [] }]);
+        });
     };
 
     const renderInput = (item: DataNode) => {
         return (
             <div className="tree__title--input">
-                <Form form={form}>
-                    <Form.Item>
+                <Form form={form} preserve={false}>
+                    <Form.Item name="catalog_input">
                         <Input
                             defaultValue={item?.title as string}
                             size="small"
                             placeholder={`请输入${title}名称`}
                             maxLength={100}
                             autoFocus
+                            onFocus={() => form.setFields([{ name: 'catalog_input', errors: [] }])}
                             onClick={(e) => e.stopPropagation()}
                             onBlur={({ target }) => handleInputSubmit(item, target.value)}
                             onPressEnter={({ target }) =>
@@ -170,42 +179,6 @@ const Catalogue = ({
     };
 
     const renderNodeHover = (item: ITreeNode) => {
-        const menu = (
-            <Menu
-                className="tree__title--menu"
-                onClick={({ domEvent }) => {
-                    domEvent.stopPropagation();
-                }}
-            >
-                <Menu.Item
-                    key="add"
-                    className="title__menu--item"
-                    disabled={!item.addable}
-                    onClick={() => item.addable && onChange?.(item, InputStatus.Append)}
-                >
-                    <PlusCircleIcon />
-                    <span>新建目录</span>
-                </Menu.Item>
-                <Menu.Item
-                    key="edit"
-                    className="title__menu--item"
-                    disabled={!item.editable}
-                    onClick={() => item.editable && onChange?.(item, InputStatus.Edit)}
-                >
-                    <EditIcon />
-                    <span>编辑</span>
-                </Menu.Item>
-                <Menu.Item
-                    key="delete"
-                    className="title__menu--item"
-                    disabled={!item.deletable}
-                    onClick={() => item.deletable && onDelete?.(item)}
-                >
-                    <DeleteIcon />
-                    <span>删除</span>
-                </Menu.Item>
-            </Menu>
-        );
         return (
             <div
                 className="tree__title--operation"
@@ -213,24 +186,23 @@ const Catalogue = ({
                     e.stopPropagation();
                 }}
             >
-                <Dropdown
-                    overlay={menu}
-                    trigger={['click']}
-                    placement="bottomRight"
-                    arrow
-                    destroyPopupOnHide
-                    getPopupContainer={(triggerNode) => triggerNode.parentElement as HTMLElement}
-                >
-                    <EllipsisIcon onClick={(e) => e.stopPropagation()} />
-                </Dropdown>
+                {overlay && (
+                    <Dropdown
+                        overlay={overlay(item)}
+                        placement="bottomRight"
+                        arrow
+                        destroyPopupOnHide
+                        getPopupContainer={(triggerNode) =>
+                            triggerNode.parentElement as HTMLElement
+                        }
+                    >
+                        <EllipsisIcon onClick={(e) => e.stopPropagation()} />
+                    </Dropdown>
+                )}
                 {draggable && <DragIcon />}
             </div>
         );
     };
-
-    const treeDataWithTitle = useMemo(() => {
-        return loopTree(treeData);
-    }, [treeData]);
 
     return (
         <div className="dt-catalogue">

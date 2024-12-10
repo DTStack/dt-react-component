@@ -22,11 +22,19 @@
         width: 100%;
         flex: 1;
         min-height: 0;
-        padding-bottom: 24px;
+        padding: 2px 0 24px;
         overflow-y: auto;
         .ant-spin-nested-loading,
         .ant-spin-container {
             height: 100%;
+        }
+        .ant-tree-drop-indicator {
+            background: none;
+            border-bottom: 1px dashed #1D78FF;
+            bottom: 0 !important;
+            &::after {
+                border: none;
+            }
         }
         .ant-tree-treenode {
             width: 100%;
@@ -80,15 +88,15 @@
                 margin: 0;
             }
             .ant-tree-indent-unit::before {
-                height: 32px;
+                height: 100%;
                 border-right: 1px solid #D8DAE2;
             }
             .ant-tree-switcher-leaf-line {
                 &::before {
-                    height: 32px;
+                    height: 100%;
                 }
                 &::after {
-                    height: 16px;
+                    height: 50%;
                 }
             }
         }
