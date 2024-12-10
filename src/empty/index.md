@@ -158,6 +158,19 @@ export default () => {
 };
 ```
 
+```jsx
+/**
+ * title: "使用动态的搜索图片"
+ */
+import React, { useState } from 'react';
+import { Empty } from 'dt-react-component';
+import { Space } from 'antd';
+
+export default () => {
+    return <Empty description="搜索无数据" type="search" active={true} />;
+};
+```
+
 ## API
 
 | 参数      | 说明                        | 类型                                                                        | 默认值    |
@@ -167,6 +180,7 @@ export default () => {
 | showEmpty | 是否展示 Empty 组件         | `boolean`                                                                   | `true`    |
 | children  | 展示内容                    | `React.ReactNode`                                                           | -         |
 | extra     | 替换 antd Empty 的 children | ` React.ReactNode`                                                          | -         |
+| active    | 是否展示动态的图片          | `boolean`                                                                   | `true`    |
 
 :::info
 其余属性[继承 antd4.x 的 Empty](https://ant.design/components/empty-cn/#API)
