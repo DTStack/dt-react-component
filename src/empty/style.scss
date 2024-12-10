@@ -15,12 +15,12 @@
     }
 }
 
-.dtc-empty-search-container {
+.dtc-empty__container {
     position: relative;
     width: 80px;
     height: 80px;
     bottom: 8px;
-    .dtc-empty-search {
+    .dtc-empty__search {
         font-size: 80px;
         position: absolute;
         top: 0;
@@ -28,7 +28,7 @@
         width: 80px;
         height: 80px;
     }
-    .dtc-empty-loupe {
+    .dtc-empty__loupe {
         font-size: 38px;
         position: absolute;
         width: 38px;

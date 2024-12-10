@@ -36,9 +36,9 @@ const Empty = (props: EmptyProps) => {
     const img = () => {
         if (type === 'search' && active) {
             return (
-                <div className="dtc-empty-search-container">
-                    <SearchIcon className="dtc-empty-search" />
-                    <LoupeIcon className="dtc-empty-loupe" />
+                <div className="dtc-empty__container">
+                    <SearchIcon className="dtc-empty__search" />
+                    <LoupeIcon className="dtc-empty__loupe" />
                 </div>
             );
         } else if (IMG_MAP[type]) {
