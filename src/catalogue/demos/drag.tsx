@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Menu } from 'antd';
-import { TreeProps } from 'antd/lib/tree';
 import { Catalogue } from 'dt-react-component';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
 
+import { ICatalogue } from '../components/catalogue';
 import { DeleteIcon, EditIcon, PlusCircleIcon, PlusSquareIcon } from '../components/icon';
-import { InputStatus, ITreeNode, useTreeData } from '../useTreeData';
+import { InputMode, ITreeNode, useTreeData } from '../useTreeData';
 
 const DEFAULT_DATA = [
     {
@@ -70,7 +70,7 @@ export default () => {
 
     const handleSave = async (data: ITreeNode, value: string) => {
         const newData = cloneDeep(treeData.data);
-        if (data.type === InputStatus.Add) {
+        if (data.inputMode === InputMode.Add) {
             newData.push({
                 title: value,
                 key: shortid(),
@@ -79,12 +79,12 @@ export default () => {
             treeData.initData(newData);
             return;
         }
-        if (data.type === InputStatus.Append) {
+        if (data.inputMode === InputMode.Append) {
             let node = findNodeByKey(newData, data.key);
             if (!node) return;
             if (node.children) {
                 const newChildren = node.children
-                    .filter((item) => !item.type)
+                    .filter((item) => !item.inputMode)
                     .concat({ title: value, key: shortid() });
                 node.children = newChildren;
             } else {
@@ -104,7 +104,7 @@ export default () => {
         const node = findNodeByKey(newData, data.key);
         if (node) {
             node.title = value;
-            node.type = undefined;
+            node.inputMode = undefined;
         }
         treeData.initData(newData);
     };
@@ -129,7 +129,7 @@ export default () => {
         treeData.initData(newData);
     };
 
-    const handleDrop: TreeProps['onDrop'] = (info) => {
+    const handleDrop: ICatalogue['onDrop'] = (info) => {
         const dropKey = info.node.key;
         const dragKey = info.dragNode.key;
         const dropPos = info.node.pos.split('-');
@@ -193,7 +193,7 @@ export default () => {
                 addonAfter={
                     <PlusSquareIcon
                         style={{ cursor: 'pointer' }}
-                        onClick={() => treeData.onChange(undefined, InputStatus.Add)}
+                        onClick={() => treeData.onChange(undefined, InputMode.Add)}
                     />
                 }
                 title="标签目录"
@@ -209,7 +209,7 @@ export default () => {
                             key="add"
                             disabled={!item.addable}
                             onClick={() =>
-                                item.addable && treeData.onChange(item, InputStatus.Append)
+                                item.addable && treeData.onChange(item, InputMode.Append)
                             }
                         >
                             <PlusCircleIcon />
@@ -219,9 +219,7 @@ export default () => {
                             key="edit"
                             className="title__menu--item"
                             disabled={!item.editable}
-                            onClick={() =>
-                                item.editable && treeData.onChange(item, InputStatus.Edit)
-                            }
+                            onClick={() => item.editable && treeData.onChange(item, InputMode.Edit)}
                         >
                             <EditIcon />
                             <span>编辑</span>

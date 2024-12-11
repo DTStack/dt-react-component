@@ -1,9 +1,10 @@
 import React from 'react';
-import { DataNode, TreeProps } from 'antd/lib/tree';
 
+import { ICatalogue } from './components/catalogue';
 import { FolderIcon, FolderOpenedIcon } from './components/icon';
+import { ITreeNode } from './useTreeData';
 
-export const getIcon: DataNode['icon'] = ({ selected, expanded }) => {
+export const getIcon: ITreeNode['icon'] = ({ selected, expanded }) => {
     const styles: React.CSSProperties = {
         fontSize: 16,
         color: '#1D78FF',
@@ -16,12 +17,12 @@ export const getIcon: DataNode['icon'] = ({ selected, expanded }) => {
 /**
  * @description 轮询 Tree 数据，赋值搜索标识和leafIcon
  */
-export const loopTree = (data: TreeProps['treeData']): TreeProps['treeData'] => {
+export const loopTree = (data: ICatalogue['treeData']): ICatalogue['treeData'] => {
     return data?.map((item) => {
         if (item.children) {
             return {
-                ...item,
                 icon: getIcon,
+                ...item,
                 children: loopTree(item.children),
             };
         }

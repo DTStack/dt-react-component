@@ -1,10 +1,9 @@
 import React from 'react';
-import { Dropdown, DropdownProps, Form, Input, Spin } from 'antd';
-import { DataNode } from 'antd/lib/tree';
-import { BlockHeader, EllipsisText, Empty } from 'dt-react-component';
+import { Dropdown, DropdownProps, Form, Input } from 'antd';
+import { BlockHeader } from 'dt-react-component';
 import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
 
-import { InputStatus, ITreeNode, useTreeData } from '../useTreeData';
+import { InputMode, ITreeNode, useTreeData } from '../useTreeData';
 import { CatalogIcon, DragIcon, EllipsisIcon } from './icon';
 import CatalogueTree, { ICatalogueTree } from './tree';
 
@@ -29,13 +28,11 @@ const Catalogue = ({
     placeholder = '搜索目录名称',
     addonAfter,
     edit = true,
-    loading = false,
     treeData,
     draggable,
     overlay,
     onChange,
     onSearch,
-    onExpand,
     onSave,
     ...rest
 }: ICatalogue) => {
@@ -43,7 +40,7 @@ const Catalogue = ({
 
     const loopTree = (data: ITreeNode[]): ITreeNode[] => {
         return data?.map((item) => {
-            const reset: ITreeNode = {
+            const newItem = {
                 ...item,
                 editable: item?.editable === undefined ? true : item?.editable,
                 addable: item?.addable === undefined ? true : item?.addable,
@@ -51,14 +48,14 @@ const Catalogue = ({
             };
             if (item.children) {
                 return {
-                    ...reset,
-                    title: renderTitle(reset),
+                    ...newItem,
+                    title: renderTitle(newItem),
                     children: loopTree(item.children),
                 };
             }
             return {
-                ...reset,
-                title: renderTitle(reset),
+                ...newItem,
+                title: renderTitle(newItem),
                 children: undefined,
             };
         });
@@ -89,33 +86,16 @@ const Catalogue = ({
         );
     };
 
-    const renderTree = () => {
-        const treeDataWithTitle = loopTree(treeData);
-        if (!treeDataWithTitle.length) return <Empty style={{ marginTop: 130 }} />;
-        return (
-            <div className="dt-catalogue__tree">
-                <Spin spinning={loading}>
-                    <CatalogueTree
-                        treeData={loopTree(treeData)}
-                        draggable={draggable ? { icon: false } : false}
-                        onExpand={onExpand}
-                        {...rest}
-                    />
-                </Spin>
-            </div>
-        );
-    };
-
     const handleInputSubmit = (item: ITreeNode, value: string) => {
         if (!value) {
             return onChange?.(undefined, undefined);
         }
         // item 为当前编辑的数据，对于 Append 的情况需要传入父级的 key
-        if (item.type === InputStatus.Append) {
+        if (item.inputMode === InputMode.Append) {
             const findAppendParents = (data: ITreeNode[], item: ITreeNode): ITreeNode | null => {
                 let result: ITreeNode | null = null;
                 function traverse(node: ITreeNode, parent: ITreeNode | null): void {
-                    if (node.type === 'append' && node.key === item.key && parent) {
+                    if (node.inputMode === 'append' && node.key === item.key && parent) {
                         result = parent;
                     }
                     if (Array.isArray(node.children)) {
@@ -128,7 +108,7 @@ const Catalogue = ({
             const parentItem = findAppendParents(treeData, item);
             return (
                 parentItem &&
-                onSave?.({ ...parentItem, type: InputStatus.Append }, value).then((msg) => {
+                onSave?.({ ...parentItem, inputMode: InputMode.Append }, value).then((msg) => {
                     form.setFields([{ name: 'catalog_input', errors: msg ? [msg] : [] }]);
                 })
             );
@@ -138,7 +118,7 @@ const Catalogue = ({
         });
     };
 
-    const renderInput = (item: DataNode) => {
+    const renderInput = (item: ITreeNode) => {
         return (
             <div className="tree__title--input">
                 <Form form={form} preserve={false}>
@@ -163,16 +143,12 @@ const Catalogue = ({
     };
 
     const renderTitle = (item: ITreeNode) => {
-        if (item.type) {
+        if (item.inputMode) {
             return renderInput(item);
         }
         return (
             <div className="tree__title">
-                <EllipsisText
-                    value={item.title as React.ReactNode}
-                    maxWidth="100%"
-                    className="tree__title--text"
-                />
+                <div className="tree__title--text">{item.title}</div>
                 {edit && renderNodeHover(item)}
             </div>
         );
@@ -210,7 +186,11 @@ const Catalogue = ({
                 {renderHeader()}
                 {renderSearch()}
             </div>
-            {renderTree()}
+            <CatalogueTree
+                treeData={loopTree(treeData)}
+                draggable={draggable ? { icon: false } : false}
+                {...rest}
+            />
         </div>
     );
 };

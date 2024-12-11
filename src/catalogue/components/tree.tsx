@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { Tree, TreeProps } from 'antd';
+import { Spin, Tree, TreeProps } from 'antd';
+import { Empty } from 'dt-react-component';
 
 import { ITreeNode } from '../useTreeData';
 import { loopTree } from '../utils';
@@ -7,25 +8,27 @@ import { DownTriangleIcon } from './icon';
 
 export interface ICatalogueTree
     extends Omit<TreeProps, 'showLine' | 'switcherIcon' | 'showIcon' | 'treeData'> {
+    loading?: boolean;
     treeData: ITreeNode[];
 }
 
-const CatalogueTree = ({ treeData = [], onExpand, ...rest }: ICatalogueTree) => {
-    const renderTreeData = useMemo(() => loopTree(treeData), [treeData]);
+const CatalogueTree = ({ treeData = [], loading = false, ...rest }: ICatalogueTree) => {
+    const renderTreeData = useMemo(() => loopTree(treeData) || [], [treeData]);
 
-    const handleExpand: TreeProps['onExpand'] = (expandedKeys, info) => {
-        onExpand?.(expandedKeys, info);
-    };
+    if (!renderTreeData.length) return <Empty style={{ marginTop: 130 }} />;
 
     return (
-        <Tree
-            showLine={{ showLeafIcon: false }}
-            switcherIcon={<DownTriangleIcon style={{ fontSize: 16 }} />}
-            showIcon
-            treeData={renderTreeData}
-            onExpand={handleExpand}
-            {...rest}
-        />
+        <div className="dt-catalogue__tree">
+            <Spin spinning={loading}>
+                <Tree
+                    showLine={{ showLeafIcon: false }}
+                    switcherIcon={<DownTriangleIcon style={{ fontSize: 16 }} />}
+                    showIcon
+                    treeData={renderTreeData}
+                    {...rest}
+                />
+            </Spin>
+        </div>
     );
 };
 

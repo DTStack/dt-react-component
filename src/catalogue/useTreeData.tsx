@@ -1,19 +1,22 @@
 import { useState } from 'react';
-import { DataNode, TreeProps } from 'antd/lib/tree';
+import { DataNode } from 'antd/lib/tree';
 import { cloneDeep } from 'lodash';
 
-export interface ITreeNode extends Omit<DataNode, 'children'> {
-    type?: InputStatus;
+import { ICatalogue } from './components/catalogue';
+
+export interface ITreeNode extends Omit<DataNode, 'children' | 'title'> {
+    inputMode?: InputMode;
     /** 是否可编辑 */
     editable?: boolean;
     /** 是否可删除 */
     deletable?: boolean;
     /** 是否可增加 */
     addable?: boolean;
+    title?: React.ReactNode;
     children?: ITreeNode[];
 }
 
-export enum InputStatus {
+export enum InputMode {
     Add = 'add',
     Edit = 'edit',
     Append = 'append',
@@ -22,15 +25,15 @@ export enum InputStatus {
 export const useTreeData = (): {
     data: ITreeNode[];
     loading: boolean;
-    expandedKeys: TreeProps['expandedKeys'];
+    expandedKeys: ICatalogue['expandedKeys'];
     initData: (treeData: ITreeNode[]) => void;
-    onChange: (node?: ITreeNode, type?: InputStatus) => void;
+    onChange: (node?: ITreeNode, inputMode?: InputMode) => void;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    setExpandedKeys: React.Dispatch<React.SetStateAction<TreeProps['expandedKeys']>>;
+    setExpandedKeys: React.Dispatch<React.SetStateAction<ICatalogue['expandedKeys']>>;
 } => {
     const [data, setData] = useState<ITreeNode[]>([]);
     const [loading, setLoading] = useState(false);
-    const [expandedKeys, setExpandedKeys] = useState<TreeProps['expandedKeys']>([]);
+    const [expandedKeys, setExpandedKeys] = useState<ICatalogue['expandedKeys']>([]);
 
     const initData = (treeData: ITreeNode[]) => {
         setData(treeData);
@@ -38,10 +41,10 @@ export const useTreeData = (): {
 
     const processData = (data: ITreeNode[]): ITreeNode[] => {
         function traverse(item: ITreeNode): ITreeNode | null {
-            if (item.type === InputStatus.Edit) {
-                item.type = undefined;
+            if (item.inputMode === InputMode.Edit) {
+                item.inputMode = undefined;
             }
-            if (item.type === InputStatus.Add || item.type === InputStatus.Append) {
+            if (item.inputMode === InputMode.Add || item.inputMode === InputMode.Append) {
                 return null;
             }
             if (Array.isArray(item.children)) {
@@ -52,21 +55,21 @@ export const useTreeData = (): {
         return data.map(traverse).filter(Boolean) as ITreeNode[];
     };
 
-    const onChange = (node?: ITreeNode, type?: InputStatus) => {
+    const onChange = (node?: ITreeNode, inputMode?: InputMode) => {
         const newData = cloneDeep(data);
         // 做 onBlur 清除数据
-        if (!node && !type) {
+        if (!node && !inputMode) {
             return setData(processData(newData));
         }
-        if (!node && type === InputStatus.Add)
-            return setData([{ key: '', type: InputStatus.Add }, ...data]);
-        if (node && type === InputStatus.Append) {
+        if (!node && inputMode === InputMode.Add)
+            return setData([{ key: '', inputMode: InputMode.Add }, ...data]);
+        if (node && inputMode === InputMode.Append) {
             const newExpandedKeys = expandedKeys ? [...expandedKeys] : [];
             loopTree(newData, node.key, (item: ITreeNode) => {
                 const { children } = item;
                 item['children'] = [
                     ...(children || []),
-                    { key: node.key + 'new', type: InputStatus.Append },
+                    { key: node.key + 'new', inputMode: InputMode.Append },
                 ];
             });
             setData(newData);
@@ -75,9 +78,9 @@ export const useTreeData = (): {
             }
             return setExpandedKeys(newExpandedKeys);
         }
-        if (node && type === InputStatus.Edit) {
+        if (node && inputMode === InputMode.Edit) {
             loopTree(newData, node.key, (item: ITreeNode) => {
-                item.type = InputStatus.Edit;
+                item.inputMode = InputMode.Edit;
             });
             setData(newData);
         }

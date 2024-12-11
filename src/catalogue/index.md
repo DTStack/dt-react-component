@@ -16,7 +16,8 @@ demo:
 
 ## 示例
 
-<code src="./demos/basic.tsx">纯展示的目录树</code>
+<code src="./demos/basic.tsx">带有 Title 纯展示的目录树</code>
+<code src="./demos/simple.tsx">无 Title 纯展示操作项的目录树</code>
 <code src="./demos/operator.tsx">可操作的目录树</code>
 <code src="./demos/drag.tsx">可拖拽的目录树</code>
 <code src="./demos/config.tsx">配置操作项的目录树</code>
@@ -35,7 +36,7 @@ demo:
 | placeholder | 搜索框的默认展示内容           | `string`                                                      | `搜索目录名称` |
 | onSearch    | 点击搜索图标、清除图标时的回调 | `(value: string) => void`                                     | -              |
 | onSave      | 新增/编辑时的回调              | `(data: ITreeNode, value: string) => Promise<string \| void>` | -              |
-| onChange    | 触发新增/编辑的回调            | `(node?: ITreeNode, type?: InputStatus) => void`              | -              |
+| onChange    | 触发新增/编辑的回调            | `(node?: ITreeNode, inputMode?: InputMode) => void`           | -              |
 
 :::info
 其余参数继承 antd4.x 的 `Omit<TreeProps, 'showLine' | 'switcherIcon' | 'showIcon' | 'treeData'>`<br/>
@@ -47,7 +48,7 @@ demo:
 
 | 参数      | 说明           | 类型                    | 默认值 |
 | --------- | -------------- | ----------------------- | ------ |
-| type      | 节点输入框内容 | `add \| edit \| append` | -      |
+| inputMode | 节点输入框类型 | `add \| edit \| append` | -      |
 | editable  | 是否可编辑     | `boolean`               | `true` |
 | deletable | 是否可删除     | `boolean`               | `true` |
 | addable   | 是否可增加     | `boolean`               | `true` |

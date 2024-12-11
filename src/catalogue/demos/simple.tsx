@@ -61,15 +61,7 @@ export default () => {
 
     return (
         <div style={{ height: 300, width: 320 }}>
-            <Catalogue
-                tooltip="嘿嘿，这是tooltip"
-                title="标签目录"
-                showSearch
-                treeData={treeData.data}
-                edit={false}
-                expandedKeys={treeData.expandedKeys}
-                onExpand={treeData.setExpandedKeys}
-            />
+            <Catalogue.Tree treeData={treeData.data} />
         </div>
     );
 };

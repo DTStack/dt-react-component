@@ -10,4 +10,7 @@ interface CatalogueInterface extends OriginInputType {
 const WrapperCatalogue = Catalogue;
 (WrapperCatalogue as CatalogueInterface).Tree = CatalogueTree;
 
+export * from './components/catalogue';
+export * from './components/tree';
+
 export default WrapperCatalogue as CatalogueInterface;
