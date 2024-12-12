@@ -179,3 +179,52 @@ export const CopyIcon = ({ className, ...rest }: IconProps) => {
         </span>
     );
 };
+
+/**
+ * @deprecated 后续迁移至 icon 库
+ */
+export const GradientDotIcon = ({ className, ...rest }: IconProps) => {
+    return (
+        <span className={classNames('dtc__icon', className)} {...rest}>
+            <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 6 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M0 3C0 1.34315 1.34315 0 3 0C4.65685 0 6 1.34315 6 3C6 4.65685 4.65685 6 3 6C1.34315 6 0 4.65685 0 3Z"
+                    fill="url(#paint0_linear_5253_12831)"
+                />
+                <circle cx="3" cy="3" r="3" fill="url(#paint1_linear_5253_12831)" />
+                <defs>
+                    <linearGradient
+                        id="paint0_linear_5253_12831"
+                        x1="0"
+                        y1="0"
+                        x2="7.2238"
+                        y2="2.60057"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#08C4FF" />
+                        <stop offset="0.5" stopColor="#4892FF" />
+                        <stop offset="1" stopColor="#8A61FF" />
+                    </linearGradient>
+                    <linearGradient
+                        id="paint1_linear_5253_12831"
+                        x1="0"
+                        y1="0"
+                        x2="7.2238"
+                        y2="2.60057"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#08C4FF" />
+                        <stop offset="0.5" stopColor="#4892FF" />
+                        <stop offset="1" stopColor="#8A61FF" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </span>
+    );
+};
