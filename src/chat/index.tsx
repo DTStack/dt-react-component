@@ -10,6 +10,7 @@ import Markdown from './markdown';
 import Message from './message';
 import Pagination from './pagination';
 import Prompt from './prompt';
+import Tag from './tag';
 import useChat from './useChat';
 import { context, type IChatContext, useContext } from './useContext';
 
@@ -47,6 +48,7 @@ Chat.Pagination = Pagination;
 Chat.Message = Message;
 Chat.Prompt = Prompt;
 Chat.Content = Content;
+Chat.Tag = Tag;
 
 Chat.Icon = {
     SendIcon,

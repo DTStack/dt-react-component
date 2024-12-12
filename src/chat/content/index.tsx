@@ -107,7 +107,7 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
                     {data.map((row, idx) => {
                         return (
                             <React.Fragment key={row.id}>
-                                <Prompt content={row.title} />
+                                <Prompt data={row} />
                                 <Message
                                     data={row.messages}
                                     regenerate={

@@ -1,0 +1,36 @@
+.dtc__tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-image:
+        linear-gradient(white, white),
+        linear-gradient(
+            110deg,
+            rgba(0, 186, 198, 0.1) 0%,
+            rgba(0, 103, 255, 0.1) 50%,
+            rgba(69, 15, 222, 0.1) 100%
+        );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    font-size: 12px;
+    color: #3D446E;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    &__icon {
+        margin-right: 8px;
+        font-size: 6px;
+    }
+    &:hover,
+    &:focus {
+        background-image:
+            linear-gradient(white, white),
+            linear-gradient(110deg, #08C4FF 0%, #4892FF 50%, #8A61FF 100%);
+    }
+    &:active {
+        transform: scale(0.98);
+    }
+}
