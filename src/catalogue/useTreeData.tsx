@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { DataNode } from 'antd/lib/tree';
 import { cloneDeep } from 'lodash';
 
-import { ICatalogue } from './components/catalogue';
+import { CatalogueProps } from './components/catalogue';
 
 export interface ITreeNode extends Omit<DataNode, 'children' | 'title'> {
     inputMode?: InputMode;
@@ -25,15 +25,15 @@ export enum InputMode {
 export const useTreeData = (): {
     data: ITreeNode[];
     loading: boolean;
-    expandedKeys: ICatalogue['expandedKeys'];
+    expandedKeys: CatalogueProps['expandedKeys'];
     initData: (treeData: ITreeNode[]) => void;
     onChange: (node?: ITreeNode, inputMode?: InputMode) => void;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    setExpandedKeys: React.Dispatch<React.SetStateAction<ICatalogue['expandedKeys']>>;
+    setExpandedKeys: React.Dispatch<React.SetStateAction<CatalogueProps['expandedKeys']>>;
 } => {
     const [data, setData] = useState<ITreeNode[]>([]);
     const [loading, setLoading] = useState(false);
-    const [expandedKeys, setExpandedKeys] = useState<ICatalogue['expandedKeys']>([]);
+    const [expandedKeys, setExpandedKeys] = useState<CatalogueProps['expandedKeys']>([]);
 
     const initData = (treeData: ITreeNode[]) => {
         setData(treeData);

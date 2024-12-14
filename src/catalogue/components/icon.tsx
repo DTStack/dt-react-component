@@ -274,8 +274,51 @@ const PlusCircleIcon = function ({ className, ...rest }: IIcon) {
     );
 };
 
+const SearchIcon = function ({ className, ...rest }: IIcon) {
+    return (
+        <span className={classNames('dt-catalogue__icon', className)} {...rest}>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 64 64"
+                fill="currentColor"
+            >
+                <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M30.1927 5C43.6716 5 54.3855 15.9572 54.3855 29.7421C54.3855 43.527 43.6716 54.4842 30.1927 54.4842C16.7139 54.4842 6 43.527 6 29.7421C6 15.9572 16.7139 5 30.1927 5ZM30.1927 9.52055C19.2345 9.52055 10.5217 18.4311 10.5217 29.7421C10.5217 41.053 19.2345 49.9636 30.1927 49.9636C41.151 49.9636 49.8638 41.053 49.8638 29.7421C49.8638 18.4311 41.151 9.52055 30.1927 9.52055ZM51.165 49.982C50.2767 49.2338 48.9479 49.2778 48.1115 50.1141C47.2285 50.9968 47.2285 52.4279 48.1115 53.3106L54.1405 59.338L54.2843 59.47C55.1725 60.2182 56.5014 60.1742 57.3378 59.338C58.2207 58.4553 58.2207 57.0242 57.3378 56.1415L51.3088 50.1141L51.165 49.982Z"
+                    fill="currentColor"
+                />
+            </svg>
+        </span>
+    );
+};
+
+const CloseIcon = function ({ className, ...rest }: IIcon) {
+    return (
+        <span className={classNames('dt-catalogue__icon', className)} {...rest}>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 64 64"
+                fill="currentColor"
+            >
+                <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M51.0918 12.9081C51.8729 13.6892 51.8729 14.9555 51.0918 15.7365L34.8284 32L51.0918 48.2635C51.8729 49.0445 51.8729 50.3108 51.0918 51.0919C50.3108 51.8729 49.0444 51.8729 48.2634 51.0919L31.9999 34.8284L15.7365 51.0919C14.9554 51.8729 13.6891 51.8729 12.9081 51.0919C12.127 50.3108 12.127 49.0445 12.9081 48.2635L29.1715 32L12.9081 15.7365C12.127 14.9555 12.127 13.6892 12.9081 12.9081C13.6891 12.1271 14.9554 12.1271 15.7365 12.9081L31.9999 29.1716L48.2634 12.9081C49.0444 12.1271 50.3108 12.1271 51.0918 12.9081Z"
+                    fill="currentColor"
+                />
+            </svg>
+        </span>
+    );
+};
+
 export {
     CatalogIcon,
+    CloseIcon,
     DeleteIcon,
     DownTriangleIcon,
     DragIcon,
@@ -287,4 +330,5 @@ export {
     MenuUnFoldIcon,
     PlusCircleIcon,
     PlusSquareIcon,
+    SearchIcon,
 };

@@ -1,13 +1,22 @@
-import React from 'react';
-import { Dropdown, DropdownProps, Form, Input } from 'antd';
+import React, { useState } from 'react';
+import { Dropdown, DropdownProps, Form, Input, Tabs } from 'antd';
 import { BlockHeader } from 'dt-react-component';
 import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
 
 import { InputMode, ITreeNode, useTreeData } from '../useTreeData';
-import { CatalogIcon, DragIcon, EllipsisIcon } from './icon';
+import { CatalogIcon, CloseIcon, DragIcon, EllipsisIcon, SearchIcon } from './icon';
 import CatalogueTree, { ICatalogueTree } from './tree';
 
-export interface ICatalogue
+interface Tab {
+    readonly key: string;
+    readonly title: React.ReactNode;
+}
+
+type readOnlyTab = readonly Tab[];
+
+type TabKey<T extends readOnlyTab> = T[number]['key'];
+
+interface NormalCatalogueProps
     extends Pick<IBlockHeaderProps, 'tooltip' | 'addonAfter' | 'addonBefore' | 'title'>,
         ICatalogueTree {
     showSearch?: boolean;
@@ -19,23 +28,43 @@ export interface ICatalogue
     onSearch?: (value: string) => void;
     onSave?: (data: ITreeNode, value: string) => Promise<string | void>;
 }
+interface TabsCatalogueProps<T extends readOnlyTab> extends NormalCatalogueProps {
+    tabList?: T;
+    activeTabKey?: TabKey<T>;
+    defaultTabKey?: TabKey<T>;
+    onTabChange?: (key: TabKey<T>) => void;
+}
 
-const Catalogue = ({
-    title,
-    addonBefore = <CatalogIcon style={{ fontSize: 20 }} />,
-    tooltip = false,
-    showSearch = false,
-    placeholder = '搜索目录名称',
-    addonAfter,
-    edit = true,
-    treeData,
-    draggable,
-    overlay,
-    onChange,
-    onSearch,
-    onSave,
-    ...rest
-}: ICatalogue) => {
+export type CatalogueProps<T extends readOnlyTab = any> =
+    | TabsCatalogueProps<T>
+    | NormalCatalogueProps;
+
+function isTabMode<T extends readOnlyTab>(
+    props: CatalogueProps<T>
+): props is TabsCatalogueProps<T> {
+    return 'tabList' in props;
+}
+
+const Catalogue = <T extends readOnlyTab>(props: CatalogueProps<T>) => {
+    const {
+        title,
+        addonBefore = <CatalogIcon style={{ fontSize: 20 }} />,
+        tooltip = false,
+        showSearch = false,
+        placeholder = '搜索目录名称',
+        addonAfter,
+        edit = true,
+        treeData,
+        draggable,
+        overlay,
+        onChange,
+        onSearch,
+        onSave,
+        ...rest
+    } = props;
+
+    const [tabSearch, setTabSearch] = useState(false);
+
     const [form] = Form.useForm();
 
     const loopTree = (data: ITreeNode[]): ITreeNode[] => {
@@ -64,25 +93,48 @@ const Catalogue = ({
     const renderHeader = () => {
         if (!title) return null;
         return (
-            <BlockHeader
-                title={title}
-                tooltip={tooltip}
-                background={false}
-                addonBefore={addonBefore}
-                addonAfter={addonAfter}
-                spaceBottom={12}
-            />
+            <div className="dt-catalogue__header">
+                <BlockHeader
+                    title={title}
+                    tooltip={tooltip}
+                    background={false}
+                    addonBefore={addonBefore}
+                    addonAfter={addonAfter}
+                    spaceBottom={12}
+                />
+            </div>
         );
     };
 
     const renderSearch = () => {
-        if (!showSearch) return null;
+        if (!showSearch || (isTabMode(props) && !tabSearch)) return null;
         return (
-            <Input.Search
-                placeholder={placeholder}
-                style={{ marginBottom: 12 }}
-                onSearch={onSearch}
-            />
+            <div className="dt-catalogue__search">
+                <Input.Search placeholder={placeholder} onSearch={onSearch} />
+                {isTabMode(props) && (
+                    <CloseIcon className="close" style={{}} onClick={() => setTabSearch(false)} />
+                )}
+            </div>
+        );
+    };
+
+    const renderTab = () => {
+        if (!isTabMode(props) || tabSearch) return null;
+        const { activeTabKey, tabList, onTabChange } = props;
+        return (
+            <Tabs
+                className="dt-catalogue__tabs"
+                size="small"
+                tabBarExtraContent={
+                    <SearchIcon className="search" onClick={() => setTabSearch(true)} />
+                }
+                activeKey={activeTabKey}
+                onChange={onTabChange}
+            >
+                {tabList?.map((tab: { key: string; title: React.ReactNode }) => (
+                    <Tabs.TabPane tab={tab.title} key={tab.key} />
+                ))}
+            </Tabs>
         );
     };
 
@@ -182,10 +234,9 @@ const Catalogue = ({
 
     return (
         <div className="dt-catalogue">
-            <div className="dt-catalogue__header">
-                {renderHeader()}
-                {renderSearch()}
-            </div>
+            {renderHeader()}
+            {renderSearch()}
+            {renderTab()}
             <CatalogueTree
                 treeData={loopTree(treeData)}
                 draggable={draggable ? { icon: false } : false}

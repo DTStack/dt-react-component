@@ -8,6 +8,17 @@
     &__header {
         padding: 12px 12px 0;
     }
+    &__search {
+        display: flex;
+        padding: 0 12px 6px;
+        align-items: center;
+        .close {
+            font-size: 16px;
+            color: #B1B4C5;
+            cursor: pointer;
+            margin-left: 46px;
+        }
+    }
     .dt-catalogue__tree {
         padding: 2px 0 24px;
     }
@@ -129,5 +140,24 @@
                 }
             }
         }
+    }
+    &__tabs {
+        margin-bottom: 6px;
+        height: fit-content;
+        &.ant-tabs-top > .ant-tabs-nav {
+            margin: 0;
+            padding: 0 16px;
+        }
+        .ant-tabs-extra-content {
+            .search {
+                font-size: 16px;
+                color: #B1B4C5;
+                cursor: pointer;
+            }
+        }
+    }
+    &__icon {
+        display: flex;
+        align-items: center;
     }
 }
