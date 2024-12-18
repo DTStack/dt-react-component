@@ -1,12 +1,9 @@
-$primaryAIColor: #00BAC6 0%, #0067FF 50%, #450FDE 100%;
-$primaryHoverAIColor: #08C4FF 0%, #4892FF 50%, #8A61FF 100%;
-
 .ant-btn.dtc__aigc__button {
-    &.ant-btn-icon-only {
-        width: auto;
-    }
-    padding: 0;
     border: none;
+    border-radius: 4px;
+    &.ant-btn-sm {
+        border-radius: 2px;
+    }
     &[disabled] {
         color: #B1B4C5;
         background-color: #EBECF0;
@@ -14,51 +11,83 @@ $primaryHoverAIColor: #08C4FF 0%, #4892FF 50%, #8A61FF 100%;
     }
     &--primary {
         &:not(.ant-btn[disabled]) {
-            background: linear-gradient(110deg, $primaryAIColor);
+            background: linear-gradient(110deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
             color: #FFF;
         }
         &:hover {
             &:not(.ant-btn[disabled]) {
-                background: linear-gradient(110deg, $primaryHoverAIColor);
-                color: #FFF;
+                background: linear-gradient(110deg, #08C4FF 0%, #4892FF 50%, #8A61FF 100%);
+            }
+        }
+    }
+    &--default {
+        &:not(.ant-btn[disabled]) {
+            border: 1px solid #D8DAE2;
+            color: #3D446E;
+            transition: background-image 0.3s ease;
+        }
+        &:hover {
+            &:not(.ant-btn[disabled]) {
+                border-color: transparent;
+                background-image:
+                    linear-gradient(white, white),
+                    linear-gradient(110deg, #08C4FF 0%, #4892FF 50%, #8A61FF 100%);
+                background-origin: border-box;
+                background-clip: padding-box, border-box;
+                svg,
+                path {
+                    fill: url(#secondary_linear_gradient_hover);
+                }
+                .dtc__aigc__button__text {
+                    background-image:
+                        linear-gradient(
+                            110deg,
+                            #08C4FF 0%,
+                            #4892FF 50%,
+                            #8A61FF 100%
+                        );
+                    background-clip: text;
+                    color: transparent;
+                }
             }
         }
     }
     &--secondary.ant-btn-default {
         &:not(.ant-btn[disabled]) {
-            position: relative;
-            background: linear-gradient(90deg, $primaryAIColor);
-            > :not(.dtc__aigc__mask--secondary) {
-                position: relative;
-                z-index: 2;
+            border: 1px solid transparent;
+            background-image:
+                linear-gradient(white, white),
+                linear-gradient(110deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            transition: all 0.3s linear;
+            .dtc__aigc__button__text {
+                background-image: linear-gradient(110deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+                background-clip: text;
+                color: transparent;
             }
             svg,
             path {
-                fill: url(#LINE_GRADIENT_ID);
+                fill: url(#secondary_linear_gradient);
             }
-        }
-        &:hover,
-        &:active {
-            &:not(.ant-btn[disabled]) {
-                background: linear-gradient(90deg, $primaryHoverAIColor);
+            &:hover {
+                background-image:
+                    linear-gradient(white, white),
+                    linear-gradient(110deg, #08C4FF 0%, #4892FF 50%, #8A61FF 100%);
                 svg,
                 path {
-                    fill: url(#HOVER_LINE_GRADIENT_ID);
+                    fill: url(#secondary_linear_gradient_hover);
+                }
+                .dtc__aigc__button__text {
+                    background-image:
+                        linear-gradient(
+                            110deg,
+                            #08C4FF 0%,
+                            #4892FF 50%,
+                            #8A61FF 100%
+                        );
                 }
             }
-        }
-        .dtc__aigc__mask--secondary {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            pointer-events: none;
-            background: #FFF;
-            margin: 1px;
-            border-radius: inherit;
         }
     }
 }

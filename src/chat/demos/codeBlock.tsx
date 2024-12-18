@@ -2,23 +2,28 @@
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { message, Space } from 'antd';
+import { PlusCircleOutlined } from '@ant-design/icons';
 import { Chat } from 'dt-react-component';
 
+const children = `
+\`\`\` sql
+SELECT * FROM table_name;
+\`\`\`
+`;
 export default function CodeBlock() {
     return (
-        <Space direction="vertical" style={{ width: '100%' }}>
-            <Chat.CodeBlock language="sql" copy={false} value="select * from table;" />
-            <Chat.CodeBlock
-                language="sql"
-                copy={{
-                    text: 'select',
-                    tooltip: '点我复制',
-                    onCopy: () => message.success('Copied'),
-                }}
-                value="select * from table;"
-                convert={false}
-            />
-        </Space>
+        <Chat.Markdown
+            components={{
+                pre({ children }) {
+                    return (
+                        <Chat.CodeBlock copy={false} toolbars={() => <PlusCircleOutlined />}>
+                            {children}
+                        </Chat.CodeBlock>
+                    );
+                },
+            }}
+        >
+            {children}
+        </Chat.Markdown>
     );
 }

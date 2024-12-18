@@ -11,7 +11,7 @@ interface ICodeBlockProps {
     className?: string;
     style?: React.CSSProperties;
     convert?: boolean;
-    toolbars?: React.ReactNode;
+    toolbars?: React.ReactNode | (() => React.ReactNode);
     options?: Partial<SyntaxHighlighterProps>;
     children: React.ReactNode & React.ReactNode[];
 }
@@ -62,9 +62,9 @@ export default function CodeBlock({
                     {language.toLocaleLowerCase()}
                 </span>
                 <div className="dtc__aigc__codeblock__tool">
-                    {toolbars}
                     {/* FIXME：Copy 组件后续可以支持一下 disabled 属性 */}
                     {!copy.disabled && <Copy text={text} {...copy.options} />}
+                    {typeof toolbars === 'function' ? toolbars() : toolbars}
                 </div>
             </div>
             <SyntaxHighlighter

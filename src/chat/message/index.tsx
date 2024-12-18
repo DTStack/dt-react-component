@@ -174,6 +174,7 @@ export default function Message({
             {!typing && !loading && (
                 <Space className="dtc__message__iconGroup">
                     {renderCopyIcon()}
+                    {typeof messageIcons === 'function' ? messageIcons(record) : messageIcons}
                     {regenerate && (
                         <Tooltip
                             title="重新生成"
@@ -187,7 +188,6 @@ export default function Message({
                             </span>
                         </Tooltip>
                     )}
-                    {typeof messageIcons === 'function' ? messageIcons(record) : messageIcons}
                 </Space>
             )}
         </section>
