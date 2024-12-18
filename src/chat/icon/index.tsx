@@ -3,7 +3,12 @@ import classNames from 'classnames';
 
 import './index.scss';
 
-interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {}
+interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
+    /**
+     * 是否支持渐变色
+     */
+    gradient?: boolean;
+}
 
 /**
  * @deprecated 后续迁移至 icon 库
@@ -133,7 +138,7 @@ export function RobotIcon({ className, ...rest }: IconProps) {
 /**
  * @deprecated 后续迁移至 icon 库
  */
-export function SendIcon({ className, ...rest }: IconProps) {
+export function SendIcon({ className, gradient, ...rest }: IconProps) {
     return (
         <span className={classNames('dtc__icon', className)} {...rest}>
             <svg
@@ -144,11 +149,11 @@ export function SendIcon({ className, ...rest }: IconProps) {
                 viewBox="0 0 16 16"
             >
                 <path
-                    fill="currentColor"
+                    fill={gradient ? 'url(#secondary_linear_gradient)' : 'currentColor'}
                     d="M13.07 1.662a.547.547 0 11.86.676l-6.884 8.765v3.147a.547.547 0 01-.507.545l-.04.002a.547.547 0 01-.546-.547v-3.336c0-.123.041-.241.117-.338l7-8.914z"
                 ></path>
                 <path
-                    fill="currentColor"
+                    fill={gradient ? 'url(#secondary_linear_gradient)' : 'currentColor'}
                     d="M13.488 1.271a.547.547 0 01.804.548L12.81 13.57a.547.547 0 01-.799.415l-3.81-2.027a.547.547 0 11.513-.965l3.11 1.654 1.25-9.902-9.92 5.425 2.169 1.149c.255.135.36.442.245.702l-.018.037a.547.547 0 01-.739.227L1.744 8.661a.547.547 0 01-.006-.963l11.75-6.427z"
                 ></path>
             </svg>
