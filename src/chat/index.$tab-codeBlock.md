@@ -17,10 +17,12 @@ CodeBlock 组件用以展示代码块
 
 ## API
 
-| 参数     | 说明             | 类型                     | 默认值 |
-| -------- | ---------------- | ------------------------ | ------ |
-| language | 语言             | `string`                 | -      |
-| copy     | 是否支持复制功能 | `boolean \| ICopyProps`  | `true` |
-| value    | 内容             | `string`                 | -      |
-| convert  | 反色模式         | `boolean`                | -      |
-| options  | 配置项           | `SyntaxHighlighterProps` | -      |
+| 参数      | 说明             | 类型                                         | 默认值 |
+| --------- | ---------------- | -------------------------------------------- | ------ |
+| copy      | 是否支持复制功能 | `boolean \| ICopyProps`                      | `true` |
+| className | 类名             | `string`                                     | -      |
+| style     | 样式             | `CSSProperties`                              | -      |
+| convert   | 反色模式         | `boolean`                                    | -      |
+| toolbars  | 渲染工具位       | `React.ReactNode \| (() => React.ReactNode)` | -      |
+| options   | 配置项           | `SyntaxHighlighterProps`                     | -      |
+| children  | 文案             | `React.ReactNode & React.ReactNode[]`        | -      |

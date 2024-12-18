@@ -1,53 +1,49 @@
-import React, { useEffect } from 'react';
-import { renderToString } from 'react-dom/server';
+import React from 'react';
 import { Button as AntdButton, ButtonProps } from 'antd';
 import classNames from 'classnames';
 
 import './index.scss';
 
 interface IButtonProps extends Omit<ButtonProps, 'type'> {
-    type: 'primary' | 'secondary';
+    type: 'default' | 'primary' | 'secondary';
 }
 
-const LINE_GRADIENT_ID = 'LINE_GRADIENT_ID';
-const HOVER_LINE_GRADIENT_ID = 'HOVER_LINE_GRADIENT_ID';
-const CONTAINER_ID = 'CONTAINER_ID';
-
-export default function Button({ type, className, children, ...rest }: IButtonProps) {
-    useEffect(() => {
-        if (!document.querySelector(`#${CONTAINER_ID}`)) {
-            const dom = document.createElement('span');
-            dom.id = CONTAINER_ID;
-            dom.innerHTML = renderToString(
-                <svg width="0" height="0">
-                    <defs>
-                        <linearGradient id={LINE_GRADIENT_ID} gradientTransform="rotate(90)">
-                            <stop offset="0%" stopColor="#00bac6" />
-                            <stop offset="50%" stopColor="#0067ff" />
-                            <stop offset="100%" stopColor="#450fde" />
-                        </linearGradient>
-                        <linearGradient id={HOVER_LINE_GRADIENT_ID} gradientTransform="rotate(90)">
-                            <stop offset="0%" stopColor="#08c4ff" />
-                            <stop offset="50%" stopColor="#4892ff" />
-                            <stop offset="100%" stopColor="#8a61ff" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-            );
-            document.body.append(dom);
-        }
-    }, []);
-
+export default function Button({ type = 'default', className, children, ...rest }: IButtonProps) {
     return (
         <AntdButton
             className={classNames('dtc__aigc__button', className, `dtc__aigc__button--${type}`)}
             ghost
             {...rest}
         >
-            {children}
-            {type === 'secondary' && !rest.disabled && (
-                <span className="dtc__aigc__mask--secondary" />
-            )}
+            <svg width={0} height={0}>
+                <defs>
+                    <linearGradient
+                        id="secondary_linear_gradient"
+                        x1="1.18164"
+                        y1="3.93164"
+                        x2="13.9881"
+                        y2="8.54198"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#00BAC6" />
+                        <stop offset="0.5" stopColor="#0067FF" />
+                        <stop offset="1" stopColor="#450FDE" />
+                    </linearGradient>
+                    <linearGradient
+                        id="secondary_linear_gradient_hover"
+                        x1="8.96582"
+                        y1="0.96582"
+                        x2="15.9711"
+                        y2="3.4877"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#00BAC6" />
+                        <stop offset="0.5" stopColor="#0067FF" />
+                        <stop offset="1" stopColor="#450FDE" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span className="dtc__aigc__button__text">{children}</span>
         </AntdButton>
     );
 }
