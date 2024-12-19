@@ -23,21 +23,21 @@ export default function () {
                         disabled={disabled}
                         icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
                     >
-                        <Space size={4}>发送</Space>
+                        发送
                     </Chat.Button>
                     <Chat.Button
                         type="default"
                         disabled={disabled}
                         icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
                     >
-                        <Space size={4}>发送</Space>
+                        发送
                     </Chat.Button>
                     <Chat.Button
                         type="secondary"
                         disabled={disabled}
                         icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
                     >
-                        <Space size={4}>发送</Space>
+                        发送
                     </Chat.Button>
                 </Space>
             </Col>
@@ -55,7 +55,7 @@ export default function () {
                         disabled={disabled}
                         icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
                     >
-                        <Space size={4}>发送</Space>
+                        发送
                     </Chat.Button>
                     <Chat.Button
                         size="small"
@@ -63,7 +63,7 @@ export default function () {
                         disabled={disabled}
                         icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
                     >
-                        <Space size={4}>发送</Space>
+                        发送
                     </Chat.Button>
                     <Chat.Button
                         size="small"
@@ -71,7 +71,26 @@ export default function () {
                         disabled={disabled}
                         icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
                     >
-                        <Space size={4}>发送</Space>
+                        发送
+                    </Chat.Button>
+                </Space>
+            </Col>
+            <Col span={24}>
+                <Space>
+                    <Chat.Button
+                        type="secondary"
+                        disabled={disabled}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                    >
+                        重新生成
+                    </Chat.Button>
+                    <Chat.Button
+                        size="small"
+                        type="default"
+                        disabled={disabled}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                    >
+                        智能解析
                     </Chat.Button>
                 </Space>
             </Col>

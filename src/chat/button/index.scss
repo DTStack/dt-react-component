@@ -1,3 +1,6 @@
+$primaryGradient: #00BAC6 0%, #0067FF 50%, #450FDE 100%;
+$primaryGradientHover: #08C4FF 0%, #4892FF 50%, #8A61FF 100%;
+
 .ant-btn.dtc__aigc__button {
     border: none;
     border-radius: 4px;
@@ -11,12 +14,12 @@
     }
     &--primary {
         &:not(.ant-btn[disabled]) {
-            background: linear-gradient(110deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+            background: linear-gradient(110deg, $primaryGradient);
             color: #FFF;
         }
         &:hover {
             &:not(.ant-btn[disabled]) {
-                background: linear-gradient(110deg, #08C4FF 0%, #4892FF 50%, #8A61FF 100%);
+                background: linear-gradient(110deg, $primaryGradientHover);
             }
         }
     }
@@ -31,7 +34,7 @@
                 border-color: transparent;
                 background-image:
                     linear-gradient(white, white),
-                    linear-gradient(110deg, #08C4FF 0%, #4892FF 50%, #8A61FF 100%);
+                    linear-gradient(110deg, $primaryGradientHover);
                 background-origin: border-box;
                 background-clip: padding-box, border-box;
                 svg,
@@ -39,13 +42,7 @@
                     fill: url(#secondary_linear_gradient_hover);
                 }
                 .dtc__aigc__button__text {
-                    background-image:
-                        linear-gradient(
-                            110deg,
-                            #08C4FF 0%,
-                            #4892FF 50%,
-                            #8A61FF 100%
-                        );
+                    background-image: linear-gradient(110deg, $primaryGradientHover);
                     background-clip: text;
                     color: transparent;
                 }
@@ -57,12 +54,12 @@
             border: 1px solid transparent;
             background-image:
                 linear-gradient(white, white),
-                linear-gradient(110deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+                linear-gradient(110deg, $primaryGradient);
             background-origin: border-box;
             background-clip: padding-box, border-box;
             transition: all 0.3s linear;
             .dtc__aigc__button__text {
-                background-image: linear-gradient(110deg, #00BAC6 0%, #0067FF 50%, #450FDE 100%);
+                background-image: linear-gradient(110deg, $primaryGradient);
                 background-clip: text;
                 color: transparent;
             }
@@ -73,21 +70,20 @@
             &:hover {
                 background-image:
                     linear-gradient(white, white),
-                    linear-gradient(110deg, #08C4FF 0%, #4892FF 50%, #8A61FF 100%);
+                    linear-gradient(110deg, $primaryGradientHover);
                 svg,
                 path {
                     fill: url(#secondary_linear_gradient_hover);
                 }
                 .dtc__aigc__button__text {
-                    background-image:
-                        linear-gradient(
-                            110deg,
-                            #08C4FF 0%,
-                            #4892FF 50%,
-                            #8A61FF 100%
-                        );
+                    background-image: linear-gradient(110deg, $primaryGradientHover);
                 }
             }
         }
+    }
+
+    // 只支持 dtc__icon
+    .dtc__icon ~ .dtc__aigc__button__text {
+        margin-left: 2px;
     }
 }
