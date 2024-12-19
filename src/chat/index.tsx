@@ -3,7 +3,7 @@ import React, { type PropsWithChildren } from 'react';
 import Button from './button';
 import CodeBlock from './codeBlock';
 import Content from './content';
-import { SendIcon } from './icon';
+import { SendIcon, ShiningIcon } from './icon';
 import Input from './input';
 import Loading from './loading';
 import Markdown from './markdown';
@@ -52,7 +52,9 @@ Chat.Tag = Tag;
 
 Chat.Icon = {
     SendIcon,
+    ShiningIcon,
 };
 
 export { type IContentRef } from './content';
+export { type IconProps } from './icon';
 export default Chat;
