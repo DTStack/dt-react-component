@@ -50,6 +50,11 @@ $toolEle: ".dtc__aigc__codeblock__tool";
         gap: 4px;
         color: #8B8FA8;
         font-size: 16px;
+        &:hover {
+            .dtc__icon {
+                color: #1D78FF;
+            }
+        }
     }
     &--convert {
         background: #F5F5F8;
