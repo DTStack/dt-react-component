@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ICatalogue } from './components/catalogue';
+import { CatalogueProps } from './components/catalogue';
 import { FolderIcon, FolderOpenedIcon } from './components/icon';
 import { ITreeNode } from './useTreeData';
 
@@ -17,7 +17,9 @@ export const getIcon: ITreeNode['icon'] = ({ selected, expanded }) => {
 /**
  * @description 轮询 Tree 数据，赋值搜索标识和leafIcon
  */
-export const loopTree = (data: ICatalogue['treeData']): ICatalogue['treeData'] => {
+export const loopTree = <T extends Record<string, any>>(
+    data: CatalogueProps<T>['treeData']
+): CatalogueProps<T>['treeData'] => {
     return data?.map((item) => {
         if (item.children) {
             return {

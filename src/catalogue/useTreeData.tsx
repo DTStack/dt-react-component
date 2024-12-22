@@ -1,100 +1,27 @@
 import { useState } from 'react';
 import { DataNode } from 'antd/lib/tree';
-import { cloneDeep } from 'lodash';
 
 import { CatalogueProps } from './components/catalogue';
 
-export interface ITreeNode extends Omit<DataNode, 'children' | 'title'> {
-    inputMode?: InputMode;
-    /** 是否可编辑 */
-    editable?: boolean;
-    /** 是否可删除 */
-    deletable?: boolean;
-    /** 是否可增加 */
-    addable?: boolean;
+export type ITreeNode<U = {}> = Omit<DataNode, 'children' | 'title'> & {
     title?: React.ReactNode;
-    children?: ITreeNode[];
-}
+    children?: ITreeNode<U>[];
+} & U;
 
-export enum InputMode {
-    Add = 'add',
-    Edit = 'edit',
-    Append = 'append',
-}
-
-export const useTreeData = (): {
-    data: ITreeNode[];
+export const useTreeData = <U extends Record<string, any> = {}>(): {
+    data: ITreeNode<U>[];
     loading: boolean;
     expandedKeys: CatalogueProps['expandedKeys'];
-    initData: (treeData: ITreeNode[]) => void;
-    onChange: (node?: ITreeNode, inputMode?: InputMode) => void;
+    onChange: (node: ITreeNode<U>[]) => void;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-    setExpandedKeys: React.Dispatch<React.SetStateAction<CatalogueProps['expandedKeys']>>;
+    onExpand: React.Dispatch<React.SetStateAction<CatalogueProps['expandedKeys']>>;
 } => {
-    const [data, setData] = useState<ITreeNode[]>([]);
+    const [data, setData] = useState<ITreeNode<U>[]>([]);
     const [loading, setLoading] = useState(false);
     const [expandedKeys, setExpandedKeys] = useState<CatalogueProps['expandedKeys']>([]);
 
-    const initData = (treeData: ITreeNode[]) => {
-        setData(treeData);
-    };
-
-    const processData = (data: ITreeNode[]): ITreeNode[] => {
-        function traverse(item: ITreeNode): ITreeNode | null {
-            if (item.inputMode === InputMode.Edit) {
-                item.inputMode = undefined;
-            }
-            if (item.inputMode === InputMode.Add || item.inputMode === InputMode.Append) {
-                return null;
-            }
-            if (Array.isArray(item.children)) {
-                item.children = item.children.map(traverse).filter(Boolean) as ITreeNode[];
-            }
-            return item;
-        }
-        return data.map(traverse).filter(Boolean) as ITreeNode[];
-    };
-
-    const onChange = (node?: ITreeNode, inputMode?: InputMode) => {
-        const newData = cloneDeep(data);
-        // 做 onBlur 清除数据
-        if (!node && !inputMode) {
-            return setData(processData(newData));
-        }
-        if (!node && inputMode === InputMode.Add)
-            return setData([{ key: '', inputMode: InputMode.Add }, ...data]);
-        if (node && inputMode === InputMode.Append) {
-            const newExpandedKeys = expandedKeys ? [...expandedKeys] : [];
-            loopTree(newData, node.key, (item: ITreeNode) => {
-                const { children } = item;
-                item['children'] = [
-                    ...(children || []),
-                    { key: node.key + 'new', inputMode: InputMode.Append },
-                ];
-            });
-            setData(newData);
-            if (!expandedKeys?.includes(node.key)) {
-                newExpandedKeys.push(node.key);
-            }
-            return setExpandedKeys(newExpandedKeys);
-        }
-        if (node && inputMode === InputMode.Edit) {
-            loopTree(newData, node.key, (item: ITreeNode) => {
-                item.inputMode = InputMode.Edit;
-            });
-            setData(newData);
-        }
-    };
-
-    const loopTree = (data: ITreeNode[], key: ITreeNode['key'], callback: Function) => {
-        data.forEach((item, index, arr) => {
-            if (item.key === key) {
-                return callback(item, index, arr);
-            }
-            if (item.children) {
-                return loopTree(item.children, key, callback);
-            }
-        });
+    const onChange = (data: ITreeNode<U>[]) => {
+        setData(data);
     };
 
     return {
@@ -102,8 +29,135 @@ export const useTreeData = (): {
         loading,
         expandedKeys,
         onChange,
-        initData,
         setLoading,
-        setExpandedKeys,
+        onExpand: setExpandedKeys,
     };
+};
+
+/**
+ * 查找 key 对应的节点
+ * @param data 遍历的数组
+ * @param key 当前 key 值
+ * @returns 找到的对应节点
+ */
+export const findNodeByKey = <U,>(
+    data: ITreeNode<U>[],
+    key: ITreeNode<U>['key']
+): ITreeNode<U> | null => {
+    for (const node of data) {
+        if (node.key === key) {
+            return node;
+        }
+        if (node.children) {
+            const result = findNodeByKey(node.children, key);
+            if (result) return result;
+        }
+    }
+    return null;
+};
+
+/**
+ * 更新 key 对应节点为编辑状态
+ * @param data 遍历的数组
+ * @param key 当前 key 值
+ * @returns 更新之后 data
+ */
+export const updateTreeNodeEdit = <U,>(
+    data: ITreeNode<U>[],
+    key: ITreeNode<U>['key']
+): ITreeNode<U>[] => {
+    return data.map((node) => {
+        if (node.key === key) {
+            return { ...node, edit: true };
+        }
+        if (node.children) {
+            return { ...node, children: updateTreeNodeEdit(node.children, key) };
+        }
+        return node;
+    });
+};
+
+/**
+ * 查找 key 对应的父级节点
+ * @param data 遍历的数组
+ * @param key 当前 key 值
+ * @returns 当前找到父级节点
+ */
+export const findParentNodeByKey = <U extends { edit?: boolean }>(
+    data: ITreeNode<U>[],
+    key: ITreeNode<U>['key']
+): ITreeNode<U> | null => {
+    for (const node of data) {
+        if (node.children?.some((child) => child.key === key)) {
+            return node;
+        }
+        // 如果有子节点，递归查找
+        if (node.children) {
+            const parent = findParentNodeByKey(node.children, key);
+            if (parent) return parent;
+        }
+    }
+    return null;
+};
+
+/**
+ * 在 key 节点中添加子节点
+ * @param data 遍历的数组
+ * @param key 当前 key 值
+ * @returns 插入新数据之后的 data
+ */
+export const appendNodeByKey = <U extends { edit?: boolean }>(
+    data: ITreeNode<U>[],
+    key: ITreeNode<U>['key']
+): ITreeNode<U>[] => {
+    const newNode = { key: 'new_', title: '', edit: true };
+    return data.map((node) => {
+        if (node.key === key) {
+            const updatedChildren = node.children ? [...node.children, newNode] : [newNode];
+            return { ...node, children: updatedChildren };
+        }
+        if (node.children) {
+            return { ...node, children: appendNodeByKey(node.children, key) };
+        }
+        return node;
+    });
+};
+
+/**
+ * 移除 key 节点
+ * @param data 遍历的数组
+ * @param key 当前 key 值
+ * @returns 删除数据之后的 data
+ */
+export const removeNodeByKey = <U,>(
+    data: ITreeNode<U>[],
+    key: ITreeNode<U>['key']
+): ITreeNode<U>[] => {
+    return data
+        .filter((node) => node.key !== key)
+        .map((node) => {
+            if (node.children) {
+                return {
+                    ...node,
+                    children: removeNodeByKey(node.children, key),
+                };
+            }
+            return node;
+        });
+};
+
+/**
+ * 移除 edit 为 true 的节点
+ * @param treeData
+ * @returns 移除之后的数据
+ */
+export const removeEditNode = <U extends { edit?: boolean }>(
+    treeData: ITreeNode<U>[]
+): ITreeNode<U>[] => {
+    return treeData
+        .filter((node) => !node.edit)
+        .map((node) => ({
+            ...node,
+            children: node.children ? removeEditNode(node.children) : undefined,
+        }));
 };

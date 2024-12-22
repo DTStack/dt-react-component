@@ -62,7 +62,7 @@ export default () => {
     const [activeKey, setActiveKey] = useState(TreeType.Index);
 
     useEffect(() => {
-        treeData.initData(DEFAULT_DATA(activeKey));
+        treeData.onChange(DEFAULT_DATA(activeKey));
     }, [activeKey]);
 
     return (
@@ -82,7 +82,7 @@ export default () => {
                 }
                 onTabChange={(key) => setActiveKey(key)}
                 expandedKeys={treeData.expandedKeys}
-                onExpand={treeData.setExpandedKeys}
+                onExpand={treeData.onExpand}
             />
         </div>
     );

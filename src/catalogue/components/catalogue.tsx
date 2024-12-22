@@ -3,7 +3,7 @@ import { Dropdown, DropdownProps, Form, Input, Tabs } from 'antd';
 import { BlockHeader } from 'dt-react-component';
 import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
 
-import { InputMode, ITreeNode, useTreeData } from '../useTreeData';
+import { ITreeNode } from '../useTreeData';
 import { CatalogIcon, CloseIcon, DragIcon, EllipsisIcon, SearchIcon } from './icon';
 import CatalogueTree, { ICatalogueTree } from './tree';
 
@@ -16,36 +16,39 @@ type readOnlyTab = readonly Tab[];
 
 type TabKey<T extends readOnlyTab> = T[number]['key'];
 
-interface NormalCatalogueProps
+interface NormalCatalogueProps<U extends Record<string, any> = {}>
     extends Pick<IBlockHeaderProps, 'tooltip' | 'addonAfter' | 'addonBefore' | 'title'>,
-        ICatalogueTree {
+        ICatalogueTree<U> {
     showSearch?: boolean;
     edit?: boolean;
     placeholder?: string;
     loading?: boolean;
-    onChange?: ReturnType<typeof useTreeData>['onChange'];
-    overlay?: (item: ITreeNode) => DropdownProps['overlay'];
+    onCancelSave?: (item: ITreeNode<U>) => void;
+    overlay?: (item: ITreeNode<U>) => DropdownProps['overlay'];
     onSearch?: (value: string) => void;
-    onSave?: (data: ITreeNode, value: string) => Promise<string | void>;
+    onSave?: (data: ITreeNode<U>, value: string) => Promise<string | void>;
 }
-interface TabsCatalogueProps<T extends readOnlyTab> extends NormalCatalogueProps {
+interface TabsCatalogueProps<U extends Record<string, any>, T extends readOnlyTab>
+    extends NormalCatalogueProps<U> {
     tabList?: T;
     activeTabKey?: TabKey<T>;
     defaultTabKey?: TabKey<T>;
     onTabChange?: (key: TabKey<T>) => void;
 }
 
-export type CatalogueProps<T extends readOnlyTab = any> =
-    | TabsCatalogueProps<T>
-    | NormalCatalogueProps;
+export type CatalogueProps<U extends Record<string, any> = {}, T extends readOnlyTab = any> =
+    | TabsCatalogueProps<U, T>
+    | NormalCatalogueProps<U>;
 
-function isTabMode<T extends readOnlyTab>(
-    props: CatalogueProps<T>
-): props is TabsCatalogueProps<T> {
+function isTabMode<U extends Record<string, any> = {}, T extends readOnlyTab = any>(
+    props: CatalogueProps<U, T>
+): props is TabsCatalogueProps<U, T> {
     return 'tabList' in props;
 }
 
-const Catalogue = <T extends readOnlyTab>(props: CatalogueProps<T>) => {
+const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = any>(
+    props: CatalogueProps<U, T>
+) => {
     const {
         title,
         addonBefore = <CatalogIcon style={{ fontSize: 20 }} />,
@@ -56,10 +59,11 @@ const Catalogue = <T extends readOnlyTab>(props: CatalogueProps<T>) => {
         edit = true,
         treeData,
         draggable,
+        titleRender,
         overlay,
-        onChange,
         onSearch,
         onSave,
+        onCancelSave,
         ...rest
     } = props;
 
@@ -67,27 +71,33 @@ const Catalogue = <T extends readOnlyTab>(props: CatalogueProps<T>) => {
 
     const [form] = Form.useForm();
 
-    const loopTree = (data: ITreeNode[]): ITreeNode[] => {
-        return data?.map((item) => {
-            const newItem = {
-                ...item,
-                editable: item?.editable === undefined ? true : item?.editable,
-                addable: item?.addable === undefined ? true : item?.addable,
-                deletable: item?.deletable === undefined ? true : item?.deletable,
-            };
-            if (item.children) {
-                return {
-                    ...newItem,
-                    title: renderTitle(newItem),
-                    children: loopTree(item.children),
-                };
-            }
-            return {
-                ...newItem,
-                title: renderTitle(newItem),
-                children: undefined,
-            };
-        });
+    const defaultTitleRender = (item: ITreeNode<U>) => {
+        if (item.edit) {
+            return (
+                <Form form={form} preserve={false}>
+                    <Form.Item name="catalog_input" initialValue={item?.title as string}>
+                        <Input
+                            size="small"
+                            placeholder={`请输入${title}名称`}
+                            maxLength={100}
+                            autoFocus
+                            onFocus={() => form.setFields([{ name: 'catalog_input', errors: [] }])}
+                            onClick={(e) => e.stopPropagation()}
+                            onBlur={({ target }) => handleInputSubmit(item, target.value)}
+                            onPressEnter={({ target }) =>
+                                handleInputSubmit(item, (target as any).value)
+                            }
+                        />
+                    </Form.Item>
+                </Form>
+            );
+        }
+        return (
+            <div className="tree__title">
+                <div className="tree__title--text">{item.title}</div>
+                {edit && renderNodeHover(item)}
+            </div>
+        );
     };
 
     const renderHeader = () => {
@@ -138,75 +148,16 @@ const Catalogue = <T extends readOnlyTab>(props: CatalogueProps<T>) => {
         );
     };
 
-    const handleInputSubmit = (item: ITreeNode, value: string) => {
+    const handleInputSubmit = (item: ITreeNode<U>, value: string) => {
         if (!value) {
-            return onChange?.(undefined, undefined);
-        }
-        // item 为当前编辑的数据，对于 Append 的情况需要传入父级的 key
-        if (item.inputMode === InputMode.Append) {
-            const findAppendParents = (data: ITreeNode[], item: ITreeNode): ITreeNode | null => {
-                let result: ITreeNode | null = null;
-                function traverse(node: ITreeNode, parent: ITreeNode | null): void {
-                    if (node.inputMode === 'append' && node.key === item.key && parent) {
-                        result = parent;
-                    }
-                    if (Array.isArray(node.children)) {
-                        node.children.forEach((child) => traverse(child, node));
-                    }
-                }
-                data.forEach((item) => traverse(item, null));
-                return result;
-            };
-            const parentItem = findAppendParents(treeData, item);
-            return (
-                parentItem &&
-                onSave?.({ ...parentItem, inputMode: InputMode.Append }, value).then((msg) => {
-                    form.setFields([{ name: 'catalog_input', errors: msg ? [msg] : [] }]);
-                })
-            );
+            return onCancelSave?.(item);
         }
         onSave?.(item, value).then((msg) => {
             form.setFields([{ name: 'catalog_input', errors: msg ? [msg] : [] }]);
         });
     };
 
-    const renderInput = (item: ITreeNode) => {
-        return (
-            <div className="tree__title--input">
-                <Form form={form} preserve={false}>
-                    <Form.Item name="catalog_input">
-                        <Input
-                            defaultValue={item?.title as string}
-                            size="small"
-                            placeholder={`请输入${title}名称`}
-                            maxLength={100}
-                            autoFocus
-                            onFocus={() => form.setFields([{ name: 'catalog_input', errors: [] }])}
-                            onClick={(e) => e.stopPropagation()}
-                            onBlur={({ target }) => handleInputSubmit(item, target.value)}
-                            onPressEnter={({ target }) =>
-                                handleInputSubmit(item, (target as any).value)
-                            }
-                        />
-                    </Form.Item>
-                </Form>
-            </div>
-        );
-    };
-
-    const renderTitle = (item: ITreeNode) => {
-        if (item.inputMode) {
-            return renderInput(item);
-        }
-        return (
-            <div className="tree__title">
-                <div className="tree__title--text">{item.title}</div>
-                {edit && renderNodeHover(item)}
-            </div>
-        );
-    };
-
-    const renderNodeHover = (item: ITreeNode) => {
+    const renderNodeHover = (item: ITreeNode<U>) => {
         return (
             <div
                 className="tree__title--operation"
@@ -238,8 +189,9 @@ const Catalogue = <T extends readOnlyTab>(props: CatalogueProps<T>) => {
             {renderSearch()}
             {renderTab()}
             <CatalogueTree
-                treeData={loopTree(treeData)}
+                treeData={treeData}
                 draggable={draggable ? { icon: false } : false}
+                titleRender={titleRender || defaultTitleRender}
                 {...rest}
             />
         </div>

@@ -56,7 +56,7 @@ export default () => {
     const treeData = useTreeData();
 
     useEffect(() => {
-        treeData.initData(DEFAULT_DATA);
+        treeData.onChange(DEFAULT_DATA);
     }, []);
 
     return (

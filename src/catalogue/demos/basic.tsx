@@ -56,7 +56,7 @@ export default () => {
     const treeData = useTreeData();
 
     useEffect(() => {
-        treeData.initData(DEFAULT_DATA);
+        treeData.onChange(DEFAULT_DATA);
     }, []);
 
     return (
@@ -68,7 +68,7 @@ export default () => {
                 treeData={treeData.data}
                 edit={false}
                 expandedKeys={treeData.expandedKeys}
-                onExpand={treeData.setExpandedKeys}
+                onExpand={treeData.onExpand}
             />
         </div>
     );

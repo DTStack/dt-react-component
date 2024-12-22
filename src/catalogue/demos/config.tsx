@@ -4,11 +4,20 @@ import { Catalogue, EllipsisText } from 'dt-react-component';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
 
-import { ICatalogue } from '../components/catalogue';
+import { CatalogueProps } from '../components/catalogue';
 import { DeleteIcon, EditIcon, PlusCircleIcon, PlusSquareIcon } from '../components/icon';
-import { InputMode, ITreeNode, useTreeData } from '../useTreeData';
+import {
+    appendNodeByKey,
+    findNodeByKey,
+    findParentNodeByKey,
+    ITreeNode,
+    removeEditNode,
+    removeNodeByKey,
+    updateTreeNodeEdit,
+    useTreeData,
+} from '../useTreeData';
 
-const DEFAULT_DATA: ITreeNode[] = [
+const DEFAULT_DATA: ITreeNode<IData>[] = [
     {
         title: '不可编辑的节点',
         editable: false,
@@ -63,39 +72,48 @@ const DEFAULT_DATA: ITreeNode[] = [
     },
 ];
 
-export default () => {
-    const treeData = useTreeData();
+interface IData {
+    edit?: boolean;
+    addable?: boolean;
+    deletable?: boolean;
+    editable?: boolean;
+}
 
-    const findNodeByKey = (data: ITreeNode[], targetKey: ITreeNode['key']): ITreeNode | null => {
-        for (const node of data) {
-            if (node.key === targetKey) {
-                return node;
-            }
-            if (node.children) {
-                const result = findNodeByKey(node.children, targetKey);
-                if (result) return result;
-            }
+export default () => {
+    const treeData = useTreeData<IData>();
+
+    const handleEdit = (key: ITreeNode<IData>['key']) => {
+        const data = updateTreeNodeEdit<IData>(treeData.data, key);
+        treeData.onChange(data);
+    };
+
+    const handleAdd = (key: ITreeNode<IData>['key']) => {
+        const newExpandedKeys = treeData.expandedKeys ? [...treeData.expandedKeys] : [];
+        const data = appendNodeByKey<IData>(treeData.data, key);
+        if (!newExpandedKeys?.includes(key)) {
+            newExpandedKeys.push(key);
         }
-        return null;
+        treeData.onExpand(newExpandedKeys);
+        treeData.onChange(data);
     };
 
     const handleSave = async (data: ITreeNode, value: string) => {
         const newData = cloneDeep(treeData.data);
-        if (data.inputMode === InputMode.Add) {
+        if (!data.key) {
             newData.push({
                 title: value,
                 key: shortid(),
             });
             newData.shift();
-            treeData.initData(newData);
+            treeData.onChange(newData);
             return;
         }
-        if (data.inputMode === InputMode.Append) {
-            let node = findNodeByKey(newData, data.key);
+        if ((data.key as string).startsWith('new')) {
+            let node = findParentNodeByKey(newData, data.key);
             if (!node) return;
             if (node.children) {
                 const newChildren = node.children
-                    .filter((item) => !item.inputMode)
+                    .filter((item) => !item.edit)
                     .concat({ title: value, key: shortid() });
                 node.children = newChildren;
             } else {
@@ -109,38 +127,29 @@ export default () => {
                     ],
                 };
             }
-            treeData.initData(newData);
+            treeData.onChange(newData);
             return;
         }
         const node = findNodeByKey(newData, data.key);
         if (node) {
             node.title = value;
-            node.inputMode = undefined;
+            node.edit = false;
         }
-        treeData.initData(newData);
+        treeData.onChange(newData);
     };
 
-    const removeNodeByKey = (data: ITreeNode[], targetKey: ITreeNode['key']): ITreeNode[] => {
-        return data
-            .filter((node) => node.key !== targetKey)
-            .map((node) => {
-                if (node.children) {
-                    return {
-                        ...node,
-                        children: removeNodeByKey(node.children, targetKey),
-                    };
-                }
-                return node;
-            });
+    const handleCancelSave = () => {
+        const newData = removeEditNode(treeData.data);
+        treeData.onChange(newData);
     };
 
     const handleDelete = (data: ITreeNode) => {
         let newData = cloneDeep(treeData.data);
         newData = removeNodeByKey(newData, data.key);
-        treeData.initData(newData);
+        treeData.onChange(newData);
     };
 
-    const handleDrop: ICatalogue['onDrop'] = (info) => {
+    const handleDrop: CatalogueProps['onDrop'] = (info) => {
         const dropKey = info.node.key;
         const dragKey = info.dragNode.key;
         const dropPos = info.node.pos.split('-');
@@ -190,11 +199,11 @@ export default () => {
                 ar.splice(i! + 1, 0, dragObj!);
             }
         }
-        treeData.initData(data);
+        treeData.onChange(data);
     };
 
     useEffect(() => {
-        treeData.initData(DEFAULT_DATA);
+        treeData.onChange(DEFAULT_DATA);
     }, []);
 
     return (
@@ -204,54 +213,60 @@ export default () => {
                 addonAfter={
                     <PlusSquareIcon
                         style={{ cursor: 'pointer' }}
-                        onClick={() => treeData.onChange(undefined, InputMode.Add)}
+                        onClick={() =>
+                            treeData.onChange([
+                                ...treeData.data,
+                                { edit: true, title: '', key: '' },
+                            ])
+                        }
                     />
                 }
                 title="标签目录"
                 showSearch
                 draggable
-                overlay={(item) => (
-                    <Menu
-                        onClick={({ domEvent }) => {
-                            domEvent.stopPropagation();
-                        }}
-                    >
-                        <Menu.Item
-                            key="add"
-                            disabled={!item.addable}
-                            onClick={() =>
-                                item.addable && treeData.onChange(item, InputMode.Append)
-                            }
+                overlay={(item) => {
+                    const { addable = true, editable = true, deletable = true } = item;
+                    return (
+                        <Menu
+                            onClick={({ domEvent }) => {
+                                domEvent.stopPropagation();
+                            }}
                         >
-                            <PlusCircleIcon />
-                            <span>新建目录</span>
-                        </Menu.Item>
-                        <Menu.Item
-                            key="edit"
-                            className="title__menu--item"
-                            disabled={!item.editable}
-                            onClick={() => item.editable && treeData.onChange(item, InputMode.Edit)}
-                        >
-                            <EditIcon />
-                            <span>编辑</span>
-                        </Menu.Item>
-                        <Menu.Item
-                            key="delete"
-                            className="title__menu--item"
-                            disabled={!item.deletable}
-                            onClick={() => item.deletable && handleDelete(item)}
-                        >
-                            <DeleteIcon />
-                            <span>删除</span>
-                        </Menu.Item>
-                    </Menu>
-                )}
+                            <Menu.Item
+                                key="add"
+                                disabled={!addable}
+                                onClick={() => addable && handleAdd(item.key)}
+                            >
+                                <PlusCircleIcon />
+                                <span>新建目录</span>
+                            </Menu.Item>
+                            <Menu.Item
+                                key="edit"
+                                className="title__menu--item"
+                                disabled={!editable}
+                                onClick={() => editable && handleEdit(item.key)}
+                            >
+                                <EditIcon />
+                                <span>编辑</span>
+                            </Menu.Item>
+                            <Menu.Item
+                                key="delete"
+                                className="title__menu--item"
+                                disabled={!deletable}
+                                onClick={() => deletable && handleDelete(item)}
+                            >
+                                <DeleteIcon />
+                                <span>删除</span>
+                            </Menu.Item>
+                        </Menu>
+                    );
+                }}
                 treeData={treeData.data}
                 expandedKeys={treeData.expandedKeys}
-                onExpand={treeData.setExpandedKeys}
-                onDragEnter={({ expandedKeys }) => treeData.setExpandedKeys(expandedKeys)}
-                onChange={treeData.onChange}
+                onExpand={treeData.onExpand}
+                onDragEnter={({ expandedKeys }) => treeData.onExpand(expandedKeys)}
                 onSave={handleSave}
+                onCancelSave={handleCancelSave}
                 onDrop={handleDrop}
             />
         </div>
