@@ -2,7 +2,7 @@ import React from 'react';
 import { type Components } from 'react-markdown';
 
 import { type ICopyProps } from '../copy';
-import type { Message } from './entity';
+import type { Message, Prompt } from './entity';
 import type useChat from './useChat';
 
 export type CopyOptions = Partial<ICopyProps> & {
@@ -23,7 +23,7 @@ export interface IChatContext {
      */
     maxRegenerateCount: number;
     copy?: boolean | CopyOptions;
-    messageIcons?: React.ReactNode | ((record: Message) => React.ReactNode);
+    messageIcons?: React.ReactNode | ((record: Message, prompt: Prompt) => React.ReactNode);
 }
 
 export const context = React.createContext<IChatContext>({

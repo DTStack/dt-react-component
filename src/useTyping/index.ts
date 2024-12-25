@@ -83,19 +83,29 @@ export default function useTyping({ onTyping }: { onTyping: (post: string) => vo
     }
 
     // 关闭的时候不需要清空队列，因为可能还有一些消息没有发送完毕，统一等消息发送完毕后关闭
-    async function close() {
-        isStart.current = false;
-        closeSignal.current = true;
-        window.clearInterval(closeInterval.current);
-        return new Promise<void>((resolve) => {
-            closeInterval.current = window.setInterval(() => {
-                if (!closeSignal.current) {
+    async function close(immediate?: boolean) {
+        if (immediate) {
+            window.clearInterval(closeInterval.current);
+            window.clearInterval(interval.current);
+            onTyping(queue.current);
+        } else {
+            isStart.current = false;
+            closeSignal.current = true;
+            window.clearInterval(closeInterval.current);
+            return new Promise<void>((resolve) => {
+                if (!interval.current) {
                     resolve();
-                    closeSignal.current = true;
-                    window.clearInterval(closeInterval.current);
+                } else {
+                    closeInterval.current = window.setInterval(() => {
+                        if (!closeSignal.current) {
+                            resolve();
+                            closeSignal.current = true;
+                            window.clearInterval(closeInterval.current);
+                        }
+                    }, 1000);
                 }
-            }, 1000);
-        });
+            });
+        }
     }
 
     // 立即停止
