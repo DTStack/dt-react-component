@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import Copy from '../../copy';
 import useIntersectionObserver from '../../useIntersectionObserver';
-import { Message as MessageEntity, MessageStatus } from '../entity';
+import { Message as MessageEntity, MessageStatus, Prompt as PromptEntity } from '../entity';
 import { AssistantAvatarIcon, CopyIcon, PauseIcon, ReloadIcon } from '../icon';
 import Loading from '../loading';
 import Markdown from '../markdown';
@@ -14,6 +14,7 @@ import { CopyOptions, useContext } from '../useContext';
 import './index.scss';
 
 type IMessageProps = {
+    prompt: PromptEntity;
     data: MessageEntity[];
     /**
      * 是否支持重新生成
@@ -29,6 +30,7 @@ type IMessageProps = {
 };
 
 export default function Message({
+    prompt,
     data,
     regenerate,
     copy,
@@ -82,7 +84,10 @@ export default function Message({
             const original = components[cur as keyof Components];
             (acc as any)[cur] = (...args: any[]) => {
                 return typeof original === 'function'
-                    ? (original as Function)(...args, { messageId: record?.id })
+                    ? (original as Function)(...args, {
+                          messageId: record?.id,
+                          promptId: prompt.id,
+                      })
                     : original;
             };
 
@@ -174,7 +179,9 @@ export default function Message({
             {!typing && !loading && (
                 <Space className="dtc__message__iconGroup">
                     {renderCopyIcon()}
-                    {typeof messageIcons === 'function' ? messageIcons(record) : messageIcons}
+                    {typeof messageIcons === 'function'
+                        ? messageIcons(record, prompt)
+                        : messageIcons}
                     {regenerate && (
                         <Tooltip
                             title="重新生成"

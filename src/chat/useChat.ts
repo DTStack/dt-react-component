@@ -47,6 +47,7 @@ export default function useChat<
         promptId: '',
         messageId: '',
     });
+    const closing = useRef<boolean>(false);
 
     // ================================== Typing ==================================
     function _start(promptId: Id, messageId: Id) {
@@ -65,7 +66,9 @@ export default function useChat<
     }
 
     function _close(promptId: Id, messageId: Id) {
+        closing.current = true;
         typing.close().then(() => {
+            closing.current = false;
             _updateMessage(promptId, messageId, { status: MessageStatus.DONE });
         });
     }
@@ -83,7 +86,7 @@ export default function useChat<
     }
 
     function _updateConversation(data: Partial<Omit<ConversationProperties, 'id'>>) {
-        if (!state) return;
+        if (!state.current) return;
         state.current = produce(state.current, (draft) => {
             Object.assign(draft, data);
         });
@@ -205,13 +208,34 @@ export default function useChat<
         return last.status === MessageStatus.PENDING || last.status === MessageStatus.GENERATING;
     }
 
-    function _saveViewState() {
+    async function _saveViewState() {
+        const prompt = state.current?.prompts.at(-1);
+        const message = prompt?.messages?.at(-1);
+        if (message?.status === MessageStatus.GENERATING) {
+            await typing.close(true);
+            if (closing.current) {
+                _updateMessage(prompt!.id, message.id, { status: MessageStatus.DONE });
+            }
+        } else {
+            typing.stop();
+        }
         return _getConversation();
     }
 
     function _restoreViewState(raw: Conversation) {
         state.current = raw;
+        closing.current = false;
+        if (_isProcessing()) {
+            const conversation = _getConversation();
+            const prompt = conversation?.prompts.at(-1);
+            const message = prompt?.messages.at(-1);
+            if (!prompt || !message) return state.current;
+            typing.start(message.content);
+            typingIds.current = { promptId: prompt.id, messageId: message.id };
+        }
+
         update();
+        return state.current;
     }
 
     return {
