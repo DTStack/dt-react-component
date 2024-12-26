@@ -17,7 +17,7 @@ type readOnlyTab = readonly Tab[];
 type TabKey<T extends readOnlyTab> = T[number]['key'];
 
 interface NormalCatalogueProps<U extends Record<string, any> = {}>
-    extends Pick<IBlockHeaderProps, 'tooltip' | 'addonAfter' | 'addonBefore' | 'title'>,
+    extends Partial<Pick<IBlockHeaderProps, 'tooltip' | 'addonAfter' | 'addonBefore' | 'title'>>,
         ICatalogueTree<U> {
     showSearch?: boolean;
     edit?: boolean;

@@ -5,16 +5,15 @@ import { Catalogue } from 'dt-react-component';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
 
+import { ITreeNode, useTreeData } from '../useTreeData';
 import {
     appendNodeByKey,
     findNodeByKey,
     findParentNodeByKey,
-    ITreeNode,
     removeEditNode,
     removeNodeByKey,
     updateTreeNodeEdit,
-    useTreeData,
-} from '../useTreeData';
+} from '../utils';
 
 const DEFAULT_DATA = [
     {

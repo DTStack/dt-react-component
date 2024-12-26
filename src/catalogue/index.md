@@ -22,6 +22,7 @@ demo:
 <code src="./demos/drag.tsx">可拖拽的目录树</code>
 <code src="./demos/config.tsx">配置操作项的目录树</code>
 <code src="./demos/tabs.tsx">配置操作项的目录树</code>
+<code src="./demos/async.tsx">异步加载数据</code>
 
 ## API
 
