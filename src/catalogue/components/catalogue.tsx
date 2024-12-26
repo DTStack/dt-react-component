@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown, DropdownProps, Form, Input, Tabs } from 'antd';
-import { BlockHeader } from 'dt-react-component';
+import { BlockHeader, EllipsisText } from 'dt-react-component';
 import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
 
 import { ITreeNode } from '../useTreeData';
@@ -74,7 +74,7 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
     const defaultTitleRender = (item: ITreeNode<U>) => {
         if (item.edit) {
             return (
-                <Form form={form} preserve={false}>
+                <Form form={form} preserve={false} className="tree__title--input">
                     <Form.Item name="catalog_input" initialValue={item?.title as string}>
                         <Input
                             size="small"
@@ -94,7 +94,9 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
         }
         return (
             <div className="tree__title">
-                <div className="tree__title--text">{item.title}</div>
+                <div className="tree__title--text">
+                    <EllipsisText value={item.title} watchParentSizeChange maxWidth="100%" />
+                </div>
                 {edit && renderNodeHover(item)}
             </div>
         );
@@ -161,7 +163,7 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
         return (
             <div
                 className="tree__title--operation"
-                onMouseDown={(e) => {
+                onClick={(e) => {
                     e.stopPropagation();
                 }}
             >

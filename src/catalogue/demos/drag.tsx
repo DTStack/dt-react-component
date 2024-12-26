@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
+import { DeleteOutlined, EditOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { Catalogue } from 'dt-react-component';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
 
 import { CatalogueProps } from '../components/catalogue';
-import { DeleteIcon, EditIcon, PlusCircleIcon, PlusSquareIcon } from '../components/icon';
 import {
     appendNodeByKey,
     findNodeByKey,
@@ -200,7 +200,7 @@ export default () => {
             <Catalogue
                 tooltip="嘿嘿，这是tooltip"
                 addonAfter={
-                    <PlusSquareIcon
+                    <PlusSquareOutlined
                         style={{ cursor: 'pointer' }}
                         onClick={() =>
                             treeData.onChange([
@@ -226,7 +226,7 @@ export default () => {
                                 disabled={!addable}
                                 onClick={() => addable && handleAdd(item.key)}
                             >
-                                <PlusCircleIcon />
+                                <PlusSquareOutlined />
                                 <span>新建目录</span>
                             </Menu.Item>
                             <Menu.Item
@@ -235,7 +235,7 @@ export default () => {
                                 disabled={!editable}
                                 onClick={() => editable && handleEdit(item.key)}
                             >
-                                <EditIcon />
+                                <EditOutlined />
                                 <span>编辑</span>
                             </Menu.Item>
                             <Menu.Item
@@ -244,7 +244,7 @@ export default () => {
                                 disabled={!deletable}
                                 onClick={() => deletable && handleDelete(item)}
                             >
-                                <DeleteIcon />
+                                <DeleteOutlined />
                                 <span>删除</span>
                             </Menu.Item>
                         </Menu>

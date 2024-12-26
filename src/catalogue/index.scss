@@ -107,7 +107,7 @@
         .ant-tree {
             height: 100%;
             .ant-tree-treenode-leaf-last .ant-tree-switcher-leaf-line::before {
-                height: 100% !important;
+                height: 50% !important;
             }
             .ant-tree-node-content-wrapper.ant-tree-node-selected {
                 background: none;
