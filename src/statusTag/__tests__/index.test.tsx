@@ -55,4 +55,9 @@ describe('test StatusTag suite', () => {
         const loadingWarper = container.querySelector(`.ant-spin-spinning`)!;
         expect(loadingWarper).toBeInTheDocument();
     });
+    test('should render StatusTag no icon', () => {
+        const { container } = render(<StatusTag icon={false}>自定义文案</StatusTag>);
+        const loadingWarper = container.querySelector(`.${prefixCls}--icon`)!;
+        expect(loadingWarper).not.toBeInTheDocument();
+    });
 });

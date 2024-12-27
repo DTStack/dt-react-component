@@ -19,7 +19,8 @@ StatusTag 组件作用于任务运行状态效果展示
 <code src="./demos/basic.tsx" description="内置6种不同的`color`，三种类型`default | outline | fill`，同时我们添加了多种预设色彩的状态样式，用作不同场景使用。如果预设值不能满足你的需求，可以设置为具体的色值">基础使用</code>
 <code src="./demos/status.tsx" description="用于表示状态的小圆点">状态点</code>
 <code src="./demos/loading.tsx" description="通过设置 `loading` 可以设置加载中的状态标签">加载中</code>
-<code src="./demos/icon.tsx" description="可以通过`icon`自定义图标">加载中</code>
+<code src="./demos/icon.tsx" description="可以通过`icon`自定义图标">自定义图标</code>
+<code src="./demos/noIcon.tsx" description="icon设置为除undefined之外假值等不展示图标">不展示图标</code>
 
 ## API
 

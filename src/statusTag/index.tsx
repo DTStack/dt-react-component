@@ -70,9 +70,12 @@ const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
         color = 'green',
         loading = false,
         background,
+        style,
         ...other
     } = props;
     const prefixCls = 'dtc-statusTag';
+
+    const showDefaultIcon = icon === undefined;
 
     const classes = classNames(`${prefixCls}`, className, {
         [`${prefixCls}--border`]: type === 'outline',
@@ -100,13 +103,19 @@ const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
     };
 
     return (
-        <div {...other} className={classes} style={tagStyle}>
+        <div {...other} className={classes} style={{ ...tagStyle, ...style }}>
             {loading ? (
-                <Spin spinning indicator={<LoadingOutlined />} size="small" />
+                <Spin
+                    spinning
+                    indicator={<LoadingOutlined className={`${prefixCls}__icon`} />}
+                    size="small"
+                />
             ) : (
-                <div className={`${prefixCls}__icon`}>
-                    <span {...getIconStyleAndClass()}>{icon ?? <></>}</span>
-                </div>
+                (icon || showDefaultIcon) && (
+                    <div className={`${prefixCls}__icon`}>
+                        <span {...getIconStyleAndClass()}>{icon ?? <></>}</span>
+                    </div>
+                )
             )}
             <span className={`${prefixCls}__text`}>{props.children}</span>
         </div>
