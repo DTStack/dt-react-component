@@ -31,10 +31,10 @@ const useSvgWidth = (): UseSvgWidthResult => {
     return [ref, svgWidth, rectWidth];
 };
 
-export default function TinyTag({ value, className, ...restProps }: ITinyTag) {
+export default function TinyTag({ value, className, style, ...restProps }: ITinyTag) {
     const [ref, svgWidth, rectWidth] = useSvgWidth();
     return (
-        <span className={classNames('dtc-tinyTag', className)} {...restProps}>
+        <span className={classNames('dtc-tinyTag', className)} style={style} {...restProps}>
             <svg
                 width={svgWidth}
                 height="15"

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Empty as AntdEmpty, EmptyProps as AntdEmptyProps } from 'antd';
+import classNames from 'classnames';
 
 import './style.scss';
 
@@ -28,6 +29,8 @@ const Empty = (props: EmptyProps) => {
         image,
         imageStyle,
         extra,
+        className,
+        style,
         ...restProps
     } = props;
 
@@ -39,7 +42,7 @@ const Empty = (props: EmptyProps) => {
     const height = size === 'default' ? 80 : 100;
 
     return showEmpty ? (
-        <div className="dtc-empty">
+        <div className={classNames('dtc-empty', className)} style={style}>
             <AntdEmpty {...restProps} image={newImage} imageStyle={{ height, ...imageStyle }}>
                 {extra}
             </AntdEmpty>

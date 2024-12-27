@@ -10,6 +10,7 @@ export interface IMarkdownRenderProps {
      * 当前渲染的值
      */
     value?: string;
+    style?: React.CSSProperties;
     className?: string;
     /**
      * 暗黑模式
@@ -17,7 +18,12 @@ export interface IMarkdownRenderProps {
     dark?: boolean;
 }
 
-export default function MarkdownRender({ value = '', className, dark }: IMarkdownRenderProps) {
+export default function MarkdownRender({
+    value = '',
+    className,
+    style,
+    dark,
+}: IMarkdownRenderProps) {
     const result = useMemo(() => {
         const converter = new showdown.Converter({
             extensions: [sqlHighlightExtension],
@@ -33,6 +39,7 @@ export default function MarkdownRender({ value = '', className, dark }: IMarkdow
                 dark ? 'dtc-vs-dark' : 'dtc-vs',
                 className
             )}
+            style={style}
             dangerouslySetInnerHTML={{ __html: result }}
         />
     );

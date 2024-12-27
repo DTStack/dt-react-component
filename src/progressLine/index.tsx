@@ -16,6 +16,7 @@ interface IProgressLineProps {
     width?: number | string;
     // 顶部左侧内容默认通过 tooltip hover 展示
     tooltipProps?: TooltipProps;
+    style?: React.CSSProperties;
 }
 
 const ProgressLine = (props: IProgressLineProps) => {
@@ -26,11 +27,12 @@ const ProgressLine = (props: IProgressLineProps) => {
         className = '',
         width = '280px',
         tooltipProps,
+        style,
     } = props;
     const prefixCls = 'dtc-progress-line';
 
     return (
-        <div className={`${prefixCls} ${className}`}>
+        <div className={`${prefixCls} ${className}`} style={style}>
             <div className={`${prefixCls}-title`} style={{ width }}>
                 {/* 顶部左侧的内容 */}
                 <Tooltip title={title} {...tooltipProps}>
