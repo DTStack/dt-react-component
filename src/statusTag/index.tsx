@@ -70,6 +70,7 @@ const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
         color = 'green',
         loading = false,
         background,
+        style,
         ...other
     } = props;
     const prefixCls = 'dtc-statusTag';
@@ -102,7 +103,7 @@ const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
     };
 
     return (
-        <div {...other} className={classes} style={tagStyle}>
+        <div {...other} className={classes} style={{ ...tagStyle, ...style }}>
             {loading ? (
                 <Spin
                     spinning
