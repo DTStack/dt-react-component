@@ -46,7 +46,7 @@ pnpm install dt-react-component
 ```js
 import React from 'react';
 import { BlockHeader } from 'dt-react-component';
-const App = () => <BlockHeader title="分类标题" showBackground />;
+const App = () => <BlockHeader title="分类标题" background />;
 ```
 
 </div>
@@ -58,7 +58,7 @@ const App = () => <BlockHeader title="分类标题" showBackground />;
  */
 import React from 'react';
 import { BlockHeader } from 'dt-react-component';
-export default () => <BlockHeader title="分类标题" showBackground />;
+export default () => <BlockHeader title="分类标题" background />;
 ```
 
 </div>
