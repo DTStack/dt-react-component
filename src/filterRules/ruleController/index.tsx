@@ -137,8 +137,8 @@ export const RulesController = <T,>(props: IProps<T>) => {
             return (
                 <div
                     key={item.key}
-                    className={classnames('ruleController__condition', {
-                        'ruleController__condition--active': item.children.length > 1,
+                    className={classnames('dtc-ruleController__condition', {
+                        'dtc-ruleController__condition--active': item.children.length > 1,
                     })}
                 >
                     <div
@@ -193,15 +193,15 @@ export const RulesController = <T,>(props: IProps<T>) => {
         }
         // 渲染自定义的 component
         return (
-            <div className="ruleController__item" key={item.key}>
+            <div className="dtc-ruleController__item" key={item.key}>
                 {value?.children && (
                     <span
-                        className={classnames('ruleController__item--line', {
+                        className={classnames('dtc-ruleController__item--line', {
                             disabled,
                         })}
                     />
                 )}
-                <div className="ruleController__item--component">
+                <div className="dtc-ruleController__item--component">
                     {component({
                         rowKey: item.key,
                         disabled: composeDisabled,
@@ -211,7 +211,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
                     })}
                 </div>
                 {!composeDisabled && (
-                    <div className="ruleController__item--operation">
+                    <div className="dtc-ruleController__item--operation">
                         {item.level === maxLevel ? null : (
                             <PlusCircleOutlined
                                 className="icon"
@@ -233,7 +233,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
     calculateTreeItemHeight(value, !!disabled);
 
     return (
-        <div className="ruleController">
+        <div className="dtc-ruleController">
             {renderCondition(value, [], !!disabled || !!value.disabled)}
         </div>
     );

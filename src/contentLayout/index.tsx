@@ -11,7 +11,7 @@ interface IProps {
     className?: string;
 }
 
-export const NAME = 'content-layout';
+export const NAME = 'dtc-content-layout';
 
 const ContentLayout = (props: IProps) => {
     const { height = 'calc(100vh - 96px)', style, className, children } = props;

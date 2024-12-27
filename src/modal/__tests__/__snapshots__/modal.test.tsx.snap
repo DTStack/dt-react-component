@@ -15,7 +15,7 @@ exports[`Test Modal Component Should Match snapshot 1`] = `
       <div
         aria-labelledby="test-id"
         aria-modal="true"
-        class="ant-modal dt-modal"
+        class="ant-modal dtc-modal"
         role="dialog"
         style="width: 520px;"
       >
@@ -72,7 +72,7 @@ exports[`Test Modal Component Should Match snapshot 1`] = `
             style="padding: 0px;"
           >
             <section
-              class="dt-modal-body"
+              class="dtc-modal-body"
             >
               <div>
                 test

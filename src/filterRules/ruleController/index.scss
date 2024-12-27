@@ -1,7 +1,7 @@
-.ruleController {
+.dtc-ruleController {
     &__condition {
         position: relative;
-        .ruleController__condition--active {
+        .dtc-ruleController__condition--active {
             padding-left: 32px;
             .condition__box--line {
                 width: 33px;
