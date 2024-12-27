@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Empty as AntdEmpty, EmptyProps as AntdEmptyProps } from 'antd';
-import { LoupeIcon, SearchIcon } from 'dt-react-component/components/icon';
 
+import { LoupeIcon, SearchIcon } from '../components/icon';
 import './style.scss';
 
 export const IMG_MAP = {
