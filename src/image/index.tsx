@@ -1,4 +1,4 @@
-import React, { CSSProperties, useRef } from 'react';
+import React, { CSSProperties } from 'react';
 import { Spin } from 'antd';
 
 import useIntersectionObserver from '../useIntersectionObserver';
@@ -52,8 +52,7 @@ const ImageComponent = (props: IProps) => {
 
 const LazyImage = (props: IProps) => {
     const { src, ...rest } = props;
-    const imgRef = useRef<HTMLImageElement>(null);
-    useIntersectionObserver(([entry]) => {
+    const imgRef = useIntersectionObserver<HTMLImageElement>(([entry]) => {
         const { target, isIntersecting } = entry;
         if (isIntersecting) {
             const _target = target as HTMLImageElement;
@@ -62,7 +61,7 @@ const LazyImage = (props: IProps) => {
                 _target.style.opacity = '1';
             };
         }
-    }, imgRef);
+    });
     return <img ref={imgRef} {...rest} data-src={src} />;
 };
 
