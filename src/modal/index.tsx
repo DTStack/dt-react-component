@@ -35,7 +35,7 @@ export default function InternalModal({
 
     return (
         <Modal
-            className={classNames('dt-modal', className)}
+            className={classNames('dtc-modal', className)}
             bodyStyle={{ padding: 0, ...bodyStyle }}
             width={finalWidth}
             {...rest}
@@ -47,7 +47,7 @@ export default function InternalModal({
                     {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
                 />
             )}
-            <section className="dt-modal-body">{children}</section>
+            <section className="dtc-modal-body">{children}</section>
         </Modal>
     );
 }

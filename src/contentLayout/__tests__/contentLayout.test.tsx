@@ -26,7 +26,7 @@ describe('test contentLayout', () => {
                 />
             </ContentLayout>
         );
-        expect(container.querySelector<HTMLDivElement>('.content-layout')?.style.height).toBe(
+        expect(container.querySelector<HTMLDivElement>('.dtc-content-layout')?.style.height).toBe(
             'calc(100vh - 96px)'
         );
     });
@@ -47,7 +47,7 @@ describe('test contentLayout', () => {
                 />
             </ContentLayout>
         );
-        expect(container.querySelector<HTMLDivElement>('.content-layout')?.style.height).toBe(
+        expect(container.querySelector<HTMLDivElement>('.dtc-content-layout')?.style.height).toBe(
             '500px'
         );
     });

@@ -6,14 +6,14 @@ exports[`test contentLayout should support contentLayout success render 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="content-layout"
+        class="dtc-content-layout"
         style="height: calc(100vh - 96px);"
       />
     </div>
   </body>,
   "container": <div>
     <div
-      class="content-layout"
+      class="dtc-content-layout"
       style="height: calc(100vh - 96px);"
     />
   </div>,
