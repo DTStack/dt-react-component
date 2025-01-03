@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, FormProps, Modal } from 'antd';
 import { ButtonProps, ButtonType } from 'antd/es/button';
+import useLocale from '../locale/useLocale';
 
 export interface IProps {
     confirmLoading?: boolean;
@@ -63,12 +64,14 @@ export const useFilterFormProps = (props = {}) => {
 };
 
 const ModalForm = (props: ModalProps) => {
+    const locale = useLocale('ModalWithForm');
+
     const {
         title,
         visible,
         record,
-        okText = '确定',
-        cancelText = '取消',
+        okText = locale.okText,
+        cancelText = locale.cancelText,
         modelClass,
         okType,
         width,

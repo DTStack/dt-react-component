@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
+import { Locale } from '../configProvider';
+import useLocale from '../locale/useLocale';
 
 export interface GlobalLoadingProps {
     className?: string;
@@ -8,18 +10,22 @@ export interface GlobalLoadingProps {
     mainBackground?: string;
     circleBackground?: string;
     titleColor?: string;
+    locale?: Locale['GlobalLoading'];
 }
 
-export default class GlobalLoading extends React.Component<GlobalLoadingProps, any> {
+class GlobalLoading extends React.Component<GlobalLoadingProps, any> {
     render() {
         const {
             prefix = '',
-            loadingTitle = '应用加载中，请等候～',
+            loadingTitle,
             mainBackground = '#F2F7FA',
             circleBackground = '#1D78FF',
             titleColor = '#3D446E',
             className = '',
+            locale,
         } = this.props;
+
+        const newLoadingTitle = loadingTitle || locale.loading;
 
         return (
             <div
@@ -31,7 +37,7 @@ export default class GlobalLoading extends React.Component<GlobalLoadingProps, a
                     <div
                         className="dtc-loading-title"
                         style={{ color: titleColor }}
-                    >{`${prefix}  ${loadingTitle}`}</div>
+                    >{`${prefix}  ${newLoadingTitle}`}</div>
                     <div className="dtc-bouncy-wrap">
                         <div className="dtc-dot-icon dtc-dc1">
                             <div className="dtc-dot" style={{ background: circleBackground }}></div>
@@ -48,3 +54,10 @@ export default class GlobalLoading extends React.Component<GlobalLoadingProps, a
         );
     }
 }
+
+const GlobalLoadingWrapper = (props: Omit<GlobalLoadingProps, 'locale'>) => {
+    const locale = useLocale('GlobalLoading');
+    return <GlobalLoading {...props} locale={locale} />;
+};
+
+export default GlobalLoadingWrapper;

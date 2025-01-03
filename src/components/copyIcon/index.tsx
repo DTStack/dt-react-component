@@ -1,15 +1,18 @@
 import * as React from 'react';
 import { Tooltip, message } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
+import useLocale from '../locale/useLocale';
+import { Locale } from '../configProvider';
 
 export interface CopyIconProps {
     text: string;
     style?: React.CSSProperties;
     title?: string;
     customRender?: React.ReactNode;
+    locale?: Locale['CopyIcon'];
 }
 
-export default class CopyIcon extends React.Component<any, any> {
+class CopyIcon extends React.Component<CopyIconProps, any> {
     fakeHandlerCallback: () => void;
     fakeHandler: EventListener | void;
     fakeElem: HTMLTextAreaElement;
@@ -82,15 +85,16 @@ export default class CopyIcon extends React.Component<any, any> {
     }
 
     handleResult(succeeded: any) {
+        const { locale } = this.props;
         if (succeeded) {
-            message.success('复制成功');
+            message.success(locale.copied);
         } else {
-            message.error('不支持');
+            message.error(locale.notSupport);
         }
     }
 
     render() {
-        let { customRender, text, style, title, ...rest } = this.props;
+        let { customRender, text, style, title, locale, ...rest } = this.props;
 
         style = {
             cursor: 'pointer',
@@ -101,7 +105,7 @@ export default class CopyIcon extends React.Component<any, any> {
         return customRender ? (
             <span onClick={this.copy.bind(this, text)}>{customRender}</span>
         ) : (
-            <Tooltip placement="right" title={title || '复制'}>
+            <Tooltip placement="right" title={title || locale.copy}>
                 <CopyOutlined
                     {...rest}
                     className="c-copyIcon"
@@ -112,3 +116,10 @@ export default class CopyIcon extends React.Component<any, any> {
         );
     }
 }
+
+const CopyIconWrapper = (props: Omit<CopyIconProps, 'locale'>) => {
+    const locale = useLocale('CopyIcon');
+    return <CopyIcon {...props} locale={locale} />;
+};
+
+export default CopyIconWrapper;

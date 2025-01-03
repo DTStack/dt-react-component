@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { Modal, AutoComplete, Input, Row, Col } from 'antd';
+import { Locale } from '../configProvider';
+import useLocale from '../locale/useLocale';
 
 export interface SearchModalProps {
     visible: boolean;
@@ -8,6 +10,7 @@ export interface SearchModalProps {
     title?: string | null;
     placeholder?: string;
     prefixRender?: React.ReactNode;
+    locale?: Locale['SearchModal'];
     onChange?: (value: string) => void;
     onSelect?: (value: string, option: Object) => void;
     onCancel?: () => void;
@@ -30,15 +33,22 @@ class SearchModal extends React.Component<SearchModalProps, any> {
     render() {
         const {
             visible,
-            title = '搜索并打开',
+            title,
             prefixRender,
             dataSource = [],
             // bodyStyle,
-            placeholder = '请输入',
+            placeholder,
+            locale,
             ...rest
         } = this.props;
         return (
-            <Modal {...rest} visible={visible} onCancel={this.onCancel} footer={null} title={title}>
+            <Modal
+                {...rest}
+                visible={visible}
+                onCancel={this.onCancel}
+                footer={null}
+                title={title || locale.title}
+            >
                 <Row align="middle" justify="center">
                     {prefixRender && (
                         <Col span={6} style={{ paddingRight: '12px' }}>
@@ -52,7 +62,7 @@ class SearchModal extends React.Component<SearchModalProps, any> {
                             onSelect={this.onSelect}
                             onSearch={this.onChange}
                         >
-                            <Input.Search placeholder={placeholder} />
+                            <Input.Search placeholder={placeholder || locale.placeholder} />
                         </AutoComplete>
                     </Col>
                 </Row>
@@ -60,4 +70,11 @@ class SearchModal extends React.Component<SearchModalProps, any> {
         );
     }
 }
-export default SearchModal;
+
+const SearchModalWrapper = (props: Omit<SearchModalProps, 'locale'>) => {
+    const locale = useLocale('SearchModal');
+    const { visible, dataSource, ...reset } = props;
+    return <SearchModal {...reset} visible={visible} dataSource={dataSource} locale={locale} />;
+};
+
+export default SearchModalWrapper;

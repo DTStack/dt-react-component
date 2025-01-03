@@ -6,6 +6,8 @@ import type { HotTableProps } from '@handsontable/react';
 import classNames from 'classnames';
 import 'handsontable/dist/handsontable.full.css';
 import 'handsontable/languages/zh-CN.js';
+import useLocale from '../locale/useLocale';
+import { Locale } from '../configProvider';
 
 type IOptions = HotTableProps & {
     /** 是否展示复制值以及列名 */
@@ -24,6 +26,7 @@ export interface SpreadSheetProps {
         /** 字段类型 */
         type: string;
     }>;
+    locale?: Locale['SpreadSheet'];
     hotTableInstanceRef?: (instance: any) => void;
 }
 
@@ -153,7 +156,9 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                     if (!isShowColHeaders) return false;
                     // handsontable 不支持 renderCustomHeader，所以只能用 html string 实现 tooltip
                     const fieldTypeStr = columnTypes?.[index]?.type;
-                    const title = fieldTypeStr ? `${columns?.[index]}: ${fieldTypeStr}` : columns?.[index];
+                    const title = fieldTypeStr
+                        ? `${columns?.[index]}: ${fieldTypeStr}`
+                        : columns?.[index];
                     return `<span title="${title}">${title}</span>`;
                 }}
                 data={showData}
@@ -176,4 +181,10 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         );
     }
 }
-export default SpreadSheet;
+
+const SpreadSheetWrapper = (props: Omit<SpreadSheetProps, 'locale'>) => {
+    const locale = useLocale('SpreadSheet');
+    return <SpreadSheet {...props} locale={locale} />;
+};
+
+export default SpreadSheetWrapper;

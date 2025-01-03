@@ -3,6 +3,8 @@ import { Button } from 'antd';
 
 import MyIcon from './icon';
 import KeyEventListener from '../keyEventListener';
+import { Locale } from '../configProvider';
+import useLocale from '../locale/useLocale';
 
 const { KeyCombiner } = KeyEventListener;
 declare let document: any;
@@ -14,12 +16,13 @@ export interface FullscreenProps {
     iconStyle?: object;
     fullIcon?: React.ReactNode;
     exitFullIcon?: React.ReactNode;
+    locale?: Locale['Fullscreen'];
     [propName: string]: any;
 }
 export interface FullscreenState {
     isFullScreen: boolean;
 }
-export default class Fullscreen extends React.Component<FullscreenProps, FullscreenState> {
+class Fullscreen extends React.Component<FullscreenProps, FullscreenState> {
     state: FullscreenState = {
         isFullScreen: false,
     };
@@ -136,8 +139,8 @@ export default class Fullscreen extends React.Component<FullscreenProps, Fullscr
     };
 
     render() {
-        const { themeDark, fullIcon, exitFullIcon, iconStyle, ...other } = this.props;
-        const title = this.state.isFullScreen ? '退出全屏' : '全屏';
+        const { themeDark, fullIcon, exitFullIcon, iconStyle, locale, ...other } = this.props;
+        const title = this.state.isFullScreen ? locale.exitFull : locale.full;
         // const iconType = this.state.isFullScreen ? 'exit-fullscreen' : 'fullscreen';
         const customIcon = this.state.isFullScreen ? exitFullIcon : fullIcon;
         return (
@@ -167,3 +170,10 @@ export default class Fullscreen extends React.Component<FullscreenProps, Fullscr
         );
     }
 }
+
+const FullscreenWrapper = (props: Omit<FullscreenProps, 'locale'>) => {
+    const locale = useLocale('Fullscreen');
+    return <Fullscreen {...props} locale={locale} />;
+};
+
+export default FullscreenWrapper;

@@ -1,16 +1,19 @@
 import React from 'react';
 import { Input, message } from 'antd';
+import { Locale } from '../configProvider';
+import useLocale from '../locale/useLocale';
 export interface EditInputProps {
     value?: string | number;
     onChange?: (e) => void;
     max?: number;
+    locale?: Locale['EditInput'];
     [propName: string]: any;
 }
 
 export interface EditInputPropsStates {
     value: string | number;
 }
-export default class EditInput extends React.PureComponent<EditInputProps, EditInputPropsStates> {
+class EditInput extends React.PureComponent<EditInputProps, EditInputPropsStates> {
     constructor(props: EditInputProps) {
         super(props);
         this.state = {
@@ -34,10 +37,11 @@ export default class EditInput extends React.PureComponent<EditInputProps, EditI
         this.props.onChange(e);
     };
     onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { locale } = this.props;
         const value = e.target.value;
         const { max = 64 } = this.props;
         if (value && max && value.length > max) {
-            message.warning(`字符长度不可超过${max}`);
+            message.warning(locale.description);
             this.setState({
                 value: value.substring(0, max),
             });
@@ -61,3 +65,10 @@ export default class EditInput extends React.PureComponent<EditInputProps, EditI
         );
     }
 }
+
+const EditInputWrapper = (props: Omit<EditInputProps, 'locale'>) => {
+    const locale = useLocale('EditInput');
+    return <EditInput {...props} locale={locale} />;
+};
+
+export default EditInputWrapper;
