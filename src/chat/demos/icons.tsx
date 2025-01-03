@@ -62,7 +62,7 @@ export default function () {
                         onClick={() => handleSubmit()}
                         disabled={chat.loading() || !value}
                     >
-                        <Chat.Icon.SendIcon style={{ fontSize: 16, padding: '8px 16px' }} />
+                        <Chat.Icon.SendIcon style={{ fontSize: 16 }} />
                     </Chat.Button>
                 </div>
             </Chat>
