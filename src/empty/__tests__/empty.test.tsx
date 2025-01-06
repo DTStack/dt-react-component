@@ -46,6 +46,12 @@ describe('Empty', () => {
         expect(srcValue).toEqual(IMG_MAP['project']);
     });
 
+    it('should support empty render correct img for search type', () => {
+        const { container } = render(<Empty type="search" />);
+        const srcValue = container.querySelector('img')!.getAttribute('src');
+        expect(srcValue).toEqual(IMG_MAP['search']);
+    });
+
     it('should show correct content when not empty', () => {
         const { container } = render(
             <Empty type="project" showEmpty={false}>
