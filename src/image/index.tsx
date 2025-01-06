@@ -51,7 +51,7 @@ const ImageComponent = (props: IProps) => {
 };
 
 const LazyImage = (props: IProps) => {
-    const { src, ...rest } = props;
+    const { src, className, style, ...rest } = props;
     const imgRef = useIntersectionObserver<HTMLImageElement>(([entry]) => {
         const { target, isIntersecting } = entry;
         if (isIntersecting) {
@@ -62,13 +62,13 @@ const LazyImage = (props: IProps) => {
             };
         }
     });
-    return <img ref={imgRef} {...rest} data-src={src} />;
+    return <img className={className} style={style} ref={imgRef} {...rest} data-src={src} />;
 };
 
 const NormalImage = (props: IProps) => {
-    const { src: originSrc, loader = <Spin spinning />, ...rest } = props;
+    const { src: originSrc, className, style, loader = <Spin spinning />, ...rest } = props;
     const { src, isLoading } = useImage({ src: originSrc });
-    if (src) return <img {...rest} src={src} />;
+    if (src) return <img {...rest} className={className} style={style} src={src} />;
     if (isLoading) return loader;
     return null;
 };

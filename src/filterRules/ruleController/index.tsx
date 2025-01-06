@@ -16,6 +16,8 @@ interface IProps<T> {
     disabled?: boolean; // 编辑/查看状态
     maxLevel: number; // 节点最深层级数
     maxSize: number; // 节点最大子节点数量
+    className?: string;
+    style?: React.CSSProperties;
     component: (props: IComponentProps<T>) => React.ReactNode; // 自定义展示组件
     onAddCondition: (value: { key: string; isOut?: boolean }) => void; // 新增节点
     onDeleteCondition: (key: string) => void; // 删除节点
@@ -35,6 +37,8 @@ export const RulesController = <T,>(props: IProps<T>) => {
         disabled,
         maxLevel,
         maxSize,
+        className,
+        style,
         component,
         onAddCondition,
         onDeleteCondition,
@@ -233,7 +237,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
     calculateTreeItemHeight(value, !!disabled);
 
     return (
-        <div className="dtc-ruleController">
+        <div className={classnames('dtc-ruleController', className)} style={style}>
             {renderCondition(value, [], !!disabled || !!value.disabled)}
         </div>
     );

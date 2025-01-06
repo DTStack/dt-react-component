@@ -9,6 +9,7 @@ export interface IGlobalLoadingProps {
     mainBackground?: string;
     circleBackground?: string;
     titleColor?: string;
+    style?: React.CSSProperties;
 }
 
 const GlobalLoading: React.FC<IGlobalLoadingProps> = function (props) {
@@ -18,13 +19,14 @@ const GlobalLoading: React.FC<IGlobalLoadingProps> = function (props) {
         circleBackground = '#1D78FF',
         titleColor = '#3D446E',
         className = '',
+        style,
     } = props;
     const prefixCls = 'dtc-global-loading';
 
     return (
         <div
             className={classNames(`${prefixCls}-wrapper`, className)}
-            style={{ background: mainBackground }}
+            style={{ background: mainBackground, ...style }}
             data-testid="test-globalLoading"
         >
             <div className={`${prefixCls}-center`}>
