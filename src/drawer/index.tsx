@@ -2,7 +2,7 @@ import React, { CSSProperties, useEffect, useState } from 'react';
 import { CloseOutlined } from '@ant-design/icons';
 import { Alert, AlertProps, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
-import { omit } from 'lodash';
+import { omit } from 'lodash-es';
 import RcDrawer, { DrawerProps as AntdDrawerProps } from 'rc-drawer';
 
 import motionProps from './motion';

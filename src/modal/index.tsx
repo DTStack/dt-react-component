@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, type AlertProps, Modal, type ModalProps } from 'antd';
 import classNames from 'classnames';
-import { omit } from 'lodash';
+import { omit } from 'lodash-es';
 
 import './index.scss';
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
-import type { DebounceSettings } from 'lodash';
-import { debounce } from 'lodash';
+import type { DebounceSettings } from 'lodash-es';
+import { debounce } from 'lodash-es';
 
 const useDebounce = <T extends (...args: any) => any>(
     func: T,
