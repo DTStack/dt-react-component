@@ -7,7 +7,7 @@ import type {
     CheckboxValueType,
 } from 'antd/lib/checkbox/Group';
 import classNames from 'classnames';
-import { isEqual } from 'lodash';
+import { isEqual } from 'lodash-es';
 import List from 'rc-virtual-list';
 
 import './style.scss';

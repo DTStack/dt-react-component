@@ -11,5 +11,6 @@ module.exports = {
         '\\.(css|scss|less)$': '<rootDir>/tests/styleMock.js',
         // make tests access in handsontable@6.22.0
         '@babel/polyfill/lib/noConflict': '<rootDir>/tests/styleMock.js',
+        '^lodash-es$': 'lodash',
     },
 };

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { merge } from 'lodash';
+import { merge } from 'lodash-es';
 
 export type Fetcher<T, P> = (params: P) => Promise<{ data: T[]; total: number }>;
 

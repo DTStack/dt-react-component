@@ -1,7 +1,7 @@
 import React from 'react';
 import { message } from 'antd';
 import { InternalNamePath } from 'antd/lib/form/interface';
-import { clone } from 'lodash';
+import { clone } from 'lodash-es';
 import shortId from 'shortid';
 
 import { RulesController } from './ruleController';
