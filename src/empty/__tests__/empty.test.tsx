@@ -46,10 +46,16 @@ describe('Empty', () => {
         expect(srcValue).toEqual(IMG_MAP['project']);
     });
 
-    it('should support empty render correct img for search type', () => {
-        const { container } = render(<Empty type="search" />);
-        const srcValue = container.querySelector('img')!.getAttribute('src');
-        expect(srcValue).toEqual(IMG_MAP['search']);
+    it('should render SearchIcon and LoupeIcon when type is search and active is true', () => {
+        const { container } = render(<Empty type="search" active />);
+        expect(container.querySelector('.dtc-empty__search')).toBeInTheDocument();
+        expect(container.querySelector('.dtc-empty__loupe')).toBeInTheDocument();
+    });
+
+    it('should render SearchIcon and LoupeIcon when type is search and active is false', () => {
+        const { container } = render(<Empty type="search" active={false} />);
+        expect(container.querySelector('.dtc-empty__search')).toBeFalsy();
+        expect(container.querySelector('.dtc-empty__loupe')).toBeFalsy();
     });
 
     it('should show correct content when not empty', () => {
