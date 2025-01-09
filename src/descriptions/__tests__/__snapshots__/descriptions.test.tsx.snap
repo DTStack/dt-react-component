@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Descriptions match snapshot: As same as antd's Descriptions 1`] = `
+<DocumentFragment>
+  <div
+    class="ant-descriptions ant-descriptions-bordered"
+  >
+    <div
+      class="ant-descriptions-view"
+    >
+      <table>
+        <tbody>
+          <tr
+            class="ant-descriptions-row"
+          >
+            <th
+              class="ant-descriptions-item-label"
+              colspan="1"
+            >
+              <span>
+                名称
+              </span>
+            </th>
+            <td
+              class="ant-descriptions-item-content"
+              colspan="1"
+            >
+              <span>
+                我是 dt-react-component 组件库
+              </span>
+            </td>
+            <th
+              class="ant-descriptions-item-label"
+              colspan="1"
+            >
+              <span>
+                描述
+              </span>
+            </th>
+            <td
+              class="ant-descriptions-item-content"
+              colspan="1"
+            >
+              <span>
+                <div
+                  style="width: 0px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; min-width: 100%;"
+                >
+                  很长很长的描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述，长度甚至超过了一行
+                </div>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Test Descriptions match snapshot: Fixed table layout 1`] = `
+<DocumentFragment>
+  <div
+    class="ant-descriptions ant-descriptions-bordered dtc-descriptions__fixed"
+  >
+    <div
+      class="ant-descriptions-view"
+    >
+      <table>
+        <tbody>
+          <tr
+            class="ant-descriptions-row"
+          >
+            <th
+              class="ant-descriptions-item-label"
+              colspan="1"
+            >
+              <span>
+                名称
+              </span>
+            </th>
+            <td
+              class="ant-descriptions-item-content"
+              colspan="1"
+            >
+              <span>
+                我是 dt-react-component 组件库
+              </span>
+            </td>
+            <th
+              class="ant-descriptions-item-label"
+              colspan="1"
+            >
+              <span>
+                描述
+              </span>
+            </th>
+            <td
+              class="ant-descriptions-item-content"
+              colspan="1"
+            >
+              <span>
+                <div
+                  style="width: 0px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; min-width: 100%;"
+                >
+                  很长很长的描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述，长度甚至超过了一行
+                </div>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</DocumentFragment>
+`;
