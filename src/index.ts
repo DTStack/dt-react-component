@@ -4,6 +4,7 @@ export { default as CollapsibleActionItems } from './collapsibleActionItems';
 export { default as ContentLayout } from './contentLayout';
 export { default as ContextMenu } from './contextMenu';
 export { default as Copy } from './copy';
+export { default as Descriptions } from './descriptions';
 export { default as Drawer } from './drawer';
 export { default as Dropdown } from './dropdown';
 export { default as EllipsisText } from './ellipsisText';
