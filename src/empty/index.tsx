@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { Empty as AntdEmpty, EmptyProps as AntdEmptyProps } from 'antd';
 import classNames from 'classnames';
 
+import { LoupeIcon, SearchIcon } from '../components/icon';
 import './style.scss';
 
 export const IMG_MAP = {
@@ -18,6 +19,7 @@ export interface EmptyProps extends AntdEmptyProps {
     size?: 'default' | 'large';
     showEmpty?: boolean;
     extra?: ReactNode;
+    active?: boolean;
 }
 
 const Empty = (props: EmptyProps) => {
@@ -25,6 +27,7 @@ const Empty = (props: EmptyProps) => {
         type = 'default',
         size = 'default',
         showEmpty = true,
+        active = false,
         children,
         image,
         imageStyle,
@@ -33,10 +36,22 @@ const Empty = (props: EmptyProps) => {
         style,
         ...restProps
     } = props;
+    const img = () => {
+        if (type === 'search' && active) {
+            return (
+                <div className="dtc-empty__container">
+                    <SearchIcon className="dtc-empty__search" />
+                    <LoupeIcon className="dtc-empty__loupe" />
+                </div>
+            );
+        } else if (IMG_MAP[type]) {
+            return <img src={require(`./emptyImg/${IMG_MAP[type]}`)} />;
+        }
 
-    let newImage: ReactNode = IMG_MAP[type] ? (
-        <img src={require('./emptyImg/' + IMG_MAP[type])}></img>
-    ) : null;
+        return null;
+    };
+
+    let newImage: ReactNode = img() || null;
     if (image) newImage = image as ReactNode;
 
     const height = size === 'default' ? 80 : 100;
