@@ -26,7 +26,7 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
     { data, placeholder, robotIcon = true, scrollable = true, onRegenerate, onStop },
     forwardedRef
 ) {
-    const { maxRegenerateCount, copy } = useContext();
+    const { maxRegenerateCount, copy, regenerate } = useContext();
     const containerRef = useRef<HTMLDivElement>(null);
 
     const [isStickyAtBottom, setIsStickyAtBottom] = useState<boolean>(true);
@@ -105,14 +105,18 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
             {dataValid ? (
                 <div className="dtc__aigc__content__inner__holder">
                     {data.map((row, idx) => {
+                        const defaultRegenerate =
+                            idx === data.length - 1 && row.messages.length < maxRegenerateCount;
                         return (
                             <React.Fragment key={row.id}>
                                 <Prompt data={row} />
                                 <Message
+                                    prompt={row}
                                     data={row.messages}
                                     regenerate={
-                                        idx === data.length - 1 &&
-                                        row.messages.length < maxRegenerateCount
+                                        typeof regenerate === 'function'
+                                            ? regenerate(row, idx, data)
+                                            : regenerate ?? defaultRegenerate
                                     }
                                     copy={copy}
                                     onRegenerate={(message) => onRegenerate?.(message, row)}

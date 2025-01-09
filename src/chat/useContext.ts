@@ -1,5 +1,6 @@
 import React from 'react';
 import { type Components } from 'react-markdown';
+import { type ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 
 import { type ICopyProps } from '../copy';
 import type { Message, Prompt } from './entity';
@@ -22,8 +23,14 @@ export interface IChatContext {
      * 重新回答的最大次数
      */
     maxRegenerateCount: number;
+    /**
+     * 是否支持重新生成
+     */
+    regenerate?: boolean | ((prompt: Prompt, index: number, array: Prompt[]) => boolean);
     copy?: boolean | CopyOptions;
     messageIcons?: React.ReactNode | ((record: Message, prompt: Prompt) => React.ReactNode);
+    rehypePlugins?: ReactMarkdownOptions['rehypePlugins'];
+    remarkPlugins?: ReactMarkdownOptions['remarkPlugins'];
 }
 
 export const context = React.createContext<IChatContext>({
