@@ -169,17 +169,20 @@ export default function useChat<
     function _updateMessage(
         promptId: Id,
         messageId: Id,
-        predicate: (message: Message) => Message
+        predicate: (message: Message) => Message,
+        triggerRerender?: boolean
     ): void;
     function _updateMessage(
         promptId: Id,
         messageId: Id,
-        data: Partial<Omit<MessageProperties, 'id'>>
+        data: Partial<Omit<MessageProperties, 'id'>>,
+        triggerRerender?: boolean
     ): void;
     function _updateMessage(
         promptId: Id,
         messageId: Id,
-        dataOrPredicate: Partial<Omit<MessageProperties, 'id'>> | ((message: Message) => Message)
+        dataOrPredicate: Partial<Omit<MessageProperties, 'id'>> | ((message: Message) => Message),
+        triggerRerender?: boolean
     ) {
         if (!state.current) return;
         state.current = produce(state.current, (draft) => {
@@ -192,7 +195,9 @@ export default function useChat<
                 Object.assign(message, dataOrPredicate);
             }
         });
-        update();
+        if (triggerRerender !== false) {
+            update();
+        }
     }
 
     function _getMessage(promptId: Id, messageId: Id) {

@@ -17,6 +17,8 @@ export default function Button({ type = 'default', className, children, ...rest 
     useEffect(() => {
         if (!document.querySelector(`.${GLOBAL_GRADIENT_CLASSNAME}`)) {
             const div = document.createElement('div');
+            div.style.setProperty('width', '0');
+            div.style.setProperty('height', '0');
             div.className = GLOBAL_GRADIENT_CLASSNAME;
             div.innerHTML = renderToString(
                 <svg width={0} height={0}>
