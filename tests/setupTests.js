@@ -1,3 +1,5 @@
+const { TextDecoder, TextEncoder } = require('node:util');
+
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: jest.fn().mockImplementation((query) => ({
@@ -23,3 +25,11 @@ Object.defineProperty(window, 'IntersectionObserver', {
         unobserve: jest.fn(),
     })),
 });
+
+window.ResizeObserver = class ResizeObserver {
+    constructor() {}
+    observe() {}
+    disconnect() {}
+};
+
+Object.assign(global, { TextDecoder, TextEncoder });
