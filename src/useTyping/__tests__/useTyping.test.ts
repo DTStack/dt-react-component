@@ -85,7 +85,7 @@ describe('Test useTyping hook', () => {
         expect(result.current.text).toBe(testText);
     });
 
-    it('Should stop immediately', () => {
+    it('Should stop immediately and get empty text', () => {
         const { result } = renderHook(() => {
             const [text, setText] = useState('');
             const typing = useTyping({
@@ -107,7 +107,7 @@ describe('Test useTyping hook', () => {
         expect(result.current.text).toBe('');
     });
 
-    it('Should type all text within one second', () => {
+    it('Should type all text within one second since close', () => {
         const { result } = renderHook(() => {
             const [text, setText] = useState('');
             const typing = useTyping({
@@ -156,5 +156,49 @@ describe('Test useTyping hook', () => {
         jest.advanceTimersByTime(1000);
         expect(result.current.isTyping).toBe(false);
         expect(result.current.text).toBe(testText + '\n' + testText);
+    });
+
+    it('Should type all text immediately', () => {
+        const { result } = renderHook(() => {
+            const [text, setText] = useState('');
+            const typing = useTyping({
+                onTyping(post) {
+                    setText(post);
+                },
+            });
+
+            useEffect(() => {
+                typing.start();
+                typing.push(testText + testText + testText);
+                typing.close(true);
+            }, []);
+
+            return { text, isTyping: typing.isTyping };
+        });
+
+        expect(result.current.isTyping).toBe(false);
+        expect(result.current.text).toBe(testText + testText + testText);
+    });
+
+    it('Should type empty text', () => {
+        const { result } = renderHook(() => {
+            const [text, setText] = useState('');
+            const typing = useTyping({
+                onTyping(post) {
+                    setText(post);
+                },
+            });
+
+            useEffect(() => {
+                typing.start();
+                typing.close();
+                typing.push(testText + testText + testText);
+            }, []);
+
+            return { text, isTyping: typing.isTyping };
+        });
+
+        expect(result.current.isTyping).toBe(false);
+        expect(result.current.text).toBe('');
     });
 });

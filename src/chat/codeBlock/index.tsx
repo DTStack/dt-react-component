@@ -7,7 +7,7 @@ import Copy, { type ICopyProps } from '../../copy';
 import { CopyIcon } from '../icon';
 import './index.scss';
 
-interface ICodeBlockProps {
+export interface ICodeBlockProps {
     copy?: boolean | ICopyProps;
     className?: string;
     style?: React.CSSProperties;

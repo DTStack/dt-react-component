@@ -40,5 +40,9 @@ export default function useMeasure<E extends Element = Element>() {
         };
     }, [element]);
 
-    return [ref, rect] as const;
+    function getElement() {
+        return element;
+    }
+
+    return [ref, rect, getElement] as const;
 }
