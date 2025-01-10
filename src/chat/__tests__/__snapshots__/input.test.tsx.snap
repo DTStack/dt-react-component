@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Chat Input Match snapshot 1`] = `
+<DocumentFragment>
+  <textarea
+    class="ant-input aigc-textarea"
+  />
+</DocumentFragment>
+`;
