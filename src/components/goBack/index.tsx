@@ -1,4 +1,4 @@
-import { Locale } from '../configProvider';
+import { Locale } from '../locale/useLocale';
 import GoBack from './goBack';
 import GoBackButton from './goBackButton';
 

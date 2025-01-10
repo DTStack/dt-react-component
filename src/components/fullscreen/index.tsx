@@ -3,8 +3,7 @@ import { Button } from 'antd';
 
 import MyIcon from './icon';
 import KeyEventListener from '../keyEventListener';
-import { Locale } from '../configProvider';
-import useLocale from '../locale/useLocale';
+import useLocale, { Locale } from '../locale/useLocale';
 
 const { KeyCombiner } = KeyEventListener;
 declare let document: any;

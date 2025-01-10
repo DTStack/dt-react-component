@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { Modal, AutoComplete, Input, Row, Col } from 'antd';
-import { Locale } from '../configProvider';
-import useLocale from '../locale/useLocale';
+import useLocale, { Locale } from '../locale/useLocale';
 
 export interface SearchModalProps {
     visible: boolean;

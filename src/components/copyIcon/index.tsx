@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Tooltip, message } from 'antd';
 import { CopyOutlined } from '@ant-design/icons';
-import useLocale from '../locale/useLocale';
-import { Locale } from '../configProvider';
+import useLocale, { Locale } from '../locale/useLocale';
 
 export interface CopyIconProps {
     text: string;

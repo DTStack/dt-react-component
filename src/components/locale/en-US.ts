@@ -1,4 +1,4 @@
-import { Locale } from '../configProvider';
+import { Locale } from './useLocale';
 
 const localeValues: Locale = {
     locale: 'zh-CN',

@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Locale } from '../configProvider';
-import useLocale from '../locale/useLocale';
+import useLocale, { Locale } from '../locale/useLocale';
 
 export interface GlobalLoadingProps {
     className?: string;

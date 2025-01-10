@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 import utils from '../utils';
-import useLocale from '../locale/useLocale';
-import { Locale } from '../configProvider';
+import useLocale, { Locale } from '../locale/useLocale';
+
 const prefixCls = 'dtc-chrome';
 
 interface ChromeDownloadProps {

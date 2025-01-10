@@ -2,8 +2,7 @@ import React from 'react';
 import { Input } from 'antd';
 import EllipsisText from '../ellipsisText';
 import classNames from 'classnames';
-import { Locale } from '../configProvider';
-import useLocale from '../locale/useLocale';
+import useLocale, { Locale } from '../locale/useLocale';
 
 type EditType = string | number;
 export interface EditCellProps {

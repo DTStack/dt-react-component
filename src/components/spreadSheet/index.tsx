@@ -6,8 +6,7 @@ import type { HotTableProps } from '@handsontable/react';
 import classNames from 'classnames';
 import 'handsontable/dist/handsontable.full.css';
 import 'handsontable/languages/zh-CN.js';
-import useLocale from '../locale/useLocale';
-import { Locale } from '../configProvider';
+import useLocale, { Locale } from '../locale/useLocale';
 
 type IOptions = HotTableProps & {
     /** 是否展示复制值以及列名 */

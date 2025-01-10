@@ -1,7 +1,6 @@
 import React from 'react';
 import { Input, message } from 'antd';
-import { Locale } from '../configProvider';
-import useLocale from '../locale/useLocale';
+import useLocale, { Locale } from '../locale/useLocale';
 export interface EditInputProps {
     value?: string | number;
     onChange?: (e) => void;
