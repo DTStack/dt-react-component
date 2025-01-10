@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Chat Button Match the snapshot: default button 1`] = `
+<DocumentFragment>
+  <button
+    class="ant-btn ant-btn-default ant-btn-background-ghost dtc__aigc__button dtc__aigc__button--default"
+    type="button"
+  >
+    <span
+      class="dtc__aigc__button__text"
+    >
+      Default
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Test Chat Button Match the snapshot: primary button 1`] = `
+<DocumentFragment>
+  <button
+    class="ant-btn ant-btn-default ant-btn-background-ghost dtc__aigc__button dtc__aigc__button--primary"
+    type="button"
+  >
+    <span
+      class="dtc__aigc__button__text"
+    >
+      Default
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Test Chat Button Match the snapshot: secondary button 1`] = `
+<DocumentFragment>
+  <button
+    class="ant-btn ant-btn-default ant-btn-background-ghost dtc__aigc__button dtc__aigc__button--secondary"
+    type="button"
+  >
+    <span
+      class="dtc__aigc__button__text"
+    >
+      Default
+    </span>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Test Chat Button expect ONLY one global gradient div: global gradient 1`] = `"<svg width="0" height="0"><defs><linearGradient id="secondary_linear_gradient" x1="1.18164" y1="3.93164" x2="13.9881" y2="8.54198" gradientUnits="userSpaceOnUse"><stop stop-color="#00BAC6"></stop><stop offset="0.5" stop-color="#0067FF"></stop><stop offset="1" stop-color="#450FDE"></stop></linearGradient><linearGradient id="secondary_linear_gradient_hover" x1="8.96582" y1="0.96582" x2="15.9711" y2="3.4877" gradientUnits="userSpaceOnUse"><stop stop-color="#00BAC6"></stop><stop offset="0.5" stop-color="#0067FF"></stop><stop offset="1" stop-color="#450FDE"></stop></linearGradient></defs></svg>"`;

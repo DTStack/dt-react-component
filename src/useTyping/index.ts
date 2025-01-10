@@ -87,7 +87,11 @@ export default function useTyping({ onTyping }: { onTyping: (post: string) => vo
         if (immediate) {
             window.clearInterval(closeInterval.current);
             window.clearInterval(interval.current);
+            interval.current = 0;
             onTyping(queue.current);
+            toggleIsTyping(false);
+            closeSignal.current = false;
+            isStart.current = false;
         } else {
             isStart.current = false;
             closeSignal.current = true;
@@ -95,6 +99,9 @@ export default function useTyping({ onTyping }: { onTyping: (post: string) => vo
             return new Promise<void>((resolve) => {
                 if (!interval.current) {
                     resolve();
+                    closeSignal.current = false;
+                    toggleIsTyping(false);
+                    window.clearInterval(closeInterval.current);
                 } else {
                     closeInterval.current = window.setInterval(() => {
                         if (!closeSignal.current) {
