@@ -1,4 +1,7 @@
 const { TextDecoder, TextEncoder } = require('node:util');
+const ResizeObserver = require('resize-observer-polyfill');
+
+global.ResizeObserver = ResizeObserver;
 
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
