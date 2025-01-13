@@ -38,14 +38,14 @@ export default function Message({
     onStop,
     onLazyRendered,
 }: IMessageProps) {
-    const divRef = useRef<HTMLDivElement>(null);
+    const divRef = useIntersectionObserver<HTMLDivElement>(handleObserverCb);
     const { components = {}, messageIcons, rehypePlugins, remarkPlugins } = useContext();
 
     // 当前 Message 的懒加载，是否已经加载过
     const [lazyRendered, setLazyRendered] = useState(false);
     const mountCallback = useRef(() => {});
 
-    const handleObserverCb = ([entry]: IntersectionObserverEntry[]) => {
+    function handleObserverCb([entry]: IntersectionObserverEntry[]) {
         if (entry.isIntersecting) {
             setLazyRendered((p) => {
                 if (!p) {
@@ -58,9 +58,7 @@ export default function Message({
                 return true;
             });
         }
-    };
-
-    useIntersectionObserver(handleObserverCb, divRef);
+    }
 
     const [current, setCurrent] = useState(data.length);
 
