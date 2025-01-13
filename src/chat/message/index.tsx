@@ -169,7 +169,7 @@ export default function Message({
                             type="link"
                             className="dtc__message__stopBtn"
                             onClick={() => onStop?.(record)}
-                            icon={<PauseIcon style={{ fontSize: 16, display: 'inline-flex' }} />}
+                            icon={<PauseIcon style={{ fontSize: 16, verticalAlign: 'sub' }} />}
                         >
                             停止回答
                         </Button>
