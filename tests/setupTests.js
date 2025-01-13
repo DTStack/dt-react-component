@@ -1,3 +1,8 @@
+const { TextDecoder, TextEncoder } = require('node:util');
+const ResizeObserver = require('resize-observer-polyfill');
+
+global.ResizeObserver = ResizeObserver;
+
 Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: jest.fn().mockImplementation((query) => ({
@@ -23,3 +28,17 @@ Object.defineProperty(window, 'IntersectionObserver', {
         unobserve: jest.fn(),
     })),
 });
+
+window.ResizeObserver = class ResizeObserver {
+    constructor() {}
+    observe() {}
+    disconnect() {}
+};
+
+window.IntersectionObserver = class IntersectionObserver {
+    constructor() {}
+    observe() {}
+    disconnect() {}
+};
+
+Object.assign(global, { TextDecoder, TextEncoder });
