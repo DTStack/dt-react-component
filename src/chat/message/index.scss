@@ -55,12 +55,12 @@
         text-align: center;
     }
     &__stopBtn {
-        margin: 4px auto 0;
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        gap: 4px;
-        line-height: 16px;
+        &.ant-btn {
+            margin: 4px auto 0;
+            .dtc__icon {
+                margin-right: 4px;
+            }
+        }
     }
     &__iconGroup {
         position: absolute;
