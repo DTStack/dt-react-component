@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test Content Match snapshot: normal 1`] = `
+exports[`Test Chat Content Match snapshot: normal 1`] = `
 <DocumentFragment>
   <div
     class="dtc__aigc__content__container dtc__aigc__content__container--valid"
@@ -40,7 +40,7 @@ exports[`Test Content Match snapshot: normal 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Test Content Match snapshot: placeholder 1`] = `
+exports[`Test Chat Content Match snapshot: placeholder 1`] = `
 <DocumentFragment>
   <div
     class="dtc__aigc__content__container"

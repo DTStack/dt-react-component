@@ -234,6 +234,8 @@ export default function useChat<
             const conversation = _getConversation();
             const prompt = conversation?.prompts.at(-1);
             const message = prompt?.messages.at(-1);
+            // 理论上这里不会出现没有 prompt 或 message 的情况
+            /* istanbul ignore next */
             if (!prompt || !message) return state.current;
             typing.start(message.content);
             typingIds.current = { promptId: prompt.id, messageId: message.id };
