@@ -170,7 +170,7 @@ describe('Test Chat Message', () => {
             button.fireClick(btn!);
         });
 
-        expect(onStop).toBeCalledWith(prompt.messages.at(-1));
+        expect(onStop).toBeCalledWith(prompt.messages[prompt.messages.length - 1]);
     });
 
     it('Should support configure copy', async () => {
@@ -242,18 +242,17 @@ describe('Test Chat Message', () => {
             />
         );
 
-        const ele = Array.from(
-            container
-                .querySelector('.dtc__message__iconGroup')
-                ?.querySelectorAll<HTMLDivElement>('.dtc__message__icon') || []
-        ).at(-1);
+        const nodeList = container
+            .querySelector('.dtc__message__iconGroup')
+            ?.querySelectorAll<HTMLDivElement>('.dtc__message__icon');
+        const ele = nodeList?.item(nodeList?.length - 1);
         expect(onRegenerate).not.toBeCalled();
         expect(ele).not.toBeNull();
 
         act(() => {
             fireEvent.click(ele!);
         });
-        expect(onRegenerate).toBeCalledWith(prompt.messages.at(-1));
+        expect(onRegenerate).toBeCalledWith(prompt.messages[prompt.messages.length - 1]);
 
         tooltip.fireOpen(ele);
         expect(getByText('重新生成')).toBeInTheDocument();
