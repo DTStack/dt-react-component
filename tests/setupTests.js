@@ -35,4 +35,10 @@ window.ResizeObserver = class ResizeObserver {
     disconnect() {}
 };
 
+window.IntersectionObserver = class IntersectionObserver {
+    constructor() {}
+    observe() {}
+    disconnect() {}
+};
+
 Object.assign(global, { TextDecoder, TextEncoder });

@@ -12,5 +12,6 @@ module.exports = {
         // make tests access in handsontable@6.22.0
         '@babel/polyfill/lib/noConflict': '<rootDir>/tests/styleMock.js',
         '^lodash-es$': 'lodash',
+        'react-markdown': '<rootDir>/node_modules/react-markdown/react-markdown.min.js',
     },
 };
