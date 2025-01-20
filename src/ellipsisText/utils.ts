@@ -99,44 +99,19 @@ export const getAvailableWidth = (ele: HTMLElement) => {
 };
 
 /**
- * @description 获取/向上获取非行内元素
+ * @description 获取/向上获取有效的父元素（非行内元素）
  * @param {Nullable<HTMLElement>} ele
  * @returns {Nullable<HTMLElement>}
  */
-export const getNonInlineElementWidth = (ele: Nullable<HTMLElement>): Nullable<HTMLElement> => {
+export const getValidContainerElement = (ele: Nullable<HTMLElement>): Nullable<HTMLElement> => {
     if (!ele) return ele;
 
     const { scrollWidth, parentElement } = ele;
 
     // 如果是行内元素，获取不到宽度，则向上寻找父元素
     if (scrollWidth === 0) {
-        return getNonInlineElementWidth(parentElement!);
+        return getValidContainerElement(parentElement!);
     }
 
     return ele;
-};
-
-/**
- * @description: 获取能够得到宽度的最近父元素宽度。行内元素无法获得宽度，需向上查找父元素
- * @param {Nullable<HTMLElement>} ele
- * @param {number} defaultWidth
- * @param {string | number} maxWidth
- * @returns
- */
-export const getContainerWidth = (
-    ele: Nullable<HTMLElement>,
-    defaultWidth: number,
-    maxWidth?: string | number
-): number | string => {
-    const container = getNonInlineElementWidth(ele);
-    if (!container) return defaultWidth;
-
-    // 如果设置了最大宽度，则直接返回宽度
-    if (maxWidth) {
-        return transitionWidth(container, maxWidth);
-    }
-
-    const availableWidth = getAvailableWidth(container);
-
-    return availableWidth < 0 ? 0 : availableWidth;
 };

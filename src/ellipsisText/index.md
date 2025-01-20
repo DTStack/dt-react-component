@@ -28,13 +28,13 @@ demo:
 
 ## API
 
-| 参数                  | 说明                                       | 类型                             | 默认值 |
-| --------------------- | ------------------------------------------ | -------------------------------- | ------ |
-| value                 | 显示文本内容                               | `ReactNode   \| () => ReactNode` | -      |
-| title                 | 提示文字                                   | `ReactNode   \| () => ReactNode` | value  |
-| className             | 为文本内容所在节点添加自定义样式名         | `string`                         | -      |
-| maxWidth              | 文本内容的最大宽度                         | `string \| number`               | -      |
-| watchParentSizeChange | 监听父元素大小的变更，默认监听 window 窗口 | ` boolean`                       | false  |
+| 参数                  | 说明                                                             | 类型                           | 默认值 |
+| --------------------- | ---------------------------------------------------------------- | ------------------------------ | ------ |
+| value                 | 显示文本内容                                                     | `ReactNode \| () => ReactNode` | -      |
+| title                 | 提示文字                                                         | `ReactNode \| () => ReactNode` | value  |
+| className             | 为文本内容所在节点添加自定义样式名                               | `string`                       | -      |
+| maxWidth              | 文本内容的最大宽度，默认自动计算父元素中的剩余宽度作为文本的宽度 | `string \| number`             | -      |
+| watchParentSizeChange | 监听父元素大小的变更，默认监听 window 窗口                       | ` boolean`                     | false  |
 
 :::info
 其余参数继承自 [继承 antd4.x 的 Tooltip](https://4x.ant.design/components/tooltip-cn/#API)

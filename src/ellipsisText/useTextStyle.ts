@@ -1,8 +1,14 @@
 import { CSSProperties, RefObject, useLayoutEffect, useReducer, useRef } from 'react';
 
-import { getContainerWidth, getRangeWidth, getStyle } from './utils';
+import {
+    getAvailableWidth,
+    getRangeWidth,
+    getStyle,
+    getValidContainerElement,
+    transitionWidth,
+} from './utils';
+import { DEFAULT_MAX_WIDTH } from '.';
 
-const DEFAULT_MAX_WIDTH = 120;
 const updateReducer = (num: number): number => (num + 1) % 1_000_000;
 export default function useTextStyle<T, E extends HTMLElement>(
     value: T,
@@ -15,14 +21,29 @@ export default function useTextStyle<T, E extends HTMLElement>(
 
     const ref = useRef<E>(null);
 
+    /**
+     * 获取能够得到宽度的最近父元素宽度。行内元素无法获得宽度，需向上查找父元素
+     * @returns {number}
+     */
     const getTextContainerWidth = () => {
         const textNode = ref.current!;
         const parentElement = textNode.parentElement!;
-        // 这里是获取 ref 元素占的宽度，在计算时，需要把 ref 元素隐藏，以免计算时影响结果
-        const oldDisplay = textNode.style.display;
-        textNode.style.display = 'none';
-        const containerWidth = getContainerWidth(parentElement, DEFAULT_MAX_WIDTH, maxWidth);
-        textNode.style.display = oldDisplay;
+        const container = getValidContainerElement(parentElement);
+
+        if (!container) return DEFAULT_MAX_WIDTH;
+
+        let containerWidth;
+
+        if (maxWidth) {
+            containerWidth = transitionWidth(container, maxWidth);
+        } else {
+            // 这里是获取 ref 元素占的宽度，在计算时，需要把 ref 元素隐藏，以免计算时影响结果
+            const oldDisplay = textNode.style.display;
+            textNode.style.display = 'none';
+            const availableWidth = getAvailableWidth(container);
+            containerWidth = availableWidth < 0 ? 0 : availableWidth;
+            textNode.style.display = oldDisplay;
+        }
 
         return containerWidth;
     };

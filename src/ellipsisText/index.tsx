@@ -7,6 +7,8 @@ import Resize from '../resize';
 import useTextStyle from './useTextStyle';
 import './style.scss';
 
+export const DEFAULT_MAX_WIDTH = 120;
+
 export interface IEllipsisTextProps extends AbstractTooltipProps {
     /**
      * 文本内容
