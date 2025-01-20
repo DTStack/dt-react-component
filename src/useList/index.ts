@@ -21,11 +21,45 @@ export interface IUseListOptions {
     immediate?: boolean;
 }
 
+/**
+ * 返回值
+ */
+export interface UseListResponseState<
+    T extends Record<string, any>,
+    P extends Record<string, any>
+> {
+    /**
+     * 请求是否执行中
+     */
+    loading: boolean;
+    /**
+     * 请求的相关参数以及结果数据的总数
+     */
+    params: P & { total: number };
+    /**
+     * 错误信息
+     */
+    error?: Error;
+    /**
+     * 返回的数据
+     */
+    data: T[];
+    mutate: (params?: Partial<P> | ((prev: P) => P), options?: IMutateOptions) => void;
+    /**
+     * 清空所有数据和状态
+     */
+    clear: () => void;
+    /**
+     * 清空数据
+     */
+    clearData: () => void;
+}
+
 export default function useList<T extends Record<string, any>, P extends Record<string, any>>(
     fetcher: Fetcher<T, P>,
     initialParams: P | (() => P),
     rawOptions: IUseListOptions = { immediate: true }
-) {
+): UseListResponseState<T, P> {
     const [error, setError] = useState<Error | undefined>(undefined);
     const [data, setData] = useState<T[]>([]);
     const [total, setTotal] = useState(0);
@@ -62,20 +96,22 @@ export default function useList<T extends Record<string, any>, P extends Record<
 
         if (nextOptions.revalidate) {
             if (nextOptions.clearData) {
-                setData([]);
-                setTotal(0);
-                setError(undefined);
+                clearData();
             }
             performFetch(tmp);
         }
     };
 
-    const clear = () => {
+    const clearData = () => {
         setData([]);
         setTotal(0);
+        setError(undefined);
+    };
+
+    const clear = () => {
+        clearData();
         setParams(initialParams);
         setLoading(false);
-        setError(undefined);
     };
 
     useEffect(() => {
@@ -84,5 +120,5 @@ export default function useList<T extends Record<string, any>, P extends Record<
         }
     }, []);
 
-    return { loading, params: { ...params, total }, error, data, mutate, clear };
+    return { loading, params: { ...params, total }, error, data, mutate, clear, clearData };
 }
