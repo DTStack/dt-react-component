@@ -2,6 +2,7 @@ import React from 'react';
 import { PieChartOutlined } from '@ant-design/icons';
 import BlockHeader from '../../../components/blockHeader';
 import EllipsisText from '../../../components/ellipsisText';
+import { Button } from 'antd';
 
 export default function BlockHeaderRender() {
     const style = {
@@ -30,7 +31,27 @@ export default function BlockHeaderRender() {
                 Hello World!
             </BlockHeader>
             <p style={style}>7、标题超长</p>
-            <BlockHeader title={<EllipsisText maxWidth={400} value="标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长" />} />
+            <BlockHeader
+                title={
+                    <EllipsisText
+                        maxWidth={400}
+                        value="标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长"
+                    />
+                }
+            />
+            <p style={style}>8、标题超长且有 afterTitle</p>
+            <div style={{ width: '50%' }}>
+                <BlockHeader
+                    title={
+                        <EllipsisText
+                            maxWidth={'100%'}
+                            value="标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长标题超长"
+                        />
+                    }
+                    afterTitle="这是 afterTitle"
+                    addonAfter={<Button size="small">选择</Button>}
+                />
+            </div>
             <br />
 
             <h3>大标题 + 无背景</h3>

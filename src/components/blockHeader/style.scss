@@ -40,6 +40,7 @@ $card_prefix: "dtc-block-header";
             flex: 1;
             display: flex;
             align-items: center;
+            min-width: 0;
             .#{$card_prefix}-before-title {
                 margin-right: 8px;
                 .default {
@@ -55,6 +56,8 @@ $card_prefix: "dtc-block-header";
                 color: #3D446E;
                 font-weight: 500;
                 margin-right: 4px;
+                flex: 1;
+                min-width: 0;
             }
             .#{$card_prefix}-after-title {
                 display: flex;
