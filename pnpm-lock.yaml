@@ -14,7 +14,6 @@ specifiers:
   '@testing-library/react': ^13.4.0
   '@testing-library/react-hooks': ^8.0.1
   '@testing-library/user-event': ^14.4.3
-  '@typed-mxgraph/typed-mxgraph': ^1.0.7
   '@types/jest': ^29.2.3
   '@types/lodash-es': ^4.17.12
   '@types/react': ^18.0.0
@@ -42,7 +41,6 @@ specifiers:
   ko-lint-config: 2.2.21
   lint-staged: ^13.0.3
   lodash-es: ^4.17.21
-  mxgraph: ^4.2.2
   prettier: ^2.7.1
   prettier-plugin-organize-imports: ^3.0.0
   prettier-plugin-packagejson: ^2.2.18
@@ -69,7 +67,6 @@ dependencies:
   handsontable: 6.2.2
   highlight.js: 10.7.3
   lodash-es: 4.17.21
-  mxgraph: 4.2.2
   rc-drawer: 5.1.0_react-dom@18.2.0+react@18.2.0
   rc-virtual-list: 3.11.2_react-dom@18.2.0+react@18.2.0
   shortid: 2.2.16
@@ -84,7 +81,6 @@ devDependencies:
   '@testing-library/react': 13.4.0_react-dom@18.2.0+react@18.2.0
   '@testing-library/react-hooks': 8.0.1_fe612284652e4cc2ad4794a5a269870f
   '@testing-library/user-event': 14.5.1
-  '@typed-mxgraph/typed-mxgraph': 1.0.8
   '@types/jest': 29.5.5
   '@types/lodash-es': 4.17.12
   '@types/react': 18.2.25
@@ -2635,10 +2631,6 @@ packages:
 
   /@tsconfig/node16/1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/@tsconfig/node16/-/node16-1.0.4.tgz}
-    dev: true
-
-  /@typed-mxgraph/typed-mxgraph/1.0.8:
-    resolution: {integrity: sha512-rzTbmD/XofRq0YZMY/BU9cjbCTw9q8rpIvWRhQO0DcgCx3+rpHTsVOk3pfuhcnUigUYNFkljmDkRuVjbl7zZoQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/@typed-mxgraph/typed-mxgraph/-/typed-mxgraph-1.0.8.tgz}
     dev: true
 
   /@types/argparse/1.0.38:
@@ -11353,11 +11345,6 @@ packages:
   /mute-stream/0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
     dev: true
-
-  /mxgraph/4.2.2:
-    resolution: {integrity: sha512-FrJc5AxzXSqiQNF+8CyJk6VxuKO4UVPgw32FZuFZ3X9W+JqOAQBTokZhh0ZkEqGpEOyp3z778ssmBTvdrTAdqw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npm.taobao.org/mxgraph/-/mxgraph-4.2.2.tgz}
-    deprecated: Package no longer supported. Use at your own risk
-    dev: false
 
   /nanoid/2.1.11:
     resolution: {integrity: sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==}
