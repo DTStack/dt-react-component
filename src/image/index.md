@@ -19,12 +19,12 @@ toc: content
 
 ### Props
 
-| 参数      | 说明               | 类型                  | 默认值 |
-| --------- | ------------------ | --------------------- | ------ |
-| src       | 图片资源           | `string`              | -      |
-| lazy      | 是否开启图片懒加载 | `boolean`             | -      |
-| className | 图片样式名         | `string`              |
-| style     | 图片样式           | `React.CSSProperties` |
-| width     | 图片样式           | `number`              |
-| height    | 图片样式           | `number`              |
-| loader    | 图片样式           | `JSX.Element \| null` |
+| 参数      | 说明                    | 类型                  | 默认值     |
+| --------- | ----------------------- | --------------------- | ---------- |
+| src       | 图片资源                | `string`              | -          |
+| lazy      | 是否开启图片懒加载      | `boolean`             | -          |
+| className | 图片样式名              | `string`              | -          |
+| style     | 图片样式                | `React.CSSProperties` | -          |
+| width     | 图片宽度                | `number`              | -          |
+| height    | 图片高度                | `number`              | -          |
+| loader    | 图片 loading 时展示内容 | `JSX.Element \| null` | `<Spin />` |
