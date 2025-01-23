@@ -188,9 +188,7 @@ describe('Test Chat Message', () => {
             fireEvent.click(ele!);
         });
         expect(onCopy).toBeCalledWith('My Name is dt-react-component');
-
-        // FIXME：这里应该给 false 表示不支持复制，但是代码里是相反的，最好是反一下
-        rerender(<Message prompt={prompt} data={prompt.messages} copy />);
+        rerender(<Message prompt={prompt} data={prompt.messages} copy={false} />);
         expect(container.querySelector(classNames)).toBeNull();
 
         onCopy.mockRestore();
