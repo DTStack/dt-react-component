@@ -96,7 +96,7 @@ export default function Message({
     const copyInfo = useMemo<{ disabled: boolean; options: CopyOptions }>(() => {
         if (typeof copy === 'boolean') {
             return {
-                disabled: copy,
+                disabled: !copy,
                 options: {},
             };
         }

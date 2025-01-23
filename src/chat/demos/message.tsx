@@ -1,19 +1,26 @@
 import React, { useMemo, useState } from 'react';
 import { Button, Space } from 'antd';
 import { Chat } from 'dt-react-component';
-import { MessageStatus } from 'dt-react-component/chat/entity';
+import { Message, MessageStatus, Prompt } from 'dt-react-component/chat/entity';
+
+class BasicPrompt extends Prompt {}
+class BasicMessage extends Message {}
 
 export default function () {
     const [status, setStatus] = useState<MessageStatus>(MessageStatus.DONE);
 
     const data = useMemo(() => {
-        return [
-            {
-                id: new Date().valueOf().toString(),
-                content: status === MessageStatus.DONE ? '输出完成' : '正在打字中...',
-                status,
-            } as any,
-        ];
+        return new BasicPrompt({
+            id: `prompt_${new Date().valueOf().toString()}`,
+            title: '这是一个标题',
+            messages: [
+                new BasicMessage({
+                    id: 'message_${new Date().valueOf().toString()}',
+                    content: status === MessageStatus.DONE ? '输出完成' : '正在打字中...',
+                    status,
+                }),
+            ],
+        });
     }, [status]);
 
     return (
@@ -30,7 +37,8 @@ export default function () {
                 </Button>
             </Space>
             <Chat.Message
-                data={data}
+                prompt={data}
+                data={data.messages}
                 regenerate
                 onStop={() => setStatus(MessageStatus.STOPPED)}
                 onRegenerate={() => console.log('regenerate')}

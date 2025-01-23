@@ -4,6 +4,9 @@ $primaryGradientHover: #08C4FF 0%, #4892FF 50%, #8A61FF 100%;
 .ant-btn.dtc__aigc__button {
     border: none;
     border-radius: 4px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
     &.ant-btn-sm {
         border-radius: 2px;
     }
