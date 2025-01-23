@@ -15,7 +15,7 @@
         "jsx": "react",
         "baseUrl": "./",
         "outDir": "./dist",
-        "typeRoots": ["node", "node_modules/@types", "node_modules/@typed-mxgraph"],
+        "typeRoots": ["node", "node_modules/@types"],
         "paths": {
             "@@/*": [".dumi/tmp/*"],
             "dt-react-component": ["src"],
