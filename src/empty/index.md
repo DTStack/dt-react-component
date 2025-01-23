@@ -167,7 +167,14 @@ import { Empty } from 'dt-react-component';
 import { Space } from 'antd';
 
 export default () => {
-    return <Empty description="搜索无数据" type="search" active={true} />;
+    return (
+        <>
+            <Empty description="搜索无数据" type="search" active={true} />
+            <Empty description="搜索无数据" type="search" />
+            <Empty description="搜索无数据" size="large" type="search" active={true} />
+            <Empty description="搜索无数据" size="large" type="search" />
+        </>
+    );
 };
 ```
 
