@@ -1,106 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Empty should support empty success render 1`] = `
-{
-  "asFragment": [Function],
-  "baseElement": <body>
-    <div>
-      <div
-        class="dtc-empty"
-      >
-        <div
-          class="ant-empty"
-        >
-          <div
-            class="ant-empty-image"
-            style="height: 80px;"
-          >
-            <img
-              src="empty_default.png"
-            />
-          </div>
-          <div
-            class="ant-empty-description"
-          >
-            No Data
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
+exports[`Empty match snapshots 1`] = `
+<DocumentFragment>
+  <div
+    class="ant-empty dtc-empty"
+  >
     <div
-      class="dtc-empty"
+      class="ant-empty-image"
     >
-      <div
-        class="ant-empty"
-      >
-        <div
-          class="ant-empty-image"
-          style="height: 80px;"
-        >
-          <img
-            src="empty_default.png"
-          />
-        </div>
-        <div
-          class="ant-empty-description"
-        >
-          No Data
-        </div>
-      </div>
+      <img
+        src="empty_default.png"
+      />
     </div>
-  </div>,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
+    <div
+      class="ant-empty-description"
+    >
+      No Data
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Empty match snapshots 2`] = `
+<DocumentFragment>
+  <div
+    class="ant-empty dtc-empty dtc-empty__large"
+  >
+    <div
+      class="ant-empty-image"
+    >
+      <img
+        src="empty_default.png"
+      />
+    </div>
+    <div
+      class="ant-empty-description"
+    >
+      No Data
+    </div>
+  </div>
+</DocumentFragment>
 `;
