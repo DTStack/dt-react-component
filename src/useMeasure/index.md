@@ -16,18 +16,10 @@ toc: content
 
 ## API
 
-### Params
-
-| 参数     | 说明                 | 类型                    | 默认值 |
-| -------- | -------------------- | ----------------------- | ------ |
-| onTyping | 打字输入中的回调函数 | `(post:string) => void` | -      |
-
 ### Returns
 
-| 参数     | 说明         | 类型                    | 默认值  |
-| -------- | ------------ | ----------------------- | ------- |
-| isTyping | 是否在打字中 | `boolean`               | `false` |
-| start    | 开启打字     | `() => void`            | -       |
-| push     | 输入文案     | `(post:string) => void` | -       |
-| close    | 关闭打字     | `() => void`            | -       |
-| stop     | 立即关闭打字 | `() => void`            | -       |
+| 参数       | 说明          | 类型                   | 默认值 |
+| ---------- | ------------- | ---------------------- | ------ |
+| ref        | DOM 实例      | `HTMLDivElement`       | -      |
+| rect       | DOMRect       | `UseMeasureRect`       | -      |
+| getElement | 获取 DOM 实例 | `() => HTMLDivElement` | -      |
