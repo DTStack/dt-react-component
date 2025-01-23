@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Tooltip } from 'antd';
+import useLocale from '../locale/useLocale';
 
 interface IProps {
     title?: string;
@@ -12,7 +13,7 @@ interface IProps {
 }
 
 const ProgressLine = ({
-    title = '暂无描述',
+    title,
     num = 0,
     percent = '0%',
     color = '#3BCEFF',
@@ -21,7 +22,8 @@ const ProgressLine = ({
     width = '280px',
 }: IProps) => {
     const slidePrefixCls = 'dtc-progress-line';
-    const label = `${title}: ${num}`;
+    const locale = useLocale('ProgressLine');
+    const label = `${title || locale.description}: ${num}`;
     return (
         <div className={`${slidePrefixCls} ${className}`}>
             {needTitle && (
