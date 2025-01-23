@@ -30,7 +30,6 @@ const Empty = (props: EmptyProps) => {
         active = false,
         children,
         image,
-        imageStyle,
         extra,
         className,
         style,
@@ -39,10 +38,10 @@ const Empty = (props: EmptyProps) => {
     const img = () => {
         if (type === 'search' && active) {
             return (
-                <div className="dtc-empty__container">
+                <>
                     <SearchIcon className="dtc-empty__search" />
                     <LoupeIcon className="dtc-empty__loupe" />
-                </div>
+                </>
             );
         } else if (IMG_MAP[type]) {
             return <img src={require(`./emptyImg/${IMG_MAP[type]}`)} />;
@@ -54,14 +53,20 @@ const Empty = (props: EmptyProps) => {
     let newImage: ReactNode = img() || null;
     if (image) newImage = image as ReactNode;
 
-    const height = size === 'default' ? 80 : 100;
-
     return showEmpty ? (
-        <div className={classNames('dtc-empty', className)} style={style}>
-            <AntdEmpty {...restProps} image={newImage} imageStyle={{ height, ...imageStyle }}>
-                {extra}
-            </AntdEmpty>
-        </div>
+        <AntdEmpty
+            className={classNames(
+                'dtc-empty',
+                size === 'large' && 'dtc-empty__large',
+                active && 'dtc-empty__active',
+                className
+            )}
+            style={style}
+            image={newImage}
+            {...restProps}
+        >
+            {extra}
+        </AntdEmpty>
     ) : (
         <>{children}</>
     );
