@@ -154,4 +154,42 @@ describe('Test useList hook', () => {
         expect(result.current.params.total).toBe(0);
         expect(result.current.error).toBe(undefined);
     });
+
+    it('Should ONLY clear data while not reset loading', async () => {
+        const fetcher = jest.fn().mockImplementation(
+            () =>
+                new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({
+                            total: 1,
+                            data: [{ uuid: 1 }],
+                        });
+                    }, 1000);
+                })
+        );
+
+        const { result } = renderHook(() =>
+            useList(fetcher, { current: 1, pageSize: 20, search: '' }, { immediate: false })
+        );
+        act(() => {
+            result.current.mutate({ current: 2 });
+        });
+
+        expect(result.current.loading).toBe(true);
+        expect(result.current.params.current).toBe(2);
+
+        act(() => {
+            result.current.clearData();
+        });
+        // clearData won't reset params and loading status
+        expect(result.current.loading).toBe(true);
+        expect(result.current.params.current).toBe(2);
+
+        act(() => {
+            result.current.clear();
+        });
+        // clear method will clear all data including params and loading status
+        expect(result.current.loading).toBe(false);
+        expect(result.current.params.current).toBe(1);
+    });
 });
