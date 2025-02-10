@@ -5,21 +5,19 @@ import '@testing-library/jest-dom/extend-expect';
 import Empty, { IMG_MAP } from '..';
 
 describe('Empty', () => {
-    test('should support empty success render', () => {
-        const wrapper = render(<Empty />);
-        expect(wrapper).toMatchSnapshot();
-    });
-    it('should support empty image default size', () => {
-        const { container } = render(<Empty size="large" />);
-        expect(container.querySelector<HTMLDivElement>('.ant-empty-image')?.style.height).toBe(
-            '100px'
-        );
+    test('match snapshots', () => {
+        expect(render(<Empty />).asFragment()).toMatchSnapshot();
+        expect(render(<Empty size="large" />).asFragment()).toMatchSnapshot();
     });
     it('should support empty image size should change', () => {
         const { container } = render(<Empty imageStyle={{ height: 20 }} />);
         expect(container.querySelector<HTMLDivElement>('.ant-empty-image')?.style.height).toBe(
             '20px'
         );
+    });
+    it('should render nothing for incorrect type', () => {
+        const { container } = render(<Empty type={'test' as any} />);
+        expect(container.querySelector<HTMLDivElement>('.ant-empty-image')?.innerHTML).toBe('');
     });
 
     it('should support empty image size from iamgeStyle', () => {
@@ -74,7 +72,7 @@ describe('Empty', () => {
                 <div className="data">show data</div>
             </Empty>
         );
-        expect(container.querySelector('.dtc-empty')?.children[0].classList).toContain('ant-empty');
+        expect(container.querySelector('.dtc-empty')?.classList).toContain('ant-empty');
     });
 
     it('should show correct antd empty children', () => {
