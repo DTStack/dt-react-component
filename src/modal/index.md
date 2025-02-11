@@ -18,6 +18,7 @@ toc: content
 <code src="./demos/size.tsx" title="尺寸"></code>
 <code src="./demos/banner.tsx" title="支持 banner"></code>
 <code src="./demos/bannerProps.tsx" title="支持传 banner 的 Props 属性"></code>
+<code src="./demos/draggable.tsx" title="draggable"></code>
 
 ## API
 

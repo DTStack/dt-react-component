@@ -3,11 +3,17 @@ import { Alert, type AlertProps, Modal as AntdModal, type ModalProps } from 'ant
 import classNames from 'classnames';
 import { omit } from 'lodash-es';
 
+import type { IFloatProps } from '../float';
+import Float from '../float';
+import useMergeOption from '../float/useMergeOption';
 import './index.scss';
 
 export interface IModalProps extends ModalProps {
     size?: 'small' | 'default' | 'middle' | 'large';
     banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
+    draggable?: IFloatProps['draggable'];
+    position?: IFloatProps['position'];
+    onPositionChange?: IFloatProps['onChange'];
 }
 
 const getWidthFromSize = (size: IModalProps['size']) => {
@@ -29,15 +35,41 @@ export default function Modal({
     children,
     width,
     className,
+    draggable = false,
+    position,
+    onPositionChange,
+    modalRender,
     ...rest
 }: IModalProps) {
     const finalWidth = width ?? getWidthFromSize(size);
 
+    const mergedDraggable = useMergeOption(
+        typeof draggable === 'boolean' ? draggable : { handle: '.ant-modal-header', ...draggable }
+    );
+
     return (
         <AntdModal
-            className={classNames('dtc-modal', className)}
+            className={classNames(
+                'dtc-modal',
+                !mergedDraggable.disabled && 'dtc-modal__draggable',
+                className
+            )}
             bodyStyle={{ padding: 0, ...bodyStyle }}
             width={finalWidth}
+            modalRender={(modal) =>
+                mergedDraggable.disabled ? (
+                    modalRender?.(modal) || modal
+                ) : (
+                    <Float
+                        draggable={mergedDraggable.options}
+                        position={position}
+                        style={{ width: finalWidth }}
+                        onChange={onPositionChange}
+                    >
+                        {modalRender?.(modal) || modal}
+                    </Float>
+                )
+            }
             {...rest}
         >
             {banner && (
