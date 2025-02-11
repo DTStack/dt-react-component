@@ -1,6 +1,11 @@
 $modal-max-height: 80vh;
 
 .dtc-modal {
+    &__draggable {
+        top: 0;
+        left: 0;
+        margin: 0;
+    }
     .ant-modal-content {
         max-height: $modal-max-height;
         display: flex;
