@@ -1,17 +1,16 @@
-import React from 'react';
+import Catalogue from './components/catalogue';
+import CatalogueTree from './components/tree';
+import './index.scss';
 
-import type { ITreeProps } from './components/tree';
-import { Tree, TreeSelect } from './components';
-
-export type { ITreeDataItem, ITreeProps } from './components/tree';
-export type { ITreeHeaderProps } from './components/tree/components/header';
-export { getExpendKeysByQuery, getIcon, loopTree } from './components/tree/helpers';
-
-function Catalogue(props: ITreeProps) {
-    return <Tree {...props} />;
+type OriginInputType = typeof Catalogue;
+interface CatalogueInterface extends OriginInputType {
+    Tree: typeof CatalogueTree;
 }
 
-Catalogue.Tree = Tree;
-Catalogue.TreeSelect = TreeSelect;
+const WrapperCatalogue = Catalogue;
+(WrapperCatalogue as CatalogueInterface).Tree = CatalogueTree;
 
-export default Catalogue;
+export * from './components/catalogue';
+export * from './components/tree';
+
+export default WrapperCatalogue as CatalogueInterface;
