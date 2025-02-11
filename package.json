@@ -118,6 +118,7 @@
         "lodash-es": "^4.17.21",
         "rc-drawer": "~5.1.0",
         "rc-virtual-list": "^3.4.13",
+        "react-draggable": "~4.4.6",
         "shortid": "^2.2.16",
         "showdown": "^1.9.0",
         "use-clippy": "^1.0.9"
