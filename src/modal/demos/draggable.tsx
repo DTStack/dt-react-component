@@ -4,6 +4,7 @@ import { Modal, TinyTag } from 'dt-react-component';
 
 export default function Basic() {
     const [visible, setVisible] = useState(false);
+    const [position, setPosition] = useState({ x: 120, y: 120 });
 
     return (
         <>
@@ -23,6 +24,8 @@ export default function Basic() {
                 draggable={{
                     bounds: 'body',
                 }}
+                position={position}
+                onPositionChange={(_, { x, y }) => setPosition({ x, y })}
                 visible={visible}
                 onCancel={() => setVisible(false)}
                 onOk={() => setVisible(false)}
