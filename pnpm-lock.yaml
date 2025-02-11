@@ -17,7 +17,7 @@ specifiers:
   '@types/jest': ^29.2.3
   '@types/lodash-es': ^4.17.12
   '@types/react': ^18.0.0
-  '@types/react-syntax-highlighter': ~15.5.13
+  '@types/react-resizable': ^3.0.8
   '@types/shortid': ^0.0.31
   '@types/showdown': ^1.9.0
   '@types/testing-library__jest-dom': ^5.14.5
@@ -46,6 +46,7 @@ specifiers:
   react: ^18.0.0
   react-dom: ^18.0.0
   react-draggable: ~4.4.6
+  react-resizable: ^3.0.5
   react-test-renderer: ^18.2.0
   remark-gfm: ~3.0.1
   resize-observer-polyfill: ^1.5.1
@@ -69,6 +70,7 @@ dependencies:
   rc-drawer: 5.1.0_react-dom@18.2.0+react@18.2.0
   rc-virtual-list: 3.11.2_react-dom@18.2.0+react@18.2.0
   react-draggable: 4.4.6_react-dom@18.2.0+react@18.2.0
+  react-resizable: 3.0.5_react-dom@18.2.0+react@18.2.0
   shortid: 2.2.16
   showdown: 1.9.1
 
@@ -83,7 +85,7 @@ devDependencies:
   '@types/jest': 29.5.5
   '@types/lodash-es': 4.17.12
   '@types/react': 18.2.25
-  '@types/react-syntax-highlighter': 15.5.13
+  '@types/react-resizable': 3.0.8
   '@types/shortid': 0.0.31
   '@types/showdown': 1.9.4
   '@types/testing-library__jest-dom': 5.14.9
@@ -2816,6 +2818,12 @@ packages:
 
   /@types/react-dom/18.2.11:
     resolution: {integrity: sha512-zq6Dy0EiCuF9pWFW6I6k6W2LdpUixLE4P6XjXU1QHLfak3GPACQfLwEuHzY5pOYa4hzj1d0GxX/P141aFjZsyg==}
+    dependencies:
+      '@types/react': 18.2.25
+    dev: true
+
+  /@types/react-resizable/3.0.8:
+    resolution: {integrity: sha512-Pcvt2eGA7KNXldt1hkhVhAgZ8hK41m0mp89mFgQi7LAAEZiaLgm4fHJ5zbJZ/4m2LVaAyYrrRRv1LHDcrGQanA==}
     dependencies:
       '@types/react': 18.2.25
     dev: true
@@ -13719,6 +13727,18 @@ packages:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /react-resizable/3.0.5_react-dom@18.2.0+react@18.2.0:
+    resolution: {integrity: sha512-vKpeHhI5OZvYn82kXOs1bC8aOXktGU5AmKAgaZS4F5JPburCtbmDPqE7Pzp+1kN4+Wb81LlF33VpGwWwtXem+w==}
+    peerDependencies:
+      react: '>= 16.3'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-draggable: 4.4.6_react-dom@18.2.0+react@18.2.0
+    transitivePeerDependencies:
+      - react-dom
+    dev: false
 
   /react-router-dom/6.3.0_react-dom@18.1.0+react@18.1.0:
     resolution: {integrity: sha512-uaJj7LKytRxZNQV8+RbzJWnJ8K2nPsOOEuX7aQstlMZKQT0164C+X2w6bnkqU3sjtLvpd5ojrezAyfZ1+0sStw==}

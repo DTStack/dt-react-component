@@ -8,18 +8,19 @@ export type ReturnMergeOption<T extends Record<string, any>> = {
 };
 
 export default function useMergeOption<T extends Record<string, any>>(
-    opt: MergeOption<T>
+    opt: MergeOption<T>,
+    defaultOpt?: T
 ): ReturnMergeOption<T> {
     return useMemo(() => {
-        if (typeof opt === 'object') {
+        if (typeof opt === 'object' && !!opt) {
             return {
                 disabled: false,
-                options: opt,
+                options: { ...defaultOpt, ...opt },
             };
         }
         return {
             disabled: !opt,
-            options: <T>{},
+            options: <T>{ ...defaultOpt },
         };
     }, [opt]);
 }
