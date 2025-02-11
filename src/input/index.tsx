@@ -1,13 +1,12 @@
-import { Input } from 'antd';
-
+import InternalInput from './internalInput';
 import InternalMatch from './match';
 
-type OriginInputType = typeof Input;
+type OriginInputType = typeof InternalInput;
 interface InputInterface extends OriginInputType {
     Match: typeof InternalMatch;
 }
 
-const WrapperInput = Input;
+const WrapperInput = InternalInput;
 
 (WrapperInput as InputInterface).Match = InternalMatch;
 
