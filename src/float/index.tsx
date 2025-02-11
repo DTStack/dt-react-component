@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Draggable, { type DraggableEventHandler, type DraggableProps } from 'react-draggable';
+import Draggable, { DraggableEventHandler, type DraggableProps } from 'react-draggable';
 import classNames from 'classnames';
 
-import useMergeOption, { type MergeOption } from '../useMergeOption';
+import useMergeOption from './useMergeOption';
 import './index.scss';
 
 export interface IFloatProps {
     className?: string;
     style?: React.CSSProperties;
-    draggable?: MergeOption<Partial<Omit<DraggableProps, 'position'>>>;
+    draggable?: boolean | Partial<Omit<DraggableProps, 'position'>>;
     position?: DraggableProps['position'];
     onChange?: DraggableProps['onStop'];
 }
