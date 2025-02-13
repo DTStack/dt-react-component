@@ -18,7 +18,7 @@ exports[`test Drawer  snapshot match 1`] = `
         />
         <div
           class="dtc-drawer-content-wrapper"
-          style="width: 1000px;"
+          style="width: 69.44444444444444%;"
         >
           <div
             aria-modal="true"
