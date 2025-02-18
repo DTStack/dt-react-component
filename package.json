@@ -21,7 +21,7 @@
         "lint:css": "stylelint \"src/**/*.{css,less,scss}\" \".dumi/**/*.{css,less,scss}\"",
         "lint:es": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \".dumi/**/*.{js,jsx,ts,tsx}\"",
         "prepublishOnly": "father doctor && npm run build",
-        "deploy": "npm run docs:build && gh-pages -d docs-dist",
+        "deploy": "npm run docs:build && gh-pages -d docs-dist -r git@github.com:DTStack/dt-react-component.git",
         "release": "./scripts/release.sh"
     },
     "authors": [
