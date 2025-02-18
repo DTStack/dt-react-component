@@ -20,10 +20,10 @@ demo:
 
 ### SpreadSheet
 
-| 参数                       | 说明                                   | 类型              | 默认值 |
-| -------------------------- | -------------------------------------- | ----------------- | ------ |
-| data                       | 表格数据                               | `Array(二维数组)` | -      |
-| columns                    | 列名                                   | `Array`           | -      |
-| className                  | 外层组件的 class 名                    | `string`          | -      |
-| options.showCopyWithHeader | 右键菜单中是否展示“复制值以及列名”按钮 | `boolean`         | -      |
-| options.trimWhitespace     | 是否去除内容里的空格                   | `boolean`         | true   |
+| 参数                   | 说明                                                   | 类型                                                         | 默认值         |
+| ---------------------- | ------------------------------------------------------ | ------------------------------------------------------------ | -------------- |
+| data                   | 表格数据                                               | `Array(二维数组)`                                            | -              |
+| columns                | 列名                                                   | `Array`                                                      | -              |
+| className              | 外层组件的 class 名                                    | `string`                                                     | -              |
+| options.copyTypes      | 右键菜单中展示的选项 复制值/复制列名/复制列名和值 按钮 | `Array<'copyData' \| 'copyHeaders' \| 'copyHeadersAndData'>` | "['copyData']" |
+| options.trimWhitespace | 是否去除内容里的空格                                   | `boolean`                                                    | true           |
