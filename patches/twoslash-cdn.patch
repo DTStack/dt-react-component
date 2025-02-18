@@ -1,0 +1,16 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 278a623a5747249444c510cea633ae8fd9271529..a552d41d2cb27de186a02b94a768f12187e3969e 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -176,9 +176,9 @@ var setupTypeAcquisition = (config) => {
+       const mightBeOnDT = treesOnly.filter((t) => !hasDTS.includes(t));
+       const dtTrees = yield Promise.all(
+         // TODO: Switch from 'latest' to the version from the original tree which is user-controlled
+-        mightBeOnDT.map((f) => getFileTreeForModuleWithTag(config, `@types/${getDTName(f.moduleName)}`, "latest"))
++        mightBeOnDT.map((f) => getFileTreeForModuleWithTag(config, `@types/${getDTName(f.moduleName)}`, f.version))
+       );
+-      const dtTreesOnly = dtTrees.filter((t) => !("error" in t));
++      const dtTreesOnly = dtTrees.filter((t) => !("error" in t) && t.status === 200);
+       const dtsFilesFromDT = dtTreesOnly.map((t) => treeToDTSFiles(t, `/node_modules/@types/${getDTName(t.moduleName).replace("types__", "")}`));
+       const allDTSFiles = dtsFilesFromNPM.concat(dtsFilesFromDT).reduce((p, c) => p.concat(c), []);
+       estimatedToDownload += allDTSFiles.length;
