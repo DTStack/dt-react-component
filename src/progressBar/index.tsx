@@ -2,7 +2,7 @@ import './style.scss';
 
 class ProgressBar {
     // 定时器
-    _timer: NodeJS.Timeout | null;
+    _timer: number | null;
     // 计数，小于等于 0 时表示需要清除进度条
     _count: number;
     // 进度条
@@ -36,7 +36,7 @@ class ProgressBar {
     show() {
         this._count++;
         if (!this.hasAdded() && !this._timer) {
-            this._timer = setTimeout(() => {
+            this._timer = window.setTimeout(() => {
                 document.body.appendChild(this.bar);
                 document.body.appendChild(this.img);
             }, 200);
