@@ -150,9 +150,10 @@ useCookieListener(
 
 -   新增 `observerEle` 属性，支持自定义监听元素。
 
-#### SpreadSheet [#325](https://github.com/DTStack/dt-react-component/pull/325)
+#### SpreadSheet [#325](https://github.com/DTStack/dt-react-component/pull/325)、[#545](https://github.com/DTStack/dt-react-component/pull/545)
 
 -   新增 `className` 属性，可自定义外层组件的 class 名。
+-   删除 `showCopyWithHeader` 属性，使用 `copyTypes` 属性代替，值为数组，可传入 'copyData'、'copyHeaders'、'copyHeadersAndData'，分别代表的功能为：复制值、复制列名、复制列名和值。
 
 #### KeyEventListener [#326](https://github.com/DTStack/dt-react-component/pull/326)
 

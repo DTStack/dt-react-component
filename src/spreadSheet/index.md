@@ -3,7 +3,7 @@ title: SpreadSheet 多功能表
 group: 组件
 toc: content
 demo:
-    cols: 2
+    cols: 1
 ---
 
 # SpreadSheet 多功能表
@@ -14,7 +14,8 @@ demo:
 
 ## 示例
 
-<code src="./demos/basic.tsx">基础使用</code>
+<code src="./demos/basic.tsx" title="基础使用"></code>
+<code src="./demos/changeData.tsx" title="改变数据"></code>
 
 ## API
 
