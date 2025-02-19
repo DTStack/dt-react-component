@@ -25,7 +25,7 @@ export default function Basic() {
                     bounds: 'body',
                 }}
                 position={position}
-                onPositionChange={(_, { x, y }) => setPosition({ x, y })}
+                onPositionChange={({ x, y }) => setPosition({ x, y })}
                 visible={visible}
                 onCancel={() => setVisible(false)}
                 onOk={() => setVisible(false)}
