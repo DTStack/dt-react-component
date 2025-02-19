@@ -85,6 +85,8 @@ export default function InternalModal({
             x: position.x - offsetX,
             y: position.y - offsetY,
         };
+        // Prevent unnecessary update
+        if (after.x === position.x && after.y === position.y) return;
         onPositionChange?.(after);
     };
 

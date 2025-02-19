@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Handler Component should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="dt-modal-resize-handle handle-x"
+    data-testid="handler"
+  />
+</DocumentFragment>
+`;
