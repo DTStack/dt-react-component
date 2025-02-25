@@ -32,6 +32,7 @@ Chat 规范由多个组件复合使用实现落地场景，其中：
 
 <code src="./demos/basic.tsx" title="基本使用"></code>
 <code src="./demos/icons.tsx" title="自定义 icon"></code>
+<code src="./demos/properties.tsx" title="透传属性"></code>
 <code src="./demos/global-state/index.tsx" title="Chat 数据持久化" description="（不推荐）将相关数据持久化入上层组件"></code>
 
 ## API

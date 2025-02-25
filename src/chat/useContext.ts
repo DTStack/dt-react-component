@@ -3,6 +3,7 @@ import { type Components } from 'react-markdown';
 import { type ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 
 import { type ICopyProps } from '../copy';
+import { type ICodeBlockProps } from './codeBlock';
 import type { Message, Prompt } from './entity';
 import type useChat from './useChat';
 
@@ -27,6 +28,10 @@ export interface IChatContext {
      * 是否支持重新生成
      */
     regenerate?: boolean | ((prompt: Prompt, index: number, array: Prompt[]) => boolean);
+    /**
+     * 透传给 CodeBlock 的属性
+     */
+    codeBlock?: Omit<ICodeBlockProps, 'children'>;
     copy?: boolean | CopyOptions;
     messageIcons?: React.ReactNode | ((record: Message, prompt: Prompt) => React.ReactNode);
     rehypePlugins?: ReactMarkdownOptions['rehypePlugins'];

@@ -4,10 +4,14 @@ import { type ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 import classNames from 'classnames';
 import remarkGfm from 'remark-gfm';
 
-import CodeBlock from '../codeBlock';
+import CodeBlock, { type ICodeBlockProps } from '../codeBlock';
 import './index.scss';
 
-type IMarkdownProps = { typing?: boolean; onMount?: () => void } & ReactMarkdownOptions;
+type IMarkdownProps = {
+    typing?: boolean;
+    codeBlock?: Omit<ICodeBlockProps, 'children'>;
+    onMount?: () => void;
+} & ReactMarkdownOptions;
 
 export default memo(
     function Markdown({
@@ -15,6 +19,7 @@ export default memo(
         className,
         rehypePlugins = [],
         remarkPlugins = [],
+        codeBlock,
         components,
         children,
         onMount,
@@ -38,7 +43,7 @@ export default memo(
                         return <code className="dtc__aigc__markdown__inlineCode">{children}</code>;
                     },
                     pre({ children }) {
-                        return <CodeBlock>{children}</CodeBlock>;
+                        return <CodeBlock {...codeBlock}>{children}</CodeBlock>;
                     },
                     ...components,
                 }}
@@ -54,6 +59,7 @@ export default memo(
         if (prev.typing !== next.typing) return false;
         if (prev.className !== next.className) return false;
         if (prev.children !== next.children) return false;
+        if (prev.codeBlock !== next.codeBlock) return false;
         return true;
     }
 );

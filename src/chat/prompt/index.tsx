@@ -13,7 +13,7 @@ type IPromptProps = {
 };
 
 export default function Prompt({ data, className }: IPromptProps) {
-    const { components = {} } = useContext();
+    const { components = {}, codeBlock } = useContext();
 
     const composedComponents = useMemo(() => {
         return Object.keys(components).reduce<Components>((acc, cur) => {
@@ -32,7 +32,9 @@ export default function Prompt({ data, className }: IPromptProps) {
         <section className={classNames('dtc__prompt__container', className)}>
             <div className="dtc__prompt__wrapper">
                 <div className="dtc__prompt__content">
-                    <Markdown components={composedComponents}>{data?.title || ''}</Markdown>
+                    <Markdown codeBlock={codeBlock} components={composedComponents}>
+                        {data?.title || ''}
+                    </Markdown>
                 </div>
             </div>
         </section>

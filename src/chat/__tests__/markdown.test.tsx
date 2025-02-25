@@ -25,30 +25,35 @@ describe('Test Chat Markdown', () => {
         ).toMatchSnapshot('typing');
     });
 
-    it('Should be a memoized component', () => {
+    it('Should call onMount', () => {
         const fakeOnMount = jest.fn();
-        const { container, rerender } = render(
+        render(
             <Markdown typing={false} onMount={fakeOnMount}>
                 # title
             </Markdown>
         );
+        expect(fakeOnMount).toBeCalled();
+    });
 
-        expect(fakeOnMount).toBeCalledTimes(1);
-        expect(
-            container
-                .querySelector('.dtc__aigc__markdown')
-                ?.classList.contains('dtc__aigc__markdown--blink')
-        ).toBeFalsy();
+    it('Should be a memoized component', () => {
+        function getContainer(container: HTMLElement) {
+            return container.querySelector('.dtc__aigc__markdown');
+        }
+        function isBlink(container: HTMLElement) {
+            return !!getContainer(container)?.classList.contains('dtc__aigc__markdown--blink');
+        }
 
+        const { container, rerender } = render(<Markdown typing={false}># title</Markdown>);
+
+        // Typing changed caused re-render
+        expect(isBlink(container)).toBeFalsy();
         act(() => {
             rerender(<Markdown typing># title</Markdown>);
         });
-        expect(
-            container
-                .querySelector('.dtc__aigc__markdown')
-                ?.classList.contains('dtc__aigc__markdown--blink')
-        ).toBeTruthy();
+        expect(isBlink(container)).toBeTruthy();
 
+        // className changed caused re-render
+        expect(getContainer(container)?.classList.contains('jest')).toBeFalsy();
         act(() => {
             rerender(
                 <Markdown typing className="jest">
@@ -56,43 +61,43 @@ describe('Test Chat Markdown', () => {
                 </Markdown>
             );
         });
-        expect(
-            container.querySelector('.dtc__aigc__markdown')?.classList.contains('jest')
-        ).toBeTruthy();
+        expect(getContainer(container)?.classList.contains('jest')).toBeTruthy();
 
+        // children changed caused re-render
+        expect(getContainer(container)?.firstChild?.textContent).toBe('title');
         act(() => {
             rerender(
                 <Markdown typing className="jest">
-                    ## subtitle
+                    {'```sql\nSELECT * FROM table;\n```'}
                 </Markdown>
             );
         });
-        expect(container.querySelector('.dtc__aigc__markdown')?.firstChild?.textContent).toBe(
-            'subtitle'
-        );
-    });
+        expect(getContainer(container)).toMatchSnapshot('code block');
 
-    it('Should not re-render since configs change', () => {
-        const origin = render(
-            <Markdown typing={false} disallowedElements={['h1']}>
-                # title
-            </Markdown>
-        );
+        const codeBlock = { convert: true };
+        // codeBlock properties changed caused re-render
+        act(() => {
+            rerender(
+                <Markdown typing className="jest" codeBlock={codeBlock}>
+                    {'```sql\nSELECT * FROM table;\n```'}
+                </Markdown>
+            );
+        });
+        expect(getContainer(container)).toMatchSnapshot('code block with convert');
 
-        const { container, rerender } = render(<Markdown typing={false}># title</Markdown>);
-
-        const innerHTML = container.querySelector('.dtc__aigc__markdown')?.innerHTML;
-        expect(innerHTML).toBe('<h1>title</h1>');
-
-        rerender(
-            <Markdown typing={false} disallowedElements={['h1']}>
-                # title
-            </Markdown>
-        );
-
-        expect(container.querySelector('.dtc__aigc__markdown')?.innerHTML).not.toBe(
-            origin.container.querySelector('.dtc__aigc__markdown')?.innerHTML
-        );
-        expect(container.querySelector('.dtc__aigc__markdown')?.innerHTML).toBe(innerHTML);
+        // others changed not caused re-render
+        act(() => [
+            rerender(
+                <Markdown
+                    typing
+                    className="jest"
+                    codeBlock={codeBlock}
+                    components={{ pre: ({ children }) => <div data-testid="pre">{children}</div> }}
+                >
+                    {'```sql\nSELECT * FROM table;\n```'}
+                </Markdown>
+            ),
+        ]);
+        expect(getContainer(container)?.querySelector('[data-testid="pre"]')).toBeFalsy();
     });
 });

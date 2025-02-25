@@ -39,7 +39,7 @@ export default function Message({
     onLazyRendered,
 }: IMessageProps) {
     const divRef = useIntersectionObserver<HTMLDivElement>(handleObserverCb);
-    const { components = {}, messageIcons, rehypePlugins, remarkPlugins } = useContext();
+    const { components = {}, messageIcons, codeBlock, rehypePlugins, remarkPlugins } = useContext();
 
     // 当前 Message 的懒加载，是否已经加载过
     const [lazyRendered, setLazyRendered] = useState(false);
@@ -142,6 +142,7 @@ export default function Message({
                             <Markdown
                                 typing={typing}
                                 components={composedComponents}
+                                codeBlock={codeBlock}
                                 rehypePlugins={rehypePlugins}
                                 remarkPlugins={remarkPlugins}
                                 onMount={() => {
