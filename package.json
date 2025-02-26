@@ -72,9 +72,11 @@
         "react-dom": ">=16.9.0"
     },
     "devDependencies": {
+        "@ant-design/icons-svg": "^4.4.2",
         "@commitlint/cli": "^17.1.2",
         "@commitlint/config-conventional": "^17.1.0",
         "@faker-js/faker": "^7.6.0",
+        "@shikijs/twoslash": "^3.0.0",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^13.4.0",
         "@testing-library/react-hooks": "^8.0.1",
@@ -99,9 +101,11 @@
         "lint-staged": "^13.0.3",
         "prettier": "^2.7.1",
         "rc-motion": "2.6.2",
+        "rc-tabs": "^12.10.0",
         "react": "^18.0.0",
         "react-dom": "^18.0.0",
         "react-test-renderer": "^18.2.0",
+        "shiki": "^3.0.0",
         "standard-version": "^9.5.0",
         "stylelint": "^14.9.1",
         "ts-jest": "^29.0.3",
