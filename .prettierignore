@@ -1,3 +1,4 @@
 /dist
 *.yaml
 .dumi/tmp
+.dumi/tmp-production

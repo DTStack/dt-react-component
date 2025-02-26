@@ -1,20 +1,21 @@
+import React, { type FC, type ReactNode, useRef, useState } from 'react';
 import { ReactComponent as IconCheck } from '@ant-design/icons-svg/inline-svg/outlined/check.svg';
 import { ReactComponent as IconCodeSandbox } from '@ant-design/icons-svg/inline-svg/outlined/code-sandbox.svg';
 import { ReactComponent as IconSketch } from '@ant-design/icons-svg/inline-svg/outlined/sketch.svg';
 import { ReactComponent as IconStackBlitz } from '@ant-design/icons-svg/inline-svg/outlined/thunderbolt.svg';
 import {
     getSketchJSON,
+    type IPreviewerProps,
     openCodeSandbox,
     openStackBlitz,
     useIntl,
-    type IPreviewerProps,
 } from 'dumi';
-import SourceCode from '../../builtins/sourceCode';
 import PreviewerActionsExtra from 'dumi/theme-default/slots/PreviewerActionsExtra';
 import Tabs from 'rc-tabs';
-import React, { useRef, useState, type FC, type ReactNode } from 'react';
 import useClippy from 'use-clippy';
-import './index.less';
+
+import SourceCode from '../../builtins/sourceCode';
+import 'dumi/theme-default/slots/PreviewerActions/index.less';
 export interface IPreviewerActionsProps extends IPreviewerProps {
     /**
      * disabled actions
@@ -55,7 +56,6 @@ const PreviewerActions: FC<IPreviewerActionsProps> = (props) => {
     const copyTimer = useRef<number>();
     const [isCopied, setIsCopied] = useState(false);
     const isSingleFile = files.length === 1;
-    const lang = (files[activeKey][0].match(/\.([^.]+)$/)?.[1] || 'text') as any;
 
     console.log('files[activeKey][1]:', files[activeKey][1]);
 

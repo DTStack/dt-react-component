@@ -1,19 +1,45 @@
+@import "~@shikijs/twoslash/style-rich.css";
+
 .source-code {
     &-container {
         position: relative;
-    }
-
-    &-content {
         max-height: 400px;
-        padding: 24px 20px;
         overflow: auto;
     }
-
+    &-content {
+        padding: 12px 24px;
+        > pre {
+            overflow: visible;
+        }
+    }
     &-shadow {
         box-shadow: inset 0 6px 6px -6px #00000029;
         width: 100%;
         height: 3px;
-        position: absolute;
+        position: sticky;
         top: 0;
+        opacity: 0;
+        transition: opacity 0.3s;
+        &__active {
+            opacity: 1;
+        }
+    }
+}
+
+// override style-rich.css
+.twoslash {
+    .twoslash-hover {
+        position: static;
+    }
+    .twoslash-popup-docs {
+        max-height: 200px;
+        overflow: auto;
+    }
+    .twoslash-popup-container {
+        max-width: 50vw;
+        transform: translateY(-100%);
+    }
+    .twoslash-popup-code {
+        white-space: break-spaces;
     }
 }
