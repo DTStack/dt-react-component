@@ -1,11 +1,6 @@
-@import "~@shikijs/twoslash/style-rich.css";
+@import '~@shikijs/twoslash/style-rich.css';
 
 .source-code {
-    &-container {
-        position: relative;
-        max-height: 400px;
-        overflow: auto;
-    }
     &-content {
         padding: 12px 24px;
         > pre {
@@ -27,6 +22,9 @@
 }
 
 // override style-rich.css
+:root {
+    --twoslash-docs-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
 .twoslash {
     .twoslash-hover {
         position: static;
@@ -34,10 +32,27 @@
     .twoslash-popup-docs {
         max-height: 200px;
         overflow: auto;
+        font-size: 0.9em;
+        white-space: initial;
+
+        p {
+            margin-bottom: 0.2em;
+        }
+        code {
+            color: #c7254e;
+            background-color: #f9f2f4;
+            padding: 2px 4px;
+            font-size: 90%;
+            border-radius: 4px;
+        }
+        .twoslash-popup-docs-tag-name {
+            font-style: italic;
+        }
     }
     .twoslash-popup-container {
         max-width: 50vw;
         transform: translateY(-100%);
+        pointer-events: initial;
     }
     .twoslash-popup-code {
         white-space: break-spaces;
