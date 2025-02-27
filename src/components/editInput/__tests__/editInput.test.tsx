@@ -33,7 +33,7 @@ describe('test edit input', () => {
     });
     test('should render message when length more then max', () => {
         fireEvent.change(element, { target: { value: '12345678910' } });
-        expect(wrapper.getByText('字符长度不可超过10')).toBeInTheDocument();
+        expect(wrapper.getByText('字符长度不可超过${max}')).toBeInTheDocument();
         expect(element.value).toEqual('1234567891');
     });
 
