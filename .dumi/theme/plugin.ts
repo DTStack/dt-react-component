@@ -2,69 +2,114 @@ import { IApi } from 'dumi';
 import ReactTechStack from 'dumi/dist/techStacks/react';
 import type { ExampleBlockAsset } from 'dumi-assets-types';
 import ts from 'typescript';
-import { ShikiTransformerContextCommon } from 'shiki';
+import type { HighlighterCore, ShikiTransformerContextCommon } from 'shiki';
 import type { Element, ElementContent } from 'hast';
 import type { fromMarkdown } from 'mdast-util-from-markdown';
 import type { gfmFromMarkdown } from 'mdast-util-gfm';
 import type { defaultHandlers, toHast } from 'mdast-util-to-hast';
 
+let highlighter: HighlighterCore | null = null;
+async function getHighlighterCore() {
+    const [
+        { createHighlighterCore, createOnigurumaEngine },
+        wasm,
+        { bundledLanguages },
+        { bundledThemes },
+    ] = await Promise.all([
+        import('shiki'),
+        import('shiki/dist/wasm.mjs'),
+        import('shiki/dist/langs.mjs'),
+        import('shiki/dist/themes.mjs'),
+    ]);
+    highlighter =
+        highlighter ||
+        (await createHighlighterCore({
+            themes: [bundledThemes['vitesse-light']],
+            langs: [bundledLanguages['tsx'], bundledLanguages['js'], bundledLanguages['ts']],
+            engine: createOnigurumaEngine(wasm),
+        }));
+    return highlighter;
+}
+
+let creatingHighlighterCore = false;
+let listener: Function[] = [];
+async function getShiki() {
+    return new Promise<HighlighterCore['codeToHtml']>((resolve) => {
+        if (!creatingHighlighterCore) {
+            creatingHighlighterCore = true;
+            getHighlighterCore().then(({ codeToHtml }) => {
+                listener.forEach((resolve) => resolve(codeToHtml));
+                resolve(codeToHtml);
+                creatingHighlighterCore = false;
+            });
+        } else {
+            listener.push(resolve);
+        }
+    });
+}
+
 class DTReactTech extends ReactTechStack {
     async generateMetadata(asset: ExampleBlockAsset) {
         // workaround for esm module
-        const { transformerTwoslash } = await import('@shikijs/twoslash');
-        const { codeToHtml } = await import('shiki');
-        const { fromMarkdown } = await import('mdast-util-from-markdown');
-        const { gfmFromMarkdown } = await import('mdast-util-gfm');
-        const { defaultHandlers, toHast } = await import('mdast-util-to-hast');
+        const [
+            { transformerTwoslash },
+            codeToHtml,
+            { fromMarkdown },
+            { gfmFromMarkdown },
+            { defaultHandlers, toHast },
+        ] = await Promise.all([
+            import('@shikijs/twoslash'),
+            getShiki(),
+            import('mdast-util-from-markdown'),
+            import('mdast-util-gfm'),
+            import('mdast-util-to-hast'),
+        ]);
         const handler = {
             fromMarkdown,
             gfmFromMarkdown,
             defaultHandlers,
             toHast,
         };
-        await Promise.all(
-            Object.entries(asset.dependencies).map(([filename, dep]) => {
-                if (dep.type === 'FILE') {
-                    return codeToHtml(dep.value, {
-                        lang: 'tsx',
-                        theme: 'vitesse-light',
-                        transformers: [
-                            transformerTwoslash({
-                                twoslashOptions: {
-                                    compilerOptions: {
-                                        jsx: ts.JsxEmit.React,
-                                    },
-                                    handbookOptions: {
-                                        noErrors: true,
-                                    },
+        Object.entries(asset.dependencies).map(([filename, dep]) => {
+            if (dep.type === 'FILE') {
+                const html = codeToHtml(dep.value, {
+                    lang: 'tsx',
+                    theme: 'vitesse-light',
+                    transformers: [
+                        transformerTwoslash({
+                            twoslashOptions: {
+                                compilerOptions: {
+                                    jsx: ts.JsxEmit.React,
                                 },
-                                rendererRich: {
-                                    renderMarkdown: function (md) {
-                                        return renderMarkdown.call(this, md, handler);
-                                    },
-                                    renderMarkdownInline: function (md, context) {
-                                        return renderMarkdownInline.call(
-                                            this,
-                                            handler,
-                                            md,
-                                            context
-                                        );
-                                    },
+                                handbookOptions: {
+                                    noErrors: true,
                                 },
-                            }),
-                        ],
-                    }).then((html) => {
-                        asset.dependencies[filename] = <any>{ ...dep, jsx: html };
-                    });
-                }
-            })
-        );
+                            },
+                            rendererRich: {
+                                renderMarkdown: function (md) {
+                                    return renderMarkdown.call(this, md, handler);
+                                },
+                                renderMarkdownInline: function (md, context) {
+                                    return renderMarkdownInline.call(this, handler, md, context);
+                                },
+                            },
+                        }),
+                    ],
+                });
+                asset.dependencies[filename] = <any>{ ...dep, jsx: html };
+            }
+        });
         return asset;
     }
 }
 
 const AssetsPlugin = async (api: IApi) => {
     api.registerTechStack(() => new DTReactTech());
+
+    // TODO: 应该在 umi 退出的时候销毁，包括 catch 退出
+    api.onDevCompileDone(() => {
+        highlighter?.dispose();
+    });
 };
 
 export default AssetsPlugin;
