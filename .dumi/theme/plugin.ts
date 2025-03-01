@@ -50,6 +50,7 @@ async function getShiki() {
 
 class DTReactTech extends ReactTechStack {
     async generateMetadata(asset: ExampleBlockAsset) {
+        console.time(asset.id);
         // workaround for esm module
         const [
             { transformerTwoslash },
@@ -72,6 +73,7 @@ class DTReactTech extends ReactTechStack {
         };
         Object.entries(asset.dependencies).map(([filename, dep]) => {
             if (dep.type === 'FILE') {
+                console.time(`${asset.id}--${filename}`);
                 const html = codeToHtml(dep.value, {
                     lang: 'tsx',
                     theme: 'vitesse-light',
@@ -96,14 +98,18 @@ class DTReactTech extends ReactTechStack {
                         }),
                     ],
                 });
+                console.timeEnd(`${asset.id}--${filename}`);
                 asset.dependencies[filename] = <any>{ ...dep, jsx: html };
             }
         });
+        console.timeEnd(asset.id);
         return asset;
     }
 }
 
 const AssetsPlugin = async (api: IApi) => {
+    // 提前先创建 highlighterCore
+    getShiki();
     api.registerTechStack(() => new DTReactTech());
 
     // TODO: 应该在 umi 退出的时候销毁，包括 catch 退出
