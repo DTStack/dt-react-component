@@ -1,22 +1,24 @@
 import React from 'react';
 
+import useLocale from '../locale/useLocale';
+
 const LoadError: React.FC = function () {
+    const locale = useLocale('LoadError');
     return (
         <div className="dtc-error" data-testid="test-error">
             <div>
-                
                 <h2 style={{ textAlign: 'center' }} data-testid="test-error">
-                    发现新版本，请
+                    {locale.please}
                     <a
                         onClick={() => {
                             location.reload();
                         }}
                     >
-                        刷新
+                        {locale.refresh}
                     </a>
-                    获取新版本。
+                    {locale.get}
                 </h2>
-                <h4 style={{ textAlign: 'center' }}>若该提示长时间存在，请联系管理员。</h4>
+                <h4 style={{ textAlign: 'center' }}>{locale.title}</h4>
             </div>
         </div>
     );

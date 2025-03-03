@@ -133,5 +133,6 @@
     },
     "resolutions": {
         "rc-motion": "2.6.2"
-    }
+    },
+    "packageManager": "pnpm@6.32.12"
 }
