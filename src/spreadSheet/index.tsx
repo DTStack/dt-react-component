@@ -4,6 +4,7 @@ import { HotTable } from '@handsontable/react';
 import classNames from 'classnames';
 import 'handsontable/languages/zh-CN.js';
 
+import useLocale from '../locale/useLocale';
 import CopyUtils from '../utils/copy';
 import 'handsontable/dist/handsontable.full.css';
 import './style.scss';
@@ -33,6 +34,8 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = forwardRef(
         const tableRef = useRef<any>(null);
         const copyUtils = new CopyUtils();
         const _timer = useRef<NodeJS.Timeout>();
+        const locale = useLocale('SpreadSheet');
+
         const { showCopyWithHeader, ...restProps } = options || {};
         useImperativeHandle(ref, () => ({
             tableRef,
@@ -57,7 +60,7 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = forwardRef(
             let showData = data;
             if (!showData?.length) {
                 const emptyArr = new Array(columns.length).fill('', 0, columns.length);
-                emptyArr[0] = '暂无数据';
+                emptyArr[0] = locale.description;
                 showData = [emptyArr];
             }
             return showData;
@@ -91,7 +94,7 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = forwardRef(
         const getContextMenu = () => {
             const items: Record<string, { name: string; callback: Function }> = {
                 copy: {
-                    name: '复制',
+                    name: locale.copy,
                     callback: function (this: any, _key: any) {
                         const indexArr = this.getSelected();
                         // eslint-disable-next-line prefer-spread
@@ -102,7 +105,7 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = forwardRef(
             };
             if (showCopyWithHeader) {
                 const copyWithHeaderItem = {
-                    name: '复制值以及列名',
+                    name: locale.copyAll,
                     callback: function (this: any, _key: any, selection: any) {
                         const indexArr = this.getSelected();
                         // eslint-disable-next-line prefer-spread
