@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { isEqual } from 'lodash';
 import List from 'rc-virtual-list';
 
+import useLocale from '../locale/useLocale';
 import './style.scss';
 
 interface IDropdownSelectProps
@@ -30,6 +31,8 @@ export default function Select({
     onSubmit,
 }: IDropdownSelectProps) {
     const [visible, setVisible] = useState(false);
+
+    const locale = useLocale('Dropdown');
 
     const handleCheckedAll = (e: CheckboxChangeEvent) => {
         if (e.target.checked) {
@@ -119,7 +122,7 @@ export default function Select({
                         checked={checkAll}
                         indeterminate={indeterminate}
                     >
-                        全选
+                        {locale.selectAll}
                     </Checkbox>
                 </Col>
                 <Col span={24} className={`${prefix}__menu`}>
@@ -158,10 +161,10 @@ export default function Select({
             </Row>
             <Space size={8} className={`${prefix}__btns`}>
                 <Button size="small" disabled={resetDisabled} onClick={handleReset}>
-                    重置
+                    {locale.resetText}
                 </Button>
                 <Button size="small" type="primary" onClick={handleSubmit}>
-                    确定
+                    {locale.okText}
                 </Button>
             </Space>
         </>

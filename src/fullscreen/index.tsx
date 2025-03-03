@@ -2,6 +2,7 @@ import React, { CSSProperties, HTMLAttributes, ReactNode, useEffect, useState } 
 import { Button } from 'antd';
 
 import KeyEventListener from '../keyEventListener';
+import useLocale from '../locale/useLocale';
 import MyIcon from './icon';
 
 const { KeyCombiner } = KeyEventListener;
@@ -44,7 +45,11 @@ export default function Fullscreen({
     ...other
 }: IFullscreenProps) {
     const [isFullScreen, setIsFullScreen] = useState(false);
+
+    const locale = useLocale('Fullscreen');
+
     const customIcon = isFullScreen ? exitFullIcon : fullIcon;
+
     useEffect(() => {
         const propsDom = document.getElementById(target);
         const domEle = propsDom || document.body;
@@ -188,7 +193,7 @@ export default function Fullscreen({
             ) : (
                 <Button onClick={handleFullScreen}>
                     <MyIcon style={iconStyle} type={isFullScreen} themeDark={themeDark} />
-                    {isFullScreen ? '退出全屏' : '全屏'}
+                    {isFullScreen ? locale.exitFull : locale.full}
                 </Button>
             )}
         </KeyCombiner>

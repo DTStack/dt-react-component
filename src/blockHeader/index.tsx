@@ -3,6 +3,7 @@ import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
 
+import useLocale from '../locale/useLocale';
 import './style.scss';
 
 export declare type SizeType = 'small' | 'middle' | undefined;
@@ -59,6 +60,8 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const [expand, setExpand] = useState(defaultExpand);
 
+    const locale = useLocale('BlockHeader');
+
     const preTitleRowCls = `${prefixCls}-title-row`;
 
     const questionTooltip = tooltip && (
@@ -103,7 +106,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                 {addonAfter && <div className={`${prefixCls}-addonAfter-box`}>{addonAfter}</div>}
                 {children && (
                     <div className={`${prefixCls}-collapse-box`}>
-                        <div className="text">{expand ? '收起' : '展开'}</div>
+                        <div className="text">{expand ? locale.collapse : locale.expand}</div>
                         <UpOutlined className={`icon ${expand ? 'up' : 'down'}`} />
                     </div>
                 )}
