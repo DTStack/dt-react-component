@@ -2,6 +2,7 @@ import React from 'react';
 import { Checkbox, Dropdown, Button, Divider } from 'antd';
 import { isEqual } from 'lodash';
 import classNames from 'classnames';
+import useLocale, { Locale } from '../locale/useLocale';
 
 interface Opts {
     label?: string;
@@ -18,6 +19,7 @@ interface MulSelectDropdownProps {
     renderNode: Function;
     cancelText?: string;
     okText?: string;
+    locale?: Locale['MulSelectDropdown'];
 }
 
 interface MulSelectDropdownStates {
@@ -28,7 +30,7 @@ interface MulSelectDropdownStates {
     indeterminate: boolean;
 }
 
-export default class MulSelectDropdown extends React.Component<
+class MulSelectDropdown extends React.Component<
     MulSelectDropdownProps,
     MulSelectDropdownStates
 > {
@@ -108,11 +110,15 @@ export default class MulSelectDropdown extends React.Component<
             popupContainer = () => document.body,
             options = [],
             className = '',
-            renderNode = (openFun) => <span onClick={openFun}>打开</span>,
-            cancelText = '取消',
-            okText = '确定',
+            locale,
+            renderNode:propRenderNode,
+            cancelText,
+            okText,
         } = this.props;
         const { visible, selectVal, indeterminate, allKeys } = this.state;
+        const defaultRenderNode = (openFun) => <span onClick={openFun}>{locale.open}</span>;
+        const renderNode = propRenderNode || defaultRenderNode;
+
         const overlay = (
             <div className="dtc-option-select-overlay">
                 <Checkbox.Group onChange={this.handleCheckboxChange} value={selectVal}>
@@ -133,7 +139,7 @@ export default class MulSelectDropdown extends React.Component<
                         checked={selectVal.length === allKeys.length}
                         indeterminate={indeterminate}
                     >
-                        全选
+                        {locale.selectAll}
                     </Checkbox>
                     <span>
                         <Button
@@ -142,7 +148,7 @@ export default class MulSelectDropdown extends React.Component<
                             data-testid="select_cancel_btn"
                             onClick={this.handleCancel}
                         >
-                            {cancelText}
+                            {cancelText || locale.cancel}
                         </Button>
                         <Button
                             type="primary"
@@ -150,7 +156,7 @@ export default class MulSelectDropdown extends React.Component<
                             data-testid="select_ok_btn"
                             onClick={this.handleOk}
                         >
-                            {okText}
+                            {okText || locale.okText}
                         </Button>
                     </span>
                 </div>
@@ -172,3 +178,11 @@ export default class MulSelectDropdown extends React.Component<
         );
     }
 }
+
+
+const MulSelectDropdownWrapper = (props: Omit<MulSelectDropdownProps, 'locale'>) => {
+    const locale = useLocale("MulSelectDropdown");
+    return <MulSelectDropdown {...props} locale={locale} />;
+};
+
+export default MulSelectDropdownWrapper;

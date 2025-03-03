@@ -34,8 +34,8 @@ export interface Locale {
     };
     MultiSearchInput?: {
         case: string;
-        extract: string;
-        head: string;
+        precise: string;
+        front: string;
         tail: string;
     };
     MxGraph?: { newNode: string };

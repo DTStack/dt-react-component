@@ -52,8 +52,8 @@ const localeValues: Locale = {
     },
     MultiSearchInput: {
         case: 'Case-sensitive match',
-        extract: 'Exact match',
-        head: 'Head match',
+        precise: 'Exact match',
+        front: 'Head match',
         tail: 'Tail match',
     },
     MxGraph: {

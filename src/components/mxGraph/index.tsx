@@ -21,6 +21,7 @@ import {
     mxPopupMenuHandler,
 } from 'mxgraph';
 import MxFactory from './factory';
+import useLocale from '../locale/useLocale';
 
 const Mx = new MxFactory();
 
@@ -292,6 +293,8 @@ function MxGraphContainer<T extends IMxGraphData>(
     const keybindingsRef = useRef<IKeyDownConfig[]>([]);
     const [current, setCurrent] = useState<null | T>(null);
 
+    const locale = useLocale('MxGraph');
+
     useImperativeHandle(ref, () => ({
         /**
          * 在某一位置插入节点
@@ -426,7 +429,7 @@ function MxGraphContainer<T extends IMxGraphData>(
                 onGetPreview?.(node) ||
                 (() => {
                     const dom = document.createElement('div');
-                    dom.innerHTML = `<span class="preview-title">新节点</span>`;
+                    dom.innerHTML = `<span class="preview-title">${locale.newNode}</span>`;
                     return dom;
                 })();
 

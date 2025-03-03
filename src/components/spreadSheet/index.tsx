@@ -57,11 +57,11 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         this.removeRenderClock();
     }
     getData() {
-        const { data, columns = [] } = this.props;
+        const { data, columns = [], locale } = this.props;
         let showData = data;
         if (!showData || !showData.length) {
             const emptyArr = new Array(columns.length).fill('', 0, columns.length);
-            emptyArr[0] = '暂无数据';
+            emptyArr[0] = locale.description;
             showData = [emptyArr];
         }
         return showData;
@@ -94,10 +94,10 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
     }
     getContextMenu() {
         const that = this;
-        const { columns = [], options } = this.props;
+        const { columns = [], options, locale } = this.props;
         const items = {
             copy: {
-                name: '复制',
+                name: locale.copy,
                 callback: function (_key) {
                     const indexArr = this.getSelected();
                     // eslint-disable-next-line prefer-spread
@@ -108,7 +108,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         };
         if (options?.showCopyWithHeader) {
             const copyWithHeaderItem = {
-                name: '复制值以及列名',
+                name: locale.copyAll,
                 callback: function (_key, selection) {
                     const indexArr = this.getSelected();
                     // eslint-disable-next-line prefer-spread

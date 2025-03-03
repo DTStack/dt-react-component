@@ -26,10 +26,10 @@ class GoBackButton extends React.Component<GoBackButtonProps, any> {
     };
 
     render() {
-        const { title } = this.props;
+        const { title, locale } = this.props;
         return (
             <Button {...this.props} onClick={this.go}>
-                {title || '返回'}
+                {title || locale.back}
             </Button>
         );
     }

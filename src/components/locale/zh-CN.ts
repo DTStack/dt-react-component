@@ -51,8 +51,8 @@ const localeValues: Locale = {
     },
     MultiSearchInput: {
         case: '区分大小写匹配',
-        extract: '精确匹配',
-        head: '头部匹配',
+        precise: '精确匹配',
+        front: '头部匹配',
         tail: '尾部匹配',
     },
     MxGraph: {
