@@ -5,7 +5,7 @@ module.exports = {
     transformIgnorePatterns: ['/node_modules/', 'lib', 'dist'],
     testPathIgnorePatterns: ['/node_modules/'],
     transform: {
-        '^.+\\.[jt]s?(x)$': 'babel-jest',
+       '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest',
     },
     testMatch: [
         '**/__tests__/**/(*.)+(spec|test).[jt]s?(x)',

@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Button } from 'antd';
 import { browserHistory, hashHistory } from 'react-router';
 import { GoBackButtonProps } from './index';
+import useLocale from '../locale/useLocale';
 
-export default class GoBackButton extends React.Component<GoBackButtonProps, any> {
+class GoBackButton extends React.Component<GoBackButtonProps, any> {
     go = () => {
         const { url, history, autoClose } = this.props;
 
@@ -25,11 +26,18 @@ export default class GoBackButton extends React.Component<GoBackButtonProps, any
     };
 
     render() {
-        const { title } = this.props;
+        const { title, locale } = this.props;
         return (
             <Button {...this.props} onClick={this.go}>
-                {title || '返回'}
+                {title || locale.back}
             </Button>
         );
     }
 }
+
+const GoBackButtonWrapper = (props: Omit<GoBackButtonProps, 'locale'>) => {
+    const locale = useLocale('GoBack');
+    return <GoBackButton {...props} locale={locale} />;
+};
+
+export default GoBackButtonWrapper;
