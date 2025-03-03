@@ -148,7 +148,7 @@ class MulSelectDropdown extends React.Component<
                             data-testid="select_cancel_btn"
                             onClick={this.handleCancel}
                         >
-                            {cancelText || locale.cancel}
+                            {cancelText || locale.cancelText}
                         </Button>
                         <Button
                             type="primary"
