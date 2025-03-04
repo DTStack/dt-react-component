@@ -4,7 +4,6 @@
         "target": "es6",
         "moduleResolution": "Node",
         "resolveJsonModule": true,
-        "keyofStringsOnly": true,
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "strict": true,
