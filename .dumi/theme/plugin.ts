@@ -10,6 +10,7 @@ import type { defaultHandlers, toHast } from 'mdast-util-to-hast';
 
 let highlighter: HighlighterCore | null = null;
 async function getHighlighterCore() {
+    if (highlighter) return highlighter;
     const [
         { createHighlighterCore, createOnigurumaEngine },
         wasm,
@@ -21,13 +22,11 @@ async function getHighlighterCore() {
         import('shiki/dist/langs.mjs'),
         import('shiki/dist/themes.mjs'),
     ]);
-    highlighter =
-        highlighter ||
-        (await createHighlighterCore({
-            themes: [bundledThemes['vitesse-light']],
-            langs: [bundledLanguages['tsx'], bundledLanguages['js'], bundledLanguages['ts']],
-            engine: createOnigurumaEngine(wasm),
-        }));
+    highlighter = await createHighlighterCore({
+        themes: [bundledThemes['vitesse-light']],
+        langs: [bundledLanguages['tsx'], bundledLanguages['js'], bundledLanguages['ts']],
+        engine: createOnigurumaEngine(wasm),
+    });
     return highlighter;
 }
 
@@ -39,6 +38,7 @@ async function getShiki() {
             creatingHighlighterCore = true;
             getHighlighterCore().then(({ codeToHtml }) => {
                 listener.forEach((resolve) => resolve(codeToHtml));
+                listener.length = 0;
                 resolve(codeToHtml);
                 creatingHighlighterCore = false;
             });
