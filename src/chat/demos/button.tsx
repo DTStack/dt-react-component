@@ -39,6 +39,13 @@ export default function () {
                     >
                         发送
                     </Chat.Button>
+                    <Chat.Button
+                        type="secondary"
+                        disabled={disabled}
+                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                    >
+                        AI log parsing
+                    </Chat.Button>
                 </Space>
             </Col>
             <Col span={24}>
@@ -72,6 +79,14 @@ export default function () {
                         icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
                     >
                         发送
+                    </Chat.Button>
+                    <Chat.Button
+                        size="small"
+                        type="secondary"
+                        disabled={disabled}
+                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                    >
+                        AI log parsing
                     </Chat.Button>
                 </Space>
             </Col>

@@ -65,6 +65,7 @@ $primaryGradientHover: #08C4FF 0%, #4892FF 50%, #8A61FF 100%;
                 background-image: linear-gradient(110deg, $primaryGradient);
                 background-clip: text;
                 color: transparent;
+                padding: 2px 0;
             }
             svg,
             path {
