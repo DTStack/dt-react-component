@@ -19,7 +19,7 @@ export { default as Image } from './image';
 export { default as Input } from './input';
 export { default as KeyEventListener } from './keyEventListener';
 export { default as MarkdownRender } from './markdownRender';
-export { default as Modal } from './modal';
+export { default as Modal } from './modal/modal';
 export { default as NotFound } from './notFound';
 export { default as ProgressBar } from './progressBar';
 export { default as ProgressLine } from './progressLine';
