@@ -1,0 +1,93 @@
+$primaryGradient: #00BAC6 0%, #0067FF 50%, #450FDE 100%;
+$primaryGradientHover: #08C4FF 0%, #4892FF 50%, #8A61FF 100%;
+
+.ant-btn.dtc__aigc__button {
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: center;
+    &.ant-btn-sm {
+        border-radius: 2px;
+    }
+    &[disabled] {
+        color: #B1B4C5;
+        background-color: #EBECF0;
+        border-color: #EBECF0;
+    }
+    &--primary {
+        &:not(.ant-btn[disabled]) {
+            background: linear-gradient(110deg, $primaryGradient);
+            color: #FFF;
+        }
+        &:hover {
+            &:not(.ant-btn[disabled]) {
+                background: linear-gradient(110deg, $primaryGradientHover);
+            }
+        }
+    }
+    &--default {
+        &:not(.ant-btn[disabled]) {
+            border: 1px solid #D8DAE2;
+            color: #3D446E;
+            transition: background-image 0.3s ease;
+        }
+        &:hover {
+            &:not(.ant-btn[disabled]) {
+                border-color: transparent;
+                background-image:
+                    linear-gradient(white, white),
+                    linear-gradient(110deg, $primaryGradientHover);
+                background-origin: border-box;
+                background-clip: padding-box, border-box;
+                svg,
+                path {
+                    fill: url(#secondary_linear_gradient_hover);
+                }
+                .dtc__aigc__button__text {
+                    background-image: linear-gradient(110deg, $primaryGradientHover);
+                    background-clip: text;
+                    color: transparent;
+                }
+            }
+        }
+    }
+    &--secondary.ant-btn-default {
+        &:not(.ant-btn[disabled]) {
+            border: 1px solid transparent;
+            background-image:
+                linear-gradient(white, white),
+                linear-gradient(110deg, $primaryGradient);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            transition: all 0.3s linear;
+            .dtc__aigc__button__text {
+                background-image: linear-gradient(110deg, $primaryGradient);
+                background-clip: text;
+                color: transparent;
+                padding: 2px 0;
+            }
+            svg,
+            path {
+                fill: url(#secondary_linear_gradient);
+            }
+            &:hover {
+                background-image:
+                    linear-gradient(white, white),
+                    linear-gradient(110deg, $primaryGradientHover);
+                svg,
+                path {
+                    fill: url(#secondary_linear_gradient_hover);
+                }
+                .dtc__aigc__button__text {
+                    background-image: linear-gradient(110deg, $primaryGradientHover);
+                }
+            }
+        }
+    }
+
+    // 只支持 dtc__icon
+    .dtc__icon ~ .dtc__aigc__button__text {
+        margin-left: 2px;
+    }
+}

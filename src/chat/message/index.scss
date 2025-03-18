@@ -1,0 +1,84 @@
+.dtc__message {
+    &__container {
+        display: flex;
+        gap: 4px;
+        position: relative;
+        &:hover {
+            .dtc__message__iconGroup {
+                opacity: 1;
+            }
+        }
+    }
+    &__avatar {
+        font-size: 16px;
+        height: 20px;
+        padding: 2px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+            linear-gradient(
+                110deg,
+                rgba(0, 186, 198, 0.1) 0%,
+                rgba(0, 103, 255, 0.1) 50%,
+                rgba(69, 15, 222, 0.1) 100%
+            ),
+            #FFF;
+    }
+    &__wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+    &__content {
+        border-radius: 8px;
+        padding: 8px;
+        background: #F5F5F8;
+        &--loading {
+            width: 100%;
+        }
+    }
+    &__footer {
+        &:not(:empty) {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    }
+    &__stopText {
+        color: #B1B4C5;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    &__extra {
+        text-align: center;
+    }
+    &__stopBtn {
+        &.ant-btn {
+            margin: 4px auto 0;
+            .dtc__icon {
+                margin-right: 4px;
+            }
+        }
+    }
+    &__iconGroup {
+        position: absolute;
+        bottom: 0;
+        left: 32px;
+        transform: translateY(24px);
+        opacity: 0;
+        padding-top: 4px;
+        z-index: 99;
+    }
+    &__icon {
+        cursor: pointer;
+        color: #8B8FA8;
+        &:hover {
+            color: #0A67F2;
+        }
+        &:active {
+            color: #005CE6;
+        }
+    }
+}

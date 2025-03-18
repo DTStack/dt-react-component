@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Chat Prompt Match Snapshots: default 1`] = `
+<DocumentFragment>
+  <section
+    class="dtc__prompt__container test"
+  >
+    <div
+      class="dtc__prompt__wrapper"
+    >
+      <div
+        class="dtc__prompt__content"
+      >
+        <div
+          class="dtc__aigc__markdown"
+        >
+          <p>
+            What is your name?
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`Test Chat Prompt Match Snapshots: empty 1`] = `
+<DocumentFragment>
+  <section
+    class="dtc__prompt__container"
+  >
+    <div
+      class="dtc__prompt__wrapper"
+    >
+      <div
+        class="dtc__prompt__content"
+      >
+        <div
+          class="dtc__aigc__markdown"
+        />
+      </div>
+    </div>
+  </section>
+</DocumentFragment>
+`;
