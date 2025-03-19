@@ -1,0 +1,32 @@
+import React, { CSSProperties } from 'react';
+import classNames from 'classnames';
+
+import Flex from '../../flex';
+import { AIAvatar } from '../icon';
+import './index.scss';
+
+export interface IWelcomeProps {
+    title: React.ReactNode;
+    description?: React.ReactNode;
+    icon?: React.ReactNode;
+    className?: string;
+    style?: CSSProperties;
+}
+
+export default function Welcome({
+    icon = <AIAvatar style={{ fontSize: 24 }} />,
+    title,
+    description,
+    className,
+    style,
+}: IWelcomeProps) {
+    return (
+        <div className={classNames('dtc__welcome', className)} style={style}>
+            <Flex gap={8} align="center">
+                {icon}
+                <span className="dtc__welcome__title">{title}</span>
+            </Flex>
+            <div className="dtc__welcome__description">{description}</div>
+        </div>
+    );
+}

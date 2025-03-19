@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Copy from '../../copy';
 import useIntersectionObserver from '../../useIntersectionObserver';
 import { Message as MessageEntity, MessageStatus, Prompt as PromptEntity } from '../entity';
-import { AssistantAvatarIcon, CopyIcon, PauseIcon, ReloadIcon } from '../icon';
+import { AIAvatar, CopyIcon, PauseIcon, ReloadIcon } from '../icon';
 import Loading from '../loading';
 import Markdown from '../markdown';
 import Pagination from '../pagination';
@@ -127,7 +127,7 @@ export default function Message({
     return (
         <section className="dtc__message__container">
             <div className="dtc__message__avatar">
-                <AssistantAvatarIcon />
+                <AIAvatar />
             </div>
             <div className="dtc__message__wrapper">
                 <div
