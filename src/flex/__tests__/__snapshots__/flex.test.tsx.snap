@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Flex Button Match the snapshot 1`] = `
+<DocumentFragment>
+  <section
+    class="dtc-flex"
+    style="flex-wrap: nowrap; justify-content: normal; align-items: normal; gap: 0;"
+  >
+    <div>
+      123
+    </div>
+    <div>
+      123
+    </div>
+    <div>
+      123
+    </div>
+    <div>
+      123
+    </div>
+  </section>
+</DocumentFragment>
+`;
+
+exports[`Test Flex Button Match the snapshot: primary button 1`] = `
+<DocumentFragment>
+  <section
+    class="dtc-flex dtc-flex__vertical"
+    style="flex-wrap: nowrap; justify-content: normal; align-items: normal; gap: 0;"
+  >
+    <div>
+      123
+    </div>
+    <div>
+      123
+    </div>
+    <div>
+      123
+    </div>
+    <div>
+      123
+    </div>
+  </section>
+</DocumentFragment>
+`;
