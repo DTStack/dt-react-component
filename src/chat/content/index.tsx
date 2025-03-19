@@ -2,7 +2,6 @@ import React, { forwardRef, useImperativeHandle, useLayoutEffect, useRef, useSta
 import classNames from 'classnames';
 
 import { Message as MessageEntity, MessageStatus, Prompt as PromptEntity } from '../entity';
-import { RobotIcon } from '../icon';
 import Message from '../message';
 import Prompt from '../prompt';
 import { useContext } from '../useContext';
@@ -11,7 +10,6 @@ import './index.scss';
 export interface IContentProps {
     data: PromptEntity[];
     placeholder?: React.ReactNode;
-    robotIcon?: boolean;
     scrollable?: boolean;
     onRegenerate?: (data: MessageEntity, prompt: PromptEntity) => void;
     onStop?: (data: MessageEntity, prompt: PromptEntity) => void;
@@ -23,7 +21,7 @@ export interface IContentRef {
 }
 
 const Content = forwardRef<IContentRef, IContentProps>(function (
-    { data, placeholder, robotIcon = true, scrollable = true, onRegenerate, onStop },
+    { data, placeholder, scrollable = true, onRegenerate, onStop },
     forwardedRef
 ) {
     const { maxRegenerateCount, copy, regenerate } = useContext();
@@ -100,8 +98,7 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
         <div
             className={classNames(
                 'dtc__aigc__content__container',
-                !scrollable && 'dtc__aigc__content__container--disabled',
-                dataValid && scrollable && 'dtc__aigc__content__container--valid'
+                !scrollable && 'dtc__aigc__content__container--disabled'
             )}
             ref={containerRef}
         >
@@ -143,14 +140,7 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
                     })}
                 </div>
             ) : (
-                <React.Fragment>
-                    {placeholder}
-                    {robotIcon && (
-                        <RobotIcon
-                            style={{ fontSize: 200, position: 'absolute', right: 0, bottom: -100 }}
-                        />
-                    )}
-                </React.Fragment>
+                <React.Fragment>{placeholder}</React.Fragment>
             )}
         </div>
     );

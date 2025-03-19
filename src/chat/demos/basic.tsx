@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { LikeOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { Chat } from 'dt-react-component';
+import { Chat, Flex } from 'dt-react-component';
 
 import { mockSSE } from './mockSSE';
 
 export default function () {
     const chat = Chat.useChat();
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState<string | undefined>('');
 
-    const handleSubmit = (raw: string = value) => {
-        const val = raw.trim();
+    const [convert, setConvert] = useState(false);
+
+    const handleSubmit = (raw = value) => {
+        const val = raw?.trim();
         if (chat.loading() || !val) return;
         setValue('');
         const promptId = new Date().valueOf().toString();
@@ -35,35 +38,56 @@ export default function () {
     }, []);
 
     return (
-        <div style={{ width: '100%', height: 400 }}>
-            <Chat chat={chat}>
+        <div style={{ width: '100%', height: 400, marginBottom: 56 }}>
+            <Chat
+                chat={chat}
+                codeBlock={{
+                    convert,
+                }}
+                messageIcons={() => <LikeOutlined className="dtc__message__icon" />}
+                components={{
+                    a: ({ children }) => (
+                        <Button
+                            type="primary"
+                            size="small"
+                            ghost
+                            onClick={() => setConvert((p) => !p)}
+                        >
+                            {children}
+                        </Button>
+                    ),
+                }}
+            >
                 <Chat.Content
                     data={chat.conversation.get()?.prompts || []}
                     placeholder={
                         <h1>
-                            有什么可以帮忙的？
+                            <Chat.Welcome
+                                title="dt-react-component"
+                                description="React UI component library based on antd package"
+                            />
                             <br />
-                            <Button onClick={() => handleSubmit('请告诉我一首诗')}>
-                                返回一首诗
-                            </Button>
+                            <Flex vertical align="start" gap="4px">
+                                <Chat.Tag onClick={() => handleSubmit('请告诉我一首诗')}>
+                                    返回一首诗
+                                </Chat.Tag>
+                                <Chat.Tag onClick={() => handleSubmit('生成 CodeBlock')}>
+                                    生成 CodeBlock
+                                </Chat.Tag>
+                            </Flex>
                         </h1>
                     }
                 />
-                <div style={{ display: 'flex', gap: 4 }}>
-                    <Chat.Input
-                        value={value}
-                        onChange={setValue}
-                        onPressEnter={() => handleSubmit()}
-                        placeholder="请输入想咨询的内容…"
-                    />
-                    <Chat.Button
-                        type="primary"
-                        onClick={() => handleSubmit()}
-                        disabled={chat.loading() || !value}
-                    >
-                        <Chat.Icon.SendIcon style={{ fontSize: 16 }} />
-                    </Chat.Button>
-                </div>
+                <Chat.Input
+                    value={value}
+                    onChange={setValue}
+                    onPressEnter={() => handleSubmit()}
+                    onPressShiftEnter={() => setValue((v) => v + '\n')}
+                    button={{
+                        disabled: chat.loading() || !value?.trim(),
+                    }}
+                    placeholder="请输入想咨询的内容…"
+                />
             </Chat>
         </div>
     );

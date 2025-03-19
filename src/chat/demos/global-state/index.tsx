@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Button, Tabs } from 'antd';
+import { Tabs } from 'antd';
 import { Chat } from 'dt-react-component';
 import { Conversation, Message, MessageStatus, Prompt } from 'dt-react-component/chat/entity';
 import { produce } from 'immer';
@@ -44,7 +44,7 @@ export default function () {
         return conversations[activeKey];
     }, [activeKey, conversations]);
 
-    const handleSubmit = (val: string) => {
+    const handleSubmit = (val = '') => {
         if (!data) {
             const promptId = new Date().valueOf().toString();
             const messageId = (new Date().valueOf() + 1).toString();
@@ -122,38 +122,38 @@ export default function () {
     );
 }
 
-function AI({ data, onSubmit }: { data?: Conversation; onSubmit?: (str: string) => void }) {
+function AI({ data, onSubmit }: { data?: Conversation; onSubmit?: (str?: string) => void }) {
     const chat = Chat.useChat();
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState<string | undefined>('');
 
     return (
-        <div style={{ width: '100%', height: 400 }}>
+        <div style={{ width: '100%', height: 400, marginBottom: 46 }}>
             <Chat chat={chat}>
                 <Chat.Content
                     data={data?.prompts || []}
                     placeholder={
                         <h1>
-                            有什么可以帮忙的？
+                            <Chat.Welcome
+                                title="dt-react-component"
+                                description="React UI component library based on antd package"
+                            />
                             <br />
-                            <Button onClick={() => onSubmit?.('请告诉我一首诗')}>返回一首诗</Button>
+                            <Chat.Tag onClick={() => onSubmit?.('请告诉我一首诗')}>
+                                返回一首诗
+                            </Chat.Tag>
                         </h1>
                     }
                 />
-                <div style={{ display: 'flex', gap: 4 }}>
-                    <Chat.Input
-                        value={value}
-                        onChange={setValue}
-                        onPressEnter={() => onSubmit?.(value)}
-                        placeholder="请输入想咨询的内容…"
-                    />
-                    <Chat.Button
-                        type="primary"
-                        onClick={() => onSubmit?.(value)}
-                        disabled={chat.loading() || !value}
-                    >
-                        <Chat.Icon.SendIcon style={{ fontSize: 16 }} />
-                    </Chat.Button>
-                </div>
+                <Chat.Input
+                    value={value}
+                    onChange={setValue}
+                    onPressEnter={() => onSubmit?.(value)}
+                    onPressShiftEnter={() => setValue((v) => v + '\n')}
+                    button={{
+                        disabled: chat.loading() || !value?.trim(),
+                    }}
+                    placeholder="请输入想咨询的内容…"
+                />
             </Chat>
         </div>
     );

@@ -1,0 +1,37 @@
+.dtc__chat__textarea__container {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #D8DAE2;
+    background: #FFF;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    .dtc__chat__textarea {
+        border: none;
+        background-color: transparent;
+        color: #3D446E;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        padding: 8px 36px 8px 16px;
+        &:focus {
+            box-shadow: none;
+        }
+    }
+    .dtc__chat__textarea__send {
+        font-size: 24px;
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        &:hover:not(&--disabled) {
+            &.dtc__icon path {
+                fill: url(#paint0_linear_3878_6538_hover);
+            }
+        }
+        &--disabled {
+            cursor: not-allowed;
+            color: #B1B4C5;
+        }
+    }
+}

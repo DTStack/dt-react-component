@@ -13,6 +13,7 @@ import Prompt from './prompt';
 import Tag from './tag';
 import useChat from './useChat';
 import { context, type IChatContext, useContext } from './useContext';
+import Welcome from './welcome';
 
 type IChatProps = IChatContext;
 
@@ -65,6 +66,7 @@ Chat.Message = Message;
 Chat.Prompt = Prompt;
 Chat.Content = Content;
 Chat.Tag = Tag;
+Chat.Welcome = Welcome;
 
 Chat.Icon = {
     SendIcon,
