@@ -1,53 +1,30 @@
-import React from 'react';
-import { Alert, type AlertProps, Modal, type ModalProps } from 'antd';
-import classNames from 'classnames';
-import { omit } from 'lodash-es';
+import { Modal as AntdModal } from 'antd';
+import { ModalStaticFunctions } from 'antd/lib/modal/confirm';
 
-import './index.scss';
+import InternalModal from './modal';
 
-export interface IModalProps extends ModalProps {
-    size?: 'small' | 'default' | 'middle' | 'large';
-    banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
-}
+type ModalType = typeof InternalModal &
+    ModalStaticFunctions & {
+        useModal: typeof AntdModal.useModal;
+        destroyAll: () => void;
+        config: typeof AntdModal.config;
+    };
 
-const getWidthFromSize = (size: IModalProps['size']) => {
-    if (size === 'small') return 400;
-    if (size === 'middle') return 640;
-    if (size === 'large') return 900;
-    return 520;
-};
+const { useModal, info, success, error, warning, confirm, destroyAll, config } = AntdModal;
 
-const isValidBanner = (banner: IModalProps['banner']): banner is AlertProps['message'] => {
-    if (typeof banner === 'object') return React.isValidElement(banner);
-    return true;
-};
+const Modal = InternalModal as ModalType;
 
-export default function InternalModal({
-    bodyStyle,
-    banner,
-    size = 'default',
-    children,
-    width,
-    className,
-    ...rest
-}: IModalProps) {
-    const finalWidth = width ?? getWidthFromSize(size);
+Object.assign(Modal, {
+    useModal,
+    info,
+    success,
+    error,
+    warning,
+    confirm,
+    destroyAll,
+    config,
+});
 
-    return (
-        <Modal
-            className={classNames('dtc-modal', className)}
-            bodyStyle={{ padding: 0, ...bodyStyle }}
-            width={finalWidth}
-            {...rest}
-        >
-            {banner && (
-                <Alert
-                    message={isValidBanner(banner) ? banner : banner.message}
-                    banner
-                    {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
-                />
-            )}
-            <section className="dtc-modal-body">{children}</section>
-        </Modal>
-    );
-}
+export { IModalProps } from './modal';
+
+export default Modal;
