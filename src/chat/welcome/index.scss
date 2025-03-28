@@ -1,15 +1,23 @@
+$primaryGradient: #00BAC6 0%, #0067FF 50%, #450FDE 100%;
+
 .dtc__welcome {
-    border-radius: 8px;
-    padding: 12px;
-    border: 1px solid #00BAC6;
-    background:
-        linear-gradient(
-            110deg,
-            rgba(0, 186, 198, 0.05) 0%,
-            rgba(0, 103, 255, 0.05) 50%,
-            rgba(69, 15, 222, 0.05) 100%
-        ),
-        #FFF;
+    overflow: hidden;
+    color: #FFF;
+    background: linear-gradient(110deg, $primaryGradient) border-box;
+    border: 1px solid transparent;
+    &__content {
+        padding: 12px;
+        position: relative;
+        z-index: 2;
+        background:
+            linear-gradient(
+                110deg,
+                rgba(0, 186, 198, 0.05) 0%,
+                rgba(0, 103, 255, 0.05) 50%,
+                rgba(69, 15, 222, 0.05) 100%
+            ),
+            #FFF;
+    }
     &__title {
         color: #3D446E;
         font-size: 20px;

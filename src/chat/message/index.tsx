@@ -108,20 +108,12 @@ export default function Message({
 
     const renderCopyIcon = () => {
         if (copyInfo.disabled) return null;
-        const { formatText, style, ...rest } = copyInfo.options;
+        const { formatText, ...rest } = copyInfo.options;
         const text = formatText?.(record?.content) ?? record?.content;
 
         if (!text) return null;
 
-        return (
-            <Copy
-                className="dtc__message__icon"
-                button={<CopyIcon />}
-                text={text}
-                style={{ fontSize: 16, ...style }}
-                {...rest}
-            />
-        );
+        return <Copy className="dtc__message__icon" button={<CopyIcon />} text={text} {...rest} />;
     };
 
     return (
@@ -178,7 +170,7 @@ export default function Message({
                 )}
             </div>
             {!typing && !loading && (
-                <Space className="dtc__message__iconGroup">
+                <Space className="dtc__message__iconGroup" align="center">
                     {renderCopyIcon()}
                     {typeof messageIcons === 'function'
                         ? messageIcons(record, prompt)
@@ -192,7 +184,7 @@ export default function Message({
                                 className="dtc__message__icon"
                                 onClick={() => onRegenerate?.(record)}
                             >
-                                <ReloadIcon style={{ fontSize: 16 }} />
+                                <ReloadIcon />
                             </span>
                         </Tooltip>
                     )}

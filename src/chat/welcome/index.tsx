@@ -22,11 +22,13 @@ export default function Welcome({
 }: IWelcomeProps) {
     return (
         <div className={classNames('dtc__welcome', className)} style={style}>
-            <Flex gap={8} align="center">
-                {icon}
-                <span className="dtc__welcome__title">{title}</span>
-            </Flex>
-            <div className="dtc__welcome__description">{description}</div>
+            <div className="dtc__welcome__content">
+                <Flex gap={8} align="center">
+                    {icon}
+                    <span className="dtc__welcome__title">{title}</span>
+                </Flex>
+                <div className="dtc__welcome__description">{description}</div>
+            </div>
         </div>
     );
 }
