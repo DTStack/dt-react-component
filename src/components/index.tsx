@@ -34,3 +34,6 @@ export { default as TextMark } from './textMark';
 export { default as ToolModal } from './toolModal';
 export { default as ProgressLine } from './progressLine';
 export { default as Empty } from './empty';
+export { default as ConfigProvider } from './configProvider';
+export { default as zhCN } from './locale/zh-CN';
+export { default as enUS } from './locale/en-US';
