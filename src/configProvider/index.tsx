@@ -1,15 +1,9 @@
 import React from 'react';
 
-import { LocaleContext, LocaleContextProps } from '../locale/useLocale';
+import { Locale, LocaleContext } from '../locale/useLocale';
 
-const ConfigProvider = ({
-    locale,
-    children,
-}: {
-    locale: LocaleContextProps;
-    children: React.ReactNode;
-}) => {
-    return <LocaleContext.Provider value={{ ...locale }}>{children}</LocaleContext.Provider>;
+const ConfigProvider = ({ locale, children }: { locale: Locale; children: React.ReactNode }) => {
+    return <LocaleContext.Provider value={{ locale }}>{children}</LocaleContext.Provider>;
 };
 
 export default ConfigProvider;

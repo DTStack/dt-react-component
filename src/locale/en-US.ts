@@ -22,7 +22,7 @@ const localeValues: Locale = {
     LoadError: {
         please: 'A new version has been found. Please',
         get: 'to get the new version.',
-        refresh: 'refresh',
+        refresh: ' refresh ',
         title: 'If this prompt persists for a long time, please contact the administrator.',
     },
     Modal: {
