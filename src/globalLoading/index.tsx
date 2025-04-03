@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+import useLocale from '../locale/useLocale';
 import './style.scss';
 
 export interface IGlobalLoadingProps {
@@ -12,8 +13,10 @@ export interface IGlobalLoadingProps {
 }
 
 const GlobalLoading: React.FC<IGlobalLoadingProps> = function (props) {
+    const locale = useLocale('GlobalLoading');
+
     const {
-        loadingTitle = '应用加载中，请等候～',
+        loadingTitle = locale.loading,
         mainBackground = '#F2F7FA',
         circleBackground = '#1D78FF',
         titleColor = '#3D446E',

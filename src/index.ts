@@ -1,5 +1,6 @@
 export { default as BlockHeader } from './blockHeader';
 export { default as CollapsibleActionItems } from './collapsibleActionItems';
+export { default as ConfigProvider } from './configProvider';
 export { default as ContextMenu } from './contextMenu';
 export { default as useCookieListener } from './cookies';
 export { default as Copy } from './copy';
@@ -13,6 +14,8 @@ export { default as Fullscreen } from './fullscreen';
 export { default as GlobalLoading } from './globalLoading';
 export { default as Input } from './input';
 export { default as KeyEventListener } from './keyEventListener';
+export { default as enUS } from './locale/en-US';
+export { default as zhCN } from './locale/zh-CN';
 export { default as MarkdownRender } from './markdownRender';
 export { default as Modal } from './modal';
 export { default as MxGraphContainer, WIDGETS_PREFIX } from './mxGraph';
