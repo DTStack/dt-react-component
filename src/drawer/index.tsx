@@ -22,7 +22,7 @@ export enum DrawerType {
     Normal = 'normal',
 }
 
-interface NormalDrawerProps extends Omit<AntdDrawerProps, 'placement'> {
+interface BaseDrawerProps extends Omit<AntdDrawerProps, 'placement' | 'children'> {
     size?: 'small' | 'default' | 'large';
     loading?: boolean;
     bodyClassName?: string;
@@ -33,35 +33,35 @@ interface NormalDrawerProps extends Omit<AntdDrawerProps, 'placement'> {
     type?: DrawerType;
 }
 
-interface TabsDrawerProps<T extends readOnlyTab> extends Omit<NormalDrawerProps, 'children'> {
+export interface DrawerProps<T extends readOnlyTab = any> extends BaseDrawerProps {
     tabs?: T;
     defaultKey?: TabKey<T>;
     activeKey?: TabKey<T>;
-    children?: (key: TabKey<T>) => React.ReactNode;
+    children?: React.ReactNode | ((key: TabKey<T>) => React.ReactNode);
     onChange?: (key: TabKey<T>) => void;
 }
 
-function isFunction<T extends readOnlyTab>(props: DrawerProps<T>): props is TabsDrawerProps<T> {
+function isFunction<T extends readOnlyTab>(
+    props: DrawerProps<T>
+): props is DrawerProps<T> & { children: (key: string) => React.ReactNode } {
     return typeof props.children === 'function';
 }
 
-function isTabMode<T extends readOnlyTab>(props: DrawerProps<T>): props is TabsDrawerProps<T> {
+function isTabMode<T extends readOnlyTab>(props: DrawerProps<T>): props is DrawerProps<T> {
     return 'tabs' in props;
 }
 
-function isControlled<T extends readOnlyTab>(props: DrawerProps<T>): props is TabsDrawerProps<T> {
+function isControlled<T extends readOnlyTab>(props: DrawerProps<T>): props is DrawerProps<T> {
     return 'activeKey' in props;
 }
 
-export type DrawerProps<T extends readOnlyTab> = TabsDrawerProps<T> | NormalDrawerProps;
-
-const getWidthFromSize = (size: NormalDrawerProps['size']) => {
+const getWidthFromSize = (size: DrawerProps['size']) => {
     if (size === 'small') return 720;
     if (size === 'large') return 1256;
     return 1000;
 };
 
-const isValidBanner = (banner: NormalDrawerProps['banner']): banner is AlertProps['message'] => {
+const isValidBanner = (banner: DrawerProps['banner']): banner is AlertProps['message'] => {
     if (typeof banner === 'object') return React.isValidElement(banner);
     return true;
 };
@@ -163,7 +163,9 @@ const Drawer = <T extends readOnlyTab>(props: DrawerProps<T>) => {
                     className={classNames(`${slidePrefixCls}-body`, bodyClassName)}
                     style={bodyStyle}
                 >
-                    {isFunction(props) ? props.children?.(currentKey ?? '') : props.children}
+                    {isFunction(props)
+                        ? props.children?.(currentKey ?? '')
+                        : (props.children as React.ReactNode)}
                 </div>
                 {footer ? (
                     <div className={classNames(`${slidePrefixCls}-footer`)}>{footer}</div>
