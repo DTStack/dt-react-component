@@ -16,33 +16,33 @@ export default function () {
                     <Chat.Button
                         type="primary"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     />
                     <Chat.Button
                         type="primary"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     >
-                        发送
+                        按钮
                     </Chat.Button>
                     <Chat.Button
                         type="default"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     >
-                        发送
+                        按钮
                     </Chat.Button>
                     <Chat.Button
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     >
-                        发送
+                        按钮
                     </Chat.Button>
                     <Chat.Button
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     >
                         AI log parsing
                     </Chat.Button>
@@ -54,37 +54,37 @@ export default function () {
                         size="small"
                         type="primary"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     />
                     <Chat.Button
                         size="small"
                         type="primary"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     >
-                        发送
+                        按钮
                     </Chat.Button>
                     <Chat.Button
                         size="small"
                         type="default"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     >
-                        发送
+                        按钮
                     </Chat.Button>
                     <Chat.Button
                         size="small"
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     >
-                        发送
+                        按钮
                     </Chat.Button>
                     <Chat.Button
                         size="small"
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.SendIcon style={{ fontSize: 16 }} />}
+                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
                     >
                         AI log parsing
                     </Chat.Button>

@@ -45,6 +45,9 @@ export default memo(
                     pre({ children }) {
                         return <CodeBlock {...codeBlock}>{children}</CodeBlock>;
                     },
+                    hr() {
+                        return <hr color="#ebecf0" className="dtc__aigc__markdown__hr" />;
+                    },
                     ...components,
                 }}
                 {...rest}

@@ -33,6 +33,14 @@ const str = [
 `,
 ];
 
+const codeBlockStr = `
+[change convert]() in the content.
+
+\`\`\`sql
+select * from table;
+\`\`\`
+`;
+
 function getRandomLength() {
     return Math.floor(Math.random() * 10);
 }
@@ -56,6 +64,9 @@ export function mockSSE({ message, onopen, onmessage, onstop }: SSEProps) {
             onmessage?.(text.slice(point, point + length));
             point += length;
         }, 100);
+    } else if (message.includes('CodeBlock')) {
+        onmessage?.(codeBlockStr);
+        onstop?.();
     } else {
         onmessage?.('根据你的描述暂未检索相关诗词。');
         onstop?.();
