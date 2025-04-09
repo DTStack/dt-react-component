@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0-beta.0](https://github.com/DTStack/dt-react-component/compare/v5.1.0...v5.2.0-beta.0) (2025-04-09)
+
+### Features
+
+-   add issue template ([#472](https://github.com/DTStack/dt-react-component/issues/472)) ([2da23a9](https://github.com/DTStack/dt-react-component/commit/2da23a969bc7eb4f3604feaa5cf3bd36cde3787d))
+-   add useDebounce hooks ([#454](https://github.com/DTStack/dt-react-component/issues/454)) ([f9672f6](https://github.com/DTStack/dt-react-component/commit/f9672f6a60dcfd54b987a4c310a4ce63a5aba32e))
+-   **blockheader:** support expand controll and change callname to onExpand ([#447](https://github.com/DTStack/dt-react-component/issues/447)) ([cafad70](https://github.com/DTStack/dt-react-component/commit/cafad70c597548db1c264936823496646ab2df2d))
+-   **blockheader:** supprt large size and change some props name ([#478](https://github.com/DTStack/dt-react-component/issues/478)) ([d05ecbe](https://github.com/DTStack/dt-react-component/commit/d05ecbe418840909c6360cf9dc35187b2527327c))
+-   **chat:** add Chat component ([#518](https://github.com/DTStack/dt-react-component/issues/518)) ([f774df3](https://github.com/DTStack/dt-react-component/commit/f774df3ad55e35d57ac1a73eb3bdb92d7cf9afc7))
+-   **chat:** update chat component ([#554](https://github.com/DTStack/dt-react-component/issues/554)) ([6341eea](https://github.com/DTStack/dt-react-component/commit/6341eeaf21c3af941e6372848288c07dfbb43dc7))
+-   **copy:** remove title/hideTooltip, add tooltip ([#479](https://github.com/DTStack/dt-react-component/issues/479)) ([f8ca178](https://github.com/DTStack/dt-react-component/commit/f8ca1782fa7ef84647a3ddd4f2d7e9188b8f5400))
+-   **descriptions:** add descriptions ([#530](https://github.com/DTStack/dt-react-component/issues/530)) ([7a40fef](https://github.com/DTStack/dt-react-component/commit/7a40fefc4c604ec98f04422e9a405d4f99db8d40))
+-   **dropdown.select:** supports uncontrolled and interactive optimization ([#484](https://github.com/DTStack/dt-react-component/issues/484)) ([89426ce](https://github.com/DTStack/dt-react-component/commit/89426cecda19946d14472fbfba5e3302d68dee15))
+-   **empty:** add animation for search type([#521](https://github.com/DTStack/dt-react-component/issues/521)) ([4aca82b](https://github.com/DTStack/dt-react-component/commit/4aca82b3b317b5419079250567978f20d90481ab))
+-   **empty:** update empty ([#441](https://github.com/DTStack/dt-react-component/issues/441)) ([264a042](https://github.com/DTStack/dt-react-component/commit/264a042b3d90a134e5c49707c4a1ea7a5aa1e833))
+-   **filterrules:** support part disabled and part edit ([#436](https://github.com/DTStack/dt-react-component/issues/436)) ([8f606d7](https://github.com/DTStack/dt-react-component/commit/8f606d73c0cf151a6b6672e168a73947e185eeb1))
+-   **flex:** support new Flex component ([#553](https://github.com/DTStack/dt-react-component/issues/553)) ([c821f52](https://github.com/DTStack/dt-react-component/commit/c821f52d96bfc89a99ed3eddd01c7760adb7cae7))
+-   **global:** add packageManager ([#482](https://github.com/DTStack/dt-react-component/issues/482)) ([048c5fe](https://github.com/DTStack/dt-react-component/commit/048c5fe2831c1f48e85eba19df1cf12d0db72c19))
+-   **input:** add internal input component ([#543](https://github.com/DTStack/dt-react-component/issues/543)) ([2f9348d](https://github.com/DTStack/dt-react-component/commit/2f9348dc4302355a87df2fee7b9d7d8d99f945f5))
+-   **modal:** remove Modal.Form ([#445](https://github.com/DTStack/dt-react-component/issues/445)) ([dbd07d6](https://github.com/DTStack/dt-react-component/commit/dbd07d6ff979572e504d8ccc57ad36c7d902b09d))
+-   remove mxgraph and rename slidePane to drawer ([#507](https://github.com/DTStack/dt-react-component/issues/507)) ([386964a](https://github.com/DTStack/dt-react-component/commit/386964a01fb62aa5da9b8025646dbc79e5abc8f6))
+-   rename cookies folder to useCookieListener and support className/style for all components ([#527](https://github.com/DTStack/dt-react-component/issues/527)) ([4a64231](https://github.com/DTStack/dt-react-component/commit/4a642317656636dbb0ed36ebaf7cf1fbda2ed47c))
+-   **slidepane:** add footer and extends DrawerProps ([#440](https://github.com/DTStack/dt-react-component/issues/440)) ([d01a7b1](https://github.com/DTStack/dt-react-component/commit/d01a7b1c6e57d603f93c18e6df32a2704b9e1c2c))
+-   **slidepane:** support tab control ([#451](https://github.com/DTStack/dt-react-component/issues/451)) ([64d8f27](https://github.com/DTStack/dt-react-component/commit/64d8f27dde6862ea90d0c7834ec7e4fb3d7a9f04))
+-   **statustag:** support bg statusTag ([#450](https://github.com/DTStack/dt-react-component/issues/450)) ([3f73f5b](https://github.com/DTStack/dt-react-component/commit/3f73f5bb8144345e493194e2a0c55942532acd11))
+-   **statustag:** support statusTag without icon ([#523](https://github.com/DTStack/dt-react-component/issues/523)) ([96edb4d](https://github.com/DTStack/dt-react-component/commit/96edb4d4546d9823f8db5e7a6aa5ca296e9f1f57))
+-   **tinytag:** replace svg to render ([#517](https://github.com/DTStack/dt-react-component/issues/517)) ([09c4c77](https://github.com/DTStack/dt-react-component/commit/09c4c77247293fb848b3f9db3b26986a699bc98d))
+-   **useModal:** develop useModal ([#427](https://github.com/DTStack/dt-react-component/issues/427)) ([298b463](https://github.com/DTStack/dt-react-component/commit/298b46395acca13488b1e826c6e93fbbdb0f120b))
+
+### Bug Fixes
+
+-   all classname startWith dtc ([c8cd737](https://github.com/DTStack/dt-react-component/commit/c8cd73765438f1f0dbcf3bfa0e5dab45d04d4b38))
+-   **blockheader:** change some review comment and different font-size ([#481](https://github.com/DTStack/dt-react-component/issues/481)) ([97a5cff](https://github.com/DTStack/dt-react-component/commit/97a5cffd83482c1b7b72630381baf5d6242d4641))
+-   **blockheader:** support different size to show different custom icon size ([#502](https://github.com/DTStack/dt-react-component/issues/502)) ([cebafe6](https://github.com/DTStack/dt-react-component/commit/cebafe6e3ada636a862330ee470f837efa7ab2b3))
+-   **collapsibleactionitems:** change icon size and add classname/style ([#500](https://github.com/DTStack/dt-react-component/issues/500)) ([6b80b7c](https://github.com/DTStack/dt-react-component/commit/6b80b7cc5a9981adfc3c1e993a246baaaf0e9663))
+-   **contentlayout:** scroll calculation ([#458](https://github.com/DTStack/dt-react-component/issues/458)) ([76f808d](https://github.com/DTStack/dt-react-component/commit/76f808d18345ed5ad473fc276208fb09a83fdafa))
+-   **contextmenu:** change contextMenu style ([#501](https://github.com/DTStack/dt-react-component/issues/501)) ([f30ded1](https://github.com/DTStack/dt-react-component/commit/f30ded15926febde181e0331a5853a785717d99a))
+-   **copy:** change default copy icon ([#499](https://github.com/DTStack/dt-react-component/issues/499)) ([943b7de](https://github.com/DTStack/dt-react-component/commit/943b7def80761ad6a7121ecdfe8b490a190cd67c))
+-   **drawer:** change renderButton outside Spin ([#513](https://github.com/DTStack/dt-react-component/issues/513)) ([a60ad14](https://github.com/DTStack/dt-react-component/commit/a60ad1496470468db228c81811740af8657f242d))
+-   **drawer:** update Drawer ts type ([#555](https://github.com/DTStack/dt-react-component/issues/555)) ([4432c49](https://github.com/DTStack/dt-react-component/commit/4432c4956d2f410455380d7a7a74bac0c7d91642))
+-   **empty:** fix active search empty will flush ([#542](https://github.com/DTStack/dt-react-component/issues/542)) ([46e31f1](https://github.com/DTStack/dt-react-component/commit/46e31f165ade92b39d82a9dbfcb12f7f33537bf1))
+-   **filterrules:** set input disabled color ([#503](https://github.com/DTStack/dt-react-component/issues/503)) ([4e14690](https://github.com/DTStack/dt-react-component/commit/4e14690fde9f29d9c51976a43387e2024add6233))
+-   **image:** change image markdown ([#538](https://github.com/DTStack/dt-react-component/issues/538)) ([234ba0e](https://github.com/DTStack/dt-react-component/commit/234ba0edc7d632e57570763529e1256e53c96c4e))
+-   **modal:** improve modal's size ([#452](https://github.com/DTStack/dt-react-component/issues/452)) ([0b3c9c0](https://github.com/DTStack/dt-react-component/commit/0b3c9c0cfe3645316196dbf6b7c791b650daab2f))
+-   **slidepane:** add two types and close ways ([#505](https://github.com/DTStack/dt-react-component/issues/505)) ([2c82605](https://github.com/DTStack/dt-react-component/commit/2c82605ccf0a18cbc81ffa3a2a47e17e7b36cca7))
+-   **slidepane:** update icon position ([#434](https://github.com/DTStack/dt-react-component/issues/434)) ([a7d3083](https://github.com/DTStack/dt-react-component/commit/a7d3083563296c7cc4d6e7c84a399593cbcb578d))
+-   **statustag:** add statusTag text size and weight ([#515](https://github.com/DTStack/dt-react-component/issues/515)) ([76c4034](https://github.com/DTStack/dt-react-component/commit/76c4034a2cbe5b0c8a31b54f39c4ee76ecda2885))
+-   **statustag:** change border bg/icon size/ant-spin loading center ([#498](https://github.com/DTStack/dt-react-component/issues/498)) ([5d7ea1a](https://github.com/DTStack/dt-react-component/commit/5d7ea1a2bf7d0d2d3711f1a2eb3a5d3a073b63b1))
+-   **statustag:** change icon font-size and docs ([#504](https://github.com/DTStack/dt-react-component/issues/504)) ([0695b73](https://github.com/DTStack/dt-react-component/commit/0695b73646e0461b47c480fe79020ffbb6cda76b))
+-   **useintersectionobserver:** remove ref from props and createRef in useIntersectionObserver ([#516](https://github.com/DTStack/dt-react-component/issues/516)) ([fcc232b](https://github.com/DTStack/dt-react-component/commit/fcc232bf0b7f98da97065299417860cb30dae15c))
+-   using ref to solve closure problems ([#496](https://github.com/DTStack/dt-react-component/issues/496)) ([4efedc4](https://github.com/DTStack/dt-react-component/commit/4efedc4eebc23ea878694c88279ddd8baf99c9f5))
+
 ## [5.1.0](https://github.com/DTStack/dt-react-component/compare/v4.3.1...v5.1.0) (2023-12-26)
 
 ### Features
