@@ -2,8 +2,74 @@
 
 exports[`Test Chat Input Match snapshot 1`] = `
 <DocumentFragment>
-  <textarea
-    class="ant-input aigc-textarea"
-  />
+  <div
+    class="dtc__chat__textarea__container"
+  >
+    <textarea
+      class="ant-input dtc__chat__textarea"
+    />
+    <span
+      class="dtc__icon dtc__chat__textarea__send"
+    >
+      <svg
+        fill="none"
+        height="1em"
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M17.999 3.858 3.35 9.204a1.66 1.66 0 0 0-1.095 1.458 1.66 1.66 0 0 0 .862 1.602l4.454 2.44c.27.143.593.098.808-.118l.737-.72 4.508-4.428a.677.677 0 0 1 .952.018c.26.261.26.693-.009.954l-4.562 4.473-.61.603a.68.68 0 0 0-.118.828l2.64 4.626c.315.513.845.81 1.429.81.063 0 .117 0 .18-.009a1.68 1.68 0 0 0 1.41-1.107L20.153 6a1.69 1.69 0 0 0-.404-1.764 1.64 1.64 0 0 0-1.751-.378"
+          fill="url(#paint0_linear_3878_6538)"
+          fill-rule="evenodd"
+        />
+        <defs>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="paint0_linear_3878_6538"
+            x1="2.25"
+            x2="23.921"
+            y1="3.75"
+            y2="11.552"
+          >
+            <stop
+              stop-color="#00BAC6"
+            />
+            <stop
+              offset="0.5"
+              stop-color="#0067FF"
+            />
+            <stop
+              offset="1"
+              stop-color="#450FDE"
+            />
+          </lineargradient>
+        </defs>
+        <defs>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="paint0_linear_3878_6538_hover"
+            x1="2.25"
+            x2="23.921"
+            y1="3.75"
+            y2="11.552"
+          >
+            <stop
+              stop-color="#08C4FF"
+            />
+            <stop
+              offset="0.5"
+              stop-color="#4892FF"
+            />
+            <stop
+              offset="1"
+              stop-color="#8A61FF"
+            />
+          </lineargradient>
+        </defs>
+      </svg>
+    </span>
+  </div>
 </DocumentFragment>
 `;

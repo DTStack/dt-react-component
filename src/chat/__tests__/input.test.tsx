@@ -56,4 +56,17 @@ describe('Test Chat Input', () => {
         expect(onChange).not.toBeCalled();
         expect(onPressEnter).toBeCalledTimes(1);
     });
+
+    it('Should call onSubmit', () => {
+        const onSubmit = jest.fn();
+        const { container, rerender } = render(<Input onSubmit={onSubmit} />);
+        const ele = container.querySelector<HTMLSpanElement>('.dtc__chat__textarea__send')!;
+        fireEvent.click(ele);
+        expect(onSubmit).toBeCalled();
+
+        onSubmit.mockClear();
+        rerender(<Input button={{ disabled: true }} onSubmit={onSubmit} />);
+        fireEvent.click(ele);
+        expect(onSubmit).not.toBeCalled();
+    });
 });
