@@ -6,11 +6,17 @@ import Markdown from '../markdown';
 
 jest.mock('remark-gfm', () => () => {});
 
+const markdown = `
+# title
+
+---
+`;
+
 describe('Test Chat Markdown', () => {
     beforeEach(cleanup);
 
     it('Match Snapshots', () => {
-        expect(render(<Markdown># title</Markdown>).asFragment()).toMatchSnapshot('default');
+        expect(render(<Markdown>{markdown}</Markdown>).asFragment()).toMatchSnapshot('default');
         expect(
             render(
                 <Markdown typing className="test">
