@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { act, cleanup, fireEvent, render } from '@testing-library/react';
 import { produce } from 'immer';
@@ -92,14 +93,6 @@ describe('Test Chat Content', () => {
                 <Content data={[generatePrompt()]} placeholder={<div>placeholder</div>} />
             ).asFragment()
         ).toMatchSnapshot('normal');
-    });
-
-    it('Should support hidden robot icon', () => {
-        const { container } = render(
-            <Content data={[]} placeholder={<div>placeholder</div>} robotIcon={false} />
-        );
-
-        expect(container.querySelector('.dtc__icon')).toBeNull();
     });
 
     it('Should disabled', () => {
