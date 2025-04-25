@@ -62,7 +62,7 @@ describe('test Drawer ', () => {
             </Drawer>
         );
         expect(document.querySelector('.dtc-drawer-content-wrapper')).toHaveStyle({
-            width: '1256px',
+            width: `${(1256 / 1440) * 100}%`,
         });
     });
     test('should render className/style correct', () => {
