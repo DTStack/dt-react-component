@@ -22,11 +22,11 @@ const propDefinitions = [
         defaultValue: '',
     },
     {
-        property: 'options.showCopyWithHeader',
-        propType: 'Boolean',
+        property: 'options.copyTypes',
+        propType: 'Array<"copyData" \| "copyHeaders" \| "copyHeadersAndData">',
         required: false,
-        description: '右键菜单中是否展示“复制值以及列名”按钮',
-        defaultValue: '',
+        description: '右键菜单中展示的选项 复制值/复制列名/复制列名和值 按钮',
+        defaultValue: '["copyData"]',
     },
     {
         property: 'options.trimWhitespace',
@@ -41,11 +41,31 @@ const otherDependencies = `import { SpreadSheet } from 'dt-react-component';`;
 
 const functionCode = '';
 
-const code = `<SpreadSheet columns={['name', 'gender', 'age', 'address']} data={[
-    ['zhangsan', 'male', '20', 'xihu'],
-    ['lisi', 'male', '18', 'yuhang'],
-    ['   前面有空格', '后面有空格   ', '中间有  空 格', 'yuhang'],
-]} options={{ trimWhitespace: false }} />`;
+const code1 = `<SpreadSheet
+                columns={['name', 'gender', 'age', 'address']}
+                data={[
+                    ['zhangsan', 'male', '20', 'xihu'],
+                    ['lisi', 'male', '18', 'yuhang'],
+                    ['   前面有空格', '后面有空格   ', '中间有  空 格', 'yuhang'],
+                ]}
+                options={{
+                    trimWhitespace: false,
+                    copyTypes: ['copyData', 'copyHeaders'],
+                }}
+            />`;
+
+const code2 = `<SpreadSheet
+                columns={['name', 'gender', 'age', 'address']}
+                data={[
+                    ['zhangsan', 'male', '20', 'xihu'],
+                    ['lisi', 'male', '18', 'yuhang'],
+                    ['   前面有空格', '后面有空格   ', '中间有  空 格', 'yuhang'],
+                ]}
+                options={{
+                    trimWhitespace: false,
+                    copyTypes: ['copyData', 'copyHeaders', 'copyHeadersAndData'],
+                }}
+            />`;
 
 const stories = storiesOf('SpreadSheet 多功能表', module);
 stories.add(
@@ -56,8 +76,9 @@ stories.add(
                 <h2>何时使用</h2>
                 <p>表格内容右键可复制，表格大小可拖动</p>
                 <h2>示例</h2>
+                <span>右键菜单：复制值、复制列名</span>
                 <ExampleContainer
-                    code={code}
+                    code={code1}
                     otherDependencies={otherDependencies}
                     hasCodeSandBox
                     functionCode={functionCode}
@@ -69,7 +90,32 @@ stories.add(
                             ['lisi', 'male', '18', 'yuhang'],
                             ['   前面有空格', '后面有空格   ', '中间有  空 格', 'yuhang'],
                         ]}
-                        options={{ trimWhitespace: false }}
+                        options={{
+                            trimWhitespace: false,
+                            copyTypes: ['copyData', 'copyHeaders'],
+                        }}
+                    />
+                </ExampleContainer>
+
+                <br />
+                <span>右键菜单：复制值、复制列名、复制列名和值</span>
+                <ExampleContainer
+                    code={code2}
+                    otherDependencies={otherDependencies}
+                    hasCodeSandBox
+                    functionCode={functionCode}
+                >
+                    <SpreadSheet
+                        columns={['name', 'gender', 'age', 'address']}
+                        data={[
+                            ['zhangsan', 'male', '20', 'xihu'],
+                            ['lisi', 'male', '18', 'yuhang'],
+                            ['   前面有空格', '后面有空格   ', '中间有  空 格', 'yuhang'],
+                        ]}
+                        options={{
+                            trimWhitespace: false,
+                            copyTypes: ['copyData', 'copyHeaders', 'copyHeadersAndData'],
+                        }}
                     />
                 </ExampleContainer>
             </div>
@@ -81,9 +127,18 @@ stories.add(
         代码示例：
         ~~~js
         import { SpreadSheet } from 'dt-react-component'
+
         <SpreadSheet
             columns={['name', 'gender', 'age', 'address']}
-            data={[['zhangsan', 'male', '20', 'xihu'], ['lisi', 'male', '18', 'yuhang']]}
+            data={[
+                ['zhangsan', 'male', '20', 'xihu'],
+                ['lisi', 'male', '18', 'yuhang'],
+                ['   前面有空格', '后面有空格   ', '中间有  空 格', 'yuhang'],
+            ]}
+            options={{
+                trimWhitespace: false,
+                copyTypes: ['copyData', 'copyHeaders', 'copyHeadersAndData'],
+            }}
         />
         ~~~
         `,

@@ -1,18 +1,18 @@
 import React from 'react';
-
-import CopyUtils from '../utils/copy';
-import { HotTable } from '@handsontable/react';
 import type { HotTableProps } from '@handsontable/react';
+import { HotTable } from '@handsontable/react';
 import classNames from 'classnames';
-import 'handsontable/dist/handsontable.full.css';
 import 'handsontable/languages/zh-CN.js';
 
+import CopyUtils from '../utils/copy';
+import 'handsontable/dist/handsontable.full.css';
+
 type IOptions = HotTableProps & {
-    /** 是否展示复制值以及列名 */
-    showCopyWithHeader?: boolean;
+    // 右击右键菜单中展示的选项 复制值/复制列名/复制列名和值 按钮 */
+    copyTypes?: Array<'copyData' | 'copyHeaders' | 'copyHeadersAndData'>;
 };
 
-export interface SpreadSheetProps {
+export interface ISpreadSheetProps {
     data: Array<Array<string | null | number>>;
     columns: any;
     className?: string;
@@ -27,7 +27,7 @@ export interface SpreadSheetProps {
     hotTableInstanceRef?: (instance: any) => void;
 }
 
-class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
+class SpreadSheet extends React.PureComponent<ISpreadSheetProps, any> {
     tableRef: any = React.createRef();
     copyUtils = new CopyUtils();
     _renderTimer: any;
@@ -54,7 +54,7 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
     componentWillUnmount() {
         this.removeRenderClock();
     }
-    getData() {
+    getShowData() {
         const { data, columns = [] } = this.props;
         let showData = data;
         if (!showData || !showData.length) {
@@ -78,63 +78,110 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
         }
         return null;
     }
-    beforeCopy(arr: any, _arr2?: any) {
-        /**
-         * 去除格式化
-         */
+
+    /**
+     * 去除格式化
+     */
+    beforeCopy(arr: Array<Array<any>>) {
         const value = arr
             .map((row: any) => {
                 return row.join('\t');
             })
             .join('\n');
+
         this.copyUtils.copy(value);
         return false;
     }
     getContextMenu() {
         const that = this;
         const { columns = [], options } = this.props;
-        const items = {
-            copy: {
-                name: '复制',
-                callback: function (_key) {
-                    const indexArr = this.getSelected();
-                    // eslint-disable-next-line prefer-spread
-                    const copyDataArr = this.getData.apply(this, indexArr[0]);
-                    that.beforeCopy(copyDataArr);
-                },
+        const { copyTypes = [] } = options || {};
+
+        // 获取值
+        const getCopyData = (_that) => {
+            // _that 调用的是 handsontable 的方法（在 handsontable.d.ts）， this/that 调用的是当前文件的方法
+            const selectedIndexArr = _that.getSelected();
+            let dataArr = [];
+
+            if (Array.isArray(selectedIndexArr)) {
+                selectedIndexArr.forEach((arr, index) => {
+                    const [r, c, r2, c2] = arr || [];
+                    const colData: [] = _that.getData(r, c, r2, c2) || [];
+                    if (index === 0) {
+                        dataArr.push(...colData);
+                    } else {
+                        dataArr = dataArr.map((item: any[], index: number) => {
+                            return item.concat(colData[index]);
+                        });
+                    }
+                });
+            }
+            return dataArr;
+        };
+        // 获取列名
+        const getCopyHeaders = (selection) => {
+            // _that 调用的是 handsontable 的方法（在 handsontable.d.ts）， this/that 调用的是当前文件的方法
+            let headerArr = [];
+            if (Array.isArray(selection)) {
+                selection.forEach((it) => {
+                    const columnStart = it.start?.col;
+                    const columnEnd = it.end?.col;
+                    if (columnStart !== undefined && columnEnd !== undefined) {
+                        headerArr = headerArr.concat(columns.slice(columnStart, columnEnd + 1));
+                    }
+                });
+            }
+            return headerArr;
+        };
+
+        const copyDataItem = {
+            name: '复制值',
+            callback: function (_key) {
+                const copyDataArr = getCopyData(this);
+                that.beforeCopy(copyDataArr);
             },
         };
-        if (options?.showCopyWithHeader) {
-            const copyWithHeaderItem = {
-                name: '复制值以及列名',
-                callback: function (_key, selection) {
-                    const indexArr = this.getSelected();
-                    // eslint-disable-next-line prefer-spread
-                    let copyDataArr = this.getData.apply(this, indexArr[0]);
-                    const columnStart = selection?.[0]?.start?.col;
-                    const columnEnd = selection?.[0]?.end?.col;
-                    let columnArr;
-                    if (columnStart !== undefined && columnEnd !== undefined) {
-                        columnArr = columns.slice(columnStart, columnEnd + 1);
-                    }
-                    if (columnArr) {
-                        copyDataArr = [columnArr, ...copyDataArr];
-                    }
-                    that.beforeCopy(copyDataArr);
-                },
-            };
-            // 目前版本不支持 copy_with_column_headers 暂时用 cut 代替，以达到与copy类似的表现
-            items['cut'] = copyWithHeaderItem;
+        const copyHeadersItem = {
+            name: '复制列名',
+            callback: function (_key, selection) {
+                const copyHeaders = getCopyHeaders(selection);
+                that.beforeCopy([copyHeaders]);
+            },
+        };
+        const copyHeadersAndDataItem = {
+            name: '复制列名和值',
+            callback: function (_key, selection) {
+                const copyDataArr = getCopyData(this);
+                const copyHeaders = getCopyHeaders(selection);
+                that.beforeCopy([copyHeaders, ...copyDataArr]);
+            },
+        };
+
+        // 目前 items 在 https://github.com/handsontable/handsontable/blob/6.2.2/handsontable.d.ts#L779，自定义方法也可以被执行
+        const items = {};
+        if (Array.isArray(copyTypes) && copyTypes?.length) {
+            // 复制值
+            if (copyTypes.includes('copyData')) {
+                items['copyData'] = copyDataItem;
+            }
+            // 复制列名
+            if (copyTypes.includes('copyHeaders')) {
+                items['copyHeaders'] = copyHeadersItem;
+            }
+            // 复制列名和值
+            if (copyTypes.includes('copyHeadersAndData')) {
+                items['copyHeadersAndData'] = copyHeadersAndDataItem;
+            }
+        } else {
+            items['copyData'] = copyDataItem;
         }
-        return {
-            items,
-        } as any;
+
+        return { items } as any;
     }
     render() {
         const { columns = [], className = '', options, columnTypes = [] } = this.props;
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { trimWhitespace = true, showCopyWithHeader, ...restOptions } = options || {};
-        const showData = this.getData();
+        const { trimWhitespace = true, ...restOptions } = options || {};
+        const showData = this.getShowData();
         // 空数组情况，不显示colHeaders，否则colHeaders默认会按照 A、B...显示
         // 具体可见 https://handsontable.com/docs/7.1.1/Options.html#colHeaders
         let isShowColHeaders = false;
@@ -153,7 +200,9 @@ class SpreadSheet extends React.PureComponent<SpreadSheetProps, any> {
                     if (!isShowColHeaders) return false;
                     // handsontable 不支持 renderCustomHeader，所以只能用 html string 实现 tooltip
                     const fieldTypeStr = columnTypes?.[index]?.type;
-                    const title = fieldTypeStr ? `${columns?.[index]}: ${fieldTypeStr}` : columns?.[index];
+                    const title = fieldTypeStr
+                        ? `${columns?.[index]}: ${fieldTypeStr}`
+                        : columns?.[index];
                     return `<span title="${title}">${title}</span>`;
                 }}
                 data={showData}

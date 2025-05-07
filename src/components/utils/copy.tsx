@@ -60,7 +60,10 @@ export default class CopyUtils {
         let succeeded;
 
         try {
-            succeeded = document.execCommand('copy');
+            // 浏览器兼容性处理，当前语法已废弃，延迟处理可以保证复制成功
+            setTimeout(() => {
+                succeeded = document.execCommand('copy');
+            });
         } catch (err) {
             succeeded = false;
         }
