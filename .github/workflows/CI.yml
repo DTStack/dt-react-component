@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup node
         uses: actions/setup-node@v3
@@ -24,7 +24,7 @@ jobs:
           cache: yarn
 
       - name: Cache yarn.lock
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: package-temp-dir
           key: lock-${{ github.sha }}
@@ -40,7 +40,7 @@ jobs:
           cp yarn.lock package-temp-dir
       - name: Cache node_modules
         id: node_modules_cache_id
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
@@ -53,16 +53,16 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Restore cache from yarn.lock
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: package-temp-dir
           key: lock-${{ github.sha }}
 
       - name: Restore cache from node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
@@ -74,16 +74,16 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Restore cache from yarn.lock
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: package-temp-dir
           key: lock-${{ github.sha }}
 
       - name: Restore cache from node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
@@ -95,16 +95,16 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Restore cache from yarn.lock
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: package-temp-dir
           key: lock-${{ github.sha }}
 
       - name: Restore cache from node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
@@ -116,16 +116,16 @@ jobs:
     needs: [setup]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Restore cache from yarn.lock
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: package-temp-dir
           key: lock-${{ github.sha }}
 
       - name: Restore cache from node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
@@ -137,16 +137,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: [setup]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Restore cache from yarn.lock
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: package-temp-dir
           key: lock-${{ github.sha }}
 
       - name: Restore cache from node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package.json') }}-${{ hashFiles('**/package-temp-dir/yarn.lock') }}
