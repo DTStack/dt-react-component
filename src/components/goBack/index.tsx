@@ -1,3 +1,4 @@
+import { Locale } from '../locale/useLocale';
 import GoBack from './goBack';
 import GoBackButton from './goBackButton';
 
@@ -9,6 +10,7 @@ export interface GoBackProps {
 }
 export interface GoBackButtonProps extends GoBackProps {
     title?: string;
+    locale?: Locale['GoBack'];
 }
 
 GoBack.GoBackButton = GoBackButton;
