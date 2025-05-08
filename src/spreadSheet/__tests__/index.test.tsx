@@ -29,7 +29,7 @@ describe('test spreadSheet ', () => {
         const { getByText, unmount } = render(<SpreadSheet data={data} columns={columns} />);
         const cell = getByText('zhangsan');
         fireEvent.contextMenu(cell);
-        const copyBtn = getByText('复制');
+        const copyBtn = getByText('复制值');
         expect(copyBtn).toBeInTheDocument();
         fireEvent.click(copyBtn);
         unmount();
@@ -37,11 +37,27 @@ describe('test spreadSheet ', () => {
 
     test('copy value with header', () => {
         const { getByText, unmount } = render(
-            <SpreadSheet data={data} columns={columns} options={{ showCopyWithHeader: true }} />
+            <SpreadSheet data={data} columns={columns} options={{ copyTypes: ['copyData'] }} />
         );
         const cell = getByText('zhangsan');
         fireEvent.contextMenu(cell);
-        const copyBtn = getByText('复制值以及列名');
+        const copyBtn = getByText('复制值');
+        expect(copyBtn).toBeInTheDocument();
+        fireEvent.click(copyBtn);
+        unmount();
+    });
+
+    test('copy value with header', () => {
+        const { getByText, unmount } = render(
+            <SpreadSheet
+                data={data}
+                columns={columns}
+                options={{ copyTypes: ['copyData', 'copyHeadersAndData'] }}
+            />
+        );
+        const cell = getByText('zhangsan');
+        fireEvent.contextMenu(cell);
+        const copyBtn = getByText('复制列名和值');
         expect(copyBtn).toBeInTheDocument();
         fireEvent.click(copyBtn);
         unmount();
