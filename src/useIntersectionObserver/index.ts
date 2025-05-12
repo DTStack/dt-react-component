@@ -1,5 +1,8 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
+/**
+ * 自动观察元素是否可见，处理元素是否进入可是区域
+ */
 const useIntersectionObserver = <T extends Element>(
     callback: IntersectionObserverCallback,
     options: IntersectionObserverInit & { freezeOnceVisible?: boolean } = {}
