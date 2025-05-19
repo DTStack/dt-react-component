@@ -1,6 +1,7 @@
 import React, { memo, type PropsWithChildren, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { type ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
+import { Image } from 'antd';
 import classNames from 'classnames';
 import remarkGfm from 'remark-gfm';
 
@@ -47,6 +48,9 @@ export default memo(
                     },
                     hr() {
                         return <hr color="#ebecf0" className="dtc__aigc__markdown__hr" />;
+                    },
+                    img({ src, ...rest }) {
+                        return <Image src={src} {...(rest as any)} />;
                     },
                     ...components,
                 }}
