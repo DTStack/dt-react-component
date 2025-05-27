@@ -44,7 +44,6 @@ export default () => {
             <BlockHeader
                 size={size}
                 title="分类标题"
-                hasBottom
                 addonBefore={<PieChartOutlined />}
                 background={showBackground}
                 tooltip={tooltip ? '这里展示问号提示' : ''}

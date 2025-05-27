@@ -7,6 +7,7 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
     <div>
       <div
         class="dtc-block-header"
+        style="margin-bottom: 16px;"
       >
         <div
           class="dtc-block-header__title dtc-block-header__title--middle dtc-block-header__title--background"
@@ -34,6 +35,7 @@ exports[`test BlockHeader render should render BlockHeader success render 1`] = 
   "container": <div>
     <div
       class="dtc-block-header"
+      style="margin-bottom: 16px;"
     >
       <div
         class="dtc-block-header__title dtc-block-header__title--middle dtc-block-header__title--background"
