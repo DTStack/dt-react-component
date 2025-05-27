@@ -30,8 +30,6 @@ export interface IBlockHeaderProps {
      * 默认 中标题
      */
     size?: SizeType;
-    /** 是否展示 Bottom，默认 false，Bottom 值 16px */
-    hasBottom?: boolean;
     /** 自定义 Bottom 值 */
     spaceBottom?: number;
     /** 标题一行的样式类名 */
@@ -59,8 +57,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
         description = '',
         tooltip,
         size = 'middle',
-        hasBottom = false,
-        spaceBottom = 0,
+        spaceBottom = 16,
         className = '',
         style = {},
         background = true,
@@ -79,7 +76,6 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const tooltipProps = toTooltipProps(tooltip);
 
     let bottomStyle;
-    if (hasBottom) bottomStyle = { marginBottom: 16 };
     if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
 
     const handleExpand = (expand: boolean) => {

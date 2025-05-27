@@ -38,7 +38,6 @@ demo:
 | background    | 是否显示背景                       | `boolean`                               | `true`   |
 | expand        | 当前展开状态                       | `boolean`                               |          |
 | defaultExpand | 是否默认展开内容                   | `boolean`                               | `true`   |
-| hasBottom     | 是否有默认下边距 16px              | `boolean`                               | `false`  |
-| spaceBottom   | 自定义下边距，优先级高于 hasBottom | `number`                                | `0`      |
+| spaceBottom   | 自定义下边距，优先级高于 hasBottom | `number`                                | `16`     |
 | children      | 展开/收起的内容                    | `React.ReactNode`                       | -        |
 | onExpand      | 展开/收起时的回调                  | `(expand: boolean) => void`             | -        |

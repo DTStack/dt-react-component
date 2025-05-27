@@ -6,11 +6,8 @@ export default () => {
     return (
         <>
             <BlockHeader title="分类标题" />
-            <br />
             <BlockHeader title="分类标题" addonBefore={''} />
-            <br />
             <BlockHeader title="分类标题" addonBefore={<PieChartOutlined />} />
-            <br />
             <BlockHeader title="分类标题" addonBefore={<PauseCircleOutlined />} />
         </>
     );

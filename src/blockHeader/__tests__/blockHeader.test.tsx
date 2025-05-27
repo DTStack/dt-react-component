@@ -15,7 +15,6 @@ const props2: IBlockHeaderProps = {
     size: 'small' as SizeType,
     className: 'test__className',
     style: { height: '100px' },
-    hasBottom: true,
 };
 const props3: IBlockHeaderProps = {
     title: 'hover',
@@ -124,14 +123,14 @@ describe('test BlockHeader render', () => {
     });
 
     test('should render BlockHeader correct margin-bottom', () => {
-        const { container: noStyle } = render(<BlockHeader title="分类级别" addonBefore="" />);
-        expect(noStyle.querySelector('.dtc-block-header')).not.toHaveAttribute('style');
+        const { container: haveStyle } = render(<BlockHeader title="分类级别" addonBefore="" />);
+        expect(haveStyle.querySelector('.dtc-block-header')).toHaveAttribute('style');
         const { container: defaultBottom } = render(
             <BlockHeader title="分类级别" addonBefore="" />
         );
         expect(defaultBottom.querySelector('.dtc-block-header')).toHaveStyle({ marginBottom: 16 });
         const { container: customizeBottom } = render(
-            <BlockHeader title="分类级别" addonBefore="" hasBottom spaceBottom={10} />
+            <BlockHeader title="分类级别" addonBefore="" spaceBottom={10} />
         );
         expect(customizeBottom.querySelector('.dtc-block-header')).toHaveStyle({
             marginBottom: 10,
