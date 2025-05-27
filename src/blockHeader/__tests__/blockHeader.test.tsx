@@ -50,7 +50,7 @@ describe('test BlockHeader render', () => {
     test('should render BlockHeader test click event', () => {
         const onChange = jest.fn();
         const { getByText } = render(
-            <BlockHeader onExpand={onChange} title="测试">
+            <BlockHeader defaultExpand onExpand={onChange} title="测试">
                 <div>1111</div>
             </BlockHeader>
         );
@@ -59,15 +59,30 @@ describe('test BlockHeader render', () => {
         expect(getByText('展开')).toBeTruthy();
         expect(onChange).toHaveBeenCalledTimes(1);
     });
-    test('should render expanded and collapsed BlockHeader normally if the onChange event is not set', () => {
-        const { getByText } = render(
+    test('should not render collapsed content normally', () => {
+        render(
             <BlockHeader title="测试">
                 <div>Hello World!</div>
             </BlockHeader>
         );
-        expect(getByText('收起')).toBeTruthy();
-        fireEvent.click(document.getElementsByClassName(`${prefixCls}__title`)[0]);
-        expect(getByText('展开')).toBeTruthy();
+        const collapse = document.getElementsByClassName('title__collapse')[0];
+        expect(collapse).toBeFalsy();
+    });
+    test('should render content class and style', () => {
+        render(
+            <BlockHeader
+                title="测试"
+                contentStyle={{ height: 200 }}
+                contentClassName="custom__content"
+            >
+                <div>Hello World!</div>
+            </BlockHeader>
+        );
+        const container = document.getElementsByClassName(`${prefixCls}__content`)[0];
+        expect(container).toHaveStyle({ height: '200px' });
+        expect(container).toHaveClass(
+            'dtc-block-header__content dtc-block-header__content--active custom__content'
+        );
     });
     test('should render BlockHeader with different props', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);

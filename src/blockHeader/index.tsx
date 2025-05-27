@@ -21,7 +21,7 @@ export interface IBlockHeaderProps {
     description?: ReactNode;
     /** 默认展示为问号的tooltip */
     tooltip?: LabelTooltipType;
-    /**  后缀自定义内容块 */
+    /** 后缀自定义内容块 */
     addonAfter?: ReactNode;
     /**
      * 小标题 font-size: 12px; line-height: 32px
@@ -36,11 +36,15 @@ export interface IBlockHeaderProps {
     className?: string;
     /** 标题的样式类名 */
     style?: React.CSSProperties;
+    /** 展示内容(children)的样式类名 */
+    contentClassName?: string;
+    /** 展示内容(children)的样式 */
+    contentStyle?: React.CSSProperties;
     /** 是否显示背景, 默认 true */
     background?: boolean;
     /** 当前展开状态 */
     expand?: boolean;
-    /** 是否默认展开内容, 默认 true */
+    /** 是否默认展开内容, 默认为 undefined */
     defaultExpand?: boolean;
     /** 展开/收起的内容 */
     children?: ReactNode;
@@ -59,9 +63,11 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
         size = 'middle',
         spaceBottom = 16,
         className = '',
+        contentClassName = '',
         style = {},
+        contentStyle = {},
         background = true,
-        defaultExpand = true,
+        defaultExpand,
         addonAfter,
         expand,
         children = '',
@@ -72,6 +78,10 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const [internalExpand, setInternalExpand] = useState(defaultExpand);
 
     const currentExpand = isControlled(props) ? expand : internalExpand;
+
+    // 只有在有了 children 并且设置了 expand/defaultExpand 的时候才能够展开收起
+    const showCollapse =
+        (typeof expand === 'boolean' || typeof defaultExpand === 'boolean') && children;
 
     const tooltipProps = toTooltipProps(tooltip);
 
@@ -89,9 +99,9 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
             <div
                 className={classNames(preTitleRowCls, `${preTitleRowCls}--${size}`, {
                     [`${preTitleRowCls}--background`]: background,
-                    [`${preTitleRowCls}--pointer`]: children,
+                    [`${preTitleRowCls}--pointer`]: showCollapse,
                 })}
-                onClick={() => handleExpand(!currentExpand)}
+                onClick={() => showCollapse && handleExpand(!currentExpand)}
             >
                 <div className="title__box">
                     {addonBefore ? (
@@ -110,7 +120,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                     {description ? <div className={`title__description`}>{description}</div> : null}
                 </div>
                 {addonAfter && <div className={`title__addon-after`}>{addonAfter}</div>}
-                {children && (
+                {showCollapse && (
                     <div className={`title__collapse`}>
                         <div className="collapse__text">{currentExpand ? '收起' : '展开'}</div>
                         <UpOutlined
@@ -124,9 +134,10 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
             </div>
             {children && (
                 <div
-                    className={classNames(`${prefixCls}__content`, {
-                        [`${prefixCls}__content--active`]: currentExpand,
+                    className={classNames(`${prefixCls}__content`, contentClassName, {
+                        [`${prefixCls}__content--active`]: currentExpand || !showCollapse,
                     })}
+                    style={contentStyle}
                 >
                     {children}
                 </div>
