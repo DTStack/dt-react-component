@@ -36,15 +36,15 @@ export interface IBlockHeaderProps {
     className?: string;
     /** 标题的样式类名 */
     style?: React.CSSProperties;
-    // 展示内容(children)的样式类名
+    /** 展示内容(children)的样式类名 */
     contentClassName?: string;
-    // 展示内容(children)的样式
+    /** 展示内容(children)的样式 */
     contentStyle?: React.CSSProperties;
     /** 是否显示背景, 默认 true */
     background?: boolean;
     /** 当前展开状态 */
     expand?: boolean;
-    /** 是否默认展开内容, 默认 true */
+    /** 是否默认展开内容, 默认为 undefined */
     defaultExpand?: boolean;
     /** 展开/收起的内容 */
     children?: ReactNode;
@@ -79,7 +79,9 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
 
     const currentExpand = isControlled(props) ? expand : internalExpand;
 
-    const showCollapse = typeof expand === 'boolean' || typeof defaultExpand === 'boolean';
+    // 只有在有了 children 并且设置了 expand/defaultExpand 的时候才能够展开收起
+    const showCollapse =
+        (typeof expand === 'boolean' || typeof defaultExpand === 'boolean') && children;
 
     const tooltipProps = toTooltipProps(tooltip);
 
@@ -97,7 +99,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
             <div
                 className={classNames(preTitleRowCls, `${preTitleRowCls}--${size}`, {
                     [`${preTitleRowCls}--background`]: background,
-                    [`${preTitleRowCls}--pointer`]: showCollapse && children,
+                    [`${preTitleRowCls}--pointer`]: showCollapse,
                 })}
                 onClick={() => showCollapse && handleExpand(!currentExpand)}
             >
@@ -118,7 +120,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                     {description ? <div className={`title__description`}>{description}</div> : null}
                 </div>
                 {addonAfter && <div className={`title__addon-after`}>{addonAfter}</div>}
-                {children && showCollapse && (
+                {showCollapse && (
                     <div className={`title__collapse`}>
                         <div className="collapse__text">{currentExpand ? '收起' : '展开'}</div>
                         <UpOutlined

@@ -38,7 +38,7 @@ demo:
 | contentClassName | 展示内容的样式类名                 | `string`                                | -        |
 | contentStyle     | 展示内容的样式                     | `React.CSSProperties`                   | -        |
 | background       | 是否显示背景                       | `boolean`                               | `true`   |
-| defaultExpand    | 是否默认展开内容                   | `boolean`                               | `true`   |
+| defaultExpand    | 是否默认展开内容                   | `boolean`                               | `-`   |
 | expand           | 当前展开状态                       | `boolean`                               |          |
 | spaceBottom      | 自定义下边距，优先级高于 hasBottom | `number`                                | `16`      |
 | children         | 展开/收起的内容                    | `React.ReactNode`                       | -        |
