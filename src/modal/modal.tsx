@@ -42,6 +42,7 @@ export default function Modal({
         >
             {banner && (
                 <Alert
+                    className="dtc-modal-alert"
                     message={isValidBanner(banner) ? banner : banner.message}
                     banner
                     {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
