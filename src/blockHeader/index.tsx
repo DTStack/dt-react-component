@@ -86,7 +86,9 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     const tooltipProps = toTooltipProps(tooltip);
 
     let bottomStyle;
-    if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
+    if (spaceBottom)
+        bottomStyle =
+            showCollapse && currentExpand ? { marginBottom: 0 } : { marginBottom: spaceBottom };
 
     const handleExpand = (expand: boolean) => {
         if (!children) return;
