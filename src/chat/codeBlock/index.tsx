@@ -3,12 +3,13 @@ import { Prism as SyntaxHighlighter, SyntaxHighlighterProps } from 'react-syntax
 import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import classNames from 'classnames';
 
-import Copy, { type ICopyProps } from '../../copy';
+import Copy from '../../copy';
 import { CopyIcon } from '../icon';
+import { CopyOptions } from '../useContext';
 import './index.scss';
 
 export interface ICodeBlockProps {
-    copy?: boolean | ICopyProps;
+    copy?: boolean | CopyOptions;
     className?: string;
     style?: React.CSSProperties;
     convert?: boolean;
@@ -34,7 +35,7 @@ export default function CodeBlock({
         return { value, language };
     }, [children]);
 
-    const copy = useMemo<{ disabled: boolean; options: Partial<ICopyProps> }>(() => {
+    const copy = useMemo<{ disabled: boolean; options: CopyOptions }>(() => {
         if (typeof rawCopy === 'boolean') {
             return {
                 disabled: !rawCopy,
