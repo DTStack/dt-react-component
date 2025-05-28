@@ -85,6 +85,9 @@
         margin: 8px;
         border-top: none;
     }
+    &__img {
+        max-width: 100%;
+    }
     > *:last-child {
         margin-bottom: 0;
     }

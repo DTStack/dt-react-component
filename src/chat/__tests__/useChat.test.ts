@@ -138,21 +138,21 @@ describe('Test useChat', () => {
         act(() => {
             result.current.message.update(mockPrompt.id, mockMessage.id, (m) => ({
                 ...m,
-                assistantId: 111,
+                assistantId: '111',
             }));
         });
         expect(result.current.message.get(mockPrompt.id, mockMessage.id)).toEqual<BaseMessage>(
-            new BaseMessage({ ...mockMessage, assistantId: 111 })
+            new BaseMessage({ ...mockMessage, assistantId: '111' })
         );
 
         fn.mockRestore();
         act(() => {
             result.current.message.update(mockPrompt.id, mockMessage.id, {
-                assistantId: 123,
+                assistantId: '123',
             });
         });
         expect(result.current.message.get(mockPrompt.id, mockMessage.id)).toEqual<BaseMessage>(
-            new BaseMessage({ ...mockMessage, assistantId: 123 })
+            new BaseMessage({ ...mockMessage, assistantId: '123' })
         );
         expect(fn).toBeCalledTimes(1);
 
@@ -162,13 +162,13 @@ describe('Test useChat', () => {
                 mockMessage.id,
                 (m) => ({
                     ...m,
-                    assistantId: 111,
+                    assistantId: '111',
                 }),
                 false
             );
         });
         expect(result.current.message.get(mockPrompt.id, mockMessage.id)).toEqual<BaseMessage>(
-            new BaseMessage({ ...mockMessage, assistantId: 111 })
+            new BaseMessage({ ...mockMessage, assistantId: '111' })
         );
         expect(fn).toBeCalledTimes(1);
 
@@ -418,7 +418,7 @@ describe('Test useChat', () => {
         act(() => {
             result.current.message.create(mockPrompt.id, mockMessage);
             result.current.message.update(mockPrompt.id, mockMessage.id, {
-                assistantId: 1,
+                assistantId: '1',
             });
             result.current.message.remove(mockPrompt.id, mockMessage.id);
         });
@@ -428,7 +428,7 @@ describe('Test useChat', () => {
             result.current.conversation.create(mockConversation);
             result.current.prompt.update(mockPrompt.id, { assistantId: 'assistant_prompt_id' });
             result.current.message.create(mockPrompt.id, mockMessage);
-            result.current.message.update(mockPrompt.id, mockMessage.id, { assistantId: 1 });
+            result.current.message.update(mockPrompt.id, mockMessage.id, { assistantId: '1' });
             result.current.message.remove(mockPrompt.id, mockMessage.id);
         });
         expect(result.error).toBeUndefined();

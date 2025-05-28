@@ -43,7 +43,7 @@ export type PromptProperties = {
 
 export type MessageProperties = {
     id: Id;
-    assistantId?: number;
+    assistantId?: string;
     creator?: string;
     createdAt?: Timestamp;
     content?: string;
@@ -100,7 +100,7 @@ export abstract class Prompt {
 export abstract class Message {
     id: Id;
     // 后端 Id
-    assistantId?: number;
+    assistantId?: string;
     creator?: string;
     createdAt: Timestamp;
     content: string;
