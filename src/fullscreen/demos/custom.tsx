@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowsAltOutlined, ShrinkOutlined } from '@ant-design/icons';
+import { FullscreenExitOutlined, FullscreenOutlined } from '@dtinsight/react-icons';
 import { Fullscreen } from 'dt-react-component';
 
 export default () => {
@@ -14,13 +14,13 @@ export default () => {
             iconStyle={iconStyle}
             fullIcon={
                 <div style={{ cursor: 'pointer' }}>
-                    <ArrowsAltOutlined />
+                    <FullscreenOutlined />
                     全屏
                 </div>
             }
             exitFullIcon={
                 <div style={{ cursor: 'pointer' }}>
-                    <ShrinkOutlined />
+                    <FullscreenExitOutlined />
                     退出全屏
                 </div>
             }
