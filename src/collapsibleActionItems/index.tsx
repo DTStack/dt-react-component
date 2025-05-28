@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { EllipsisOutlined } from '@ant-design/icons';
+import { EllipsisTableOutlined } from '@dtinsight/react-icons';
 import { Button, ButtonProps, Divider, Dropdown, DropDownProps, Menu } from 'antd';
 import classNames from 'classnames';
 
@@ -30,7 +30,7 @@ const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
         maxCount = 3,
         className,
         divider = <Divider type="vertical" />,
-        collapseIcon = <EllipsisOutlined />,
+        collapseIcon = <EllipsisTableOutlined />,
         dropdownProps,
         buttonProps,
         style,
