@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from 'react';
-import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
+import { QuestionOutlined, UpOutlined } from '@dtinsight/react-icons';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
 
@@ -115,7 +115,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                     {tooltipProps?.title ? (
                         <div className={`title__tooltip`}>
                             <Tooltip {...tooltipProps}>
-                                <QuestionCircleOutlined />
+                                <QuestionOutlined />
                             </Tooltip>
                         </div>
                     ) : null}

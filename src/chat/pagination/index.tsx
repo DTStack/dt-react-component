@@ -1,5 +1,5 @@
 import React from 'react';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { LeftOutlined, RightOutlined } from '@dtinsight/react-icons';
 
 import './index.scss';
 

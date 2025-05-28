@@ -13,7 +13,7 @@ $colors: (
         bg: #E7FBF7,
     ),
     "gray": (
-        color:  #B1B4C5,
+        color: #B1B4C5,
         bg: #F5F5F8,
     ),
     "red": (
@@ -33,6 +33,15 @@ $colors: (
         bg: #FFE6EF,
     ),
 );
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 .#{$card_prefix} {
     display: flex;
@@ -64,6 +73,9 @@ $colors: (
             width: 6px;
             height: 6px;
             border-radius: 50%;
+        }
+        &--loading {
+            animation: spin 1s linear infinite;
         }
     }
     &__text {

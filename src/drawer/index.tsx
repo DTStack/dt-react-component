@@ -1,5 +1,5 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseOutlined } from '@dtinsight/react-icons';
 import { Alert, AlertProps, Spin, Tabs } from 'antd';
 import classNames from 'classnames';
 import { omit } from 'lodash-es';
