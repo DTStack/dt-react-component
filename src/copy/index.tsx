@@ -1,7 +1,7 @@
 import React, { CSSProperties, ReactNode } from 'react';
+import { CopyUtils } from '@dtinsight/dt-utils';
 import { message, Tooltip } from 'antd';
 import classNames from 'classnames';
-import useClippy from 'use-clippy';
 
 import { LabelTooltipType, toTooltipProps } from '../utils';
 import './style.scss';
@@ -40,11 +40,9 @@ const Copy: React.FC<ICopyProps> = (props) => {
         className,
         onCopy = () => message.success('复制成功'),
     } = props;
-    const [_, setClipboard] = useClippy();
 
     const handleCopy = () => {
-        setClipboard(text);
-        onCopy(text);
+        new CopyUtils().copy(text, () => onCopy(text));
     };
 
     const renderCopyButton = () => (
