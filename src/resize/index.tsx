@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 
 export interface ResizeProps {
     observerEle?: HTMLElement | null;
@@ -7,21 +7,28 @@ export interface ResizeProps {
 }
 
 const Resize: React.FC<ResizeProps> = ({ observerEle, onResize, children }) => {
+    const resizeEventRef = useRef<ResizeProps['onResize']>(onResize);
+    resizeEventRef.current = onResize;
+
     useEffect(() => {
-        if (typeof onResize !== 'function') return;
+        const onResizeProxy = () => {
+            if (typeof resizeEventRef.current === 'function') {
+                resizeEventRef.current();
+            }
+        };
         if (!observerEle) {
-            window.addEventListener('resize', onResize, false);
+            window.addEventListener('resize', onResizeProxy, false);
             return () => {
-                window.removeEventListener('resize', onResize, false);
+                window.removeEventListener('resize', onResizeProxy, false);
             };
         } else {
-            const resizeObserver = new ResizeObserver(onResize);
+            const resizeObserver = new ResizeObserver(onResizeProxy);
             resizeObserver.observe(observerEle);
             return () => {
                 resizeObserver.unobserve(observerEle);
             };
         }
-    }, [onResize, observerEle]);
+    }, [observerEle]);
 
     return <>{children}</>;
 };
