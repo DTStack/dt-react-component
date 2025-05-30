@@ -78,6 +78,9 @@ const EllipsisText = (props: IEllipsisTextProps) => {
      * @return {*}
      */
     const getStyle = (dom: NewHTMLElement, attr: string) => {
+        if (!dom) {
+            return null;
+        }
         // Compatible width IE8
         // @ts-ignore
         return window.getComputedStyle(dom)[attr] || dom.currentStyle[attr];
@@ -203,7 +206,11 @@ const EllipsisText = (props: IEllipsisTextProps) => {
      * @return {*}
      */
     const onResize = () => {
-        const ellipsisNode = ellipsisRef.current!;
+        if (!ellipsisRef.current) {
+            return;
+        }
+
+        const ellipsisNode = ellipsisRef.current;
         const parentElement = ellipsisNode.parentElement!;
         const rangeWidth = getRangeWidth(ellipsisNode);
         const containerWidth = getContainerWidth(parentElement);
