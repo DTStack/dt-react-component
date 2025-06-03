@@ -1,0 +1,163 @@
+.dt-catalogue {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    &__header {
+        padding: 12px 12px 0;
+    }
+    &__search {
+        display: flex;
+        padding: 0 12px 6px;
+        align-items: center;
+        .close {
+            font-size: 16px;
+            color: #B1B4C5;
+            cursor: pointer;
+            margin-left: 46px;
+        }
+    }
+    .dt-catalogue__tree {
+        padding: 2px 0 24px;
+    }
+    &__tree {
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        .ant-spin-nested-loading,
+        .ant-spin-container {
+            height: 100%;
+        }
+        .ant-tree-drop-indicator {
+            background: none;
+            border-bottom: 1px dashed #1D78FF;
+            bottom: 0 !important;
+            &::after {
+                border: none;
+            }
+        }
+        .ant-tree-treenode {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            &:hover {
+                background-color: #F5F5F8;
+                .tree__title--operation {
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+                    color: #B1B4C5;
+                }
+            }
+            .ant-tree-node-content-wrapper {
+                display: flex;
+                align-items: center;
+                flex: 1;
+                min-width: 0;
+                &:hover {
+                    background: none;
+                }
+                .ant-tree-iconEle {
+                    display: flex;
+                    align-items: center;
+                    width: 20px;
+                    &:empty {
+                        display: none;
+                    }
+                }
+                .ant-tree-title {
+                    flex: 1;
+                    min-width: 0;
+                }
+            }
+            &.ant-tree-treenode-selected {
+                background-color: #E8F1FF;
+                position: relative;
+                &::before {
+                    position: absolute;
+                    content: "";
+                    height: 100%;
+                    width: 4px;
+                    background-color: #1D78FF;
+                }
+            }
+            .ant-tree-switcher {
+                background: none;
+            }
+            .ant-tree-checkbox {
+                margin: 0;
+            }
+            .ant-tree-indent-unit::before {
+                height: 100%;
+                border-right: 1px solid #D8DAE2;
+            }
+            .ant-tree-switcher-leaf-line {
+                &::before {
+                    height: 100%;
+                }
+                &::after {
+                    height: 50%;
+                }
+            }
+        }
+        .ant-tree {
+            height: 100%;
+            .ant-tree-treenode-leaf-last .ant-tree-switcher-leaf-line::before {
+                height: 50% !important;
+            }
+            .ant-tree-node-content-wrapper.ant-tree-node-selected {
+                background: none;
+            }
+        }
+        .tree {
+            &__title {
+                display: flex;
+                align-items: center;
+                &--text {
+                    flex: 1;
+                    min-width: 0;
+                }
+                &--operation {
+                    display: none;
+                    .ant-dropdown-menu-title-content {
+                        display: flex;
+                        gap: 8px;
+                        align-items: center;
+                        .dt-catalogue__icon {
+                            color: #B1B4C5;
+                        }
+                    }
+                }
+                &--input {
+                    margin-right: 12px;
+                    .ant-form-item {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    &__tabs {
+        margin-bottom: 6px;
+        height: fit-content;
+        &.ant-tabs-top > .ant-tabs-nav {
+            margin: 0;
+            padding: 0 16px;
+        }
+        .ant-tabs-extra-content {
+            .search {
+                font-size: 16px;
+                color: #B1B4C5;
+                cursor: pointer;
+            }
+        }
+    }
+    &__icon {
+        display: flex;
+        align-items: center;
+    }
+}
