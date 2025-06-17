@@ -120,6 +120,8 @@ export default function InternalTable({
         ...restProps
     } = tableProps;
 
+    const formInstance = Form.useFormInstance();
+
     const convertRawToTableCol = (raw?: ColumnType[]): ColumnsType<FormListFieldData> => {
         if (!raw?.length) return [];
         return raw.map(
@@ -201,7 +203,7 @@ export default function InternalTable({
 
                         return (
                             <Form.Item name={currentNamePath} rules={rules} {...formItemProps}>
-                                {render?.(record, currentNamePath)}
+                                {render?.(record, currentNamePath, formInstance)}
                             </Form.Item>
                         );
                     },
