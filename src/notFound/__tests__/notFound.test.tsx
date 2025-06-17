@@ -9,7 +9,7 @@ describe('test NotFound', () => {
 
     test('renders not found message', () => {
         const { getByText } = render(<NotFound />);
-        const element = getByText(/亲，是不是走错地方了？/i);
+        const element = getByText(/抱歉，您访问的页面不存在/i);
         expect(element).toBeInTheDocument();
     });
 });
