@@ -35,13 +35,29 @@ export default function useTyping({ onTyping }: { onTyping: (post: string) => vo
         typingCountOnTime.current = Math.ceil(remainWordsLength / typingTimes);
     }
 
+    function getNextChunkPosition() {
+        const rest = queue.current.slice(beginIndex.current);
+        const chunk = rest.slice(0, typingCountOnTime.current);
+        const validHTMLTagRegex = /<[a-zA-Z]{0,4}\s[^<]*>/;
+        // 确保在 typing 的过程中，HTML 标签不被分割
+        if (validHTMLTagRegex.test(rest) && !validHTMLTagRegex.test(chunk)) {
+            const match = rest.match(validHTMLTagRegex)!;
+            const tag = match[0];
+            const index = rest.indexOf(tag);
+            return beginIndex.current + index + tag.length;
+        }
+        return beginIndex.current + typingCountOnTime.current;
+    }
+
     function startTyping() {
         if (interval.current) return;
         interval.current = window.setInterval(() => {
             if (beginIndex.current < queue.current.length) {
                 const str = queue.current;
-                onTyping(str.slice(0, beginIndex.current + typingCountOnTime.current));
-                beginIndex.current += typingCountOnTime.current;
+                const idx = getNextChunkPosition();
+                const next = str.slice(0, idx);
+                onTyping(next);
+                beginIndex.current = next.length;
             } else if (!isStart.current) {
                 // 如果发送了全部的消息且信号关闭，则清空队列
                 window.clearInterval(interval.current);

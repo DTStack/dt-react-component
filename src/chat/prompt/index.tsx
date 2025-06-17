@@ -28,6 +28,8 @@ export default function Prompt({ data, className }: IPromptProps) {
         }, {});
     }, [components, data?.id]);
 
+    if (!data?.title) return null;
+
     return (
         <section className={classNames('dtc__prompt__container', className)}>
             <div className="dtc__prompt__wrapper">
