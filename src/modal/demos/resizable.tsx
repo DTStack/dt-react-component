@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { Modal, Resize, useModal } from 'dt-react-component';
-import { RectState } from 'dt-react-component/modal';
+import type { RectState } from 'dt-react-component/modal';
 
 export default function Basic() {
     const modal = useModal<void>();

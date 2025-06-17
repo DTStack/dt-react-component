@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Draggable, { DraggableEventHandler, type DraggableProps } from 'react-draggable';
+import Draggable, { type DraggableEventHandler, type DraggableProps } from 'react-draggable';
 import classNames from 'classnames';
 
 import useMergeOption, { MergeOption } from './useMergeOption';

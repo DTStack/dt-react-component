@@ -132,10 +132,12 @@ export default function InternalModal({
             style={{ height: final.height, width: final.width }}
             width={final.width}
             modalRender={handleRenderModal}
+            maskClosable={false}
             {...rest}
         >
             {banner && (
                 <Alert
+                    className="dtc-modal-alert"
                     message={isValidBanner(banner) ? banner : banner.message}
                     banner
                     {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}

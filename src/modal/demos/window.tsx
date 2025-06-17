@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { ResizeHandle } from 'react-resizable';
 import { Button } from 'antd';
 import { Modal, Resize } from 'dt-react-component';
-import { RectState } from 'dt-react-component/modal';
+import type { RectState, ResizeHandle } from 'dt-react-component/modal';
 
 export default function Basic() {
     const [visible, setVisible] = useState(false);
