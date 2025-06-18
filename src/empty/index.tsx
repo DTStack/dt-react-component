@@ -12,10 +12,11 @@ export const IMG_MAP = {
     chart: 'empty_chart.png',
     overview: 'empty_overview.png',
     permission: 'empty_permission.png',
+    notFound: 'empty_notFound.png',
 };
 
 export interface EmptyProps extends AntdEmptyProps {
-    type?: 'default' | 'search' | 'chart' | 'project' | 'overview' | 'permission';
+    type?: 'default' | 'search' | 'chart' | 'project' | 'overview' | 'permission' | 'notFound';
     size?: 'default' | 'large';
     showEmpty?: boolean;
     extra?: ReactNode;

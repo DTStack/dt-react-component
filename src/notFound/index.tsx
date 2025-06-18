@@ -1,21 +1,23 @@
 import React from 'react';
-import { FrownOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 
+import Empty from '../empty';
 import './style.scss';
 
-const NotFound: React.FC<any> = function ({
-    className,
-    style,
-}: {
+interface INotFoundProps {
     className?: string;
     style?: React.CSSProperties;
-}) {
+}
+
+const NotFound: React.FC<INotFoundProps> = function ({ className, style }) {
     return (
         <div className={classNames('dtc-not-found', className)} style={style}>
-            <h1>
-                <FrownOutlined /> 亲，是不是走错地方了？
-            </h1>
+            <Empty
+                type="notFound"
+                description="抱歉，您访问的页面不存在"
+                className="dtc-not-found__empty"
+                imageStyle={{ height: 250 }}
+            />
         </div>
     );
 };
