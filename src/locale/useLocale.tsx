@@ -51,7 +51,7 @@ const useLocale = <C extends LocaleComponentName = LocaleComponentName>(
 
     const getLocale = useMemo(() => {
         const locale = defaultLocaleData[componentName] ?? {};
-        const localeFromContext = fullLocale?.[componentName as keyof LocaleContextProps] ?? {};
+        const localeFromContext = fullLocale?.locale[componentName] ?? {};
         return {
             ...(locale as unknown as object),
             ...(localeFromContext as unknown as object),
