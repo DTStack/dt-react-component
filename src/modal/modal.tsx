@@ -4,9 +4,8 @@ import { Alert, type AlertProps, Modal, type ModalProps } from 'antd';
 import classNames from 'classnames';
 import { omit } from 'lodash-es';
 
-import type { IFloatProps } from '../float';
-import Float from '../float';
-import useMergeOption, { MergeOption } from '../float/useMergeOption';
+import Float, { type IFloatProps } from '../float';
+import useMergeOption, { type MergeOption } from '../useMergeOption';
 import Handler from './handle';
 import './index.scss';
 

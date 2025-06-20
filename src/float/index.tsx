@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Draggable, { type DraggableEventHandler, type DraggableProps } from 'react-draggable';
 import classNames from 'classnames';
 
-import useMergeOption, { MergeOption } from './useMergeOption';
+import useMergeOption, { type MergeOption } from '../useMergeOption';
 import './index.scss';
 
 export interface IFloatProps {
