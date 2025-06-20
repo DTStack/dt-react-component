@@ -1,7 +1,7 @@
 import { Locale } from './useLocale';
 
 const localeValues: Locale = {
-    locale: 'zh-CN',
+    locale: 'en-US',
     BlockHeader: {
         expand: 'Expand',
         collapse: 'Collapse',
