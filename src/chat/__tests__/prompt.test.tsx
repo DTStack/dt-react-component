@@ -26,6 +26,11 @@ describe('Test Chat Prompt', () => {
         expect(
             render(<Prompt className="test" data={generatePrompt()} />).asFragment()
         ).toMatchSnapshot('default');
+        const _empty = generatePrompt();
+        _empty.title = '';
+        expect(render(<Prompt className="test" data={_empty} />).asFragment()).toMatchSnapshot(
+            'empty title'
+        );
     });
 
     it('Should support components', () => {

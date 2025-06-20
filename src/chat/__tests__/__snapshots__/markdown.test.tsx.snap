@@ -23,13 +23,13 @@ exports[`Test Chat Markdown Match Snapshots: typing 1`] = `
   <div
     class="dtc__aigc__markdown dtc__aigc__markdown--blink test"
   >
-    <p>
+    <div>
       <code
         class="dtc__aigc__markdown__inlineCode"
       >
         inline code test 
       </code>
-    </p>
+    </div>
     
 
     <div
