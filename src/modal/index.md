@@ -11,6 +11,7 @@ toc: content
 -   使用模态框时，使用该组件替换 antd 的 Modal
 -   支持 size 属性来快速设置宽度；限制 Modal 的高度为 600px，超出内部滚动
 -   支持 banner 属性来快速实现 Modal 内部提示
+-   支持 draggable 和 resizable 属性来实现拖拽和调整大小
 
 ## 示例
 
