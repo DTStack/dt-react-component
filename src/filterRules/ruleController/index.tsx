@@ -1,5 +1,5 @@
 import React from 'react';
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { MinusCircleOutlined, PlusCircleOutlined } from '@dtinsight/react-icons';
 import { InternalNamePath } from 'antd/lib/form/interface';
 import classnames from 'classnames';
 
