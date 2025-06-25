@@ -32,6 +32,7 @@ export interface Locale {
     SpreadSheet: {
         description: string;
         copy: string;
+        copyCol: string;
         copyAll: string;
     };
 }
@@ -52,10 +53,8 @@ const useLocale = <C extends LocaleComponentName = LocaleComponentName>(
     const getLocale = useMemo(() => {
         const locale = defaultLocaleData[componentName] ?? {};
         const localeFromContext = fullLocale?.locale[componentName] ?? {};
-        return {
-            ...(locale as unknown as object),
-            ...(localeFromContext as unknown as object),
-        } as NonNullable<Locale[C]>;
+
+        return Object.assign({}, locale, localeFromContext) as NonNullable<Locale[C]>;
     }, [componentName, fullLocale]);
 
     return getLocale;
