@@ -74,11 +74,9 @@ const useLocale = <C extends LocaleComponentName = LocaleComponentName>(
 
     const getLocale = useMemo(() => {
         const locale = defaultLocaleData[componentName] ?? {};
-        const localeFromContext = fullLocale?.[componentName as keyof LocaleContextProps] ?? {};
-        return {
-            ...locale,
-            ...localeFromContext,
-        } as NonNullable<Locale[C]>;
+        const localeFromContext = fullLocale?.locale[componentName] ?? {};
+
+        return Object.assign({}, locale, localeFromContext) as NonNullable<Locale[C]>;
     }, [componentName, fullLocale]);
 
     return getLocale;
