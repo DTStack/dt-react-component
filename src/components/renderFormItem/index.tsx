@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 import { Rule } from 'antd/lib/form';
+import useLocale from '../locale/useLocale';
 
 const FormItem = Form.Item;
 
@@ -43,6 +44,8 @@ export default function RenderFormItem({ item, layout }: ItemType) {
         valuePropName,
         normalize,
     } = options;
+    const locale = useLocale('RenderFormItem');
+
     return (
         <FormItem
             name={key}
@@ -50,7 +53,7 @@ export default function RenderFormItem({ item, layout }: ItemType) {
             {...layout}
             initialValue={initialValue}
             className={options.className}
-            rules={rules || [{ required, message: `${label} 为空` }]}
+            rules={rules || [{ required, message: `${locale.description}` }]}
             validateFirst={validateFirst}
             validateTrigger={validateTrigger}
             valuePropName={valuePropName}

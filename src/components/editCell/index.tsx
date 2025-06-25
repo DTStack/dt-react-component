@@ -2,6 +2,7 @@ import React from 'react';
 import { Input } from 'antd';
 import EllipsisText from '../ellipsisText';
 import classNames from 'classnames';
+import useLocale, { Locale } from '../locale/useLocale';
 
 type EditType = string | number;
 export interface EditCellProps {
@@ -9,6 +10,7 @@ export interface EditCellProps {
     value: string;
     keyField: string;
     isView?: boolean;
+    locale?: Locale['EditCell'];
     onHandleEdit: (keyField: string, editValue: EditType) => void;
 }
 export interface EditCellStates {
@@ -16,7 +18,7 @@ export interface EditCellStates {
     editValue: EditType;
 }
 
-export default class EditCell extends React.PureComponent<EditCellProps, EditCellStates> {
+class EditCell extends React.PureComponent<EditCellProps, EditCellStates> {
     state: EditCellStates = {
         isEdit: false,
         editValue: '',
@@ -47,7 +49,7 @@ export default class EditCell extends React.PureComponent<EditCellProps, EditCel
 
     render() {
         const { isEdit, editValue } = this.state;
-        const { isView, className = '' } = this.props;
+        const { isView, className = '', locale } = this.props;
         return (
             <div className={classNames('dtc-edit-Cell', className)}>
                 {isEdit ? (
@@ -57,16 +59,23 @@ export default class EditCell extends React.PureComponent<EditCellProps, EditCel
                             style={{ width: 150, lineHeight: 24, height: 24 }}
                             onChange={this.onChangeEdit}
                         />
-                        <a onClick={this.onOkEdit}>完成</a>
-                        <a onClick={this.onCancelEdit}>取消</a>
+                        <a onClick={this.onOkEdit}>{locale.complete}</a>
+                        <a onClick={this.onCancelEdit}>{locale.cancel}</a>
                     </div>
                 ) : (
                     <>
                         <EllipsisText value={editValue} maxWidth={120} />
-                        {!isView && <a onClick={this.onEdit}>修改</a>}
+                        {!isView && <a onClick={this.onEdit}>{locale.modify}</a>}
                     </>
                 )}
             </div>
         );
     }
 }
+
+const EditCellWrapper = (props: Omit<EditCellProps, 'locale'>) => {
+    const locale = useLocale('EditCell');
+    return <EditCell {...props} locale={locale} />;
+};
+
+export default EditCellWrapper;

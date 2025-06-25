@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { QuestionCircleOutlined, UpOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
+import useLocale from '../locale/useLocale';
 
 export interface BlockHeaderProps {
     // 标题
@@ -60,6 +61,9 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
     let bottomStyle;
     if (hasBottom) bottomStyle = { marginBottom: 16 };
     if (spaceBottom) bottomStyle = { marginBottom: spaceBottom };
+
+    const locale = useLocale('BlockHeader');
+
     const [expand, setExpand] = useState(defaultExpand);
 
     const handleExpand = (expand) => {
@@ -87,7 +91,7 @@ const BlockHeader: React.FC<BlockHeaderProps> = function (props) {
                 {addonAfter && <div className={`${prefixCls}-addonAfter-box`}>{addonAfter}</div>}
                 {children && (
                     <div className={`${prefixCls}-collapse-box`}>
-                        <div className="text">{expand ? '收起' : '展开'}</div>
+                        <div className="text">{expand ? locale.collapse : locale.expand}</div>
                         <UpOutlined className={`icon ${expand ? 'up' : 'down'}`} />
                     </div>
                 )}
