@@ -4,6 +4,7 @@ import { message, Tooltip } from 'antd';
 import classNames from 'classnames';
 import useClippy from 'use-clippy';
 
+import useLocale from '../locale/useLocale';
 import './style.scss';
 
 export interface ICopyProps {
@@ -17,14 +18,15 @@ export interface ICopyProps {
 }
 
 const Copy: React.FC<ICopyProps> = (props) => {
+    const locale = useLocale('Copy');
     const {
         button = <CopyOutlined className="dtc-copy__default-icon" />,
         text,
-        title = '复制',
+        title = locale.copy,
         hideTooltip,
         style,
         className,
-        onCopy = () => message.success('复制成功'),
+        onCopy = () => message.success(locale.copied),
     } = props;
     const [_, setClipboard] = useClippy();
 

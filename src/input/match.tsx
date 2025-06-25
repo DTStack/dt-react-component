@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input, type InputProps, Tooltip } from 'antd';
 import classNames from 'classnames';
 
+import useLocale from '../locale/useLocale';
 import { CaseSensitiveIcon, FrontIcon, PreciseIcon, TailIcon } from './icons';
 import './match.scss';
 
@@ -29,30 +30,11 @@ interface IMatchProps extends Omit<InputProps, 'suffix'> {
     onSearch?: (value: string, searchType: SearchType) => void;
 }
 
-const searchTypeList = [
-    {
-        key: 'caseSensitive',
-        tip: '区分大小写匹配',
-    },
-    {
-        key: 'precise',
-        tip: '精确匹配',
-    },
-    {
-        key: 'front',
-        tip: '头部匹配',
-    },
-    {
-        key: 'tail',
-        tip: '尾部匹配',
-    },
-] as const;
-
 export default function Match({
     className,
     value,
     searchType,
-    filterOptions = searchTypeList.map((i) => i.key),
+    filterOptions: propFilterOptions,
     onTypeChange,
     onSearch,
     onChange,
@@ -62,11 +44,34 @@ export default function Match({
     const [internalValue, setValue] = useState<string>('');
     const [internalSearchType, setSearchType] = useState<SearchType>('fuzzy');
 
+    const locale = useLocale('Input');
+
     const handleTypeChange = (key: SearchType) => {
         const next = realSearchType === key ? 'fuzzy' : key;
         onTypeChange?.(next);
         setSearchType(next);
     };
+
+    const searchTypeList = [
+        {
+            key: 'caseSensitive',
+            tip: locale.case,
+        },
+        {
+            key: 'precise',
+            tip: locale.precise,
+        },
+        {
+            key: 'front',
+            tip: locale.front,
+        },
+        {
+            key: 'tail',
+            tip: locale.tail,
+        },
+    ] as const;
+
+    const filterOptions = propFilterOptions || searchTypeList.map((i) => i.key);
 
     const options = searchTypeList.filter((i) => filterOptions.includes(i.key));
 

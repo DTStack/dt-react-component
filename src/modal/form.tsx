@@ -2,6 +2,7 @@ import React, { ReactElement, useMemo } from 'react';
 import { FormProps, Modal, ModalProps } from 'antd';
 
 import Form from '../form';
+import useLocale from '../locale/useLocale';
 import Utils from '../utils';
 import { FORM_PROPS, MODAL_PROPS } from '../utils/antdProps';
 
@@ -23,9 +24,11 @@ export interface IModalFormProps<Values = any>
 }
 
 const ModalForm = (props: IModalFormProps) => {
+    const locale = useLocale('Modal');
+
     const {
-        okText = '确定',
-        cancelText = '取消',
+        okText = locale.okText,
+        cancelText = locale.cancelText,
         layout = 'vertical',
         maskClosable = false,
         children,
