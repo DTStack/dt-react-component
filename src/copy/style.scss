@@ -1,7 +1,12 @@
 .dtc-copy {
     display: inline-block;
+    color: #1D78FF;
     cursor: pointer;
+    &--disabled {
+        cursor: not-allowed;
+        color: #B1B4C5;
+    }
     &__default-icon {
-        color: #1D78FF;
+        font-size: 16px;
     }
 }

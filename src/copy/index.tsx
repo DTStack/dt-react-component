@@ -12,6 +12,7 @@ export interface ICopyProps {
     style?: CSSProperties;
     className?: string;
     tooltip?: LabelTooltipType;
+    disabled?: boolean;
     onCopy?: (text: string) => void;
 }
 
@@ -38,16 +39,18 @@ const Copy: React.FC<ICopyProps> = (props) => {
         tooltip = '复制',
         style,
         className,
+        disabled = false,
         onCopy = () => message.success('复制成功'),
     } = props;
 
     const handleCopy = () => {
+        if (disabled) return;
         new CopyUtils().copy(text, () => onCopy(text));
     };
 
     const renderCopyButton = () => (
         <span
-            className={classNames(['dtc-copy', className])}
+            className={classNames(['dtc-copy', { 'dtc-copy--disabled': disabled }, className])}
             style={style}
             onClick={() => handleCopy()}
         >
