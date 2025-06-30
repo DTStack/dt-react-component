@@ -48,8 +48,17 @@ export default memo(
                     hr() {
                         return <hr color="#ebecf0" className="dtc__aigc__markdown__hr" />;
                     },
+                    p: (data) => {
+                        // avoid validateDOMNesting error for div as a descendant of p
+                        if (data.node.children.every((child) => child.type === 'text')) {
+                            return <p>{data.children}</p>;
+                        } else {
+                            return <div>{data.children}</div>;
+                        }
+                    },
                     ...components,
                 }}
+                includeElementIndex
                 {...rest}
             >
                 {children}

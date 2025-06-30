@@ -24,22 +24,6 @@ exports[`Test Chat Prompt Match Snapshots: default 1`] = `
 </DocumentFragment>
 `;
 
-exports[`Test Chat Prompt Match Snapshots: empty 1`] = `
-<DocumentFragment>
-  <section
-    class="dtc__prompt__container"
-  >
-    <div
-      class="dtc__prompt__wrapper"
-    >
-      <div
-        class="dtc__prompt__content"
-      >
-        <div
-          class="dtc__aigc__markdown"
-        />
-      </div>
-    </div>
-  </section>
-</DocumentFragment>
-`;
+exports[`Test Chat Prompt Match Snapshots: empty 1`] = `<DocumentFragment />`;
+
+exports[`Test Chat Prompt Match Snapshots: empty title 1`] = `<DocumentFragment />`;

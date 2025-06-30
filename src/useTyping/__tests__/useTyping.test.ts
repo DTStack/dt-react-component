@@ -63,6 +63,46 @@ describe('Test useTyping hook', () => {
         expect(result.current.isTyping).toBe(false);
     });
 
+    it('Should typing whole tag', () => {
+        const { result, rerender } = renderHook((props: any) => {
+            const [text, setText] = useState('');
+            const ref = useRef(0);
+            const typing = useTyping({
+                onTyping(post) {
+                    setText(post);
+                },
+            });
+
+            useEffect(() => {
+                if (props?.start) {
+                    typing.start();
+                    let p = 0;
+                    typing.push('<step type="1">');
+                    ref.current = window.setInterval(() => {
+                        typing.push(testText[p]);
+                        p++;
+                        if (p >= testText.length) {
+                            typing.close();
+                            window.clearInterval(ref.current);
+                        }
+                    }, 50);
+                }
+
+                return () => {
+                    window.clearInterval(ref.current);
+                };
+            }, [props?.start]);
+
+            return { text, isTyping: typing.isTyping };
+        });
+
+        // 开启打字机效果
+        rerender({ start: true });
+
+        jest.advanceTimersByTime(50);
+        expect(result.current.text).toBe('<step type="1">');
+    });
+
     it('Should waiting for new text', () => {
         const { result } = renderHook(() => {
             const [text, setText] = useState('');
