@@ -8,11 +8,11 @@ export default () => {
     return (
         <>
             <div>
-                <Copy text={text} button="复制文本" />
+                <Copy text={text} disabled button="复制文本" />
                 <p>{text}</p>
             </div>
             <div>
-                <Copy text={text} button="复制文本" tooltip={false} />
+                <Copy text={text} disabled tooltip={false} />
                 <p>{text}</p>
             </div>
         </>
