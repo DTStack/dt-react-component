@@ -4,6 +4,7 @@ import { type ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 import classNames from 'classnames';
 import remarkGfm from 'remark-gfm';
 
+import Image from '../../image';
 import CodeBlock, { type ICodeBlockProps } from '../codeBlock';
 import './index.scss';
 
@@ -55,6 +56,15 @@ export default memo(
                         } else {
                             return <div>{data.children}</div>;
                         }
+                    },
+                    img({ src, ...rest }) {
+                        return (
+                            <Image
+                                className="dtc__aigc__markdown__img"
+                                src={src}
+                                {...(rest as any)}
+                            />
+                        );
                     },
                     ...components,
                 }}
