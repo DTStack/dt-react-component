@@ -1,6 +1,7 @@
 $primaryGradient: #00BAC6 0%, #0067FF 50%, #450FDE 100%;
 
 .dtc__welcome {
+    border-radius: 8px;
     overflow: hidden;
     color: #FFF;
     background: linear-gradient(110deg, $primaryGradient) border-box;
