@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Catalogue, EllipsisText } from 'dt-react-component';
-
-import { useTreeData } from '../useTreeData';
+import { useTreeData } from 'dt-react-component/catalogue/useTreeData';
 
 const DEFAULT_DATA = [
     {

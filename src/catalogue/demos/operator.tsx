@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { DeleteOutlined, EditOutlined, PlusSquareOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { Catalogue } from 'dt-react-component';
+import { ITreeNode, useTreeData } from 'dt-react-component/catalogue/useTreeData';
 import { cloneDeep } from 'lodash';
 import shortid from 'shortid';
 
-import { ITreeNode, useTreeData } from '../useTreeData';
 import {
     appendNodeByKey,
     findNodeByKey,

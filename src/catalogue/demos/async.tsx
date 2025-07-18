@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Catalogue } from 'dt-react-component';
-
-import { useTreeData } from '../useTreeData';
-import { insertChildIntoNode } from '../utils';
+import { useTreeData } from 'dt-react-component/catalogue/useTreeData';
+import { insertChildIntoNode } from 'dt-react-component/catalogue/utils';
 
 interface DataNode {
     title: string;
