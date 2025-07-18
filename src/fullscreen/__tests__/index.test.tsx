@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowsAltOutlined, ShrinkOutlined } from '@ant-design/icons';
+import { FullscreenExitOutlined, FullscreenOutlined } from '@dtinsight/react-icons';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -18,13 +18,13 @@ describe('test Fullscreen', () => {
         const customIcon = {
             fullIcon: (
                 <>
-                    <ArrowsAltOutlined />
+                    <FullscreenOutlined />
                     全屏
                 </>
             ),
             exitFullIcon: (
                 <>
-                    <ShrinkOutlined />
+                    <FullscreenExitOutlined />
                     退出全屏
                 </>
             ),

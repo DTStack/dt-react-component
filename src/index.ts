@@ -1,3 +1,5 @@
+import '@dtinsight/react-icons/dist/index.css';
+
 export { default as BlockHeader } from './blockHeader';
 export { default as Catalogue } from './catalogue';
 export { default as Chat } from './chat';
