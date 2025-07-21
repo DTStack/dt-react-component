@@ -24,7 +24,7 @@ describe('FilterRules', () => {
 
     test('calls onChange on add condition button click', () => {
         const handleChange = jest.fn();
-        const { container } = render(
+        const { getByTestId } = render(
             <FilterRules<IRow>
                 component={(props) => <MyInput {...props} />}
                 value={INIT_DATA}
@@ -32,13 +32,13 @@ describe('FilterRules', () => {
                 initValues={INIT_ROW_VALUES}
             />
         );
-        fireEvent.click(container.querySelector('.anticon-plus-circle') as Element);
+        fireEvent.click(getByTestId('icon-plus') as Element);
         expect(handleChange).toHaveBeenCalled();
     });
 
     test('calls onChange on delete condition button click when notEmpty is false', () => {
         const handleChange = jest.fn();
-        const { container } = render(
+        const { getByTestId } = render(
             <FilterRules<IRow>
                 component={(props) => <MyInput {...props} />}
                 value={INIT_DATA}
@@ -47,13 +47,13 @@ describe('FilterRules', () => {
                 notEmpty={{ data: false }}
             />
         );
-        fireEvent.click(container.querySelector('.anticon-minus-circle') as Element);
+        fireEvent.click(getByTestId('icon-minus') as Element);
         expect(handleChange).toHaveBeenCalled();
     });
 
     test('not calls onChange on delete condition button click when notEmpty is true', () => {
         const handleChange = jest.fn();
-        const { container } = render(
+        const { getByTestId } = render(
             <FilterRules<IRow>
                 component={(props) => <MyInput {...props} />}
                 value={INIT_DATA}
@@ -61,7 +61,7 @@ describe('FilterRules', () => {
                 initValues={INIT_ROW_VALUES}
             />
         );
-        fireEvent.click(container.querySelector('.anticon-minus-circle') as Element);
+        fireEvent.click(getByTestId('icon-minus') as Element);
         expect(handleChange).not.toHaveBeenCalled();
     });
 });

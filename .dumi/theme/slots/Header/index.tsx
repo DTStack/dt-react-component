@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CloseOutlined, GithubOutlined, MenuOutlined } from '@ant-design/icons';
+import { MenuCloseOutlined, HamburgerOutlined } from '@dtinsight/react-icons';
 import { Button, Tooltip } from 'antd';
 import { useRouteMeta } from 'dumi';
 import LangSwitch from 'dumi/theme-default/slots/LangSwitch';
@@ -11,6 +11,7 @@ import SearchBar from 'dumi/theme-default/slots/SearchBar';
 import { useMobile } from '../../hooks';
 import 'dumi/theme-default/slots/Header/index.less';
 import './index.scss';
+import GithubOutlined from '../../common/GithubOutlined';
 
 export default function Header() {
     const { frontmatter } = useRouteMeta();
@@ -64,7 +65,7 @@ export default function Header() {
                         setShowMenu((v) => !v);
                     }}
                 >
-                    {showMenu ? <CloseOutlined /> : <MenuOutlined />}
+                    {showMenu ? <MenuCloseOutlined /> : <HamburgerOutlined />}
                 </button>
             </div>
         </div>

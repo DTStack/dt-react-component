@@ -189,6 +189,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
                                         isOut: true,
                                     });
                                 }}
+                                data-testid="icon-plus"
                             />
                         </div>
                     )}
@@ -220,11 +221,13 @@ export const RulesController = <T,>(props: IProps<T>) => {
                             <PlusCircleOutlined
                                 className="icon"
                                 onClick={() => onAddCondition({ key: item.key })}
+                                data-testid="icon-plus"
                             />
                         )}
                         <MinusCircleOutlined
                             className="icon"
                             onClick={() => onDeleteCondition(item.key)}
+                            data-testid="icon-minus"
                         />
                     </div>
                 )}

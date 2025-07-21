@@ -4,7 +4,6 @@ import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import classNames from 'classnames';
 
 import Copy from '../../copy';
-import { CopyIcon } from '../icon';
 import { CopyOptions } from '../useContext';
 import './index.scss';
 
@@ -65,7 +64,7 @@ export default function CodeBlock({
                 </span>
                 <div className="dtc__aigc__codeblock__tool">
                     {/* FIXME：Copy 组件后续可以支持一下 disabled 属性 */}
-                    {!copy.disabled && <Copy text={text} button={<CopyIcon />} {...copy.options} />}
+                    {!copy.disabled && <Copy text={text} {...copy.options} />}
                     {typeof toolbars === 'function' ? toolbars() : toolbars}
                 </div>
             </div>

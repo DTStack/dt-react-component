@@ -29,6 +29,7 @@ export default function Pagination({
                     if (disableLeft) return;
                     onChange(current - 1);
                 }}
+                data-testid="icon-left"
             />
             <section>
                 <span>{current}</span>
@@ -41,6 +42,7 @@ export default function Pagination({
                     if (disableRight) return;
                     onChange(current + 1);
                 }}
+                data-testid="icon-right"
             />
         </div>
     );

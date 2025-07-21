@@ -1,8 +1,8 @@
 import React, { CSSProperties } from 'react';
+import { AiAvatarColored } from '@dtinsight/react-icons';
 import classNames from 'classnames';
 
 import Flex from '../../flex';
-import { AIAvatar } from '../icon';
 import './index.scss';
 
 export interface IWelcomeProps {
@@ -14,7 +14,7 @@ export interface IWelcomeProps {
 }
 
 export default function Welcome({
-    icon = <AIAvatar style={{ fontSize: 24 }} />,
+    icon = <AiAvatarColored style={{ fontSize: 24 }} />,
     title,
     description,
     className,

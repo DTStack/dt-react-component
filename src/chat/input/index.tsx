@@ -1,9 +1,10 @@
 import React from 'react';
+import { SendFilled } from '@dtinsight/react-icons';
 import { Input as AntdInput } from 'antd';
 import { TextAreaProps } from 'antd/lib/input/TextArea';
 import classNames from 'classnames';
 
-import { SendIcon } from '../icon';
+import { SendColored } from '../icon';
 import './index.scss';
 
 interface IInputProps extends Omit<TextAreaProps, 'value' | 'onChange' | 'onSubmit'> {
@@ -50,14 +51,14 @@ export default function Input({
                     maxRows: 7,
                 }}
             />
-            <SendIcon
-                gradient={!button?.disabled}
-                className={classNames(
-                    'dtc__chat__textarea__send',
-                    button?.disabled && 'dtc__chat__textarea__send--disabled'
-                )}
-                onClick={() => !button?.disabled && onSubmit?.(rest.value)}
-            />
+            {button?.disabled ? (
+                <SendFilled disabled className="dtc__chat__textarea__send" />
+            ) : (
+                <SendColored
+                    className={classNames('dtc__chat__textarea__send')}
+                    onClick={() => onSubmit?.(rest.value)}
+                />
+            )}
         </div>
     );
 }

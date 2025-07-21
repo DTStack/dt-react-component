@@ -1,4 +1,5 @@
 import React from 'react';
+import { AigcOutlined } from '@dtinsight/react-icons';
 import { Button, Col, Row, Space } from 'antd';
 import { Chat } from 'dt-react-component';
 
@@ -16,33 +17,33 @@ export default function () {
                     <Chat.Button
                         type="primary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     />
                     <Chat.Button
                         type="primary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         按钮
                     </Chat.Button>
                     <Chat.Button
                         type="default"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         按钮
                     </Chat.Button>
                     <Chat.Button
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         按钮
                     </Chat.Button>
                     <Chat.Button
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         AI log parsing
                     </Chat.Button>
@@ -54,13 +55,13 @@ export default function () {
                         size="small"
                         type="primary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     />
                     <Chat.Button
                         size="small"
                         type="primary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         按钮
                     </Chat.Button>
@@ -68,7 +69,7 @@ export default function () {
                         size="small"
                         type="default"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         按钮
                     </Chat.Button>
@@ -76,7 +77,7 @@ export default function () {
                         size="small"
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         按钮
                     </Chat.Button>
@@ -84,7 +85,7 @@ export default function () {
                         size="small"
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         AI log parsing
                     </Chat.Button>
@@ -95,7 +96,7 @@ export default function () {
                     <Chat.Button
                         type="secondary"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         重新生成
                     </Chat.Button>
@@ -103,7 +104,7 @@ export default function () {
                         size="small"
                         type="default"
                         disabled={disabled}
-                        icon={<Chat.Icon.ShiningIcon style={{ fontSize: 16 }} />}
+                        icon={<AigcOutlined style={{ fontSize: 16 }} />}
                     >
                         智能解析
                     </Chat.Button>
