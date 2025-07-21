@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MenuCloseOutlined, HamburgerOutlined } from '@dtinsight/react-icons';
+import { HamburgerOutlined, MenuCloseOutlined } from '@dtinsight/react-icons';
 import { Button, Tooltip } from 'antd';
 import { useRouteMeta } from 'dumi';
 import LangSwitch from 'dumi/theme-default/slots/LangSwitch';
@@ -8,10 +8,10 @@ import Navbar from 'dumi/theme-default/slots/Navbar';
 import RtlSwitch from 'dumi/theme-default/slots/RtlSwitch';
 import SearchBar from 'dumi/theme-default/slots/SearchBar';
 
+import GithubOutlined from '../../common/GithubOutlined';
 import { useMobile } from '../../hooks';
 import 'dumi/theme-default/slots/Header/index.less';
 import './index.scss';
-import GithubOutlined from '../../common/GithubOutlined';
 
 export default function Header() {
     const { frontmatter } = useRouteMeta();

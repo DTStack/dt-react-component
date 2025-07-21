@@ -2,8 +2,8 @@ import React from 'react';
 import { Button } from 'antd';
 import { Helmet, Link } from 'dumi';
 
-import './index.scss';
 import GithubOutlined from '../../theme/common/GithubOutlined';
+import './index.scss';
 
 export default function Homepage() {
     return (
