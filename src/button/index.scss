@@ -1,0 +1,48 @@
+.dtc-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: inherit;
+        line-height: 0;
+        // 因为 dtstack-icon 组件的 font-size 是 16px，现在需要继承 Button 组件的 font-size
+        .dtstack-icon {
+            font-size: inherit;
+        }
+        &--small {
+            font-size: 12px;
+        }
+        &--middle {
+            font-size: 16px;
+        }
+        &--large {
+            font-size: 18px;
+        }
+        & + .dtc-button__text {
+            &--small {
+                margin-left: 2px;
+            }
+            &--middle {
+                margin-left: 4px;
+            }
+            &--large {
+                margin-left: 8px;
+            }
+        }
+    }
+    &__text {
+        display: inline-block;
+        &--small {
+            font-size: 12px;
+        }
+        &--middle {
+            font-size: 12px;
+        }
+        &--large {
+            font-size: 16px;
+        }
+    }
+}
