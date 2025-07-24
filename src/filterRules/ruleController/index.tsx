@@ -1,5 +1,5 @@
 import React from 'react';
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { MinusCircleOutlined, PlusCircleOutlined } from '@dtinsight/react-icons';
 import { InternalNamePath } from 'antd/lib/form/interface';
 import classnames from 'classnames';
 
@@ -189,6 +189,7 @@ export const RulesController = <T,>(props: IProps<T>) => {
                                         isOut: true,
                                     });
                                 }}
+                                data-testid="icon-plus"
                             />
                         </div>
                     )}
@@ -220,11 +221,13 @@ export const RulesController = <T,>(props: IProps<T>) => {
                             <PlusCircleOutlined
                                 className="icon"
                                 onClick={() => onAddCondition({ key: item.key })}
+                                data-testid="icon-plus"
                             />
                         )}
                         <MinusCircleOutlined
                             className="icon"
                             onClick={() => onDeleteCondition(item.key)}
+                            data-testid="icon-minus"
                         />
                     </div>
                 )}

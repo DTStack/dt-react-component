@@ -115,7 +115,7 @@ describe('test BlockHeader render', () => {
         const { container } = render(<BlockHeader {...props3} />);
         const wrap = container.firstChild!;
         const tooltipWrap = wrap.firstChild!.firstChild!.lastChild;
-        expect(tooltipWrap!.firstChild).toHaveClass('anticon-question-circle');
+        expect(tooltipWrap!.firstChild).toHaveAttribute('data-mock-icon', 'QuestionOutlined');
     });
 
     test('should render BlockHeader description success', () => {

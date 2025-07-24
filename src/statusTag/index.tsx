@@ -1,5 +1,5 @@
 import React, { CSSProperties, HTMLAttributes, ReactNode } from 'react';
-import LoadingOutlined from '@ant-design/icons/LoadingOutlined';
+import { SpinOutlined } from '@dtinsight/react-icons';
 import { Spin } from 'antd';
 import classNames from 'classnames';
 
@@ -107,7 +107,11 @@ const StatusTag: React.FC<IStatusTagProps> = function StatusTag(props) {
             {loading ? (
                 <Spin
                     spinning
-                    indicator={<LoadingOutlined className={`${prefixCls}__icon`} />}
+                    indicator={
+                        <SpinOutlined
+                            className={`${prefixCls}__icon ${prefixCls}__icon--loading`}
+                        />
+                    }
                     size="small"
                 />
             ) : (

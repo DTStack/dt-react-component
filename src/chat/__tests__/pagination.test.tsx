@@ -17,30 +17,30 @@ describe('Test Chat Pagination', () => {
 
     it('Should call onChange when click left/right arrow', () => {
         const onChange = jest.fn();
-        const { container, rerender } = render(
+        const { rerender, getByTestId } = render(
             <Pagination current={1} total={5} onChange={onChange} />
         );
 
         act(() => {
-            fireEvent.click(container.querySelector('.anticon-left')!);
+            fireEvent.click(getByTestId('icon-left')!);
         });
         expect(onChange).not.toBeCalled();
 
         act(() => {
-            fireEvent.click(container.querySelector('.anticon-right')!);
+            fireEvent.click(getByTestId('icon-right')!);
         });
         expect(onChange).toBeCalledWith(2);
 
         rerender(<Pagination current={5} total={5} onChange={onChange} />);
 
         act(() => {
-            fireEvent.click(container.querySelector('.anticon-left')!);
+            fireEvent.click(getByTestId('icon-left')!);
         });
         expect(onChange).toBeCalledWith(4);
 
         onChange.mockRestore();
         act(() => {
-            fireEvent.click(container.querySelector('.anticon-right')!);
+            fireEvent.click(getByTestId('icon-right')!);
         });
         expect(onChange).not.toBeCalled();
     });

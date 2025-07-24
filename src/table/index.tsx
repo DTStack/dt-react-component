@@ -1,5 +1,5 @@
 import React, { forwardRef, useMemo } from 'react';
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { QuestionOutlined } from '@dtinsight/react-icons';
 import { Table as InternalTable, Tooltip } from 'antd';
 import type { LabelTooltipType, WrapperTooltipProps } from 'antd/lib/form/FormItemLabel';
 import type { ColumnType as PrimitiveColumnType, TableProps } from 'antd/lib/table';
@@ -51,7 +51,7 @@ function convertColumns(columns?: ColumnType[]): PrimitiveColumnType<any>[] {
         const tooltipProps = toTooltipProps(tooltip);
         let tooltipNode: React.ReactNode | null = null;
         if (tooltipProps) {
-            const { icon = <QuestionCircleOutlined />, ...restTooltipProps } = tooltipProps;
+            const { icon = <QuestionOutlined />, ...restTooltipProps } = tooltipProps;
             tooltipNode = (
                 <Tooltip {...restTooltipProps}>
                     {React.cloneElement(icon, {

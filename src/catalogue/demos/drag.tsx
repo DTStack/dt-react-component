@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { DeleteOutlined, EditOutlined, PlusSquareOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, PlusSquareOutlined } from '@dtinsight/react-icons';
 import { Menu } from 'antd';
 import { Catalogue } from 'dt-react-component';
 import { CatalogueProps } from 'dt-react-component/catalogue/components/catalogue';
 import { ITreeNode, useTreeData } from 'dt-react-component/catalogue/useTreeData';
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import shortid from 'shortid';
 
 import {

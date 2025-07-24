@@ -1,12 +1,17 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type { Components } from 'react-markdown';
+import {
+    AiAvatarColored,
+    CopyOutlined,
+    PauseOutlined,
+    ReloadOutlined,
+} from '@dtinsight/react-icons';
 import { Button, Space, Tooltip } from 'antd';
 import classNames from 'classnames';
 
 import Copy from '../../copy';
 import useIntersectionObserver from '../../useIntersectionObserver';
 import { Message as MessageEntity, MessageStatus, Prompt as PromptEntity } from '../entity';
-import { AIAvatar, CopyIcon, PauseIcon, ReloadIcon } from '../icon';
 import Loading from '../loading';
 import Markdown from '../markdown';
 import Pagination from '../pagination';
@@ -113,13 +118,15 @@ export default function Message({
 
         if (!text) return null;
 
-        return <Copy className="dtc__message__icon" button={<CopyIcon />} text={text} {...rest} />;
+        return (
+            <Copy className="dtc__message__icon" button={<CopyOutlined />} text={text} {...rest} />
+        );
     };
 
     return (
         <section className="dtc__message__container">
             <div className="dtc__message__avatar">
-                <AIAvatar />
+                <AiAvatarColored />
             </div>
             <div className="dtc__message__wrapper">
                 <div
@@ -162,7 +169,7 @@ export default function Message({
                             type="link"
                             className="dtc__message__stopBtn"
                             onClick={() => onStop?.(record)}
-                            icon={<PauseIcon style={{ fontSize: 16, verticalAlign: 'sub' }} />}
+                            icon={<PauseOutlined style={{ verticalAlign: 'sub' }} />}
                         >
                             停止回答
                         </Button>
@@ -184,7 +191,7 @@ export default function Message({
                                 className="dtc__message__icon"
                                 onClick={() => onRegenerate?.(record)}
                             >
-                                <ReloadIcon />
+                                <ReloadOutlined />
                             </span>
                         </Tooltip>
                     )}

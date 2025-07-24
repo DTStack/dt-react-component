@@ -2,7 +2,7 @@
  * background: '#f6f7f9'
  */
 import React from 'react';
-import { PlusCircleOutlined } from '@ant-design/icons';
+import { PlusCircleOutlined } from '@dtinsight/react-icons';
 import { Chat } from 'dt-react-component';
 
 const children = `
