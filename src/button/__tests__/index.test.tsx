@@ -1,46 +1,47 @@
 import React from 'react';
 import { UploadOutlined } from '@dtinsight/react-icons';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 
-import Button from '../index';
+import Button from '..';
 
 describe('Button', () => {
-    it('renders button with text correctly', () => {
-        render(<Button>Test Button</Button>);
-        expect(screen.getByText('Test Button')).toBeInTheDocument();
+    test('should support contentLayout success render', () => {
+        const wrapper = render(<Button icon={<UploadOutlined />}>Primary</Button>);
+        expect(wrapper).toMatchSnapshot();
     });
 
-    it('renders button with icon correctly', () => {
-        const { container } = render(<Button icon={<UploadOutlined />}>With Icon</Button>);
-        expect(container.querySelector('.dtc-button__icon')).toBeInTheDocument();
-        expect(screen.getByText('With Icon')).toBeInTheDocument();
+    it('renders text correctly', () => {
+        const { getByText } = render(<Button>Hello</Button>);
+        expect(getByText('Hello')).toBeInTheDocument();
     });
 
-    it('renders icon-only button correctly', () => {
+    it('renders icon correctly', () => {
         const { container } = render(<Button icon={<UploadOutlined />} />);
         expect(container.querySelector('.dtc-button__icon')).toBeInTheDocument();
-        expect(container.querySelector('.dtc-button__text')).toBeNull();
+        expect(container.querySelector('.dtc-button__text')).not.toBeInTheDocument();
     });
 
-    it('applies custom className correctly', () => {
-        const { container } = render(<Button className="custom-class">Custom Class</Button>);
-        expect(container.querySelector('.dtc-button.custom-class')).toBeInTheDocument();
+    it('renders icon and text correctly', () => {
+        const { getByText, container } = render(<Button icon={<UploadOutlined />}>Search</Button>);
+        expect(getByText('Search')).toBeInTheDocument();
+        expect(container.querySelector('.dtc-button__icon')).toBeInTheDocument();
     });
 
-    it('passes other props to antd Button', () => {
-        render(
-            <Button type="primary" data-testid="primary-button">
-                Primary
-            </Button>
-        );
-        const button = screen.getByTestId('primary-button');
-        expect(button).toHaveClass('ant-btn-primary');
+    it('applies custom className', () => {
+        const { container } = render(<Button className="custom-class">Test</Button>);
+        expect(container.firstChild).toHaveClass('custom-class');
     });
 
-    it('applies correct size to icon and text', () => {
+    it('passes other props to AntdButton', () => {
+        const { getByText } = render(<Button type="primary">Primary</Button>);
+        expect(getByText('Primary').parentNode).toHaveClass('ant-btn-primary');
+    });
+
+    it('applies size class to icon and text', () => {
         const { container } = render(
-            <Button size="small" icon={<UploadOutlined />}>
-                Small Button
+            <Button icon={<UploadOutlined />} size="small">
+                Test
             </Button>
         );
         expect(container.querySelector('.dtc-button__icon--small')).toBeInTheDocument();
