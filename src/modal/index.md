@@ -22,6 +22,7 @@ toc: content
 <code src="./demos/draggable.tsx" title="draggable"></code>
 <code src="./demos/resizable.tsx" title="resizable"></code>
 <code src="./demos/window.tsx" title="窗口模式即支持 draggable 同时也支持 resizable"></code>
+<code src="./demos/method.tsx" title="重写 Modal.method 的 icon"></code>
 
 ## API
 
@@ -36,3 +37,11 @@ toc: content
 | onPositionChange | 位置变化时的回调                          | `(data: { x: number; y: number}) => void`                    |           |
 | onRectChange     | 尺寸变化时的回调                          | `(data: { width: number; height: number }) => void`          |           |
 | ...rest          | 其他继承自 antd Modal 的属性              | [ModalProps](https://4x.ant.design/components/modal-cn/#API) |           |
+
+## Modal.method
+
+新增: Modal.delete
+
+:::info
+其余和 antd4.x 的 [Modal.method](<https://4x.ant.design/components/modal-cn/#Modal.method()>) 一致
+:::
