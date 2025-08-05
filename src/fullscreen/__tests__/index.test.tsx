@@ -10,8 +10,8 @@ describe('test Fullscreen', () => {
     });
     test('should default render correctly', () => {
         const { container } = render(<Fullscreen />);
-        expect(container.firstChild).toMatchSnapshot();
-        expect(container.querySelector('.ant-btn')?.firstChild).toHaveClass('dtc-fullscreen-icon');
+        expect(container).toMatchSnapshot();
+        expect(container.querySelector('.ant-btn')?.firstChild).toHaveClass('dtc-button__icon');
         expect(container.innerHTML).toMatch('全屏');
     });
     test('should customIcon render correctly', () => {
@@ -36,13 +36,13 @@ describe('test Fullscreen', () => {
     });
     test('should custom iconStyle render correctly', () => {
         const iconStyle = {
-            width: 12,
-            height: 12,
+            fontSize: 20,
             marginRight: 5,
         };
-        render(<Fullscreen iconStyle={iconStyle} />);
-        const img = screen.getByRole('img');
-        expect(img).toHaveStyle(`width: 12px; height: 12px; margin-right: 5px;`);
+        const { container } = render(<Fullscreen iconStyle={iconStyle} />);
+        expect(container.querySelector('.ant-btn')?.firstChild?.firstChild).toHaveStyle(
+            'font-size: 20px; margin-right: 5px;'
+        );
     });
     test('button fireEvent correct', () => {
         const { container } = render(<Fullscreen />);
