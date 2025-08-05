@@ -1,8 +1,9 @@
 import React, { CSSProperties, HTMLAttributes, ReactNode, useEffect, useState } from 'react';
-import { Button } from 'antd';
+import { FullscreenExitOutlined, FullscreenOutlined } from '@dtinsight/react-icons';
 
+import Button from '../button';
 import KeyEventListener from '../keyEventListener';
-import MyIcon from './icon';
+import './index.scss';
 
 const { KeyCombiner } = KeyEventListener;
 declare let document: any;
@@ -26,7 +27,6 @@ interface DocumentWithFullscreen extends Document {
 
 export interface IFullscreenProps
     extends React.DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
-    themeDark?: boolean;
     target?: string;
     iconStyle?: CSSProperties;
     fullIcon?: ReactNode;
@@ -35,7 +35,6 @@ export interface IFullscreenProps
 }
 
 export default function Fullscreen({
-    themeDark,
     target,
     fullIcon,
     exitFullIcon,
@@ -173,24 +172,34 @@ export default function Fullscreen({
     };
 
     return (
-        <KeyCombiner
-            onTrigger={handlePressFullScreen}
-            keyMap={{
-                70: true,
-                91: true,
-                16: true,
-            }}
-        >
-            {customIcon ? (
-                <span {...other} onClick={handleFullScreen}>
-                    {customIcon}
-                </span>
-            ) : (
-                <Button onClick={handleFullScreen}>
-                    <MyIcon style={iconStyle} type={isFullScreen} themeDark={themeDark} />
-                    {isFullScreen ? '退出全屏' : '全屏'}
-                </Button>
-            )}
-        </KeyCombiner>
+        <div className="dtc-fullscreen">
+            <KeyCombiner
+                onTrigger={handlePressFullScreen}
+                keyMap={{
+                    70: true,
+                    91: true,
+                    16: true,
+                }}
+            >
+                {customIcon ? (
+                    <span {...other} onClick={handleFullScreen}>
+                        {customIcon}
+                    </span>
+                ) : (
+                    <Button
+                        onClick={handleFullScreen}
+                        icon={
+                            isFullScreen ? (
+                                <FullscreenExitOutlined style={iconStyle} />
+                            ) : (
+                                <FullscreenOutlined style={iconStyle} />
+                            )
+                        }
+                    >
+                        {isFullScreen ? '退出全屏' : '全屏'}
+                    </Button>
+                )}
+            </KeyCombiner>
+        </div>
     );
 }
