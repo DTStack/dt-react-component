@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import {
+    CaseSensitiveMatchOutlined,
+    ExactMatchOutlined,
+    PrefixMatchOutlined,
+    SuffixMatchOutlined,
+} from '@dtinsight/react-icons';
 import { Input, type InputProps, Tooltip } from 'antd';
 import classNames from 'classnames';
 
-import { CaseSensitiveIcon, FrontIcon, PreciseIcon, TailIcon } from './icons';
 import './match.scss';
 
 /**
@@ -85,7 +90,7 @@ export default function Match({
                                 switch (op.key) {
                                     case 'caseSensitive':
                                         return (
-                                            <CaseSensitiveIcon
+                                            <CaseSensitiveMatchOutlined
                                                 className={classNames(
                                                     'dtc-input-match-suffixItem',
                                                     realSearchType === op.key &&
@@ -96,7 +101,7 @@ export default function Match({
                                         );
                                     case 'precise':
                                         return (
-                                            <PreciseIcon
+                                            <ExactMatchOutlined
                                                 className={classNames(
                                                     'dtc-input-match-suffixItem',
                                                     realSearchType === op.key &&
@@ -107,7 +112,7 @@ export default function Match({
                                         );
                                     case 'front':
                                         return (
-                                            <FrontIcon
+                                            <PrefixMatchOutlined
                                                 className={classNames(
                                                     'dtc-input-match-suffixItem',
                                                     realSearchType === op.key &&
@@ -118,7 +123,7 @@ export default function Match({
                                         );
                                     case 'tail':
                                         return (
-                                            <TailIcon
+                                            <SuffixMatchOutlined
                                                 className={classNames(
                                                     'dtc-input-match-suffixItem',
                                                     realSearchType === op.key &&

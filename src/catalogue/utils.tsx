@@ -1,7 +1,7 @@
 import React from 'react';
+import { FolderFilled, FolderOpenedFilled } from '@dtinsight/react-icons';
 
 import { CatalogueProps } from './components/catalogue';
-import { FolderIcon, FolderOpenedIcon } from './components/icon';
 import { ITreeNode } from './useTreeData';
 
 export const getIcon: ITreeNode['icon'] = ({ selected, expanded }) => {
@@ -10,8 +10,8 @@ export const getIcon: ITreeNode['icon'] = ({ selected, expanded }) => {
         color: '#1D78FF',
     };
 
-    if (expanded || selected) return <FolderOpenedIcon style={styles} />;
-    return <FolderIcon style={styles} />;
+    if (expanded || selected) return <FolderOpenedFilled style={styles} />;
+    return <FolderFilled style={styles} />;
 };
 
 /**
