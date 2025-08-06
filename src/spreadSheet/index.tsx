@@ -39,6 +39,7 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = forwardRef(
         const { copyTypes = [], ...restProps } = options || {};
 
         useImperativeHandle(ref, () => tableRef.current);
+
         const locale = useLocale('SpreadSheet');
 
         useEffect(() => {
