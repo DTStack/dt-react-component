@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Dropdown, DropdownProps, Form, Input, Tabs } from 'antd';
 import { BlockHeader, EllipsisText } from 'dt-react-component';
 import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
-import useLocale from 'dt-react-component/locale/useLocale';
 
+import useLocale from '../../locale/useLocale';
 import { ITreeNode } from '../useTreeData';
 import { CatalogIcon, CloseIcon, DragIcon, EllipsisIcon, SearchIcon } from './icon';
 import CatalogueTree, { ICatalogueTree } from './tree';
