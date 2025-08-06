@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Empty as AntdEmpty, EmptyProps as AntdEmptyProps } from 'antd';
 import classNames from 'classnames';
 
-import { LoupeIcon, SearchIcon } from '../components/icon';
+import { LoupeIcon, SearchIcon } from './icon';
 import './style.scss';
 
 export const IMG_MAP = {
