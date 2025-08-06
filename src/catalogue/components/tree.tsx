@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
+import { DownTriangleFilled } from '@dtinsight/react-icons';
 import { Spin, Tree, TreeProps } from 'antd';
 import { Empty } from 'dt-react-component';
 
 import { ITreeNode } from '../useTreeData';
 import { loopTree } from '../utils';
-import { DownTriangleIcon } from './icon';
 
 export interface ICatalogueTree<T extends Record<string, any> = {}>
     extends Omit<TreeProps, 'showLine' | 'switcherIcon' | 'showIcon' | 'treeData' | 'titleRender'> {
@@ -28,7 +28,7 @@ const CatalogueTree = <T extends Record<string, any> = {}>({
             <Spin spinning={loading}>
                 <Tree<ITreeNode<T>>
                     showLine={{ showLeafIcon: false }}
-                    switcherIcon={<DownTriangleIcon style={{ fontSize: 16 }} />}
+                    switcherIcon={<DownTriangleFilled style={{ fontSize: 16 }} />}
                     showIcon
                     treeData={renderTreeData}
                     titleRender={titleRender}
