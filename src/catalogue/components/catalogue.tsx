@@ -3,6 +3,7 @@ import { Dropdown, DropdownProps, Form, Input, Tabs } from 'antd';
 import { BlockHeader, EllipsisText } from 'dt-react-component';
 import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
 
+import useLocale from '../../locale/useLocale';
 import { ITreeNode } from '../useTreeData';
 import { CatalogIcon, CloseIcon, DragIcon, EllipsisIcon, SearchIcon } from './icon';
 import CatalogueTree, { ICatalogueTree } from './tree';
@@ -49,12 +50,13 @@ function isTabMode<U extends Record<string, any> = {}, T extends readOnlyTab = a
 const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = any>(
     props: CatalogueProps<U, T>
 ) => {
+    const locale = useLocale('Catalogue');
     const {
         title,
         addonBefore = <CatalogIcon style={{ fontSize: 20 }} />,
         tooltip = false,
         showSearch = false,
-        placeholder = '搜索目录名称',
+        placeholder = locale.searchPlaceholder,
         addonAfter,
         edit = true,
         treeData,
@@ -78,7 +80,7 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
                     <Form.Item name="catalog_input" initialValue={item?.title as string}>
                         <Input
                             size="small"
-                            placeholder={`请输入${title}名称`}
+                            placeholder={locale.inputPlaceholder}
                             maxLength={100}
                             autoFocus
                             onFocus={() => form.setFields([{ name: 'catalog_input', errors: [] }])}

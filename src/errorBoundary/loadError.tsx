@@ -3,7 +3,7 @@ import React from 'react';
 import useLocale from '../locale/useLocale';
 
 const LoadError: React.FC = function () {
-    const locale = useLocale('LoadError');
+    const locale = useLocale('ErrorBoundary');
     return (
         <div className="dtc-error" data-testid="test-error">
             <div>

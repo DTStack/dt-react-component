@@ -6,11 +6,27 @@ const localeValues: Locale = {
         expand: 'Expand',
         collapse: 'Collapse',
     },
-
+    Catalogue: {
+        searchPlaceholder: 'Search catalog name',
+        inputPlaceholder: `Please enter`,
+    },
+    Chat: {
+        stopped: 'Answer Stopped',
+        stop: 'Stop Answering',
+        regenerate: 'Regenerate',
+    },
     Copy: {
         copied: 'Copied',
-
         copy: 'Copy',
+    },
+    ErrorBoundary: {
+        please: 'A new version has been found. Please',
+        get: 'to get the new version.',
+        refresh: ' refresh ',
+        title: 'If this prompt persists for a long time, please contact the administrator.',
+    },
+    FilterRules: {
+        message: 'Must have one data item',
     },
     Fullscreen: {
         exitFull: 'Exit Full Screen',
@@ -18,16 +34,6 @@ const localeValues: Locale = {
     },
     GlobalLoading: {
         loading: 'The application is loading, please wait~',
-    },
-    LoadError: {
-        please: 'A new version has been found. Please',
-        get: 'to get the new version.',
-        refresh: ' refresh ',
-        title: 'If this prompt persists for a long time, please contact the administrator.',
-    },
-    Modal: {
-        okText: 'Ok',
-        cancelText: 'Cancel',
     },
     Dropdown: {
         resetText: 'Cancel',
@@ -39,9 +45,6 @@ const localeValues: Locale = {
         precise: 'Exact match',
         front: 'Head match',
         tail: 'Tail match',
-    },
-    MxGraph: {
-        newNode: 'New node',
     },
     NotFound: {
         description: 'Sorry, the page you visited does not exist',

@@ -5,8 +5,23 @@ import defaultLocaleData from './zh-CN';
 export interface Locale {
     locale: string;
     BlockHeader: { expand: string; collapse: string };
+    Catalogue: { searchPlaceholder: string; inputPlaceholder: string };
+    Chat: {
+        stopped: string;
+        stop: string;
+        regenerate: string;
+    };
     Copy: { copied: string; copy: string };
     Dropdown: { selectAll: string; resetText: string; okText: string };
+    ErrorBoundary: {
+        please: string;
+        get: string;
+        refresh: string;
+        title: string;
+    };
+    FilterRules: {
+        message: string;
+    };
     Fullscreen: { exitFull: string; full: string };
     GlobalLoading: { loading: string };
     Input: {
@@ -15,17 +30,6 @@ export interface Locale {
         front: string;
         tail: string;
     };
-    LoadError: {
-        please: string;
-        get: string;
-        refresh: string;
-        title: string;
-    };
-    Modal: {
-        okText: string;
-        cancelText: string;
-    };
-    MxGraph: { newNode: string };
     NotFound: {
         description: string;
     };
