@@ -4,6 +4,7 @@ import { CopyOutlined } from '@dtinsight/react-icons';
 import { message, Tooltip } from 'antd';
 import classNames from 'classnames';
 
+import useLocale from '../locale/useLocale';
 import { LabelTooltipType, toTooltipProps } from '../utils';
 import './style.scss';
 
@@ -18,14 +19,15 @@ export interface ICopyProps {
 }
 
 const Copy: React.FC<ICopyProps> = (props) => {
+    const locale = useLocale('Copy');
     const {
         button = <CopyOutlined className="dtc-copy__default-icon" />,
         text,
-        tooltip = '复制',
+        tooltip = locale.copy,
         style,
         className,
         disabled = false,
-        onCopy = () => message.success('复制成功'),
+        onCopy = () => message.success(locale.copied),
     } = props;
 
     const handleCopy = () => {

@@ -37,7 +37,7 @@ describe('test BlockHeader render', () => {
     });
     test('should render BlockHeader default BlockHeader render', () => {
         const { getByText, rerender } = render(<BlockHeader {...props} />);
-        expect(getByText(props.title)).toBeTruthy();
+        expect(getByText(props.title as any)).toBeTruthy();
         rerender(<BlockHeader title="标题2" />);
         expect(getByText('标题2')).toBeTruthy();
     });
