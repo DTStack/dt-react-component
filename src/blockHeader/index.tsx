@@ -3,6 +3,7 @@ import { QuestionOutlined, UpOutlined } from '@dtinsight/react-icons';
 import { Tooltip } from 'antd';
 import classNames from 'classnames';
 
+import useLocale from '../locale/useLocale';
 import { LabelTooltipType, toTooltipProps } from '../utils';
 import './style.scss';
 
@@ -14,7 +15,7 @@ function isControlled(props: IBlockHeaderProps) {
 
 export interface IBlockHeaderProps {
     /** 标题 */
-    title: string;
+    title: ReactNode;
     /** 标题前的图标，默认是一个色块 */
     addonBefore?: ReactNode;
     /** 标题后的提示说明文字 */
@@ -76,6 +77,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
     } = props;
 
     const [internalExpand, setInternalExpand] = useState(defaultExpand);
+    const locale = useLocale('BlockHeader');
 
     const currentExpand = isControlled(props) ? expand : internalExpand;
 
@@ -124,7 +126,9 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
                 {addonAfter && <div className={`title__addon-after`}>{addonAfter}</div>}
                 {showCollapse && (
                     <div className={`title__collapse`}>
-                        <div className="collapse__text">{currentExpand ? '收起' : '展开'}</div>
+                        <div className="collapse__text">
+                            {currentExpand ? locale.collapse : locale.expand}
+                        </div>
                         <UpOutlined
                             className={classNames('collapse__icon', {
                                 'collapse__icon--up': currentExpand,

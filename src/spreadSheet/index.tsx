@@ -5,6 +5,7 @@ import { HotTable } from '@handsontable/react';
 import classNames from 'classnames';
 import 'handsontable/languages/zh-CN.js';
 
+import useLocale from '../locale/useLocale';
 import 'handsontable/dist/handsontable.full.css';
 import './style.scss';
 
@@ -36,7 +37,10 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = forwardRef(
         const copyUtils = new CopyUtils();
         const _timer = useRef<NodeJS.Timeout>();
         const { copyTypes = [], ...restProps } = options || {};
+
         useImperativeHandle(ref, () => tableRef.current);
+        const locale = useLocale('SpreadSheet');
+
         useEffect(() => {
             if (tableRef.current) {
                 removeRenderClock();
@@ -57,7 +61,7 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = forwardRef(
             let showData = data;
             if (!showData?.length) {
                 const emptyArr = new Array(columns.length).fill('', 0, columns.length);
-                emptyArr[0] = '暂无数据';
+                emptyArr[0] = locale.description;
                 showData = [emptyArr];
             }
             return showData;
@@ -128,21 +132,21 @@ const SpreadSheet: React.FC<ISpreadSheetProps> = forwardRef(
             };
 
             const copyDataItem = {
-                name: '复制值',
+                name: locale.copy,
                 callback: function (_key: string) {
                     const copyDataArr = getCopyData();
                     beforeCopy(copyDataArr);
                 },
             };
             const copyHeadersItem = {
-                name: '复制列名',
+                name: locale.copyCol,
                 callback: function (_key: string, selection: Array<any>) {
                     const copyHeaders = getCopyHeaders(selection);
                     beforeCopy([copyHeaders]);
                 },
             };
             const copyHeadersAndDataItem = {
-                name: '复制列名和值',
+                name: locale.copyAll,
                 callback: function (_key: string, selection: Array<any>) {
                     const copyDataArr = getCopyData();
                     const copyHeaders = getCopyHeaders(selection);
