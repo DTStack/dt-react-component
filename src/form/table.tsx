@@ -139,6 +139,9 @@ export default function InternalTable({
                 tooltip,
                 dependencies,
                 rules: rawRules,
+                validateFirst,
+                validateTrigger,
+                valuePropName,
                 render,
                 ...cols
             }) => {
@@ -153,7 +156,10 @@ export default function InternalTable({
                     hidden,
                     initialValue,
                     messageVariables,
+                    validateFirst,
+                    validateTrigger,
                     tooltip,
+                    valuePropName,
                 };
 
                 const isRequired =
