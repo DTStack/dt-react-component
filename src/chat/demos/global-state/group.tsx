@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { LikeOutlined } from '@ant-design/icons';
+import { ThumbsUpOutlined } from '@dtinsight/react-icons';
 import { Button } from 'antd';
 import { Chat, Flex } from 'dt-react-component';
 import { cloneDeep } from 'lodash-es';
@@ -93,7 +93,7 @@ export default function () {
                 codeBlock={{
                     convert,
                 }}
-                messageIcons={() => <LikeOutlined className="dtc__message__icon" />}
+                messageIcons={() => <ThumbsUpOutlined className="dtc__message__icon" />}
                 components={{
                     a: ({ children }) => (
                         <Button

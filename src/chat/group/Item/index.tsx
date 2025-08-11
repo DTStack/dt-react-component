@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MoreOutlined } from '@ant-design/icons';
+import { MoreOutlined } from '@dtinsight/react-icons';
 import { Dropdown, Input, Menu, message } from 'antd';
 import classNames from 'classnames';
 
@@ -39,6 +39,7 @@ export default function Item({
         onDelete?.(conversation);
     };
     const handleSelect = (conversation: ConversationProperties) => {
+        console.log(conversation.id, selectId);
         if (conversation.id === selectId || edit) {
             return;
         }
