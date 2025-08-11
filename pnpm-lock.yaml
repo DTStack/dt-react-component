@@ -40,6 +40,7 @@ specifiers:
   ko-lint-config: 2.2.21
   lint-staged: ^13.0.3
   lodash-es: ^4.17.21
+  moment: ^2.30.1
   prettier: ^2.7.1
   rc-drawer: ~5.1.0
   rc-motion: 2.6.2
@@ -70,6 +71,7 @@ dependencies:
   highlight.js: registry.npmmirror.com/highlight.js/10.7.3
   immer: 10.1.1
   lodash-es: 4.17.21
+  moment: 2.30.1
   rc-drawer: registry.npmmirror.com/rc-drawer/5.1.0_react-dom@18.2.0+react@18.2.0
   rc-virtual-list: registry.npmmirror.com/rc-virtual-list/3.11.2_react-dom@18.2.0+react@18.2.0
   react-draggable: 4.4.6_react-dom@18.2.0+react@18.2.0
@@ -2216,11 +2218,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /moment/2.29.4:
-    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
-    requiresBuild: true
+  /moment/2.20.1:
+    resolution: {integrity: sha512-Yh9y73JRljxW5QxN08Fner68eFLxM5ynNOAw2LbIB1YAGeQzZT8QFSUvkAz609Zf+IHhhaUxqZK8dG3W/+HEvg==}
     dev: false
-    optional: true
+
+  /moment/2.30.1:
+    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
+    dev: false
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -6950,7 +6954,7 @@ packages:
       copy-to-clipboard: registry.npmmirror.com/copy-to-clipboard/3.3.3
       lodash: registry.npmmirror.com/lodash/4.17.21
       memoize-one: registry.npmmirror.com/memoize-one/6.0.0
-      moment: registry.npmmirror.com/moment/2.29.4
+      moment: 2.30.1
       rc-cascader: registry.npmmirror.com/rc-cascader/3.6.2_react-dom@18.2.0+react@18.2.0
       rc-checkbox: registry.npmmirror.com/rc-checkbox/2.3.2_react-dom@18.2.0+react@18.2.0
       rc-collapse: registry.npmmirror.com/rc-collapse/3.3.1_react-dom@18.2.0+react@18.2.0
@@ -12217,7 +12221,7 @@ packages:
     name: handsontable
     version: 6.2.2
     dependencies:
-      moment: registry.npmmirror.com/moment/2.20.1
+      moment: 2.20.1
       numbro: registry.npmmirror.com/numbro/2.4.0
       pikaday: registry.npmmirror.com/pikaday/1.5.1
     dev: false
@@ -15764,18 +15768,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  registry.npmmirror.com/moment/2.20.1:
-    resolution: {integrity: sha512-Yh9y73JRljxW5QxN08Fner68eFLxM5ynNOAw2LbIB1YAGeQzZT8QFSUvkAz609Zf+IHhhaUxqZK8dG3W/+HEvg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/moment/-/moment-2.20.1.tgz}
-    name: moment
-    version: 2.20.1
-    dev: false
-
-  registry.npmmirror.com/moment/2.29.4:
-    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/moment/-/moment-2.29.4.tgz}
-    name: moment
-    version: 2.29.4
-    dev: false
-
   registry.npmmirror.com/move-concurrently/1.0.1:
     resolution: {integrity: sha512-hdrFxZOycD/g6A6SoI2bB5NA/5NEqD0569+S47WZhPvm46sD50ZHdYaFmnua5lndde9rCHGjmfK7Z8BuCt/PcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/move-concurrently/-/move-concurrently-1.0.1.tgz}
     name: move-concurrently
@@ -16752,7 +16744,7 @@ packages:
     name: pikaday
     version: 1.5.1
     optionalDependencies:
-      moment: 2.29.4
+      moment: 2.30.1
     dev: false
 
   registry.npmmirror.com/pinkie-promise/2.0.1:
@@ -18519,7 +18511,7 @@ packages:
       classnames: registry.npmmirror.com/classnames/2.3.2
       date-fns: registry.npmmirror.com/date-fns/2.30.0
       dayjs: registry.npmmirror.com/dayjs/1.11.10
-      moment: registry.npmmirror.com/moment/2.29.4
+      moment: 2.30.1
       rc-trigger: registry.npmmirror.com/rc-trigger/5.3.4_react-dom@18.2.0+react@18.2.0
       rc-util: registry.npmmirror.com/rc-util/5.37.0_react-dom@18.2.0+react@18.2.0
       react: registry.npmmirror.com/react/18.2.0

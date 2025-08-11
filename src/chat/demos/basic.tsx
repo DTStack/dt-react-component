@@ -38,7 +38,7 @@ export default function () {
     }, []);
 
     return (
-        <div style={{ width: '100%', height: 400, marginBottom: 56 }}>
+        <div style={{ width: '100%', height: 400, display: 'flex', flexDirection: 'column' }}>
             <Chat
                 chat={chat}
                 codeBlock={{

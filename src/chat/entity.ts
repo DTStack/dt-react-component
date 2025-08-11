@@ -29,6 +29,7 @@ export type ConversationProperties = {
     id: string;
     assistantId?: string;
     createdAt?: Timestamp;
+    updatedAt?: Timestamp;
     title?: string;
     prompts?: Prompt[];
 };
@@ -58,6 +59,7 @@ export abstract class Conversation {
     // 后端 Id
     assistantId?: string;
     createdAt: Timestamp;
+    updatedAt: Timestamp;
     title?: string;
     prompts: Prompt[];
 
@@ -67,6 +69,7 @@ export abstract class Conversation {
         this.id = props.id;
         this.assistantId = props.assistantId;
         this.createdAt = props.createdAt || new Date().valueOf();
+        this.updatedAt = props.updatedAt || new Date().valueOf();
         this.title = props.title;
         this.prompts = props.prompts || [];
     }

@@ -120,6 +120,7 @@
         "highlight.js": "^10.5.0",
         "immer": "~10.1.1",
         "lodash-es": "^4.17.21",
+        "moment": "^2.30.1",
         "rc-drawer": "~5.1.0",
         "rc-virtual-list": "^3.4.13",
         "react-draggable": "~4.4.6",

@@ -127,7 +127,7 @@ function AI({ data, onSubmit }: { data?: Conversation; onSubmit?: (str?: string)
     const [value, setValue] = useState<string | undefined>('');
 
     return (
-        <div style={{ width: '100%', height: 400, marginBottom: 46 }}>
+        <div style={{ width: '100%', height: 400, display: 'flex', flexDirection: 'column' }}>
             <Chat chat={chat}>
                 <Chat.Content
                     data={data?.prompts || []}

@@ -10,7 +10,6 @@ import {
     MessageProperties,
     MessageStatus,
     Prompt,
-    PromptProperties,
 } from './entity';
 
 class BaseConversation extends Conversation {}
@@ -117,10 +116,15 @@ export default function useChat<
     }
 
     function _updatePrompt(promptId: Id, predicate: (prompt: Prompt) => Prompt): void;
-    function _updatePrompt(promptId: Id, data: Partial<Omit<PromptProperties, 'id'>>): void;
     function _updatePrompt(
         promptId: Id,
-        dataOrPredicate: Partial<Omit<PromptProperties, 'id'>> | ((prompt: Prompt) => Prompt)
+        data: Partial<Omit<ConstructorParameters<P>[0], 'id'>>
+    ): void;
+    function _updatePrompt(
+        promptId: Id,
+        dataOrPredicate:
+            | Partial<Omit<ConstructorParameters<P>[0], 'id'>>
+            | ((prompt: Prompt) => Prompt)
     ) {
         if (!state.current) return;
         state.current = produce(state.current, (draft) => {
@@ -208,19 +212,18 @@ export default function useChat<
 
     // ================================== Global ==================================
     function _isProcessing() {
-        const lastPrompt = state.current?.prompts?.[state.current?.prompts.length - 1];
-        const last = lastPrompt?.messages?.[lastPrompt.messages.length - 1];
+        const last = state.current?.prompts.at(-1)?.messages?.at(-1);
         if (!last) return false;
         return last.status === MessageStatus.PENDING || last.status === MessageStatus.GENERATING;
     }
 
     async function _saveViewState() {
-        const lastPrompt = state.current?.prompts?.[state.current?.prompts.length - 1];
-        const message = lastPrompt?.messages?.[lastPrompt.messages.length - 1];
+        const prompt = state.current?.prompts.at(-1);
+        const message = prompt?.messages?.at(-1);
         if (message?.status === MessageStatus.GENERATING) {
             await typing.close(true);
             if (closing.current) {
-                _updateMessage(lastPrompt!.id, message.id, { status: MessageStatus.DONE });
+                _updateMessage(prompt!.id, message.id, { status: MessageStatus.DONE });
             }
         } else {
             typing.stop();
@@ -233,10 +236,8 @@ export default function useChat<
         closing.current = false;
         if (_isProcessing()) {
             const conversation = _getConversation();
-            const prompt = conversation?.prompts?.[conversation?.prompts.length - 1];
-            const message = prompt?.messages?.[prompt.messages.length - 1];
-            // 理论上这里不会出现没有 prompt 或 message 的情况
-            /* istanbul ignore next */
+            const prompt = conversation?.prompts.at(-1);
+            const message = prompt?.messages.at(-1);
             if (!prompt || !message) return state.current;
             typing.start(message.content);
             typingIds.current = { promptId: prompt.id, messageId: message.id };

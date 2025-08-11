@@ -14,7 +14,8 @@
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
-        padding: 8px 36px 8px 16px;
+        padding: 8px 36px 8px 8px;
+        min-height: 100px;
         &:focus {
             box-shadow: none;
         }

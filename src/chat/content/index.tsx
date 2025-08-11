@@ -51,10 +51,7 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
     };
 
     const dataValid = !!(Array.isArray(data) && data.length);
-    const lastPrompt = data[data.length - 1];
-    const lastMessage = dataValid
-        ? lastPrompt.messages?.[lastPrompt.messages.length - 1]
-        : undefined;
+    const lastMessage = dataValid ? data.at(-1)?.messages?.at(-1) : undefined;
 
     useLayoutEffect(() => {
         const handleScroll = () => {

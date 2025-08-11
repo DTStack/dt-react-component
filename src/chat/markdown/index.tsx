@@ -49,6 +49,9 @@ export default memo(
                     hr() {
                         return <hr color="#ebecf0" className="dtc__aigc__markdown__hr" />;
                     },
+                    table({ children }) {
+                        return <table className="dtc__aigc__markdown__table">{children}</table>;
+                    },
                     p: (data) => {
                         // avoid validateDOMNesting error for div as a descendant of p
                         if (data.node.children.every((child) => child.type === 'text')) {
@@ -71,7 +74,7 @@ export default memo(
                 includeElementIndex
                 {...rest}
             >
-                {children}
+                {ensureTag(children)}
             </ReactMarkdown>
         );
     },
@@ -85,3 +88,12 @@ export default memo(
         return true;
     }
 );
+
+/**
+ * 确保 HTML 标签的前后都有两个换行符
+ */
+function ensureTag(children: string) {
+    if (typeof children !== 'string') return children;
+    const next = children.replace(/<\/?[a-z].[^<]*>/g, (str) => '\n\n' + str + '\n\n');
+    return next;
+}
