@@ -39,7 +39,6 @@ export default function Item({
         onDelete?.(conversation);
     };
     const handleSelect = (conversation: ConversationProperties) => {
-        console.log(conversation.id, selectId);
         if (conversation.id === selectId || edit) {
             return;
         }
