@@ -26,6 +26,7 @@ export { default as Image } from './image';
 export { default as Input } from './input';
 export { default as KeyEventListener } from './keyEventListener';
 export { default as enUS } from './locale/en-US';
+export { default as useLocale } from './locale/useLocale';
 export { default as zhCN } from './locale/zh-CN';
 export { default as MarkdownRender } from './markdownRender';
 export { default as Modal } from './modal/modal';
