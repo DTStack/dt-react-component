@@ -4,6 +4,7 @@ import { InternalNamePath } from 'antd/lib/form/interface';
 import { clone } from 'lodash-es';
 import shortId from 'shortid';
 
+import useLocale from '../locale/useLocale';
 import { RulesController } from './ruleController';
 
 export enum ROW_PERMISSION_RELATION {
@@ -56,11 +57,12 @@ function isDisabled<T>(props: IProps<T>): props is IDisabledProps<T> {
 export type IProps<T> = IDisabledProps<T> | INormalProps<T>;
 
 const FilterRules = <T,>(props: IProps<T>) => {
+    const locale = useLocale('FilterRules');
     const { component, disabled = false, value } = props;
     const {
         maxLevel = 5,
         maxSize = 100,
-        notEmpty = { data: true, message: '必须有一条数据' },
+        notEmpty = { data: true, message: locale.message },
         initValues,
         onChange,
     } = (!isDisabled(props) && props) as INormalProps<T>;

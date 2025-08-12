@@ -71,9 +71,9 @@ export default function Match({
         },
     ] as const;
 
-    const filterOptions = propFilterOptions || searchTypeList.map((i) => i.key);
-
-    const options = searchTypeList.filter((i) => filterOptions.includes(i.key));
+    const options = searchTypeList.filter((i) =>
+        (propFilterOptions || searchTypeList.map((i) => i.key)).includes(i.key)
+    );
 
     const realSearchType = searchType || internalSearchType;
     const realValue = value || internalValue;

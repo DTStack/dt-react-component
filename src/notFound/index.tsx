@@ -12,6 +12,7 @@ interface INotFoundProps {
 
 const NotFound: React.FC<INotFoundProps> = function ({ className, style }) {
     const locale = useLocale('NotFound');
+
     return (
         <div className={classNames('dtc-not-found', className)} style={style}>
             <Empty
