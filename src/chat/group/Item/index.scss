@@ -13,16 +13,19 @@
         &:hover {
             cursor: pointer;
             background-color: #EBECF0;
-            .anticon-more {
+            .dtstack-icon {
                 display: block;
             }
         }
-        .anticon-more {
+        .dtstack-icon {
             display: none;
         }
         &--selected {
             background-color: #E8F1FF;
             color: #1D78FF;
+            &:hover {
+                background-color: #E8F1FF;
+            }
         }
         &__input {
             height: 24px;
