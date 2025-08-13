@@ -73,6 +73,33 @@
             font-size: 14px;
         }
     }
+    &__table {
+        border: 1px solid #EBECF0;
+        width: 100%;
+        margin-block-end: 8px;
+        tr {
+            border-bottom: 1px solid #EBECF0;
+            height: 36px;
+            text-align: left;
+            font-size: 12px;
+            line-height: 20px;
+            color: #3D446E;
+            th, td {
+                padding: 8px 16px;
+            }
+        }
+        thead {
+            tr {
+                background-color: #F9F9FA;
+                font-weight: 500;
+            }
+        }
+        tbody {
+            tr {
+                background-color: #FFF;
+            }
+        }
+    }
     &__inlineCode {
         margin: 0 4px;
         padding: 2px 8px;
