@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ThumbsUpOutlined } from '@dtinsight/react-icons';
 import { Button } from 'antd';
 import { Chat, Flex } from 'dt-react-component';
+import { produce } from 'immer';
 import { cloneDeep } from 'lodash-es';
 
 import { ConversationProperties } from '../../entity';
@@ -21,6 +22,13 @@ export default function () {
     };
 
     const handleRenameChat = (_conversation: ConversationProperties, _value: string) => {
+        setData((prev) => {
+            const idx = prev.findIndex((i) => i.id === _conversation.id);
+            if (idx === -1) return prev;
+            return produce(prev, (draft) => {
+                draft[idx].title = _value;
+            });
+        });
         return Promise.resolve(true);
     };
 
