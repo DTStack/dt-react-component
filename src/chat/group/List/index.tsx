@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ConversationProperties } from '../../entity';
 import Item from '../Item';
 
-export interface IListProps {
+export interface IChatGroupListProps {
     conversations?: ConversationProperties[];
     className?: string;
     selectId?: string;
@@ -13,12 +13,12 @@ export interface IListProps {
     onRename?: (conversation: ConversationProperties, value: string) => Promise<any>;
     onDelete?: (conversation: ConversationProperties) => void;
 }
-export default function List(props: IListProps) {
+export default function List(props: IChatGroupListProps) {
     const { conversations, className, selectId, renderItem, onItemClick, onRename, onDelete } =
         props;
 
     return (
-        <div className={classNames('dtc-aigc-dialog-list', className)}>
+        <div className={classNames('dtc-aigc__dialog__list', className)}>
             {conversations?.map((conversation) => {
                 if (renderItem) return renderItem(conversation);
                 return (

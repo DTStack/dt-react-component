@@ -4,6 +4,7 @@ import { Dropdown, Input, Menu, message } from 'antd';
 import classNames from 'classnames';
 
 import EllipsisText from '../../../ellipsisText';
+import useLocale from '../../../locale/useLocale';
 import { ConversationProperties } from '../../entity';
 import './index.scss';
 
@@ -22,11 +23,12 @@ export default function Item({
     onDelete,
     onItemClick,
 }: IItemProps) {
+    const locale = useLocale('Chat');
     const [edit, setEdit] = useState(false);
     const handleRename = async (value: string) => {
         if (!value) {
             setEdit(false);
-            message.error('请输入对话名称');
+            message.error(locale.renameError);
             return;
         }
         const res = await onRename?.(conversation, value);
@@ -48,24 +50,21 @@ export default function Item({
     return (
         <div
             className={classNames(
-                'dtc-aigc-dialog-list-item',
-                conversation.id === selectId && 'dtc-aigc-dialog-list-item__selected'
+                'dtc-aigc__dialog__list__item',
+                conversation.id === selectId && 'dtc-aigc__dialog__list__item--selected'
             )}
             onClick={() => handleSelect(conversation)}
         >
             {edit ? (
                 <Input
-                    className="dtc-aigc-dialog-list-item-input"
+                    className="dtc-aigc__dialog__list__item__input"
                     defaultValue={conversation.title}
-                    // 指标里限制长度的交互一般是按照报错的方式来的。
-                    // 由于报错的交互比较难做，所以这里直接通过 maxLength 限制用户输入。是考虑再三的无奈之举
                     maxLength={30}
                     autoFocus
                     onBlur={({ target }) => {
                         handleRename(target.value);
                     }}
                     onPressEnter={({ target, keyCode }) => {
-                        // 参考：https://dtstack.yuque.com/rd-center/tqk74v/wydclfzpf96ib8cp
                         if (keyCode === 13) {
                             handleRename((target as HTMLInputElement).value);
                         }
@@ -87,10 +86,10 @@ export default function Item({
                         overlay={
                             <Menu onClick={(e) => e.domEvent.stopPropagation()}>
                                 <Menu.Item key="rename" onClick={() => setEdit(true)}>
-                                    重命名
+                                    {locale.rename}
                                 </Menu.Item>
                                 <Menu.Item key="delete" onClick={handleDelete}>
-                                    删除
+                                    {locale.delete}
                                 </Menu.Item>
                             </Menu>
                         }

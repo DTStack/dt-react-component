@@ -7,9 +7,20 @@ export interface Locale {
     BlockHeader: { expand: string; collapse: string };
     Catalogue: { searchPlaceholder: string; inputPlaceholder: string };
     Chat: {
-        stopped: string;
+        stoped: string;
         stop: string;
         regenerate: string;
+        conversationEmpty: string;
+        createConversation: string;
+        rename: string;
+        delete: string;
+        renameError: string;
+        today: string;
+        yesterday: string;
+        recent7Days: string;
+        recent15Days: string;
+        recent30Days: string;
+        other: string;
     };
     Copy: { copied: string; copy: string };
     Dropdown: { selectAll: string; resetText: string; okText: string };

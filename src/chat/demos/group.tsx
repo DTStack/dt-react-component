@@ -5,9 +5,7 @@ import { ConversationProperties } from '../entity';
 import Group from '../group';
 
 export default function (props: { children: React.ReactNode }) {
-    console.log(props);
     const [data, setData] = React.useState<ConversationProperties[]>([]);
-
     const [selectId, setSelectId] = React.useState<string | undefined>('1');
     const [expand, setIsExpand] = React.useState(true);
 
@@ -15,11 +13,11 @@ export default function (props: { children: React.ReactNode }) {
         setSelectId(conversation.id);
     };
 
-    const handleRename = (_conversation: ConversationProperties, _value: string) => {
+    const handleRenameChat = (_conversation: ConversationProperties, _value: string) => {
         return Promise.resolve(true);
     };
 
-    const handleClearChat = (conversation: ConversationProperties) => {
+    const handleDeleteChat = (conversation: ConversationProperties) => {
         console.log(conversation);
     };
     const handleNewChat = () => {
@@ -51,11 +49,11 @@ export default function (props: { children: React.ReactNode }) {
                 openFloat={false}
                 listProps={{
                     selectId,
-                    onRename: handleRename,
-                    onDelete: handleClearChat,
+                    onRename: handleRenameChat,
+                    onDelete: handleDeleteChat,
                     onItemClick: handleSelectChat,
                 }}
-                dialogButtonProps={{
+                conversationButtonProps={{
                     onClick: handleNewChat,
                 }}
                 onExpandChange={setIsExpand}

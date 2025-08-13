@@ -5,6 +5,7 @@ import { Conversation, Message, MessageStatus, Prompt } from 'dt-react-component
 import { produce } from 'immer';
 
 import { mockSSE } from '../mockSSE';
+import '../index.scss';
 
 export default function () {
     const [tabs, setTabs] = useState([{ label: 'Tab 1', children: 'Content of Tab 1', key: '1' }]);
@@ -127,7 +128,7 @@ function AI({ data, onSubmit }: { data?: Conversation; onSubmit?: (str?: string)
     const [value, setValue] = useState<string | undefined>('');
 
     return (
-        <div style={{ width: '100%', height: 400, display: 'flex', flexDirection: 'column' }}>
+        <div className="dtc-aigc__demo">
             <Chat chat={chat}>
                 <Chat.Content
                     data={data?.prompts || []}

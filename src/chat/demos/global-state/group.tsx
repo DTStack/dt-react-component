@@ -6,27 +6,25 @@ import { cloneDeep } from 'lodash-es';
 
 import { ConversationProperties } from '../../entity';
 import { mockSSE } from '../mockSSE';
+import '../index.scss';
 
 export default function () {
     const chat = Chat.useChat();
     const [value, setValue] = useState<string | undefined>('');
-
     const [convert, setConvert] = useState(false);
-
-    const [data, setData] = React.useState<ConversationProperties[]>([]);
-
-    const [selectId, setSelectId] = React.useState<string | undefined>('1');
-    const [expand, setIsExpand] = React.useState(true);
+    const [data, setData] = useState<ConversationProperties[]>([]);
+    const [expand, setIsExpand] = useState(true);
 
     const handleSelectChat = (conversation: ConversationProperties) => {
-        setSelectId(conversation.id);
+        chat.conversation.remove();
+        chat.conversation.create({ ...conversation });
     };
 
-    const handleRename = (_conversation: ConversationProperties, _value: string) => {
+    const handleRenameChat = (_conversation: ConversationProperties, _value: string) => {
         return Promise.resolve(true);
     };
 
-    const handleClearChat = (conversation: ConversationProperties) => {
+    const handleDeleteChat = (conversation: ConversationProperties) => {
         const list = cloneDeep(data).filter((i) => i.id !== conversation.id);
         if (conversation.id === chat.conversation.get()?.id) {
             chat.conversation.remove();
@@ -37,7 +35,7 @@ export default function () {
         }
         setData(list);
     };
-    const handleNewChat = () => {
+    const handleCreateChat = () => {
         chat.conversation.remove();
         chat.conversation.create({ id: new Date().valueOf().toString() });
     };
@@ -87,7 +85,7 @@ export default function () {
     }, []);
 
     return (
-        <div style={{ width: '100%', height: 600, display: 'flex', flexDirection: 'column' }}>
+        <div className="dtc-aigc__demo" style={{ height: 600 }}>
             <Chat
                 chat={chat}
                 codeBlock={{
@@ -114,13 +112,13 @@ export default function () {
                     data={data}
                     openFloat={false}
                     listProps={{
-                        selectId,
-                        onRename: handleRename,
-                        onDelete: handleClearChat,
+                        selectId: chat.conversation.get()?.id,
+                        onRename: handleRenameChat,
+                        onDelete: handleDeleteChat,
                         onItemClick: handleSelectChat,
                     }}
-                    dialogButtonProps={{
-                        onClick: handleNewChat,
+                    conversationButtonProps={{
+                        onClick: handleCreateChat,
                     }}
                     onExpandChange={setIsExpand}
                 >

@@ -3,16 +3,16 @@
 exports[`Test Chat Group Match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="dtc-aigc-group"
+    class="dtc-aigc__group"
   >
     <div
-      class="dtc-aigc-group-list dtc-aigc-group-list__float dtc-aigc-group-list__hide"
+      class="dtc-aigc__group__list dtc-aigc__group__list--float dtc-aigc__group__list--hide"
     >
       <div
-        class="dtc-aigc-group-list-wrapper"
+        class="dtc-aigc__group__list__wrapper"
       >
         <div
-          class="ant-empty dtc-empty dtc-aigc-group-list__empty"
+          class="ant-empty dtc-empty dtc-aigc__group__list--empty"
         >
           <div
             class="ant-empty-image"
@@ -30,7 +30,7 @@ exports[`Test Chat Group Match snapshot 1`] = `
       </div>
     </div>
     <div
-      class="dtc-aigc-group-content"
+      class="dtc-aigc__group__content"
     />
   </div>
 </DocumentFragment>
@@ -39,17 +39,17 @@ exports[`Test Chat Group Match snapshot 1`] = `
 exports[`Test Chat Group Match snapshot: addNew 1`] = `
 <DocumentFragment>
   <div
-    class="dtc-aigc-group"
+    class="dtc-aigc__group"
   >
     <div
-      class="dtc-aigc-group-list dtc-aigc-group-list__hide"
+      class="dtc-aigc__group__list dtc-aigc__group__list--hide"
     >
       <button
         class="ant-btn ant-btn-default ant-btn-background-ghost dtc__aigc__button dtc__aigc__button--secondary"
         type="button"
       >
         <span
-          class="dtc__icon dtc__aigc__button__text"
+          class="dtc__icon dtc-aigc__button__text"
           style="font-size: 16px;"
         >
           <svg
@@ -122,10 +122,10 @@ exports[`Test Chat Group Match snapshot: addNew 1`] = `
         </span>
       </button>
       <div
-        class="dtc-aigc-group-list-wrapper"
+        class="dtc-aigc__group__list__wrapper"
       >
         <div
-          class="ant-empty dtc-empty dtc-aigc-group-list__empty"
+          class="ant-empty dtc-empty dtc-aigc__group__list--empty"
         >
           <div
             class="ant-empty-image"
@@ -143,7 +143,7 @@ exports[`Test Chat Group Match snapshot: addNew 1`] = `
       </div>
     </div>
     <div
-      class="dtc-aigc-group-content"
+      class="dtc-aigc__group__content"
     />
   </div>
 </DocumentFragment>
@@ -152,16 +152,16 @@ exports[`Test Chat Group Match snapshot: addNew 1`] = `
 exports[`Test Chat Group Match snapshot: expand 1`] = `
 <DocumentFragment>
   <div
-    class="dtc-aigc-group dtc-aigc-group__expand"
+    class="dtc-aigc__group dtc-aigc__group--expand"
   >
     <div
-      class="dtc-aigc-group-list dtc-aigc-group-list__float"
+      class="dtc-aigc__group__list dtc-aigc__group__list--float"
     >
       <div
-        class="dtc-aigc-group-list-wrapper"
+        class="dtc-aigc__group__list__wrapper"
       >
         <div
-          class="ant-empty dtc-empty dtc-aigc-group-list__empty"
+          class="ant-empty dtc-empty dtc-aigc__group__list--empty"
         >
           <div
             class="ant-empty-image"
@@ -179,7 +179,7 @@ exports[`Test Chat Group Match snapshot: expand 1`] = `
       </div>
     </div>
     <div
-      class="dtc-aigc-group-content"
+      class="dtc-aigc__group__content"
     />
   </div>
 </DocumentFragment>
@@ -188,16 +188,16 @@ exports[`Test Chat Group Match snapshot: expand 1`] = `
 exports[`Test Chat Group Match snapshot: fullscreen 1`] = `
 <DocumentFragment>
   <div
-    class="dtc-aigc-group dtc-aigc-group__fullscreen"
+    class="dtc-aigc__group dtc-aigc__group--fullscreen"
   >
     <div
-      class="dtc-aigc-group-list dtc-aigc-group-list__float dtc-aigc-group-list__hide"
+      class="dtc-aigc__group__list dtc-aigc__group__list--float dtc-aigc__group__list--hide"
     >
       <div
-        class="dtc-aigc-group-list-wrapper"
+        class="dtc-aigc__group__list__wrapper"
       >
         <div
-          class="ant-empty dtc-empty dtc-aigc-group-list__empty"
+          class="ant-empty dtc-empty dtc-aigc__group__list--empty"
         >
           <div
             class="ant-empty-image"
@@ -215,7 +215,7 @@ exports[`Test Chat Group Match snapshot: fullscreen 1`] = `
       </div>
     </div>
     <div
-      class="dtc-aigc-group-content"
+      class="dtc-aigc__group__content"
     />
   </div>
 </DocumentFragment>
@@ -224,27 +224,27 @@ exports[`Test Chat Group Match snapshot: fullscreen 1`] = `
 exports[`Test Chat Group Match snapshot: normal 1`] = `
 <DocumentFragment>
   <div
-    class="dtc-aigc-group"
+    class="dtc-aigc__group"
   >
     <div
-      class="dtc-aigc-group-list dtc-aigc-group-list__float dtc-aigc-group-list__hide"
+      class="dtc-aigc__group__list dtc-aigc__group__list--float dtc-aigc__group__list--hide"
     >
       <div
-        class="dtc-aigc-group-list-wrapper"
+        class="dtc-aigc__group__list__wrapper"
       >
         <div
-          class="dtc-aigc-group-list-item"
+          class="dtc-aigc__group__list__item"
         >
           <div
-            class="dtc-aigc-group-list-item-title"
+            class="dtc-aigc__group__list__item__title"
           >
             昨天
           </div>
           <div
-            class="dtc-aigc-dialog-list"
+            class="dtc-aigc__dialog__list"
           >
             <div
-              class="dtc-aigc-dialog-list-item"
+              class="dtc-aigc__dialog__list__item"
             >
               <div
                 data-testid="ellipsisText"
@@ -259,18 +259,18 @@ exports[`Test Chat Group Match snapshot: normal 1`] = `
           </div>
         </div>
         <div
-          class="dtc-aigc-group-list-item"
+          class="dtc-aigc__group__list__item"
         >
           <div
-            class="dtc-aigc-group-list-item-title"
+            class="dtc-aigc__group__list__item__title"
           >
             今天
           </div>
           <div
-            class="dtc-aigc-dialog-list"
+            class="dtc-aigc__dialog__list"
           >
             <div
-              class="dtc-aigc-dialog-list-item"
+              class="dtc-aigc__dialog__list__item"
             >
               <div
                 data-testid="ellipsisText"
@@ -287,7 +287,7 @@ exports[`Test Chat Group Match snapshot: normal 1`] = `
       </div>
     </div>
     <div
-      class="dtc-aigc-group-content"
+      class="dtc-aigc__group__content"
     />
   </div>
 </DocumentFragment>
@@ -296,17 +296,17 @@ exports[`Test Chat Group Match snapshot: normal 1`] = `
 exports[`Test Chat Group Match snapshot: openFloat false 1`] = `
 <DocumentFragment>
   <div
-    class="dtc-aigc-group"
+    class="dtc-aigc__group"
   >
     <div
-      class="dtc-aigc-group-list dtc-aigc-group-list__hide"
+      class="dtc-aigc__group__list dtc-aigc__group__list--hide"
     >
       <button
         class="ant-btn ant-btn-default ant-btn-background-ghost dtc__aigc__button dtc__aigc__button--secondary"
         type="button"
       >
         <span
-          class="dtc__icon dtc__aigc__button__text"
+          class="dtc__icon dtc-aigc__button__text"
           style="font-size: 16px;"
         >
           <svg
@@ -379,10 +379,10 @@ exports[`Test Chat Group Match snapshot: openFloat false 1`] = `
         </span>
       </button>
       <div
-        class="dtc-aigc-group-list-wrapper"
+        class="dtc-aigc__group__list__wrapper"
       >
         <div
-          class="ant-empty dtc-empty dtc-aigc-group-list__empty"
+          class="ant-empty dtc-empty dtc-aigc__group__list--empty"
         >
           <div
             class="ant-empty-image"
@@ -400,7 +400,7 @@ exports[`Test Chat Group Match snapshot: openFloat false 1`] = `
       </div>
     </div>
     <div
-      class="dtc-aigc-group-content"
+      class="dtc-aigc__group__content"
     />
   </div>
 </DocumentFragment>
@@ -409,27 +409,27 @@ exports[`Test Chat Group Match snapshot: openFloat false 1`] = `
 exports[`Test Chat Group Match snapshot: select 1`] = `
 <DocumentFragment>
   <div
-    class="dtc-aigc-group"
+    class="dtc-aigc__group"
   >
     <div
-      class="dtc-aigc-group-list dtc-aigc-group-list__float dtc-aigc-group-list__hide"
+      class="dtc-aigc__group__list dtc-aigc__group__list--float dtc-aigc__group__list--hide"
     >
       <div
-        class="dtc-aigc-group-list-wrapper"
+        class="dtc-aigc__group__list__wrapper"
       >
         <div
-          class="dtc-aigc-group-list-item"
+          class="dtc-aigc__group__list__item"
         >
           <div
-            class="dtc-aigc-group-list-item-title"
+            class="dtc-aigc__group__list__item__title"
           >
             昨天
           </div>
           <div
-            class="dtc-aigc-dialog-list"
+            class="dtc-aigc__dialog__list"
           >
             <div
-              class="dtc-aigc-dialog-list-item dtc-aigc-dialog-list-item__selected"
+              class="dtc-aigc__dialog__list__item dtc-aigc__dialog__list__item--selected"
             >
               <div
                 data-testid="ellipsisText"
@@ -444,18 +444,18 @@ exports[`Test Chat Group Match snapshot: select 1`] = `
           </div>
         </div>
         <div
-          class="dtc-aigc-group-list-item"
+          class="dtc-aigc__group__list__item"
         >
           <div
-            class="dtc-aigc-group-list-item-title"
+            class="dtc-aigc__group__list__item__title"
           >
             今天
           </div>
           <div
-            class="dtc-aigc-dialog-list"
+            class="dtc-aigc__dialog__list"
           >
             <div
-              class="dtc-aigc-dialog-list-item"
+              class="dtc-aigc__dialog__list__item"
             >
               <div
                 data-testid="ellipsisText"
@@ -472,7 +472,7 @@ exports[`Test Chat Group Match snapshot: select 1`] = `
       </div>
     </div>
     <div
-      class="dtc-aigc-group-content"
+      class="dtc-aigc__group__content"
     />
   </div>
 </DocumentFragment>

@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import { Chat, Flex } from 'dt-react-component';
 
 import { mockSSE } from './mockSSE';
+import './index.scss';
 
 export default function () {
     const chat = Chat.useChat();
@@ -38,7 +39,7 @@ export default function () {
     }, []);
 
     return (
-        <div style={{ width: '100%', height: 400, display: 'flex', flexDirection: 'column' }}>
+        <div className="dtc-aigc__demo">
             <Chat
                 chat={chat}
                 codeBlock={{

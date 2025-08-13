@@ -10,6 +10,7 @@ import { Button, Space, Tooltip } from 'antd';
 import classNames from 'classnames';
 
 import Copy from '../../copy';
+import useLocale from '../../locale/useLocale';
 import useIntersectionObserver from '../../useIntersectionObserver';
 import { Message as MessageEntity, MessageStatus, Prompt as PromptEntity } from '../entity';
 import Loading from '../loading';
@@ -43,6 +44,7 @@ export default function Message({
     onStop,
     onLazyRendered,
 }: IMessageProps) {
+    const locale = useLocale('Chat');
     const divRef = useIntersectionObserver<HTMLDivElement>(handleObserverCb);
     const { components = {}, messageIcons, codeBlock, rehypePlugins, remarkPlugins } = useContext();
 
@@ -160,7 +162,7 @@ export default function Message({
                                 onChange={(cur) => setCurrent(cur)}
                             />
                         )}
-                        {stopped && <span className="dtc__message__stopText">回答已停止</span>}
+                        {stopped && <span className="dtc__message__stopText">{locale.stoped}</span>}
                     </div>
                 </div>
                 {(typing || loading) && (
@@ -171,7 +173,7 @@ export default function Message({
                             onClick={() => onStop?.(record)}
                             icon={<PauseOutlined style={{ verticalAlign: 'sub' }} />}
                         >
-                            停止回答
+                            {locale.stop}
                         </Button>
                     </div>
                 )}
@@ -184,7 +186,7 @@ export default function Message({
                         : messageIcons}
                     {regenerate && (
                         <Tooltip
-                            title="重新生成"
+                            title={locale.regenerate}
                             getTooltipContainer={(node) => node.parentNode as HTMLElement}
                         >
                             <span

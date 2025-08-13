@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, cleanup, fireEvent, render } from '@testing-library/react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import '@testing-library/jest-dom/extend-expect';
 
 import Group from '../group';
@@ -10,14 +10,14 @@ function generateConversation() {
         {
             id: 'conversation_1',
             createdAt: 1736479532239,
-            updatedAt: moment().subtract(1, 'day').toDate().getTime(),
+            updatedAt: dayjs().subtract(1, 'day').toDate().getTime(),
             title: 'this is conversation 1',
             assistantId: 'assistant_1',
         },
         {
             id: 'conversation_2',
             createdAt: 1736479532239,
-            updatedAt: moment().toDate().getTime(),
+            updatedAt: dayjs().toDate().getTime(),
             title: 'this is conversation 2',
             assistantId: 'assistant_2',
         },
@@ -43,7 +43,7 @@ describe('Test Chat Group', () => {
         );
         expect(
             render(
-                <Group data={[]} openFloat={false} dialogButtonProps={{ onClick: onAdd }} />
+                <Group data={[]} openFloat={false} conversationButtonProps={{ onClick: onAdd }} />
             ).asFragment()
         ).toMatchSnapshot('addNew');
         expect(render(<Group data={conversation} />).asFragment()).toMatchSnapshot('normal');
@@ -56,17 +56,17 @@ describe('Test Chat Group', () => {
     it('Should fullscreen', () => {
         const { container } = render(<Group data={[]} fullscreen />);
 
-        const ele = container.querySelector('.dtc-aigc-group');
+        const ele = container.querySelector('.dtc-aigc__group');
         expect(ele).toBeInTheDocument();
-        expect(ele?.className).toContain('dtc-aigc-group__fullscreen');
+        expect(ele?.className).toContain('dtc-aigc__group--fullscreen');
     });
 
     it('Should expand', () => {
         const { container } = render(<Group data={[]} expand />);
 
-        const ele = container.querySelector('.dtc-aigc-group');
+        const ele = container.querySelector('.dtc-aigc__group');
         expect(ele).toBeInTheDocument();
-        expect(ele?.className).toContain('dtc-aigc-group__expand');
+        expect(ele?.className).toContain('dtc-aigc__group--expand');
     });
 
     it('Should select item', () => {
@@ -75,15 +75,15 @@ describe('Test Chat Group', () => {
             <Group data={conversation} listProps={{ selectId: conversation[0].id }} />
         );
 
-        const ele = container.querySelector('.dtc-aigc-dialog-list-item');
+        const ele = container.querySelector('.dtc-aigc__dialog__list__item');
         expect(ele).toBeInTheDocument();
-        expect(ele?.className).toContain('dtc-aigc-dialog-list-item__selected');
+        expect(ele?.className).toContain('dtc-aigc__dialog__list__item--selected');
     });
 
     it('Should group list title', () => {
         const { container } = render(<Group data={generateConversation()} />);
 
-        const ele = container.querySelector('.dtc-aigc-group-list-item-title');
+        const ele = container.querySelector('.dtc-aigc__group__list__item__title');
         expect(ele).toBeInTheDocument();
         expect(ele).toHaveTextContent('昨天');
     });
@@ -91,7 +91,7 @@ describe('Test Chat Group', () => {
     it('Should support add new session', () => {
         const onAdd = jest.fn();
         const { container } = render(
-            <Group data={[]} openFloat={false} dialogButtonProps={{ onClick: onAdd }} />
+            <Group data={[]} openFloat={false} conversationButtonProps={{ onClick: onAdd }} />
         );
 
         const btn = container.querySelector<HTMLDivElement>('.dtc__aigc__button');
@@ -114,7 +114,9 @@ describe('Test Chat Group', () => {
             <Group data={conversation} listProps={{ onItemClick, selectId: conversation[0].id }} />
         );
 
-        const nodeList = container.querySelectorAll<HTMLDivElement>('.dtc-aigc-dialog-list-item');
+        const nodeList = container.querySelectorAll<HTMLDivElement>(
+            '.dtc-aigc__dialog__list__item'
+        );
         const ele = nodeList?.item(nodeList?.length - 1);
 
         expect(onItemClick).not.toBeCalled();
@@ -151,7 +153,7 @@ describe('Test Chat Group', () => {
 
         fireEvent.click(dropdownMenuItems[0]);
 
-        const ele = container.querySelector('.dtc-aigc-dialog-list-item-input');
+        const ele = container.querySelector('.dtc-aigc__dialog__list__item__input');
         expect(ele).toBeInTheDocument();
         expect(ele).toHaveAttribute('value', conversation[0].title);
 

@@ -1,5 +1,5 @@
-.dtc-aigc-dialog-list {
-    &-item {
+.dtc-aigc__dialog__list {
+    &__item {
         line-height: 32px;
         height: 32px;
         padding: 0 16px;
@@ -20,11 +20,11 @@
         .anticon-more {
             display: none;
         }
-        &.dtc-aigc-dialog-list-item__selected {
+        &--selected {
             background-color: #E8F1FF;
             color: #1D78FF;
         }
-        &-input {
+        &__input {
             height: 24px;
         }
     }

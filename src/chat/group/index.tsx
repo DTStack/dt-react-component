@@ -1,16 +1,17 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ButtonProps, Spin } from 'antd';
 import classNames from 'classnames';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import shortid from 'shortid';
 
 import Empty from '../../empty';
+import useLocale from '../../locale/useLocale';
 import useMeasure from '../../useMeasure';
 import Button from '../button';
 import { ConversationProperties } from '../entity';
 import { AddDialogIcon } from '../icon';
 import Item from './Item';
-import List, { IListProps } from './List';
+import List, { IChatGroupListProps } from './List';
 import './index.scss';
 
 const GROUP_FLOAT_WIDTH = 640;
@@ -21,7 +22,7 @@ export type GroupProperties = {
     title?: string;
 };
 
-type IDialogButtonProps = Omit<ButtonProps, 'type'>;
+type IConversationButtonProps = Omit<ButtonProps, 'type'>;
 
 interface IGroupProps {
     loading?: boolean;
@@ -34,18 +35,18 @@ interface IGroupProps {
     // 是否开启点击其他地方关闭
     maskClose?: boolean;
     // 添加对话按钮
-    dialogButton?: React.ReactNode;
+    conversationButton?: React.ReactNode;
     // 添加对话按钮属性
-    dialogButtonProps?: React.HTMLAttributes<HTMLDivElement> & IDialogButtonProps;
+    conversationButtonProps?: React.HTMLAttributes<HTMLDivElement> & IConversationButtonProps;
     // 列表属性
-    listProps?: IListProps;
+    listProps?: IChatGroupListProps;
     openFloat?: boolean;
     onExpandChange?: (expand: boolean) => void;
 }
-function classifyDate(date?: string | Date | number | moment.Moment) {
+function classifyDate(date?: string | Date | number) {
     if (!date) return '';
-    const input = moment(date).startOf('day');
-    const now = moment().startOf('day');
+    const input = dayjs(date).startOf('day');
+    const now = dayjs().startOf('day');
 
     const diffDays = now.diff(input, 'days');
 
@@ -88,8 +89,8 @@ export default function Group(props: IGroupProps) {
         fullscreen,
         className,
         data = [],
-        dialogButton,
-        dialogButtonProps,
+        conversationButton,
+        conversationButtonProps,
         expand,
         maskClose = true,
         listProps,
@@ -97,6 +98,7 @@ export default function Group(props: IGroupProps) {
         openFloat = true,
         onExpandChange,
     } = props;
+    const locale = useLocale('Chat');
     const [ref, { width }] = useMeasure();
 
     const listRef = useRef<HTMLDivElement>(null);
@@ -152,13 +154,19 @@ export default function Group(props: IGroupProps) {
 
     const renderGroups = (groups: GroupProperties[]) => {
         return !groups.length ? (
-            <Empty type="project" className="dtc-aigc-group-list__empty" description="暂无对话" />
+            <Empty
+                type="project"
+                className="dtc-aigc__group__list--empty"
+                description={locale.conversationEmpty}
+            />
         ) : (
             groups?.map((group) => {
                 if (!group.conversations?.length) return null;
                 return (
-                    <div key={group.title} className="dtc-aigc-group-list-item">
-                        <div className="dtc-aigc-group-list-item-title">{group.title || ''}</div>
+                    <div key={group.title} className="dtc-aigc__group__list__item">
+                        <div className="dtc-aigc__group__list__item__title">
+                            {group.title || ''}
+                        </div>
                         <List conversations={group.conversations} {...listProps} />
                     </div>
                 );
@@ -170,43 +178,43 @@ export default function Group(props: IGroupProps) {
         <div
             ref={ref}
             className={classNames(
-                'dtc-aigc-group',
-                fullscreen && 'dtc-aigc-group__fullscreen',
-                expand && !isHide && 'dtc-aigc-group__expand',
+                'dtc-aigc__group',
+                fullscreen && 'dtc-aigc__group--fullscreen',
+                expand && !isHide && 'dtc-aigc__group--expand',
                 className
             )}
         >
             <div
                 ref={listRef}
                 className={classNames(
-                    'dtc-aigc-group-list',
-                    width < GROUP_FLOAT_WIDTH && openFloat && 'dtc-aigc-group-list__float',
-                    isHide && !expand && 'dtc-aigc-group-list__hide'
+                    'dtc-aigc__group__list',
+                    width < GROUP_FLOAT_WIDTH && openFloat && 'dtc-aigc__group__list--float',
+                    isHide && !expand && 'dtc-aigc__group__list--hide'
                 )}
                 onTransitionEnd={() => {
                     if (!expand) setIsHide(true);
                 }}
             >
                 {!(width < GROUP_FLOAT_WIDTH && openFloat) &&
-                    (dialogButton ?? (
+                    (conversationButton ?? (
                         <Button
                             type="secondary"
                             icon={
                                 <AddDialogIcon
-                                    className="dtc__aigc__button__text"
+                                    className="dtc-aigc__button__text"
                                     style={{ fontSize: 16 }}
                                 />
                             }
-                            {...dialogButtonProps}
+                            {...conversationButtonProps}
                         >
-                            开启新对话
+                            {locale.createConversation}
                         </Button>
                     ))}
-                <div className="dtc-aigc-group-list-wrapper">
-                    {loading ? <Spin className="dtc-spin-wrapper" /> : renderGroups(groups)}
+                <div className="dtc-aigc__group__list__wrapper">
+                    {loading ? <Spin className="dtc__spin__wrapper" /> : renderGroups(groups)}
                 </div>
             </div>
-            <div className="dtc-aigc-group-content">{children}</div>
+            <div className="dtc-aigc__group__content">{children}</div>
         </div>
     );
 }
