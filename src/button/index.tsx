@@ -14,7 +14,7 @@ export default function Button({
     ...rest
 }: ButtonProps) {
     return (
-        <AntdButton className={classNames('dtc-button', className)} {...rest}>
+        <AntdButton className={classNames('dtc-button', className)} size={size} {...rest}>
             {icon && <span className={`dtc-button__icon dtc-button__icon--${size}`}>{icon}</span>}
             {children && (
                 <span className={`dtc-button__text dtc-button__text--${size}`}>{children}</span>
