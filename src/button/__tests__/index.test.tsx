@@ -33,6 +33,11 @@ describe('Button', () => {
         expect(container.firstChild).toHaveClass('custom-class');
     });
 
+    it('applies size className', () => {
+        const { container } = render(<Button size="small">Test</Button>);
+        expect(container.firstChild).toHaveClass('ant-btn-sm');
+    });
+
     it('passes other props to AntdButton', () => {
         const { getByText } = render(<Button type="primary">Primary</Button>);
         expect(getByText('Primary').parentNode).toHaveClass('ant-btn-primary');
