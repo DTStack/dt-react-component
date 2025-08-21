@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { DeleteOutlined, EditOutlined, PlusSquareOutlined } from '@dtinsight/react-icons';
 import { Menu } from 'antd';
-import { Catalogue, EllipsisText } from 'dt-react-component';
+import { Catalogue } from 'dt-react-component';
 import { CatalogueProps } from 'dt-react-component/catalogue/components/catalogue';
 import { ITreeNode, useTreeData } from 'dt-react-component/catalogue/useTreeData';
 import { cloneDeep } from 'lodash-es';
@@ -23,12 +23,7 @@ const DEFAULT_DATA: ITreeNode<IData>[] = [
         key: '0-0',
         children: [
             {
-                title: (
-                    <EllipsisText
-                        value="长长长长长长长长长长长长长长长长长长长长长长长长Title"
-                        maxWidth="100%"
-                    />
-                ),
+                title: '长长长长长长长长长长长长长长长长长长长长长长长长Title',
                 key: '0-0-0',
                 children: [
                     {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Catalogue, EllipsisText } from 'dt-react-component';
+import { Catalogue } from 'dt-react-component';
 import { useTreeData } from 'dt-react-component/catalogue/useTreeData';
 
 enum TreeType {
@@ -13,12 +13,7 @@ const DEFAULT_DATA = (key: TreeType) => [
         key: '0-0',
         children: [
             {
-                title: (
-                    <EllipsisText
-                        value="长长长长长长长长长长长长长长长长长长长长长长长长Title"
-                        maxWidth="100%"
-                    />
-                ),
+                title: '长长长长长长长长长长长长长长长长长长长长长长长长Title',
                 key: '0-0-0',
                 children: [
                     { title: '0-0-0-0', key: '0-0-0-0' },

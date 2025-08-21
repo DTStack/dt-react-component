@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import {
+    CatalogFilled,
+    CloseOutlined,
+    DragOutlined,
+    EllipsisTableOutlined,
+    SearchOutlined,
+} from '@dtinsight/react-icons';
 import { Dropdown, DropdownProps, Form, Input, Tabs } from 'antd';
 import { BlockHeader, EllipsisText } from 'dt-react-component';
 import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
 
 import useLocale from '../../locale/useLocale';
 import { ITreeNode } from '../useTreeData';
-import { CatalogIcon, CloseIcon, DragIcon, EllipsisIcon, SearchIcon } from './icon';
 import CatalogueTree, { ICatalogueTree } from './tree';
 
 interface Tab {
@@ -53,7 +59,7 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
     const locale = useLocale('Catalogue');
     const {
         title,
-        addonBefore = <CatalogIcon style={{ fontSize: 20 }} />,
+        addonBefore = <CatalogFilled style={{ fontSize: 20 }} />,
         tooltip = false,
         showSearch = false,
         placeholder = locale.searchPlaceholder,
@@ -126,7 +132,7 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
             <div className="dt-catalogue__search">
                 <Input.Search placeholder={placeholder} onSearch={onSearch} />
                 {isTabMode(props) && (
-                    <CloseIcon className="close" style={{}} onClick={() => setTabSearch(false)} />
+                    <CloseOutlined className="close" onClick={() => setTabSearch(false)} />
                 )}
             </div>
         );
@@ -140,7 +146,7 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
                 className="dt-catalogue__tabs"
                 size="small"
                 tabBarExtraContent={
-                    <SearchIcon className="search" onClick={() => setTabSearch(true)} />
+                    <SearchOutlined className="search" onClick={() => setTabSearch(true)} />
                 }
                 activeKey={activeTabKey}
                 onChange={onTabChange}
@@ -179,10 +185,10 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
                             triggerNode.parentElement as HTMLElement
                         }
                     >
-                        <EllipsisIcon onClick={(e) => e.stopPropagation()} />
+                        <EllipsisTableOutlined onClick={(e) => e.stopPropagation()} />
                     </Dropdown>
                 )}
-                {draggable && <DragIcon />}
+                {draggable && <DragOutlined />}
             </div>
         );
     };

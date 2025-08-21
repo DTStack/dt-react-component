@@ -12,7 +12,7 @@ describe('Test Input.Match component', () => {
     it('Should support searchType', () => {
         const fn = jest.fn();
         const { rerender, container } = render(<Match onTypeChange={fn} />);
-        const elements = container.querySelectorAll('svg.dtc-input-match-suffixItem')!;
+        const elements = container.querySelectorAll('span.dtc-input-match-suffixItem')!;
         expect(elements).toHaveLength(4);
 
         fireEvent.click(elements[0]);
@@ -20,18 +20,18 @@ describe('Test Input.Match component', () => {
         expect(fn).toBeCalledWith('caseSensitive');
 
         rerender(<Match searchType="caseSensitive" onTypeChange={fn} />);
-        expect(container.querySelectorAll('svg.dtc-input-match-suffixItem')!).toHaveLength(4);
-        expect(container.querySelectorAll('svg.dtc-input-match-suffixItem')[0].classList).toContain(
-            'dtc-input-match-suffixItem__active'
-        );
-        fireEvent.click(container.querySelectorAll('svg.dtc-input-match-suffixItem')[0]);
+        expect(container.querySelectorAll('span.dtc-input-match-suffixItem')!).toHaveLength(4);
+        expect(
+            container.querySelectorAll('span.dtc-input-match-suffixItem')[0].classList
+        ).toContain('dtc-input-match-suffixItem__active');
+        fireEvent.click(container.querySelectorAll('span.dtc-input-match-suffixItem')[0]);
         expect(fn).toBeCalledWith('fuzzy');
     });
 
     it('Should support filterOptions', () => {
         const { container } = render(<Match filterOptions={['tail']} />);
 
-        expect(container.querySelectorAll('svg.dtc-input-match-suffixItem')!).toHaveLength(1);
+        expect(container.querySelectorAll('span.dtc-input-match-suffixItem')!).toHaveLength(1);
     });
 
     it('Should support onSearch and onPressEnter', () => {
