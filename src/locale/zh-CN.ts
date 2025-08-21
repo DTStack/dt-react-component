@@ -42,6 +42,11 @@ const localeValues: Locale = {
         front: '头部匹配',
         tail: '尾部匹配',
     },
+    Modal: {
+        okText: '确定',
+        cancelText: '取消',
+        notYetText: '暂不',
+    },
     NotFound: {
         description: '抱歉，您访问的页面不存在',
     },

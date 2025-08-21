@@ -3,9 +3,8 @@ import { CheckFilled, CloseFilled, InformationFilled, WarningFilled } from '@dti
 import { Modal as AntdModal, ModalFuncProps } from 'antd';
 import { ModalFunc, ModalStaticFunctions } from 'antd/lib/modal/confirm';
 
+import { getRunTimeLocale, ModalLocale } from './locale';
 import InternalModal from './modal';
-
-const OK_TEXT = '确认';
 
 type ModalType = typeof InternalModal &
     ModalStaticFunctions & {
@@ -17,31 +16,42 @@ type ModalType = typeof InternalModal &
 
 const { useModal, info, success, error, warning, confirm, destroyAll, config } = AntdModal;
 
-const customProps: Record<
+const getCustomProps = (
+    locale: ModalLocale
+): Record<
     | keyof Pick<ModalStaticFunctions, 'info' | 'success' | 'error' | 'warning' | 'confirm'>
     | 'delete',
     ModalFuncProps
-> = {
-    info: { icon: <InformationFilled color="#1D78FF" />, okText: OK_TEXT },
-    success: { icon: <CheckFilled color="#11D7B2" />, okText: OK_TEXT },
-    error: {
-        icon: <CloseFilled color="#F96C5B" />,
-        okText: OK_TEXT,
-        okButtonProps: { danger: true },
-    },
-    warning: { icon: <WarningFilled color="#FBB310" />, okText: OK_TEXT },
-    confirm: { icon: <WarningFilled color="#FBB310" />, okText: OK_TEXT, cancelText: '取消' },
-    delete: {
-        icon: <CloseFilled color="#F96C5B" />,
-        okButtonProps: { danger: true },
-        okText: OK_TEXT,
-        cancelText: '暂不',
-    },
+> => {
+    return {
+        info: { icon: <InformationFilled color="#1D78FF" />, okText: locale.okText },
+        success: { icon: <CheckFilled color="#11D7B2" />, okText: locale.okText },
+        error: {
+            icon: <CloseFilled color="#F96C5B" />,
+            okText: locale.okText,
+            okButtonProps: { danger: true },
+        },
+        warning: { icon: <WarningFilled color="#FBB310" />, okText: locale.okText },
+        confirm: {
+            icon: <WarningFilled color="#FBB310" />,
+            okText: locale.okText,
+            cancelText: locale.cancelText,
+        },
+        delete: {
+            icon: <CloseFilled color="#F96C5B" />,
+            okButtonProps: { danger: true },
+            okText: locale.okText,
+            cancelText: locale.notYetText,
+        },
+    };
 };
 
-function withCustomIcon(fn: ModalFunc, type: keyof typeof customProps) {
-    return (props: ModalFuncProps) =>
-        fn({ ...customProps[type], wrapClassName: 'dtc-modal', ...props });
+function withCustomIcon(fn: ModalFunc, type: keyof ReturnType<typeof getCustomProps>) {
+    return (props: ModalFuncProps) => {
+        const locale = getRunTimeLocale();
+        const customProps = getCustomProps(locale);
+        return fn({ ...customProps[type], wrapClassName: 'dtc-modal', ...props });
+    };
 }
 
 const Modal = InternalModal as unknown as ModalType;

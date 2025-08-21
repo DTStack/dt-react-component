@@ -33,6 +33,11 @@ export interface Locale {
     NotFound: {
         description: string;
     };
+    Modal: {
+        okText: string;
+        cancelText: string;
+        notYetText: string;
+    };
     SpreadSheet: {
         description: string;
         copy: string;
