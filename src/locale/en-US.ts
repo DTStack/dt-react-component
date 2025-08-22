@@ -46,6 +46,11 @@ const localeValues: Locale = {
         front: 'Head match',
         tail: 'Tail match',
     },
+    Modal: {
+        okText: 'Ok',
+        cancelText: 'Cancel',
+        notYetText: 'Not Now',
+    },
     NotFound: {
         description: 'Sorry, the page you visited does not exist',
     },
