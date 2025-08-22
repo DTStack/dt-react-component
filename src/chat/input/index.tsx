@@ -34,6 +34,9 @@ export default function Input({
         <div className="dtc__chat__textarea__container">
             <AntdInput.TextArea
                 className={classNames('dtc__chat__textarea', className)}
+                autoSize={{
+                    maxRows: 7,
+                }}
                 {...rest}
                 onChange={handleChange}
                 onPressEnter={(e) => {
@@ -45,10 +48,6 @@ export default function Input({
                     } else {
                         onPressEnter?.(e);
                     }
-                }}
-                autoSize={{
-                    minRows: 2,
-                    maxRows: 7,
                 }}
             />
             {button?.disabled ? (

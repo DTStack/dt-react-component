@@ -10,7 +10,6 @@ import {
     MessageProperties,
     MessageStatus,
     Prompt,
-    PromptProperties,
 } from './entity';
 
 class BaseConversation extends Conversation {}
@@ -117,10 +116,15 @@ export default function useChat<
     }
 
     function _updatePrompt(promptId: Id, predicate: (prompt: Prompt) => Prompt): void;
-    function _updatePrompt(promptId: Id, data: Partial<Omit<PromptProperties, 'id'>>): void;
     function _updatePrompt(
         promptId: Id,
-        dataOrPredicate: Partial<Omit<PromptProperties, 'id'>> | ((prompt: Prompt) => Prompt)
+        data: Partial<Omit<ConstructorParameters<P>[0], 'id'>>
+    ): void;
+    function _updatePrompt(
+        promptId: Id,
+        dataOrPredicate:
+            | Partial<Omit<ConstructorParameters<P>[0], 'id'>>
+            | ((prompt: Prompt) => Prompt)
     ) {
         if (!state.current) return;
         state.current = produce(state.current, (draft) => {

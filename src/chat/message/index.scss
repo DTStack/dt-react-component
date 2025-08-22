@@ -3,6 +3,9 @@
         display: flex;
         gap: 4px;
         position: relative;
+        &:has(+ .dtc__message__container):has(.dtc__message__iconGroup:not(:empty)) {
+            margin-bottom: 8px;
+        }
         &:hover {
             .dtc__message__iconGroup {
                 opacity: 1;
