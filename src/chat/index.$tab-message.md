@@ -25,3 +25,4 @@ Message 组件用以渲染回答框
 | onRegenerate   | 点击重新生成的回调函数 | `(data: Message) => void`           | -       |
 | onStop         | 点击停止问答的回调函数 | `(data: Message) => void`           | -       |
 | onLazyRendered | 懒加载的回调函数       | `(cb: () => Promise<void>) => void` | -       |
+| extraRender    | 额外的 dom 结构渲染    | `React.ReactNode`                   | -       |

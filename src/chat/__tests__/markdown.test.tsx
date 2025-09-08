@@ -5,6 +5,7 @@ import { cleanup, render } from '@testing-library/react';
 import Markdown from '../markdown';
 
 jest.mock('remark-gfm', () => () => {});
+jest.mock('rehype-raw', () => () => {});
 
 const markdown = `
 # title

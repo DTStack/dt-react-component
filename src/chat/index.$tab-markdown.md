@@ -20,11 +20,12 @@ Markdown 组件自带 memo 用于性能优化，只有 `typing`、`children`、`
 
 ## API
 
-| 参数      | 说明                | 类型         | 默认值 |
-| --------- | ------------------- | ------------ | ------ |
-| typing    | 是否输入中          | `boolean`    | -      |
-| className | 类名                | `string`     | -      |
-| children  | 文案                | `string`     | -      |
-| onMount   | didMount 的回调函数 | `() => void` | -      |
+| 参数          | 说明                   | 类型         | 默认值 |
+| ------------- | ---------------------- | ------------ | ------ |
+| typing        | 是否输入中             | `boolean`    | -      |
+| className     | 类名                   | `string`     | -      |
+| isHtmlContent | 是否包含 html 结构内容 | `boolean`    | -      |
+| children      | 文案                   | `string`     | -      |
+| onMount       | didMount 的回调函数    | `() => void` | -      |
 
 其余属性参考 `react-markdown@~8.0.6`

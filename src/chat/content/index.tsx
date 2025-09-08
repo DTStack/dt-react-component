@@ -2,8 +2,8 @@ import React, { forwardRef, useImperativeHandle, useLayoutEffect, useRef, useSta
 import classNames from 'classnames';
 
 import { Message as MessageEntity, MessageStatus, Prompt as PromptEntity } from '../entity';
-import Message from '../message';
-import Prompt from '../prompt';
+import Message, { IMessageProps } from '../message';
+import Prompt, { IPromptProps } from '../prompt';
 import { useContext } from '../useContext';
 import './index.scss';
 
@@ -13,6 +13,8 @@ export interface IContentProps {
     scrollable?: boolean;
     onRegenerate?: (data: MessageEntity, prompt: PromptEntity) => void;
     onStop?: (data: MessageEntity, prompt: PromptEntity) => void;
+    replacePrompt?: (promptProps: IPromptProps) => React.ReactNode;
+    replaceMessage?: (messageProps: IMessageProps) => React.ReactNode;
 }
 
 export interface IContentRef {
@@ -21,7 +23,7 @@ export interface IContentRef {
 }
 
 const Content = forwardRef<IContentRef, IContentProps>(function (
-    { data, placeholder, scrollable = true, onRegenerate, onStop },
+    { data, placeholder, scrollable = true, onRegenerate, onStop, replacePrompt, replaceMessage },
     forwardedRef
 ) {
     const { maxRegenerateCount, copy, regenerate } = useContext();
@@ -107,34 +109,45 @@ const Content = forwardRef<IContentRef, IContentProps>(function (
                     {data.map((row, idx) => {
                         const defaultRegenerate =
                             idx === data.length - 1 && row.messages.length < maxRegenerateCount;
+                        const messageProps: IMessageProps = {
+                            prompt: row,
+                            data: row.messages,
+                            regenerate:
+                                typeof regenerate === 'function'
+                                    ? regenerate(row, idx, data)
+                                    : regenerate ?? defaultRegenerate,
+                            copy,
+                            onRegenerate: (message) => onRegenerate?.(message, row),
+                            onStop: (message) => onStop?.(message, row),
+                            onLazyRendered: (renderFn) => {
+                                // 在触发懒加载之前判断是否在底部，如果是则加载完成后滚动到底部
+                                const scrolledToBottom = checkIfScrolledToBottom();
+                                renderFn().then(() => {
+                                    window.requestAnimationFrame(() => {
+                                        setIsStickyAtBottom(scrolledToBottom);
+                                        if (scrolledToBottom && containerRef.current) {
+                                            containerRef.current.scrollTop =
+                                                containerRef.current.scrollHeight;
+                                        }
+                                    });
+                                });
+                            },
+                        };
+                        const promptProps: IPromptProps = {
+                            data: row,
+                        };
                         return (
                             <React.Fragment key={row.id}>
-                                <Prompt data={row} />
-                                <Message
-                                    prompt={row}
-                                    data={row.messages}
-                                    regenerate={
-                                        typeof regenerate === 'function'
-                                            ? regenerate(row, idx, data)
-                                            : regenerate ?? defaultRegenerate
-                                    }
-                                    copy={copy}
-                                    onRegenerate={(message) => onRegenerate?.(message, row)}
-                                    onStop={(message) => onStop?.(message, row)}
-                                    onLazyRendered={(renderFn) => {
-                                        // 在触发懒加载之前判断是否在底部，如果是则加载完成后滚动到底部
-                                        const scrolledToBottom = checkIfScrolledToBottom();
-                                        renderFn().then(() => {
-                                            window.requestAnimationFrame(() => {
-                                                setIsStickyAtBottom(scrolledToBottom);
-                                                if (scrolledToBottom && containerRef.current) {
-                                                    containerRef.current.scrollTop =
-                                                        containerRef.current.scrollHeight;
-                                                }
-                                            });
-                                        });
-                                    }}
-                                />
+                                {replacePrompt ? (
+                                    replacePrompt(promptProps)
+                                ) : (
+                                    <Prompt {...promptProps} />
+                                )}
+                                {replaceMessage ? (
+                                    replaceMessage(messageProps)
+                                ) : (
+                                    <Message {...messageProps} />
+                                )}
                             </React.Fragment>
                         );
                     })}

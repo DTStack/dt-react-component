@@ -126,8 +126,9 @@
         "react-markdown": "~8.0.6",
         "react-resizable": "^3.0.5",
         "react-syntax-highlighter": "~15.5.0",
+        "rehype-raw": "^6.0.0",
         "remark-gfm": "~3.0.1",
-        "shortid": "^2.2.16",
+        "shortid": "2.2.16",
         "showdown": "^1.9.0"
     },
     "config": {

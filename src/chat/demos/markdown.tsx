@@ -34,8 +34,9 @@ SELECT * FROM table_name;
 | 单元格 | 单元格 | 单元格 |
 | 单元格 | 单元格 | 单元格 |
 | 单元格 | 单元格 | 单元格 |
+<span style="color: red;">自定义颜色</span>
 `;
 
 export default function () {
-    return <Chat.Markdown>{children}</Chat.Markdown>;
+    return <Chat.Markdown isHtmlContent>{children}</Chat.Markdown>;
 }
