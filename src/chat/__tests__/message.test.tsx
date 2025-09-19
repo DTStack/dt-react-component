@@ -7,9 +7,10 @@ import '@testing-library/jest-dom/extend-expect';
 
 import { Message as MessageEntity, MessageStatus, Prompt as PromptEntity } from '../entity';
 import Message from '../message';
-import Chat from '..';
+import Chat from '../';
 
 jest.mock('remark-gfm', () => () => {});
+jest.mock('rehype-raw', () => () => {});
 
 class BasePrompt extends PromptEntity {}
 class BaseMessage extends MessageEntity {}
@@ -300,5 +301,29 @@ describe('Test Chat Message', () => {
         const ele = getByTestId('fakeCode');
         expect(ele.dataset.messageid).toBe('1');
         expect(ele.dataset.promptid).toBe('1');
+    });
+
+    it('Should support extraRender', () => {
+        const prompt = generatePrompt();
+        prompt.messages[0].status = MessageStatus.DONE;
+        const { container, getByTestId } = render(
+            <Message
+                prompt={prompt}
+                data={prompt.messages}
+                extraRender={
+                    <div
+                        className="dtc__message__extra__render"
+                        data-testid="fakeMessageExtraRender"
+                    >
+                        ExtraDom
+                    </div>
+                }
+            />
+        );
+        expect(getByTestId('fakeMessageExtraRender')).toBeInTheDocument();
+        const nodeList = container.querySelectorAll<HTMLDivElement>('.dtc__message__extra__render');
+        const ele = nodeList?.item(nodeList?.length - 1);
+        expect(ele).not.toBeNull();
+        expect(ele?.textContent).toBe('ExtraDom');
     });
 });

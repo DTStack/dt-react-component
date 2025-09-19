@@ -2,6 +2,7 @@ import React, { memo, type PropsWithChildren, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { type ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 import classNames from 'classnames';
+import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
 
 import Image from '../../image';
@@ -11,6 +12,7 @@ import './index.scss';
 type IMarkdownProps = {
     typing?: boolean;
     codeBlock?: Omit<ICodeBlockProps, 'children'>;
+    isHtmlContent?: boolean;
     onMount?: () => void;
 } & ReactMarkdownOptions;
 
@@ -23,13 +25,14 @@ export default memo(
         codeBlock,
         components,
         children,
+        isHtmlContent = false,
         onMount,
         ...rest
     }: PropsWithChildren<IMarkdownProps>) {
         useEffect(() => {
             onMount?.();
         }, []);
-
+        const mergedRehypePlugins = isHtmlContent ? [rehypeRaw, ...rehypePlugins] : rehypePlugins;
         return (
             <ReactMarkdown
                 className={classNames(
@@ -37,7 +40,7 @@ export default memo(
                     typing && 'dtc__aigc__markdown--blink',
                     className
                 )}
-                rehypePlugins={rehypePlugins}
+                rehypePlugins={mergedRehypePlugins}
                 remarkPlugins={[remarkGfm, ...remarkPlugins]}
                 components={{
                     code({ children }) {

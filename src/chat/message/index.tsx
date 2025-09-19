@@ -18,7 +18,7 @@ import Pagination from '../pagination';
 import { CopyOptions, useContext } from '../useContext';
 import './index.scss';
 
-type IMessageProps = {
+export type IMessageProps = {
     prompt: PromptEntity;
     data: MessageEntity[];
     /**
@@ -32,6 +32,7 @@ type IMessageProps = {
     onRegenerate?: (data: MessageEntity) => void;
     onStop?: (data: MessageEntity) => void;
     onLazyRendered?: (cb: () => Promise<void>) => void;
+    extraRender?: React.ReactNode;
 };
 
 export default function Message({
@@ -42,6 +43,7 @@ export default function Message({
     onRegenerate,
     onStop,
     onLazyRendered,
+    extraRender,
 }: IMessageProps) {
     const divRef = useIntersectionObserver<HTMLDivElement>(handleObserverCb);
     const { components = {}, messageIcons, codeBlock, rehypePlugins, remarkPlugins } = useContext();
@@ -137,6 +139,7 @@ export default function Message({
                     ref={divRef}
                 >
                     <Loading loading={loading}>
+                        <React.Fragment>{extraRender}</React.Fragment>
                         {lazyRendered && (
                             <Markdown
                                 typing={typing}

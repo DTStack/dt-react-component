@@ -2,17 +2,18 @@ import React, { useMemo } from 'react';
 import { Components } from 'react-markdown';
 import classNames from 'classnames';
 
-import type { Prompt as PromptEntity } from '../entity';
+import { Prompt as PromptEntity } from '../entity';
 import Markdown from '../markdown';
 import { useContext } from '../useContext';
 import './index.scss';
 
-type IPromptProps = {
+export type IPromptProps = {
     data?: PromptEntity;
     className?: string;
+    extraRender?: React.ReactNode;
 };
 
-export default function Prompt({ data, className }: IPromptProps) {
+export default function Prompt({ data, className, extraRender }: IPromptProps) {
     const { components = {}, codeBlock } = useContext();
 
     const composedComponents = useMemo(() => {
@@ -34,11 +35,12 @@ export default function Prompt({ data, className }: IPromptProps) {
         <section className={classNames('dtc__prompt__container', className)}>
             <div className="dtc__prompt__wrapper">
                 <div className="dtc__prompt__content">
-                    <Markdown codeBlock={codeBlock} components={composedComponents}>
+                    <Markdown codeBlock={codeBlock} components={composedComponents} isHtmlContent>
                         {data?.title || ''}
                     </Markdown>
                 </div>
             </div>
+            <React.Fragment>{extraRender}</React.Fragment>
         </section>
     );
 }

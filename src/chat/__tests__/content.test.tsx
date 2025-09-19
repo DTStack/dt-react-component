@@ -36,6 +36,16 @@ jest.mock('../prompt', () => {
     return (props: any) => <pre data-testid="fakePrompt">{JSON.stringify(props)}</pre>;
 });
 
+const CustomPrompt = (props: any) => (
+    <pre className="custom-prompt-replaced" data-testid="fakeCustomPrompt">
+        {JSON.stringify(props)}
+    </pre>
+);
+const CustomMessage = (props: any) => (
+    <pre className="custom-message-replaced" data-testid="fakeCustomMessage">
+        {JSON.stringify(props)}
+    </pre>
+);
 function generatePrompt() {
     const prompt = new BasePrompt({
         id: '1',
@@ -191,5 +201,21 @@ describe('Test Chat Content', () => {
 
         expect(fn).toBeCalledTimes(1);
         expect(fn).lastCalledWith({ top: 200, left: 0, behavior: 'instant' });
+    });
+    it('Should support replacePrompt and replaceMessage', () => {
+        const { container, getByTestId } = render(
+            <Content
+                data={[generatePrompt()]}
+                replacePrompt={(promptProps) => <CustomPrompt data={promptProps} />}
+                replaceMessage={(messageProps) => <CustomMessage data={messageProps} />}
+            />
+        );
+        expect(getByTestId('fakeCustomPrompt')).toBeInTheDocument();
+        const ele1 = container.querySelector('.custom-prompt-replaced')!;
+        expect(ele1.textContent).not.toBeNull();
+
+        expect(getByTestId('fakeCustomMessage')).toBeInTheDocument();
+        const ele2 = container.querySelector('.custom-message-replaced')!;
+        expect(ele2.textContent).not.toBeNull();
     });
 });

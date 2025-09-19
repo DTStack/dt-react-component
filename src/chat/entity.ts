@@ -1,5 +1,7 @@
 import { immerable } from 'immer';
 
+import { BaseCommandItem, CurrentFileItem } from './input/type';
+
 /**
  * 消息状态
  */
@@ -31,6 +33,8 @@ export type ConversationProperties = {
     createdAt?: Timestamp;
     title?: string;
     prompts?: Prompt[];
+    commandList?: BaseCommandItem[];
+    fileList?: CurrentFileItem[];
 };
 
 export type PromptProperties = {
@@ -39,16 +43,22 @@ export type PromptProperties = {
     createdAt?: Timestamp;
     title: string;
     messages?: Message[];
+    commandList?: BaseCommandItem[];
+    fileList?: CurrentFileItem[];
 };
 
-export type MessageProperties = {
+export interface MessageProperties {
     id: Id;
     assistantId?: string;
     creator?: string;
     createdAt?: Timestamp;
+    // 离线使用到的字段
+    taskType?: number;
     content?: string;
     status?: MessageStatus;
-};
+    commandList?: BaseCommandItem[];
+    fileList?: CurrentFileItem[];
+}
 
 /**
  * 新对话
@@ -60,6 +70,8 @@ export abstract class Conversation {
     createdAt: Timestamp;
     title?: string;
     prompts: Prompt[];
+    commandList?: BaseCommandItem[];
+    fileList?: CurrentFileItem[];
 
     [immerable] = true;
 
@@ -69,6 +81,8 @@ export abstract class Conversation {
         this.createdAt = props.createdAt || new Date().valueOf();
         this.title = props.title;
         this.prompts = props.prompts || [];
+        this.commandList = props.commandList;
+        this.fileList = props.fileList;
     }
 }
 
@@ -82,6 +96,8 @@ export abstract class Prompt {
     createdAt: Timestamp;
     title: string;
     messages: Message[];
+    commandList?: BaseCommandItem[];
+    fileList?: CurrentFileItem[];
 
     [immerable] = true;
 
@@ -91,6 +107,8 @@ export abstract class Prompt {
         this.createdAt = props.createdAt || new Date().valueOf();
         this.title = props.title;
         this.messages = props.messages || [];
+        this.commandList = props.commandList;
+        this.fileList = props.fileList;
     }
 }
 
@@ -103,8 +121,12 @@ export abstract class Message {
     assistantId?: string;
     creator?: string;
     createdAt: Timestamp;
+    // 离线使用到的字段
+    taskType?: number;
     content: string;
     status: MessageStatus;
+    commandList?: BaseCommandItem[];
+    fileList?: CurrentFileItem[];
 
     [immerable] = true;
 
@@ -113,7 +135,11 @@ export abstract class Message {
         this.creator = props.creator;
         this.assistantId = props.assistantId;
         this.createdAt = props.createdAt || new Date().valueOf();
+        // 离线使用到的字段
+        this.taskType = props.taskType;
         this.content = props.content ?? '';
         this.status = props.status ?? MessageStatus.PENDING;
+        this.commandList = props.commandList;
+        this.fileList = props.fileList;
     }
 }
