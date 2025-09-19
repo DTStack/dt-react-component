@@ -1,0 +1,13 @@
+.dtc-popconfirm {
+    .ant-popover-message {
+        display: flex;
+        align-items: start;
+        &-title {
+            padding-left: 0;
+        }
+    }
+    .dtstack-icon {
+        margin-right: 8px;
+        font-size: 20px;
+    }
+}
