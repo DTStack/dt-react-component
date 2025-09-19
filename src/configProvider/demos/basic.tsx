@@ -1,9 +1,38 @@
 import React, { useState } from 'react';
 import { Radio, Space } from 'antd';
-import { BlockHeader, ConfigProvider, Copy, enUS, Input, zhCN } from 'dt-react-component';
+import {
+    BlockHeader,
+    Button,
+    ConfigProvider,
+    Copy,
+    enUS,
+    Input,
+    Modal,
+    zhCN,
+} from 'dt-react-component';
 
 export default function Basic() {
     const [locale, setLocale] = useState(zhCN);
+
+    const info = () => {
+        Modal.info({
+            title: 'This is a notification message',
+            content: (
+                <div>
+                    <p>some messages...some messages...</p>
+                    <p>some messages...some messages...</p>
+                </div>
+            ),
+            onOk() {},
+        });
+    };
+
+    const handleDelete = () => {
+        Modal.delete({
+            title: 'This is a delete message',
+            content: 'some messages...some messages...',
+        });
+    };
 
     return (
         <Space direction="vertical" size="large">
@@ -30,6 +59,13 @@ export default function Basic() {
                     <div>
                         <h3>Input.Match 组件</h3>
                         <Input.Match />
+                    </div>
+                    <div>
+                        <h3>Modal.method 组件</h3>
+                        <Button onClick={info} style={{ marginRight: 12 }}>
+                            Info
+                        </Button>
+                        <Button onClick={handleDelete}>Delete</Button>
                     </div>
                 </Space>
             </ConfigProvider>

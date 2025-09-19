@@ -40,4 +40,21 @@ $modal-max-height: 80vh;
             flex: 0 1 auto;
         }
     }
+    .ant-modal-confirm-body {
+        .dtstack-icon {
+            float: left;
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        .ant-modal-confirm-title {
+            color: #3D446E;
+            line-height: 20px;
+            font-size: 14px;
+        }
+        .ant-modal-confirm-content {
+            margin: 8px 0 16px 30px;
+            color: #8B8FA8;
+            line-height: 20px;
+        }
+    }
 }

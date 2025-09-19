@@ -29,7 +29,7 @@ export { default as enUS } from './locale/en-US';
 export { default as useLocale } from './locale/useLocale';
 export { default as zhCN } from './locale/zh-CN';
 export { default as MarkdownRender } from './markdownRender';
-export { default as Modal } from './modal/modal';
+export { default as Modal } from './modal';
 export { default as NotFound } from './notFound';
 export { default as Popconfirm } from './popConfirm';
 export { default as ProgressBar } from './progressBar';
