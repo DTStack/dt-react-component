@@ -21,6 +21,7 @@ Chat 规范由多个组件复合使用实现落地场景，其中：
 -   `Message` 组件是符合 AI 规范的回答框
 -   `Prompt` 组件是符合 AI 规范的提问框
 -   `Content` 组件是符合 AI 规范的正文内容
+-   `Group` 组件是符合 AI 规范的对话列表组件
 
 ## 何时使用
 
@@ -30,5 +31,6 @@ Chat 规范由多个组件复合使用实现落地场景，其中：
 
 <code src="./demos/basic.tsx" title="基本使用"></code>
 <code src="./demos/global-state/index.tsx" title="Chat 数据持久化" description="（不推荐）将相关数据持久化入上层组件"></code>
+<code src="./demos/global-state/group.tsx" title="对话列表"></code>
 
 ## API

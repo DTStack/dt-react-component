@@ -99,3 +99,55 @@ export const GradientDotIcon = ({ className, ...rest }: IconProps) => {
         </span>
     );
 };
+export const AddDialogIcon = ({ className, ...rest }: IconProps) => {
+    return (
+        <span className={classNames('dtc__icon', className)} {...rest}>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+                <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M14.5 4C14.5 3.44772 14.0523 3 13.5 3H2.5C1.94772 3 1.5 3.44771 1.5 4V11.4189C1.5 11.9712 1.94771 12.4189 2.5 12.4189H3.56093C3.70743 12.4189 3.84656 12.4832 3.94156 12.5947L5.22452 14.1008C5.52397 14.4524 6.06694 14.4524 6.36639 14.1008L7.94881 12.2431C8.12787 12.0329 8.10262 11.7174 7.89241 11.5383C7.6822 11.3592 7.36662 11.3845 7.18756 11.5947L5.79545 13.2289L4.70281 11.9462C4.41781 11.6117 4.00043 11.4189 3.56093 11.4189H2.5V4H13.5V7.875C13.5 8.15114 13.7239 8.375 14 8.375C14.2761 8.375 14.5 8.15114 14.5 7.875V4ZM4.25 6C4.25 5.72386 4.47386 5.5 4.75 5.5H10C10.2761 5.5 10.5 5.72386 10.5 6C10.5 6.27614 10.2761 6.5 10 6.5H4.75C4.47386 6.5 4.25 6.27614 4.25 6ZM4.75 8.5C4.47386 8.5 4.25 8.72386 4.25 9C4.25 9.27614 4.47386 9.5 4.75 9.5H7.75C8.02614 9.5 8.25 9.27614 8.25 9C8.25 8.72386 8.02614 8.5 7.75 8.5H4.75Z"
+                    fill="currentColor"
+                />
+                <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M12.25 8.75C12.25 8.47386 12.0261 8.25 11.75 8.25C11.4739 8.25 11.25 8.47386 11.25 8.75V10.75H9.25C8.97386 10.75 8.75 10.9739 8.75 11.25C8.75 11.5261 8.97386 11.75 9.25 11.75H11.25V13.75C11.25 14.0261 11.4739 14.25 11.75 14.25C12.0261 14.25 12.25 14.0261 12.25 13.75V11.75H14.25C14.5261 11.75 14.75 11.5261 14.75 11.25C14.75 10.9739 14.5261 10.75 14.25 10.75H12.25V8.75Z"
+                    fill="currentColor"
+                />
+                <defs>
+                    <linearGradient
+                        id="paint0_linear_5309_15152"
+                        x1="1.5"
+                        y1="3"
+                        x2="16.6164"
+                        y2="9.2251"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#00BAC6" />
+                        <stop offset="0.5" stopColor="#0067FF" />
+                        <stop offset="1" stopColor="#450FDE" />
+                    </linearGradient>
+                    <linearGradient
+                        id="paint1_linear_5309_15152"
+                        x1="8.75"
+                        y1="8.25"
+                        x2="15.9738"
+                        y2="10.8506"
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#00BAC6" />
+                        <stop offset="0.5" stopColor="#0067FF" />
+                        <stop offset="1" stopColor="#450FDE" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </span>
+    );
+};
