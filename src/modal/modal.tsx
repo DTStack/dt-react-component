@@ -6,6 +6,7 @@ import { omit } from 'lodash-es';
 
 import Float, { type IFloatProps } from '../float';
 import useMergeOption, { type MergeOption } from '../useMergeOption';
+import { isAlertObjectProps } from '../utils';
 import Handler from './handle';
 import './index.scss';
 
@@ -27,11 +28,6 @@ const getWidthFromSize = (size: IModalProps['size']) => {
     if (size === 'middle') return 640;
     if (size === 'large') return 900;
     return 520;
-};
-
-const isValidBanner = (banner: IModalProps['banner']): banner is AlertProps['message'] => {
-    if (typeof banner === 'object') return React.isValidElement(banner);
-    return true;
 };
 
 export default function InternalModal({
@@ -137,9 +133,9 @@ export default function InternalModal({
             {banner && (
                 <Alert
                     className="dtc-modal-alert"
-                    message={isValidBanner(banner) ? banner : banner.message}
+                    message={isAlertObjectProps(banner) ? banner.message : banner}
                     banner
-                    {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
+                    {...(isAlertObjectProps(banner) ? omit(banner, 'message') : {})}
                 />
             )}
             <section className="dtc-modal-body">{children}</section>

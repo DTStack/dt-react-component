@@ -1,5 +1,5 @@
 import React from 'react';
-import { TooltipProps } from 'antd';
+import { AlertProps, TooltipProps } from 'antd';
 
 export type LabelTooltipType = TooltipProps | TooltipProps['title'];
 
@@ -10,4 +10,15 @@ export function toTooltipProps(tooltip: LabelTooltipType): TooltipProps | null {
     return {
         title: tooltip,
     };
+}
+
+type BannerPropType = AlertProps['message'] | Omit<AlertProps, 'banner'>;
+
+export function isAlertObjectProps(banner: BannerPropType): banner is Omit<AlertProps, 'banner'> {
+    return (
+        typeof banner === 'object' &&
+        banner !== null &&
+        !React.isValidElement(banner) &&
+        'message' in banner
+    );
 }
