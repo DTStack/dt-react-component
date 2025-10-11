@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { omit } from 'lodash-es';
 import RcDrawer, { DrawerProps as AntdDrawerProps } from 'rc-drawer';
 
+import { isAlertObjectProps } from '../utils';
 import motionProps from './motion';
 import './style.scss';
 
@@ -65,11 +66,6 @@ const getWidthFromSize = (size: DrawerProps['size']) => {
     if (size === 'small') return `${(DrawerSize.Small / 1440) * 100}%`;
     if (size === 'large') return `${(DrawerSize.Large / 1440) * 100}%`;
     return `${(DrawerSize.Default / 1440) * 100}%`;
-};
-
-const isValidBanner = (banner: DrawerProps['banner']): banner is AlertProps['message'] => {
-    if (typeof banner === 'object') return React.isValidElement(banner);
-    return true;
 };
 
 const Drawer = <T extends readOnlyTab>(props: DrawerProps<T>) => {
@@ -148,9 +144,9 @@ const Drawer = <T extends readOnlyTab>(props: DrawerProps<T>) => {
                 )}
                 {banner && (
                     <Alert
-                        message={isValidBanner(banner) ? banner : (banner as any).message}
+                        message={isAlertObjectProps(banner) ? banner.message : banner}
                         banner
-                        {...(isValidBanner(banner) ? {} : omit(banner, 'message'))}
+                        {...(isAlertObjectProps(banner) ? omit(banner, 'message') : {})}
                     />
                 )}
                 {isTabMode(props) && (
