@@ -8,7 +8,7 @@ import { cloneDeep } from 'lodash-es';
 import shortid from 'shortid';
 
 import {
-    appendNodeByKey,
+    addChildrenIntoNode,
     findNodeByKey,
     findParentNodeByKey,
     removeEditNode,
@@ -83,7 +83,13 @@ export default () => {
 
     const handleAdd = (key: ITreeNode<IData>['key']) => {
         const newExpandedKeys = treeData.expandedKeys ? [...treeData.expandedKeys] : [];
-        const data = appendNodeByKey<IData>(treeData.data, key);
+        const data = addChildrenIntoNode<IData>(treeData.data, key, [
+            {
+                key: 'new_',
+                title: '',
+                edit: true,
+            },
+        ]);
         if (!newExpandedKeys?.includes(key)) {
             newExpandedKeys.push(key);
         }
