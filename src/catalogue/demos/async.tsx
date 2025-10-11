@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Catalogue } from 'dt-react-component';
 import { useTreeData } from 'dt-react-component/catalogue/useTreeData';
-import { addChildrenIntoNode } from 'dt-react-component/catalogue/utils';
+import { insertChildrenToNode } from 'dt-react-component/catalogue/utils';
 
 interface DataNode {
     title: string;
@@ -30,7 +30,7 @@ const App: React.FC = () => {
                 return;
             }
             setTimeout(() => {
-                const newData = addChildrenIntoNode(treeData.data, key, [
+                const newData = insertChildrenToNode(treeData.data, key, [
                     { title: 'Child Node', key: `${key}-0` },
                     { title: 'Child Node', key: `${key}-1` },
                 ]);
