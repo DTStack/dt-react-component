@@ -96,6 +96,7 @@ export default function InternalModal({
             child = (
                 <Resizable
                     {...mergedResizable.options}
+                    axis={mergedResizable.options.axis}
                     width={final.width as number}
                     height={final.height as number}
                     onResize={handleResize}
