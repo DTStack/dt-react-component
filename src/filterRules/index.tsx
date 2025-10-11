@@ -1,7 +1,7 @@
 import React from 'react';
 import { message } from 'antd';
 import { InternalNamePath } from 'antd/lib/form/interface';
-import { clone } from 'lodash-es';
+import { cloneDeep } from 'lodash-es';
 import shortId from 'shortid';
 
 import useLocale from '../locale/useLocale';
@@ -89,7 +89,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     };
 
     const handleAddCondition = (keyObj: { key: string; isOut?: boolean }) => {
-        const cloneData = clone(value);
+        const cloneData = cloneDeep(value);
         const appendNode = findRelationNode(cloneData as IFilterValue<T>, keyObj.key, keyObj.isOut);
         addCondition(appendNode, keyObj, initValues as T);
         onChange?.(cloneData);
@@ -150,7 +150,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
     };
 
     const handleDeleteCondition = (key: string) => {
-        const cloneData = clone(value);
+        const cloneData = cloneDeep(value);
         const deleteNode = findRelationNode(cloneData as IFilterValue<T>, key, false);
         if (notEmpty.data && !deleteNode?.children) return message.info(notEmpty.message);
         if (!notEmpty.data && !deleteNode?.children) {
@@ -192,7 +192,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
 
     // 更改条件节点的条件
     const handleChangeCondition = (key: string, type: ROW_PERMISSION_RELATION) => {
-        const cloneData = clone(value);
+        const cloneData = cloneDeep(value);
         const changeNode = findRelationNode(
             cloneData as IFilterValue<T>,
             key,
@@ -207,7 +207,7 @@ const FilterRules = <T,>(props: IProps<T>) => {
 
     // 改变节点的的数据
     const handleChangeRowValues = (key: string, values: T) => {
-        const cloneData = clone(value);
+        const cloneData = cloneDeep(value);
         const changeNode = findRelationNode(
             cloneData as IFilterValue<T>,
             key,
