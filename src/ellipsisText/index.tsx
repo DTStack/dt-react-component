@@ -83,7 +83,7 @@ const EllipsisText = (props: IEllipsisTextProps) => {
         }
         // Compatible width IE8
         // @ts-ignore
-        return window.getComputedStyle(dom)[attr] || dom.currentStyle[attr];
+        return window.getComputedStyle(dom)?.[attr] || dom.currentStyle?.[attr];
     };
 
     /**
