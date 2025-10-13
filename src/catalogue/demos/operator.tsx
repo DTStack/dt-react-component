@@ -12,7 +12,7 @@ import {
     insertChildrenToNode,
     removeEditNode,
     removeNodeByKey,
-    updateTreeNodeEdit,
+    updateNodeByKey,
 } from '../utils';
 
 const DEFAULT_DATA = [
@@ -124,7 +124,7 @@ export default () => {
     const treeData = useTreeData<IData>();
 
     const handleEdit = (key: ITreeNode<IData>['key']) => {
-        const data = updateTreeNodeEdit<IData>(treeData.data, key);
+        const data = updateNodeByKey<IData>(treeData.data, key, { edit: true });
         treeData.onChange(data);
     };
 
