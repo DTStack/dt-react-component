@@ -55,26 +55,6 @@ export const findNodeByKey = <U,>(
 };
 
 /**
- * @description 更新 key 对应节点为编辑状态
- * @param {ITreeNode<U>[]} data - 遍历的数组
- * @param {ITreeNode<U>['key']} key - 当前 key 值
- * @returns {ITreeNode<U>[]} 更新之后 data
- */
-export const updateTreeNodeEdit = <U,>(
-    data: ITreeNode<U>[],
-    key: ITreeNode<U>['key']
-): ITreeNode<U>[] =>
-    data.map((node) => {
-        if (node.key === key) {
-            return { ...node, edit: true };
-        }
-        if (node.children) {
-            return { ...node, children: updateTreeNodeEdit(node.children, key) };
-        }
-        return node;
-    });
-
-/**
  * @description 查找 key 对应的父级节点
  * @param {ITreeNode<U>[]} data - 遍历的数组
  * @param {ITreeNode<U>['key']} key - 当前 key 值
@@ -213,3 +193,33 @@ export const insertNodeAtKey = <U extends { edit?: boolean }>(
     }
     return newTreeData;
 };
+
+/**
+ * @description 根据 key 更新树中某个节点的内容。支持传入部分属性进行合并，或传入 updater 函数返回更新后的节点。
+ * @param {ITreeNode<U>[]} treeData - 要操作的树节点数组
+ * @param {ITreeNode<U>['key']} key - 目标节点的 key
+ * @param {Partial<ITreeNode<U>> | ((node: ITreeNode<U>) => ITreeNode<U>)} updater - 部分属性或 updater 函数
+ * @returns {ITreeNode<U>[]} 更新后的树节点数组
+ */
+export const updateNodeByKey = <U extends { edit?: boolean }>(
+    treeData: ITreeNode<U>[],
+    key: ITreeNode<U>['key'],
+    updater: Partial<ITreeNode<U>> | ((node: ITreeNode<U>) => ITreeNode<U>)
+): ITreeNode<U>[] =>
+    treeData.map((node) => {
+        if (node.key === key) {
+            const updatedNode =
+                typeof updater === 'function'
+                    ? (updater as (n: ITreeNode<U>) => ITreeNode<U>)(node)
+                    : { ...node, ...(updater as Partial<ITreeNode<U>>) };
+            // 保证在未显式更新 children 时保留原 children
+            if (node.children && updatedNode.children === undefined) {
+                return { ...updatedNode, children: node.children };
+            }
+            return updatedNode;
+        }
+        if (node.children) {
+            return { ...node, children: updateNodeByKey(node.children, key, updater) };
+        }
+        return node;
+    });
