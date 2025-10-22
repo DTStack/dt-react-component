@@ -7,13 +7,17 @@ import Markdown from '../markdown';
 import { useContext } from '../useContext';
 import './index.scss';
 
-export type IPromptProps = {
-    data?: PromptEntity;
+export type IPromptProps<T extends PromptEntity = PromptEntity> = {
+    data?: T;
     className?: string;
     extraRender?: React.ReactNode;
 };
 
-export default function Prompt({ data, className, extraRender }: IPromptProps) {
+export default function Prompt<T extends PromptEntity = PromptEntity>({
+    data,
+    className,
+    extraRender,
+}: IPromptProps<T>) {
     const { components = {}, codeBlock } = useContext();
 
     const composedComponents = useMemo(() => {

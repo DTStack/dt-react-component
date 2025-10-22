@@ -18,9 +18,9 @@ import Pagination from '../pagination';
 import { CopyOptions, useContext } from '../useContext';
 import './index.scss';
 
-export type IMessageProps = {
+export type IMessageProps<T extends MessageEntity = MessageEntity> = {
     prompt: PromptEntity;
-    data: MessageEntity[];
+    data: T[];
     /**
      * 是否支持重新生成
      */
@@ -29,13 +29,13 @@ export type IMessageProps = {
      * 是否支持复制功能
      */
     copy?: boolean | CopyOptions;
-    onRegenerate?: (data: MessageEntity) => void;
-    onStop?: (data: MessageEntity) => void;
+    onRegenerate?: (data: T) => void;
+    onStop?: (data: T) => void;
     onLazyRendered?: (cb: () => Promise<void>) => void;
     extraRender?: React.ReactNode;
 };
 
-export default function Message({
+export default function Message<T extends MessageEntity = MessageEntity>({
     prompt,
     data,
     regenerate,
@@ -44,7 +44,7 @@ export default function Message({
     onStop,
     onLazyRendered,
     extraRender,
-}: IMessageProps) {
+}: IMessageProps<T>) {
     const divRef = useIntersectionObserver<HTMLDivElement>(handleObserverCb);
     const { components = {}, messageIcons, codeBlock, rehypePlugins, remarkPlugins } = useContext();
 
@@ -151,7 +151,7 @@ export default function Message({
                                     mountCallback.current();
                                 }}
                             >
-                                {record?.content}
+                                {record?.content ?? ''}
                             </Markdown>
                         )}
                     </Loading>
