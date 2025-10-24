@@ -81,7 +81,7 @@ export default memo(
                 includeElementIndex
                 {...rest}
             >
-                {children}
+                {children?.replace(/<\/think>/g, '\n\n</think>')}
             </ReactMarkdown>
         );
     },

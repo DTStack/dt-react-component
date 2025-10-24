@@ -34,7 +34,7 @@ SELECT * FROM table_name;
 | 单元格 | 单元格 | 单元格 |
 | 单元格 | 单元格 | 单元格 |
 | 单元格 | 单元格 | 单元格 |
-<span style="color: red;">自定义颜色</span>
+<span style="color: red;">带自定义样式的dom结构显示</span>
 `;
 
 export default function () {
