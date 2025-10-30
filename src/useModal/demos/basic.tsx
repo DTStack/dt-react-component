@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Button, Form, Input, Modal, Table } from 'antd';
 import type { ColumnType } from 'antd/lib/table';
 
-import useModal from '..';
+import useModal from '../';
 
 interface IDataSource {
     id: string;
@@ -98,12 +98,7 @@ export default () => {
                 rowKey="uuid"
                 bordered
             />
-            <Modal
-                title="修改信息"
-                visible={modal.visible}
-                onOk={modal.close}
-                onCancel={modal.close}
-            >
+            <Modal title="修改信息" open={modal.visible} onOk={modal.close} onCancel={modal.close}>
                 <Form form={form}>
                     <Form.Item label="姓名" name="name">
                         <Input />

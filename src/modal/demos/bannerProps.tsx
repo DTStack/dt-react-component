@@ -9,7 +9,7 @@ export default function BannerProps() {
         <>
             <Modal
                 title="支持传 banner 的 Props 属性"
-                visible={visible}
+                open={visible}
                 banner={{
                     message: '模态框可以支持 banner 属性',
                     type: 'error',

@@ -49,7 +49,7 @@ export default function Size() {
             </Space>
             <Modal
                 title={`${size} 尺寸的 Modal`}
-                visible={visible}
+                open={visible}
                 onCancel={() => setVisible(false)}
                 onOk={() => setVisible(false)}
                 size={size}

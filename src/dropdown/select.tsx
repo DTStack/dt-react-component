@@ -163,7 +163,7 @@ export default function Select({
     // If options' number is larger then the maxHeight, then enable virtual list
     const virtual = options.length > Math.floor(MAX_HEIGHT / ITEM_HEIGHT);
 
-    const overlay = (
+    const overlay = () => (
         <>
             <Row>
                 <Col span={24} className={`${prefix}__col`}>
@@ -222,12 +222,12 @@ export default function Select({
 
     return (
         <Dropdown
-            visible={visible}
+            open={visible}
             overlayClassName={classNames(`${prefix}__container`, className)}
             trigger={['click']}
-            overlay={overlay}
+            dropdownRender={overlay}
             getPopupContainer={getPopupContainer}
-            onVisibleChange={(visible) => {
+            onOpenChange={(visible) => {
                 if (visible) {
                     setVisible(true);
                 } else {
