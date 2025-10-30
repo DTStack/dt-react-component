@@ -45,7 +45,7 @@ export default function ContextMenu({
     wrapperClassName,
     ...restProps
 }: PropsWithChildren<IContextMenu>) {
-    const menu = (
+    const menu = () => (
         <Menu
             className="dtc-contextMenu-menu"
             onClick={(item) => {
@@ -72,7 +72,7 @@ export default function ContextMenu({
     if (!data.length) return <span className={wrapperClassName}>{children}</span>;
 
     return (
-        <Dropdown overlay={menu} trigger={['contextMenu']} {...restProps}>
+        <Dropdown dropdownRender={menu} trigger={['contextMenu']} {...restProps}>
             <span className={wrapperClassName}>{children}</span>
         </Dropdown>
     );

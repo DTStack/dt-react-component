@@ -31,7 +31,7 @@ interface NormalCatalogueProps<U extends Record<string, any> = {}>
     placeholder?: string;
     loading?: boolean;
     onCancelSave?: (item: ITreeNode<U>) => void;
-    overlay?: (item: ITreeNode<U>) => DropdownProps['overlay'];
+    overlay?: (item: ITreeNode<U>) => DropdownProps['dropdownRender'];
     onSearch?: (value: string) => void;
     onSave?: (data: ITreeNode<U>, value: string) => Promise<string | void>;
 }
@@ -150,11 +150,11 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
                 }
                 activeKey={activeTabKey}
                 onChange={onTabChange}
-            >
-                {tabList?.map((tab: { key: string; title: React.ReactNode }) => (
-                    <Tabs.TabPane tab={tab.title} key={tab.key} />
-                ))}
-            </Tabs>
+                items={tabList?.map((tab: { key: string; title: React.ReactNode }) => ({
+                    key: tab.key,
+                    label: tab.title,
+                }))}
+            />
         );
     };
 
@@ -177,7 +177,7 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
             >
                 {overlay && (
                     <Dropdown
-                        overlay={overlay(item)}
+                        dropdownRender={overlay(item)}
                         placement="bottomRight"
                         arrow
                         destroyPopupOnHide

@@ -25,7 +25,7 @@ describe('Test Modal Component', () => {
 
     it('Should Match snapshot', () => {
         const { asFragment } = render(
-            <Modal visible title="title" getContainer={false}>
+            <Modal open title="title" getContainer={false}>
                 <div>test</div>
             </Modal>
         );
@@ -35,7 +35,7 @@ describe('Test Modal Component', () => {
     it('Should get different size', () => {
         // default size
         const { container, rerender } = render(
-            <Modal visible title="title" getContainer={false}>
+            <Modal open title="title" getContainer={false}>
                 test
             </Modal>
         );
@@ -43,7 +43,7 @@ describe('Test Modal Component', () => {
 
         // small size
         rerender(
-            <Modal visible title="title" getContainer={false} size="small">
+            <Modal open title="title" getContainer={false} size="small">
                 test
             </Modal>
         );
@@ -51,7 +51,7 @@ describe('Test Modal Component', () => {
 
         // middle size
         rerender(
-            <Modal visible title="title" getContainer={false} size="middle">
+            <Modal open title="title" getContainer={false} size="middle">
                 test
             </Modal>
         );
@@ -59,7 +59,7 @@ describe('Test Modal Component', () => {
 
         // large size
         rerender(
-            <Modal visible title="title" getContainer={false} size="large">
+            <Modal open title="title" getContainer={false} size="large">
                 test
             </Modal>
         );
@@ -69,7 +69,7 @@ describe('Test Modal Component', () => {
     describe('Should support banner', () => {
         it('Should support string banner', async () => {
             const { getByText } = render(
-                <Modal visible title="title" getContainer={false} banner="banner">
+                <Modal open title="title" getContainer={false} banner="banner">
                     test
                 </Modal>
             );
@@ -80,7 +80,7 @@ describe('Test Modal Component', () => {
         it('Should support ReactNode', async () => {
             const { getByTestId } = render(
                 <Modal
-                    visible
+                    open
                     title="title"
                     getContainer={false}
                     banner={<div data-testid="banner">xxxx</div>}
@@ -95,7 +95,7 @@ describe('Test Modal Component', () => {
         it('Should support AlertProps', async () => {
             const { container, getByText } = render(
                 <Modal
-                    visible
+                    open
                     title="title"
                     getContainer={false}
                     banner={{ message: 'banner', type: 'error' }}
@@ -110,13 +110,7 @@ describe('Test Modal Component', () => {
 
         it('Should match snapshot for draggable modal', () => {
             const { asFragment } = render(
-                <Modal
-                    visible
-                    title="title"
-                    getContainer={false}
-                    draggable
-                    position={{ x: 0, y: 0 }}
-                >
+                <Modal open title="title" getContainer={false} draggable position={{ x: 0, y: 0 }}>
                     test
                 </Modal>
             );
@@ -127,7 +121,7 @@ describe('Test Modal Component', () => {
             const fn = jest.fn();
             const { container } = render(
                 <Modal
-                    visible
+                    open
                     title="title"
                     getContainer={false}
                     draggable
@@ -150,7 +144,7 @@ describe('Test Modal Component', () => {
         it('Should match snapshot for resizable modal', () => {
             const { asFragment } = render(
                 <Modal
-                    visible
+                    open
                     title="title"
                     getContainer={false}
                     resizable
@@ -166,7 +160,7 @@ describe('Test Modal Component', () => {
             const onRectChange = jest.fn();
             const { container } = render(
                 <Modal
-                    visible
+                    open
                     title="title"
                     getContainer={false}
                     resizable
@@ -186,7 +180,7 @@ describe('Test Modal Component', () => {
             const onPositionChange = jest.fn();
             const { container } = render(
                 <Modal
-                    visible
+                    open
                     title="title"
                     getContainer={false}
                     resizable

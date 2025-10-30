@@ -67,11 +67,13 @@ const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
         .map((item) => getActionItemNode(item, false));
 
     // 折叠展示的下拉菜单
-    const dropdownMenu = isOverMaxCount ? (
-        <Menu data-testid="action-dropdown-menu" onClick={(info) => onItemClick?.(info.key)}>
-            {actionItems.slice(maxCount - 1).map((item) => getActionItemNode(item, true))}
-        </Menu>
-    ) : null;
+    const dropdownMenu = isOverMaxCount
+        ? () => (
+              <Menu data-testid="action-dropdown-menu" onClick={(info) => onItemClick?.(info.key)}>
+                  {actionItems.slice(maxCount - 1).map((item) => getActionItemNode(item, true))}
+              </Menu>
+          )
+        : null;
 
     return (
         <div className={classNames('dtc-collapsibleActionItems', className)} style={style}>
@@ -86,7 +88,7 @@ const CollapsibleActionItems: React.FC<ICollapsibleActionItems> = (props) => {
             })}
             {dropdownMenu && (
                 <Dropdown
-                    overlay={dropdownMenu}
+                    dropdownRender={dropdownMenu}
                     getPopupContainer={(triggerNode) => triggerNode.parentElement ?? document.body}
                     {...dropdownProps}
                 >

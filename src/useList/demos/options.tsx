@@ -113,13 +113,13 @@ export default () => {
                 bordered
             />
             <Drawer
-                visible={visible}
+                open={visible}
                 title="detail"
                 mask={false}
                 onClose={() => {
                     setVisible(false);
                 }}
-                afterVisibleChange={(visible) => {
+                afterOpenChange={(visible) => {
                     if (!visible) {
                         setCurrent(undefined);
                         clear();
