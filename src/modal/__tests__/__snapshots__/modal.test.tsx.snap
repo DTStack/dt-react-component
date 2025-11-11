@@ -74,8 +74,40 @@ exports[`Test Modal Component Should Match snapshot 1`] = `
             <section
               class="dtc-modal-body"
             >
-              <div>
-                test
+              <div
+                class="ant-spin-nested-loading"
+              >
+                <div>
+                  <div
+                    aria-busy="true"
+                    aria-live="polite"
+                    class="ant-spin ant-spin-spinning"
+                  >
+                    <span
+                      class="ant-spin-dot ant-spin-dot-spin"
+                    >
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="ant-spin-container ant-spin-blur"
+                >
+                  <div>
+                    test
+                  </div>
+                </div>
               </div>
             </section>
           </div>
@@ -189,7 +221,39 @@ exports[`Test Modal Component Should support banner Should match snapshot for dr
               <section
                 class="dtc-modal-body"
               >
-                test
+                <div
+                  class="ant-spin-nested-loading"
+                >
+                  <div>
+                    <div
+                      aria-busy="true"
+                      aria-live="polite"
+                      class="ant-spin ant-spin-spinning"
+                    >
+                      <span
+                        class="ant-spin-dot ant-spin-dot-spin"
+                      >
+                        <i
+                          class="ant-spin-dot-item"
+                        />
+                        <i
+                          class="ant-spin-dot-item"
+                        />
+                        <i
+                          class="ant-spin-dot-item"
+                        />
+                        <i
+                          class="ant-spin-dot-item"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="ant-spin-container ant-spin-blur"
+                  >
+                    test
+                  </div>
+                </div>
               </section>
             </div>
             <div
@@ -299,7 +363,39 @@ exports[`Test Modal Component Should support banner Should match snapshot for re
             <section
               class="dtc-modal-body"
             >
-              test
+              <div
+                class="ant-spin-nested-loading"
+              >
+                <div>
+                  <div
+                    aria-busy="true"
+                    aria-live="polite"
+                    class="ant-spin ant-spin-spinning"
+                  >
+                    <span
+                      class="ant-spin-dot ant-spin-dot-spin"
+                    >
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                      <i
+                        class="ant-spin-dot-item"
+                      />
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="ant-spin-container ant-spin-blur"
+                >
+                  test
+                </div>
+              </div>
             </section>
           </div>
           <div
