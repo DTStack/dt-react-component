@@ -1,5 +1,24 @@
 .dtc-tinyTag {
     user-select: none;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
     transform: translateY(3px);
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        pointer-events: none;
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
 }
