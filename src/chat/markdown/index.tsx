@@ -57,6 +57,9 @@ export default memo(
                             return <div>{data.children}</div>;
                         }
                     },
+                    table({ children }) {
+                        return <table className="dtc__aigc__markdown__table">{children}</table>;
+                    },
                     img({ src, ...rest }) {
                         return (
                             <Image

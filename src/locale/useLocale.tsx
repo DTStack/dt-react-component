@@ -10,6 +10,13 @@ export interface Locale {
         stopped: string;
         stop: string;
         regenerate: string;
+        conversationEmpty: string;
+        today: string;
+        yesterday: string;
+        recent7Days: string;
+        recent15Days: string;
+        recent30Days: string;
+        other: string;
     };
     Copy: { copied: string; copy: string };
     Dropdown: { selectAll: string; resetText: string; okText: string };

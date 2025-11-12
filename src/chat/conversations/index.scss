@@ -1,0 +1,41 @@
+.dtc-conversations {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0 16px;
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+    &--empty {
+        margin-top: 50%;
+    }
+    &-list {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    &-spin-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 40px 0;
+    }
+    &-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 0;
+        height: 100%;
+        transition: width 0.3s ease;
+        overflow: hidden;
+    }
+    &--collapsed {
+        width: 240px;
+    }
+    &--hide {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
