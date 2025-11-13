@@ -1,9 +1,8 @@
 import React from 'react';
 import { Input, message } from 'antd';
 import classNames from 'classnames';
-
-import Conversation from '../../conversations';
-import { IConversationsItemProps } from '../../conversations/Item';
+import { Chat } from 'dt-react-component';
+import { IConversationsItemProps } from 'dt-react-component/chat/conversations/Item';
 
 interface IProps extends IConversationsItemProps {
     edit?: IConversationsItemProps['info'];
@@ -52,6 +51,6 @@ export default function CustomConversionItem(props: IProps) {
             />
         </div>
     ) : (
-        <Conversation.Item {...props} />
+        <Chat.Conversations.Item {...props} />
     );
 }
