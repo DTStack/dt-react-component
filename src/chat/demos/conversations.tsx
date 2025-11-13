@@ -52,7 +52,6 @@ export default function ({ conversations = [] }: { conversations: ConversationPr
                 <Menu.Item
                     key="rename"
                     onClick={() => {
-                        console.log(info);
                         setEdit(info);
                     }}
                 >

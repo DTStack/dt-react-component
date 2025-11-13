@@ -67,7 +67,6 @@ const Conversations = (props: IConversationsProps) => {
         if (loading) {
             return <Spin className={`${prefixCls}-spin-wrapper`} />;
         }
-        console.log(groupList);
         if (!groupList?.length) {
             return (
                 <Empty

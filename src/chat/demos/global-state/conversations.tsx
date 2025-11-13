@@ -95,7 +95,6 @@ export default function () {
                 <Menu.Item
                     key="rename"
                     onClick={() => {
-                        console.log(info);
                         setEdit(info);
                     }}
                 >
