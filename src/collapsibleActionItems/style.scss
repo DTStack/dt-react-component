@@ -1,6 +1,8 @@
 $card_prefix: "dtc-collapsibleActionItems";
 
 .#{$card_prefix} {
+    display: flex;
+    align-items: center;
     &__icon {
         font-size: 16px;
     }
