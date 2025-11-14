@@ -28,6 +28,8 @@ const localeValues: Locale = {
     },
     FilterRules: {
         message: '必须有一条数据',
+        and: '且',
+        or: '或',
     },
     Fullscreen: {
         exitFull: '退出全屏',

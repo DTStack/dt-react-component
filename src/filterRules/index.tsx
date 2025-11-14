@@ -11,10 +11,6 @@ export enum ROW_PERMISSION_RELATION {
     AND = 1,
     OR = 2,
 }
-export const ROW_PERMISSION_RELATION_TEXT = {
-    [ROW_PERMISSION_RELATION.AND]: '且',
-    [ROW_PERMISSION_RELATION.OR]: '或',
-};
 
 export interface IComponentProps<T> {
     rowKey: string; // 当前节点的唯一标识

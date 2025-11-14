@@ -3,12 +3,8 @@ import { MinusCircleOutlined, PlusCircleOutlined } from '@dtinsight/react-icons'
 import { InternalNamePath } from 'antd/lib/form/interface';
 import classnames from 'classnames';
 
-import {
-    IComponentProps,
-    IFilterValue,
-    ROW_PERMISSION_RELATION,
-    ROW_PERMISSION_RELATION_TEXT,
-} from '..';
+import useLocale from '../../locale/useLocale';
+import { IComponentProps, IFilterValue, ROW_PERMISSION_RELATION } from '..';
 import './index.scss';
 
 interface IProps<T> {
@@ -45,6 +41,13 @@ export const RulesController = <T,>(props: IProps<T>) => {
         onChangeCondition,
         onChangeRowValues,
     } = props;
+
+    const locale = useLocale('FilterRules');
+
+    const ROW_PERMISSION_RELATION_TEXT = {
+        [ROW_PERMISSION_RELATION.AND]: locale.and,
+        [ROW_PERMISSION_RELATION.OR]: locale.or,
+    };
 
     const isCondition = (item: IFilterValue<T>) =>
         item?.type &&

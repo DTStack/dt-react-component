@@ -21,6 +21,8 @@ export interface Locale {
     };
     FilterRules: {
         message: string;
+        and: string;
+        or: string;
     };
     Fullscreen: { exitFull: string; full: string };
     GlobalLoading: { loading: string };
