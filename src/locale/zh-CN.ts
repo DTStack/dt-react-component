@@ -14,6 +14,13 @@ const localeValues: Locale = {
         stopped: '回答已停止',
         stop: '停止回答',
         regenerate: '重新生成',
+        conversationEmpty: '暂无对话',
+        today: '今天',
+        yesterday: '昨天',
+        recent7Days: '近7天',
+        recent15Days: '近15天',
+        recent30Days: '近30天',
+        other: '其他',
     },
     Copy: {
         copied: '复制成功',

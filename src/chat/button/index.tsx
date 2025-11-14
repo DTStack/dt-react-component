@@ -25,11 +25,10 @@ export default function Button({ type = 'default', className, children, ...rest 
                     <defs>
                         <linearGradient
                             id={SECONDARY_LINEAR_GRADIENT_ID}
-                            x1="1.18164"
-                            y1="3.93164"
-                            x2="13.9881"
-                            y2="8.54198"
-                            gradientUnits="userSpaceOnUse"
+                            x1={0}
+                            y1={0.2}
+                            x2={0.9}
+                            y2={0.5}
                         >
                             <stop stopColor="#00BAC6" />
                             <stop offset="0.5" stopColor="#0067FF" />
@@ -37,11 +36,10 @@ export default function Button({ type = 'default', className, children, ...rest 
                         </linearGradient>
                         <linearGradient
                             id={SECONDARY_LINEAR_GRADIENT_HOVER_ID}
-                            x1="8.96582"
-                            y1="0.96582"
-                            x2="15.9711"
-                            y2="3.4877"
-                            gradientUnits="userSpaceOnUse"
+                            x1={0.5}
+                            y1={0}
+                            x2={1}
+                            y2={0.2}
                         >
                             <stop stopColor="#00BAC6" />
                             <stop offset="0.5" stopColor="#0067FF" />

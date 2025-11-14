@@ -14,6 +14,13 @@ const localeValues: Locale = {
         stopped: 'Answer Stopped',
         stop: 'Stop Answering',
         regenerate: 'Regenerate',
+        conversationEmpty: 'No conversation',
+        today: 'Today',
+        yesterday: 'Yesterday',
+        recent7Days: 'Recent 7 days',
+        recent15Days: 'Recent 15 days',
+        recent30Days: 'Recent 30 days',
+        other: 'Other',
     },
     Copy: {
         copied: 'Copied',
