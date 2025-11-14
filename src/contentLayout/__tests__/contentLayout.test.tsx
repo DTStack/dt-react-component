@@ -70,7 +70,7 @@ describe('test contentLayout', () => {
             </ContentLayout>
         );
         expect(container.querySelector<HTMLDivElement>('.ant-table-body')?.style.maxHeight).toBe(
-            'calc(calc(calc(100vh - 96px) - 0px) - 88px)'
+            'calc(calc(calc(100vh - 96px) - 0px - 0px) - 88px)'
         );
     });
     test('should support contentLayout small table height', () => {
@@ -94,7 +94,7 @@ describe('test contentLayout', () => {
             </ContentLayout>
         );
         expect(container.querySelector<HTMLDivElement>('.ant-table-body')?.style.maxHeight).toBe(
-            'calc(calc(calc(100vh - 96px) - 0px) - 72px)'
+            'calc(calc(calc(100vh - 96px) - 0px - 0px) - 88px)'
         );
     });
 });
