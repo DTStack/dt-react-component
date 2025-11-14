@@ -10,6 +10,7 @@ const MyInput = ({ rowValues: { input }, rowKey, onChange }: IComponentProps<IRo
     <Input value={input} onChange={(e) => onChange?.(rowKey, { input: e.target.value })} />
 );
 
+jest.mock('remark-gfm', () => () => {});
 describe('FilterRules', () => {
     test('should support FilterRules success render', () => {
         const wrapper = render(

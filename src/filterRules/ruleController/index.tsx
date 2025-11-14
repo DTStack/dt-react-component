@@ -2,8 +2,8 @@ import React from 'react';
 import { MinusCircleOutlined, PlusCircleOutlined } from '@dtinsight/react-icons';
 import { InternalNamePath } from 'antd/lib/form/interface';
 import classnames from 'classnames';
-import { useLocale } from 'dt-react-component';
 
+import useLocale from '../../locale/useLocale';
 import { IComponentProps, IFilterValue, ROW_PERMISSION_RELATION } from '..';
 import './index.scss';
 
