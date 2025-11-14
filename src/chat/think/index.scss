@@ -1,0 +1,29 @@
+.dtc__custom__think {
+    &__btn {
+        color: #64698B;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0;
+        cursor: pointer;
+        user-select: none;
+    }
+    &__content {
+        position: relative;
+        padding: 4px 0 4px 8px;
+        margin: 4px 0;
+    }
+    &__line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background-color: #D8DAE2;
+    }
+    &__text {
+        color: #8B8FA8;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+}

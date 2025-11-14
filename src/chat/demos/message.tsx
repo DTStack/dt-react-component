@@ -5,7 +5,9 @@ import { Message, MessageStatus, Prompt } from 'dt-react-component/chat/entity';
 
 class BasicPrompt extends Prompt {}
 class BasicMessage extends Message {}
-
+const CustomRender = () => {
+    return <div>CustomRender</div>;
+};
 export default function () {
     const [status, setStatus] = useState<MessageStatus>(MessageStatus.DONE);
 
@@ -42,6 +44,7 @@ export default function () {
                 regenerate
                 onStop={() => setStatus(MessageStatus.STOPPED)}
                 onRegenerate={() => console.log('regenerate')}
+                extraRender={<CustomRender />}
             />
         </>
     );
