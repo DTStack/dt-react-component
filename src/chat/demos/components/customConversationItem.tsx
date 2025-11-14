@@ -2,12 +2,12 @@ import React from 'react';
 import { Input, message } from 'antd';
 import classNames from 'classnames';
 import { Chat } from 'dt-react-component';
-import { IConversationsItemProps } from 'dt-react-component/chat/conversations/Item';
+import { ConversationsItemProps } from 'dt-react-component/chat/conversations/interface';
 
-interface IProps extends IConversationsItemProps {
-    edit?: IConversationsItemProps['info'];
-    onRename?: (info: IConversationsItemProps['info'], value: string) => Promise<boolean>;
-    setEdit: (edit?: IConversationsItemProps['info']) => void;
+interface IProps extends ConversationsItemProps {
+    edit?: ConversationsItemProps['info'];
+    onRename?: (info: ConversationsItemProps['info'], value: string) => Promise<boolean>;
+    setEdit: (edit?: ConversationsItemProps['info']) => void;
 }
 
 export default function CustomConversionItem(props: IProps) {

@@ -3,13 +3,12 @@ import dayjs from 'dayjs';
 import shortid from 'shortid';
 
 import useLocale, { Locale } from '../../../locale/useLocale';
-import { ConversationInfo, Groupable, GroupInfo } from '../interface';
-import { IConversationsProps } from '..';
+import { ConversationInfo, ConversationsProps, Groupable, GroupInfo } from '../interface';
 
 const DEFAULT_GROUP_KEY = 'updatedAt';
 type GroupMap = Record<string, ConversationInfo[]>;
 const useGroupable = (
-    groupable: IConversationsProps['groupable'],
+    groupable: ConversationsProps['groupable'],
     conversations: ConversationInfo[]
 ): [list: GroupInfo[], enable: boolean] => {
     const locale = useLocale('Chat');

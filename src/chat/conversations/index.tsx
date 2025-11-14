@@ -5,31 +5,13 @@ import classNames from 'classnames';
 import Empty from '../../empty';
 import useLocale from '../../locale/useLocale';
 import useGroupable from './hooks/useGroupable';
-import GroupTitle from './GroupTitle';
-import { ConversationInfo, Groupable } from './interface';
-import Item, { IConversationsItemProps } from './Item';
+import GroupTitle from './groupTitle';
+import { ConversationInfo, ConversationsProps } from './interface';
+import Item from './item';
 import './index.scss';
 
-export interface IConversationsProps extends React.HTMLAttributes<HTMLUListElement> {
-    conversations: ConversationInfo[];
-    activeKey?: ConversationInfo['id'];
-    defaultActiveKey?: ConversationInfo['id'];
-    dropdown?:
-        | IConversationsItemProps['dropdown']
-        | ((info: ConversationInfo) => IConversationsItemProps['dropdown']);
-    groupable?: boolean | Groupable;
-    className?: string;
-    style?: React.CSSProperties;
-    loading?: boolean;
-    header?: React.ReactNode | boolean;
-    collapsed?: boolean;
-
-    onItemClick?: (info: ConversationInfo) => void;
-    renderItem?: (props: IConversationsItemProps) => React.ReactNode;
-}
-
 const prefixCls = 'dtc-conversations';
-const Conversations = (props: IConversationsProps) => {
+const Conversations = (props: ConversationsProps) => {
     const {
         conversations,
         activeKey,
