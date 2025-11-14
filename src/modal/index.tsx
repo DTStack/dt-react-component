@@ -69,7 +69,7 @@ Object.assign(Modal, {
     config,
 });
 
-export type { IModalProps, RectState } from './modal';
+export type { ModalProps, RectState } from './modal';
 export type { ResizeHandle } from 'react-resizable';
 
 export default Modal;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Space } from 'antd';
 import { Modal } from 'dt-react-component';
-import type { IModalProps } from 'dt-react-component/modal';
+import type { ModalProps } from 'dt-react-component/modal';
 
 export default function Size() {
     const [visible, setVisible] = useState(false);
-    const [size, setSize] = useState<IModalProps['size']>('default');
+    const [size, setSize] = useState<ModalProps['size']>('default');
 
     return (
         <>

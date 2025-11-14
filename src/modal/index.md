@@ -23,6 +23,7 @@ toc: content
 <code src="./demos/resizable.tsx" title="resizable"></code>
 <code src="./demos/window.tsx" title="窗口模式即支持 draggable 同时也支持 resizable"></code>
 <code src="./demos/method.tsx" title="重写 Modal.method 的 icon"></code>
+<code src="./demos/loading.tsx" title="支持 loading 属性"></code>
 
 ## API
 
@@ -31,6 +32,7 @@ toc: content
 | size             | 尺寸                                      | `'small' \| 'default' \| 'middle' \| 'large'`                | `default` |
 | banner           | 提示                                      | `React.ReactNode \| AlertProps`                              |           |
 | draggable        | 是否可拖拽                                | `IFloatProps['draggable']`                                   | `false`   |
+| loading          | 是否加载中                                | `boolean`                                                    | `false`   |
 | resizable        | 是否可调整大小                            | `MergeOption<Partial<ResizableProps>>`                       | `false`   |
 | rect             | 初始宽高（仅开启 resizable 的情况下生效） | `{ width: number; height: number }`                          |           |
 | position         | 初始位置（仅开启 draggable 的情况下生效） | `{ x: number; y: number}`                                    |           |

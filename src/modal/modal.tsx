@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Resizable, type ResizableProps } from 'react-resizable';
-import { Alert, type AlertProps, Modal, type ModalProps } from 'antd';
+import { Alert, type AlertProps, Modal, type ModalProps as AntdModalProps, Spin } from 'antd';
 import classNames from 'classnames';
 import { omit } from 'lodash-es';
 
@@ -12,18 +12,19 @@ import './index.scss';
 
 export type RectState = { width: number; height: number };
 
-export interface IModalProps extends ModalProps {
+export interface ModalProps extends AntdModalProps {
     size?: 'small' | 'default' | 'middle' | 'large';
     banner?: AlertProps['message'] | Omit<AlertProps, 'banner'>;
     draggable?: IFloatProps['draggable'];
     resizable?: MergeOption<Partial<ResizableProps>>;
     rect?: RectState;
     position?: IFloatProps['position'];
+    loading?: boolean;
     onPositionChange?: (data: NonNullable<IFloatProps['position']>) => void;
     onRectChange?: (data: RectState) => void;
 }
 
-const getWidthFromSize = (size: IModalProps['size']) => {
+const getWidthFromSize = (size: ModalProps['size']) => {
     if (size === 'small') return 400;
     if (size === 'middle') return 640;
     if (size === 'large') return 900;
@@ -41,11 +42,12 @@ export default function InternalModal({
     position,
     resizable = false,
     rect,
+    loading,
     onRectChange,
     onPositionChange,
     modalRender,
     ...rest
-}: IModalProps) {
+}: ModalProps) {
     const mergedDraggable = useMergeOption(draggable, { handle: '.ant-modal-header' });
     const mergedResizable = useMergeOption(resizable, {
         axis: 'both',
@@ -139,7 +141,9 @@ export default function InternalModal({
                     {...(isAlertObjectProps(banner) ? omit(banner, 'message') : {})}
                 />
             )}
-            <section className="dtc-modal-body">{children}</section>
+            <section className="dtc-modal-body">
+                <Spin spinning={loading}>{children}</Spin>
+            </section>
         </Modal>
     );
 }
