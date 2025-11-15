@@ -124,7 +124,7 @@ export default function Select({
         !isEqual(options.map((i) => i.value).sort(), [...selected].sort()) &&
         options.some((o) => selected.includes(o.value));
 
-    const overlay = (
+    const overlay = () => (
         <>
             <Row>
                 <Col span={24} className={`${prefix}__col`}>
@@ -183,12 +183,12 @@ export default function Select({
 
     return (
         <Dropdown
-            visible={visible}
+            open={visible}
             overlayClassName={classNames(`${prefix}__container`, className)}
             trigger={['click']}
-            overlay={overlay}
+            dropdownRender={overlay}
             getPopupContainer={getPopupContainer}
-            onVisibleChange={(visible) => {
+            onOpenChange={(visible) => {
                 if (visible) {
                     setVisible(true);
                 } else {

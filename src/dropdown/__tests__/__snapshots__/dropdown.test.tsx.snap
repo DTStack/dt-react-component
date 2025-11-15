@@ -34,7 +34,6 @@ exports[`Test Dropdown.Select Component Should match snapshot 1`] = `
                     aria-checked="mixed"
                     class="ant-checkbox-input"
                     type="checkbox"
-                    value=""
                   />
                   <span
                     class="ant-checkbox-inner"

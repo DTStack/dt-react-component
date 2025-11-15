@@ -26,9 +26,13 @@ exports[`Popconfirm should render Popconfirm success render 1`] = `
           class="ant-popover-message"
         >
           <span
-            color="#1D78FF"
-            data-mock-icon="InformationFilled"
-          />
+            class="ant-popover-message-icon"
+          >
+            <span
+              color="#1D78FF"
+              data-mock-icon="InformationFilled"
+            />
+          </span>
           <div
             class="ant-popover-message-title"
           >
