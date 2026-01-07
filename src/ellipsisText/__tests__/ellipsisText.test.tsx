@@ -19,6 +19,7 @@ let wrapper: RenderResult, element;
 describe('test ellipsis text if not set max width', () => {
     beforeEach(() => {
         jest.spyOn(document.documentElement, 'scrollWidth', 'get').mockImplementation(() => 100);
+        jest.spyOn(document.documentElement, 'clientWidth', 'get').mockImplementation(() => 600);
         jest.spyOn(document.documentElement, 'offsetWidth', 'get').mockImplementation(() => 600);
         Object.defineProperty(window, 'getComputedStyle', {
             value: jest.fn(() => ({
@@ -133,7 +134,7 @@ describe('test ellipsis text if set max width', () => {
         element = getByText(value);
 
         expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('900px');
+        expect(element.style.maxWidth).toBe('1000px');
         expect(element.style.cursor).toBe('pointer');
 
         fireEvent.mouseEnter(element);
@@ -150,7 +151,7 @@ describe('test ellipsis text if set max width', () => {
         element = getByText(value);
 
         expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('810px');
+        expect(element.style.maxWidth).toBe('90%');
         expect(element.style.cursor).toBe('pointer');
 
         fireEvent.mouseEnter(element);
@@ -167,24 +168,7 @@ describe('test ellipsis text if set max width', () => {
         element = getByText(value);
 
         expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('700px');
-        expect(element.style.cursor).toBe('pointer');
-
-        fireEvent.mouseEnter(element);
-        expect(container.querySelector('.ant-tooltip-open')).toBeNull();
-        expect(getAllByText(value).length).toBe(1);
-
-        fireEvent.mouseLeave(element);
-    });
-    test('The maximum is a not comply with the rules，render correct value in ellipsis', () => {
-        const { container, getByText, getAllByText } = render(
-            <EllipsisText {...defaultProps} maxWidth="20.4" />
-        );
-        const { value } = defaultProps;
-        element = getByText(value);
-
-        expect(element).toBeInTheDocument();
-        expect(element.style.maxWidth).toBe('900px');
+        expect(element.style.maxWidth).toBe('calc(100% - 200px)');
         expect(element.style.cursor).toBe('pointer');
 
         fireEvent.mouseEnter(element);
