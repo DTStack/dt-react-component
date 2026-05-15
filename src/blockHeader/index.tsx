@@ -62,7 +62,7 @@ const BlockHeader: React.FC<IBlockHeaderProps> = function (props) {
         description = '',
         tooltip,
         size = 'middle',
-        spaceBottom = 16,
+        spaceBottom = 0,
         className = '',
         contentClassName = '',
         style = {},

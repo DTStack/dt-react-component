@@ -88,7 +88,7 @@ describe('test BlockHeader render', () => {
         const { container, getByText } = render(<BlockHeader {...props2} />);
         const wrap = container.firstChild;
         expect(wrap).toHaveClass(`${prefixCls} test__className`);
-        expect(wrap).toHaveStyle({ height: '100px', marginBottom: '16px' });
+        expect(wrap).toHaveStyle({ height: '100px' });
         expect(getByText('标题2')).toHaveClass('title__text');
         expect(getByText('说明文字')).toHaveClass('title__description');
         expect(getByText('Icon')).toBeTruthy();
@@ -138,12 +138,12 @@ describe('test BlockHeader render', () => {
     });
 
     test('should render BlockHeader correct margin-bottom', () => {
-        const { container: haveStyle } = render(<BlockHeader title="分类级别" addonBefore="" />);
-        expect(haveStyle.querySelector('.dtc-block-header')).toHaveAttribute('style');
-        const { container: defaultBottom } = render(
-            <BlockHeader title="分类级别" addonBefore="" />
+        const { container: noStyle } = render(<BlockHeader title="分类级别" addonBefore="" />);
+        expect(noStyle.querySelector('.dtc-block-header')).not.toHaveAttribute('style');
+        const { container: hasBottom } = render(
+            <BlockHeader title="分类级别" addonBefore="" spaceBottom={16} />
         );
-        expect(defaultBottom.querySelector('.dtc-block-header')).toHaveStyle({ marginBottom: 16 });
+        expect(hasBottom.querySelector('.dtc-block-header')).toHaveStyle({ marginBottom: 16 });
         const { container: customizeBottom } = render(
             <BlockHeader title="分类级别" addonBefore="" spaceBottom={10} />
         );
