@@ -18,7 +18,7 @@ const useSvgWidth = (): UseSvgWidthResult => {
     const getWidth = useCallback(() => {
         if (!element) return;
         const paddingWidth = 8;
-        const textWidth = Math.round(element.getBoundingClientRect()?.width);
+        const textWidth = Math.round(element.getComputedTextLength?.() ?? 0);
         const svgWidth = textWidth + paddingWidth;
         setSvgWidth(svgWidth);
         setRectWidth(Math.max(svgWidth - 1, 0));
