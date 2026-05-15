@@ -307,8 +307,8 @@ describe('Test Dropdown.Select Component', () => {
         act(() => {
             jest.runAllTimers();
         });
-        // Should be indeterminate
-        expect(getByText('全选').previousElementSibling?.className).toContain(
+        // Only disabled item selected → not indeterminate (no enabled items selected)
+        expect(getByText('全选').previousElementSibling?.className).not.toContain(
             'ant-checkbox-indeterminate'
         );
 
@@ -347,9 +347,9 @@ describe('Test Dropdown.Select Component', () => {
                 </Button>
             </Dropdown.Select>
         );
-        // Should be indeterminate
+        // All enabled items selected → checked
         expect(getByText('全选').previousElementSibling?.className).toContain(
-            'ant-checkbox-indeterminate'
+            'ant-checkbox-checked'
         );
 
         rerender(

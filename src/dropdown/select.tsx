@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useMemo, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Checkbox, Col, Dropdown, type DropDownProps, Row, Space } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import type {
@@ -7,7 +7,6 @@ import type {
     CheckboxValueType,
 } from 'antd/lib/checkbox/Group';
 import classNames from 'classnames';
-import { isEqual } from 'lodash-es';
 import List from 'rc-virtual-list';
 
 import useLocale from '../locale/useLocale';
@@ -38,22 +37,100 @@ export default function Select({
 
     const locale = useLocale('Dropdown');
 
-    const handleCheckedAll = (e: CheckboxChangeEvent) => {
-        if (e.target.checked) {
-            setSelected(options?.map((i) => i.value) || []);
-        } else {
-            handleReset();
+    useEffect(() => {
+        if (value !== undefined) {
+            setSelected(value);
         }
-    };
+    }, [value]);
+
+    // Always turn string and number options into complex options
+    const options = useMemo<CheckboxOptionType[]>(() => {
+        return (
+            rawOptions?.map((i) => {
+                if (typeof i === 'string' || typeof i === 'number') {
+                    return {
+                        label: i,
+                        value: i,
+                    };
+                }
+
+                return i;
+            }) || []
+        );
+    }, [rawOptions]);
+
+    /**
+     * The "derived metadata" of the selected data
+     * It does not directly participate in rendering but is only used for logical judgment
+     *
+     * Purpose:
+     * - Clearly distinguish enabled / disabled
+     * - Prevent disabled items from being accidentally selected / reset
+     */
+    const selectionMeta = useMemo(() => {
+        const enabled = new Set<CheckboxValueType>();
+        const disabled = new Set<CheckboxValueType>();
+
+        options.forEach((o) => {
+            if (o.disabled) {
+                disabled.add(o.value);
+            } else {
+                enabled.add(o.value);
+            }
+        });
+
+        const selectedEnabled: CheckboxValueType[] = [];
+        const selectedDisabled: CheckboxValueType[] = [];
+
+        selected.forEach((v) => {
+            if (enabled.has(v)) {
+                selectedEnabled.push(v);
+            }
+            if (disabled.has(v)) {
+                selectedDisabled.push(v);
+            }
+        });
+
+        return {
+            /** All selectable (non-disabled) values */
+            enabledValues: Array.from(enabled),
+            /** All disabled values */
+            disabledValues: Array.from(disabled),
+            /** Currently selected enabled items */
+            selectedEnabled,
+            /** Currently selected disabled items (for reset retention) */
+            selectedDisabled,
+            /** All enabled items are selected */
+            checkAll: enabled.size > 0 && selectedEnabled.length === enabled.size,
+            /** Partial enabled items are selected */
+            indeterminate: selectedEnabled.length > 0 && selectedEnabled.length < enabled.size,
+            /**
+             * Whether to disable the Reset button
+             * Only disabled when:
+             * - All currently selected items are disabled
+             */
+            resetDisabled: selected.length > 0 && selected.every((v) => disabled.has(v)),
+        };
+    }, [options, selected]);
+
+    const handleReset = useCallback(() => {
+        setSelected(selectionMeta.selectedDisabled);
+    }, [selectionMeta.selectedDisabled]);
+
+    const handleCheckedAll = useCallback(
+        (e: CheckboxChangeEvent) => {
+            if (e.target.checked) {
+                setSelected([...selectionMeta.enabledValues, ...selectionMeta.selectedDisabled]);
+            } else {
+                handleReset();
+            }
+        },
+        [selectionMeta, handleReset]
+    );
 
     const handleSubmit = () => {
         onChange?.(selected);
         setVisible(false);
-    };
-
-    const handleReset = () => {
-        // Clear checked but disabled item
-        setSelected(disabledValue);
     };
 
     const handleChange = (e: CheckboxChangeEvent) => {
@@ -83,46 +160,8 @@ export default function Select({
         }
     };
 
-    useEffect(() => {
-        if (value !== undefined && value !== selected) {
-            setSelected(value || []);
-        }
-    }, [value]);
-
-    // Always turn string and number options into complex options
-    const options = useMemo<CheckboxOptionType[]>(() => {
-        return (
-            rawOptions?.map((i) => {
-                if (typeof i === 'string' || typeof i === 'number') {
-                    return {
-                        label: i,
-                        value: i,
-                    };
-                }
-
-                return i;
-            }) || []
-        );
-    }, [rawOptions]);
-
-    const disabledValue = useMemo<CheckboxValueType[]>(() => {
-        return options?.filter((i) => i.disabled).map((i) => i.value) || [];
-    }, [options]);
-
-    const resetDisabled = selected.every((i) => disabledValue?.includes(i));
-
     // If options' number is larger then the maxHeight, then enable virtual list
     const virtual = options.length > Math.floor(MAX_HEIGHT / ITEM_HEIGHT);
-
-    // ONLY the options are all be pushed into value array means select all
-    const checkAll =
-        !!selected?.length && isEqual(options.map((i) => i.value).sort(), [...selected].sort());
-
-    // At least one option's value is included in value array but not all options means indeterminate select
-    const indeterminate =
-        !!selected?.length &&
-        !isEqual(options.map((i) => i.value).sort(), [...selected].sort()) &&
-        options.some((o) => selected.includes(o.value));
 
     const overlay = (
         <>
@@ -130,8 +169,8 @@ export default function Select({
                 <Col span={24} className={`${prefix}__col`}>
                     <Checkbox
                         onChange={handleCheckedAll}
-                        checked={checkAll}
-                        indeterminate={indeterminate}
+                        checked={selectionMeta.checkAll}
+                        indeterminate={selectionMeta.indeterminate}
                     >
                         {locale.selectAll}
                     </Checkbox>
@@ -171,7 +210,7 @@ export default function Select({
                 </Col>
             </Row>
             <Space size={8} className={`${prefix}__btns`}>
-                <Button size="small" disabled={resetDisabled} onClick={handleReset}>
+                <Button size="small" disabled={selectionMeta.resetDisabled} onClick={handleReset}>
                     {locale.resetText}
                 </Button>
                 <Button size="small" type="primary" onClick={handleSubmit}>
