@@ -3,6 +3,7 @@ import { GithubOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { Helmet, Link } from 'dumi';
 
+import { version } from '../../../package.json';
 import './index.scss';
 
 export default function Homepage() {
@@ -19,7 +20,7 @@ export default function Homepage() {
                 />
             </Helmet>
             <div className="dtc-homepage">
-                <h1 className="dtc-homepage-title">dt-react-component</h1>
+                <h1 className="dtc-homepage-title">dt-react-component@{version}</h1>
                 <div className="dtc-homepage-badges">
                     <img src="https://img.shields.io/npm/v/dt-react-component.svg?style=flat" />
                     <img src="http://img.shields.io/npm/dm/dt-react-component.svg?style=flat" />
