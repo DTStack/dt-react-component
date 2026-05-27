@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Think component snapshot renders completed state with children correctly 1`] = `
+<div>
+  <div
+    class="dtc__custom__think"
+  >
+    <section
+      class="dtc-flex dtc__custom__think__btn"
+      style="flex-wrap: nowrap; justify-content: normal; align-items: center; gap: 4px;"
+    >
+      已完成深度思考
+      <span
+        color="#64698B"
+        data-mock-icon="UpOutlined"
+        size="12"
+        style="transform: none;"
+      />
+    </section>
+    <div
+      class="dtc__custom__think__content"
+    >
+      <div
+        class="dtc__custom__think__line"
+      />
+      <div
+        class="dtc__custom__think__text"
+      >
+        这里是 Think 的内容示例（支持 Markdown）
+
+- 列表项 A
+- 列表项 B
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Think component snapshot renders loading state correctly 1`] = `
+<div>
+  <div
+    class="dtc__custom__think"
+  >
+    <section
+      class="dtc-flex dtc__custom__think__btn"
+      style="flex-wrap: nowrap; justify-content: normal; align-items: center; gap: 4px;"
+    >
+      <span
+        class="gradient-text"
+      >
+        思考中...
+      </span>
+      <span
+        color="#64698B"
+        data-mock-icon="UpOutlined"
+        size="12"
+        style="transform: none;"
+      />
+    </section>
+    <div
+      class="dtc__custom__think__content"
+    >
+      <div
+        class="dtc__custom__think__line"
+      />
+      <div
+        class="dtc__custom__think__text"
+      >
+        正在思考中，暂无内容。
+      </div>
+    </div>
+  </div>
+</div>
+`;

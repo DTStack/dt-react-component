@@ -6,11 +6,13 @@ import remarkGfm from 'remark-gfm';
 
 import Image from '../../image';
 import CodeBlock, { type ICodeBlockProps } from '../codeBlock';
+import { Message as MessageEntity } from '../entity';
 import './index.scss';
 
 type IMarkdownProps = {
     typing?: boolean;
     codeBlock?: Omit<ICodeBlockProps, 'children'>;
+    message?: MessageEntity;
     onMount?: () => void;
 } & ReactMarkdownOptions;
 
@@ -21,6 +23,7 @@ export default memo(
         rehypePlugins = [],
         remarkPlugins = [],
         codeBlock,
+        message,
         components,
         children,
         onMount,
@@ -44,7 +47,11 @@ export default memo(
                         return <code className="dtc__aigc__markdown__inlineCode">{children}</code>;
                     },
                     pre({ children }) {
-                        return <CodeBlock {...codeBlock}>{children}</CodeBlock>;
+                        return (
+                            <CodeBlock {...codeBlock} message={message}>
+                                {children}
+                            </CodeBlock>
+                        );
                     },
                     hr() {
                         return <hr color="#ebecf0" className="dtc__aigc__markdown__hr" />;
@@ -71,7 +78,7 @@ export default memo(
                 includeElementIndex
                 {...rest}
             >
-                {children}
+                {children?.replace(/<\/think>/g, '\n\n</think>')}
             </ReactMarkdown>
         );
     },

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Components } from 'react-markdown';
 import classNames from 'classnames';
 
-import type { Prompt as PromptEntity } from '../entity';
+import { Prompt as PromptEntity } from '../entity';
 import Markdown from '../markdown';
 import { useContext } from '../useContext';
 import './index.scss';
@@ -13,7 +13,7 @@ type IPromptProps = {
 };
 
 export default function Prompt({ data, className }: IPromptProps) {
-    const { components = {}, codeBlock } = useContext();
+    const { components = {}, codeBlock, promptFooter } = useContext();
 
     const composedComponents = useMemo(() => {
         return Object.keys(components).reduce<Components>((acc, cur) => {
@@ -39,6 +39,9 @@ export default function Prompt({ data, className }: IPromptProps) {
                     </Markdown>
                 </div>
             </div>
+            <React.Fragment>
+                {typeof promptFooter === 'function' ? promptFooter(data) : promptFooter}
+            </React.Fragment>
         </section>
     );
 }

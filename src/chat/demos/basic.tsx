@@ -57,6 +57,8 @@ export default function () {
                         </Button>
                     ),
                 }}
+                messageHeader={<div>这是自定义header</div>}
+                promptFooter={<div>这是自定义footer</div>}
             >
                 <Chat.Content
                     data={chat.conversation.get()?.prompts || []}

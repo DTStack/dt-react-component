@@ -36,6 +36,8 @@ export interface IChatContext {
     messageIcons?: React.ReactNode | ((record: Message, prompt: Prompt) => React.ReactNode);
     rehypePlugins?: ReactMarkdownOptions['rehypePlugins'];
     remarkPlugins?: ReactMarkdownOptions['remarkPlugins'];
+    messageHeader?: React.ReactNode | ((record: Message, prompt: Prompt) => React.ReactNode);
+    promptFooter?: React.ReactNode | ((record: Prompt) => React.ReactNode);
 }
 
 export const context = React.createContext<IChatContext>({

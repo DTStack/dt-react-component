@@ -107,7 +107,7 @@
         "resize-observer-polyfill": "^1.5.1",
         "standard-version": "^9.5.0",
         "stylelint": "^14.9.1",
-        "ts-jest": "^29.0.3",
+        "ts-jest": "29.0.3",
         "typescript": "~4.5.2"
     },
     "dependencies": {
@@ -126,8 +126,9 @@
         "react-markdown": "~8.0.6",
         "react-resizable": "^3.0.5",
         "react-syntax-highlighter": "~15.5.0",
+        "rehype-raw": "^6.0.0",
         "remark-gfm": "~3.0.1",
-        "shortid": "^2.2.16",
+        "shortid": "2.2.16",
         "showdown": "^1.9.0"
     },
     "config": {

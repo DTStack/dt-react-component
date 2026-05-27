@@ -5,7 +5,9 @@ import { Message, MessageStatus, Prompt } from 'dt-react-component/chat/entity';
 
 class BasicPrompt extends Prompt {}
 class BasicMessage extends Message {}
-
+const CustomRender = () => {
+    return <div style={{ color: 'red' }}>这是自定义header</div>;
+};
 export default function () {
     const [status, setStatus] = useState<MessageStatus>(MessageStatus.DONE);
 
@@ -36,13 +38,15 @@ export default function () {
                     置为完成
                 </Button>
             </Space>
-            <Chat.Message
-                prompt={data}
-                data={data.messages}
-                regenerate
-                onStop={() => setStatus(MessageStatus.STOPPED)}
-                onRegenerate={() => console.log('regenerate')}
-            />
+            <Chat chat={{} as any} messageHeader={<CustomRender />}>
+                <Chat.Message
+                    prompt={data}
+                    data={data.messages}
+                    regenerate
+                    onStop={() => setStatus(MessageStatus.STOPPED)}
+                    onRegenerate={() => console.log('regenerate')}
+                />
+            </Chat>
         </>
     );
 }

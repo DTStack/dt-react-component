@@ -1,0 +1,18 @@
+$loadingGradient: #90F8FF99 6%, #4983DA 28%, #002DA1 46%, #4983DA 72%, #90F8FF99 94%;
+
+span.gradient-text {
+    background: linear-gradient(102deg, $loadingGradient);
+    background-size: 200% 100%;
+    background-clip: text;
+    color: transparent;
+    animation: gradientScroll 2s linear infinite;
+}
+
+@keyframes gradientScroll {
+    0% {
+        background-position: 200% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

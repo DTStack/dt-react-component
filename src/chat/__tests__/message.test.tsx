@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 import { Message as MessageEntity, MessageStatus, Prompt as PromptEntity } from '../entity';
 import Message from '../message';
-import Chat from '..';
+import Chat from '../';
 
 jest.mock('remark-gfm', () => () => {});
 
@@ -232,12 +232,24 @@ describe('Test Chat Message', () => {
         prompt.messages[0].status = MessageStatus.DONE;
         const onRegenerate = jest.fn();
         const { container, getByText } = render(
-            <Message
-                prompt={prompt}
-                regenerate
-                data={prompt.messages}
-                onRegenerate={onRegenerate}
-            />
+            <Chat
+                chat={{} as any}
+                messageHeader={
+                    <div
+                        className="dtc__message__extra__render"
+                        data-testid="fakeMessageExtraRender"
+                    >
+                        ExtraDom
+                    </div>
+                }
+            >
+                <Message
+                    prompt={prompt}
+                    regenerate
+                    data={prompt.messages}
+                    onRegenerate={onRegenerate}
+                />
+            </Chat>
         );
 
         const nodeList = container
@@ -300,5 +312,30 @@ describe('Test Chat Message', () => {
         const ele = getByTestId('fakeCode');
         expect(ele.dataset.messageid).toBe('1');
         expect(ele.dataset.promptid).toBe('1');
+    });
+
+    it('Should support extraRender', () => {
+        const prompt = generatePrompt();
+        prompt.messages[0].status = MessageStatus.DONE;
+        const { container, getByTestId } = render(
+            <Chat
+                chat={{} as any}
+                messageHeader={
+                    <div
+                        className="dtc__message__extra__render"
+                        data-testid="fakeMessageExtraRender"
+                    >
+                        ExtraDom
+                    </div>
+                }
+            >
+                <Message prompt={prompt} data={prompt.messages} />
+            </Chat>
+        );
+        expect(getByTestId('fakeMessageExtraRender')).toBeInTheDocument();
+        const nodeList = container.querySelectorAll<HTMLDivElement>('.dtc__message__extra__render');
+        const ele = nodeList?.item(nodeList?.length - 1);
+        expect(ele).not.toBeNull();
+        expect(ele?.textContent).toBe('ExtraDom');
     });
 });

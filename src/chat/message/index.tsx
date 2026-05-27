@@ -18,7 +18,7 @@ import Pagination from '../pagination';
 import { CopyOptions, useContext } from '../useContext';
 import './index.scss';
 
-type IMessageProps = {
+export type IMessageProps = {
     prompt: PromptEntity;
     data: MessageEntity[];
     /**
@@ -44,7 +44,14 @@ export default function Message({
     onLazyRendered,
 }: IMessageProps) {
     const divRef = useIntersectionObserver<HTMLDivElement>(handleObserverCb);
-    const { components = {}, messageIcons, codeBlock, rehypePlugins, remarkPlugins } = useContext();
+    const {
+        components = {},
+        messageIcons,
+        codeBlock,
+        rehypePlugins,
+        remarkPlugins,
+        messageHeader,
+    } = useContext();
 
     // 当前 Message 的懒加载，是否已经加载过
     const [lazyRendered, setLazyRendered] = useState(false);
@@ -137,6 +144,11 @@ export default function Message({
                     ref={divRef}
                 >
                     <Loading loading={loading}>
+                        <React.Fragment>
+                            {typeof messageHeader === 'function'
+                                ? messageHeader(record, prompt)
+                                : messageHeader}
+                        </React.Fragment>
                         {lazyRendered && (
                             <Markdown
                                 typing={typing}
@@ -147,8 +159,9 @@ export default function Message({
                                 onMount={() => {
                                     mountCallback.current();
                                 }}
+                                message={record}
                             >
-                                {record?.content}
+                                {record?.content ?? ''}
                             </Markdown>
                         )}
                     </Loading>

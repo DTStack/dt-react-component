@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 
 import { Prompt as PromptEntity } from '../entity';
 import Prompt from '../prompt';
-import Chat from '..';
+import Chat from '../';
 
 jest.mock('remark-gfm', () => () => {});
 class BasePrompt extends PromptEntity {}
@@ -56,5 +56,25 @@ describe('Test Chat Prompt', () => {
         );
 
         expect(getByTestId('fakeCode').dataset.promptid).toBe('1');
+    });
+
+    it('Should support extraRender', () => {
+        const data = generatePrompt();
+        const { container } = render(
+            <Chat
+                chat={{} as any}
+                promptFooter={
+                    <div className="dtc__prompt__extra__render" data-testid="fakePromptExtraRender">
+                        PromptExtraDom
+                    </div>
+                }
+            >
+                <Prompt data={data} />
+            </Chat>
+        );
+        const nodeList = container.querySelectorAll<HTMLDivElement>('.dtc__prompt__extra__render');
+        const ele = nodeList?.item(nodeList?.length - 1);
+        expect(ele).not.toBeNull();
+        expect(ele?.textContent).toBe('PromptExtraDom');
     });
 });
