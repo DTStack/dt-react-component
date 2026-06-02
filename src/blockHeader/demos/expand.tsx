@@ -8,18 +8,12 @@ export default () => {
             <BlockHeader
                 title="非受控标题"
                 defaultExpand={false}
-                hasBottom
                 onExpand={(expand) => console.log(expand)}
             >
                 Hello World!
             </BlockHeader>
 
-            <BlockHeader
-                title="受控标题"
-                expand={expand}
-                onExpand={(expand) => setExpand(expand)}
-                hasBottom
-            >
+            <BlockHeader title="受控标题" expand={expand} onExpand={(expand) => setExpand(expand)}>
                 Hello World!
             </BlockHeader>
 
