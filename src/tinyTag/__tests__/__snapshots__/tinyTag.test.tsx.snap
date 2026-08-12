@@ -13,6 +13,7 @@ exports[`test StatusTag should match snapshot 1`] = `
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect
+        fill="none"
         height="14"
         rx="1.5"
         stroke="currentColor"
@@ -23,6 +24,46 @@ exports[`test StatusTag should match snapshot 1`] = `
       />
       <text
         fill="currentColor"
+        font-size="10"
+        letter-spacing="0px"
+        xml:space="preserve"
+      >
+        <tspan
+          x="4"
+          y="11.1"
+        >
+          完成
+        </tspan>
+      </text>
+    </svg>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`test StatusTag should support fill type 1`] = `
+<DocumentFragment>
+  <span
+    class="dtc-tinyTag dtc-tinyTag--fill"
+  >
+    <svg
+      fill="none"
+      height="15"
+      viewBox="0 0 8 15"
+      width="8"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        fill="#D56161"
+        height="14"
+        rx="1.5"
+        stroke="#D56161"
+        stroke-linejoin="bevel"
+        width="7"
+        x="0.5"
+        y="0.5"
+      />
+      <text
+        fill="#fff"
         font-size="10"
         letter-spacing="0px"
         xml:space="preserve"

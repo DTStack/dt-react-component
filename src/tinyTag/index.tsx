@@ -5,9 +5,22 @@ import './style.scss';
 
 type UseSvgRef = (element: SVGTextElement) => void;
 type UseSvgWidthResult = [UseSvgRef, number, number];
+export type TinyTagType = 'default' | 'fill';
 
-interface ITinyTag extends React.HTMLAttributes<HTMLSpanElement> {
+export interface ITinyTag extends React.HTMLAttributes<HTMLSpanElement> {
     value: string;
+    /**
+     * @description 标签类型
+     */
+    type?: TinyTagType;
+    /**
+     * @description 标签字体颜色，默认模式下同时作为边框颜色
+     */
+    color?: string;
+    /**
+     * @description 标签背景色，仅在 fill 模式下生效
+     */
+    background?: string;
 }
 
 const useSvgWidth = (): UseSvgWidthResult => {
@@ -31,10 +44,28 @@ const useSvgWidth = (): UseSvgWidthResult => {
     return [ref, svgWidth, rectWidth];
 };
 
-export default function TinyTag({ value, className, style, ...restProps }: ITinyTag) {
+export default function TinyTag({
+    value,
+    className,
+    style,
+    type = 'default',
+    color,
+    background,
+    ...restProps
+}: ITinyTag) {
     const [ref, svgWidth, rectWidth] = useSvgWidth();
+    const isFill = type === 'fill';
+    const rectColor = isFill ? background || 'currentColor' : color || 'currentColor';
+    const textColor = isFill ? color || '#fff' : color || 'currentColor';
+
     return (
-        <span className={classNames('dtc-tinyTag', className)} style={style} {...restProps}>
+        <span
+            className={classNames('dtc-tinyTag', className, {
+                'dtc-tinyTag--fill': isFill,
+            })}
+            style={style}
+            {...restProps}
+        >
             <svg
                 width={svgWidth}
                 height="15"
@@ -48,12 +79,13 @@ export default function TinyTag({ value, className, style, ...restProps }: ITiny
                     width={rectWidth}
                     height="14"
                     rx="1.5"
-                    stroke="currentColor"
+                    fill={isFill ? rectColor : 'none'}
+                    stroke={rectColor}
                     strokeLinejoin="bevel"
                 />
                 <text
                     ref={ref}
-                    fill="currentColor"
+                    fill={textColor}
                     xmlSpace="preserve"
                     fontSize="10"
                     letterSpacing="0px"

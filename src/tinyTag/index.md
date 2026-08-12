@@ -19,7 +19,14 @@ TinyTag 组件通常用于在某些文案后面，用于标识当前行数据的
 
 ### TinyTag
 
-| 参数      | 说明       | 类型     | 默认值 |
-| --------- | ---------- | -------- | ------ |
-| value     | 标签文案   | `string` |        |
-| className | class 名称 | `string` |        |
+| 参数       | 说明                                           | 类型              | 默认值    |
+| ---------- | ---------------------------------------------- | ----------------- | --------- |
+| value      | 标签文案                                       | `string`          | -         |
+| type       | 标签类型                                       | `default \| fill` | `default` |
+| color      | 标签字体颜色，默认模式下同时作为边框颜色       | `string`          | -         |
+| background | 标签背景色，仅在 `type` 为 `fill` 的情况下生效 | `string`          | -         |
+| className  | class 名称                                     | `string`          | -         |
+
+:::info
+继承原生 `<span>` 标签的属性，支持所有 `React.HTMLAttributes<HTMLSpanElement>`
+:::
