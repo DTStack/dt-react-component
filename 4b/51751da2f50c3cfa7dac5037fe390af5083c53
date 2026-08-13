@@ -1,0 +1,35 @@
+src/tinyTag/__tests__/tinyTag.test.tsx
+  s_abac852651c54a::t_af17c38faccc2a 44
+  s_abac852651c54a::t_62cedf22b6e0e3 17,34
+src/tinyTag/index.tsx
+  s_abac852651c54a::t_62cedf22b6e0e3 23,53,58
+src/tinyTag/index.md
+  s_abac852651c54a::t_62cedf22b6e0e3 27
+  s_abac852651c54a::t_d9ec49c777d360 24-26
+  s_abac852651c54a::t_239ccae4bb0992 28
+src/tinyTag/demos/basic.tsx
+  s_abac852651c54a::t_62cedf22b6e0e3 13
+src/tinyTag/__tests__/__snapshots__/tinyTag.test.tsx.snap
+  s_abac852651c54a::t_b591d1efc478f5 46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "4b51751da2f50c3cfa7dac5037fe390af5083c53",
+  "prompts": {},
+  "humans": {
+    "h_c96aa35564937e": {
+      "author": "LuckyFBB <976060700@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_abac852651c54a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ff500-4162-7090-9d13-b21d3ad2d336",
+        "model": "gpt-5.6-luna"
+      },
+      "human_author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}
