@@ -43,7 +43,7 @@ exports[`test StatusTag should match snapshot 1`] = `
 exports[`test StatusTag should support fill type 1`] = `
 <DocumentFragment>
   <span
-    class="dtc-tinyTag dtc-tinyTag--fill"
+    class="dtc-tinyTag"
   >
     <svg
       fill="none"

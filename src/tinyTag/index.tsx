@@ -20,7 +20,7 @@ export interface ITinyTag extends React.HTMLAttributes<HTMLSpanElement> {
     /**
      * @description 标签背景色，仅在 fill 模式下生效
      */
-    background?: string;
+    bgColor?: string;
 }
 
 const useSvgWidth = (): UseSvgWidthResult => {
@@ -50,22 +50,16 @@ export default function TinyTag({
     style,
     type = 'default',
     color,
-    background,
+    bgColor,
     ...restProps
 }: ITinyTag) {
     const [ref, svgWidth, rectWidth] = useSvgWidth();
     const isFill = type === 'fill';
-    const rectColor = isFill ? background || 'currentColor' : color || 'currentColor';
+    const rectColor = isFill ? bgColor || 'currentColor' : color || 'currentColor';
     const textColor = isFill ? color || '#fff' : color || 'currentColor';
 
     return (
-        <span
-            className={classNames('dtc-tinyTag', className, {
-                'dtc-tinyTag--fill': isFill,
-            })}
-            style={style}
-            {...restProps}
-        >
+        <span className={classNames('dtc-tinyTag', className)} style={style} {...restProps}>
             <svg
                 width={svgWidth}
                 height="15"

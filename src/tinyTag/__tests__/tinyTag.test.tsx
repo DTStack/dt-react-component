@@ -14,7 +14,7 @@ describe('test StatusTag', () => {
 
     test('should support fill type', () => {
         const { asFragment } = render(
-            <TinyTag value="完成" type="fill" background="#D56161" color="#fff" />
+            <TinyTag value="完成" type="fill" bgColor="#D56161" color="#fff" />
         );
         expect(asFragment()).toMatchSnapshot();
     });
@@ -31,19 +31,17 @@ describe('test StatusTag', () => {
 
     test('should render correct attributes and class in fill mode', () => {
         const { container } = render(
-            <TinyTag value="标签" type="fill" background="#D56161" color="#ffffff" />
+            <TinyTag value="标签" type="fill" bgColor="#D56161" color="#ffffff" />
         );
-        const span = container.querySelector('.dtc-tinyTag');
         const rect = container.querySelector('rect');
         const text = container.querySelector('text');
 
-        expect(span).toHaveClass('dtc-tinyTag--fill');
         expect(rect).toHaveAttribute('fill', '#D56161');
         expect(rect).toHaveAttribute('stroke', '#D56161');
         expect(text).toHaveAttribute('fill', '#ffffff');
     });
 
-    test('should fallback colors when background and color are not specified in fill mode', () => {
+    test('should fallback colors when bgColor and color are not specified in fill mode', () => {
         const { container } = render(<TinyTag value="标签" type="fill" />);
         const rect = container.querySelector('rect');
         const text = container.querySelector('text');
