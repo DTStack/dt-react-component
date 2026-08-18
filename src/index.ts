@@ -32,6 +32,7 @@ export { default as MarkdownRender } from './markdownRender';
 export { default as Modal } from './modal';
 export { default as NotFound } from './notFound';
 export { default as Popconfirm } from './popConfirm';
+export { default as Popover } from './popover';
 export { default as ProgressBar } from './progressBar';
 export { default as ProgressLine } from './progressLine';
 export { default as Resize } from './resize';
