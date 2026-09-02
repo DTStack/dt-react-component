@@ -22,7 +22,8 @@
         "lint:es": "eslint \"src/**/*.{js,jsx,ts,tsx}\" \".dumi/**/*.{js,jsx,ts,tsx}\"",
         "prepublishOnly": "father doctor && npm run build",
         "deploy": "npm run docs:build && gh-pages -d docs-dist",
-        "release": "./scripts/release.sh"
+        "release": "./scripts/release.sh",
+        "spec:generate": "node scripts/generate-from-spec.js"
     },
     "authors": [
         "dtinsight UED"
