@@ -64,7 +64,7 @@ const EllipsisText = (props: IEllipsisTextProps) => {
             : null;
 
     const [visible, setVisible] = useState(false);
-    const [width, setWidth] = useState<number | string>(DEFAULT_MAX_WIDTH);
+    const [width, setWidth] = useState<number | string | undefined>(maxWidth);
     const [cursor, setCursor] = useState('default');
 
     useLayoutEffect(() => {
@@ -96,40 +96,6 @@ const EllipsisText = (props: IEllipsisTextProps) => {
         return parseInt(getStyle(dom, attr));
     };
 
-    /**
-     * @description: 10 -> 10,
-     * @description: 10px -> 10,
-     * @description: 90% -> ele.width * 0.9
-     * @description: calc(100% - 32px) -> ele.width - 32
-     * @param {*} ele
-     * @param {string & number} maxWidth
-     * @return {*}
-     */
-    const transitionWidth = (ele: HTMLElement, maxWidth: string | number) => {
-        const eleWidth = getActualWidth(ele);
-
-        if (typeof maxWidth === 'number') {
-            return maxWidth > eleWidth ? eleWidth : maxWidth; // 如果父元素的宽度小于传入的最大宽度，返回父元素的宽度
-        }
-
-        const numMatch = maxWidth.match(/^(\d+)(px)?$/);
-        if (numMatch) {
-            return +numMatch[1] > eleWidth ? eleWidth : +numMatch[1]; // 如果父元素的宽度小于传入的最大宽度，返回父元素的宽度
-        }
-
-        const percentMatch = maxWidth.match(/^(\d+)%$/);
-        if (percentMatch) {
-            return eleWidth * (parseInt(percentMatch[1]) / 100);
-        }
-
-        const relativeMatch = maxWidth.match(/^calc\(100% - (\d+)px\)$/);
-        if (relativeMatch) {
-            return eleWidth - parseInt(relativeMatch[1]);
-        }
-
-        return eleWidth;
-    };
-
     const hideEleContent = (node: HTMLElement) => {
         node.style.display = 'none';
     };
@@ -144,20 +110,23 @@ const EllipsisText = (props: IEllipsisTextProps) => {
      * @return {*}
      */
     const getContainerWidth = (ele: HTMLElement): number | string => {
+        // 如果设置了最大宽度，则直接返回宽度
+        if (maxWidth) return maxWidth;
         if (!ele) return DEFAULT_MAX_WIDTH;
 
-        const { scrollWidth, parentElement } = ele;
-
-        // 如果是行内元素，获取不到宽度，则向上寻找父元素
-        if (scrollWidth === 0) {
-            return getContainerWidth(parentElement!);
-        }
-        // 如果设置了最大宽度，则直接返回宽度
-        if (maxWidth) {
-            return transitionWidth(ele, maxWidth);
+        // 如果是行内元素获取不到宽度或者本身没有宽度，则向上寻找父元素
+        if (ele.scrollWidth === 0 || ele.clientWidth === 0) {
+            return getContainerWidth(ele.parentElement!);
         }
 
+        // 隐藏当前文本元素后，从查找到的父组件宽度中计算剩余可用宽度
         hideEleContent(ellipsisRef.current!);
+
+        // 如果父组件是非行内元素，但其宽度是由子元素撑开的，仍需要向上查找
+        if (ele.scrollWidth === 0 || ele.clientWidth === 0) {
+            showEleContent(ellipsisRef.current!);
+            return getContainerWidth(ele.parentElement!);
+        }
 
         const availableWidth = getAvailableWidth(ele);
 
