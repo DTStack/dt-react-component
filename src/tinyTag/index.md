@@ -13,6 +13,7 @@ TinyTag 组件通常用于在某些文案后面，用于标识当前行数据的
 ## 示例
 
 <code src="./demos/basic.tsx">基础使用</code>
+<code src="./demos/hidden.tsx">隐藏渲染</code>
 <code src="./demos/table.tsx">表格使用</code>
 
 ## API

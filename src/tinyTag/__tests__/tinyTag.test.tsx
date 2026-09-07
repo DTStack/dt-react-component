@@ -5,7 +5,36 @@ import '@testing-library/jest-dom/extend-expect';
 import TinyTag from '..';
 
 describe('test StatusTag', () => {
-    beforeEach(cleanup);
+    const svgElementPrototype = SVGElement.prototype as SVGElement & {
+        getComputedTextLength?: () => number;
+    };
+    const getComputedTextLength = svgElementPrototype.getComputedTextLength;
+    const requestAnimationFrame = window.requestAnimationFrame;
+    const cancelAnimationFrame = window.cancelAnimationFrame;
+
+    beforeEach(() => {
+        cleanup();
+        Object.defineProperty(svgElementPrototype, 'getComputedTextLength', {
+            configurable: true,
+            value: jest.fn(() => 20),
+        });
+        window.requestAnimationFrame = jest.fn((callback) => {
+            callback(0);
+            return 0;
+        });
+        window.cancelAnimationFrame = jest.fn();
+    });
+
+    afterEach(() => {
+        cleanup();
+        Object.defineProperty(svgElementPrototype, 'getComputedTextLength', {
+            configurable: true,
+            value: getComputedTextLength,
+        });
+        window.requestAnimationFrame = requestAnimationFrame;
+        window.cancelAnimationFrame = cancelAnimationFrame;
+        jest.useRealTimers();
+    });
 
     test('should match snapshot', () => {
         const { asFragment } = render(<TinyTag value="完成" className="dtc-test" />);
@@ -17,6 +46,16 @@ describe('test StatusTag', () => {
             <TinyTag value="完成" type="fill" bgColor="#D56161" color="#fff" />
         );
         expect(asFragment()).toMatchSnapshot();
+    });
+
+    test('should remeasure width after hidden render', () => {
+        const measureWidth = svgElementPrototype.getComputedTextLength as jest.Mock;
+        measureWidth.mockReturnValueOnce(0).mockReturnValue(24);
+
+        const { container } = render(<TinyTag value="META" />);
+
+        expect(container.querySelector('svg')?.getAttribute('width')).toBe('32');
+        expect(container.querySelector('rect')?.getAttribute('width')).toBe('31');
     });
 
     test('should render custom color in default mode', () => {
