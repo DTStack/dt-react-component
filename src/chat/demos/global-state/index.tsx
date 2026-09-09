@@ -98,7 +98,6 @@ export default function () {
             });
         }
     };
-
     return (
         <>
             <Tabs
@@ -112,11 +111,8 @@ export default function () {
                         remove(targetKey as string);
                     }
                 }}
-            >
-                {tabs.map((i) => (
-                    <Tabs.TabPane tab={i.label} key={i.key} closable={tabs.length !== 1} />
-                ))}
-            </Tabs>
+                items={tabs}
+            />
             <AI data={data} onSubmit={handleSubmit} />
         </>
     );

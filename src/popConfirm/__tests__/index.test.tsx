@@ -10,10 +10,9 @@ describe('Popconfirm', () => {
         fireEvent.click(screen.getByText('Click me'));
         expect(screen.getByText('Are you sure?')).toBeInTheDocument();
         await waitFor(() =>
-            expect(document.querySelector('.ant-popover-message')?.firstChild).toHaveAttribute(
-                'data-mock-icon',
-                'InformationFilled'
-            )
+            expect(
+                document.querySelector('.ant-popover-message .ant-popover-message-icon > span')
+            ).toHaveAttribute('data-mock-icon', 'InformationFilled')
         );
         await waitFor(() => expect(document.querySelector('.ant-popover')).toMatchSnapshot());
         await waitFor(() => expect(document.querySelector('.dtc-popconfirm')).toBeInTheDocument());
@@ -43,10 +42,9 @@ describe('Popconfirm', () => {
         fireEvent.click(screen.getByText('Click me'));
         await waitFor(() => expect(screen.getByText('Warning!')).toBeInTheDocument());
         await waitFor(() =>
-            expect(document.querySelector('.ant-popover-message')?.firstChild).toHaveAttribute(
-                'data-mock-icon',
-                'WarningFilled'
-            )
+            expect(
+                document.querySelector('.ant-popover-message .ant-popover-message-icon > span')
+            ).toHaveAttribute('data-mock-icon', 'WarningFilled')
         );
     });
 
@@ -69,7 +67,7 @@ describe('Popconfirm', () => {
         fireEvent.click(screen.getByText('Click me'));
         await waitFor(() => expect(screen.getByText('No Icon')).toBeInTheDocument());
         await waitFor(() =>
-            expect(document.querySelector('.ant-popover-message')?.children.length).toBe(1)
+            expect(document.querySelector('.ant-popover-message')?.children.length).toBe(2)
         );
     });
 

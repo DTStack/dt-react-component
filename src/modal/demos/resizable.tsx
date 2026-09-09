@@ -12,7 +12,7 @@ export default function Basic() {
         <Resize onResize={() => setSize({ width: window.innerWidth, height: window.innerHeight })}>
             <Modal
                 title="Resizable Modal"
-                visible={modal.visible}
+                open={modal.visible}
                 resizable={{
                     maxConstraints: [size.width - 40, size.height - 150],
                 }}

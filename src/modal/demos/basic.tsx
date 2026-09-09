@@ -9,7 +9,7 @@ export default function Basic() {
         <>
             <Modal
                 title="最大高度限制"
-                visible={visible}
+                open={visible}
                 onCancel={() => setVisible(false)}
                 onOk={() => setVisible(false)}
             >

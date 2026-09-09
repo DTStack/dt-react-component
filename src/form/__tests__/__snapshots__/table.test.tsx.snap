@@ -68,6 +68,7 @@ exports[`Test Form.Table Component Should match snapshot 1`] = `
                                   class="ant-form-item-control-input-content"
                                 >
                                   <input
+                                    aria-required="true"
                                     class="ant-input"
                                     id="data_0_name"
                                     placeholder="Name"
