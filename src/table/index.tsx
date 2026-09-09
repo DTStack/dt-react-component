@@ -2,7 +2,12 @@ import React, { forwardRef, useMemo } from 'react';
 import { QuestionOutlined } from '@dtinsight/react-icons';
 import { Table as InternalTable, Tooltip } from 'antd';
 import type { LabelTooltipType, WrapperTooltipProps } from 'antd/lib/form/FormItemLabel';
-import type { ColumnType as PrimitiveColumnType, TableProps } from 'antd/lib/table';
+import type {
+    ColumnGroupType as PrimitiveColumnGroupType,
+    ColumnsType as PrimitiveColumnsType,
+    ColumnType as PrimitiveColumnType,
+    TableProps,
+} from 'antd/lib/table';
 import classNames from 'classnames';
 
 import './index.scss';
@@ -21,12 +26,19 @@ export interface ColumnType<R = any> extends PrimitiveColumnType<R> {
     tooltip?: LabelTooltipType;
 }
 
-export interface ITableProps<R = any> extends TableProps<R> {
-    columns?: ColumnType<R>[];
+export interface ColumnGroupType<R = any> extends Omit<PrimitiveColumnGroupType<R>, 'children'> {
+    tooltip?: LabelTooltipType;
+    children: ColumnsType<R>;
+}
+
+export type ColumnsType<R = any> = (ColumnGroupType<R> | ColumnType<R>)[];
+
+export interface ITableProps<R = any> extends Omit<TableProps<R>, 'columns'> {
+    columns?: ColumnsType<R>;
 }
 
 export type RefTable = <R extends object = any>(
-    props: React.PropsWithChildren<TableProps<R>> & { ref?: React.Ref<HTMLDivElement | unknown> }
+    props: React.PropsWithChildren<ITableProps<R>> & { ref?: React.Ref<HTMLDivElement> }
 ) => React.ReactElement;
 
 function toTooltipProps(tooltip: LabelTooltipType): WrapperTooltipProps | null {
@@ -43,10 +55,11 @@ function toTooltipProps(tooltip: LabelTooltipType): WrapperTooltipProps | null {
     };
 }
 
-function convertColumns(columns?: ColumnType[]): PrimitiveColumnType<any>[] {
-    if (!columns?.length) return [];
+function convertColumns<R>(columns?: ColumnsType<R>): PrimitiveColumnsType<R> | undefined {
+    if (!columns) return undefined;
+
     return columns.map((col) => {
-        const { tooltip, title } = col;
+        const { tooltip, title, ...restColumn } = col;
 
         const tooltipProps = toTooltipProps(tooltip);
         let tooltipNode: React.ReactNode | null = null;
@@ -61,24 +74,40 @@ function convertColumns(columns?: ColumnType[]): PrimitiveColumnType<any>[] {
             );
         }
 
-        const titleNode = (
-            <>
-                {title}
-                {tooltipNode}
-            </>
+        const convertedTitle = tooltipNode ? (
+            typeof title === 'function' ? (
+                (...args: Parameters<typeof title>) => (
+                    <>
+                        {title(...args)}
+                        {tooltipNode}
+                    </>
+                )
+            ) : (
+                <>
+                    {title}
+                    {tooltipNode}
+                </>
+            )
+        ) : (
+            title
         );
 
+        if ('children' in col) {
+            return {
+                ...restColumn,
+                title: convertedTitle,
+                children: convertColumns(col.children) || [],
+            } as PrimitiveColumnGroupType<R>;
+        }
+
         return {
-            ...col,
-            title: titleNode,
-        };
+            ...restColumn,
+            title: convertedTitle,
+        } as PrimitiveColumnType<R>;
     });
 }
 
-function Table<R extends Record<any, any> = any>(
-    props: ITableProps<R>,
-    ref: React.Ref<HTMLDivElement>
-) {
+function Table<R extends object = any>(props: ITableProps<R>, ref: React.Ref<HTMLDivElement>) {
     const { columns, className, ...reset } = props;
     const cols = useMemo(() => convertColumns(columns), [columns]);
 
@@ -93,6 +122,7 @@ function Table<R extends Record<any, any> = any>(
 }
 
 const ForwardTable = forwardRef(Table) as unknown as RefTable & {
+    defaultProps?: Partial<ITableProps<any>>;
     SELECTION_COLUMN: typeof SELECTION_COLUMN;
     EXPAND_COLUMN: typeof EXPAND_COLUMN;
     SELECTION_ALL: typeof SELECTION_ALL;
@@ -104,6 +134,7 @@ const ForwardTable = forwardRef(Table) as unknown as RefTable & {
     Summary: typeof InternalTable.Summary;
 };
 
+ForwardTable.defaultProps = InternalTable.defaultProps as Partial<ITableProps<any>>;
 ForwardTable.SELECTION_COLUMN = SELECTION_COLUMN;
 ForwardTable.EXPAND_COLUMN = EXPAND_COLUMN;
 ForwardTable.SELECTION_ALL = SELECTION_ALL;
