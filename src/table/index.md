@@ -14,7 +14,13 @@ demo:
 
 ## 示例
 
-<code src="./demos/basic.tsx" description="为标题头添加tooltip">基础使用</code>
+<code src="./demos/basic.tsx" title="基础使用" description="为标题头添加 tooltip"></code>
+
+<code src="./demos/declarative.tsx" title="声明式列" description="兼容 antd 的 Table.Column JSX 写法"></code>
+
+<code src="./demos/dynamicTitle.tsx" title="动态表头" description="函数式 title 可根据排序状态动态更新，并与 tooltip 一起使用"></code>
+
+<code src="./demos/group.tsx" title="分组表头" description="分组列及其子列均可配置 tooltip"></code>
 
 ## API
 
