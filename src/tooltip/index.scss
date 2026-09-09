@@ -1,0 +1,13 @@
+.dtc-tooltip {
+    min-width: 220px;
+    max-width: 400px;
+    .ant-tooltip-inner {
+        min-width: 220px;
+        max-width: 400px;
+        padding: 6px 8px;
+        max-height: 400px;
+        overflow-y: auto;
+        font-size: 12px;
+        line-height: 20px;
+    }
+}
