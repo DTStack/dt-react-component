@@ -8,8 +8,8 @@ exports[`test StatusTag should match snapshot 1`] = `
     <svg
       fill="none"
       height="15"
-      viewBox="0 0 8 15"
-      width="8"
+      viewBox="0 0 28 15"
+      width="28"
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect
@@ -18,7 +18,7 @@ exports[`test StatusTag should match snapshot 1`] = `
         rx="1.5"
         stroke="currentColor"
         stroke-linejoin="bevel"
-        width="7"
+        width="27"
         x="0.5"
         y="0.5"
       />
@@ -48,8 +48,8 @@ exports[`test StatusTag should support fill type 1`] = `
     <svg
       fill="none"
       height="15"
-      viewBox="0 0 8 15"
-      width="8"
+      viewBox="0 0 28 15"
+      width="28"
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect
@@ -58,7 +58,7 @@ exports[`test StatusTag should support fill type 1`] = `
         rx="1.5"
         stroke="#D56161"
         stroke-linejoin="bevel"
-        width="7"
+        width="27"
         x="0.5"
         y="0.5"
       />

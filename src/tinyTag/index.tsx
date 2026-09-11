@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import './style.scss';
@@ -29,17 +29,37 @@ const useSvgWidth = (): UseSvgWidthResult => {
     const [rectWidth, setRectWidth] = useState(0);
 
     const getWidth = useCallback(() => {
-        if (!element) return;
+        if (!element) return false;
         const paddingWidth = 8;
-        const textWidth = Math.round(element.getComputedTextLength?.() ?? 0);
+        const textWidth = Math.round(element.getComputedTextLength());
+        if (!textWidth) return false;
         const svgWidth = textWidth + paddingWidth;
         setSvgWidth(svgWidth);
         setRectWidth(Math.max(svgWidth - 1, 0));
+        return true;
     }, [element]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getWidth();
-    }, [element]);
+        const timer = window.requestAnimationFrame(getWidth);
+
+        return () => {
+            window.cancelAnimationFrame(timer);
+        };
+    }, [getWidth]);
+
+    useEffect(() => {
+        if (!element || !window.ResizeObserver) return undefined;
+
+        const resizeObserver = new window.ResizeObserver(() => {
+            getWidth();
+        });
+        resizeObserver.observe(element);
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, [element, getWidth]);
 
     return [ref, svgWidth, rectWidth];
 };
