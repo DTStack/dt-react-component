@@ -155,11 +155,8 @@ const Drawer = <T extends readOnlyTab>(props: DrawerProps<T>) => {
                         activeKey={currentKey}
                         onChange={handleChangeKey}
                         className={`${drawerPrefixCls}-tabs`}
-                    >
-                        {props.tabs?.map((tab: { key: string; title: React.ReactNode }) => (
-                            <Tabs.TabPane tab={tab.title} key={tab.key} />
-                        ))}
-                    </Tabs>
+                        items={props.tabs?.map((tab) => ({ key: tab.key, label: tab.title }))}
+                    />
                 )}
                 <div
                     className={classNames(`${drawerPrefixCls}-body`, bodyClassName)}

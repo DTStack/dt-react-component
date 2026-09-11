@@ -15,7 +15,7 @@ exports[`Empty match snapshots 1`] = `
     <div
       class="ant-empty-description"
     >
-      No Data
+      No data
     </div>
   </div>
 </DocumentFragment>
@@ -36,7 +36,7 @@ exports[`Empty match snapshots 2`] = `
     <div
       class="ant-empty-description"
     >
-      No Data
+      No data
     </div>
   </div>
 </DocumentFragment>

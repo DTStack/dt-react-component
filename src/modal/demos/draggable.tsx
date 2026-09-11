@@ -26,7 +26,7 @@ export default function Basic() {
                 }}
                 position={position}
                 onPositionChange={({ x, y }) => setPosition({ x, y })}
-                visible={visible}
+                open={visible}
                 onCancel={() => setVisible(false)}
                 onOk={() => setVisible(false)}
             >

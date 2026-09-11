@@ -224,7 +224,7 @@ export default () => {
                 title="标签目录"
                 showSearch
                 draggable
-                overlay={(item) => {
+                dropdownRender={(item) => {
                     const { addable = true, editable = true, deletable = true } = item;
                     return (
                         <Menu

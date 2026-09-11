@@ -212,7 +212,7 @@ export default () => {
                     />
                 }
                 title="标签目录"
-                overlay={(item) => {
+                dropdownRender={(item) => {
                     const { addable = true, editable = true, deletable = true } = item;
                     return (
                         <Menu

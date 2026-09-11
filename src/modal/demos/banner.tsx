@@ -9,7 +9,7 @@ export default function Banner() {
         <>
             <Modal
                 title="支持 banner 属性"
-                visible={visible}
+                open={visible}
                 banner="模态框可以支持 banner 属性"
                 onCancel={() => setVisible(false)}
                 onOk={() => setVisible(false)}
