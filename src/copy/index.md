@@ -20,12 +20,16 @@ demo:
 
 ### API
 
+<!-- @generated-from: brief/spec.yaml -->
+
 | 参数      | 说明             | 类型                                    | 默认值                              |
 | --------- | ---------------- | --------------------------------------- | ----------------------------------- |
 | button    | 自定义按钮       | `React.ReactNode`                       | `<CopyOutlined />`                  |
-| className | 样式             | `string`                                | --                                  |
+| className | 样式 class       | `string`                                | --                                  |
 | disabled  | 是否禁用         | `boolean`                               | false                               |
 | style     | 样式             | `React.CSSProperties`                   | --                                  |
 | text      | 需要复制的文本   | `string`                                | --                                  |
 | tooltip   | 配置提示信息     | `TooltipProps['title'] \| TooltipProps` | `复制`                              |
 | onCopy    | 复制后的回调函数 | `(text: string) => void`                | `() => message.success('复制成功')` |
+
+<!-- @generated-end -->

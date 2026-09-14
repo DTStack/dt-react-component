@@ -1,0 +1,125 @@
+# @generated-from: brief/brief.md
+component: Copy
+
+# 无 extendsAntd — Copy 不继承 antd 组件 props
+
+props:
+  text:
+    type: string
+    required: true
+    description: 需要复制的文本
+  button:
+    type: React.ReactNode
+    description: 自定义按钮
+    default: '`<CopyOutlined />`'
+  className:
+    type: string
+    description: 样式 class
+  disabled:
+    type: boolean
+    description: 是否禁用
+    default: false
+  style:
+    type: React.CSSProperties
+    description: 样式
+  tooltip:
+    type: "TooltipProps['title'] | TooltipProps"
+    description: 配置提示信息
+    default: '`复制`'
+  onCopy:
+    type: '(text: string) => void'
+    description: 复制后的回调函数
+    default: "`() => message.success('复制成功')`"
+
+scenarios:
+  - id: default-render
+    description: 默认渲染可点击区域
+    given:
+      text: hello
+    expect:
+      - renders .dtc-copy
+
+  - id: click-copy
+    description: 点击触发复制
+    given:
+      text: hello
+      disabled: false
+    expect:
+      - CopyUtils.copy called with hello
+      - onCopy invoked with hello
+
+  - id: disabled
+    description: 禁用时不触发复制
+    given:
+      text: hello
+      disabled: true
+    expect:
+      - CopyUtils.copy not called
+      - element has dtc-copy--disabled
+
+  - id: custom-button
+    description: 自定义 button 节点
+    given:
+      text: hello
+      button: 复制文本
+    expect:
+      - renders custom button
+      - click triggers copy
+
+  - id: tooltip-string
+    description: tooltip 字符串
+    given:
+      text: hello
+      tooltip: 复制文本
+    expect:
+      - Tooltip title is 复制文本
+
+  - id: tooltip-object
+    description: tooltip 对象
+    given:
+      text: hello
+      tooltip:
+        title: 复制文本
+    expect:
+      - Tooltip configured with title
+
+  - id: tooltip-falsy
+    description: tooltip 假值时不展示浮层
+    given:
+      text: hello
+      tooltip: false
+    expect:
+      - no visible Tooltip overlay
+
+linkedDemos:
+  - scenarioId: click-copy
+    demo: demos/basic.tsx
+  - scenarioId: custom-button
+    demo: demos/custom.tsx
+  - scenarioId: disabled
+    demo: demos/disabled.tsx
+
+outOfScope:
+  - CopyUtils implementation
+  - clipboard permission errors
+  - Tooltip animation timing
+  - exact locale strings
+
+testFixtures:
+  mocks:
+    CopyUtils: "jest.fn((text, cb) => cb?.())"
+    message.success: jest.fn()
+
+harnessMeta:
+  controls:
+    - prop: text
+      type: string
+    - prop: disabled
+      type: boolean
+    - prop: tooltip
+      type: string
+  presets:
+    - default-render
+    - click-copy
+    - disabled
+    - tooltip-falsy
