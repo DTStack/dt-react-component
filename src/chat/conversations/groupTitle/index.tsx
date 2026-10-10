@@ -12,8 +12,7 @@ const GroupTitle: React.FC<GroupTitleProps> = (props) => {
                 <EllipsisText
                     value={props.children}
                     maxWidth="100%"
-                    placement="right"
-                    destroyTooltipOnHide
+                    tooltip={{ placement: 'right', destroyTooltipOnHide: true }}
                     dynamic
                 />
             )}

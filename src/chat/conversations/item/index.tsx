@@ -46,9 +46,8 @@ const Item: React.FC<ConversationsItemProps> = (props) => {
                 <EllipsisText
                     dynamic
                     value={info.title}
-                    placement="right"
                     maxWidth="100%"
-                    destroyTooltipOnHide
+                    tooltip={{ placement: 'right', destroyTooltipOnHide: true }}
                 />
             </div>
             {!disabled && dropdown?.overlay && (
