@@ -75,6 +75,7 @@ export default function useList<T extends Record<string, any>, P extends Record<
         setLoading(true);
         fetcher(raw)
             .then(({ data, total }) => {
+                if (lastRequestId.current !== requestId) return;
                 setData(data);
                 setTotal(total);
             })
