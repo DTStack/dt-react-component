@@ -1,0 +1,17 @@
+$prefix: "dtc-select";
+
+.#{$prefix} {
+    &--scroll {
+        .ant-select-selector {
+            max-height: inherit;
+            overflow-y: auto;
+        }
+    }
+    &__scroll-dropdown {
+        .ant-select-item-empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
