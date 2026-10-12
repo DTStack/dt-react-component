@@ -1,5 +1,28 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { merge } from 'lodash-es';
+import { isPlainObject, merge } from 'lodash-es';
+
+const mergeParams = (
+    previous: Record<string, any>,
+    next: Record<string, any>,
+    merged = new WeakMap<object, Record<string, any>>()
+): Record<string, any> => {
+    const cached = merged.get(next);
+    if (cached) return cached;
+
+    const result = { ...previous };
+    merged.set(next, result);
+
+    Object.keys(next).forEach((key) => {
+        const previousValue = previous[key];
+        const nextValue = next[key];
+        result[key] =
+            isPlainObject(previousValue) && isPlainObject(nextValue)
+                ? mergeParams(previousValue, nextValue, merged)
+                : nextValue;
+    });
+
+    return result;
+};
 
 export type Fetcher<T, P> = (params: P) => Promise<{ data: T[]; total: number }>;
 
@@ -92,7 +115,7 @@ export default function useList<T extends Record<string, any>, P extends Record<
         };
         const nextOptions = merge(defaultOptions, options);
 
-        const tmp = typeof next === 'function' ? next(params) : { ...merge({}, params, next) };
+        const tmp = typeof next === 'function' ? next(params) : (mergeParams(params, next) as P);
         setParams(tmp);
 
         if (nextOptions.revalidate) {

@@ -32,9 +32,7 @@ export default () => {
     const handleReset = async () => {
         form.resetFields();
         const values = await form.validateFields();
-        // 当传入值有 undefined 的时候，采用 functional 的写法。
-        // 因为底层使用的 lodash 的 merge，采用赋值写法不会对 undefined 做合并
-        mutate((pre) => ({ ...pre, ...values }), { revalidate, clearData });
+        mutate({ ...values }, { revalidate, clearData });
     };
     const [revalidate, setRevalidate] = useState(true);
     const [clearData, setClearData] = useState(true);
