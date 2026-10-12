@@ -23,7 +23,9 @@ const dataSource = [
 
 describe('test Table', () => {
     test('should preserve antd Table static members', () => {
-        expect(Table.defaultProps).toBe(AntdTable.defaultProps);
+        const antdDefaultProps = Object.getOwnPropertyDescriptor(AntdTable, 'defaultProps')?.value;
+
+        expect(Table.defaultProps).toBe(antdDefaultProps);
         expect(Table.SELECTION_COLUMN).toBe(AntdTable.SELECTION_COLUMN);
         expect(Table.EXPAND_COLUMN).toBe(AntdTable.EXPAND_COLUMN);
         expect(Table.SELECTION_ALL).toBe(AntdTable.SELECTION_ALL);
@@ -66,12 +68,28 @@ describe('test Table', () => {
 
     test('should preserve function column title', () => {
         const title = jest.fn(() => 'Dynamic Name');
-        const { getByText } = render(
+        const { container, getByText } = render(
             <Table rowKey="id" columns={[{ dataIndex: 'name', title }]} dataSource={dataSource} />
         );
 
         expect(title).toHaveBeenCalled();
         expect(getByText('Dynamic Name')).toBeInTheDocument();
+        expect(container.querySelector('.dtc-table__tooltip')).not.toBeInTheDocument();
+    });
+
+    test('should append tooltip to function column title', () => {
+        const title = jest.fn(() => 'Dynamic Name');
+        const { container, getByText } = render(
+            <Table
+                rowKey="id"
+                columns={[{ dataIndex: 'name', title, tooltip: 'Dynamic tooltip' }]}
+                dataSource={dataSource}
+            />
+        );
+
+        expect(title).toHaveBeenCalled();
+        expect(getByText('Dynamic Name')).toBeInTheDocument();
+        expect(container.querySelector('.dtc-table__tooltip')).toBeInTheDocument();
     });
 
     test('should support tooltip in nested columns', () => {

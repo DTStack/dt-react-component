@@ -55,6 +55,31 @@ function toTooltipProps(tooltip: LabelTooltipType): WrapperTooltipProps | null {
     };
 }
 
+function appendTooltipToTitle<R>(
+    title: PrimitiveColumnType<R>['title'],
+    tooltipNode: React.ReactNode
+): PrimitiveColumnType<R>['title'] {
+    if (!tooltipNode) {
+        return title;
+    }
+
+    if (typeof title === 'function') {
+        return (...args: Parameters<typeof title>) => (
+            <>
+                {title(...args)}
+                {tooltipNode}
+            </>
+        );
+    }
+
+    return (
+        <>
+            {title}
+            {tooltipNode}
+        </>
+    );
+}
+
 function convertColumns<R>(columns?: ColumnsType<R>): PrimitiveColumnsType<R> | undefined {
     if (!columns) return undefined;
 
@@ -74,23 +99,7 @@ function convertColumns<R>(columns?: ColumnsType<R>): PrimitiveColumnsType<R> | 
             );
         }
 
-        const convertedTitle = tooltipNode ? (
-            typeof title === 'function' ? (
-                (...args: Parameters<typeof title>) => (
-                    <>
-                        {title(...args)}
-                        {tooltipNode}
-                    </>
-                )
-            ) : (
-                <>
-                    {title}
-                    {tooltipNode}
-                </>
-            )
-        ) : (
-            title
-        );
+        const convertedTitle = appendTooltipToTitle<R>(title, tooltipNode);
 
         if ('children' in col) {
             return {
@@ -134,7 +143,10 @@ const ForwardTable = forwardRef(Table) as unknown as RefTable & {
     Summary: typeof InternalTable.Summary;
 };
 
-ForwardTable.defaultProps = InternalTable.defaultProps as Partial<ITableProps<any>>;
+const internalTableDefaultProps = Object.getOwnPropertyDescriptor(InternalTable, 'defaultProps')
+    ?.value as Partial<ITableProps<any>> | undefined;
+
+ForwardTable.defaultProps = internalTableDefaultProps;
 ForwardTable.SELECTION_COLUMN = SELECTION_COLUMN;
 ForwardTable.EXPAND_COLUMN = EXPAND_COLUMN;
 ForwardTable.SELECTION_ALL = SELECTION_ALL;
