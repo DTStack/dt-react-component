@@ -29,10 +29,10 @@ describe('Select', () => {
 
     it.each([undefined, 0, -1])('should disable scrolling when maxRows is %s', (maxRows) => {
         const { container } = render(<Select maxRows={maxRows} open options={options} />);
-        expect(container.firstChild).not.toHaveClass('enhanced-select--scroll');
+        expect(container.firstChild).not.toHaveClass('dtc-select--scroll');
         expect(container.querySelector('.ant-select')).not.toHaveStyle({ maxHeight: '88px' });
         expect(document.querySelector('.ant-select-dropdown')).not.toHaveClass(
-            'select-with-scroll-dropdown'
+            'dtc-select__scroll-dropdown'
         );
     });
 
@@ -52,14 +52,14 @@ describe('Select', () => {
         const { container, rerender } = render(
             <Select maxRows={3} open dropdownClassName="custom-dropdown" style={{ width: 240 }} />
         );
-        expect(container.firstChild).toHaveClass('enhanced-select--scroll');
+        expect(container.firstChild).toHaveClass('dtc-select--scroll');
         expect(container.querySelector('.ant-select')).toHaveStyle({
             maxHeight: '88px',
             width: '240px',
         });
         expect(document.querySelector('.ant-select-dropdown')).toHaveClass(
             'custom-dropdown',
-            'select-with-scroll-dropdown'
+            'dtc-select__scroll-dropdown'
         );
         rerender(<Select maxRows={3} style={{ maxHeight: 120 }} />);
         expect(container.querySelector('.ant-select')).toHaveStyle({ maxHeight: '120px' });
