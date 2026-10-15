@@ -36,6 +36,7 @@ export { default as Popover } from './popover';
 export { default as ProgressBar } from './progressBar';
 export { default as ProgressLine } from './progressLine';
 export { default as Resize } from './resize';
+export { default as Select } from './select';
 export { default as SpreadSheet } from './spreadSheet';
 export { default as StatusTag } from './statusTag';
 export { default as Table } from './table';
