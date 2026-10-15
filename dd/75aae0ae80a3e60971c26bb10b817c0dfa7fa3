@@ -1,0 +1,16 @@
+package.json
+  h_c96aa35564937e 3
+CHANGELOG.md
+  h_c96aa35564937e 5-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "dd75aae0ae80a3e60971c26bb10b817c0dfa7fa3",
+  "prompts": {},
+  "humans": {
+    "h_c96aa35564937e": {
+      "author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}
