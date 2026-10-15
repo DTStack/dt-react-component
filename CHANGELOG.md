@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/DTStack/dt-react-component/compare/v5.0.0...v5.2.0) (2026-10-15)
+
+### Features
+
+-   [#580](https://github.com/DTStack/dt-react-component/issues/580), upgrade dt-utils to v2.1.0 and refresh lockfile ([#639](https://github.com/DTStack/dt-react-component/issues/639)) ([26741e8](https://github.com/DTStack/dt-react-component/commit/26741e8b9c746865d92670c93db2d1ccf8d1b80b))
+-   **button:** add tooltip support for button ([#661](https://github.com/DTStack/dt-react-component/issues/661)) ([33454d2](https://github.com/DTStack/dt-react-component/commit/33454d22b6fab05f10f4910f75e12a82080c60a5)), closes [#650](https://github.com/DTStack/dt-react-component/issues/650)
+-   **chat:** support multiple conversation ([#623](https://github.com/DTStack/dt-react-component/issues/623)) ([c67e2fc](https://github.com/DTStack/dt-react-component/commit/c67e2fcc58358c2e034bdf790a8995e9ff3d312e))
+-   **popover:** add popover component with scrollable content ([#645](https://github.com/DTStack/dt-react-component/issues/645)) ([b24fe77](https://github.com/DTStack/dt-react-component/commit/b24fe77fb3b98b0e36cfb77f650ee0b320c70075))
+-   support AI quick command feat and upgrade lock file ([#600](https://github.com/DTStack/dt-react-component/issues/600)) ([a367535](https://github.com/DTStack/dt-react-component/commit/a3675352e5dd20d1a7cd02acc29e3dae71e39f21))
+-   **table:** support nested columns and static members ([#663](https://github.com/DTStack/dt-react-component/issues/663)) ([7648a02](https://github.com/DTStack/dt-react-component/commit/7648a028a46f3579934f7edf224d12f6f047961f)), closes [#662](https://github.com/DTStack/dt-react-component/issues/662)
+-   **tinytag:** support fill mode for tinyTag ([#647](https://github.com/DTStack/dt-react-component/issues/647)) ([d32b67a](https://github.com/DTStack/dt-react-component/commit/d32b67a7e6854ddd03c3d9120bc6d54fe1c59b70)), closes [#646](https://github.com/DTStack/dt-react-component/issues/646)
+-   **tinytag:** support width remeasurement for hidden tag ([#649](https://github.com/DTStack/dt-react-component/issues/649)) ([cfbda43](https://github.com/DTStack/dt-react-component/commit/cfbda4314fbb2fc8c3f3b4181d41dda0318d6486)), closes [#648](https://github.com/DTStack/dt-react-component/issues/648)
+-   **tooltip:** add tooltip component with scrollable overlay ([#644](https://github.com/DTStack/dt-react-component/issues/644)) ([20f8d31](https://github.com/DTStack/dt-react-component/commit/20f8d31d8ca5ea59f77c22800a76fa5c57374a85))
+-   upgrade antd's version to 4.24.16 ([#615](https://github.com/DTStack/dt-react-component/issues/615)) ([61ecb34](https://github.com/DTStack/dt-react-component/commit/61ecb3465165b06704375e0ba43ee42d5ef61b2b))
+
+### Bug Fixes
+
+-   **dropdown:** optimize Dropdown.Select ([#635](https://github.com/DTStack/dt-react-component/issues/635)) ([368e331](https://github.com/DTStack/dt-react-component/commit/368e331bc0a341f59ca701b6cd511b4d8dfee921))
+-   **modal:** add loading default value ([#628](https://github.com/DTStack/dt-react-component/issues/628)) ([b36ab2e](https://github.com/DTStack/dt-react-component/commit/b36ab2ec91ce909e6b92c43c444b4454f794b56a)), closes [#627](https://github.com/DTStack/dt-react-component/issues/627)
+-   remove blockHeader hasBottom props ([#641](https://github.com/DTStack/dt-react-component/issues/641)) ([d978fb7](https://github.com/DTStack/dt-react-component/commit/d978fb77d2db96a09043d94f4e9a058f74f8ce2d))
+-   remove deprecated code ([2a43252](https://github.com/DTStack/dt-react-component/commit/2a43252fca871a3709c2e09eb8638a73183800be))
+-   **tinyTag:** via getComputedTextLength api to measure svg text element ([#636](https://github.com/DTStack/dt-react-component/issues/636)) ([db846be](https://github.com/DTStack/dt-react-component/commit/db846bea3f331f419d8933963de0c9935ffa19a2))
+-   **uselist:** correct useList parameter merging ([#670](https://github.com/DTStack/dt-react-component/issues/670)) ([9e0410a](https://github.com/DTStack/dt-react-component/commit/9e0410aef41912caa17057b76ad4b4cd7340e631)), closes [#632](https://github.com/DTStack/dt-react-component/issues/632)
+-   **uselist:** prevent race condition in request ([#669](https://github.com/DTStack/dt-react-component/issues/669)) ([ea9469c](https://github.com/DTStack/dt-react-component/commit/ea9469c2fb2037faa844fe98476a0eee39400bb3)), closes [#668](https://github.com/DTStack/dt-react-component/issues/668)
+
 ## [5.1.0](https://github.com/DTStack/dt-react-component/compare/v5.0.0...v5.1.0) (2026-05-28)
 
 ### Features
