@@ -6,7 +6,7 @@ import {
     EllipsisTableOutlined,
     SearchOutlined,
 } from '@dtinsight/react-icons';
-import { Dropdown, DropdownProps, Form, Input, Tabs } from 'antd';
+import { Dropdown, Form, Input, Tabs } from 'antd';
 import { BlockHeader, EllipsisText } from 'dt-react-component';
 import { IBlockHeaderProps } from 'dt-react-component/blockHeader';
 
@@ -31,7 +31,7 @@ interface NormalCatalogueProps<U extends Record<string, any> = {}>
     placeholder?: string;
     loading?: boolean;
     onCancelSave?: (item: ITreeNode<U>) => void;
-    dropdownRender?: (item: ITreeNode<U>) => DropdownProps['dropdownRender'];
+    dropdownRender?: (item: ITreeNode<U>, originNode: React.ReactNode) => React.ReactNode;
     onSearch?: (value: string) => void;
     onSave?: (data: ITreeNode<U>, value: string) => Promise<string | void>;
 }
@@ -177,7 +177,7 @@ const Catalogue = <U extends Record<string, any> = {}, T extends readOnlyTab = a
             >
                 {dropdownRender && (
                     <Dropdown
-                        dropdownRender={dropdownRender(item)}
+                        dropdownRender={(originNode) => dropdownRender(item, originNode)}
                         placement="bottomRight"
                         arrow
                         destroyPopupOnHide
