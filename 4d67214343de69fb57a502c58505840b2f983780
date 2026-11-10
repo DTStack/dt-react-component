@@ -1,0 +1,21 @@
+src/table/index.tsx
+  s_b0e8cc12fa1b91::t_d236189d1446d9 58-82,102
+src/table/__tests__/table.test.tsx
+  s_b0e8cc12fa1b91::t_c915e286d90f00 69,75-90
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4d67214343de69fb57a502c58505840b2f983780",
+  "prompts": {},
+  "sessions": {
+    "s_b0e8cc12fa1b91": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a08034-fed3-7f00-a889-7fd426c51816",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}

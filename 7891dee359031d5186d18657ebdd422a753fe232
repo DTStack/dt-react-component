@@ -1,0 +1,29 @@
+src/useList/__tests__/useList.test.ts
+  s_babf0b3f16224c::t_ae8e7cb9b5fafe 70
+  s_babf0b3f16224c::t_36fa017050beb7 76-81,92-97,109,120-125
+  s_babf0b3f16224c::t_073a1ff02171c2 71-75,82-91,98-108,110-119,126-129
+src/useList/index.ts
+  s_babf0b3f16224c::t_ac4ea3930e8834 2-20,113
+src/useList/index.md
+  s_babf0b3f16224c::t_ac4ea3930e8834 18
+src/useList/demos/mutate.tsx
+  s_babf0b3f16224c::t_285bdf8265e6e3 35
+src/useList/demos/mutateOptions.tsx
+  s_babf0b3f16224c::t_285bdf8265e6e3 35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7891dee359031d5186d18657ebdd422a753fe232",
+  "prompts": {},
+  "sessions": {
+    "s_babf0b3f16224c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a12014-743e-7772-bcce-5567216d972d",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}

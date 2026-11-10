@@ -1,0 +1,14 @@
+src/useList/index.ts
+  h_c96aa35564937e 78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5e15ac5a7c9a8798d2e9f2c5ae1f82a32fa4ae1b",
+  "prompts": {},
+  "humans": {
+    "h_c96aa35564937e": {
+      "author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}

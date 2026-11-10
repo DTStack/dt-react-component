@@ -1,0 +1,39 @@
+src/popover/demos/customHeight.tsx
+  s_d466e455f22f36::t_ff82bd0742197e 2-13,16,18-20
+src/popover/demos/basic.tsx
+  s_d466e455f22f36::t_9d11c650a60714 1-11
+src/popover/index.scss
+  s_d466e455f22f36::t_f63c607ba91f9a 2-12,17-20
+  s_d466e455f22f36::t_9d11c650a60714 1,13,16,21-22
+src/popover/index.tsx
+  s_d466e455f22f36::t_9d11c650a60714 1-9,11-13
+src/index.ts
+  s_d466e455f22f36::t_9d11c650a60714 35
+src/popover/demos/scroll.tsx
+  s_d466e455f22f36::t_9d11c650a60714 1-15
+src/popover/index.md
+  s_d466e455f22f36::t_9d11c650a60714 1-5,7-17,19,22-27
+  s_d466e455f22f36::t_ff82bd0742197e 18,20-21
+src/popover/__tests__/index.test.tsx
+  s_d466e455f22f36::t_9d11c650a60714 1-57
+src/popover/demos/noTitle.tsx
+  s_d466e455f22f36::t_ff82bd0742197e 1-11
+src/popover/demos/maxWidth.tsx
+  s_d466e455f22f36::t_ff82bd0742197e 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "1a0f8ed6fc138176e2d830478040632b944ec8ea",
+  "prompts": {},
+  "sessions": {
+    "s_d466e455f22f36": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f1224-aec9-7ad1-8d83-dc08f2afdc48",
+        "model": "gpt-5.5"
+      },
+      "human_author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}

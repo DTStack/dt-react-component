@@ -1,0 +1,31 @@
+src/tinyTag/__tests__/tinyTag.test.tsx
+  s_abac852651c54a::t_710086611228f5 12-18
+src/tinyTag/demos/basic.tsx
+  s_abac852651c54a::t_710086611228f5 13
+src/tinyTag/index.md
+  h_c96aa35564937e 29-32
+  s_abac852651c54a::t_710086611228f5 22-28
+src/tinyTag/index.tsx
+  s_abac852651c54a::t_710086611228f5 8,10,12-23,47-55,57-60,62-68,82-83,88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.22",
+  "base_commit_sha": "bbc1a632b0fb7e63b92bddec66be610f9c90094e",
+  "prompts": {},
+  "humans": {
+    "h_c96aa35564937e": {
+      "author": "LuckyFBB <976060700@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_abac852651c54a": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019ff500-4162-7090-9d13-b21d3ad2d336",
+        "model": "gpt-5.5"
+      },
+      "human_author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}

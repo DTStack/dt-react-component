@@ -1,0 +1,26 @@
+src/tooltip/index.scss
+  s_d466e455f22f36::t_adb6e5ae6311a2 2-3,5-7,10-11
+  s_d466e455f22f36::t_53288d4b0ce30e 1,4,8-9,12-13
+src/tooltip/demos/maxWidth.tsx
+  s_d466e455f22f36::t_adb6e5ae6311a2 1-10
+src/tooltip/index.md
+  s_d466e455f22f36::t_53288d4b0ce30e 1-18,22-26
+  s_d466e455f22f36::t_1915f6a10c4ccb 19,21
+  s_d466e455f22f36::t_adb6e5ae6311a2 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "76afa9548c7337a59b4b819e303a7b147d67da1e",
+  "prompts": {},
+  "sessions": {
+    "s_d466e455f22f36": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "019f1224-aec9-7ad1-8d83-dc08f2afdc48",
+        "model": "gpt-5.5"
+      },
+      "human_author": null
+    }
+  }
+}

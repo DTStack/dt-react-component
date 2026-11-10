@@ -1,0 +1,29 @@
+src/button/demos/tooltip.tsx
+  s_924a282d3258e1::t_22c3be08724f79 1-23
+src/button/index.md
+  s_924a282d3258e1::t_22c3be08724f79 23-24,33-34,40
+  s_924a282d3258e1::t_20847cfb378ebe 31-32
+src/button/index.tsx
+  s_924a282d3258e1::t_22c3be08724f79 2,5,8-10,17,20,28-32
+src/button/__tests__/index.test.tsx
+  s_924a282d3258e1::t_37334b1b6b1abe 101,103-104,106
+  s_924a282d3258e1::t_47ec3984178e4a 73-79,89
+  s_924a282d3258e1::t_20847cfb378ebe 110-112
+  s_924a282d3258e1::t_22c3be08724f79 2,4,56-72,80-88,90-100,102,105,107-109,113-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "ecdf75014b788e2e2a45c0176b2c558baf4f97ce",
+  "prompts": {},
+  "sessions": {
+    "s_924a282d3258e1": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a083f9-d698-7690-b3b7-abefece35761",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}

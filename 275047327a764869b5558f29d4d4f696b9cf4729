@@ -1,0 +1,21 @@
+src/useList/__tests__/useList.test.ts
+  s_babf0b3f16224c::t_6ba08d758b1716 130-147
+src/useList/index.ts
+  s_babf0b3f16224c::t_fc8eb8d46aa0f5 6-7,9-11,13,20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "275047327a764869b5558f29d4d4f696b9cf4729",
+  "prompts": {},
+  "sessions": {
+    "s_babf0b3f16224c": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a12014-743e-7772-bcce-5567216d972d",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "LuckyFBB <976060700@qq.com>"
+    }
+  }
+}
