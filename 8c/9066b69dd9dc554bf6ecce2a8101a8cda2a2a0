@@ -1,0 +1,28 @@
+package.json
+  h_8e80b2b4b22af3 115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "8c9066b69dd9dc554bf6ecce2a8101a8cda2a2a0",
+  "prompts": {
+    "1d89762c1b510c17": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a1c402-75f3-7933-a99b-77c30609cbc7",
+        "model": "gpt-6.1-sol"
+      },
+      "human_author": "Bell",
+      "messages": [],
+      "total_additions": 5909,
+      "total_deletions": 0,
+      "accepted_lines": 5909,
+      "overriden_lines": 0
+    }
+  },
+  "humans": {
+    "h_8e80b2b4b22af3": {
+      "author": "Bell"
+    }
+  }
+}
