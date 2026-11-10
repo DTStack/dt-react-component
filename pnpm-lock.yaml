@@ -7,7 +7,7 @@ specifiers:
   '@commitlint/cli': ^17.1.2
   '@commitlint/config-conventional': ^17.1.0
   '@dtinsight/dt-utils': ^2.1.0
-  '@dtinsight/react-icons': ^1.0.0
+  '@dtinsight/react-icons': ^1.79.0
   '@faker-js/faker': ^7.6.0
   '@handsontable/react': 2.1.0
   '@testing-library/jest-dom': ^5.16.5
@@ -64,7 +64,7 @@ specifiers:
 
 dependencies:
   '@dtinsight/dt-utils': 2.1.1
-  '@dtinsight/react-icons': 1.68.0
+  '@dtinsight/react-icons': 1.81.0
   '@handsontable/react': 2.1.0_handsontable@6.2.2
   antd: 4.24.16_react-dom@18.3.1+react@18.3.1
   classnames: 2.5.1
@@ -1081,8 +1081,8 @@ packages:
       ua-parser-js: 1.0.40
     dev: false
 
-  /@dtinsight/react-icons/1.68.0:
-    resolution: {integrity: sha512-j528o7Z7mML24F79isL2XwfMcLc4k/mG43pfJtFsDH9qPOgTEKxoTDUv31kzCkQ65DeTFf6MT+xanfaMRpTRKA==}
+  /@dtinsight/react-icons/1.81.0:
+    resolution: {integrity: sha512-hEBboEGbIZJPruwGOHiclAoGoFIZ4Lf5LFY8TYRgsMEiIKQeSnY7XT826T3lMbLgAKTRcnpA3en950pjpIsXgg==}
     dependencies:
       classnames: 2.5.1
       react: 16.13.1

@@ -112,7 +112,7 @@
     },
     "dependencies": {
         "@dtinsight/dt-utils": "^2.1.0",
-        "@dtinsight/react-icons": "^1.0.0",
+        "@dtinsight/react-icons": "^1.79.0",
         "@handsontable/react": "2.1.0",
         "antd": "4.24.16",
         "classnames": "^2.2.6",
