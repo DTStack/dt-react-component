@@ -1,0 +1,14 @@
+package.json
+  h_8e80b2b4b22af3 115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "a216c564143019f72cd6157ac85581b67e4e33d6",
+  "prompts": {},
+  "humans": {
+    "h_8e80b2b4b22af3": {
+      "author": "Bell"
+    }
+  }
+}
